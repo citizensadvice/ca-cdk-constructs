@@ -27,15 +27,16 @@ class ProtectedCloudfrontStack(Stack):
         us_east_environment = Environment(region="us-east-1")
 
         # cloudfront log bucket
-        access_logs_bucket = s3.Bucket(
+        self._access_logs_bucket = s3.Bucket(
             self,
             "CloudfrontLogBucket",
             bucket_name=PhysicalName.GENERATE_IF_NEEDED,
             removal_policy=RemovalPolicy.DESTROY,
-            lifecycle_rules=[s3.LifecycleRule(enabled=True, expiration=Duration.days(31 * 6))])
+            lifecycle_rules=[s3.LifecycleRule(enabled=True, expiration=Duration.days(31 * 6))]
+        )
 
         # the waf automations solution stack deployed from the template in the assets/ folder
-        waf = WafStack(
+        self._waf = WafStack(
             self,
             "WafStack",
             log_requests=False,  # todo
@@ -47,18 +48,19 @@ class ProtectedCloudfrontStack(Stack):
                 "ActivateScannersProbesProtectionParam": "True",
                 "ActivateReputationListsProtectionParam": "True",
                 "ActivateBadBotProtectionParam": "False",
-                "AppAccessLogBucket": access_logs_bucket.bucket_name
+                "AppAccessLogBucket": self._access_logs_bucket.bucket_name
             },
-            env=us_east_environment)
+            env=us_east_environment
+        )
 
         # need to get the web acl but can't pass it directly:
-        #   "Stack "qaCaReferrals/cloudfront" cannot consume a cross reference from stack "qaCaReferrals/cloudfront/WafStack.
+        #   "Stack "example/cloudfront" cannot consume a cross reference from stack "example/cloudfront/WafStack.
         #   Cross stack references are only supported for stacks deployed to the same environment or between nested stacks and their parent stack"
         # so this is a workaround - the waf template outputs (in us-east-1) are retrieved by a lambda in eu-west-1
         # RemoteOutputs is provided by the cdk-remote-stack library
-        waf_outputs = RemoteOutputs(self, "Outputs", stack=waf)
+        waf_outputs = RemoteOutputs(self, "Outputs", stack=self._waf)
 
-        self.secret_header = f"{self.env_name}-{self.stack_name}"
+        self._secret_header = f"{self.env_name}-{self.stack_name}"
 
         certificate = acm.DnsValidatedCertificate(self,
                                                   "CloudfrontCertificate",
@@ -66,7 +68,7 @@ class ProtectedCloudfrontStack(Stack):
                                                   region="us-east-1",
                                                   hosted_zone=hosted_zone)
         http_origin = origins.HttpOrigin(domain_name=origin_domain,
-                                         custom_headers=self.secretHeader())
+                                         custom_headers=self.secret_header)
 
         assets_origin_request_policy = cloudfront.OriginRequestPolicy(
                 self,
@@ -81,7 +83,7 @@ class ProtectedCloudfrontStack(Stack):
             "CdnDistribution",
             domain_names=[domain],
             enable_logging=True,
-            log_bucket=access_logs_bucket,
+            log_bucket=self._access_logs_bucket,
             certificate=certificate,
             web_acl_id=waf_outputs.get("WAFWebACLArn"),
             comment=f"CDN for {self.stack_name}",
@@ -104,13 +106,13 @@ class ProtectedCloudfrontStack(Stack):
                          origin_request_policy=assets_origin_request_policy,
                          viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS)
 
-        cdn.node.add_dependency(waf)
+        cdn.node.add_dependency(self._waf)
 
         self._cdn = cdn
 
         CfnOutput(self, "CloudfrontDistributionId", value=cdn.distribution_id)
         CfnOutput(self, "CloudfrontDistributionDomain", value=cdn.distribution_domain_name)
-        CfnOutput(self, "SecretHeaderArn", value=self.secret_header)
+        CfnOutput(self, "SecretHeaderArn", value=self._secret_header)
 
         domain_prefix = domain.split('.')[0]
         alias = r53_targets.CloudFrontTarget(cdn)
@@ -120,12 +122,18 @@ class ProtectedCloudfrontStack(Stack):
                     record_name=domain_prefix,
                     target=r53.RecordTarget.from_alias(alias))
 
+    @property
+    def access_logs_bucket(self) -> s3.Bucket:
+        return self._access_logs_bucket
+
+    @property
     def cdn(self) -> cloudfront.Distribution:
-        # direct access to the Cloudfront dsistribution resource
         return self._cdn
 
-    def secretHeaderValue(self) -> str:
-        return self.secret_header
+    @property
+    def secret_header_value(self) -> str:
+        return self._secret_header
 
-    def secretHeader(self) -> dict:
-        return {self.SECRET_HEADER_NAME: self.secret_header}
+    @property
+    def secret_header(self) -> dict:
+        return {self.SECRET_HEADER_NAME: self._secret_header}

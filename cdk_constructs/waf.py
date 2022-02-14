@@ -18,8 +18,10 @@ class WafStack(Stack):
                                                                "assets/aws-waf-security-automations.json"),
                                    parameters=params)
 
+    @property
     def acl(self) -> CfnOutput:
         return self.waf_stack.get_output(logical_id="WAFWebACL")
 
+    @property
     def acl_arn(self) -> str:
         return self.waf_stack.get_output(logical_id="WAFWebACLArn").value
