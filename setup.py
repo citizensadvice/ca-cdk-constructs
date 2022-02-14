@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='cdk-constructs',
       version='0.0.1',
       description='Constructs for Python AWS CDK',
-      url='https://github.com/citizensadvice/cdk_constructs',
+      url='https://github.com/citizensadvice/cdk-constructs',
       author='Citizens Advice',
       author_email='ca-devops@citizensadvice.org.uk',
       license='MIT',
