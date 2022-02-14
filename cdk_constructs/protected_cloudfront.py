@@ -14,18 +14,13 @@ from cdk_constructs.waf import WafStack
 
 class ProtectedCloudfrontStack(Stack):
     # A WAF protected cloudfront that also sets a "secret" header that can be checked by upstream load balancers to prevent requests bypassing cloudfront
-
     SECRET_HEADER_NAME = "X-Secret-CF-ALB-Header"
 
-    def __init__(self, scope: Construct, construct_id: str, hosted_zone: r53.HostedZone, domain: str, origin_domain: str, env_context: dict,
-                 **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, hosted_zone: r53.HostedZone, sub_domain: str, origin_domain: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-        self.context = env_context
-        self.env_name = self.context['env_name']
-
         # waf and the cloudfront log bucket must be deployed to us-east-1
         us_east_environment = Environment(region="us-east-1")
-
+        self.domain_name = f"{sub_domain}.{hosted_zone.zone_name}"
         # cloudfront log bucket
         self._access_logs_bucket = s3.Bucket(
             self,
@@ -60,11 +55,11 @@ class ProtectedCloudfrontStack(Stack):
         # RemoteOutputs is provided by the cdk-remote-stack library
         waf_outputs = RemoteOutputs(self, "Outputs", stack=self._waf)
 
-        self._secret_header = f"{self.env_name}-{self.stack_name}"
+        self._secret_header = self.stack_name
 
         certificate = acm.DnsValidatedCertificate(self,
                                                   "CloudfrontCertificate",
-                                                  domain_name=domain,
+                                                  domain_name=self.domain_name,
                                                   region="us-east-1",
                                                   hosted_zone=hosted_zone)
         http_origin = origins.HttpOrigin(domain_name=origin_domain,
@@ -81,7 +76,7 @@ class ProtectedCloudfrontStack(Stack):
         cdn = cloudfront.Distribution(
             self,
             "CdnDistribution",
-            domain_names=[domain],
+            domain_names=[self.domain_name],
             enable_logging=True,
             log_bucket=self._access_logs_bucket,
             certificate=certificate,
@@ -114,12 +109,11 @@ class ProtectedCloudfrontStack(Stack):
         CfnOutput(self, "CloudfrontDistributionDomain", value=cdn.distribution_domain_name)
         CfnOutput(self, "SecretHeaderArn", value=self._secret_header)
 
-        domain_prefix = domain.split('.')[0]
         alias = r53_targets.CloudFrontTarget(cdn)
         r53.ARecord(self,
                     "CloudfrontDNS",
                     zone=hosted_zone,
-                    record_name=domain_prefix,
+                    record_name=sub_domain,
                     target=r53.RecordTarget.from_alias(alias))
 
     @property
@@ -129,6 +123,10 @@ class ProtectedCloudfrontStack(Stack):
     @property
     def cdn(self) -> cloudfront.Distribution:
         return self._cdn
+
+    @property
+    def waf_stack(self) ->Stack:
+        return self._waf
 
     @property
     def secret_header_value(self) -> str:

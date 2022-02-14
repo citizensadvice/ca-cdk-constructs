@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='cdk-constructs',
-      version='0.0.1',
+      version='0.0.2',
       description='Constructs for Python AWS CDK',
       url='https://github.com/citizensadvice/cdk-constructs',
       author='Citizens Advice',
