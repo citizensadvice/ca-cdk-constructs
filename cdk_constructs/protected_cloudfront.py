@@ -36,13 +36,13 @@ class ProtectedCloudfrontStack(Stack):
             "WafStack",
             log_requests=False,  # todo
             params={
-                "ActivateAWSManagedRulesParam": "True",
-                "ActivateSqlInjectionProtectionParam": "True",
-                "ActivateCrossSiteScriptingProtectionParam": "True",
-                "ActivateHttpFloodProtectionParam": "True",
-                "ActivateScannersProbesProtectionParam": "True",
-                "ActivateReputationListsProtectionParam": "True",
-                "ActivateBadBotProtectionParam": "False",
+                "ActivateAWSManagedRulesParam": "no",
+                "ActivateSqlInjectionProtectionParam": "yes",
+                "ActivateCrossSiteScriptingProtectionParam": "yes",
+                "ActivateHttpFloodProtectionParam": "yes",
+                "ActivateScannersProbesProtectionParam": "yes",
+                "ActivateReputationListsProtectionParam": "yes",
+                "ActivateBadBotProtectionParam": "no",
                 "AppAccessLogBucket": self._access_logs_bucket.bucket_name
             },
             env=us_east_environment
