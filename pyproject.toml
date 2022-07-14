@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "ca_cdk_constructs"
+version = "0.1.1"
+description = "Shared CDK constructs"
+authors = ["CA"]
+homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aws-cdk-lib = "^2.31"
+cdk8s-plus-21 = "~=2.0.0b11"
+constructs = "~=10.1"
+cdk_remote_stack = "^2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1"
+black = "^22.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 95 # the default is 88
+target-version = ['py39']
+include = '\.pyi?$'
+force-exclude = '''
+/(
+  # cdk8s imports
+  | ca_cdk_constructs/eks/imports
+)/
+'''
+
+[tool.setuptools_scm]
