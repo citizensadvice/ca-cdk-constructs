@@ -12,11 +12,15 @@ A conventional way to generate DNS names
 ```python
 from ca_cdk_constructs import DomainConfiguration
 
-# inside a construct
-domain_config = DomainConfiguration(env_name="qa", record_name="myapp", apex_domain="acme.org")
-domain_config.hosted_zone_domain  # returns qa.acme.org
+domain_config = DomainConfiguration(self, "DomainConfig", record_name="myapp", hosted_zone_domain="qa.acme.org", is_domain_apdex=False)
+domain_config.hosted_zone_domain  # will lookup the HZ. Returns qa.acme.org
 domain_config.domain  # returns myapp.qa.acme.org
-domain_config.ingress_domain  # returns myapp-ingress.qa.acme.org
+domain_config.ingress_domain  # returns ingress.myapp.qa.acme.org
+
+domain_config = DomainConfiguration(self, "DomainConfig", record_name="myapp", hosted_zone_domain="acme.org", is_domain_apdex=True)
+domain_config.hosted_zone_domain  # will create the HZ in a root stack called <record>HostedZoneStack. Returns myapp.acme.org
+domain_config.domain  # returns myapp.acme.org
+domain_config.ingress_domain  # returns ingress.myapp.acme.org
 ```
 
 </details>

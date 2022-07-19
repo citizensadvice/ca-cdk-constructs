@@ -1,23 +1,38 @@
+import pytest
+from aws_cdk import App, Stack, Environment
+
 from ca_cdk_constructs import DomainConfiguration
 
 
-def test_non_prod_domain_properties():
+@pytest.fixture(autouse=True)
+def stack():
+    app = App()
+    stack = Stack(app, "Stack", env=Environment(account="111111111111", region="eu-west-1"))
+    yield stack
 
-    domain_props = DomainConfiguration(
-        record_name="foo", env_name="qa", apex_domain="somedomain.org.uk"
+
+def test_non_prod_domain_properties(stack):
+    domain_config = DomainConfiguration(
+        stack,
+        "DomainConfig",
+        record_name="foo",
+        hosted_zone_domain="qa.somedomain.org.uk",
+        is_domain_apdex=False,
+    )
+    assert domain_config.domain == "foo.qa.somedomain.org.uk"
+    assert domain_config.ingress_domain == "ingress.foo.qa.somedomain.org.uk"
+    assert domain_config.hosted_zone_domain == "qa.somedomain.org.uk"
+
+
+def test_apdex_domain_properties(stack):
+    domain_config = DomainConfiguration(
+        stack,
+        "DomainConfig",
+        record_name="myapp",
+        hosted_zone_domain="somedomain.org.uk",
+        is_domain_apdex=True,
     )
 
-    assert domain_props.domain == "foo.qa.somedomain.org.uk"
-    assert domain_props.ingress_domain == "foo-ingress.qa.somedomain.org.uk"
-    assert domain_props.hosted_zone_domain == "qa.somedomain.org.uk"
-
-
-def test_prod_domain_properties():
-
-    domain_props = DomainConfiguration(
-        record_name="foo", env_name="prod", apex_domain="somedomain.org.uk"
-    )
-
-    assert domain_props.domain == "foo.somedomain.org.uk"
-    assert domain_props.ingress_domain == "ingress.foo.somedomain.org.uk"
-    assert domain_props.hosted_zone_domain == "foo.somedomain.org.uk"
+    assert domain_config.domain == "myapp.somedomain.org.uk"
+    assert domain_config.ingress_domain == "ingress.myapp.somedomain.org.uk"
+    assert domain_config.hosted_zone_domain == "myapp.somedomain.org.uk"
