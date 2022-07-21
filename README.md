@@ -117,35 +117,21 @@ The library is compatible with
 the [current CA Kubernetes platform version](https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/2874441735/Current+version)
 
 <details>
-  <summary>EKS deployment role</summary>
+  <summary>EksClusterIntegration</summary>
 
-To deploy to EKS using the CDK you need to create an IAM role and add it to the cluster aws-auth configuration.
-
-```python
-from ca_cdk_constructs.eks.kubernetes_auth_role_stack import KubernetesAuthRoleStack
-
-# create the role. This has to be done in a stack which is added directly to app
-k8s_role_stack = KubernetesAuthRoleStack(self, "K8sRole")
-
-# The role ARN will be available in the K8sAuthRoleArn output and has to be manually added to the cluster for security reasons
-# the role can be retrieved with k8s_role_stack.role
-
-```
-
-</details>
-
-
-<details>
-  <summary>EKS cluster lookup</summary>
-
-Lookup EKS clusters
+Makes it possible to deploy to imported EKS clusters.
 
 ```python
-from ca_cdk_constructs.eks.cluster_lookup import get_eks_cluster
+from ca_cdk_constructs.eks import EksClusterIntegration
 
-# find the correct cluster for QA
-get_eks_cluster(self, env_name="qa", kubectl_role_arn=k8s_role_stack.role.role_arn)
+# in an existing stack
+eks_integration = EksClusterIntegration(self, "EksIntegration", vpc=vpc, cluster_name="mycluster")
 
+# for imported clusters the kubectl role must be manually added to aws-auth
+# The role ARN will also be available in the K8sAuthRoleArn output
+eks_integration.role
+# the EKS cluster
+eks_integration.cluster
 ```
 
 </details>
