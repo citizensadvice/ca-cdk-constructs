@@ -22,7 +22,7 @@ class EksClusterIntegration(Construct):
         describe_cluster_sdk_call = cr.AwsSdkCall(
             service="EKS",
             action="describeCluster",
-            physical_resource_id=cr.PhysicalResourceId.of("ClusterOidcProviderLookup"),
+            physical_resource_id=cr.PhysicalResourceId.of("DescribeClusterLookup"),
             parameters={"name": cluster_name},
             output_paths=[
                 "cluster.identity.oidc.issuer",
