@@ -5,18 +5,24 @@ To be used with the AWS CDK for Python
 ### Core
 
 <details>
-  <summary>DomainConfiguration</summary>
+  <summary>DomainProperties (Plain object)</summary>
 
 A conventional way to generate DNS names
 
 ```python
-from ca_cdk_constructs import DomainConfiguration
+from ca_cdk_constructs import DomainProperties
 
-# inside a construct
-domain_config = DomainConfiguration(env_name="qa", record_name="myapp", apex_domain="acme.org")
-domain_config.hosted_zone_domain  # returns qa.acme.org
-domain_config.domain  # returns myapp.qa.acme.org
-domain_config.ingress_domain  # returns myapp-ingress.qa.acme.org
+domain_props = DomainProperties(sub_domain="myapp", zone_domain="qa.acme.org")
+domain_props.zone_domain  # qa.acme.org
+domain_props.domain  # returns myapp.qa.acme.org
+domain_props.ingress_domain  # returns myapp-ingress.qa.acme.org
+
+# indicating a top level domain
+domain_props = DomainProperties(sub_domain="", zone_domain="myapp.acme.org")
+
+domain_props.zone_domain  # myapp.acme.org
+domain_props.domain  # returns myapp.acme.org
+domain_props.ingress_domain  # returns myapp-ingress.myapp.acme.org
 ```
 
 </details>
