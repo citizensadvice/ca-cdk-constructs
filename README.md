@@ -33,14 +33,9 @@ domain_props.ingress_domain  # returns myapp-ingress.myapp.acme.org
 Creates delegated domains
 
 ```python
-from aws_cdk import App, Stack, Environment
 from ca_cdk_constructs import CrossAccountDomainDelegation, R53ParentZoneConfig
 
-app = App()
-
-subdomain_stack = Stack(app, "SubDomainStack", env=Environment(account="444444444444"))
-
-zone = PublicHostedZone(subdomain_stack, "Zone", zone_name="my-subdomain.acme.org")
+zone = PublicHostedZone(self, "Zone", zone_name="my-subdomain.acme.org")
 
 # creates delegation records in for my-subdomain.acme.org in acme.org
 CrossAccountDomainDelegation(
@@ -53,8 +48,6 @@ CrossAccountDomainDelegation(
     ),
     hosted_zone=zone
 )
-
-app.synth()
 
 ```
 
