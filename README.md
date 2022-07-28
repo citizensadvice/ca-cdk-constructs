@@ -27,6 +27,32 @@ domain_props.ingress_domain  # returns myapp-ingress.myapp.acme.org
 
 </details>
 
+<details>
+  <summary>CrossAccountDomainDelegation</summary>
+
+Creates delegated domains
+
+```python
+from ca_cdk_constructs import CrossAccountDomainDelegation, R53ParentZoneConfig
+
+zone = PublicHostedZone(self, "Zone", zone_name="my-subdomain.acme.org")
+
+# creates delegation records in for my-subdomain.acme.org in acme.org
+CrossAccountDomainDelegation(
+    subdomain_stack,
+    "MySubdomainDnsDelegation",
+    parent_zone_config=R53ParentZoneConfig(
+        account_id="1234566789012",
+        zone_name="acme.org",
+        role_name="R53UpdateRole" # existing role in the parent zone account
+    ),
+    hosted_zone=zone
+)
+
+```
+
+</details>
+
 ### Edge services
 
 <details>
