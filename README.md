@@ -232,6 +232,39 @@ See [external_secrets](./ca_cdk_constructs/eks/external_secrets/external_secrets
 
 </details>
 
+### Storage
+
+<details>
+  <summary>AuroraFastClone</summary>
+
+Clones an Aurora cluster.
+
+```python
+clone = AuroraFastClone(self, "TestDBClone", source_cluster=aurora.cluster,
+              vpc=vpc,
+              db_instance_class="db.t3.medium",
+              cluster_parameters={"log_hostname": 1},
+              instance_params={"log_hostname": 1}
+        )
+
+
+clone_creds = DatabaseSecret(self, "DbSecret", username="app", secret_name="ClonedClusterCredentials")
+
+ModifyDBClusterPassword(
+    self,
+    "ModifyClonedClusterPassword",
+    secret=clone_creds,
+    cluster_identifier=clone.cluster.ref,
+)
+
+clone.allow_from(ec2.Peer.ipv4(vpc.vpc_cidr_block))
+# or
+clone.cluster_sg.allow_....
+
+```
+
+</details>
+
 ## Tests
 
 ```shell
