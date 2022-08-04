@@ -27,7 +27,7 @@ class AuroraFastClone(Construct):
     ) -> None:
         super().__init__(scope, id)
 
-        clone_cluster_id = f"{source_cluster.cluster_identifier}-{Stack.of(self).stack_id}"
+        clone_cluster_id = f"{Stack.of(source_cluster).stack_name}-{Stack.of(self).stack_name}"
 
         db_subnet_group = SubnetGroup(
             self,
@@ -61,7 +61,7 @@ class AuroraFastClone(Construct):
             use_latest_restorable_time=True,
             restore_type="copy-on-write",
             source_db_cluster_identifier=source_cluster.cluster_identifier,
-            engine_version=source_cluster.engine.engine_version.major_version,
+            engine_version=source_cluster.engine.engine_version.full_version,
             # ignored, see below
             db_subnet_group_name=db_subnet_group.subnet_group_name,
             vpc_security_group_ids=[self.cluster_sg.security_group_id],
@@ -83,12 +83,7 @@ class AuroraFastClone(Construct):
             db_cluster_identifier=self.cluster.ref,
             db_parameter_group_name=cluster_instance_pg.ref,
             engine=self.cluster.engine,
-            delete_automated_backups=True,
-            db_subnet_group_name=db_subnet_group.subnet_group_name,
-        )
-        # https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/336
-        self.cluster_instance.add_override(
-            "Properties.DBSubnetGroupName", db_subnet_group.subnet_group_name
+            delete_automated_backups=True
         )
 
         CfnOutput(self, "ClusterEndpointAddress", value=self.cluster.attr_endpoint_address)
