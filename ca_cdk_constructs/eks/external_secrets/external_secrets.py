@@ -15,17 +15,31 @@ from ca_cdk_constructs.eks.external_secrets.external_secret_source import (
 class ExternalSecrets(Construct):
     """Collect external secret from AWS Secrets Manager or Vault.
 
+    Requires existing external secrets SecretStore(s), possibly created by a different workflow as explained in https://external-secrets.io/v0.5.8/api-overview/#secretstore
+
     ## Example
+
     ```
     from ca_cdk_constructs.eks.external_secrets import ExternalSecrets, ExternalVaultSecretSource, ExternalAWSSMSecretSource
-
-    secr = Secret(...)
-    role = Role(.....)
-    secret.grant_read(role)
 
     app = k8s.App()
     chart = Chart(app, "Myservice")
 
+    # a SSM secret that needs passing to the pods
+    secr = Secret(...)
+    role = Role(...)
+    secr.grant_read(role)
+    # IRSA to access the secret
+    ServiceAccount(
+            self,
+            "ExternalSecretsKubernetesServiceAccount",
+            namespace="myapp-namespace",
+            name="external-secrets-aws", # match the name in the SecretStore, see above
+            cluster=cluster
+    )
+
+
+    # define the external secrets
     secrets=ExternalSecrets(self, "ExternalSecrets",
         chart=chart,
         secret_sources=[
@@ -47,17 +61,15 @@ class ExternalSecrets(Construct):
 
     ```
     deployment = Deployment(chart, ........)
-    service_account = ServiceAccount(chart, ........, metadata={"annotations": {"eks.amazonaws.com/role-arn": role.role_arn}})
 
     ## add to cdk8s containers
     secrets.add_to_containers(containers=deployment.containers)
     ```
 
-    ## Using with helm, requires that the chart exposes overrides for secrets and SA
+    ## Using with helm, requires that the chart exposes overrides for the generated secrets
     ```
     helm_overrides = {
-        "secrets" : secrets.k8s_secret_names,
-        "serviceAccountIamRole": role.role_arn
+        "secrets" : secrets.k8s_secret_names
     }
     ```
 
