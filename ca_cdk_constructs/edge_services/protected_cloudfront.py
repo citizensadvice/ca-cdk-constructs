@@ -39,7 +39,7 @@ class ProtectedCloudfrontStack(Construct):
             self,
             "WafStack",
             params={
-                "ActivateAWSManagedRulesParam": "no",
+                "ActivateAWSManagedRulesParam": "yes",
                 "ActivateSqlInjectionProtectionParam": "yes",
                 "ActivateCrossSiteScriptingProtectionParam": "yes",
                 "ActivateHttpFloodProtectionParam": "yes",
