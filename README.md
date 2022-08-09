@@ -235,31 +235,71 @@ See [external_secrets](./ca_cdk_constructs/eks/external_secrets/external_secrets
 ### Storage
 
 <details>
+  <summary>ModifyDBClusterPassword</summary>
+
+Modifies the password of an Aurora cluster
+
+```python
+modify_cluster_password = ModifyDBClusterPassword(self, "ModifyClusterPassword", cluster_id=cluster_id, secret=db_secret)
+modify_cluster_password.trigger_on_stack_create_update()
+# access the udnerlaying lambda to e.g. add it to a state machine
+modify_cluster_password.lambda_funct
+```
+
+</details>
+
+<details>
   <summary>AuroraFastClone</summary>
 
 Clones an Aurora cluster.
 
 ```python
-clone = AuroraFastClone(self, "TestDBClone", source_cluster=aurora.cluster,
-              vpc=vpc,
-              db_instance_class="db.t3.medium",
-              cluster_parameters={"log_hostname": 1},
-              instance_params={"log_hostname": 1}
-        )
+from ca_cdk_constructs.storage.aurora_clone_refresh import AuroraCloneRefresh
 
+source_cluster = DatabaseCluster(self, "AuroraCluster", ....) # or lookup one
+vpc = source_cluster.vpc # or look it up
 
-clone_creds = DatabaseSecret(self, "DbSecret", username="app", secret_name="ClonedClusterCredentials")
-
-ModifyDBClusterPassword(
+cluster_pg = CfnDBClusterParameterGroup(
     self,
-    "ModifyClonedClusterPassword",
-    secret=clone_creds,
-    cluster_identifier=clone.cluster.ref,
+    "DBClusterParameterGroup",
+    description=f"Cluster parameter group for test clone",
+    family=source_cluster.engine.parameter_group_family,
+    parameters={"log_hostname": 1},
+)
+cluster_instance_pg = rds.CfnDBParameterGroup(
+    self,
+    "DBParameterGroup",
+    description=f"DB parameter group for test clone instance",
+    family=source_cluster.engine.parameter_group_family,
+    parameters={"log_hostname": 1},
 )
 
-clone.allow_from(ec2.Peer.ipv4(vpc.vpc_cidr_block))
+# periodically clone the source cluster
+cloned_cluster = AuroraCloneRefresh(self, "TestClone",
+                              source_cluster=source_cluster,
+                              source_cluster_vpc=vpc,
+                              source_cluster_master_username=username,
+                              db_instance_class="db.t3.medium",
+                              cluster_parameter_group=cluster_pg,
+                              instance_parameter_group=cluster_instance_pg,
+                                    tags={
+                                        "Tag": "Value"
+                                    },
+                              clone_schedule=Schedule.cron(minute="0", hour="8"),
+                              notifications_topic=topic)
+
+# allow access to the clone from certain ranges
+cloned_cluster.allow_from(ec2.Peer.ipv4(vpc.vpc_cidr_block))
 # or
 clone.cluster_sg.allow_....
+
+# access the cloned cluster credentials
+cloned_cluster.clone_secret # DatabaseSecret
+# the clone SNS topic
+cloned_cluster.notifications_topic # Topic
+
+# the event rule
+cloned_cluster.event_rule
 
 ```
 

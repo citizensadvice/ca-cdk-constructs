@@ -71,6 +71,21 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
+name = "aws-cdk.aws-lambda-python-alpha"
+version = "2.63.0a0"
+description = "The CDK Construct Library for AWS Lambda in Python"
+category = "main"
+optional = false
+python-versions = "~=3.7"
+
+[package.dependencies]
+aws-cdk-lib = ">=2.63.0,<3.0.0"
+constructs = ">=10.0.0,<11.0.0"
+jsii = ">=1.74.0,<2.0.0"
+publication = ">=0.0.3"
+typeguard = ">=2.13.3,<2.14.0"
+
+[[package]]
 name = "aws-cdk.lambda-layer-kubectl-v24"
 version = "2.0.85"
 description = "A Lambda Layer that contains kubectl v1.24"
@@ -375,7 +390,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f60499d0e0bf64af08573ac748ae884d4664a0400a553bd07d0043f73fbd2159"
+content-hash = "d3b389bf4ffa974e925efa60a000895ee63c077b1cff9f78b14dc948c0c2b2d2"
 
 [metadata.files]
 attrs = []
@@ -383,6 +398,7 @@ aws-cdk-lib = []
 "aws-cdk.asset-awscli-v1" = []
 "aws-cdk.asset-kubectl-v20" = []
 "aws-cdk.asset-node-proxy-agent-v5" = []
+"aws-cdk.aws-lambda-python-alpha" = []
 "aws-cdk.lambda-layer-kubectl-v24" = []
 black = []
 cattrs = []
