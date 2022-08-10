@@ -31,6 +31,7 @@ from aws_cdk.aws_stepfunctions import (
 from aws_cdk.aws_stepfunctions_tasks import LambdaInvoke, SnsPublish
 from constructs import Construct
 
+from ca_cdk_constructs.aws_lambda.layers.boto3 import Boto3LambdaLayer
 from ca_cdk_constructs.storage.modify_db_cluster_password import ModifyDBClusterPassword
 
 
@@ -118,12 +119,7 @@ class AuroraCloneRefresh(Construct):
             + clone_tags,
         }
 
-        boto3_lambda_layer = PythonLayerVersion(
-            self,
-            "Boto3Layer",
-            entry=os.path.join(self.LAMBDA_SOURCE_DIR, "python"),
-            compatible_runtimes=[Runtime.PYTHON_3_9],
-        )
+        boto3_lambda_layer = Boto3LambdaLayer(self, "BotoLayer").layer
 
         cluster_clone_lambda = PythonFunction(
             self,
@@ -301,12 +297,12 @@ class AuroraCloneRefresh(Construct):
 
         modify_cluster_password = ModifyDBClusterPassword(
             self,
-            "ResetClonedClusterPassword",
+            "ModifyClonedClusterPassword",
             cluster_id=clone_cluster_id,
             secret=self.clone_secret,
         )
 
-        reset_clone_password_task = LambdaInvoke(
+        modify_clone_password_task = LambdaInvoke(
             self,
             "ModifyClusterPassword",
             lambda_function=modify_cluster_password.lambda_funct,
@@ -320,7 +316,7 @@ class AuroraCloneRefresh(Construct):
                 }
             ),
         )
-        clone_cluster_job.next(reset_clone_password_task.next(notification_job))
+        clone_cluster_job.next(modify_clone_password_task.next(notification_job))
 
         chain = Chain.start(check_source_cluster_job).next(
             source_cluster_available.when(

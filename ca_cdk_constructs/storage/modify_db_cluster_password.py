@@ -1,17 +1,21 @@
 import json
+import os
 from os import path
+
 from aws_cdk import Duration, Stack
-from aws_cdk.aws_rds import DatabaseCluster
+from aws_cdk.aws_iam import PolicyStatement, Effect
+from aws_cdk.aws_lambda import Runtime
+from aws_cdk.aws_lambda_python_alpha import PythonLayerVersion, PythonFunction
 from aws_cdk.aws_secretsmanager import ISecret
-from constructs import Construct
 from aws_cdk.custom_resources import (
     AwsCustomResourcePolicy,
     AwsSdkCall,
     PhysicalResourceId,
     AwsCustomResource,
 )
-from aws_cdk.aws_iam import PolicyStatement, Effect
-from aws_cdk.aws_lambda import Function, Runtime, Code
+from constructs import Construct
+
+from ca_cdk_constructs.aws_lambda.layers.boto3 import Boto3LambdaLayer
 
 
 class ModifyDBClusterPassword(Construct):
@@ -70,12 +74,16 @@ class ModifyDBClusterPassword(Construct):
         self.cluster_id = cluster_id
         self.secret_name = secret.secret_name
 
-        self.lambda_funct = Function(
+        boto3_lambda_layer = Boto3LambdaLayer(self, "BotoLayer").layer
+
+        self.lambda_funct = PythonFunction(
             self,
             "ModifyDBClusterPasswordLambda",
             runtime=Runtime.PYTHON_3_9,
-            code=Code.from_asset(path=self.LAMBDA_SOURCE_DIR),
-            handler="modify_db_cluster_password.handler",
+            layers=[boto3_lambda_layer],
+            entry=self.LAMBDA_SOURCE_DIR,
+            index="modify_db_cluster_password.py",
+            handler="handler",
         )
 
         secret.grant_read(self.lambda_funct)
