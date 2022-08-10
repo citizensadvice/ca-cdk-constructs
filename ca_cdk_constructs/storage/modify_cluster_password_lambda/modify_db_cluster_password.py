@@ -44,4 +44,4 @@ def handler(event, _context):
             }
         ),
     )
-    print(json.dumps({"modify_cluster": secret_update_response["ResponseMetadata"]}))
+    print(json.dumps({"update_secret": secret_update_response["ResponseMetadata"]}))

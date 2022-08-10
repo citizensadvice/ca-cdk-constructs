@@ -92,7 +92,7 @@ class ModifyDBClusterPassword(Construct):
         self.lambda_funct.add_to_role_policy(
             PolicyStatement(
                 effect=Effect.ALLOW,
-                actions=["rds:ModifyDBCluster"],
+                actions=["rds:ModifyDBCluster", "rds:DescribeDBClusters"],
                 resources=[
                     f"arn:aws:rds:{Stack.of(self).region}:{Stack.of(self).account}:cluster:{cluster_id}"
                 ],
