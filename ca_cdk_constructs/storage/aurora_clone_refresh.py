@@ -7,9 +7,9 @@ from aws_cdk.aws_events import Rule, Schedule, RuleTargetInput
 from aws_cdk.aws_events_targets import SfnStateMachine
 from aws_cdk.aws_iam import PolicyStatement
 from aws_cdk.aws_lambda import Runtime
-from aws_cdk.aws_lambda_python_alpha import PythonLayerVersion, PythonFunction
-from aws_cdk.aws_rds import DatabaseSecret
+from aws_cdk.aws_lambda_python_alpha import PythonFunction
 from aws_cdk.aws_rds import (
+    DatabaseSecret,
     SubnetGroup,
     CfnDBClusterParameterGroup,
     CfnDBParameterGroup,
