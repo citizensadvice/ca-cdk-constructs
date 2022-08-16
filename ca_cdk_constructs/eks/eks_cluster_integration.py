@@ -9,13 +9,16 @@ from constructs import Construct
 class EksClusterIntegration(Construct):
     """Looks up an existing EKS cluster by name and provisions the kubectl IAM role needed for deployments to the cluster."""
 
-    def __init__(self, scope: Construct, id: str, vpc: IVpc, cluster_name: str):
+    def __init__(
+        self, scope: Construct, id: str, vpc: IVpc, cluster_name: str, role_name: str
+    ):
         super().__init__(scope, id)
 
         self.role = Role(
             self,
             "KubernetesAuthRole",
             assumed_by=AccountRootPrincipal(),
+            role_name=role_name,
             description="Role used by the AWS CDK project to authenticate with Kubernetes",
         )
 
