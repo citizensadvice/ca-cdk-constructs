@@ -25,30 +25,52 @@ class ProtectedCloudfrontStack(Construct):
     ) -> None:
         super().__init__(scope, construct_id)
         self.domain_name = f"{sub_domain}.{hosted_zone.zone_name}"
-        # cloudfront log bucket
+
+        # the cloudfront log bucket - doesn't need to be us-east-1
+        # as no scanners & probes rule
         self._access_logs_bucket = s3.Bucket(
             self,
-            "CloudfrontLogBucket",
+            "CloudfrontLogsBucket",
             bucket_name=PhysicalName.GENERATE_IF_NEEDED,
             removal_policy=RemovalPolicy.DESTROY,
             lifecycle_rules=[s3.LifecycleRule(enabled=True, expiration=Duration.days(31 * 6))],
         )
 
-        # the waf automations solution stack deployed from the template in the assets/ folder
-        self._waf = WafStack(
+        # and waf automations solution stack deployed from the template in the waf_assets/ folder
+        self.waf = WafStack(
             self,
             "WafStack",
             params={
+                #### CARE!!!!
+                # At the moment, in order to be able to add the AWS known bad
+                # inputs rule, I've had to effectively hard-code the rule
+                # configurations in the *nested* waf template (ie comment out the
+                # conditions where the parameter value is "yes" and comment out
+                # resources where the parameter value is "no"). If you change the
+                # yes/no values here, you MUST make the corresponding changes in
+                # waf_assets/nested_template.yaml for them to take effect.
+                # See https://citizensadvice.atlassian.net/browse/OPS-4803
+                # Priority order set here - leave 2-9 for any custom rules added in
+                # addition to this template
+                # 0: whitelist rule
+                # 1: blacklist rule
+                # 10: aws core managed rule - condition commented out
+                # NO flood log-parser rule - rule commented out
+                # 11: flood rate-based rule - condition commented out
+                # NO scanners & probes rule - rule commented out
+                # 12: reputation list rule - condition commented out
+                # NO bad bot rule - rule commented out
+                # 20: sql injection - condition commented out
+                # 30: cross-site scripting (xss) - condition commented out
                 "ActivateAWSManagedRulesParam": "yes",
                 "ActivateSqlInjectionProtectionParam": "yes",
                 "ActivateCrossSiteScriptingProtectionParam": "yes",
-                "ActivateHttpFloodProtectionParam": "yes",
-                "ActivateScannersProbesProtectionParam": "yes",
+                "ActivateHttpFloodProtectionParam": "yes - AWS WAF rate based rule",
+                "ActivateScannersProbesProtectionParam": "no",
                 "ActivateReputationListsProtectionParam": "yes",
                 "ActivateBadBotProtectionParam": "no",
-                "AppAccessLogBucket": self._access_logs_bucket.bucket_name,
+                "RequestThreshold": "100",  # default and min for rate based flood protection = 100
             },
-            # waf and the cloudfront log bucket must be deployed to us-east-1
             env=Environment(region="us-east-1"),
         )
 
@@ -57,7 +79,7 @@ class ProtectedCloudfrontStack(Construct):
         #   Cross stack references are only supported for stacks deployed to the same environment or between nested stacks and their parent stack"
         # so this is a workaround - the waf template outputs (in us-east-1) are retrieved by a lambda in eu-west-1
         # RemoteOutputs is provided by the cdk-remote-stack library
-        waf_outputs = RemoteOutputs(self, "Outputs", stack=self._waf)
+        waf_outputs = RemoteOutputs(self, "Outputs", stack=self.waf)
 
         self._secret_header = Stack.of(self).stack_name
 
@@ -115,7 +137,7 @@ class ProtectedCloudfrontStack(Construct):
             viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         )
 
-        cdn.node.add_dependency(self._waf)
+        cdn.node.add_dependency(self.waf)
 
         self._cdn = cdn
 
@@ -142,7 +164,7 @@ class ProtectedCloudfrontStack(Construct):
 
     @property
     def waf_stack(self) -> Stack:
-        return self._waf
+        return self.waf
 
     @property
     def secret_header_value(self) -> str:
