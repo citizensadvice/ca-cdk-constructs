@@ -5,14 +5,17 @@ from aws_cdk import aws_cloudfront_origins as origins
 from aws_cdk import aws_route53 as r53
 from aws_cdk import aws_route53_targets as r53_targets
 from aws_cdk import aws_s3 as s3
+from aws_cdk import aws_wafv2 as wafv2
 from cdk_remote_stack import RemoteOutputs
 from constructs import Construct
+from typing import Optional
 
 from ca_cdk_constructs.edge_services.waf_stack import WafStack
 
 
-class ProtectedCloudfrontStack(Construct):
-    # A WAF protected cloudfront that also sets a "secret" header that can be checked by upstream load balancers to prevent requests bypassing cloudfront
+class ProtectedCloudfront(Construct):
+    # A WAF protected cloudfront that also sets a "secret" header that can be checked by upstream
+    # load balancers to prevent requests bypassing cloudfront
     SECRET_HEADER_NAME = "X-Secret-CF-ALB-Header"
 
     def __init__(
@@ -22,6 +25,9 @@ class ProtectedCloudfrontStack(Construct):
         hosted_zone: r53.HostedZone,
         sub_domain: str,
         origin_domain: str,
+        custom_rules: Optional[wafv2.CfnWebACL.RuleProperty] = [],
+        # aws default and min for rate based flood protection = 100
+        flood_protection_threshold: Optional[str] = "100",
     ) -> None:
         super().__init__(scope, construct_id)
         self.domain_name = f"{sub_domain}.{hosted_zone.zone_name}"
@@ -69,9 +75,10 @@ class ProtectedCloudfrontStack(Construct):
                 "ActivateScannersProbesProtectionParam": "no",
                 "ActivateReputationListsProtectionParam": "yes",
                 "ActivateBadBotProtectionParam": "no",
-                "RequestThreshold": "100",  # default and min for rate based flood protection = 100
+                "RequestThreshold": flood_protection_threshold,
             },
             env=Environment(region="us-east-1"),
+            custom_rules=custom_rules,
         )
 
         # need to get the web acl but can't pass it directly:

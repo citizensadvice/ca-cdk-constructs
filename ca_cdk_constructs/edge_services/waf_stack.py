@@ -2,7 +2,9 @@ import os.path
 
 from aws_cdk import CfnOutput, Stack, PhysicalName, RemovalPolicy, Duration
 from aws_cdk.cloudformation_include import CfnInclude, CfnIncludeProps
+from aws_cdk import aws_wafv2 as wafv2
 from constructs import Construct
+from typing import Optional
 
 from ca_cdk_constructs.edge_services.waf_assets.known_bad_inputs_rule import (
     known_bad_inputs_rule,
@@ -27,7 +29,11 @@ from ca_cdk_constructs.edge_services.waf_assets.known_bad_inputs_rule import (
 
 class WafStack(Stack):
     # deploys the WAF automations solution stack using the template in the assets/ folder
-    def __init__(self, scope: Construct, id: str, params: dict, **kwargs) -> None:
+    def __init__(self, scope:
+            Construct, id: str,
+            params: dict,
+            custom_rules: Optional[wafv2.CfnWebACL.RuleProperty] = [],
+            **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
         dirname = os.path.dirname(__file__)
@@ -53,6 +59,8 @@ class WafStack(Stack):
         rules = web_acl.rules
         # need to add aws managed known bad inputs rule
         web_acl.rules += list(known_bad_inputs_rule())
+        # need to add any user-supplied custom rules
+        web_acl.rules += custom_rules
 
     @property
     def acl(self) -> CfnOutput:

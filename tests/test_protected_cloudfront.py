@@ -2,7 +2,7 @@ import aws_cdk as core
 import aws_cdk.assertions as assertions
 from aws_cdk.aws_route53 import HostedZone
 
-from ca_cdk_constructs.edge_services.protected_cloudfront import ProtectedCloudfrontStack
+from ca_cdk_constructs.edge_services.protected_cloudfront import ProtectedCloudfront
 
 
 def test_cloudfront_record_created():
@@ -11,7 +11,7 @@ def test_cloudfront_record_created():
     zone_stack = core.Stack(app, "HostedZoneStack", env=env)
     hosted_zone = HostedZone(zone_stack, "Hz", zone_name="test.acme.org.uk")
 
-    ProtectedCloudfrontStack(
+    ProtectedCloudfront(
         zone_stack,
         "Cdn",
         hosted_zone=hosted_zone,
