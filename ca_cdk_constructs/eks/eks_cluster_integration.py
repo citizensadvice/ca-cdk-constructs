@@ -10,7 +10,13 @@ class EksClusterIntegration(Construct):
     """Looks up an existing EKS cluster by name and provisions the kubectl IAM role needed for deployments to the cluster."""
 
     def __init__(
-        self, scope: Construct, id: str, vpc: IVpc, cluster_name: str, role_name: str
+        self,
+        scope: Construct,
+        id: str,
+        vpc: IVpc,
+        cluster_name: str,
+        role_name: str,
+        prune: bool = True,
     ):
         super().__init__(scope, id)
 
@@ -75,6 +81,7 @@ class EksClusterIntegration(Construct):
             kubectl_private_subnet_ids=private_subnets,
             kubectl_security_group_id=sg_id,
             vpc=vpc,
+            prune=prune,  # https://github.com/aws/aws-cdk/issues/19843
         )
 
         # useful to debug sdk lookup calls
