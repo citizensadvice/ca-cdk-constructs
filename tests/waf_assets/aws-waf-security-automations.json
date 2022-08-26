@@ -598,27 +598,7 @@
             "Type": "AWS::CloudFormation::Stack",
             "DependsOn": "CheckRequirements",
             "Properties": {
-                "TemplateURL": {
-                    "Fn::Sub": [
-                        "https://${S3Bucket}.s3.amazonaws.com/${KeyPrefix}/aws-waf-security-automations-webacl.template",
-                        {
-                            "S3Bucket": {
-                                "Fn::FindInMap": [
-                                    "SourceCode",
-                                    "General",
-                                    "TemplateBucket"
-                                ]
-                            },
-                            "KeyPrefix": {
-                                "Fn::FindInMap": [
-                                    "SourceCode",
-                                    "General",
-                                    "KeyPrefix"
-                                ]
-                            }
-                        }
-                    ]
-                },
+                "TemplateURL": "AWS::NoValue",
                 "Parameters": {
                     "ActivateAWSManagedRulesParam": {
                         "Ref": "ActivateAWSManagedRulesParam"
