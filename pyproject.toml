@@ -8,7 +8,7 @@ homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 [tool.poetry.dependencies]
 python = "^3.9"
 aws-cdk-lib = "^2.31"
-cdk8s-plus-21 = "~=2.0.0b11"
+cdk8s-plus-23 = "~=2.0.0b11"
 constructs = "~=10.1"
 cdk_remote_stack = "^2.0"
 
