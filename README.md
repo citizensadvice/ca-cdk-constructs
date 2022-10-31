@@ -183,16 +183,30 @@ HelmChart(k8s_deployment_stack, "myapp", cluster=cluster, namespace="myapp-names
 
 ### Kubernetes / AWS EKS
 
-`ca_cdk_constructs` includes a vendored cdk8s library which can be imported with:
+`ca_cdk_constructs` includes a vendored cdk8s library that is compatible with the [currently supported CA Kubernetes platform version](https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/2874441735/Current+version).
+
+You need to update the version of `ca_cdk_constructs` in your project if both of these are correct:
+
+- your project deploys k8s resources using the vendored cdk8s library
+- the CA platform was updated to a new version
+
+The cdk8s library is vendored by running:
+
+```sh
+cd ca_cdk_constructs/eks
+rm -rf imports/
+cdk8s import k8s@<K8S_MINOR_VERSION>.0 -l python
+```
+
+where `K8S_MINOR_VERSION` should match the [currently supported CA Kubernetes platform version](https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/2874441735/Current+version).
+
+The library can be then used as follows:
 
 ```python
 import ca_cdk_constructs.eks.imports.k8s as k8s
 
 k8s.KubeDeployment(.....)
 ```
-
-The library is compatible with
-the [current CA Kubernetes platform version](https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/2874441735/Current+version)
 
 <details>
   <summary>EksClusterIntegration</summary>
