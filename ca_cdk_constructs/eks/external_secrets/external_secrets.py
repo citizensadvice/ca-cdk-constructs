@@ -3,7 +3,7 @@ from aws_cdk import Stack
 
 from cdk8s import Chart
 from aws_cdk.aws_eks import KubernetesPatch, ICluster
-import cdk8s_plus_21
+import cdk8s_plus_23 as cdk8s_plus
 from constructs import Construct
 
 from ca_cdk_constructs.eks.external_secrets.external_secret import ExternalSecret
@@ -93,7 +93,7 @@ class ExternalSecrets(Construct):
         for secret_source in self.secret_sources:
             self.create_external_secret(secret_source)
 
-    def add_to_containers(self, containers: list[cdk8s_plus_21.Container]):
+    def add_to_containers(self, containers: list[cdk8s_plus.Container]):
         for container in containers:
             for secret_source in self.secret_sources:
                 self.add_secret_to_container(container, secret_source)
@@ -108,11 +108,11 @@ class ExternalSecrets(Construct):
         )
 
     def add_secret_to_container(
-        self, container: cdk8s_plus_21.Container, secret_source: ExternalSecretSource
+        self, container: cdk8s_plus.Container, secret_source: ExternalSecretSource
     ):
         container.env.copy_from(
-            cdk8s_plus_21.Env.from_secret(
-                cdk8s_plus_21.Secret.from_secret_name(name=secret_source.k8s_secret_name)
+            cdk8s_plus.Env.from_secret(
+                cdk8s_plus.Secret.from_secret_name(name=secret_source.k8s_secret_name)
             )
         )
 
