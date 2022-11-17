@@ -89,14 +89,13 @@ class ExternalSecrets(Construct):
     ) -> None:
         super().__init__(scope, id)
         self.chart = chart
-        self.secret_sources = secret_sources
-        for secret_source in self.secret_sources:
+        for secret_source in secret_sources:
             self.create_external_secret(secret_source)
 
     def add_to_containers(self, containers: list[cdk8s_plus.Container]):
         for container in containers:
-            for secret_source in self.secret_sources:
-                self.add_secret_to_container(container, secret_source)
+            for secret_name in self.k8s_secret_names:
+                self.add_secret_to_container(container, secret_name)
 
     def create_external_secret(self, secret_source: ExternalSecretSource) -> ExternalSecret:
         return ExternalSecret(
@@ -108,11 +107,11 @@ class ExternalSecrets(Construct):
         )
 
     def add_secret_to_container(
-        self, container: cdk8s_plus.Container, secret_source: ExternalSecretSource
+        self, container: cdk8s_plus.Container, secret_name: str
     ):
         container.env.copy_from(
             cdk8s_plus.Env.from_secret(
-                cdk8s_plus.Secret.from_secret_name(name=secret_source.k8s_secret_name)
+                cdk8s_plus.Secret.from_secret_name(self, f"{secret_name}SecretRef", name=secret_name)
             )
         )
 
@@ -122,7 +121,11 @@ class ExternalSecrets(Construct):
         Returns:
             list[str]: a list containing the names of the k8s secrets that would be created by ExternalSecrets
         """
-        return [s.k8s_secret_name for s in self.secret_sources]
+        return [
+            child.k8s_secret_name
+            for child in self.chart.node.children
+            if isinstance(child, ExternalSecret)
+        ]
 
     @property
     def container_secret_refs(self) -> list[dict[str, str]]:
@@ -130,4 +133,4 @@ class ExternalSecrets(Construct):
         Returns:
             list[dict[str,str]]: a list of container `envFrom` references to all k8s secrets created by ExternalSecrets
         """
-        return [{"secretRef": s.k8s_secret_name} for s in self.secret_sources]
+        return [{"secretRef": name} for name in self.k8s_secret_names]
