@@ -1,3 +1,5 @@
 language: python
 imports:
   - k8s@1.24.0
+  # must match the version deployed to the cluster
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/v0.6.1/deploy/crds/bundle.yaml
