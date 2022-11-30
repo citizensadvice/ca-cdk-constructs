@@ -1,13 +1,13 @@
 from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
 from aws_cdk.aws_eks import Cluster, OpenIdConnectProvider
-from aws_cdk.aws_iam import Role, AccountRootPrincipal
+from aws_cdk.aws_iam import IRole, Role, AccountRootPrincipal
 import aws_cdk.custom_resources as cr
 from constructs import Construct
 
 
 class EksClusterIntegration(Construct):
-    """Looks up an existing EKS cluster by name and provisions the kubectl IAM role needed for deployments to the cluster."""
+    """Looks up an existing EKS cluster by name and provisions (or uses an existing) kubectl IAM role needed for deployments to the cluster."""
 
     def __init__(
         self,
@@ -15,12 +15,30 @@ class EksClusterIntegration(Construct):
         id: str,
         vpc: IVpc,
         cluster_name: str,
-        role_name: str,
+        role_name: str = None,
+        role: IRole = None,
         prune: bool = True,
     ):
+        """
+
+        Args:
+            scope (Construct): parent Construct
+            id (str): id
+            vpc (IVpc): EC2 Vpc, needed to lookup the cluster
+            cluster_name (str): the name of the EKS cluster
+            role_name (str, optional): The name of the kubectl IAM role that will be created to enable deployments to the cluster. Defaults to None.
+            role (IRole, optional): Existing kubectl IAM role to use for deployments to the cluster. Either this or role_name must be set. Defaults to None.
+            prune (bool, optional): Indicates whether Kubernetes resources added through ``addManifest()`` can be automatically pruned. Defaults to True.
+
+        Raises:
+            Exception: if neither or both of role_name, role are set
+        """
         super().__init__(scope, id)
 
-        self.role = Role(
+        if not bool(role) ^ bool(role_name):
+            raise Exception("Either role or role_name must be set")
+
+        self.role = role or Role(
             self,
             "KubernetesAuthRole",
             assumed_by=AccountRootPrincipal(),
