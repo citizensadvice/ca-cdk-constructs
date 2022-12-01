@@ -10,7 +10,7 @@ class ExternalSecret(ApiObject):
     k8s ExternalSecret object
     """
 
-    API_VERSION = "external-secrets.io/v1alpha1"
+    API_VERSION = "external-secrets.io/v1beta1"
     KIND = "ExternalSecret"
 
     def __init__(
