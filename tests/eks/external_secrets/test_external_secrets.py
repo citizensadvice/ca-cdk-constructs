@@ -14,10 +14,7 @@ from ca_cdk_constructs.eks.external_secrets import (
 # to update the snapshot, run:
 #   poetry run pytest tests/eks/external_secrets/test_external_secrets.py --snapshot-update
 def test_external_secrets(snapshot):
-    cdkApp = CdkApp()
-    s = Stack(cdkApp, "Stack")
-    cluster = Cluster(s, "EksCluster", vpc=Vpc(s, "vpc"), version=KubernetesVersion.V1_23)
-    ssm_secret = Secret(s, "Secret")
+    ssm_secret_name = "ssm-secret"
 
     app = App()
     chart = Chart(app, "ExternSecretsChart")
@@ -38,12 +35,11 @@ def test_external_secrets(snapshot):
     ext_secrets.add_external_secret(
         secret_source=ExternalAWSSMSecret(
             k8s_secret_name="app-db-secret",
-            source_secret=ssm_secret,
+            source_secret=ssm_secret_name,
             secret_mappings={"username": "DB_USER"},
             external_secret_name="app-db-secret"
         ),
     )
-    cluster.add_cdk8s_chart("ExternalSecretsDeployment", chart)
     assert app.synth_yaml() == snapshot
 
 
