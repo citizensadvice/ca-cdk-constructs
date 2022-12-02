@@ -148,6 +148,7 @@ class ExternalSecret(Construct):
                 secret_store_ref=ExternalSecretV1Beta1SpecSecretStoreRef(
                     name=secret_store.value, kind="SecretStore"  # known, existing store
                 ),
+                refresh_interval="1h",
                 target=ExternalSecretV1Beta1SpecTarget(name=k8s_secret_name),
                 data=[
                     ExternalSecretV1Beta1SpecData(
