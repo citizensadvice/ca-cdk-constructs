@@ -1,13 +1,9 @@
-from aws_cdk import App as CdkApp, Stack
-from aws_cdk.aws_ec2 import Vpc
-from aws_cdk.aws_eks import Cluster, KubernetesVersion
-from aws_cdk.aws_secretsmanager import Secret
 from cdk8s import App, Chart
 
 from ca_cdk_constructs.eks.external_secrets import (
     ExternalSecrets,
-    ExternalAWSSMSecret,
-    ExternalVaultSecret,
+    ExternalSecretSource,
+    ExternalSecretStore,
 )
 
 
@@ -23,21 +19,23 @@ def test_external_secrets(snapshot):
         chart,
         "ExternalSecrets",
         secret_sources=[
-            ExternalVaultSecret(
+            ExternalSecretSource(
+                store=ExternalSecretStore.VAULT,
                 k8s_secret_name="app-vault-secret",
                 source_secret="path/to/secret",
                 secret_mappings={"key": "ENV_VAR", "key.two": ""},
-                external_secret_name="app-vault-secret"
+                external_secret_name="app-vault-secret",
             )
         ],
     )
 
     ext_secrets.add_external_secret(
-        secret_source=ExternalAWSSMSecret(
+        secret_source=ExternalSecretSource(
+            store=ExternalSecretStore.AWS_SSM,
             k8s_secret_name="app-db-secret",
             source_secret=ssm_secret_name,
             secret_mappings={"username": "DB_USER"},
-            external_secret_name="app-db-secret"
+            external_secret_name="app-db-secret",
         ),
     )
     assert app.synth_yaml() == snapshot
@@ -51,7 +49,8 @@ def test_external_secrets_k8s_secrets():
         chart,
         "ExternalSecrets",
         secret_sources=[
-            ExternalVaultSecret(
+            ExternalSecretSource(
+                store=ExternalSecretStore.VAULT,
                 k8s_secret_name="app-vault-secret",
                 source_secret="path/to/secret",
                 secret_mappings={"key": "ENV_VAR", "key.two": ""},
@@ -60,7 +59,8 @@ def test_external_secrets_k8s_secrets():
     )
 
     ext_secrets.add_external_secret(
-        secret_source=ExternalVaultSecret(
+        secret_source=ExternalSecretSource(
+            store=ExternalSecretStore.VAULT,
             k8s_secret_name="app-api-secret",
             source_secret="another/path",
             secret_mappings={"username": "FOO"},

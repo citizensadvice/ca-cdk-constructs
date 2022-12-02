@@ -1,8 +1,6 @@
 from enum import Enum
-from typing import Any, Union
+from typing import Union
 
-from aws_cdk.aws_secretsmanager import ISecret
-from aws_cdk.aws_ssm import StringParameter
 from cdk8s import ApiObjectMetadata
 from constructs import Construct
 
@@ -24,17 +22,45 @@ class ExternalSecretStore(Enum):
     AWS_PARAMETER_STORE = "aws-parameter-store"
 
 
-class IExternalSecretSource:
+class ExternalSecretSource:
     """
     Convenience class providing strongly typed way to collect external secret configurations.
     This is useful when we want to collect multiple secrets from various paths in the cdk construct tree
     and then deploy them in a stack of our choice.
 
     In most other cases it's better to use ExternalSecret which requires an existing cdk8s chart.
+
+    Usage:
+
+        source1 = ExternalSecretSource(
+            store=ExternalSecretStore.VAULT,
+            k8s_secret_name="app-api-secret",
+            source_secret="another/path",
+            secret_mappings={"username": "FOO"},
+        )
+        source2 = ExternalSecretSource(
+            store=ExternalSecretStore.AWS_SSM,
+            k8s_secret_name="app-api-secret",
+            source_secret="cdk-secret",
+            secret_mappings={"prop": "VALUE"},
+        )
+
+        app = cdk8s.App()
+        chart = cdk8s.Chart(app, "ExternalSecrets")
+
+        ExternalSecret.from_external_secret_source(chart, "secret1", secret1)
+        ExternalSecret.from_external_secret_source(chart, "secret2", secret2)
+
+        cluster.add_cdk8s_chart("ExternalSecretsDeployment", chart)
     """
 
     def __init__(
-        self, k8s_secret_name: str, source_secret: str, secret_mappings: dict[str, str], external_secret_name: str = None
+        self,
+        store: ExternalSecretStore,
+        k8s_secret_name: str,
+        source_secret: str,
+        secret_mappings: dict[str, str],
+        external_secret_name: str = None,
     ):
         """
 
@@ -49,6 +75,7 @@ class IExternalSecretSource:
                 ``{ "password": "" } # will set env var 'password'```
             external_secret_name: (str) Optional. The name of the external secret to be created. If not set the cdk will generate one
         """
+        self._store = store
         self.k8s_secret_name = k8s_secret_name
         self.source_secret = source_secret
         self.secret_mappings = secret_mappings
@@ -56,27 +83,7 @@ class IExternalSecretSource:
 
     @property
     def secret_store(self) -> ExternalSecretStore:
-        return None
-
-
-class ExternalVaultSecret(IExternalSecretSource):
-    @property
-    def secret_store(self):
-        return ExternalSecretStore.VAULT
-
-
-class ExternalAWSSMSecret(IExternalSecretSource):
-
-    @property
-    def secret_store(self) -> ExternalSecretStore:
-        return ExternalSecretStore.AWS_SSM
-
-
-class ExternalAWSParameterStoreSecret(IExternalSecretSource):
-
-    @property
-    def secret_store(self) -> ExternalSecretStore:
-        return ExternalSecretStore.AWS_SSM
+        return self._store
 
 
 class ExternalSecret(Construct):
@@ -151,6 +158,20 @@ class ExternalSecret(Construct):
                     for k, v in secret_mappings.items()
                 ],
             ),
+        )
+
+    @classmethod
+    def from_external_secret_source(
+        cls, scope: Construct, id: str, source: ExternalSecretSource
+    ):
+        return cls(
+            scope,
+            id,
+            secret_store=source.secret_store,
+            k8s_secret_name=source.k8s_secret_name,
+            secret_mappings=source.secret_mappings,
+            source_secret=source.source_secret,
+            metadata={"name": source.external_secret_name},
         )
 
     @property
