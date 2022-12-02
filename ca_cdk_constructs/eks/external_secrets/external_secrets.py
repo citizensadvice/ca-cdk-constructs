@@ -1,21 +1,17 @@
-from typing import List
-from aws_cdk import Stack
-
-from cdk8s import Chart
-from aws_cdk.aws_eks import KubernetesPatch, ICluster
 import cdk8s_plus_23 as cdk8s_plus
+from cdk8s import Chart
 from constructs import Construct
 
-from ca_cdk_constructs.eks.external_secrets.external_secret import ExternalSecret
-from ca_cdk_constructs.eks.external_secrets.external_secret_source import (
-    ExternalSecretSource,
+from ca_cdk_constructs.eks.external_secrets.external_secret import (
+    IExternalSecretSource,
+    ExternalSecret,
 )
 
 
 class ExternalSecrets(Construct):
-    """Collect external secret from AWS Secrets Manager or Vault.
+    """Collect external secret from AWS Secrets Manager, Parameter Store or Vault.
 
-    Requires existing external secrets SecretStore(s), possibly created by a different workflow as explained in https://external-secrets.io/v0.5.8/api-overview/#secretstore
+    Requires existing external secrets SecretStore(s), possibly created by a different workflow as explained in https://external-secrets.io/v0.6.1/overview/#roles-and-responsibilities
 
     ## Example
 
@@ -84,34 +80,33 @@ class ExternalSecrets(Construct):
         self,
         scope: Construct,
         id: str,
-        chart: Chart,
-        secret_sources: List[ExternalSecretSource],
+        secret_sources: list[IExternalSecretSource],
     ) -> None:
         super().__init__(scope, id)
-        self.chart = chart
         for secret_source in secret_sources:
-            self.create_external_secret(secret_source)
+            self.add_external_secret(secret_source)
 
     def add_to_containers(self, containers: list[cdk8s_plus.Container]):
         for container in containers:
             for secret_name in self.k8s_secret_names:
                 self.add_secret_to_container(container, secret_name)
 
-    def create_external_secret(self, secret_source: ExternalSecretSource) -> ExternalSecret:
+    def add_external_secret(self, secret_source: IExternalSecretSource) -> ExternalSecret:
         return ExternalSecret(
-            self.chart,
+            self,
             f"{secret_source.k8s_secret_name}ExternalSecret",
             k8s_secret_name=secret_source.k8s_secret_name,
             secret_store=secret_source.secret_store(),
-            secret_mappings={secret_source.secret_source_id(): secret_source.secret_mappings},
+            source_secret=secret_source.secret_source_id(),
+            secret_mappings=secret_source.secret_mappings,
         )
 
-    def add_secret_to_container(
-        self, container: cdk8s_plus.Container, secret_name: str
-    ):
+    def add_secret_to_container(self, container: cdk8s_plus.Container, secret_name: str):
         container.env.copy_from(
             cdk8s_plus.Env.from_secret(
-                cdk8s_plus.Secret.from_secret_name(self, f"{secret_name}SecretRef", name=secret_name)
+                cdk8s_plus.Secret.from_secret_name(
+                    self, f"{secret_name}SecretRef", name=secret_name
+                )
             )
         )
 
@@ -119,11 +114,11 @@ class ExternalSecrets(Construct):
     def k8s_secret_names(self) -> list[str]:
         """
         Returns:
-            list[str]: a list containing the names of the k8s secrets that would be created by ExternalSecrets
+            list[str]: returns the names of all k8s secrets created by ExternalSecrets
         """
         return [
             child.k8s_secret_name
-            for child in self.chart.node.children
+            for child in self.node.children
             if isinstance(child, ExternalSecret)
         ]
 
