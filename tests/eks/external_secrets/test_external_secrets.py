@@ -30,6 +30,7 @@ def test_external_secrets(snapshot):
                 k8s_secret_name="app-vault-secret",
                 source_secret="path/to/secret",
                 secret_mappings={"key": "ENV_VAR", "key.two": ""},
+                external_secret_name="app-vault-secret"
             )
         ],
     )
@@ -39,7 +40,35 @@ def test_external_secrets(snapshot):
             k8s_secret_name="app-db-secret",
             source_secret=ssm_secret,
             secret_mappings={"username": "DB_USER"},
+            external_secret_name="app-db-secret"
         ),
     )
     cluster.add_cdk8s_chart("ExternalSecretsDeployment", chart)
     assert app.synth_yaml() == snapshot
+
+
+def test_external_secrets_k8s_secrets():
+    app = App()
+    chart = Chart(app, "ExternSecretsChart")
+
+    ext_secrets = ExternalSecrets(
+        chart,
+        "ExternalSecrets",
+        secret_sources=[
+            ExternalVaultSecret(
+                k8s_secret_name="app-vault-secret",
+                source_secret="path/to/secret",
+                secret_mappings={"key": "ENV_VAR", "key.two": ""},
+            )
+        ],
+    )
+
+    ext_secrets.add_external_secret(
+        secret_source=ExternalVaultSecret(
+            k8s_secret_name="app-api-secret",
+            source_secret="another/path",
+            secret_mappings={"username": "FOO"},
+        ),
+    )
+
+    assert ext_secrets.k8s_secret_names == ["app-vault-secret", "app-api-secret"]
