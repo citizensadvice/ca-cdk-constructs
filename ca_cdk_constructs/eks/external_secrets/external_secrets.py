@@ -1,5 +1,4 @@
 import cdk8s_plus_23 as cdk8s_plus
-from cdk8s import Chart
 from constructs import Construct
 
 from ca_cdk_constructs.eks.external_secrets.external_secret import (
@@ -99,6 +98,7 @@ class ExternalSecrets(Construct):
             secret_store=secret_source.secret_store(),
             source_secret=secret_source.secret_source_id(),
             secret_mappings=secret_source.secret_mappings,
+            metadata={ "name": secret_source.external_secret_name }
         )
 
     def add_secret_to_container(self, container: cdk8s_plus.Container, secret_name: str):

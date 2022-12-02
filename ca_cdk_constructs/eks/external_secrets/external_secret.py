@@ -1,8 +1,9 @@
 from enum import Enum
-from typing import Any
+from typing import Any, Union
 
 from aws_cdk.aws_secretsmanager import ISecret
 from aws_cdk.aws_ssm import StringParameter
+from cdk8s import ApiObjectMetadata
 from constructs import Construct
 
 from ca_cdk_constructs.eks.imports.io.external_secrets import (
@@ -27,7 +28,7 @@ class IExternalSecretSource:
     """Convenience class to collect external secrets configurations"""
 
     def __init__(
-        self, k8s_secret_name: str, source_secret: Any, secret_mappings: dict[str, str]
+        self, k8s_secret_name: str, source_secret: Any, secret_mappings: dict[str, str], external_secret_name: str = None
     ):
         """
 
@@ -40,10 +41,12 @@ class IExternalSecretSource:
                 { "password": "DB_PASSWORD" }
             To use the secret key as env variable name, set the value to None or empty string e.g.
                 ``{ "password": "" } # will set env var 'password'```
+            external_secret_name: (str) Optional. The name of the external secret to be created. If not set the cdk will generate one
         """
         self.k8s_secret_name = k8s_secret_name
         self.source_secret = source_secret
         self.secret_mappings = secret_mappings
+        self.external_secret_name = external_secret_name
 
     def secret_store(self) -> ExternalSecretStore:
         return None
@@ -62,8 +65,10 @@ class ExternalVaultSecret(IExternalSecretSource):
 
 
 class ExternalAWSSMSecret(IExternalSecretSource):
-    def __init__(self, k8s_secret_name: str, source_secret: ISecret, secret_mappings: dict[str, str]):
-        super().__init__(k8s_secret_name, source_secret, secret_mappings)
+    def __init__(
+        self, k8s_secret_name: str, source_secret: ISecret, secret_mappings: dict[str, str], external_secret_name: str = None
+    ):
+        super().__init__(k8s_secret_name, source_secret, secret_mappings, external_secret_name)
 
     def secret_source_id(self) -> str:
         return self.source_secret.secret_name
@@ -74,9 +79,13 @@ class ExternalAWSSMSecret(IExternalSecretSource):
 
 class ExternalAWSParameterStoreSecret(IExternalSecretSource):
     def __init__(
-        self, k8s_secret_name: str, source_secret: StringParameter, secret_mappings: dict[str, str]
+        self,
+        k8s_secret_name: str,
+        source_secret: StringParameter,
+        secret_mappings: dict[str, str],
+        external_secret_name: str = None
     ):
-        super().__init__(k8s_secret_name, source_secret, secret_mappings)
+        super().__init__(k8s_secret_name, source_secret, secret_mappings, external_secret_name)
 
     def secret_source_id(self) -> str:
         return self.source_secret.parameter_name
@@ -124,7 +133,7 @@ class ExternalSecret(Construct):
         secret_store: ExternalSecretStore,
         source_secret: str,
         secret_mappings: dict[str, str],
-        metadata={},
+        metadata: Union[ApiObjectMetadata, dict] = {},
     ):
         super().__init__(scope, id)
         self._k8s_secret_name = k8s_secret_name
