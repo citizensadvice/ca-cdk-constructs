@@ -8,9 +8,8 @@ from ca_cdk_constructs.eks.external_secrets.external_secret import (
 
 
 class ExternalSecrets(Construct):
-    """Collect external secret from AWS Secrets Manager, Parameter Store or Vault.
-
-    Requires existing external secrets SecretStore(s), possibly created by a different workflow as explained in https://external-secrets.io/v0.6.1/overview/#roles-and-responsibilities
+    """Collects external secret from AWS Secrets Manager, Parameter Store or Vault.
+    Acts as a container for ExternalSecret.
 
     ## Example
 
@@ -18,7 +17,7 @@ class ExternalSecrets(Construct):
     from ca_cdk_constructs.eks.external_secrets import ExternalSecrets, ExternalVaultSecretSource, ExternalAWSSMSecretSource
 
     app = k8s.App()
-    chart = Chart(app, "Myservice")
+    chart = Chart(app, "MyService")
 
     # a SSM secret that needs passing to the pods
     secr = Secret(...)
@@ -35,17 +34,16 @@ class ExternalSecrets(Construct):
 
 
     # define the external secrets
-    secrets=ExternalSecrets(self, "ExternalSecrets",
-        chart=chart,
+    secrets=ExternalSecrets(chart, "ExternalSecrets",
         secret_sources=[
             ExternalVaultSecret(
                 k8s_secret_name="vault",
-                secret="devops/newrelic",
+                source_secret="devops/newrelic",
                 secret_mappings={"key": "NEW_RELIC_KEY"},
             ),
             ExternalAWSSMSecret(
                 k8s_secret_name="secretsmanager-secret",
-                secret=secr,
+                source_secret=secr.secret_name,
                 secret_mappings={"key": "NEW_RELIC_KEY", "BLAH": ""},
             ),
         ],
@@ -95,10 +93,10 @@ class ExternalSecrets(Construct):
             self,
             f"{secret_source.k8s_secret_name}ExternalSecret",
             k8s_secret_name=secret_source.k8s_secret_name,
-            secret_store=secret_source.secret_store(),
-            source_secret=secret_source.secret_source_id(),
+            secret_store=secret_source.secret_store,
+            source_secret=secret_source.source_secret,
             secret_mappings=secret_source.secret_mappings,
-            metadata={ "name": secret_source.external_secret_name }
+            metadata={"name": secret_source.external_secret_name}
         )
 
     def add_secret_to_container(self, container: cdk8s_plus.Container, secret_name: str):
