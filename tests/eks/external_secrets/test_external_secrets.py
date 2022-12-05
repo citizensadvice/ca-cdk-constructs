@@ -24,7 +24,11 @@ def test_external_secret(snapshot):
             source_secret="path/to/secret",
             secret_mappings={"key": "ENV_VAR", "key.two": ""},
         ),
-        metadata={"name": "app-vault-secret"},
+        metadata={
+            "name": "app-vault-secret",
+            "annotations": {"hello": "world"},
+            "labels": {"foo": "bar"},
+        },
     )
 
     source2 = ExternalSecretSource(
@@ -32,7 +36,6 @@ def test_external_secret(snapshot):
         k8s_secret_name="app-db-secret",
         source_secret=ssm_secret_name,
         secret_mappings={"username": "DB_USER"},
-        external_secret_name="app-db-secret",
     )
 
     ExternalSecret(chart, "secret2", source2, {"name": "app-db-secret"})
