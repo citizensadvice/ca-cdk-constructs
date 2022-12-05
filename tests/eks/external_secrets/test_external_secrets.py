@@ -18,9 +18,9 @@ def test_external_secret(snapshot):
     ExternalSecret(
         chart,
         "secret1",
+        k8s_secret_name="app-vault-secret",
         secret_source=ExternalSecretSource(
             store=ExternalSecretStore.VAULT,
-            k8s_secret_name="app-vault-secret",
             source_secret="path/to/secret",
             secret_mappings={"key": "ENV_VAR", "key.two": ""},
         ),
@@ -33,11 +33,16 @@ def test_external_secret(snapshot):
 
     source2 = ExternalSecretSource(
         store=ExternalSecretStore.AWS_SSM,
-        k8s_secret_name="app-db-secret",
         source_secret=ssm_secret_name,
         secret_mappings={"username": "DB_USER"},
     )
 
-    ExternalSecret(chart, "secret2", source2, {"name": "app-db-secret"})
+    ExternalSecret(
+        chart,
+        "secret2",
+        secret_source=source2,
+        k8s_secret_name="app-db-secret",
+        metadata={"name": "app-db-secret"},
+    )
 
     assert app.synth_yaml() == snapshot
