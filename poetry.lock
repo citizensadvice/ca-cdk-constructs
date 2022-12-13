@@ -69,6 +69,21 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
+name = "aws-cdk.lambda-layer-kubectl-v24"
+version = "2.0.56"
+description = "A Lambda Layer that contains kubectl v1.24"
+category = "main"
+optional = false
+python-versions = "~=3.7"
+
+[package.dependencies]
+aws-cdk-lib = ">=2.0.0,<3.0.0"
+constructs = ">=10.0.5,<11.0.0"
+jsii = ">=1.72.0,<2.0.0"
+publication = ">=0.0.3"
+typeguard = ">=2.13.3,<2.14.0"
+
+[[package]]
 name = "black"
 version = "22.10.0"
 description = "The uncompromising code formatter."
@@ -206,7 +221,7 @@ python-versions = "*"
 
 [[package]]
 name = "jsii"
-version = "1.71.0"
+version = "1.72.0"
 description = "Python client for jsii runtime"
 category = "main"
 optional = false
@@ -372,7 +387,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "2424a90e89f26ae1509b6e760bfd2d8fdda568047a6496703306a73a07cb9c01"
+content-hash = "0472337a51bf0c6fa8415771f1b04356ab08a000b40144d2975c2545bd4cdcfc"
 
 [metadata.files]
 attrs = []
@@ -380,6 +395,7 @@ aws-cdk-lib = []
 "aws-cdk.asset-awscli-v1" = []
 "aws-cdk.asset-kubectl-v20" = []
 "aws-cdk.asset-node-proxy-agent-v5" = []
+"aws-cdk.lambda-layer-kubectl-v24" = []
 black = []
 cattrs = []
 cdk-remote-stack = []
