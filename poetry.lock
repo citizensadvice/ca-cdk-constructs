@@ -148,9 +148,9 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "cdk8s-plus-23"
+name = "cdk8s-plus-24"
 version = "2.3.25"
-description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-23 synthesizes Kubernetes manifests for Kubernetes 1.23.0"
+description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-24 synthesizes Kubernetes manifests for Kubernetes 1.24.0"
 category = "main"
 optional = false
 python-versions = "~=3.7"
@@ -375,7 +375,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "0472337a51bf0c6fa8415771f1b04356ab08a000b40144d2975c2545bd4cdcfc"
+content-hash = "806935c975da42f1326facae6f059a3ac07d65be5e4dab13d604da0a63f768c9"
 
 [metadata.files]
 attrs = []
@@ -388,7 +388,7 @@ black = []
 cattrs = []
 cdk-remote-stack = []
 cdk8s = []
-cdk8s-plus-23 = []
+cdk8s-plus-24 = []
 click = []
 colorama = []
 colored = []
