@@ -12,7 +12,6 @@ def lambda_handler(event, context):
     target_db_instance_identifier = event["TargetDBInstanceIdentifier"]
     target_db_subnet_group_name = event["TargetDBSubnetGroupName"]
     target_db_instance_class = event["TargetDBInstanceClass"]
-    target_db_engine = event["TargetDBEngine"]
     target_vpc_security_group_ids = event["TargetVpcSecurityGroupIds"]
     target_db_cluster_parameter_group_name = event["TargetDBClusterParameterGroupName"]
     target_db_cluster_instance_parameter_group_name = event[
@@ -49,7 +48,7 @@ def lambda_handler(event, context):
 
     create_instance_response = client.create_db_instance(
         DBInstanceIdentifier=target_db_instance_identifier,
-        Engine=target_db_engine,
+        Engine=cluster_clone_response["DBCluster"]["Engine"],
         DBParameterGroupName=target_db_cluster_instance_parameter_group_name,
         DBInstanceClass=target_db_instance_class,
         DBClusterIdentifier=target_db_cluster_identifier,

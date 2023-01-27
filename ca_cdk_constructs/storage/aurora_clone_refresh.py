@@ -104,7 +104,6 @@ class AuroraCloneRefresh(Construct):
             "TargetDBInstanceIdentifier": clone_instance_id,
             "TargetDBSubnetGroupName": db_subnet_group.subnet_group_name,
             "TargetDBInstanceClass": clone_db_instance_class,
-            "TargetDBEngine": source_cluster.engine.engine_type,
             "TargetVpcSecurityGroupIds": [self.cluster_sg.security_group_id],
             "TargetDBClusterParameterGroupName": clone_cluster_parameter_group.ref,
             "TargetDBClusterInstanceParameterGroupName": clone_instance_parameter_group.ref,
