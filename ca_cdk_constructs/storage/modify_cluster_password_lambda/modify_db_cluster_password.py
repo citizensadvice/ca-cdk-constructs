@@ -44,4 +44,3 @@ def handler(event, _context):
             }
         ),
     )
-    print(json.dumps({"update_secret": secret_update_response["ResponseMetadata"]}))
