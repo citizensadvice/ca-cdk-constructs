@@ -1,4 +1,5 @@
 import json
+from sys import stderr
 import boto3
 import time
 
@@ -20,8 +21,17 @@ def lambda_handler(event, context):
     cluster_query = client.describe_db_clusters(
         DBClusterIdentifier=source_db_cluster_identifier
     )
-    existing_tags = [entry for entry in cluster_query["DBClusters"][0]["TagList"] if not entry["Key"].startswith("aws:")]
-    target_db_tags = existing_tags + event["TargetTags"]
+
+    tags = cluster_query["DBClusters"][0]["TagList"]  + event["TargetTags"]
+    # deduplicate tags and ignore these starting with aws:
+    target_tags = {}
+    for entry in tags:
+        if not entry["Key"].startswith("aws:"):
+            target_tags[entry["Key"]] = entry["Value"]
+
+    target_tags["Name"] = target_db_cluster_identifier
+    tag_list = [{"Key": k, "Value": v} for k,v in target_tags.items() ]
+
     port = int(event["Port"])
 
     cluster_clone_response = client.restore_db_cluster_to_point_in_time(
@@ -32,7 +42,7 @@ def lambda_handler(event, context):
         Port=port,
         DBSubnetGroupName=target_db_subnet_group_name,
         VpcSecurityGroupIds=target_vpc_security_group_ids,
-        Tags=target_db_tags,
+        Tags=tag_list,
         EnableIAMDatabaseAuthentication=False,
         DBClusterParameterGroupName=target_db_cluster_parameter_group_name,
         DeletionProtection=False,
@@ -52,7 +62,7 @@ def lambda_handler(event, context):
         DBParameterGroupName=target_db_cluster_instance_parameter_group_name,
         DBInstanceClass=target_db_instance_class,
         DBClusterIdentifier=target_db_cluster_identifier,
-        Tags=target_db_tags
+        Tags=tag_list,
     )
 
     instance_available_waiter = client.get_waiter("db_instance_available")

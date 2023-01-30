@@ -76,7 +76,12 @@ class AuroraCloneRefresh(Construct):
         """
         super().__init__(scope, id)
 
-        clone_tags = [{"Key": k, "Value": v} for k, v in clone_tags.items()]
+        tags = clone_tags | {
+            "CreatedByStack": Stack.of(self).stack_name,
+            "CloneOf": source_cluster.cluster_identifier,
+        }
+
+        tag_list = [{"Key": k, "Value": v} for k, v in tags.items()]
 
         # rds IDs are all lowercase
         clone_cluster_id = f"{Stack.of(source_cluster).stack_name}-{id}".lower()
@@ -108,14 +113,7 @@ class AuroraCloneRefresh(Construct):
             "TargetDBClusterParameterGroupName": clone_cluster_parameter_group.ref,
             "TargetDBClusterInstanceParameterGroupName": clone_instance_parameter_group.ref,
             "Port": source_cluster.cluster_endpoint.port,
-            "TargetTags": [
-                {
-                    "Key": "CreatedByStack",
-                    "Value": Stack.of(self).stack_name,
-                },
-                {"Key": "CloneOf", "Value": source_cluster.cluster_identifier},
-            ]
-            + clone_tags,
+            "TargetTags": tag_list,
         }
 
         boto3_lambda_layer = Boto3LambdaLayer(self, "BotoLayer").layer
