@@ -14,6 +14,7 @@ def lambda_handler(event, context):
         )
 
         payload["status"] = response["DBClusters"][0]["Status"]
+        payload["message"] = f"{target_db_cluster_identifier} is {payload['status']}"
         return payload
 
     except client.exceptions.DBClusterNotFoundFault as e:
