@@ -16,31 +16,31 @@ tests_no_zope = ["hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist", "c
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.60.0"
+version = "2.63.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = ">=2.2.49,<3.0.0"
+"aws-cdk.asset-awscli-v1" = ">=2.2.52,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.1,<3.0.0"
-"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.38,<3.0.0"
+"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.42,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.72.0,<2.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.asset-awscli-v1"
-version = "2.2.49"
+version = "2.2.52"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.72.0,<2.0.0"
+jsii = ">=1.73.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -59,20 +59,20 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.asset-node-proxy-agent-v5"
-version = "2.0.38"
+version = "2.0.42"
 description = "@aws-cdk/asset-node-proxy-agent-v5"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.72.0,<2.0.0"
+jsii = ">=1.73.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.lambda-layer-kubectl-v24"
-version = "2.0.78"
+version = "2.0.85"
 description = "A Lambda Layer that contains kubectl v1.24"
 category = "main"
 optional = false
@@ -81,7 +81,7 @@ python-versions = "~=3.7"
 [package.dependencies]
 aws-cdk-lib = ">=2.0.0,<3.0.0"
 constructs = ">=10.0.5,<11.0.0"
-jsii = ">=1.72.0,<2.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -135,7 +135,7 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.6.20"
+version = "2.6.36"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 category = "main"
 optional = false
@@ -143,22 +143,22 @@ python-versions = "~=3.7"
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.73.0,<2.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s-plus-24"
-version = "2.3.25"
+version = "2.4.8"
 description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-24 synthesizes Kubernetes manifests for Kubernetes 1.24.0"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-cdk8s = ">=2.6.20,<3.0.0"
-constructs = ">=10.1.221,<11.0.0"
-jsii = ">=1.73.0,<2.0.0"
+cdk8s = ">=2.6.36,<3.0.0"
+constructs = ">=10.1.237,<11.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -191,14 +191,14 @@ python-versions = "*"
 
 [[package]]
 name = "constructs"
-version = "10.1.221"
+version = "10.1.237"
 description = "A programming model for software-defined state"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.73.0,<2.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -223,7 +223,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "jsii"
-version = "1.73.0"
+version = "1.74.0"
 description = "Python client for jsii runtime"
 category = "main"
 optional = false
@@ -255,7 +255,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pathspec"
-version = "0.10.3"
+version = "0.11.0"
 description = "Utility library for gitignore style pattern matching of file paths."
 category = "dev"
 optional = false
@@ -375,7 +375,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "806935c975da42f1326facae6f059a3ac07d65be5e4dab13d604da0a63f768c9"
+content-hash = "f60499d0e0bf64af08573ac748ae884d4664a0400a553bd07d0043f73fbd2159"
 
 [metadata.files]
 attrs = []
