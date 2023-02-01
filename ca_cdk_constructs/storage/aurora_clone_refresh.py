@@ -1,6 +1,6 @@
 import os
 
-from aws_cdk import CfnOutput, Stack
+from aws_cdk import CfnOutput, Stack, BundlingFileAccess
 from aws_cdk import Duration
 from aws_cdk.aws_ec2 import SubnetSelection, IVpc, SecurityGroup, IConnectable, Port
 from aws_cdk.aws_events import Rule, Schedule, RuleTargetInput
@@ -127,6 +127,10 @@ class AuroraCloneRefresh(Construct):
             layers=[boto3_lambda_layer],
             entry=self.LAMBDA_SOURCE_DIR,
             index="aurora_clone.py",
+            bundling={
+                # supports docker in docker
+                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
+            },
         )
 
         cluster_clone_lambda.add_to_role_policy(
@@ -176,6 +180,10 @@ class AuroraCloneRefresh(Construct):
             layers=[boto3_lambda_layer],
             entry=self.LAMBDA_SOURCE_DIR,
             index="aurora_check_status.py",
+            bundling={
+                # supports docker in docker
+                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
+            },
         )
 
         cluster_status_lambda.add_to_role_policy(
@@ -194,6 +202,10 @@ class AuroraCloneRefresh(Construct):
             handler="lambda_handler",
             entry=self.LAMBDA_SOURCE_DIR,
             index="aurora_delete_clone.py",
+            bundling={
+                # supports docker in docker
+                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
+            },
         )
 
         aurora_delete_clone_lambda.add_to_role_policy(

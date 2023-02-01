@@ -2,7 +2,7 @@ import json
 import os
 from os import path
 
-from aws_cdk import Duration, Stack
+from aws_cdk import Duration, Stack, BundlingFileAccess
 from aws_cdk.aws_iam import PolicyStatement, Effect
 from aws_cdk.aws_lambda import Runtime
 from aws_cdk.aws_lambda_python_alpha import PythonLayerVersion, PythonFunction
@@ -84,6 +84,10 @@ class ModifyDBClusterPassword(Construct):
             entry=self.LAMBDA_SOURCE_DIR,
             index="modify_db_cluster_password.py",
             handler="handler",
+            bundling={
+                # supports docker in docker
+                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
+            },
         )
 
         secret.grant_read(self.lambda_funct)
