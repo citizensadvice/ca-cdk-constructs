@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 from aws_cdk import CfnOutput, Stack, BundlingFileAccess
 from aws_cdk import Duration
@@ -55,14 +56,14 @@ class AuroraCloneRefresh(Construct):
         source_cluster_master_username: str,
         clone_cluster_parameter_group: CfnDBClusterParameterGroup,
         clone_instance_parameter_group: CfnDBParameterGroup,
-        clone_tags={},
+        clone_tags: dict = None,
         clone_schedule: Schedule = Schedule.cron(minute="0", hour="8"),
-        notifications_topic: ITopic = None,
+        notifications_topic: Optional[ITopic] = None,
     ) -> None:
         """
 
         Args:
-            scope: Contruct
+            scope: Construct
             id: ID
             source_cluster (IDatabaseCluster): the cluster to be cloned
             source_cluster_vpc (IVpc): the vpc of the source cluster
@@ -75,7 +76,7 @@ class AuroraCloneRefresh(Construct):
             notifications_topic (ITopic): Existing topic to publish notifications to. Default - new topic will be created
         """
         super().__init__(scope, id)
-
+        clone_tags = clone_tags or {}
         tags = clone_tags | {
             "CreatedByStack": Stack.of(self).stack_name,
             "CloneOf": source_cluster.cluster_identifier,
