@@ -12,12 +12,12 @@ from typeguard import check_type
 
 from ._jsii import *
 
-import cdk8s
-import constructs
+import cdk8s as _cdk8s_d3d9af27
+import constructs as _constructs_77d1e7e8
 
 
 class ClusterExternalSecret(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.ClusterExternalSecret",
 ):
@@ -28,11 +28,11 @@ class ClusterExternalSecret(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "ClusterExternalSecret" API object.
 
@@ -42,15 +42,7 @@ class ClusterExternalSecret(
         :param spec: ClusterExternalSecretSpec defines the desired state of ClusterExternalSecret.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterExternalSecretSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__94e60b949b245b48a41fb74f8b3d1eb0f99bd46fa142d6bbb376323f6a4b972a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ClusterExternalSecretProps(metadata=metadata, spec=spec)
@@ -62,8 +54,8 @@ class ClusterExternalSecret(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "ClusterExternalSecret".
 
@@ -83,9 +75,9 @@ class ClusterExternalSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "ClusterExternalSecret".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -97,8 +89,8 @@ class ClusterExternalSecretProps:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ClusterExternalSecret is the Schema for the clusterexternalsecrets API.
 
@@ -108,32 +100,26 @@ class ClusterExternalSecretProps:
         :schema: ClusterExternalSecret
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = ClusterExternalSecretSpec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterExternalSecretSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f74e2ba2ccb6cd4ff807d66b5a3c6750a98bf9aadca80dd11e5f2ce993d61ce5)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: ClusterExternalSecret#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["ClusterExternalSecretSpec"]:
@@ -170,8 +156,8 @@ class ClusterExternalSecretSpec:
     def __init__(
         self,
         *,
-        external_secret_spec: typing.Union["ClusterExternalSecretSpecExternalSecretSpec", typing.Dict[str, typing.Any]],
-        namespace_selector: typing.Union["ClusterExternalSecretSpecNamespaceSelector", typing.Dict[str, typing.Any]],
+        external_secret_spec: typing.Union["ClusterExternalSecretSpecExternalSecretSpec", typing.Dict[builtins.str, typing.Any]],
+        namespace_selector: typing.Union["ClusterExternalSecretSpecNamespaceSelector", typing.Dict[builtins.str, typing.Any]],
         external_secret_name: typing.Optional[builtins.str] = None,
         refresh_time: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -189,20 +175,12 @@ class ClusterExternalSecretSpec:
         if isinstance(namespace_selector, dict):
             namespace_selector = ClusterExternalSecretSpecNamespaceSelector(**namespace_selector)
         if __debug__:
-            def stub(
-                *,
-                external_secret_spec: typing.Union[ClusterExternalSecretSpecExternalSecretSpec, typing.Dict[str, typing.Any]],
-                namespace_selector: typing.Union[ClusterExternalSecretSpecNamespaceSelector, typing.Dict[str, typing.Any]],
-                external_secret_name: typing.Optional[builtins.str] = None,
-                refresh_time: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8ef14ba98eb89c9ca89bac0d3d6a848b1d08606ee897d4645723837a3a0c8363)
             check_type(argname="argument external_secret_spec", value=external_secret_spec, expected_type=type_hints["external_secret_spec"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument external_secret_name", value=external_secret_name, expected_type=type_hints["external_secret_name"])
             check_type(argname="argument refresh_time", value=refresh_time, expected_type=type_hints["refresh_time"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "external_secret_spec": external_secret_spec,
             "namespace_selector": namespace_selector,
         }
@@ -276,11 +254,11 @@ class ClusterExternalSecretSpecExternalSecretSpec:
     def __init__(
         self,
         *,
-        secret_store_ref: typing.Union["ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef", typing.Dict[str, typing.Any]],
-        data: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecData", typing.Dict[str, typing.Any]]]] = None,
-        data_from: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFrom", typing.Dict[str, typing.Any]]]] = None,
+        secret_store_ref: typing.Union["ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef", typing.Dict[builtins.str, typing.Any]],
+        data: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecData", typing.Dict[builtins.str, typing.Any]]]] = None,
+        data_from: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         refresh_interval: typing.Optional[builtins.str] = None,
-        target: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTarget", typing.Dict[str, typing.Any]]] = None,
+        target: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTarget", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The spec for the ExternalSecrets to be created.
 
@@ -297,22 +275,13 @@ class ClusterExternalSecretSpecExternalSecretSpec:
         if isinstance(target, dict):
             target = ClusterExternalSecretSpecExternalSecretSpecTarget(**target)
         if __debug__:
-            def stub(
-                *,
-                secret_store_ref: typing.Union[ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef, typing.Dict[str, typing.Any]],
-                data: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecData, typing.Dict[str, typing.Any]]]] = None,
-                data_from: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFrom, typing.Dict[str, typing.Any]]]] = None,
-                refresh_interval: typing.Optional[builtins.str] = None,
-                target: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTarget, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e3cb3046c16e6500023803a31ec0aefdedf2075416c3070aa91ce798a65a14b2)
             check_type(argname="argument secret_store_ref", value=secret_store_ref, expected_type=type_hints["secret_store_ref"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument data_from", value=data_from, expected_type=type_hints["data_from"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_store_ref": secret_store_ref,
         }
         if data is not None:
@@ -403,7 +372,7 @@ class ClusterExternalSecretSpecExternalSecretSpecData:
     def __init__(
         self,
         *,
-        remote_ref: typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef", typing.Dict[str, typing.Any]],
+        remote_ref: typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef", typing.Dict[builtins.str, typing.Any]],
         secret_key: builtins.str,
     ) -> None:
         '''ExternalSecretData defines the connection between the Kubernetes Secret key (spec.data.) and the Provider data.
@@ -416,16 +385,10 @@ class ClusterExternalSecretSpecExternalSecretSpecData:
         if isinstance(remote_ref, dict):
             remote_ref = ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef(**remote_ref)
         if __debug__:
-            def stub(
-                *,
-                remote_ref: typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef, typing.Dict[str, typing.Any]],
-                secret_key: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__698893d044926c5b5ba8069507216c8ba018dab3a976050e982d04ab806c4f9c)
             check_type(argname="argument remote_ref", value=remote_ref, expected_type=type_hints["remote_ref"])
             check_type(argname="argument secret_key", value=secret_key, expected_type=type_hints["secret_key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "remote_ref": remote_ref,
             "secret_key": secret_key,
         }
@@ -470,9 +433,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFrom:
     def __init__(
         self,
         *,
-        extract: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromExtract", typing.Dict[str, typing.Any]]] = None,
-        find: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromFind", typing.Dict[str, typing.Any]]] = None,
-        rewrite: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite", typing.Dict[str, typing.Any]]]] = None,
+        extract: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromExtract", typing.Dict[builtins.str, typing.Any]]] = None,
+        find: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromFind", typing.Dict[builtins.str, typing.Any]]] = None,
+        rewrite: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite", typing.Dict[builtins.str, typing.Any]]]] = None,
     ) -> None:
         '''
         :param extract: Used to extract multiple key/value pairs from one secret.
@@ -486,18 +449,11 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFrom:
         if isinstance(find, dict):
             find = ClusterExternalSecretSpecExternalSecretSpecDataFromFind(**find)
         if __debug__:
-            def stub(
-                *,
-                extract: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromExtract, typing.Dict[str, typing.Any]]] = None,
-                find: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromFind, typing.Dict[str, typing.Any]]] = None,
-                rewrite: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite, typing.Dict[str, typing.Any]]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ab42e9c8e44193a216bc48255b69844a18cb95933d526955a5d60b90a2fe67fa)
             check_type(argname="argument extract", value=extract, expected_type=type_hints["extract"])
             check_type(argname="argument find", value=find, expected_type=type_hints["find"])
             check_type(argname="argument rewrite", value=rewrite, expected_type=type_hints["rewrite"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if extract is not None:
             self._values["extract"] = extract
         if find is not None:
@@ -587,24 +543,14 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                metadata_policy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4e03ff5f59a1789f7214696b1cee4651df4495261ab18a2629aa1a0b877896e6)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument metadata_policy", value=metadata_policy, expected_type=type_hints["metadata_policy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -706,7 +652,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
         *,
         conversion_strategy: typing.Optional[builtins.str] = None,
         decoding_strategy: typing.Optional[builtins.str] = None,
-        name: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromFindName", typing.Dict[str, typing.Any]]] = None,
+        name: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromFindName", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     ) -> None:
@@ -723,22 +669,13 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
         if isinstance(name, dict):
             name = ClusterExternalSecretSpecExternalSecretSpecDataFromFindName(**name)
         if __debug__:
-            def stub(
-                *,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                name: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromFindName, typing.Dict[str, typing.Any]]] = None,
-                path: typing.Optional[builtins.str] = None,
-                tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__92077ca7c2f4d118e3eed11ddd89115353a2bba1dbb58f94f8e98f0407ce8371)
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument tags", value=tags, expected_type=type_hints["tags"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if conversion_strategy is not None:
             self._values["conversion_strategy"] = conversion_strategy
         if decoding_strategy is not None:
@@ -823,11 +760,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFindName:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFindName
         '''
         if __debug__:
-            def stub(*, regexp: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5968a6b40dcf2aead8c61044c5dee50fa9d4651e3d45dc7f12383fe7760e25ac)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
 
@@ -861,7 +796,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite:
     def __init__(
         self,
         *,
-        regexp: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp", typing.Dict[str, typing.Any]]] = None,
+        regexp: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param regexp: Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.
@@ -871,14 +806,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite:
         if isinstance(regexp, dict):
             regexp = ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp(**regexp)
         if __debug__:
-            def stub(
-                *,
-                regexp: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f601bc7c910f4395527a2edbe9ff719509d7d8808af893ad08740c049a2c5b76)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
 
@@ -924,12 +854,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp
         '''
         if __debug__:
-            def stub(*, source: builtins.str, target: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5b713d8124b2c817097f753f8dc9f6051b182ef78b70ea61bbbb37b1e8c58d59)
             check_type(argname="argument source", value=source, expected_type=type_hints["source"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "source": source,
             "target": target,
         }
@@ -1001,24 +929,14 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                metadata_policy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e6f3244609ebbc535f95a19792829d629cfcad19ee4566882417287402c07f3f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument metadata_policy", value=metadata_policy, expected_type=type_hints["metadata_policy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -1123,16 +1041,10 @@ class ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef:
         :schema: ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                kind: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bbbc20c608aad33b8e32e75a11fc646a7ee61bc1d1f2e94de5bf32865235fd04)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if kind is not None:
@@ -1190,7 +1102,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTarget:
         deletion_policy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetDeletionPolicy"] = None,
         immutable: typing.Optional[builtins.bool] = None,
         name: typing.Optional[builtins.str] = None,
-        template: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplate", typing.Dict[str, typing.Any]]] = None,
+        template: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.
 
@@ -1205,22 +1117,13 @@ class ClusterExternalSecretSpecExternalSecretSpecTarget:
         if isinstance(template, dict):
             template = ClusterExternalSecretSpecExternalSecretSpecTargetTemplate(**template)
         if __debug__:
-            def stub(
-                *,
-                creation_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetCreationPolicy] = None,
-                deletion_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetDeletionPolicy] = None,
-                immutable: typing.Optional[builtins.bool] = None,
-                name: typing.Optional[builtins.str] = None,
-                template: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplate, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d7d283c53e5807e3a14479debfe5a62ad7d33bbe1884db78b4005c97d7f9e572)
             check_type(argname="argument creation_policy", value=creation_policy, expected_type=type_hints["creation_policy"])
             check_type(argname="argument deletion_policy", value=deletion_policy, expected_type=type_hints["deletion_policy"])
             check_type(argname="argument immutable", value=immutable, expected_type=type_hints["immutable"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if creation_policy is not None:
             self._values["creation_policy"] = creation_policy
         if deletion_policy is not None:
@@ -1358,8 +1261,8 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         engine_version: typing.Optional[builtins.str] = None,
-        metadata: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata", typing.Dict[str, typing.Any]]] = None,
-        template_from: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        template_from: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Template defines a blueprint for the created Secret resource.
@@ -1375,22 +1278,13 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         if isinstance(metadata, dict):
             metadata = ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata(**metadata)
         if __debug__:
-            def stub(
-                *,
-                data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                engine_version: typing.Optional[builtins.str] = None,
-                metadata: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata, typing.Dict[str, typing.Any]]] = None,
-                template_from: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[str, typing.Any]]]] = None,
-                type: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e17311f817cc6c3870009753fdfc8659a03aed047d52e1c28f68c66c22f4326d)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument engine_version", value=engine_version, expected_type=type_hints["engine_version"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument template_from", value=template_from, expected_type=type_hints["template_from"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if data is not None:
             self._values["data"] = data
         if engine_version is not None:
@@ -1479,16 +1373,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata:
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata
         '''
         if __debug__:
-            def stub(
-                *,
-                annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e700cd106840de6b6b862611a9af63e0d1be6bba0dd554c7aed6acca92d19244)
             check_type(argname="argument annotations", value=annotations, expected_type=type_hints["annotations"])
             check_type(argname="argument labels", value=labels, expected_type=type_hints["labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if annotations is not None:
             self._values["annotations"] = annotations
         if labels is not None:
@@ -1533,8 +1421,8 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
     def __init__(
         self,
         *,
-        config_map: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap", typing.Dict[str, typing.Any]]] = None,
-        secret: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret", typing.Dict[str, typing.Any]]] = None,
+        config_map: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param config_map: 
@@ -1547,16 +1435,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
         if isinstance(secret, dict):
             secret = ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret(**secret)
         if __debug__:
-            def stub(
-                *,
-                config_map: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap, typing.Dict[str, typing.Any]]] = None,
-                secret: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6afaa4c609906e7626220c4fddf4bc3a8fcc807598ec8beb344f6b9de0f6269b)
             check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
             check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if config_map is not None:
             self._values["config_map"] = config_map
         if secret is not None:
@@ -1603,7 +1485,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -1613,16 +1495,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e735e4983134a60d5944c221483b47abb6e945d1e4363c5bd39324ef1f6d902e)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -1672,11 +1548,9 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4cea9f6b57f176e25de456cef3b2ecab038f70307e22ed475c43feffc210d187)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -1710,7 +1584,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -1720,16 +1594,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__57da7f59eff3d4d95d8055111305c41a7897499965ce955542ca053061957d87)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -1779,11 +1647,9 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__679753049e28b5f77ae12540862ccff4cbfe346de1a2af57688741fa5517fdcf)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -1820,7 +1686,7 @@ class ClusterExternalSecretSpecNamespaceSelector:
     def __init__(
         self,
         *,
-        match_expressions: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecNamespaceSelectorMatchExpressions", typing.Dict[str, typing.Any]]]] = None,
+        match_expressions: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecNamespaceSelectorMatchExpressions", typing.Dict[builtins.str, typing.Any]]]] = None,
         match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     ) -> None:
         '''The labels to select by to find the Namespaces to create the ExternalSecrets in.
@@ -1831,16 +1697,10 @@ class ClusterExternalSecretSpecNamespaceSelector:
         :schema: ClusterExternalSecretSpecNamespaceSelector
         '''
         if __debug__:
-            def stub(
-                *,
-                match_expressions: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecNamespaceSelectorMatchExpressions, typing.Dict[str, typing.Any]]]] = None,
-                match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e67e15ae7413ec89e9e1b028ba41fd1a6808fa4799949e1144033db1bce9375f)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
             check_type(argname="argument match_labels", value=match_labels, expected_type=type_hints["match_labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_expressions is not None:
             self._values["match_expressions"] = match_expressions
         if match_labels is not None:
@@ -1906,18 +1766,11 @@ class ClusterExternalSecretSpecNamespaceSelectorMatchExpressions:
         :schema: ClusterExternalSecretSpecNamespaceSelectorMatchExpressions
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                operator: builtins.str,
-                values: typing.Optional[typing.Sequence[builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__29a0c54f3edfd70da195fb2028a37b74ef6137c8c5c102801f6e46ea8544e824)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
             "operator": operator,
         }
@@ -1970,7 +1823,7 @@ class ClusterExternalSecretSpecNamespaceSelectorMatchExpressions:
 
 
 class ClusterSecretStore(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.ClusterSecretStore",
 ):
@@ -1981,11 +1834,11 @@ class ClusterSecretStore(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "ClusterSecretStore" API object.
 
@@ -1995,15 +1848,7 @@ class ClusterSecretStore(
         :param spec: SecretStoreSpec defines the desired state of SecretStore.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterSecretStoreSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8dd63b4b951d1c0f1810393f2ea2739eb3c8df2dbba5c1c17c9369fa23105354)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ClusterSecretStoreProps(metadata=metadata, spec=spec)
@@ -2015,8 +1860,8 @@ class ClusterSecretStore(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "ClusterSecretStore".
 
@@ -2036,9 +1881,9 @@ class ClusterSecretStore(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "ClusterSecretStore".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -2050,8 +1895,8 @@ class ClusterSecretStoreProps:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ClusterSecretStore represents a secure external location for storing secrets, which can be referenced as part of ``storeRef`` fields.
 
@@ -2061,32 +1906,26 @@ class ClusterSecretStoreProps:
         :schema: ClusterSecretStore
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = ClusterSecretStoreSpec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterSecretStoreSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e52cd74f3e3dc5a6f5e0e0439c1ee7ea1bd2ae23d61a00f1d7d48f492e9adc87)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: ClusterSecretStore#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["ClusterSecretStoreSpec"]:
@@ -2122,9 +1961,9 @@ class ClusterSecretStoreSpec:
     def __init__(
         self,
         *,
-        provider: typing.Union["ClusterSecretStoreSpecProvider", typing.Dict[str, typing.Any]],
+        provider: typing.Union["ClusterSecretStoreSpecProvider", typing.Dict[builtins.str, typing.Any]],
         controller: typing.Optional[builtins.str] = None,
-        retry_settings: typing.Optional[typing.Union["ClusterSecretStoreSpecRetrySettings", typing.Dict[str, typing.Any]]] = None,
+        retry_settings: typing.Optional[typing.Union["ClusterSecretStoreSpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStoreSpec defines the desired state of SecretStore.
 
@@ -2139,18 +1978,11 @@ class ClusterSecretStoreSpec:
         if isinstance(retry_settings, dict):
             retry_settings = ClusterSecretStoreSpecRetrySettings(**retry_settings)
         if __debug__:
-            def stub(
-                *,
-                provider: typing.Union[ClusterSecretStoreSpecProvider, typing.Dict[str, typing.Any]],
-                controller: typing.Optional[builtins.str] = None,
-                retry_settings: typing.Optional[typing.Union[ClusterSecretStoreSpecRetrySettings, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__57b6b1dbca3a9f2481bd32974c96162d85bfa5e7fd9e1324c70c72f4c047323e)
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "provider": provider,
         }
         if controller is not None:
@@ -2223,19 +2055,19 @@ class ClusterSecretStoreSpecProvider:
     def __init__(
         self,
         *,
-        akeyless: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeyless", typing.Dict[str, typing.Any]]] = None,
-        alibaba: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAlibaba", typing.Dict[str, typing.Any]]] = None,
-        aws: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAws", typing.Dict[str, typing.Any]]] = None,
-        azurekv: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekv", typing.Dict[str, typing.Any]]] = None,
-        fake: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderFake", typing.Dict[str, typing.Any]]] = None,
-        gcpsm: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsm", typing.Dict[str, typing.Any]]] = None,
-        gitlab: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGitlab", typing.Dict[str, typing.Any]]] = None,
-        ibm: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderIbm", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetes", typing.Dict[str, typing.Any]]] = None,
-        oracle: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracle", typing.Dict[str, typing.Any]]] = None,
-        vault: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVault", typing.Dict[str, typing.Any]]] = None,
-        webhook: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderWebhook", typing.Dict[str, typing.Any]]] = None,
-        yandexlockbox: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockbox", typing.Dict[str, typing.Any]]] = None,
+        akeyless: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeyless", typing.Dict[builtins.str, typing.Any]]] = None,
+        alibaba: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
+        aws: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
+        azurekv: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        fake: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcpsm: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
+        gitlab: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
+        ibm: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        oracle: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
+        webhook: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexlockbox: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Used to configure the provider.
 
@@ -2284,24 +2116,7 @@ class ClusterSecretStoreSpecProvider:
         if isinstance(yandexlockbox, dict):
             yandexlockbox = ClusterSecretStoreSpecProviderYandexlockbox(**yandexlockbox)
         if __debug__:
-            def stub(
-                *,
-                akeyless: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeyless, typing.Dict[str, typing.Any]]] = None,
-                alibaba: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAlibaba, typing.Dict[str, typing.Any]]] = None,
-                aws: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAws, typing.Dict[str, typing.Any]]] = None,
-                azurekv: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekv, typing.Dict[str, typing.Any]]] = None,
-                fake: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderFake, typing.Dict[str, typing.Any]]] = None,
-                gcpsm: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsm, typing.Dict[str, typing.Any]]] = None,
-                gitlab: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGitlab, typing.Dict[str, typing.Any]]] = None,
-                ibm: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderIbm, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetes, typing.Dict[str, typing.Any]]] = None,
-                oracle: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracle, typing.Dict[str, typing.Any]]] = None,
-                vault: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVault, typing.Dict[str, typing.Any]]] = None,
-                webhook: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderWebhook, typing.Dict[str, typing.Any]]] = None,
-                yandexlockbox: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockbox, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b577f0ccbbef07f08ad1ab52f92fc2ed139f3591354a8294c647ea76a6470491)
             check_type(argname="argument akeyless", value=akeyless, expected_type=type_hints["akeyless"])
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
@@ -2315,7 +2130,7 @@ class ClusterSecretStoreSpecProvider:
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if akeyless is not None:
             self._values["akeyless"] = akeyless
         if alibaba is not None:
@@ -2487,7 +2302,7 @@ class ClusterSecretStoreSpecProviderAkeyless:
         self,
         *,
         akeyless_gw_api_url: builtins.str,
-        auth_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRef", typing.Dict[str, typing.Any]],
+        auth_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Akeyless configures this store to sync secrets using Akeyless Vault provider.
 
@@ -2499,16 +2314,10 @@ class ClusterSecretStoreSpecProviderAkeyless:
         if isinstance(auth_secret_ref, dict):
             auth_secret_ref = ClusterSecretStoreSpecProviderAkeylessAuthSecretRef(**auth_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                akeyless_gw_api_url: builtins.str,
-                auth_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__eb1f3b613f8eb456b5c2efddbc3a0dcaaa7290a58a21df5ba0e0ad6d189c7245)
             check_type(argname="argument akeyless_gw_api_url", value=akeyless_gw_api_url, expected_type=type_hints["akeyless_gw_api_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "akeyless_gw_api_url": akeyless_gw_api_url,
             "auth_secret_ref": auth_secret_ref,
         }
@@ -2554,8 +2363,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRef:
     def __init__(
         self,
         *,
-        kubernetes_auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Akeyless.
 
@@ -2569,16 +2378,10 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRef:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                kubernetes_auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a1add6ad905d4b2103c32761e6970d8d214a73ed5201b1a98c08d00a43c853f7)
             check_type(argname="argument kubernetes_auth", value=kubernetes_auth, expected_type=type_hints["kubernetes_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if kubernetes_auth is not None:
             self._values["kubernetes_auth"] = kubernetes_auth
         if secret_ref is not None:
@@ -2634,8 +2437,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
         *,
         access_id: builtins.str,
         k8_s_conf_name: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.
 
@@ -2651,20 +2454,12 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                access_id: builtins.str,
-                k8_s_conf_name: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__09e802798f87b8377e20a5baa142f3095f97079a62d35b23ac9b89263cbfac51)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument k8_s_conf_name", value=k8_s_conf_name, expected_type=type_hints["k8_s_conf_name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_id": access_id,
             "k8_s_conf_name": k8_s_conf_name,
         }
@@ -2755,18 +2550,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__fe2322d9ce4d70c2c6498168db62dc60ec37d6d55fbdb7b4595d224eadbb7f4d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -2841,18 +2629,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4c89202b1ec979b714ae00fcaa502eaf9b609424705834f082bf349b7f789d59)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -2915,9 +2696,9 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef:
     def __init__(
         self,
         *,
-        access_id: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[str, typing.Any]]] = None,
-        access_type: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[str, typing.Any]]] = None,
-        access_type_param: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[str, typing.Any]]] = None,
+        access_id: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type_param: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Reference to a Secret that contains the details to authenticate with Akeyless.
 
@@ -2934,18 +2715,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef:
         if isinstance(access_type_param, dict):
             access_type_param = ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam(**access_type_param)
         if __debug__:
-            def stub(
-                *,
-                access_id: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[str, typing.Any]]] = None,
-                access_type: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[str, typing.Any]]] = None,
-                access_type_param: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__035cb6945bc194f917abd47ca70a68244da344a68f14f7f033c3b028e0dee454)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument access_type", value=access_type, expected_type=type_hints["access_type"])
             check_type(argname="argument access_type_param", value=access_type_param, expected_type=type_hints["access_type_param"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_id is not None:
             self._values["access_id"] = access_id
         if access_type is not None:
@@ -3020,18 +2794,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a938d7a10afd24ef476da4a5595b2a159a6ff353311720640d3183cab2237e9b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -3104,18 +2871,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__762aa62305da5c5cd7def193e14a6fa135c8f017f035428cf738add22df97bc8)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -3188,18 +2948,11 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2dcf00eb7f5ff015d34783bafe7aaa9f134a7caabbca3827419d5ae0205adbc9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -3259,7 +3012,7 @@ class ClusterSecretStoreSpecProviderAlibaba:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuth", typing.Dict[builtins.str, typing.Any]],
         region_id: builtins.str,
         endpoint: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -3274,18 +3027,11 @@ class ClusterSecretStoreSpecProviderAlibaba:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderAlibabaAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuth, typing.Dict[str, typing.Any]],
-                region_id: builtins.str,
-                endpoint: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a5ff624b83768ab7e3f6981bd9dbaf0c920598597111dc90a49f4e43af854503)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument region_id", value=region_id, expected_type=type_hints["region_id"])
             check_type(argname="argument endpoint", value=endpoint, expected_type=type_hints["endpoint"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "region_id": region_id,
         }
@@ -3341,7 +3087,7 @@ class ClusterSecretStoreSpecProviderAlibabaAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuth contains a secretRef for credentials.
 
@@ -3352,14 +3098,9 @@ class ClusterSecretStoreSpecProviderAlibabaAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderAlibabaAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a3e71811aee1daf711f7bac2275e4c3a683aa7203798d77f39b0ef34d5bd4d8f)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -3397,8 +3138,8 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]],
-        access_key_secret_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[str, typing.Any]],
+        access_key_id_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        access_key_secret_secret_ref: typing.Union["ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuthSecretRef holds secret references for Alibaba credentials.
 
@@ -3412,16 +3153,10 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRef:
         if isinstance(access_key_secret_secret_ref, dict):
             access_key_secret_secret_ref = ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef(**access_key_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]],
-                access_key_secret_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__91e926199bf20fc1a102ce65ad3b639e0398edcf53243008995020f063edf9ab)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument access_key_secret_secret_ref", value=access_key_secret_secret_ref, expected_type=type_hints["access_key_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_key_id_secret_ref": access_key_id_secret_ref,
             "access_key_secret_secret_ref": access_key_secret_secret_ref,
         }
@@ -3484,18 +3219,11 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__577c863fea491e359b51abf5fe73e1d4acc1c81ea7401361e1c6cd8c07c011ee)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -3568,18 +3296,11 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__48b18145fd0d8fe181e65bd8874d2e03b8e44f3a00137400c5dc630d92c474bb)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -3646,7 +3367,7 @@ class ClusterSecretStoreSpecProviderAws:
         *,
         region: builtins.str,
         service: "ClusterSecretStoreSpecProviderAwsService",
-        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AWS configures this store to sync secrets using AWS Secret Manager provider.
@@ -3661,20 +3382,12 @@ class ClusterSecretStoreSpecProviderAws:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderAwsAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                service: ClusterSecretStoreSpecProviderAwsService,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuth, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0b890d76e5f0d682e477d7b20c0020358b39d98bd01a9432e52c7c4a8ac616f0)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "service": service,
         }
@@ -3742,8 +3455,8 @@ class ClusterSecretStoreSpecProviderAwsAuth:
     def __init__(
         self,
         *,
-        jwt: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
 
@@ -3757,16 +3470,10 @@ class ClusterSecretStoreSpecProviderAwsAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderAwsAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                jwt: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a6dd72e093e44f4d176c7ac71615a880705b99b630555e7ce1e4ea69742c5efb)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if jwt is not None:
             self._values["jwt"] = jwt
         if secret_ref is not None:
@@ -3813,7 +3520,7 @@ class ClusterSecretStoreSpecProviderAwsAuthJwt:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Authenticate against AWS using service account tokens.
 
@@ -3824,14 +3531,9 @@ class ClusterSecretStoreSpecProviderAwsAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e7d772d91778f286ba674c40734f79974636800252dcb80ba3aedb4417ec64cb)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -3880,18 +3582,11 @@ class ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
         :schema: ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__de10cf2ddb938d6fc92b26c35d489e4b0afd1f528224b33c4acedc8f7b7c55d4)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -3953,8 +3648,8 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]]] = None,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        access_key_id_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.
 
@@ -3968,16 +3663,10 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]]] = None,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__382d054259503c641b10cacac05db506fe361c058f5e49c99de7f0f9505e7137)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_key_id_secret_ref is not None:
             self._values["access_key_id_secret_ref"] = access_key_id_secret_ref
         if secret_access_key_secret_ref is not None:
@@ -4039,18 +3728,11 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6651cda229033cd18398fe288cd6b6e8a7837eb3b8dcacc21b46f1303f7ab9fb)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -4123,18 +3805,11 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__14d2105b0a56fd40c4ef74beca49699465299985a43951d9b6c98760df53d36d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -4215,10 +3890,10 @@ class ClusterSecretStoreSpecProviderAzurekv:
         self,
         *,
         vault_url: builtins.str,
-        auth_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        auth_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         auth_type: typing.Optional["ClusterSecretStoreSpecProviderAzurekvAuthType"] = None,
         identity_id: typing.Optional[builtins.str] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
         tenant_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
@@ -4237,24 +3912,14 @@ class ClusterSecretStoreSpecProviderAzurekv:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderAzurekvServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                vault_url: builtins.str,
-                auth_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                auth_type: typing.Optional[ClusterSecretStoreSpecProviderAzurekvAuthType] = None,
-                identity_id: typing.Optional[builtins.str] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-                tenant_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c241f0bdca3970aef7e1768427fdaa91976bc172e6a9adf9266bf73940958d82)
             check_type(argname="argument vault_url", value=vault_url, expected_type=type_hints["vault_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
             check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "vault_url": vault_url,
         }
         if auth_secret_ref is not None:
@@ -4356,8 +4021,8 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
-        client_id: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId", typing.Dict[str, typing.Any]]] = None,
-        client_secret: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[str, typing.Any]]] = None,
+        client_id: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_secret: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
@@ -4373,16 +4038,10 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRef:
         if isinstance(client_secret, dict):
             client_secret = ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
         if __debug__:
-            def stub(
-                *,
-                client_id: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId, typing.Dict[str, typing.Any]]] = None,
-                client_secret: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__50107c061e058c695ef89a240623f5c9f9c8bdec05e3550652703edc1613a9d6)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
@@ -4444,18 +4103,11 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId:
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__07b0ecddeaed41a84aa2643dd718d462b1146ec6772530b4f5c3c47e1b733cf5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -4528,18 +4180,11 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__68559f3a5d6b2b8a93dcb32624f88b8d3a6cfd24de8ffe4e2e190efd3965eba4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -4631,18 +4276,11 @@ class ClusterSecretStoreSpecProviderAzurekvServiceAccountRef:
         :schema: ClusterSecretStoreSpecProviderAzurekvServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6f9bc3908e702dbfc1f5487ab0c0ab8d9ac9fbe77dc944911fa425330ed9bf8c)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -4701,7 +4339,7 @@ class ClusterSecretStoreSpecProviderFake:
     def __init__(
         self,
         *,
-        data: typing.Sequence[typing.Union["ClusterSecretStoreSpecProviderFakeData", typing.Dict[str, typing.Any]]],
+        data: typing.Sequence[typing.Union["ClusterSecretStoreSpecProviderFakeData", typing.Dict[builtins.str, typing.Any]]],
     ) -> None:
         '''Fake configures a store with static key/value pairs.
 
@@ -4710,14 +4348,9 @@ class ClusterSecretStoreSpecProviderFake:
         :schema: ClusterSecretStoreSpecProviderFake
         '''
         if __debug__:
-            def stub(
-                *,
-                data: typing.Sequence[typing.Union[ClusterSecretStoreSpecProviderFakeData, typing.Dict[str, typing.Any]]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f2d1b2afe891f49350ca0f79d38693b672edb585eb22bca05a5a2a9cc67c77a0)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "data": data,
         }
 
@@ -4770,20 +4403,12 @@ class ClusterSecretStoreSpecProviderFakeData:
         :schema: ClusterSecretStoreSpecProviderFakeData
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                value: typing.Optional[builtins.str] = None,
-                value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__06c3a06c0205d70bc5e04befc5fa15e0d81efb1d139829a1b10122852ccddee3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument value_map", value=value_map, expected_type=type_hints["value_map"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if value is not None:
@@ -4847,7 +4472,7 @@ class ClusterSecretStoreSpecProviderGcpsm:
     def __init__(
         self,
         *,
-        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
@@ -4860,16 +4485,10 @@ class ClusterSecretStoreSpecProviderGcpsm:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderGcpsmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuth, typing.Dict[str, typing.Any]]] = None,
-                project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__fc3cec52aba3dbdf7d2c68d2cdddb38491fbe4a67b6aa1610ba59832fa6a4e41)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if auth is not None:
             self._values["auth"] = auth
         if project_id is not None:
@@ -4914,8 +4533,8 @@ class ClusterSecretStoreSpecProviderGcpsmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        workload_identity: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against GCP.
 
@@ -4929,16 +4548,10 @@ class ClusterSecretStoreSpecProviderGcpsmAuth:
         if isinstance(workload_identity, dict):
             workload_identity = ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                workload_identity: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d2178385ff92d231b452c07f1848576db93a846b578537d723ad23942c8b8f59)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if workload_identity is not None:
@@ -4985,7 +4598,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_access_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -4995,14 +4608,9 @@ class ClusterSecretStoreSpecProviderGcpsmAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8b68c9d3be6662c6d5127a4f57c77b4fa8ec1231c6761283310dd0437fa26405)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
             self._values["secret_access_key_secret_ref"] = secret_access_key_secret_ref
 
@@ -5051,18 +4659,11 @@ class ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1ae3e18a30bbb404e9e981c4110af8ad2c78dced856b1094667d4d8757f4bea3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -5129,7 +4730,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity:
         *,
         cluster_location: builtins.str,
         cluster_name: builtins.str,
-        service_account_ref: typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         cluster_project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''
@@ -5143,20 +4744,12 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                cluster_location: builtins.str,
-                cluster_name: builtins.str,
-                service_account_ref: typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[str, typing.Any]],
-                cluster_project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__998b6e77f1f37298ed0da77f6068e5d0e918cf71ed7b2bfdbcba34ba026e718a)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_project_id", value=cluster_project_id, expected_type=type_hints["cluster_project_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "cluster_location": cluster_location,
             "cluster_name": cluster_name,
             "service_account_ref": service_account_ref,
@@ -5236,18 +4829,11 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__99dacaa9d9ab0fbbdd69de40485d6ea7f5b6f30154d2c2f17a52d025fcda16dc)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -5306,7 +4892,7 @@ class ClusterSecretStoreSpecProviderGitlab:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderGitlabAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderGitlabAuth", typing.Dict[builtins.str, typing.Any]],
         project_id: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -5321,18 +4907,11 @@ class ClusterSecretStoreSpecProviderGitlab:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderGitlabAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderGitlabAuth, typing.Dict[str, typing.Any]],
-                project_id: typing.Optional[builtins.str] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cd6c28ce03a61453b779c63be95c17f14c569df7b7901767be17f3b916f7b7b9)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if project_id is not None:
@@ -5393,7 +4972,7 @@ class ClusterSecretStoreSpecProviderGitlabAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderGitlabAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderGitlabAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with a GitLab instance.
 
@@ -5404,14 +4983,9 @@ class ClusterSecretStoreSpecProviderGitlabAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderGitlabAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderGitlabAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d971866ec4831049f0c5995bf4f89457244b6a35dbd74909afa8f7d95a5fc3b6)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -5445,7 +5019,7 @@ class ClusterSecretStoreSpecProviderGitlabAuthSecretRef:
     def __init__(
         self,
         *,
-        access_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[str, typing.Any]]] = None,
+        access_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param access_token: AccessToken is used for authentication.
@@ -5455,14 +5029,9 @@ class ClusterSecretStoreSpecProviderGitlabAuthSecretRef:
         if isinstance(access_token, dict):
             access_token = ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken(**access_token)
         if __debug__:
-            def stub(
-                *,
-                access_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__adda72bd6677360eef05f5b60cec8e46b4703afb4f11ce2fe2c17d0af65b64f9)
             check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_token is not None:
             self._values["access_token"] = access_token
 
@@ -5511,18 +5080,11 @@ class ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
         :schema: ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__511067b3b8641da6fae0b888268797929d1d7d4597ddb24ebbdc23c763a8daf5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -5582,7 +5144,7 @@ class ClusterSecretStoreSpecProviderIbm:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderIbmAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderIbmAuth", typing.Dict[builtins.str, typing.Any]],
         service_url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''IBM configures this store to sync secrets using IBM Cloud provider.
@@ -5595,16 +5157,10 @@ class ClusterSecretStoreSpecProviderIbm:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderIbmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderIbmAuth, typing.Dict[str, typing.Any]],
-                service_url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__568b57667a8f87d52e74f6c92542b41178d303a303d0f63f1ad0201e4e4f6e85)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_url", value=service_url, expected_type=type_hints["service_url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if service_url is not None:
@@ -5650,7 +5206,7 @@ class ClusterSecretStoreSpecProviderIbmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderIbmAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderIbmAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with the IBM secrets manager.
 
@@ -5661,14 +5217,9 @@ class ClusterSecretStoreSpecProviderIbmAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderIbmAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderIbmAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b8ba31df5a3dec6ffb4e43109f3b738a61dd208cf1d49917f4a5d9e2ed7016ba)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -5702,7 +5253,7 @@ class ClusterSecretStoreSpecProviderIbmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_api_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_api_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_api_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -5712,14 +5263,9 @@ class ClusterSecretStoreSpecProviderIbmAuthSecretRef:
         if isinstance(secret_api_key_secret_ref, dict):
             secret_api_key_secret_ref = ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef(**secret_api_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_api_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5d26bdf357d63f5060f85dd85dfff97aea5186ba28331fba88305c92f7bf2bee)
             check_type(argname="argument secret_api_key_secret_ref", value=secret_api_key_secret_ref, expected_type=type_hints["secret_api_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_api_key_secret_ref is not None:
             self._values["secret_api_key_secret_ref"] = secret_api_key_secret_ref
 
@@ -5768,18 +5314,11 @@ class ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
         :schema: ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6f2338fd96004be09c4ba23dde6c13751a616732acd950c786cd2d83bf1b80e0)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -5843,9 +5382,9 @@ class ClusterSecretStoreSpecProviderKubernetes:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderKubernetesAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderKubernetesAuth", typing.Dict[builtins.str, typing.Any]],
         remote_namespace: typing.Optional[builtins.str] = None,
-        server: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesServer", typing.Dict[str, typing.Any]]] = None,
+        server: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesServer", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
 
@@ -5860,18 +5399,11 @@ class ClusterSecretStoreSpecProviderKubernetes:
         if isinstance(server, dict):
             server = ClusterSecretStoreSpecProviderKubernetesServer(**server)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderKubernetesAuth, typing.Dict[str, typing.Any]],
-                remote_namespace: typing.Optional[builtins.str] = None,
-                server: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesServer, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0a875c33cb733cde737d2ea40684faf938dd9c5fcfe7ad0f13f5323f4fc03599)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument remote_namespace", value=remote_namespace, expected_type=type_hints["remote_namespace"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if remote_namespace is not None:
@@ -5934,9 +5466,9 @@ class ClusterSecretStoreSpecProviderKubernetesAuth:
     def __init__(
         self,
         *,
-        cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCert", typing.Dict[str, typing.Any]]] = None,
-        service_account: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount", typing.Dict[str, typing.Any]]] = None,
-        token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthToken", typing.Dict[str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with a Kubernetes instance.
 
@@ -5953,18 +5485,11 @@ class ClusterSecretStoreSpecProviderKubernetesAuth:
         if isinstance(token, dict):
             token = ClusterSecretStoreSpecProviderKubernetesAuthToken(**token)
         if __debug__:
-            def stub(
-                *,
-                cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCert, typing.Dict[str, typing.Any]]] = None,
-                service_account: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount, typing.Dict[str, typing.Any]]] = None,
-                token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2e4a87865577536425d7db2b507a944df25c5643ebce9d8f972d9d17bf404d2a)
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert is not None:
             self._values["cert"] = cert
         if service_account is not None:
@@ -6026,8 +5551,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        client_key: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_key: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''has both clientCert and clientKey as secretKeySelector.
 
@@ -6041,16 +5566,10 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCert:
         if isinstance(client_key, dict):
             client_key = ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey(**client_key)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                client_key: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cc095c5099a968982782878a596ee1c32a31cf4bdb1595995f7aa2fd8ff43b5b)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument client_key", value=client_key, expected_type=type_hints["client_key"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if client_key is not None:
@@ -6112,18 +5631,11 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert:
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__503bdfbb632686635165459120fcc39e2961fcc53fedf28a69b21f187ec6435c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -6196,18 +5708,11 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey:
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f49b9d81a293f0e46cea1637a6e7534771c88694becfeb4b3af69ee54782ec9c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -6267,7 +5772,7 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount:
     def __init__(
         self,
         *,
-        service_account: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount", typing.Dict[str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''points to a service account that should be used for authentication.
 
@@ -6278,14 +5783,9 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount:
         if isinstance(service_account, dict):
             service_account = ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount(**service_account)
         if __debug__:
-            def stub(
-                *,
-                service_account: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ebcfbd9e4143ba94379ca90a47ef3b5d8e1544a99ce7a639bbd61a7e7c6b4666)
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account is not None:
             self._values["service_account"] = service_account
 
@@ -6334,18 +5834,11 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount:
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__be61c3feb305ef226f10dab3e8225b282e360f0182870360ffdbca079919d353)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -6404,7 +5897,7 @@ class ClusterSecretStoreSpecProviderKubernetesAuthToken:
     def __init__(
         self,
         *,
-        bearer_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken", typing.Dict[str, typing.Any]]] = None,
+        bearer_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''use static token to authenticate with.
 
@@ -6415,14 +5908,9 @@ class ClusterSecretStoreSpecProviderKubernetesAuthToken:
         if isinstance(bearer_token, dict):
             bearer_token = ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken(**bearer_token)
         if __debug__:
-            def stub(
-                *,
-                bearer_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1ba41a3478e9d8ac767c1a13cc7dd298a12d94292b029f7fa8368b3d3e44096b)
             check_type(argname="argument bearer_token", value=bearer_token, expected_type=type_hints["bearer_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if bearer_token is not None:
             self._values["bearer_token"] = bearer_token
 
@@ -6471,18 +5959,11 @@ class ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken:
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__df798fd077691a5778cc00f1de4848673a52dac5d0d5ebe0d03af6720cbc95d2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -6543,7 +6024,7 @@ class ClusterSecretStoreSpecProviderKubernetesServer:
         self,
         *,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesServerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetesServerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''configures the Kubernetes server Address.
@@ -6557,18 +6038,11 @@ class ClusterSecretStoreSpecProviderKubernetesServer:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreSpecProviderKubernetesServerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesServerCaProvider, typing.Dict[str, typing.Any]]] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__29f1d40a83933b0205abc121837f1b6a50b2409b7fb1e5f58dade818e3e3a609)
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -6646,20 +6120,12 @@ class ClusterSecretStoreSpecProviderKubernetesServerCaProvider:
         :schema: ClusterSecretStoreSpecProviderKubernetesServerCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreSpecProviderKubernetesServerCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__df516d591cd72e3ccea6b112524dbfa0323479fb2ee403ab24a5bbaddb4efd8c)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -6744,7 +6210,7 @@ class ClusterSecretStoreSpecProviderOracle:
         *,
         region: builtins.str,
         vault: builtins.str,
-        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracleAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
@@ -6757,18 +6223,11 @@ class ClusterSecretStoreSpecProviderOracle:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderOracleAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                vault: builtins.str,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracleAuth, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d51df236a603c6f74a911105acff1a4f51f5d893faa22fc50dae2e587588ebc8)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
@@ -6827,7 +6286,7 @@ class ClusterSecretStoreSpecProviderOracleAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
         tenancy: builtins.str,
         user: builtins.str,
     ) -> None:
@@ -6844,18 +6303,11 @@ class ClusterSecretStoreSpecProviderOracleAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderOracleAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRef, typing.Dict[str, typing.Any]],
-                tenancy: builtins.str,
-                user: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8747f797eb13c03383ce6b0134915d891783a8be5d68b6ee24b3c6cb9fbd4985)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument tenancy", value=tenancy, expected_type=type_hints["tenancy"])
             check_type(argname="argument user", value=user, expected_type=type_hints["user"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
             "tenancy": tenancy,
             "user": user,
@@ -6912,8 +6364,8 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRef:
     def __init__(
         self,
         *,
-        fingerprint: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint", typing.Dict[str, typing.Any]],
-        privatekey: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[str, typing.Any]],
+        fingerprint: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint", typing.Dict[builtins.str, typing.Any]],
+        privatekey: typing.Union["ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''SecretRef to pass through sensitive information.
 
@@ -6927,16 +6379,10 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRef:
         if isinstance(privatekey, dict):
             privatekey = ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey(**privatekey)
         if __debug__:
-            def stub(
-                *,
-                fingerprint: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint, typing.Dict[str, typing.Any]],
-                privatekey: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2c97225be105acf4e293cecfb2d1feaa37ea94578c86cdf4d2e336b439a2559a)
             check_type(argname="argument fingerprint", value=fingerprint, expected_type=type_hints["fingerprint"])
             check_type(argname="argument privatekey", value=privatekey, expected_type=type_hints["privatekey"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "fingerprint": fingerprint,
             "privatekey": privatekey,
         }
@@ -6999,18 +6445,11 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint:
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c531d2ca3bee95d25c32bb91772fb25d1b2643838ab4bc843e512cb39e63bb61)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -7083,18 +6522,11 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f4eb6469dd176c588e8c4a9bd39111e7f84482a99f9af9e62ed077924beaf37f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -7164,10 +6596,10 @@ class ClusterSecretStoreSpecProviderVault:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderVaultAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderVaultAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
@@ -7193,20 +6625,7 @@ class ClusterSecretStoreSpecProviderVault:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreSpecProviderVaultCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderVaultAuth, typing.Dict[str, typing.Any]],
-                server: builtins.str,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultCaProvider, typing.Dict[str, typing.Any]]] = None,
-                forward_inconsistent: typing.Optional[builtins.bool] = None,
-                namespace: typing.Optional[builtins.str] = None,
-                path: typing.Optional[builtins.str] = None,
-                read_your_writes: typing.Optional[builtins.bool] = None,
-                version: typing.Optional[ClusterSecretStoreSpecProviderVaultVersion] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ef68b3d001dc894733c01b794ca1a457786564b75fec9c23ebf82feb51a68d1c)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -7216,7 +6635,7 @@ class ClusterSecretStoreSpecProviderVault:
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "server": server,
         }
@@ -7358,12 +6777,12 @@ class ClusterSecretStoreSpecProviderVaultAuth:
     def __init__(
         self,
         *,
-        app_role: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthAppRole", typing.Dict[str, typing.Any]]] = None,
-        cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCert", typing.Dict[str, typing.Any]]] = None,
-        jwt: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetes", typing.Dict[str, typing.Any]]] = None,
-        ldap: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthLdap", typing.Dict[str, typing.Any]]] = None,
-        token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef", typing.Dict[str, typing.Any]]] = None,
+        app_role: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        ldap: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -7389,24 +6808,14 @@ class ClusterSecretStoreSpecProviderVaultAuth:
         if isinstance(token_secret_ref, dict):
             token_secret_ref = ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                app_role: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthAppRole, typing.Dict[str, typing.Any]]] = None,
-                cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCert, typing.Dict[str, typing.Any]]] = None,
-                jwt: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetes, typing.Dict[str, typing.Any]]] = None,
-                ldap: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthLdap, typing.Dict[str, typing.Any]]] = None,
-                token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__edca367d70e999e0f4d8dd93f60480965022b2731a2804bfea499b897354fe2e)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
         if cert is not None:
@@ -7503,7 +6912,7 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRole:
         *,
         path: builtins.str,
         role_id: builtins.str,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.
 
@@ -7516,18 +6925,11 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRole:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                role_id: builtins.str,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5d653069145d43079e69f7719f5cc231f7e70d871ff44e92d01049340d8bb524)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "role_id": role_id,
             "secret_ref": secret_ref,
@@ -7601,18 +7003,11 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f35712d423d432dfcb07ff112a69b3cfbd19b55783043b4a29d483f336f4a433)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -7672,8 +7067,8 @@ class ClusterSecretStoreSpecProviderVaultAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
@@ -7687,16 +7082,10 @@ class ClusterSecretStoreSpecProviderVaultAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderVaultAuthCertSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__07ecf610e8623a95c7882b7b3820871610e76bb4497f36c406038735e020e9dd)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if secret_ref is not None:
@@ -7758,18 +7147,11 @@ class ClusterSecretStoreSpecProviderVaultAuthCertClientCert:
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4b68473b3bece52963e18111c31aa00fc82a8ebd6235ce6cdc6d52305f88978b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -7842,18 +7224,11 @@ class ClusterSecretStoreSpecProviderVaultAuthCertSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__297cfe9ec7b6f0ff6acb7be39420d3c9df2218f1bf1753129109b58cb815db1c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -7919,9 +7294,9 @@ class ClusterSecretStoreSpecProviderVaultAuthJwt:
         self,
         *,
         path: builtins.str,
-        kubernetes_service_account_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_service_account_token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
 
@@ -7937,20 +7312,12 @@ class ClusterSecretStoreSpecProviderVaultAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                kubernetes_service_account_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c70b5f2d0d755f91281254925c299e6b7812ab873f8af74181b9bed9ddf549d3)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
         }
         if kubernetes_service_account_token is not None:
@@ -8026,7 +7393,7 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
         expiration_seconds: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -8041,18 +7408,11 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[str, typing.Any]],
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                expiration_seconds: typing.Optional[jsii.Number] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__079c46fff0c57b42b35cdf20bd2601cdf20258393616adf107cd21057b8a5756)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "service_account_ref": service_account_ref,
         }
         if audiences is not None:
@@ -8132,18 +7492,11 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cf1afed0cbd44ce1e181c71dfbce5c80cec5b966a2a854753d10efa060ee9f6f)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -8215,18 +7568,11 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7a340df94e1a417e5d884f82e933c5560f15f85713299092866951369e007294)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -8293,8 +7639,8 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetes:
         *,
         mount_path: builtins.str,
         role: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
 
@@ -8310,20 +7656,12 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                mount_path: builtins.str,
-                role: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7e0431af4eda83f334246027b08a06ec6fc9a31808931500a0447cbf67873dc8)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "mount_path": mount_path,
             "role": role,
         }
@@ -8416,18 +7754,11 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c7378e072626052b95a87646e5ef2b5aff3fbcb23a3222fc3bdb7a5423e66529)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -8502,18 +7833,11 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e39b709ef4e009ad2207ce73f97c37c051ea9f48db9c0406f1c522ebaacfb7ca)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -8574,7 +7898,7 @@ class ClusterSecretStoreSpecProviderVaultAuthLdap:
         *,
         path: builtins.str,
         username: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
@@ -8587,18 +7911,11 @@ class ClusterSecretStoreSpecProviderVaultAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                username: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8666d1368531371d385fa490f9ec11641fb095a166fb9e1b592dcc40182fa86b)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "username": username,
         }
@@ -8670,18 +7987,11 @@ class ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__55cf6198c624abda137c052d1dc014ca36b71dd2d46492befe116265455ee36d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -8754,18 +8064,11 @@ class ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef:
         :schema: ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__19291a9702423000e44c226f201a482aea5e992dd47a71153ebb3070b6856b2d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -8845,20 +8148,12 @@ class ClusterSecretStoreSpecProviderVaultCaProvider:
         :schema: ClusterSecretStoreSpecProviderVaultCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreSpecProviderVaultCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__595609c1cb77ac8d0172cebab30d5f44428ed4331922d82d47b326431302591b)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -8966,14 +8261,14 @@ class ClusterSecretStoreSpecProviderWebhook:
     def __init__(
         self,
         *,
-        result: typing.Union["ClusterSecretStoreSpecProviderWebhookResult", typing.Dict[str, typing.Any]],
+        result: typing.Union["ClusterSecretStoreSpecProviderWebhookResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderWebhookCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderWebhookCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         method: typing.Optional[builtins.str] = None,
-        secrets: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreSpecProviderWebhookSecrets", typing.Dict[str, typing.Any]]]] = None,
+        secrets: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreSpecProviderWebhookSecrets", typing.Dict[builtins.str, typing.Any]]]] = None,
         timeout: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Webhook configures this store to sync secrets using a generic templated webhook.
@@ -8995,20 +8290,7 @@ class ClusterSecretStoreSpecProviderWebhook:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreSpecProviderWebhookCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                result: typing.Union[ClusterSecretStoreSpecProviderWebhookResult, typing.Dict[str, typing.Any]],
-                url: builtins.str,
-                body: typing.Optional[builtins.str] = None,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderWebhookCaProvider, typing.Dict[str, typing.Any]]] = None,
-                headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                method: typing.Optional[builtins.str] = None,
-                secrets: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreSpecProviderWebhookSecrets, typing.Dict[str, typing.Any]]]] = None,
-                timeout: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__567875e5230d606c5c4ae9dfad288f18e0d73f5564ac4e3e6ec54c667c14e548)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
@@ -9018,7 +8300,7 @@ class ClusterSecretStoreSpecProviderWebhook:
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument secrets", value=secrets, expected_type=type_hints["secrets"])
             check_type(argname="argument timeout", value=timeout, expected_type=type_hints["timeout"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "result": result,
             "url": url,
         }
@@ -9167,20 +8449,12 @@ class ClusterSecretStoreSpecProviderWebhookCaProvider:
         :schema: ClusterSecretStoreSpecProviderWebhookCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreSpecProviderWebhookCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6af71527adcfa428fc129c129960c07c67fa441f1545f10e5dcefc09fca81c33)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -9268,11 +8542,9 @@ class ClusterSecretStoreSpecProviderWebhookResult:
         :schema: ClusterSecretStoreSpecProviderWebhookResult
         '''
         if __debug__:
-            def stub(*, json_path: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__eb7bc09013491f073871fae2ceecbef13b45de0131befa24ed148a2477ce78d4)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
             self._values["json_path"] = json_path
 
@@ -9307,7 +8579,7 @@ class ClusterSecretStoreSpecProviderWebhookSecrets:
         self,
         *,
         name: builtins.str,
-        secret_ref: typing.Union["ClusterSecretStoreSpecProviderWebhookSecretsSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderWebhookSecretsSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param name: Name of this secret in templates.
@@ -9318,16 +8590,10 @@ class ClusterSecretStoreSpecProviderWebhookSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreSpecProviderWebhookSecretsSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                secret_ref: typing.Union[ClusterSecretStoreSpecProviderWebhookSecretsSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9d5b27c62208713fb27769c2499653451dbf2faa38b53342a2fb2e0a38cb9b74)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "secret_ref": secret_ref,
         }
@@ -9386,18 +8652,11 @@ class ClusterSecretStoreSpecProviderWebhookSecretsSecretRef:
         :schema: ClusterSecretStoreSpecProviderWebhookSecretsSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2cb2e940c5c2aaaf9bab8c136ca4833e3d43a06ef0d1472d9c82372927475b73)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -9461,9 +8720,9 @@ class ClusterSecretStoreSpecProviderYandexlockbox:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreSpecProviderYandexlockboxAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreSpecProviderYandexlockboxAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
 
@@ -9478,18 +8737,11 @@ class ClusterSecretStoreSpecProviderYandexlockbox:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreSpecProviderYandexlockboxCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreSpecProviderYandexlockboxAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2c07a0a205f8c8fe18207380dcf1b0dfd37eee884a6e932cd28cc4f665d658d7)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -9548,7 +8800,7 @@ class ClusterSecretStoreSpecProviderYandexlockboxAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Lockbox.
 
@@ -9559,14 +8811,9 @@ class ClusterSecretStoreSpecProviderYandexlockboxAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f7af5ccd38a738e138a4da5ed3536313b5fe188c2b865f812b232b7860654d44)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -9615,18 +8862,11 @@ class ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
         :schema: ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__84df0d5ae303fe803ec5407c1564c124f89ce2f877cf951164b5346e358facc7)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -9686,7 +8926,7 @@ class ClusterSecretStoreSpecProviderYandexlockboxCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -9697,14 +8937,9 @@ class ClusterSecretStoreSpecProviderYandexlockboxCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__76304aa64a9b969f7e70594f92303a19605c96d6cc52a1e762c1f60949328f79)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -9753,18 +8988,11 @@ class ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
         :schema: ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bdd207953372b8d88637204be9363b54f139d39e52bca9557f9caf7bd4d55bc8)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -9835,16 +9063,10 @@ class ClusterSecretStoreSpecRetrySettings:
         :schema: ClusterSecretStoreSpecRetrySettings
         '''
         if __debug__:
-            def stub(
-                *,
-                max_retries: typing.Optional[jsii.Number] = None,
-                retry_interval: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e47d412c07158576d9f7496f0a0011a69595d8febfe76d46ed415887b59df8a3)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if max_retries is not None:
             self._values["max_retries"] = max_retries
         if retry_interval is not None:
@@ -9879,7 +9101,7 @@ class ClusterSecretStoreSpecRetrySettings:
 
 
 class ClusterSecretStoreV1Beta1(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1",
 ):
@@ -9890,11 +9112,11 @@ class ClusterSecretStoreV1Beta1(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "ClusterSecretStoreV1Beta1" API object.
 
@@ -9904,15 +9126,7 @@ class ClusterSecretStoreV1Beta1(
         :param spec: SecretStoreSpec defines the desired state of SecretStore.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8dc69ba83ec04594930db7e5543a7852c705a1ef67b59aa2efb6d2f5fad31ca0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ClusterSecretStoreV1Beta1Props(metadata=metadata, spec=spec)
@@ -9924,8 +9138,8 @@ class ClusterSecretStoreV1Beta1(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "ClusterSecretStoreV1Beta1".
 
@@ -9945,9 +9159,9 @@ class ClusterSecretStoreV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "ClusterSecretStoreV1Beta1".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -9959,8 +9173,8 @@ class ClusterSecretStoreV1Beta1Props:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ClusterSecretStore represents a secure external location for storing secrets, which can be referenced as part of ``storeRef`` fields.
 
@@ -9970,32 +9184,26 @@ class ClusterSecretStoreV1Beta1Props:
         :schema: ClusterSecretStoreV1Beta1
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = ClusterSecretStoreV1Beta1Spec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__37dcaec4116fd103182a4f47c276c1a112b670414846040cdef450a01c9e5a73)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: ClusterSecretStoreV1Beta1#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["ClusterSecretStoreV1Beta1Spec"]:
@@ -10033,11 +9241,11 @@ class ClusterSecretStoreV1Beta1Spec:
     def __init__(
         self,
         *,
-        provider: typing.Union["ClusterSecretStoreV1Beta1SpecProvider", typing.Dict[str, typing.Any]],
-        conditions: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecConditions", typing.Dict[str, typing.Any]]]] = None,
+        provider: typing.Union["ClusterSecretStoreV1Beta1SpecProvider", typing.Dict[builtins.str, typing.Any]],
+        conditions: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecConditions", typing.Dict[builtins.str, typing.Any]]]] = None,
         controller: typing.Optional[builtins.str] = None,
         refresh_interval: typing.Optional[jsii.Number] = None,
-        retry_settings: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecRetrySettings", typing.Dict[str, typing.Any]]] = None,
+        retry_settings: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStoreSpec defines the desired state of SecretStore.
 
@@ -10054,22 +9262,13 @@ class ClusterSecretStoreV1Beta1Spec:
         if isinstance(retry_settings, dict):
             retry_settings = ClusterSecretStoreV1Beta1SpecRetrySettings(**retry_settings)
         if __debug__:
-            def stub(
-                *,
-                provider: typing.Union[ClusterSecretStoreV1Beta1SpecProvider, typing.Dict[str, typing.Any]],
-                conditions: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecConditions, typing.Dict[str, typing.Any]]]] = None,
-                controller: typing.Optional[builtins.str] = None,
-                refresh_interval: typing.Optional[jsii.Number] = None,
-                retry_settings: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecRetrySettings, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__96137c80a93e24eeba29fafca095a8203971811207350934aeba8d7893de9dc3)
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument conditions", value=conditions, expected_type=type_hints["conditions"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
             check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "provider": provider,
         }
         if conditions is not None:
@@ -10162,7 +9361,7 @@ class ClusterSecretStoreV1Beta1SpecConditions:
         self,
         *,
         namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
-        namespace_selector: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector", typing.Dict[str, typing.Any]]] = None,
+        namespace_selector: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ClusterSecretStoreCondition describes a condition by which to choose namespaces to process ExternalSecrets in for a ClusterSecretStore instance.
 
@@ -10174,16 +9373,10 @@ class ClusterSecretStoreV1Beta1SpecConditions:
         if isinstance(namespace_selector, dict):
             namespace_selector = ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector(**namespace_selector)
         if __debug__:
-            def stub(
-                *,
-                namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace_selector: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7a0202bb2fa72e90fc4694fed122e588c991e624b62e6209c28dc3a91ec50c85)
             check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if namespaces is not None:
             self._values["namespaces"] = namespaces
         if namespace_selector is not None:
@@ -10233,7 +9426,7 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector:
     def __init__(
         self,
         *,
-        match_expressions: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions", typing.Dict[str, typing.Any]]]] = None,
+        match_expressions: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions", typing.Dict[builtins.str, typing.Any]]]] = None,
         match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     ) -> None:
         '''Choose namespace using a labelSelector.
@@ -10244,16 +9437,10 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector:
         :schema: ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector
         '''
         if __debug__:
-            def stub(
-                *,
-                match_expressions: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions, typing.Dict[str, typing.Any]]]] = None,
-                match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__60d6e4eff1efa2b67d55a0694a4bc3737bb79c33a7e3ef1e953aded7c9e48b6a)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
             check_type(argname="argument match_labels", value=match_labels, expected_type=type_hints["match_labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_expressions is not None:
             self._values["match_expressions"] = match_expressions
         if match_labels is not None:
@@ -10319,18 +9506,11 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
         :schema: ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                operator: builtins.str,
-                values: typing.Optional[typing.Sequence[builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2f6837a7309a755123acc2e7f78d1774390ea2fa5b1b52a1281d7fe46f9b6fa9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
             "operator": operator,
         }
@@ -10409,23 +9589,23 @@ class ClusterSecretStoreV1Beta1SpecProvider:
     def __init__(
         self,
         *,
-        akeyless: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeyless", typing.Dict[str, typing.Any]]] = None,
-        alibaba: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[str, typing.Any]]] = None,
-        aws: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAws", typing.Dict[str, typing.Any]]] = None,
-        azurekv: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[str, typing.Any]]] = None,
-        doppler: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderDoppler", typing.Dict[str, typing.Any]]] = None,
-        fake: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFake", typing.Dict[str, typing.Any]]] = None,
-        gcpsm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[str, typing.Any]]] = None,
-        gitlab: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlab", typing.Dict[str, typing.Any]]] = None,
-        ibm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbm", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[str, typing.Any]]] = None,
-        onepassword: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[str, typing.Any]]] = None,
-        oracle: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracle", typing.Dict[str, typing.Any]]] = None,
-        senhasegura: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[str, typing.Any]]] = None,
-        vault: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVault", typing.Dict[str, typing.Any]]] = None,
-        webhook: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhook", typing.Dict[str, typing.Any]]] = None,
-        yandexcertificatemanager: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager", typing.Dict[str, typing.Any]]] = None,
-        yandexlockbox: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockbox", typing.Dict[str, typing.Any]]] = None,
+        akeyless: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeyless", typing.Dict[builtins.str, typing.Any]]] = None,
+        alibaba: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
+        aws: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
+        azurekv: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        doppler: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderDoppler", typing.Dict[builtins.str, typing.Any]]] = None,
+        fake: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcpsm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
+        gitlab: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
+        ibm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        onepassword: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        oracle: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        senhasegura: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
+        webhook: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexcertificatemanager: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexlockbox: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Used to configure the provider.
 
@@ -10486,28 +9666,7 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         if isinstance(yandexlockbox, dict):
             yandexlockbox = ClusterSecretStoreV1Beta1SpecProviderYandexlockbox(**yandexlockbox)
         if __debug__:
-            def stub(
-                *,
-                akeyless: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeyless, typing.Dict[str, typing.Any]]] = None,
-                alibaba: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[str, typing.Any]]] = None,
-                aws: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAws, typing.Dict[str, typing.Any]]] = None,
-                azurekv: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[str, typing.Any]]] = None,
-                doppler: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderDoppler, typing.Dict[str, typing.Any]]] = None,
-                fake: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFake, typing.Dict[str, typing.Any]]] = None,
-                gcpsm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[str, typing.Any]]] = None,
-                gitlab: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlab, typing.Dict[str, typing.Any]]] = None,
-                ibm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbm, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[str, typing.Any]]] = None,
-                onepassword: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[str, typing.Any]]] = None,
-                oracle: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracle, typing.Dict[str, typing.Any]]] = None,
-                senhasegura: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[str, typing.Any]]] = None,
-                vault: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVault, typing.Dict[str, typing.Any]]] = None,
-                webhook: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhook, typing.Dict[str, typing.Any]]] = None,
-                yandexcertificatemanager: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager, typing.Dict[str, typing.Any]]] = None,
-                yandexlockbox: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockbox, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__68ba9e9c4c46e5f6c6fca915ad8c80109c0ed4a1cdb61ca84e474072d126bde6)
             check_type(argname="argument akeyless", value=akeyless, expected_type=type_hints["akeyless"])
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
@@ -10525,7 +9684,7 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexcertificatemanager", value=yandexcertificatemanager, expected_type=type_hints["yandexcertificatemanager"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if akeyless is not None:
             self._values["akeyless"] = akeyless
         if alibaba is not None:
@@ -10759,7 +9918,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeyless:
         self,
         *,
         akeyless_gw_api_url: builtins.str,
-        auth_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef", typing.Dict[str, typing.Any]],
+        auth_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Akeyless configures this store to sync secrets using Akeyless Vault provider.
 
@@ -10771,16 +9930,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeyless:
         if isinstance(auth_secret_ref, dict):
             auth_secret_ref = ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef(**auth_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                akeyless_gw_api_url: builtins.str,
-                auth_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__df929457145ba1be8a095a8bc3301089b349253206306ae5f336cd315970c692)
             check_type(argname="argument akeyless_gw_api_url", value=akeyless_gw_api_url, expected_type=type_hints["akeyless_gw_api_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "akeyless_gw_api_url": akeyless_gw_api_url,
             "auth_secret_ref": auth_secret_ref,
         }
@@ -10828,8 +9981,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef:
     def __init__(
         self,
         *,
-        kubernetes_auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Akeyless.
 
@@ -10843,16 +9996,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                kubernetes_auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__abebeff323eca27bea60a3ac92c48bbbc7420eab45f346bf2c362df8bbb1c671)
             check_type(argname="argument kubernetes_auth", value=kubernetes_auth, expected_type=type_hints["kubernetes_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if kubernetes_auth is not None:
             self._values["kubernetes_auth"] = kubernetes_auth
         if secret_ref is not None:
@@ -10908,8 +10055,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
         *,
         access_id: builtins.str,
         k8_s_conf_name: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.
 
@@ -10925,20 +10072,12 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                access_id: builtins.str,
-                k8_s_conf_name: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__192a0fd934e6a1d07615d2afd0795c3df7c4aa34d47ff452bedf3fc29fa86266)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument k8_s_conf_name", value=k8_s_conf_name, expected_type=type_hints["k8_s_conf_name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_id": access_id,
             "k8_s_conf_name": k8_s_conf_name,
         }
@@ -11029,18 +10168,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8c14314d094e94d395d2ccff2cf0206fe712c51cc34cb705d9bc8551ecd029b3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11115,18 +10247,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4f478b9b41d5e678b636bd675c0ec2c7f55c4865d490d5fcc185441264c97d93)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -11189,9 +10314,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef:
     def __init__(
         self,
         *,
-        access_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[str, typing.Any]]] = None,
-        access_type: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[str, typing.Any]]] = None,
-        access_type_param: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[str, typing.Any]]] = None,
+        access_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type_param: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Reference to a Secret that contains the details to authenticate with Akeyless.
 
@@ -11208,18 +10333,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef:
         if isinstance(access_type_param, dict):
             access_type_param = ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam(**access_type_param)
         if __debug__:
-            def stub(
-                *,
-                access_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[str, typing.Any]]] = None,
-                access_type: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[str, typing.Any]]] = None,
-                access_type_param: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__60e63983e9ec9d9bfcca0afd0a14c5370b8a8c7b94a6b979643b8044b38aa115)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument access_type", value=access_type, expected_type=type_hints["access_type"])
             check_type(argname="argument access_type_param", value=access_type_param, expected_type=type_hints["access_type_param"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_id is not None:
             self._values["access_id"] = access_id
         if access_type is not None:
@@ -11294,18 +10412,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessI
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__590589c4f0ffc4f7a23fc7be01fd06b9606c7490a060d9b41f3fce96cd350a4b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11378,18 +10489,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6833336a565db04ecd89b0aa463de48ce00c5f1b845b44dd43ce9dab14465672)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11462,18 +10566,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d06232497d385b58bfbdd183ed5f662b436ad66cd940f49635d36c2df433b70d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11533,7 +10630,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibaba:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth", typing.Dict[builtins.str, typing.Any]],
         region_id: builtins.str,
         endpoint: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -11548,18 +10645,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibaba:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth, typing.Dict[str, typing.Any]],
-                region_id: builtins.str,
-                endpoint: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3eb80c03d9d589e644cb87d2292cd9b0100e384bc2944213b7aa5376062baa73)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument region_id", value=region_id, expected_type=type_hints["region_id"])
             check_type(argname="argument endpoint", value=endpoint, expected_type=type_hints["endpoint"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "region_id": region_id,
         }
@@ -11615,7 +10705,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuth contains a secretRef for credentials.
 
@@ -11626,14 +10716,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f66b02e4c9c411cbc556b143e0d872bfef186a37724247912aa8fcc440a97ef5)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -11671,8 +10756,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]],
-        access_key_secret_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[str, typing.Any]],
+        access_key_id_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        access_key_secret_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuthSecretRef holds secret references for Alibaba credentials.
 
@@ -11686,16 +10771,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef:
         if isinstance(access_key_secret_secret_ref, dict):
             access_key_secret_secret_ref = ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef(**access_key_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]],
-                access_key_secret_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9952ed78896c2d9e3124276209d8d30534064f05539cbe262b52dc19a0d35935)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument access_key_secret_secret_ref", value=access_key_secret_secret_ref, expected_type=type_hints["access_key_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_key_id_secret_ref": access_key_id_secret_ref,
             "access_key_secret_secret_ref": access_key_secret_secret_ref,
         }
@@ -11758,18 +10837,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecret
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a0a97c63b2968bfb08081c4620d8d386f9d89e66db4ee38df5e4cc06736a7481)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11842,18 +10914,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSe
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0b830df319081a50f248ad0423e39dc55ca4f62f813b541532fe44af6c0cb6c5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -11920,7 +10985,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
         *,
         region: builtins.str,
         service: "ClusterSecretStoreV1Beta1SpecProviderAwsService",
-        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AWS configures this store to sync secrets using AWS Secret Manager provider.
@@ -11935,20 +11000,12 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderAwsAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                service: ClusterSecretStoreV1Beta1SpecProviderAwsService,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6627988073d9ff383a854cf295ddb2aa2cfe69af584935d6041de0fd6369c2f2)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "service": service,
         }
@@ -12016,8 +11073,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuth:
     def __init__(
         self,
         *,
-        jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
 
@@ -12031,16 +11088,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9edc5295784c46ee0e2ea751f45dd384e14e357e55ab66dbd253a053803e6150)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if jwt is not None:
             self._values["jwt"] = jwt
         if secret_ref is not None:
@@ -12087,7 +11138,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Authenticate against AWS using service account tokens.
 
@@ -12098,14 +11149,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9184e71a5ae0b63160a31c441f3e767c7e9fe4ccdeb7eb6d0313b1e446630e7c)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -12154,18 +11200,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__870111368203389e739228502d0d717a15cc9b15fa8225662b2e8b801afa6d57)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -12227,8 +11266,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]]] = None,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        access_key_id_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.
 
@@ -12242,16 +11281,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]]] = None,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e52b02bc80a06882a9b54890d7cfecec33b6ea34945389922ff0d8635877f5c5)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_key_id_secret_ref is not None:
             self._values["access_key_id_secret_ref"] = access_key_id_secret_ref
         if secret_access_key_secret_ref is not None:
@@ -12313,18 +11346,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3ce640ed09fb68e1ec7ffae5b6f1bdeeb3b0254c8fe3a3a1ca738807848e9bef)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -12397,18 +11423,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecret
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__594f5480cf09e605b57bbf933433bc689ecce1570797dbdf19a46e8f5ddf16c1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -12492,11 +11511,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
         self,
         *,
         vault_url: builtins.str,
-        auth_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        auth_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         auth_type: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType"] = None,
         environment_type: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType"] = None,
         identity_id: typing.Optional[builtins.str] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
         tenant_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
@@ -12516,18 +11535,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                vault_url: builtins.str,
-                auth_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                auth_type: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType] = None,
-                environment_type: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType] = None,
-                identity_id: typing.Optional[builtins.str] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-                tenant_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__abf7c19186023102b0e55132e0eeb8f816d43879e662f9fc61393882d66c7d54)
             check_type(argname="argument vault_url", value=vault_url, expected_type=type_hints["vault_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
             check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
@@ -12535,7 +11543,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "vault_url": vault_url,
         }
         if auth_secret_ref is not None:
@@ -12652,8 +11660,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
-        client_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[str, typing.Any]]] = None,
-        client_secret: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[str, typing.Any]]] = None,
+        client_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_secret: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
@@ -12669,16 +11677,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
         if isinstance(client_secret, dict):
             client_secret = ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
         if __debug__:
-            def stub(
-                *,
-                client_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[str, typing.Any]]] = None,
-                client_secret: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5b5c6576dd0bcff847eb542793197cccaed967a7895b6800a3297ababb2258a6)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
@@ -12740,18 +11742,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c666df2b9f723e3fa73884c25af477951655f8afbb53d585a2431dff1d9219de)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -12824,18 +11819,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__00f7e356b48005cce89b72ead3be30d457b3e32c2e5bcf50f43bdf1678d0c242)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -12948,18 +11936,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__99524d6c465621fc67233b99280c814ee97e0c6e2aaad7b7fb19183628a5f5f4)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -13024,7 +12005,7 @@ class ClusterSecretStoreV1Beta1SpecProviderDoppler:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuth", typing.Dict[builtins.str, typing.Any]],
         config: typing.Optional[builtins.str] = None,
         format: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderDopplerFormat"] = None,
         name_transformer: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer"] = None,
@@ -13043,22 +12024,13 @@ class ClusterSecretStoreV1Beta1SpecProviderDoppler:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderDopplerAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuth, typing.Dict[str, typing.Any]],
-                config: typing.Optional[builtins.str] = None,
-                format: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderDopplerFormat] = None,
-                name_transformer: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer] = None,
-                project: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d8dabb978cd9c207e6c33f6b87227d8fceb1a850813a315b0fb3daf464977a0e)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument format", value=format, expected_type=type_hints["format"])
             check_type(argname="argument name_transformer", value=name_transformer, expected_type=type_hints["name_transformer"])
             check_type(argname="argument project", value=project, expected_type=type_hints["project"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if config is not None:
@@ -13141,7 +12113,7 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how the Operator authenticates with the Doppler API.
 
@@ -13152,14 +12124,9 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__562144337f6c00cb855087476ff46a1b6075c3696089e7f7cb03e95e120c00bf)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -13193,7 +12160,7 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
     def __init__(
         self,
         *,
-        doppler_token: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken", typing.Dict[str, typing.Any]],
+        doppler_token: typing.Union["ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param doppler_token: The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
@@ -13203,14 +12170,9 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
         if isinstance(doppler_token, dict):
             doppler_token = ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken(**doppler_token)
         if __debug__:
-            def stub(
-                *,
-                doppler_token: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__00f6e9b3449566bea57b329f0ae730c49bd1c1c616b069d52c0775f572e041b5)
             check_type(argname="argument doppler_token", value=doppler_token, expected_type=type_hints["doppler_token"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "doppler_token": doppler_token,
         }
 
@@ -13264,18 +12226,11 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
         :schema: ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__77ea0d87e66e97c0e9723355f88c6c77c3cbfd9c14f230f8c829e375f9d83cee)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -13377,7 +12332,7 @@ class ClusterSecretStoreV1Beta1SpecProviderFake:
     def __init__(
         self,
         *,
-        data: typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFakeData", typing.Dict[str, typing.Any]]],
+        data: typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFakeData", typing.Dict[builtins.str, typing.Any]]],
     ) -> None:
         '''Fake configures a store with static key/value pairs.
 
@@ -13386,14 +12341,9 @@ class ClusterSecretStoreV1Beta1SpecProviderFake:
         :schema: ClusterSecretStoreV1Beta1SpecProviderFake
         '''
         if __debug__:
-            def stub(
-                *,
-                data: typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFakeData, typing.Dict[str, typing.Any]]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4a19fbd425ec3f1bcd367c838d58b4bccdcdecc7d9b6f0bb62ff3321bf204aa7)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "data": data,
         }
 
@@ -13446,20 +12396,12 @@ class ClusterSecretStoreV1Beta1SpecProviderFakeData:
         :schema: ClusterSecretStoreV1Beta1SpecProviderFakeData
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                value: typing.Optional[builtins.str] = None,
-                value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__aecd81391352349eccc8183460b87996d0fb8c9e4bd5f75c376baf485f1b6934)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument value_map", value=value_map, expected_type=type_hints["value_map"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if value is not None:
@@ -13523,7 +12465,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsm:
     def __init__(
         self,
         *,
-        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
@@ -13536,16 +12478,10 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsm:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth, typing.Dict[str, typing.Any]]] = None,
-                project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__611ca919961e90d0ef7f227bbac8c881013ca7cc44d14799bbb24bc4f0eb3677)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if auth is not None:
             self._values["auth"] = auth
         if project_id is not None:
@@ -13590,8 +12526,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        workload_identity: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against GCP.
 
@@ -13605,16 +12541,10 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth:
         if isinstance(workload_identity, dict):
             workload_identity = ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                workload_identity: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__24c1979ee54e5143d4359a3a275ddd182b9dd1799b60c36713217703ba84b3c8)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if workload_identity is not None:
@@ -13661,7 +12591,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_access_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -13671,14 +12601,9 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8d5ae13c791298e83966ee3151a839a5800890f0e978cc6f5f8bcbf799102c7d)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
             self._values["secret_access_key_secret_ref"] = secret_access_key_secret_ref
 
@@ -13727,18 +12652,11 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecr
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__befcc03dadc53716c9f45d6c64f5ca1f64c5c39f92273dce93970a6ea7cb2afc)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -13805,7 +12723,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity:
         *,
         cluster_location: builtins.str,
         cluster_name: builtins.str,
-        service_account_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         cluster_project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''
@@ -13819,20 +12737,12 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                cluster_location: builtins.str,
-                cluster_name: builtins.str,
-                service_account_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[str, typing.Any]],
-                cluster_project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0ad5be2b93a35f2cf663f2139d82f10ed2303f6fd46bcd8be22dfb7c6d07ce9d)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_project_id", value=cluster_project_id, expected_type=type_hints["cluster_project_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "cluster_location": cluster_location,
             "cluster_name": cluster_name,
             "service_account_ref": service_account_ref,
@@ -13912,18 +12822,11 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccou
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__dbbfaf536015025ead4874e316b663e27b4c506f8792288c86be86d4e197205d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -13987,7 +12890,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlab:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuth", typing.Dict[builtins.str, typing.Any]],
         environment: typing.Optional[builtins.str] = None,
         project_id: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
@@ -14004,20 +12907,12 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlab:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderGitlabAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuth, typing.Dict[str, typing.Any]],
-                environment: typing.Optional[builtins.str] = None,
-                project_id: typing.Optional[builtins.str] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b842bc57f7fd92b2b56e655e52606a5bebb9bcb992f4ddde8e086b665b8aba49)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if environment is not None:
@@ -14089,7 +12984,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with a GitLab instance.
 
@@ -14100,14 +12995,9 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5d5e2849acdcd3f4807f8b1d36de4a61ceec968c342a5f01c5a86f3125aecbb7)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -14141,7 +13031,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef:
     def __init__(
         self,
         *,
-        access_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[str, typing.Any]]] = None,
+        access_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param access_token: AccessToken is used for authentication.
@@ -14151,14 +13041,9 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef:
         if isinstance(access_token, dict):
             access_token = ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken(**access_token)
         if __debug__:
-            def stub(
-                *,
-                access_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__04f95d713ed9c72c3c6ac92864bfa1ad99f6fdfbe237d224b272b47c56f183eb)
             check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_token is not None:
             self._values["access_token"] = access_token
 
@@ -14207,18 +13092,11 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
         :schema: ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e80400499c318d990d15b26a86d2debab77bc685ec0bdf02963692ecfb1024b5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -14278,7 +13156,7 @@ class ClusterSecretStoreV1Beta1SpecProviderIbm:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuth", typing.Dict[builtins.str, typing.Any]],
         service_url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''IBM configures this store to sync secrets using IBM Cloud provider.
@@ -14291,16 +13169,10 @@ class ClusterSecretStoreV1Beta1SpecProviderIbm:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderIbmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuth, typing.Dict[str, typing.Any]],
-                service_url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7f963142b89244cfeecfff807ef899252614263348620700809657bec1f530b9)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_url", value=service_url, expected_type=type_hints["service_url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if service_url is not None:
@@ -14346,8 +13218,8 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuth:
     def __init__(
         self,
         *,
-        container_auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        container_auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the IBM secrets manager.
 
@@ -14361,16 +13233,10 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                container_auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__89b06a143259e47bb87419627c763e0e429b891a2be7d13124c04b8311b2569a)
             check_type(argname="argument container_auth", value=container_auth, expected_type=type_hints["container_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if container_auth is not None:
             self._values["container_auth"] = container_auth
         if secret_ref is not None:
@@ -14435,18 +13301,11 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth:
         :schema: ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth
         '''
         if __debug__:
-            def stub(
-                *,
-                profile: builtins.str,
-                iam_endpoint: typing.Optional[builtins.str] = None,
-                token_location: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ab7f9219b29d2442359e806a87ce2a170537b2e8f66c99292e852859d2d501e2)
             check_type(argname="argument profile", value=profile, expected_type=type_hints["profile"])
             check_type(argname="argument iam_endpoint", value=iam_endpoint, expected_type=type_hints["iam_endpoint"])
             check_type(argname="argument token_location", value=token_location, expected_type=type_hints["token_location"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "profile": profile,
         }
         if iam_endpoint is not None:
@@ -14502,7 +13361,7 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_api_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_api_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_api_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -14512,14 +13371,9 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef:
         if isinstance(secret_api_key_secret_ref, dict):
             secret_api_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef(**secret_api_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_api_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__103f7d95032cc629e6d26292a6477d0ed74e34827b75d026c15ecc133c641e07)
             check_type(argname="argument secret_api_key_secret_ref", value=secret_api_key_secret_ref, expected_type=type_hints["secret_api_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_api_key_secret_ref is not None:
             self._values["secret_api_key_secret_ref"] = secret_api_key_secret_ref
 
@@ -14568,18 +13422,11 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef
         :schema: ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3e5730dcd5a104ceac8cb1e536a747e8d4666a82d2bcfb90eaa96292a77009ea)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -14643,9 +13490,9 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetes:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth", typing.Dict[builtins.str, typing.Any]],
         remote_namespace: typing.Optional[builtins.str] = None,
-        server: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesServer", typing.Dict[str, typing.Any]]] = None,
+        server: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesServer", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
 
@@ -14660,18 +13507,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetes:
         if isinstance(server, dict):
             server = ClusterSecretStoreV1Beta1SpecProviderKubernetesServer(**server)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth, typing.Dict[str, typing.Any]],
-                remote_namespace: typing.Optional[builtins.str] = None,
-                server: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesServer, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__649ae35e91afd368380d7dcf6b83dcb17d871a308c44fa3c417593e5eb164998)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument remote_namespace", value=remote_namespace, expected_type=type_hints["remote_namespace"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if remote_namespace is not None:
@@ -14734,9 +13574,9 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth:
     def __init__(
         self,
         *,
-        cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert", typing.Dict[str, typing.Any]]] = None,
-        service_account: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount", typing.Dict[str, typing.Any]]] = None,
-        token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken", typing.Dict[str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with a Kubernetes instance.
 
@@ -14753,18 +13593,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth:
         if isinstance(token, dict):
             token = ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken(**token)
         if __debug__:
-            def stub(
-                *,
-                cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert, typing.Dict[str, typing.Any]]] = None,
-                service_account: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount, typing.Dict[str, typing.Any]]] = None,
-                token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__aa84d767397938230357c9460f0da92fd27caf2560c4febd4db2b1946dbc1a5a)
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert is not None:
             self._values["cert"] = cert
         if service_account is not None:
@@ -14826,8 +13659,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        client_key: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_key: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''has both clientCert and clientKey as secretKeySelector.
 
@@ -14841,16 +13674,10 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert:
         if isinstance(client_key, dict):
             client_key = ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey(**client_key)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                client_key: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__575fe398163e0264fc9cc318f5b63077e40822b1e8607c6f85b40057e5a91186)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument client_key", value=client_key, expected_type=type_hints["client_key"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if client_key is not None:
@@ -14912,18 +13739,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__221783d76f7a636012233fe6be08a91a99912dd5418e80c4f5e22a44a9b16cf3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -14996,18 +13816,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6dfe1da476f2ed826b423e04e21f7ee460e7f9163e2c8242f2cb83e8ff997e81)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -15080,18 +13893,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0efc0826b2f3217518a7e2c85f96d8b9872418b61e028eac0ae806c4e580bb3d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -15150,7 +13956,7 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken:
     def __init__(
         self,
         *,
-        bearer_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken", typing.Dict[str, typing.Any]]] = None,
+        bearer_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''use static token to authenticate with.
 
@@ -15161,14 +13967,9 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken:
         if isinstance(bearer_token, dict):
             bearer_token = ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken(**bearer_token)
         if __debug__:
-            def stub(
-                *,
-                bearer_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__db5aaa410704bbf457b4dcbf24af03e4aaab852ef8f192060599932d0d94ed2f)
             check_type(argname="argument bearer_token", value=bearer_token, expected_type=type_hints["bearer_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if bearer_token is not None:
             self._values["bearer_token"] = bearer_token
 
@@ -15217,18 +14018,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f8a74ed4d0d51a9d802908b11ac516af3b90bbe5e93a70c4f766f84a2b3d33a8)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -15289,7 +14083,7 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesServer:
         self,
         *,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''configures the Kubernetes server Address.
@@ -15303,18 +14097,11 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesServer:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider, typing.Dict[str, typing.Any]]] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__334ade9bed56e5f41ca8625f7989056de67a4ab314b2d286d7c305cef1d84b45)
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -15392,20 +14179,12 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider:
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b4e3f7f956c039a12dbeed25ac8b12f48c513e3306b05774406b2ce6fe2661f7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -15492,7 +14271,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepassword:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth", typing.Dict[builtins.str, typing.Any]],
         connect_host: builtins.str,
         vaults: typing.Mapping[builtins.str, jsii.Number],
     ) -> None:
@@ -15507,18 +14286,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepassword:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[str, typing.Any]],
-                connect_host: builtins.str,
-                vaults: typing.Mapping[builtins.str, jsii.Number],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e7023e452cdb4cf6a57594c3ae644dd93fd67ddecc86ef9bcc979edb5f9aebe4)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument connect_host", value=connect_host, expected_type=type_hints["connect_host"])
             check_type(argname="argument vaults", value=vaults, expected_type=type_hints["vaults"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "connect_host": connect_host,
             "vaults": vaults,
@@ -15575,7 +14347,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth defines the information necessary to authenticate against OnePassword Connect Server.
 
@@ -15586,14 +14358,9 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__774fac14fd73ee729045af64d77ecd440ce05c35c3e5a53f860c8d58b15dc3e1)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -15630,7 +14397,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef:
     def __init__(
         self,
         *,
-        connect_token_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef", typing.Dict[str, typing.Any]],
+        connect_token_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''OnePasswordAuthSecretRef holds secret references for 1Password credentials.
 
@@ -15641,14 +14408,9 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef:
         if isinstance(connect_token_secret_ref, dict):
             connect_token_secret_ref = ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef(**connect_token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                connect_token_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d3aba248a06dd8137580c089c2215674acf58e010721b05475ec86c4c4a00214)
             check_type(argname="argument connect_token_secret_ref", value=connect_token_secret_ref, expected_type=type_hints["connect_token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "connect_token_secret_ref": connect_token_secret_ref,
         }
 
@@ -15698,18 +14460,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenS
         :schema: ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e77c7583da6824bee3f7242200e93b841cf55888927c6900b619907c5e020884)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -15771,7 +14526,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOracle:
         *,
         region: builtins.str,
         vault: builtins.str,
-        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
@@ -15784,18 +14539,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOracle:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderOracleAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                vault: builtins.str,
-                auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8799a207c6f9af8f59bb32f362d3937320020eec54a1cc499d831392110f8a7a)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
@@ -15856,7 +14604,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
         tenancy: builtins.str,
         user: builtins.str,
     ) -> None:
@@ -15873,18 +14621,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef, typing.Dict[str, typing.Any]],
-                tenancy: builtins.str,
-                user: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1059d0e050af9730791fb51609c13da6c9e6644134ff8920a849b11fc9530224)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument tenancy", value=tenancy, expected_type=type_hints["tenancy"])
             check_type(argname="argument user", value=user, expected_type=type_hints["user"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
             "tenancy": tenancy,
             "user": user,
@@ -15941,8 +14682,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef:
     def __init__(
         self,
         *,
-        fingerprint: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint", typing.Dict[str, typing.Any]],
-        privatekey: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[str, typing.Any]],
+        fingerprint: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint", typing.Dict[builtins.str, typing.Any]],
+        privatekey: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''SecretRef to pass through sensitive information.
 
@@ -15956,16 +14697,10 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef:
         if isinstance(privatekey, dict):
             privatekey = ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey(**privatekey)
         if __debug__:
-            def stub(
-                *,
-                fingerprint: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint, typing.Dict[str, typing.Any]],
-                privatekey: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6066dd054248d30379dd581e24cbdc9afe6660138d4ad8fa3fc38af7347a3990)
             check_type(argname="argument fingerprint", value=fingerprint, expected_type=type_hints["fingerprint"])
             check_type(argname="argument privatekey", value=privatekey, expected_type=type_hints["privatekey"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "fingerprint": fingerprint,
             "privatekey": privatekey,
         }
@@ -16028,18 +14763,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__287e9ae6268a6e788ae12f7ac12e8fbb9c885f4ff3d45a0caf28cd5b8d169176)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -16112,18 +14840,11 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5ef933a14bdabe16081013d01aaf091a9b526ae2581143345eefebbda8c252e6)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -16188,7 +14909,7 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhasegura:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth", typing.Dict[builtins.str, typing.Any]],
         module: builtins.str,
         url: builtins.str,
         ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
@@ -16205,20 +14926,12 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhasegura:
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth, typing.Dict[str, typing.Any]],
-                module: builtins.str,
-                url: builtins.str,
-                ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__784088abfe52d375c8846da70040ac2e8a3a7fa8b88275b3433f77ed7167b0bb)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument module", value=module, expected_type=type_hints["module"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument ignore_ssl_certificate", value=ignore_ssl_certificate, expected_type=type_hints["ignore_ssl_certificate"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "module": module,
             "url": url,
@@ -16290,7 +15003,7 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth:
         self,
         *,
         client_id: builtins.str,
-        client_secret_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef", typing.Dict[str, typing.Any]],
+        client_secret_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth defines parameters to authenticate in senhasegura.
 
@@ -16302,16 +15015,10 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth:
         if isinstance(client_secret_secret_ref, dict):
             client_secret_secret_ref = ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef(**client_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_id: builtins.str,
-                client_secret_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0968cf6c587cfe7e19f4d78b9bfccbab47ad4922f6924b0e57fee2840889975f)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret_secret_ref", value=client_secret_secret_ref, expected_type=type_hints["client_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "client_id": client_id,
             "client_secret_secret_ref": client_secret_secret_ref,
         }
@@ -16371,18 +15078,11 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e46f714e97c2c006c0dbdfdddca33d85e4f65fd4e9785f239d767d95af2ea339)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -16452,10 +15152,10 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
@@ -16481,20 +15181,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuth, typing.Dict[str, typing.Any]],
-                server: builtins.str,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider, typing.Dict[str, typing.Any]]] = None,
-                forward_inconsistent: typing.Optional[builtins.bool] = None,
-                namespace: typing.Optional[builtins.str] = None,
-                path: typing.Optional[builtins.str] = None,
-                read_your_writes: typing.Optional[builtins.bool] = None,
-                version: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderVaultVersion] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d1ed82d254940b706af74554873fa54b86cd8804d7fee8da566eedeb386d5b29)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -16504,7 +15191,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "server": server,
         }
@@ -16648,12 +15335,12 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
     def __init__(
         self,
         *,
-        app_role: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole", typing.Dict[str, typing.Any]]] = None,
-        cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert", typing.Dict[str, typing.Any]]] = None,
-        jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[str, typing.Any]]] = None,
-        ldap: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[str, typing.Any]]] = None,
-        token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[str, typing.Any]]] = None,
+        app_role: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        ldap: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -16679,24 +15366,14 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         if isinstance(token_secret_ref, dict):
             token_secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                app_role: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole, typing.Dict[str, typing.Any]]] = None,
-                cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert, typing.Dict[str, typing.Any]]] = None,
-                jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[str, typing.Any]]] = None,
-                ldap: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[str, typing.Any]]] = None,
-                token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__fa1611c7ca8d9fedadb92afb290e6c41419ad09bd43146b4bdf9c1d75b8a578a)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
         if cert is not None:
@@ -16799,7 +15476,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole:
         *,
         path: builtins.str,
         role_id: builtins.str,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.
 
@@ -16812,18 +15489,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                role_id: builtins.str,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__37344579b6c7a990af00af0b70741d46bed82ecd50a1667f46a0a209f98d358e)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "role_id": role_id,
             "secret_ref": secret_ref,
@@ -16899,18 +15569,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1a567a5819c4a04fddc6a249b2d5873b97787e972002e493d8366c84cf35e833)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -16970,8 +15633,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
@@ -16985,16 +15648,10 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f25011ba998dabb5c8c1b1408c88fa08a117eed82a2c013e79cfb8818779b7df)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if secret_ref is not None:
@@ -17056,18 +15713,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c2ad4618f79f3d33c7e840b1487a7f1d766d69e4eb44fdf9127c82a83ab3cd28)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -17140,18 +15790,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2be91ee51069c6922509e3c0ea70cb74f2e82e7f7a28829a95990ebbe870adf0)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -17217,9 +15860,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt:
         self,
         *,
         path: builtins.str,
-        kubernetes_service_account_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_service_account_token: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
 
@@ -17235,20 +15878,12 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                kubernetes_service_account_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0516f9862f945b4b6129c24cc3a1ecb2da2a492e6c162dc238992faf6ad42566)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
         }
         if kubernetes_service_account_token is not None:
@@ -17324,7 +15959,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
     def __init__(
         self,
         *,
-        service_account_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
         expiration_seconds: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -17339,18 +15974,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[str, typing.Any]],
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                expiration_seconds: typing.Optional[jsii.Number] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d9635b4909e716c335632ee7fbb0defc729d2aa215fa0e2ecf9b58c670ed974b)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "service_account_ref": service_account_ref,
         }
         if audiences is not None:
@@ -17430,18 +16058,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__503a402a2f8a60f71248b4d66efb68127bb876fab9dc95581f2ab8c3dc6766f7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -17513,18 +16134,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__27456e5e3297f3a6c07e214fd809cfe592c755afe64370c36586faf0b4ff536a)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -17591,8 +16205,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
         *,
         mount_path: builtins.str,
         role: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
 
@@ -17608,20 +16222,12 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                mount_path: builtins.str,
-                role: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e3234a480af19889bfdd0bcf31963e9ffcca79ad4549d1c673c3d21aa0be1f89)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "mount_path": mount_path,
             "role": role,
         }
@@ -17714,18 +16320,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a7c01ad25d6903e2b94170c5306163dc83c37d167d03d2e947b8dfbce92360c9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -17800,18 +16399,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__68e19fd3a505ed8443bd824708b4f25994c9d40acb32b52b89a503ed39bc5c8e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -17872,7 +16464,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap:
         *,
         path: builtins.str,
         username: builtins.str,
-        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
@@ -17885,18 +16477,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                username: builtins.str,
-                secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e8f4902f761c246ffc6f920fc8bd963e2f8140fd3d65b4da75c7025dcec6765c)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "username": username,
         }
@@ -17968,18 +16553,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a061597668e45a3b5881fb989859fa9ba9fa59812f88447e7d1fb50d91d4578c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -18052,18 +16630,11 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f030b58112bf019c388c92034c3321dfa7a6cf28ed27ede3f4de94d581d5035b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -18143,20 +16714,12 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider:
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__614ead02a45818d7b842fdb84071c31ffdc2fa1b565a7ebdc48c6a9773ceeb9e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -18268,14 +16831,14 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhook:
     def __init__(
         self,
         *,
-        result: typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookResult", typing.Dict[str, typing.Any]],
+        result: typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         method: typing.Optional[builtins.str] = None,
-        secrets: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets", typing.Dict[str, typing.Any]]]] = None,
+        secrets: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets", typing.Dict[builtins.str, typing.Any]]]] = None,
         timeout: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Webhook configures this store to sync secrets using a generic templated webhook.
@@ -18297,20 +16860,7 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhook:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                result: typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookResult, typing.Dict[str, typing.Any]],
-                url: builtins.str,
-                body: typing.Optional[builtins.str] = None,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider, typing.Dict[str, typing.Any]]] = None,
-                headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                method: typing.Optional[builtins.str] = None,
-                secrets: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets, typing.Dict[str, typing.Any]]]] = None,
-                timeout: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__541a85086d1f97223810cca4d54c92f289ed5a73007e8e7009b98285d97578ca)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
@@ -18320,7 +16870,7 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhook:
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument secrets", value=secrets, expected_type=type_hints["secrets"])
             check_type(argname="argument timeout", value=timeout, expected_type=type_hints["timeout"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "result": result,
             "url": url,
         }
@@ -18469,20 +17019,12 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider:
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: ClusterSecretStoreV1Beta1SpecProviderWebhookCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__68283da0c213c61ac76c8b9dc18fd6a446a8666903a6779c4e450ffbb7638d41)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -18570,11 +17112,9 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookResult:
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhookResult
         '''
         if __debug__:
-            def stub(*, json_path: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ffe032a875d453ef67efba038253b55e781313fcf9727a2e190e0f07bc7a7781)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
             self._values["json_path"] = json_path
 
@@ -18609,7 +17149,7 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets:
         self,
         *,
         name: builtins.str,
-        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param name: Name of this secret in templates.
@@ -18620,16 +17160,10 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a4adfaf99cc3249a4b88e7b23a2ff492e444c10ff063c6260a50441d20189774)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "secret_ref": secret_ref,
         }
@@ -18690,18 +17224,11 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b04a124282f6cc28a9350a757f666203390ebbfddda7e54a523fdeba3026ceaa)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -18765,9 +17292,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexCertificateManager configures this store to sync secrets using Yandex Certificate Manager provider.
 
@@ -18782,18 +17309,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3ff9cd98361d4846493719df1ded33affcd4d8eace2485af38ef75d671c1dfbb)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -18854,7 +17374,7 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Certificate Manager.
 
@@ -18865,14 +17385,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__51a1a90bc0ea5f1d7006ba171eeb03cabe219c2e3b1a59e18c03f47111a2886e)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -18921,18 +17436,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorize
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c5002745ef7984d16f7c455def03b6a31678dc133c5daf8bf4c6847270703834)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -18992,7 +17500,7 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -19003,14 +17511,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bb4082ecd7921b9fbfec3f37b117a6e5cbf96687643a0da1deb5e9606facb5cb)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -19059,18 +17562,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCer
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__031cafe781180219b4b5259d9846e47719fde28b6e66b15223a100bd6914f19f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -19134,9 +17630,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockbox:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
 
@@ -19151,18 +17647,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockbox:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2d723d21a6c0b24e7b6edf9808d7e46ac0dbf01d99571c220621355462524b02)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -19221,7 +17710,7 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Lockbox.
 
@@ -19232,14 +17721,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__550fc853f971ebf114ea0c29cde1e781f93eb593ff32b6f1d018ad5990e4710f)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -19288,18 +17772,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretR
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c3f7bb16b26a20247381202a6e31627cab93618b40ec15086c087dff5bf26be9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -19359,7 +17836,7 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -19370,14 +17847,9 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__64744aa417489ee5da00031086b34f8bb9d5d1e2842de076efd366b85e968725)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -19426,18 +17898,11 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e64f2aba41167a866d087c9b87db2a78c49a3c78a857f4d63a3332b8dc04c173)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -19508,16 +17973,10 @@ class ClusterSecretStoreV1Beta1SpecRetrySettings:
         :schema: ClusterSecretStoreV1Beta1SpecRetrySettings
         '''
         if __debug__:
-            def stub(
-                *,
-                max_retries: typing.Optional[jsii.Number] = None,
-                retry_interval: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6cfd20d24fce68320069ccd4f9b78ce19df25d0bfb6d04f99d46f3caf0d6c97e)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if max_retries is not None:
             self._values["max_retries"] = max_retries
         if retry_interval is not None:
@@ -19552,7 +18011,7 @@ class ClusterSecretStoreV1Beta1SpecRetrySettings:
 
 
 class ExternalSecret(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.ExternalSecret",
 ):
@@ -19563,11 +18022,11 @@ class ExternalSecret(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "ExternalSecret" API object.
 
@@ -19577,15 +18036,7 @@ class ExternalSecret(
         :param spec: ExternalSecretSpec defines the desired state of ExternalSecret.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ExternalSecretSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8c3b70f22c7723f819f402a6957ab71e8991db57a58ba85047be7a2faaad81e0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ExternalSecretProps(metadata=metadata, spec=spec)
@@ -19597,8 +18048,8 @@ class ExternalSecret(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "ExternalSecret".
 
@@ -19618,9 +18069,9 @@ class ExternalSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "ExternalSecret".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -19632,8 +18083,8 @@ class ExternalSecretProps:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecret is the Schema for the external-secrets API.
 
@@ -19643,32 +18094,26 @@ class ExternalSecretProps:
         :schema: ExternalSecret
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = ExternalSecretSpec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ExternalSecretSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__37e904970e3dbc8f880d53222da8b9d6ad0e642ffbccba70fe72cb9cdfbe3289)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: ExternalSecret#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["ExternalSecretSpec"]:
@@ -19706,10 +18151,10 @@ class ExternalSecretSpec:
     def __init__(
         self,
         *,
-        secret_store_ref: typing.Union["ExternalSecretSpecSecretStoreRef", typing.Dict[str, typing.Any]],
-        target: typing.Union["ExternalSecretSpecTarget", typing.Dict[str, typing.Any]],
-        data: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecData", typing.Dict[str, typing.Any]]]] = None,
-        data_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecDataFrom", typing.Dict[str, typing.Any]]]] = None,
+        secret_store_ref: typing.Union["ExternalSecretSpecSecretStoreRef", typing.Dict[builtins.str, typing.Any]],
+        target: typing.Union["ExternalSecretSpecTarget", typing.Dict[builtins.str, typing.Any]],
+        data: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecData", typing.Dict[builtins.str, typing.Any]]]] = None,
+        data_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecDataFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         refresh_interval: typing.Optional[builtins.str] = None,
     ) -> None:
         '''ExternalSecretSpec defines the desired state of ExternalSecret.
@@ -19727,22 +18172,13 @@ class ExternalSecretSpec:
         if isinstance(target, dict):
             target = ExternalSecretSpecTarget(**target)
         if __debug__:
-            def stub(
-                *,
-                secret_store_ref: typing.Union[ExternalSecretSpecSecretStoreRef, typing.Dict[str, typing.Any]],
-                target: typing.Union[ExternalSecretSpecTarget, typing.Dict[str, typing.Any]],
-                data: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecData, typing.Dict[str, typing.Any]]]] = None,
-                data_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecDataFrom, typing.Dict[str, typing.Any]]]] = None,
-                refresh_interval: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__074b53f8506e2f7772a36a26ed9736680e0342754c5f0ccf2218c6fef874937d)
             check_type(argname="argument secret_store_ref", value=secret_store_ref, expected_type=type_hints["secret_store_ref"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument data_from", value=data_from, expected_type=type_hints["data_from"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_store_ref": secret_store_ref,
             "target": target,
         }
@@ -19825,7 +18261,7 @@ class ExternalSecretSpecData:
     def __init__(
         self,
         *,
-        remote_ref: typing.Union["ExternalSecretSpecDataRemoteRef", typing.Dict[str, typing.Any]],
+        remote_ref: typing.Union["ExternalSecretSpecDataRemoteRef", typing.Dict[builtins.str, typing.Any]],
         secret_key: builtins.str,
     ) -> None:
         '''ExternalSecretData defines the connection between the Kubernetes Secret key (spec.data.) and the Provider data.
@@ -19838,16 +18274,10 @@ class ExternalSecretSpecData:
         if isinstance(remote_ref, dict):
             remote_ref = ExternalSecretSpecDataRemoteRef(**remote_ref)
         if __debug__:
-            def stub(
-                *,
-                remote_ref: typing.Union[ExternalSecretSpecDataRemoteRef, typing.Dict[str, typing.Any]],
-                secret_key: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__475d807ac9fbc706d9ba6234ed898b602897f6af687b51a5cfabc7a77de0d4ce)
             check_type(argname="argument remote_ref", value=remote_ref, expected_type=type_hints["remote_ref"])
             check_type(argname="argument secret_key", value=secret_key, expected_type=type_hints["secret_key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "remote_ref": remote_ref,
             "secret_key": secret_key,
         }
@@ -19912,20 +18342,12 @@ class ExternalSecretSpecDataFrom:
         :schema: ExternalSecretSpecDataFrom
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5652c1cf0894311801be60a13dd81647750db80e32bc8f49fe3e8235021c6c91)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -20013,20 +18435,12 @@ class ExternalSecretSpecDataRemoteRef:
         :schema: ExternalSecretSpecDataRemoteRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8fa135eb71c3b0e514a59fb4221d3694ecf54b320c828591b0435c574fdfb02c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -20105,16 +18519,10 @@ class ExternalSecretSpecSecretStoreRef:
         :schema: ExternalSecretSpecSecretStoreRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                kind: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6387a5fae9528a5204090c40d2c2889305f5e0931cd3c9f56f16b857a47f6aab)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if kind is not None:
@@ -20170,7 +18578,7 @@ class ExternalSecretSpecTarget:
         creation_policy: typing.Optional[builtins.str] = None,
         immutable: typing.Optional[builtins.bool] = None,
         name: typing.Optional[builtins.str] = None,
-        template: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplate", typing.Dict[str, typing.Any]]] = None,
+        template: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.
 
@@ -20184,20 +18592,12 @@ class ExternalSecretSpecTarget:
         if isinstance(template, dict):
             template = ExternalSecretSpecTargetTemplate(**template)
         if __debug__:
-            def stub(
-                *,
-                creation_policy: typing.Optional[builtins.str] = None,
-                immutable: typing.Optional[builtins.bool] = None,
-                name: typing.Optional[builtins.str] = None,
-                template: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplate, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__827bc50a1daa2c072beabe447d39f5aa425b2533370b434284005378aa9a35c4)
             check_type(argname="argument creation_policy", value=creation_policy, expected_type=type_hints["creation_policy"])
             check_type(argname="argument immutable", value=immutable, expected_type=type_hints["immutable"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if creation_policy is not None:
             self._values["creation_policy"] = creation_policy
         if immutable is not None:
@@ -20276,8 +18676,8 @@ class ExternalSecretSpecTargetTemplate:
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         engine_version: typing.Optional[builtins.str] = None,
-        metadata: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateMetadata", typing.Dict[str, typing.Any]]] = None,
-        template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Template defines a blueprint for the created Secret resource.
@@ -20293,22 +18693,13 @@ class ExternalSecretSpecTargetTemplate:
         if isinstance(metadata, dict):
             metadata = ExternalSecretSpecTargetTemplateMetadata(**metadata)
         if __debug__:
-            def stub(
-                *,
-                data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                engine_version: typing.Optional[builtins.str] = None,
-                metadata: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateMetadata, typing.Dict[str, typing.Any]]] = None,
-                template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[str, typing.Any]]]] = None,
-                type: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8a97a9d748a88e76340582885a47a889666e169b36bf601e948fa8fbaf8eacb8)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument engine_version", value=engine_version, expected_type=type_hints["engine_version"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument template_from", value=template_from, expected_type=type_hints["template_from"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if data is not None:
             self._values["data"] = data
         if engine_version is not None:
@@ -20396,16 +18787,10 @@ class ExternalSecretSpecTargetTemplateMetadata:
         :schema: ExternalSecretSpecTargetTemplateMetadata
         '''
         if __debug__:
-            def stub(
-                *,
-                annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__fd5588a79e0c2ae668496ad557535214d7832b67410c55764b5ebcb0df34aa6e)
             check_type(argname="argument annotations", value=annotations, expected_type=type_hints["annotations"])
             check_type(argname="argument labels", value=labels, expected_type=type_hints["labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if annotations is not None:
             self._values["annotations"] = annotations
         if labels is not None:
@@ -20450,8 +18835,8 @@ class ExternalSecretSpecTargetTemplateTemplateFrom:
     def __init__(
         self,
         *,
-        config_map: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromConfigMap", typing.Dict[str, typing.Any]]] = None,
-        secret: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromSecret", typing.Dict[str, typing.Any]]] = None,
+        config_map: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param config_map: 
@@ -20464,16 +18849,10 @@ class ExternalSecretSpecTargetTemplateTemplateFrom:
         if isinstance(secret, dict):
             secret = ExternalSecretSpecTargetTemplateTemplateFromSecret(**secret)
         if __debug__:
-            def stub(
-                *,
-                config_map: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromConfigMap, typing.Dict[str, typing.Any]]] = None,
-                secret: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__31faa86a5c98b99d6ee0e61c7febcb6d057f4f2d66a77088ff59e58fd22c0e21)
             check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
             check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if config_map is not None:
             self._values["config_map"] = config_map
         if secret is not None:
@@ -20520,7 +18899,7 @@ class ExternalSecretSpecTargetTemplateTemplateFromConfigMap:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -20530,16 +18909,10 @@ class ExternalSecretSpecTargetTemplateTemplateFromConfigMap:
         :schema: ExternalSecretSpecTargetTemplateTemplateFromConfigMap
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__02bb153304316c1d27d8cc2666b4bffdf0b5ee46f914eb90f501ff4d279aff79)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -20589,11 +18962,9 @@ class ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems:
         :schema: ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__183828d27464f0cb7be30c7fcfa871d537b68ad5d70c9895876220619c3ee123)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -20627,7 +18998,7 @@ class ExternalSecretSpecTargetTemplateTemplateFromSecret:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromSecretItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFromSecretItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -20637,16 +19008,10 @@ class ExternalSecretSpecTargetTemplateTemplateFromSecret:
         :schema: ExternalSecretSpecTargetTemplateTemplateFromSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromSecretItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a0091308b64027190e4220f919c8b9fe8606081a83a7cac89b8d6f66850f27d9)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -20696,11 +19061,9 @@ class ExternalSecretSpecTargetTemplateTemplateFromSecretItems:
         :schema: ExternalSecretSpecTargetTemplateTemplateFromSecretItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__dd62afc90b918a7a93df148a8f114e0416daaaa6276fbdd86d8d0b7a8b3a5886)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -20726,7 +19089,7 @@ class ExternalSecretSpecTargetTemplateTemplateFromSecretItems:
 
 
 class ExternalSecretV1Beta1(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.ExternalSecretV1Beta1",
 ):
@@ -20737,11 +19100,11 @@ class ExternalSecretV1Beta1(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "ExternalSecretV1Beta1" API object.
 
@@ -20751,15 +19114,7 @@ class ExternalSecretV1Beta1(
         :param spec: ExternalSecretSpec defines the desired state of ExternalSecret.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ExternalSecretV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cfd09e377328d190f8f7b77670ab85f29c4518dcbb58d06f05a9a27a25809189)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ExternalSecretV1Beta1Props(metadata=metadata, spec=spec)
@@ -20771,8 +19126,8 @@ class ExternalSecretV1Beta1(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "ExternalSecretV1Beta1".
 
@@ -20792,9 +19147,9 @@ class ExternalSecretV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "ExternalSecretV1Beta1".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -20806,8 +19161,8 @@ class ExternalSecretV1Beta1Props:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ExternalSecretV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecret is the Schema for the external-secrets API.
 
@@ -20817,32 +19172,26 @@ class ExternalSecretV1Beta1Props:
         :schema: ExternalSecretV1Beta1
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = ExternalSecretV1Beta1Spec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[ExternalSecretV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__461761ed0edddc73d403b793c8ed04d0bc0a2534dd95e8eae4158f95cf880b21)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: ExternalSecretV1Beta1#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["ExternalSecretV1Beta1Spec"]:
@@ -20880,11 +19229,11 @@ class ExternalSecretV1Beta1Spec:
     def __init__(
         self,
         *,
-        secret_store_ref: typing.Union["ExternalSecretV1Beta1SpecSecretStoreRef", typing.Dict[str, typing.Any]],
-        data: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecData", typing.Dict[str, typing.Any]]]] = None,
-        data_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecDataFrom", typing.Dict[str, typing.Any]]]] = None,
+        secret_store_ref: typing.Union["ExternalSecretV1Beta1SpecSecretStoreRef", typing.Dict[builtins.str, typing.Any]],
+        data: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecData", typing.Dict[builtins.str, typing.Any]]]] = None,
+        data_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecDataFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         refresh_interval: typing.Optional[builtins.str] = None,
-        target: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTarget", typing.Dict[str, typing.Any]]] = None,
+        target: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTarget", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecretSpec defines the desired state of ExternalSecret.
 
@@ -20901,22 +19250,13 @@ class ExternalSecretV1Beta1Spec:
         if isinstance(target, dict):
             target = ExternalSecretV1Beta1SpecTarget(**target)
         if __debug__:
-            def stub(
-                *,
-                secret_store_ref: typing.Union[ExternalSecretV1Beta1SpecSecretStoreRef, typing.Dict[str, typing.Any]],
-                data: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecData, typing.Dict[str, typing.Any]]]] = None,
-                data_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecDataFrom, typing.Dict[str, typing.Any]]]] = None,
-                refresh_interval: typing.Optional[builtins.str] = None,
-                target: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTarget, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__93f730c43130f4e637999febc8307761ffd7173d07e0fb0252beb9d33999daae)
             check_type(argname="argument secret_store_ref", value=secret_store_ref, expected_type=type_hints["secret_store_ref"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument data_from", value=data_from, expected_type=type_hints["data_from"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_store_ref": secret_store_ref,
         }
         if data is not None:
@@ -21001,7 +19341,7 @@ class ExternalSecretV1Beta1SpecData:
     def __init__(
         self,
         *,
-        remote_ref: typing.Union["ExternalSecretV1Beta1SpecDataRemoteRef", typing.Dict[str, typing.Any]],
+        remote_ref: typing.Union["ExternalSecretV1Beta1SpecDataRemoteRef", typing.Dict[builtins.str, typing.Any]],
         secret_key: builtins.str,
     ) -> None:
         '''ExternalSecretData defines the connection between the Kubernetes Secret key (spec.data.) and the Provider data.
@@ -21014,16 +19354,10 @@ class ExternalSecretV1Beta1SpecData:
         if isinstance(remote_ref, dict):
             remote_ref = ExternalSecretV1Beta1SpecDataRemoteRef(**remote_ref)
         if __debug__:
-            def stub(
-                *,
-                remote_ref: typing.Union[ExternalSecretV1Beta1SpecDataRemoteRef, typing.Dict[str, typing.Any]],
-                secret_key: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__57cac15896a1d924720292c54c0d0f922c9daf2aa81f875475449aef38e0e295)
             check_type(argname="argument remote_ref", value=remote_ref, expected_type=type_hints["remote_ref"])
             check_type(argname="argument secret_key", value=secret_key, expected_type=type_hints["secret_key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "remote_ref": remote_ref,
             "secret_key": secret_key,
         }
@@ -21068,9 +19402,9 @@ class ExternalSecretV1Beta1SpecDataFrom:
     def __init__(
         self,
         *,
-        extract: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromExtract", typing.Dict[str, typing.Any]]] = None,
-        find: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromFind", typing.Dict[str, typing.Any]]] = None,
-        rewrite: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecDataFromRewrite", typing.Dict[str, typing.Any]]]] = None,
+        extract: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromExtract", typing.Dict[builtins.str, typing.Any]]] = None,
+        find: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromFind", typing.Dict[builtins.str, typing.Any]]] = None,
+        rewrite: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecDataFromRewrite", typing.Dict[builtins.str, typing.Any]]]] = None,
     ) -> None:
         '''
         :param extract: Used to extract multiple key/value pairs from one secret.
@@ -21084,18 +19418,11 @@ class ExternalSecretV1Beta1SpecDataFrom:
         if isinstance(find, dict):
             find = ExternalSecretV1Beta1SpecDataFromFind(**find)
         if __debug__:
-            def stub(
-                *,
-                extract: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromExtract, typing.Dict[str, typing.Any]]] = None,
-                find: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromFind, typing.Dict[str, typing.Any]]] = None,
-                rewrite: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecDataFromRewrite, typing.Dict[str, typing.Any]]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7a22f4fe792b72c3eaf030666d89e08718509ca8d74cccad99560062b6eeb559)
             check_type(argname="argument extract", value=extract, expected_type=type_hints["extract"])
             check_type(argname="argument find", value=find, expected_type=type_hints["find"])
             check_type(argname="argument rewrite", value=rewrite, expected_type=type_hints["rewrite"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if extract is not None:
             self._values["extract"] = extract
         if find is not None:
@@ -21181,24 +19508,14 @@ class ExternalSecretV1Beta1SpecDataFromExtract:
         :schema: ExternalSecretV1Beta1SpecDataFromExtract
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                metadata_policy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4470abe995b704cbdcdf0492e1e91e23a97f5bd83a22269ccf3af13015136970)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument metadata_policy", value=metadata_policy, expected_type=type_hints["metadata_policy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -21300,7 +19617,7 @@ class ExternalSecretV1Beta1SpecDataFromFind:
         *,
         conversion_strategy: typing.Optional[builtins.str] = None,
         decoding_strategy: typing.Optional[builtins.str] = None,
-        name: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromFindName", typing.Dict[str, typing.Any]]] = None,
+        name: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromFindName", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     ) -> None:
@@ -21317,22 +19634,13 @@ class ExternalSecretV1Beta1SpecDataFromFind:
         if isinstance(name, dict):
             name = ExternalSecretV1Beta1SpecDataFromFindName(**name)
         if __debug__:
-            def stub(
-                *,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                name: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromFindName, typing.Dict[str, typing.Any]]] = None,
-                path: typing.Optional[builtins.str] = None,
-                tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__22b4b957dbb9cd8460e4e930700a48d34f638298827b6fe53d68d1b82de6f401)
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument tags", value=tags, expected_type=type_hints["tags"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if conversion_strategy is not None:
             self._values["conversion_strategy"] = conversion_strategy
         if decoding_strategy is not None:
@@ -21415,11 +19723,9 @@ class ExternalSecretV1Beta1SpecDataFromFindName:
         :schema: ExternalSecretV1Beta1SpecDataFromFindName
         '''
         if __debug__:
-            def stub(*, regexp: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6f615a184713f5d364337da92283293111522fd42282ad325a8afbd2d1962916)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
 
@@ -21453,7 +19759,7 @@ class ExternalSecretV1Beta1SpecDataFromRewrite:
     def __init__(
         self,
         *,
-        regexp: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromRewriteRegexp", typing.Dict[str, typing.Any]]] = None,
+        regexp: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromRewriteRegexp", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param regexp: Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.
@@ -21463,14 +19769,9 @@ class ExternalSecretV1Beta1SpecDataFromRewrite:
         if isinstance(regexp, dict):
             regexp = ExternalSecretV1Beta1SpecDataFromRewriteRegexp(**regexp)
         if __debug__:
-            def stub(
-                *,
-                regexp: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromRewriteRegexp, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__454681f1cc3a392e81ef5c92bfa786dde1e38e7aaa5f2a3ed665e0b4cb009c13)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
 
@@ -21516,12 +19817,10 @@ class ExternalSecretV1Beta1SpecDataFromRewriteRegexp:
         :schema: ExternalSecretV1Beta1SpecDataFromRewriteRegexp
         '''
         if __debug__:
-            def stub(*, source: builtins.str, target: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__22d63d6e820ab00e4df04c49344342bd4731978ef6611c06c5ac4b5332794e7c)
             check_type(argname="argument source", value=source, expected_type=type_hints["source"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "source": source,
             "target": target,
         }
@@ -21593,24 +19892,14 @@ class ExternalSecretV1Beta1SpecDataRemoteRef:
         :schema: ExternalSecretV1Beta1SpecDataRemoteRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                conversion_strategy: typing.Optional[builtins.str] = None,
-                decoding_strategy: typing.Optional[builtins.str] = None,
-                metadata_policy: typing.Optional[builtins.str] = None,
-                property: typing.Optional[builtins.str] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__823faeef50b2c0df69c9ae99b8ab132511378b031b5042afba0c9fe24ba93dd4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument decoding_strategy", value=decoding_strategy, expected_type=type_hints["decoding_strategy"])
             check_type(argname="argument metadata_policy", value=metadata_policy, expected_type=type_hints["metadata_policy"])
             check_type(argname="argument property", value=property, expected_type=type_hints["property"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if conversion_strategy is not None:
@@ -21715,16 +20004,10 @@ class ExternalSecretV1Beta1SpecSecretStoreRef:
         :schema: ExternalSecretV1Beta1SpecSecretStoreRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                kind: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7f1f99a615b28ea8c79a67cd067ee214dfafc7d9ce344d5895cdcba82c5d4337)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if kind is not None:
@@ -21782,7 +20065,7 @@ class ExternalSecretV1Beta1SpecTarget:
         deletion_policy: typing.Optional["ExternalSecretV1Beta1SpecTargetDeletionPolicy"] = None,
         immutable: typing.Optional[builtins.bool] = None,
         name: typing.Optional[builtins.str] = None,
-        template: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplate", typing.Dict[str, typing.Any]]] = None,
+        template: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.
 
@@ -21797,22 +20080,13 @@ class ExternalSecretV1Beta1SpecTarget:
         if isinstance(template, dict):
             template = ExternalSecretV1Beta1SpecTargetTemplate(**template)
         if __debug__:
-            def stub(
-                *,
-                creation_policy: typing.Optional[ExternalSecretV1Beta1SpecTargetCreationPolicy] = None,
-                deletion_policy: typing.Optional[ExternalSecretV1Beta1SpecTargetDeletionPolicy] = None,
-                immutable: typing.Optional[builtins.bool] = None,
-                name: typing.Optional[builtins.str] = None,
-                template: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplate, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__137058ee7bb8bbf207a1c6bea2d7edc847fcb8e66808b8a474d9e3f6cf606abd)
             check_type(argname="argument creation_policy", value=creation_policy, expected_type=type_hints["creation_policy"])
             check_type(argname="argument deletion_policy", value=deletion_policy, expected_type=type_hints["deletion_policy"])
             check_type(argname="argument immutable", value=immutable, expected_type=type_hints["immutable"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if creation_policy is not None:
             self._values["creation_policy"] = creation_policy
         if deletion_policy is not None:
@@ -21948,8 +20222,8 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         engine_version: typing.Optional[builtins.str] = None,
-        metadata: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateMetadata", typing.Dict[str, typing.Any]]] = None,
-        template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom", typing.Dict[str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Template defines a blueprint for the created Secret resource.
@@ -21965,22 +20239,13 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         if isinstance(metadata, dict):
             metadata = ExternalSecretV1Beta1SpecTargetTemplateMetadata(**metadata)
         if __debug__:
-            def stub(
-                *,
-                data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                engine_version: typing.Optional[builtins.str] = None,
-                metadata: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateMetadata, typing.Dict[str, typing.Any]]] = None,
-                template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom, typing.Dict[str, typing.Any]]]] = None,
-                type: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0845c9cb8505c291793a6fac848aa5d4340d17ecc2e58386511e13ecba7b0d77)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument engine_version", value=engine_version, expected_type=type_hints["engine_version"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument template_from", value=template_from, expected_type=type_hints["template_from"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if data is not None:
             self._values["data"] = data
         if engine_version is not None:
@@ -22069,16 +20334,10 @@ class ExternalSecretV1Beta1SpecTargetTemplateMetadata:
         :schema: ExternalSecretV1Beta1SpecTargetTemplateMetadata
         '''
         if __debug__:
-            def stub(
-                *,
-                annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__018d8922bc23dbcc72288a6bb9df1ee13ec20a354c2863ebe6f5778d0547c2b9)
             check_type(argname="argument annotations", value=annotations, expected_type=type_hints["annotations"])
             check_type(argname="argument labels", value=labels, expected_type=type_hints["labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if annotations is not None:
             self._values["annotations"] = annotations
         if labels is not None:
@@ -22123,8 +20382,8 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom:
     def __init__(
         self,
         *,
-        config_map: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap", typing.Dict[str, typing.Any]]] = None,
-        secret: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret", typing.Dict[str, typing.Any]]] = None,
+        config_map: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param config_map: 
@@ -22137,16 +20396,10 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom:
         if isinstance(secret, dict):
             secret = ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret(**secret)
         if __debug__:
-            def stub(
-                *,
-                config_map: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap, typing.Dict[str, typing.Any]]] = None,
-                secret: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cf8068a43ca684f4a943d7d5e82ab5f65a31b37cd2681ead194fa54dd950d01d)
             check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
             check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if config_map is not None:
             self._values["config_map"] = config_map
         if secret is not None:
@@ -22193,7 +20446,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -22203,16 +20456,10 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap:
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5d4521141f13b4bd1ec1e9d03377bb4f8fb99f832992af18de111f17b9698448)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -22262,11 +20509,9 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems:
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__450b9bfafc5b457a75263d0420c05dfd89276947b601ed2cd9c63bca7bc8c6ed)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -22300,7 +20545,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems", typing.Dict[str, typing.Any]]],
+        items: typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems", typing.Dict[builtins.str, typing.Any]]],
         name: builtins.str,
     ) -> None:
         '''
@@ -22310,16 +20555,10 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret:
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                items: typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems, typing.Dict[str, typing.Any]]],
-                name: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a4a2e35d3be01cb8a634eeb73ba90e80dfeb0ffe5653a7d44637ac186ee815e7)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "items": items,
             "name": name,
         }
@@ -22369,11 +20608,9 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems:
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems
         '''
         if __debug__:
-            def stub(*, key: builtins.str) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2623eb672daf55d319267bd37583020eebefd412a2e3fa6a451b378cf22e9522)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
 
@@ -22399,7 +20636,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems:
 
 
 class SecretStore(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.SecretStore",
 ):
@@ -22410,11 +20647,11 @@ class SecretStore(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "SecretStore" API object.
 
@@ -22424,15 +20661,7 @@ class SecretStore(
         :param spec: SecretStoreSpec defines the desired state of SecretStore.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[SecretStoreSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__180aec373b8c9c56e68a264b2b4b4d292b94771886f0aa691cf5bb6dbec97d6b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = SecretStoreProps(metadata=metadata, spec=spec)
@@ -22444,8 +20673,8 @@ class SecretStore(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "SecretStore".
 
@@ -22465,9 +20694,9 @@ class SecretStore(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "SecretStore".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -22479,8 +20708,8 @@ class SecretStoreProps:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStore represents a secure external location for storing secrets, which can be referenced as part of ``storeRef`` fields.
 
@@ -22490,32 +20719,26 @@ class SecretStoreProps:
         :schema: SecretStore
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = SecretStoreSpec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[SecretStoreSpec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d1dab5bf5499b6000b83acce303ccadfb92208c478648fa8e4071edb8459ed03)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: SecretStore#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["SecretStoreSpec"]:
@@ -22551,9 +20774,9 @@ class SecretStoreSpec:
     def __init__(
         self,
         *,
-        provider: typing.Union["SecretStoreSpecProvider", typing.Dict[str, typing.Any]],
+        provider: typing.Union["SecretStoreSpecProvider", typing.Dict[builtins.str, typing.Any]],
         controller: typing.Optional[builtins.str] = None,
-        retry_settings: typing.Optional[typing.Union["SecretStoreSpecRetrySettings", typing.Dict[str, typing.Any]]] = None,
+        retry_settings: typing.Optional[typing.Union["SecretStoreSpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStoreSpec defines the desired state of SecretStore.
 
@@ -22568,18 +20791,11 @@ class SecretStoreSpec:
         if isinstance(retry_settings, dict):
             retry_settings = SecretStoreSpecRetrySettings(**retry_settings)
         if __debug__:
-            def stub(
-                *,
-                provider: typing.Union[SecretStoreSpecProvider, typing.Dict[str, typing.Any]],
-                controller: typing.Optional[builtins.str] = None,
-                retry_settings: typing.Optional[typing.Union[SecretStoreSpecRetrySettings, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ba085ab3c8441d364a5007e3094da84533695a382d5308b8e6f1b321858ef625)
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "provider": provider,
         }
         if controller is not None:
@@ -22652,19 +20868,19 @@ class SecretStoreSpecProvider:
     def __init__(
         self,
         *,
-        akeyless: typing.Optional[typing.Union["SecretStoreSpecProviderAkeyless", typing.Dict[str, typing.Any]]] = None,
-        alibaba: typing.Optional[typing.Union["SecretStoreSpecProviderAlibaba", typing.Dict[str, typing.Any]]] = None,
-        aws: typing.Optional[typing.Union["SecretStoreSpecProviderAws", typing.Dict[str, typing.Any]]] = None,
-        azurekv: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekv", typing.Dict[str, typing.Any]]] = None,
-        fake: typing.Optional[typing.Union["SecretStoreSpecProviderFake", typing.Dict[str, typing.Any]]] = None,
-        gcpsm: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsm", typing.Dict[str, typing.Any]]] = None,
-        gitlab: typing.Optional[typing.Union["SecretStoreSpecProviderGitlab", typing.Dict[str, typing.Any]]] = None,
-        ibm: typing.Optional[typing.Union["SecretStoreSpecProviderIbm", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetes", typing.Dict[str, typing.Any]]] = None,
-        oracle: typing.Optional[typing.Union["SecretStoreSpecProviderOracle", typing.Dict[str, typing.Any]]] = None,
-        vault: typing.Optional[typing.Union["SecretStoreSpecProviderVault", typing.Dict[str, typing.Any]]] = None,
-        webhook: typing.Optional[typing.Union["SecretStoreSpecProviderWebhook", typing.Dict[str, typing.Any]]] = None,
-        yandexlockbox: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockbox", typing.Dict[str, typing.Any]]] = None,
+        akeyless: typing.Optional[typing.Union["SecretStoreSpecProviderAkeyless", typing.Dict[builtins.str, typing.Any]]] = None,
+        alibaba: typing.Optional[typing.Union["SecretStoreSpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
+        aws: typing.Optional[typing.Union["SecretStoreSpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
+        azurekv: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        fake: typing.Optional[typing.Union["SecretStoreSpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcpsm: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
+        gitlab: typing.Optional[typing.Union["SecretStoreSpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
+        ibm: typing.Optional[typing.Union["SecretStoreSpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        oracle: typing.Optional[typing.Union["SecretStoreSpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[typing.Union["SecretStoreSpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
+        webhook: typing.Optional[typing.Union["SecretStoreSpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexlockbox: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Used to configure the provider.
 
@@ -22713,24 +20929,7 @@ class SecretStoreSpecProvider:
         if isinstance(yandexlockbox, dict):
             yandexlockbox = SecretStoreSpecProviderYandexlockbox(**yandexlockbox)
         if __debug__:
-            def stub(
-                *,
-                akeyless: typing.Optional[typing.Union[SecretStoreSpecProviderAkeyless, typing.Dict[str, typing.Any]]] = None,
-                alibaba: typing.Optional[typing.Union[SecretStoreSpecProviderAlibaba, typing.Dict[str, typing.Any]]] = None,
-                aws: typing.Optional[typing.Union[SecretStoreSpecProviderAws, typing.Dict[str, typing.Any]]] = None,
-                azurekv: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekv, typing.Dict[str, typing.Any]]] = None,
-                fake: typing.Optional[typing.Union[SecretStoreSpecProviderFake, typing.Dict[str, typing.Any]]] = None,
-                gcpsm: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsm, typing.Dict[str, typing.Any]]] = None,
-                gitlab: typing.Optional[typing.Union[SecretStoreSpecProviderGitlab, typing.Dict[str, typing.Any]]] = None,
-                ibm: typing.Optional[typing.Union[SecretStoreSpecProviderIbm, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetes, typing.Dict[str, typing.Any]]] = None,
-                oracle: typing.Optional[typing.Union[SecretStoreSpecProviderOracle, typing.Dict[str, typing.Any]]] = None,
-                vault: typing.Optional[typing.Union[SecretStoreSpecProviderVault, typing.Dict[str, typing.Any]]] = None,
-                webhook: typing.Optional[typing.Union[SecretStoreSpecProviderWebhook, typing.Dict[str, typing.Any]]] = None,
-                yandexlockbox: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockbox, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c530965dc9a8ce9c6b19c8fa2f1a1209e5d3f087076176d43c9a82a73ad3e971)
             check_type(argname="argument akeyless", value=akeyless, expected_type=type_hints["akeyless"])
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
@@ -22744,7 +20943,7 @@ class SecretStoreSpecProvider:
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if akeyless is not None:
             self._values["akeyless"] = akeyless
         if alibaba is not None:
@@ -22914,7 +21113,7 @@ class SecretStoreSpecProviderAkeyless:
         self,
         *,
         akeyless_gw_api_url: builtins.str,
-        auth_secret_ref: typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRef", typing.Dict[str, typing.Any]],
+        auth_secret_ref: typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Akeyless configures this store to sync secrets using Akeyless Vault provider.
 
@@ -22926,16 +21125,10 @@ class SecretStoreSpecProviderAkeyless:
         if isinstance(auth_secret_ref, dict):
             auth_secret_ref = SecretStoreSpecProviderAkeylessAuthSecretRef(**auth_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                akeyless_gw_api_url: builtins.str,
-                auth_secret_ref: typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f597bf285afb5c633e38c431ce82655d4616622b525a2d703b9381af3a1804f2)
             check_type(argname="argument akeyless_gw_api_url", value=akeyless_gw_api_url, expected_type=type_hints["akeyless_gw_api_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "akeyless_gw_api_url": akeyless_gw_api_url,
             "auth_secret_ref": auth_secret_ref,
         }
@@ -22981,8 +21174,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRef:
     def __init__(
         self,
         *,
-        kubernetes_auth: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_auth: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Akeyless.
 
@@ -22996,16 +21189,10 @@ class SecretStoreSpecProviderAkeylessAuthSecretRef:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                kubernetes_auth: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cda0f12fb61f2949b2c77d5bb0d1e8a9b9b4301454fc1cffb9952a3b1658e2cc)
             check_type(argname="argument kubernetes_auth", value=kubernetes_auth, expected_type=type_hints["kubernetes_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if kubernetes_auth is not None:
             self._values["kubernetes_auth"] = kubernetes_auth
         if secret_ref is not None:
@@ -23061,8 +21248,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
         *,
         access_id: builtins.str,
         k8_s_conf_name: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.
 
@@ -23078,20 +21265,12 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                access_id: builtins.str,
-                k8_s_conf_name: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ae1d5d2c1b8d1b1723c903970ab7cdf664c090a69850bbe33bba4d43dc332342)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument k8_s_conf_name", value=k8_s_conf_name, expected_type=type_hints["k8_s_conf_name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_id": access_id,
             "k8_s_conf_name": k8_s_conf_name,
         }
@@ -23182,18 +21361,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef:
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e370d9d39bba6f7ee010e33d276f110d5075548ecb7b73f373d703f886030b6c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -23268,18 +21440,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRe
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__35cb94b11cba70c093368a79eb257455da6fabf4fac8ef68d4d39b90bf654dee)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -23342,9 +21507,9 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef:
     def __init__(
         self,
         *,
-        access_id: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[str, typing.Any]]] = None,
-        access_type: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[str, typing.Any]]] = None,
-        access_type_param: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[str, typing.Any]]] = None,
+        access_id: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type_param: typing.Optional[typing.Union["SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Reference to a Secret that contains the details to authenticate with Akeyless.
 
@@ -23361,18 +21526,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef:
         if isinstance(access_type_param, dict):
             access_type_param = SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam(**access_type_param)
         if __debug__:
-            def stub(
-                *,
-                access_id: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[str, typing.Any]]] = None,
-                access_type: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[str, typing.Any]]] = None,
-                access_type_param: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f212895f3238ae558cc70d86c5e96033e438ae08bbac34bb207c998d69db8b4a)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument access_type", value=access_type, expected_type=type_hints["access_type"])
             check_type(argname="argument access_type_param", value=access_type_param, expected_type=type_hints["access_type_param"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_id is not None:
             self._values["access_id"] = access_id
         if access_type is not None:
@@ -23447,18 +21605,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e9bc19061bf794b228ae3c85bd2c8a539641c474838c3d24b0534ac2df4a3000)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -23531,18 +21682,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__64d37657fe77dbb1beb16d7928cf21adb979d050e6ff461f18aed915d564ebd6)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -23615,18 +21759,11 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam:
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a8a8e97d38f881fa234c143b578f9406cde35bb5cb65d61338b15321de80fc9e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -23686,7 +21823,7 @@ class SecretStoreSpecProviderAlibaba:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderAlibabaAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderAlibabaAuth", typing.Dict[builtins.str, typing.Any]],
         region_id: builtins.str,
         endpoint: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -23701,18 +21838,11 @@ class SecretStoreSpecProviderAlibaba:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderAlibabaAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderAlibabaAuth, typing.Dict[str, typing.Any]],
-                region_id: builtins.str,
-                endpoint: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__160555d984538fdfb12b506e87bb6765d149005405f5ae079b3691db6a1d770f)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument region_id", value=region_id, expected_type=type_hints["region_id"])
             check_type(argname="argument endpoint", value=endpoint, expected_type=type_hints["endpoint"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "region_id": region_id,
         }
@@ -23768,7 +21898,7 @@ class SecretStoreSpecProviderAlibabaAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuth contains a secretRef for credentials.
 
@@ -23779,14 +21909,9 @@ class SecretStoreSpecProviderAlibabaAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderAlibabaAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2d8b50e50e137fe4e3f84cfad896da01555d6ac69b57ae5d2e585611bb05e278)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -23824,8 +21949,8 @@ class SecretStoreSpecProviderAlibabaAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]],
-        access_key_secret_secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[str, typing.Any]],
+        access_key_id_secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        access_key_secret_secret_ref: typing.Union["SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuthSecretRef holds secret references for Alibaba credentials.
 
@@ -23839,16 +21964,10 @@ class SecretStoreSpecProviderAlibabaAuthSecretRef:
         if isinstance(access_key_secret_secret_ref, dict):
             access_key_secret_secret_ref = SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef(**access_key_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]],
-                access_key_secret_secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__83b732209a24571a7a96042e186e91398c6b74cf7cb865114ea675a90ddfc6e2)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument access_key_secret_secret_ref", value=access_key_secret_secret_ref, expected_type=type_hints["access_key_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_key_id_secret_ref": access_key_id_secret_ref,
             "access_key_secret_secret_ref": access_key_secret_secret_ref,
         }
@@ -23911,18 +22030,11 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c21bb376b2e3a0198bfcc4ef9da1f454aec69fed4187ddac868a437f5508e1de)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -23995,18 +22107,11 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef:
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__26d4e7fa82cee06a66db9f84afb99426b45555f9719c95d7984dc5ae97cec7b4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -24073,7 +22178,7 @@ class SecretStoreSpecProviderAws:
         *,
         region: builtins.str,
         service: "SecretStoreSpecProviderAwsService",
-        auth: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AWS configures this store to sync secrets using AWS Secret Manager provider.
@@ -24088,20 +22193,12 @@ class SecretStoreSpecProviderAws:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderAwsAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                service: SecretStoreSpecProviderAwsService,
-                auth: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuth, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b934c6cb3d89ed6210132277f1834ba27f8d6f93e4b788d15911d29aeb2a073b)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "service": service,
         }
@@ -24169,8 +22266,8 @@ class SecretStoreSpecProviderAwsAuth:
     def __init__(
         self,
         *,
-        jwt: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
 
@@ -24184,16 +22281,10 @@ class SecretStoreSpecProviderAwsAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderAwsAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                jwt: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__95a0f277ee0cad3e87fc8f88b3beed52a176e997459eb96b21bfc2cd7e6867ce)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if jwt is not None:
             self._values["jwt"] = jwt
         if secret_ref is not None:
@@ -24238,7 +22329,7 @@ class SecretStoreSpecProviderAwsAuthJwt:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Authenticate against AWS using service account tokens.
 
@@ -24249,14 +22340,9 @@ class SecretStoreSpecProviderAwsAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderAwsAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0a2de8e353bd8a9c6b2b307f5edcfd83259dd689ddb1c7bcd7cba6aebd896d14)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -24305,18 +22391,11 @@ class SecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
         :schema: SecretStoreSpecProviderAwsAuthJwtServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ee83739484981a1313ee3e396d008fd0daa33cea2f3bd4c940e1bdf71a18c74a)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -24378,8 +22457,8 @@ class SecretStoreSpecProviderAwsAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]]] = None,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        access_key_id_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.
 
@@ -24393,16 +22472,10 @@ class SecretStoreSpecProviderAwsAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]]] = None,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__70319a335a332153f12e762b41f5b67aee107bc3136ea70ae53f2a2c716a612a)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_key_id_secret_ref is not None:
             self._values["access_key_id_secret_ref"] = access_key_id_secret_ref
         if secret_access_key_secret_ref is not None:
@@ -24464,18 +22537,11 @@ class SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
         :schema: SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6cd067b142a207713dbe0c26baf3421dbaec7cf34b10e08c3a3958201b4d09fb)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -24548,18 +22614,11 @@ class SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
         :schema: SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0cbfd65dc9abbf06dee97c10e01c18ce7e875a3784134a02e09c54fe3a7fa425)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -24640,10 +22699,10 @@ class SecretStoreSpecProviderAzurekv:
         self,
         *,
         vault_url: builtins.str,
-        auth_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        auth_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         auth_type: typing.Optional["SecretStoreSpecProviderAzurekvAuthType"] = None,
         identity_id: typing.Optional[builtins.str] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
         tenant_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
@@ -24662,24 +22721,14 @@ class SecretStoreSpecProviderAzurekv:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderAzurekvServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                vault_url: builtins.str,
-                auth_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                auth_type: typing.Optional[SecretStoreSpecProviderAzurekvAuthType] = None,
-                identity_id: typing.Optional[builtins.str] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-                tenant_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3fff1dbb3fb26f345ccf9d164d11d27cdf0bf449ee80995bab7f58ed4e6cb4bf)
             check_type(argname="argument vault_url", value=vault_url, expected_type=type_hints["vault_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
             check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "vault_url": vault_url,
         }
         if auth_secret_ref is not None:
@@ -24779,8 +22828,8 @@ class SecretStoreSpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
-        client_id: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRefClientId", typing.Dict[str, typing.Any]]] = None,
-        client_secret: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[str, typing.Any]]] = None,
+        client_id: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_secret: typing.Optional[typing.Union["SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
@@ -24796,16 +22845,10 @@ class SecretStoreSpecProviderAzurekvAuthSecretRef:
         if isinstance(client_secret, dict):
             client_secret = SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
         if __debug__:
-            def stub(
-                *,
-                client_id: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRefClientId, typing.Dict[str, typing.Any]]] = None,
-                client_secret: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__218003f6825cc8cc0f958bebabc2f3bdbc7a157e9b92d6f96a4ff08a85a92c40)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
@@ -24867,18 +22910,11 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientId:
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e73937a53a8dc05dc2cb3c6f7e3d8c47478e39bae10ddb5f9395a603af3ed23b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -24951,18 +22987,11 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__94e37ecd5e686fb55810fc919ea1112f411c31d0570fa8910d7e09c861c65366)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -25052,18 +23081,11 @@ class SecretStoreSpecProviderAzurekvServiceAccountRef:
         :schema: SecretStoreSpecProviderAzurekvServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6270c5495b069a85f3a72915c6c9d3b066899e220bc6fe5e733e75e8528cd46c)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -25122,7 +23144,7 @@ class SecretStoreSpecProviderFake:
     def __init__(
         self,
         *,
-        data: typing.Sequence[typing.Union["SecretStoreSpecProviderFakeData", typing.Dict[str, typing.Any]]],
+        data: typing.Sequence[typing.Union["SecretStoreSpecProviderFakeData", typing.Dict[builtins.str, typing.Any]]],
     ) -> None:
         '''Fake configures a store with static key/value pairs.
 
@@ -25131,14 +23153,9 @@ class SecretStoreSpecProviderFake:
         :schema: SecretStoreSpecProviderFake
         '''
         if __debug__:
-            def stub(
-                *,
-                data: typing.Sequence[typing.Union[SecretStoreSpecProviderFakeData, typing.Dict[str, typing.Any]]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ee8ed03db2e828edd909617b817e612179bd4710b9592d45bedc827e7382a817)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "data": data,
         }
 
@@ -25191,20 +23208,12 @@ class SecretStoreSpecProviderFakeData:
         :schema: SecretStoreSpecProviderFakeData
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                value: typing.Optional[builtins.str] = None,
-                value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9ee3f4b0c98c7c6c6914d11356c215cf3cf27d54394699eb8536a18709255bde)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument value_map", value=value_map, expected_type=type_hints["value_map"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if value is not None:
@@ -25268,7 +23277,7 @@ class SecretStoreSpecProviderGcpsm:
     def __init__(
         self,
         *,
-        auth: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
@@ -25281,16 +23290,10 @@ class SecretStoreSpecProviderGcpsm:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderGcpsmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuth, typing.Dict[str, typing.Any]]] = None,
-                project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__433356edd23ff339815e78dd403eb845c5557e0e984de228fc0019869438b798)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if auth is not None:
             self._values["auth"] = auth
         if project_id is not None:
@@ -25335,8 +23338,8 @@ class SecretStoreSpecProviderGcpsmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        workload_identity: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against GCP.
 
@@ -25350,16 +23353,10 @@ class SecretStoreSpecProviderGcpsmAuth:
         if isinstance(workload_identity, dict):
             workload_identity = SecretStoreSpecProviderGcpsmAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                workload_identity: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c3dac985af09163062ee0f100a6f27f060ab84a70f92e464b0e33f194f9d2144)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if workload_identity is not None:
@@ -25406,7 +23403,7 @@ class SecretStoreSpecProviderGcpsmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_access_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -25416,14 +23413,9 @@ class SecretStoreSpecProviderGcpsmAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3ca5c2e53d8308a5605105725f2c5e7bdd938b3d8ecb9bea29c97128ee49603c)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
             self._values["secret_access_key_secret_ref"] = secret_access_key_secret_ref
 
@@ -25472,18 +23464,11 @@ class SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
         :schema: SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d6e8ae2d693f0cb3bb2f015f58e3bdbb1cf79d29d3c7d7a1da2a8f171c0b9b0d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -25550,7 +23535,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentity:
         *,
         cluster_location: builtins.str,
         cluster_name: builtins.str,
-        service_account_ref: typing.Union["SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         cluster_project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''
@@ -25564,20 +23549,12 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                cluster_location: builtins.str,
-                cluster_name: builtins.str,
-                service_account_ref: typing.Union[SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[str, typing.Any]],
-                cluster_project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__545f2582e9eda3209742adff37223ac38c989705d97ddaaaf2d68951ec464e1b)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_project_id", value=cluster_project_id, expected_type=type_hints["cluster_project_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "cluster_location": cluster_location,
             "cluster_name": cluster_name,
             "service_account_ref": service_account_ref,
@@ -25657,18 +23634,11 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__00880ada914c2988e4f81a2bbf81f548e12d991c753f3632924ed040061739f9)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -25727,7 +23697,7 @@ class SecretStoreSpecProviderGitlab:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderGitlabAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderGitlabAuth", typing.Dict[builtins.str, typing.Any]],
         project_id: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -25742,18 +23712,11 @@ class SecretStoreSpecProviderGitlab:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderGitlabAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderGitlabAuth, typing.Dict[str, typing.Any]],
-                project_id: typing.Optional[builtins.str] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__74a9704961b5ebc67a85b13e3ea0b0eecabb2dbda2aee0064fc2ce88d60d1a03)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if project_id is not None:
@@ -25814,7 +23777,7 @@ class SecretStoreSpecProviderGitlabAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreSpecProviderGitlabAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderGitlabAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with a GitLab instance.
 
@@ -25825,14 +23788,9 @@ class SecretStoreSpecProviderGitlabAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderGitlabAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreSpecProviderGitlabAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__46cdf91513510c8d21322132a5945d246a0875325bc127c14fdce554439269e1)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -25866,7 +23824,7 @@ class SecretStoreSpecProviderGitlabAuthSecretRef:
     def __init__(
         self,
         *,
-        access_token: typing.Optional[typing.Union["SecretStoreSpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[str, typing.Any]]] = None,
+        access_token: typing.Optional[typing.Union["SecretStoreSpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param access_token: AccessToken is used for authentication.
@@ -25876,14 +23834,9 @@ class SecretStoreSpecProviderGitlabAuthSecretRef:
         if isinstance(access_token, dict):
             access_token = SecretStoreSpecProviderGitlabAuthSecretRefAccessToken(**access_token)
         if __debug__:
-            def stub(
-                *,
-                access_token: typing.Optional[typing.Union[SecretStoreSpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6d22720edc8e41b53bce4c708816fbc06868a093474e54079ed99d225ce461ee)
             check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_token is not None:
             self._values["access_token"] = access_token
 
@@ -25932,18 +23885,11 @@ class SecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
         :schema: SecretStoreSpecProviderGitlabAuthSecretRefAccessToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__09362b98cec758e02e93e69b896f7fb16827ce7a4e50ce19232e7d22f62986e3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -26003,7 +23949,7 @@ class SecretStoreSpecProviderIbm:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderIbmAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderIbmAuth", typing.Dict[builtins.str, typing.Any]],
         service_url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''IBM configures this store to sync secrets using IBM Cloud provider.
@@ -26016,16 +23962,10 @@ class SecretStoreSpecProviderIbm:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderIbmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderIbmAuth, typing.Dict[str, typing.Any]],
-                service_url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__087ffef410337619c50c121e7ef3359e554a57b9a10ce1edf8770b3d81e0ed8e)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_url", value=service_url, expected_type=type_hints["service_url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if service_url is not None:
@@ -26071,7 +24011,7 @@ class SecretStoreSpecProviderIbmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreSpecProviderIbmAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderIbmAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with the IBM secrets manager.
 
@@ -26082,14 +24022,9 @@ class SecretStoreSpecProviderIbmAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderIbmAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreSpecProviderIbmAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f61c15804c1ea14aba8f3312c92149924d5fc9171c095620ebd5ce368db03750)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -26123,7 +24058,7 @@ class SecretStoreSpecProviderIbmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_api_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_api_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_api_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -26133,14 +24068,9 @@ class SecretStoreSpecProviderIbmAuthSecretRef:
         if isinstance(secret_api_key_secret_ref, dict):
             secret_api_key_secret_ref = SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef(**secret_api_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_api_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__07e5284d9a003aeaf572246b0e4192e0b1555336a7526ede354d24b2bfa9117d)
             check_type(argname="argument secret_api_key_secret_ref", value=secret_api_key_secret_ref, expected_type=type_hints["secret_api_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_api_key_secret_ref is not None:
             self._values["secret_api_key_secret_ref"] = secret_api_key_secret_ref
 
@@ -26189,18 +24119,11 @@ class SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
         :schema: SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__af92c8b92be448c0919d7ddf59d73c1f0547837b33364f979a4c39d387ae914d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -26264,9 +24187,9 @@ class SecretStoreSpecProviderKubernetes:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderKubernetesAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderKubernetesAuth", typing.Dict[builtins.str, typing.Any]],
         remote_namespace: typing.Optional[builtins.str] = None,
-        server: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesServer", typing.Dict[str, typing.Any]]] = None,
+        server: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesServer", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
 
@@ -26281,18 +24204,11 @@ class SecretStoreSpecProviderKubernetes:
         if isinstance(server, dict):
             server = SecretStoreSpecProviderKubernetesServer(**server)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderKubernetesAuth, typing.Dict[str, typing.Any]],
-                remote_namespace: typing.Optional[builtins.str] = None,
-                server: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesServer, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__904b128b7718fcd2bf2de42ebd0e146d997e1d49742e3ca3719f98eb5ebb46c7)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument remote_namespace", value=remote_namespace, expected_type=type_hints["remote_namespace"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if remote_namespace is not None:
@@ -26353,9 +24269,9 @@ class SecretStoreSpecProviderKubernetesAuth:
     def __init__(
         self,
         *,
-        cert: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCert", typing.Dict[str, typing.Any]]] = None,
-        service_account: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthServiceAccount", typing.Dict[str, typing.Any]]] = None,
-        token: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthToken", typing.Dict[str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with a Kubernetes instance.
 
@@ -26372,18 +24288,11 @@ class SecretStoreSpecProviderKubernetesAuth:
         if isinstance(token, dict):
             token = SecretStoreSpecProviderKubernetesAuthToken(**token)
         if __debug__:
-            def stub(
-                *,
-                cert: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCert, typing.Dict[str, typing.Any]]] = None,
-                service_account: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthServiceAccount, typing.Dict[str, typing.Any]]] = None,
-                token: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__151388d9b4c0b03790206cc929e9596ecfff49de852b599072600264a970c257)
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert is not None:
             self._values["cert"] = cert
         if service_account is not None:
@@ -26441,8 +24350,8 @@ class SecretStoreSpecProviderKubernetesAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        client_key: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCertClientKey", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_key: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthCertClientKey", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''has both clientCert and clientKey as secretKeySelector.
 
@@ -26456,16 +24365,10 @@ class SecretStoreSpecProviderKubernetesAuthCert:
         if isinstance(client_key, dict):
             client_key = SecretStoreSpecProviderKubernetesAuthCertClientKey(**client_key)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                client_key: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCertClientKey, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a96c6e462ac166552fd43d6e853ebe6677ad7313751774413548c4dc9d9cbd6d)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument client_key", value=client_key, expected_type=type_hints["client_key"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if client_key is not None:
@@ -26527,18 +24430,11 @@ class SecretStoreSpecProviderKubernetesAuthCertClientCert:
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0f622c6fa4b3f98c8c90256538cfe1195389eea246105b866e4f8226a3e11a92)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -26611,18 +24507,11 @@ class SecretStoreSpecProviderKubernetesAuthCertClientKey:
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientKey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ee6e0f3141539f98753d7f8c7f84109da05ee28cbb2496c62158aa37893c4e1f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -26682,7 +24571,7 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccount:
     def __init__(
         self,
         *,
-        service_account: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount", typing.Dict[str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''points to a service account that should be used for authentication.
 
@@ -26693,14 +24582,9 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccount:
         if isinstance(service_account, dict):
             service_account = SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount(**service_account)
         if __debug__:
-            def stub(
-                *,
-                service_account: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4a38f6830f593f71ee328bf0bb7a2d5348dbd4c5a2a2c8ccab3acbabf77e63fc)
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account is not None:
             self._values["service_account"] = service_account
 
@@ -26749,18 +24633,11 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount:
         :schema: SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__586cee09f8cca7480473d65c3cc68fe9848fa4209f08b883dea677a950b66013)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -26819,7 +24696,7 @@ class SecretStoreSpecProviderKubernetesAuthToken:
     def __init__(
         self,
         *,
-        bearer_token: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthTokenBearerToken", typing.Dict[str, typing.Any]]] = None,
+        bearer_token: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesAuthTokenBearerToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''use static token to authenticate with.
 
@@ -26830,14 +24707,9 @@ class SecretStoreSpecProviderKubernetesAuthToken:
         if isinstance(bearer_token, dict):
             bearer_token = SecretStoreSpecProviderKubernetesAuthTokenBearerToken(**bearer_token)
         if __debug__:
-            def stub(
-                *,
-                bearer_token: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthTokenBearerToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1581d621227fc42b2bc6fab0466a744ec14017ab25b27c4f605a3d67acfbe832)
             check_type(argname="argument bearer_token", value=bearer_token, expected_type=type_hints["bearer_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if bearer_token is not None:
             self._values["bearer_token"] = bearer_token
 
@@ -26886,18 +24758,11 @@ class SecretStoreSpecProviderKubernetesAuthTokenBearerToken:
         :schema: SecretStoreSpecProviderKubernetesAuthTokenBearerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__341d7ee7c9f1813146f595b6ac86827f52e296fbd90e305fbe30e75e6d1d7f0c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -26958,7 +24823,7 @@ class SecretStoreSpecProviderKubernetesServer:
         self,
         *,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesServerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetesServerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''configures the Kubernetes server Address.
@@ -26972,18 +24837,11 @@ class SecretStoreSpecProviderKubernetesServer:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreSpecProviderKubernetesServerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesServerCaProvider, typing.Dict[str, typing.Any]]] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__49350e64932573067989f27f2c978c32a0b68db7780223b97496498ba0769b76)
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -27061,20 +24919,12 @@ class SecretStoreSpecProviderKubernetesServerCaProvider:
         :schema: SecretStoreSpecProviderKubernetesServerCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreSpecProviderKubernetesServerCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__363e9db3b763eedad22dc94f5b2adaec3fea7bb6f5e0ffec6fb69f3806f91fe2)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -27159,7 +25009,7 @@ class SecretStoreSpecProviderOracle:
         *,
         region: builtins.str,
         vault: builtins.str,
-        auth: typing.Optional[typing.Union["SecretStoreSpecProviderOracleAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreSpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
@@ -27172,18 +25022,11 @@ class SecretStoreSpecProviderOracle:
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderOracleAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                vault: builtins.str,
-                auth: typing.Optional[typing.Union[SecretStoreSpecProviderOracleAuth, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8c20124e1b995d76a5c23860f9ecff1ebac42889eac56116daf01652dc9c1605)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
@@ -27242,7 +25085,7 @@ class SecretStoreSpecProviderOracleAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreSpecProviderOracleAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderOracleAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
         tenancy: builtins.str,
         user: builtins.str,
     ) -> None:
@@ -27259,18 +25102,11 @@ class SecretStoreSpecProviderOracleAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderOracleAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreSpecProviderOracleAuthSecretRef, typing.Dict[str, typing.Any]],
-                tenancy: builtins.str,
-                user: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8b0d6d1c44297738b31436d4946a4a8ce29246ad70f9d793df2188ecdc9b9017)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument tenancy", value=tenancy, expected_type=type_hints["tenancy"])
             check_type(argname="argument user", value=user, expected_type=type_hints["user"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
             "tenancy": tenancy,
             "user": user,
@@ -27327,8 +25163,8 @@ class SecretStoreSpecProviderOracleAuthSecretRef:
     def __init__(
         self,
         *,
-        fingerprint: typing.Union["SecretStoreSpecProviderOracleAuthSecretRefFingerprint", typing.Dict[str, typing.Any]],
-        privatekey: typing.Union["SecretStoreSpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[str, typing.Any]],
+        fingerprint: typing.Union["SecretStoreSpecProviderOracleAuthSecretRefFingerprint", typing.Dict[builtins.str, typing.Any]],
+        privatekey: typing.Union["SecretStoreSpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''SecretRef to pass through sensitive information.
 
@@ -27342,16 +25178,10 @@ class SecretStoreSpecProviderOracleAuthSecretRef:
         if isinstance(privatekey, dict):
             privatekey = SecretStoreSpecProviderOracleAuthSecretRefPrivatekey(**privatekey)
         if __debug__:
-            def stub(
-                *,
-                fingerprint: typing.Union[SecretStoreSpecProviderOracleAuthSecretRefFingerprint, typing.Dict[str, typing.Any]],
-                privatekey: typing.Union[SecretStoreSpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__eb3832cb9223d922c95e110bd9960a050b0d42eb510f564caa0903e89a57f31e)
             check_type(argname="argument fingerprint", value=fingerprint, expected_type=type_hints["fingerprint"])
             check_type(argname="argument privatekey", value=privatekey, expected_type=type_hints["privatekey"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "fingerprint": fingerprint,
             "privatekey": privatekey,
         }
@@ -27410,18 +25240,11 @@ class SecretStoreSpecProviderOracleAuthSecretRefFingerprint:
         :schema: SecretStoreSpecProviderOracleAuthSecretRefFingerprint
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6a8123501f8e589da765eda43eddefc179135d62dafdff666b2dc162230854b9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -27494,18 +25317,11 @@ class SecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
         :schema: SecretStoreSpecProviderOracleAuthSecretRefPrivatekey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a26c7af5eb3d372a1a790a6143a7ae00bd502b4516c33828cd4f888eff60809f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -27575,10 +25391,10 @@ class SecretStoreSpecProviderVault:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderVaultAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderVaultAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderVaultCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderVaultCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
@@ -27604,20 +25420,7 @@ class SecretStoreSpecProviderVault:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreSpecProviderVaultCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderVaultAuth, typing.Dict[str, typing.Any]],
-                server: builtins.str,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderVaultCaProvider, typing.Dict[str, typing.Any]]] = None,
-                forward_inconsistent: typing.Optional[builtins.bool] = None,
-                namespace: typing.Optional[builtins.str] = None,
-                path: typing.Optional[builtins.str] = None,
-                read_your_writes: typing.Optional[builtins.bool] = None,
-                version: typing.Optional[SecretStoreSpecProviderVaultVersion] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4ae354c0bc0f63e88460e1b51ccf0b056861e4af5089834a48e7ffbaa7318995)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -27627,7 +25430,7 @@ class SecretStoreSpecProviderVault:
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "server": server,
         }
@@ -27767,12 +25570,12 @@ class SecretStoreSpecProviderVaultAuth:
     def __init__(
         self,
         *,
-        app_role: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthAppRole", typing.Dict[str, typing.Any]]] = None,
-        cert: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCert", typing.Dict[str, typing.Any]]] = None,
-        jwt: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetes", typing.Dict[str, typing.Any]]] = None,
-        ldap: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthLdap", typing.Dict[str, typing.Any]]] = None,
-        token_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthTokenSecretRef", typing.Dict[str, typing.Any]]] = None,
+        app_role: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        ldap: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        token_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -27798,24 +25601,14 @@ class SecretStoreSpecProviderVaultAuth:
         if isinstance(token_secret_ref, dict):
             token_secret_ref = SecretStoreSpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                app_role: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthAppRole, typing.Dict[str, typing.Any]]] = None,
-                cert: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCert, typing.Dict[str, typing.Any]]] = None,
-                jwt: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetes, typing.Dict[str, typing.Any]]] = None,
-                ldap: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthLdap, typing.Dict[str, typing.Any]]] = None,
-                token_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthTokenSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a906da5a2a53f521d3aa7cb2ceff2f87f28a7ec0f7ac71cdcd6107bccdff2daa)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
         if cert is not None:
@@ -27910,7 +25703,7 @@ class SecretStoreSpecProviderVaultAuthAppRole:
         *,
         path: builtins.str,
         role_id: builtins.str,
-        secret_ref: typing.Union["SecretStoreSpecProviderVaultAuthAppRoleSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderVaultAuthAppRoleSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.
 
@@ -27923,18 +25716,11 @@ class SecretStoreSpecProviderVaultAuthAppRole:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderVaultAuthAppRoleSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                role_id: builtins.str,
-                secret_ref: typing.Union[SecretStoreSpecProviderVaultAuthAppRoleSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__91ec9daf30d4aa20417e9735e38cf1e7dc0f2bba40719ebfe97b72e5371bbd5b)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "role_id": role_id,
             "secret_ref": secret_ref,
@@ -28008,18 +25794,11 @@ class SecretStoreSpecProviderVaultAuthAppRoleSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthAppRoleSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3c921248240c9e8f809f8693886a7967a63ac9e70ce931585f66f97fd47efbc4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -28079,8 +25858,8 @@ class SecretStoreSpecProviderVaultAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
@@ -28094,16 +25873,10 @@ class SecretStoreSpecProviderVaultAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderVaultAuthCertSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__926989828203f27389b7a872e486f9f7c761453b969101d248844147a4d6af7e)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if secret_ref is not None:
@@ -28165,18 +25938,11 @@ class SecretStoreSpecProviderVaultAuthCertClientCert:
         :schema: SecretStoreSpecProviderVaultAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__de593eb1b62d872aa65a4baa74a37a4975d8e4386948886c952b85872f5397de)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -28249,18 +26015,11 @@ class SecretStoreSpecProviderVaultAuthCertSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8f69eeab4ca0ffa1bd204d31e5ed09f8168d70e5803d92d9f822a900f1b42155)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -28326,9 +26085,9 @@ class SecretStoreSpecProviderVaultAuthJwt:
         self,
         *,
         path: builtins.str,
-        kubernetes_service_account_token: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_service_account_token: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwtSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
 
@@ -28344,20 +26103,12 @@ class SecretStoreSpecProviderVaultAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderVaultAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                kubernetes_service_account_token: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwtSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2641227e47ad754e8439010181c6cc78330135cee499741a0a3871027938bf40)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
         }
         if kubernetes_service_account_token is not None:
@@ -28433,7 +26184,7 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Union["SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
         expiration_seconds: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -28448,18 +26199,11 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Union[SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[str, typing.Any]],
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                expiration_seconds: typing.Optional[jsii.Number] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__746f956d1234f789608405b291bad7714e1859d2bf8667f7c8135f4799fd156b)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "service_account_ref": service_account_ref,
         }
         if audiences is not None:
@@ -28539,18 +26283,11 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAcc
         :schema: SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__fe5149b96feef31ec30a430a00c72547d518e3e2b7d981a8647dc81c003207bd)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -28622,18 +26359,11 @@ class SecretStoreSpecProviderVaultAuthJwtSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthJwtSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3d4bd1e46d55696da0dd1d35870cc436c6ed2e3062fd0765d4f20fe3651d10c5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -28700,8 +26430,8 @@ class SecretStoreSpecProviderVaultAuthKubernetes:
         *,
         mount_path: builtins.str,
         role: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetesSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
 
@@ -28717,20 +26447,12 @@ class SecretStoreSpecProviderVaultAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                mount_path: builtins.str,
-                role: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetesSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ca939cc68749570d2ef4889f201ab3b3fd38c8f6dcd83bf12fe08aaab436b8fb)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "mount_path": mount_path,
             "role": role,
         }
@@ -28823,18 +26545,11 @@ class SecretStoreSpecProviderVaultAuthKubernetesSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthKubernetesSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5576d3db2bcf7331d72c3646834111e13f1a9b0768bd6843887a4bfb2a37c2b7)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -28909,18 +26624,11 @@ class SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
         :schema: SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1902bb9d0d46785a88bbf171a4e8d3512c9b72ff2e89a4e8d8cdaf67c675514c)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -28981,7 +26689,7 @@ class SecretStoreSpecProviderVaultAuthLdap:
         *,
         path: builtins.str,
         username: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthLdapSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderVaultAuthLdapSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
@@ -28994,18 +26702,11 @@ class SecretStoreSpecProviderVaultAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderVaultAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                username: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthLdapSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__54daf7044cfb5a8fba7a5cc3a68df9e10b72c56cc5b8c6bb1588d528e2890dc1)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "username": username,
         }
@@ -29077,18 +26778,11 @@ class SecretStoreSpecProviderVaultAuthLdapSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthLdapSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3781d82032a4838e8854e5d94439e01ad2c1ec8dbaf02e83334a9a1204deb736)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -29161,18 +26855,11 @@ class SecretStoreSpecProviderVaultAuthTokenSecretRef:
         :schema: SecretStoreSpecProviderVaultAuthTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7e96f47c442da148ae8f99573a79d554a4379a383748a113ceb3bd9974830296)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -29252,20 +26939,12 @@ class SecretStoreSpecProviderVaultCaProvider:
         :schema: SecretStoreSpecProviderVaultCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreSpecProviderVaultCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a7694f04b7ccf70eddb5e62a956b1c20f67af5fdd544be8ab6f057460eaf8e64)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -29371,14 +27050,14 @@ class SecretStoreSpecProviderWebhook:
     def __init__(
         self,
         *,
-        result: typing.Union["SecretStoreSpecProviderWebhookResult", typing.Dict[str, typing.Any]],
+        result: typing.Union["SecretStoreSpecProviderWebhookResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderWebhookCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderWebhookCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         method: typing.Optional[builtins.str] = None,
-        secrets: typing.Optional[typing.Sequence[typing.Union["SecretStoreSpecProviderWebhookSecrets", typing.Dict[str, typing.Any]]]] = None,
+        secrets: typing.Optional[typing.Sequence[typing.Union["SecretStoreSpecProviderWebhookSecrets", typing.Dict[builtins.str, typing.Any]]]] = None,
         timeout: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Webhook configures this store to sync secrets using a generic templated webhook.
@@ -29400,20 +27079,7 @@ class SecretStoreSpecProviderWebhook:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreSpecProviderWebhookCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                result: typing.Union[SecretStoreSpecProviderWebhookResult, typing.Dict[str, typing.Any]],
-                url: builtins.str,
-                body: typing.Optional[builtins.str] = None,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderWebhookCaProvider, typing.Dict[str, typing.Any]]] = None,
-                headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                method: typing.Optional[builtins.str] = None,
-                secrets: typing.Optional[typing.Sequence[typing.Union[SecretStoreSpecProviderWebhookSecrets, typing.Dict[str, typing.Any]]]] = None,
-                timeout: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d1fafecaff262b0c905232c30dcb29512b172ba2eadfc2e0fbd39779df81871c)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
@@ -29423,7 +27089,7 @@ class SecretStoreSpecProviderWebhook:
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument secrets", value=secrets, expected_type=type_hints["secrets"])
             check_type(argname="argument timeout", value=timeout, expected_type=type_hints["timeout"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "result": result,
             "url": url,
         }
@@ -29572,20 +27238,12 @@ class SecretStoreSpecProviderWebhookCaProvider:
         :schema: SecretStoreSpecProviderWebhookCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreSpecProviderWebhookCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f39587f1eb17b18ee2e637058f85bf78cfe6380cb981390c8095b0f017c4e18e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -29671,11 +27329,9 @@ class SecretStoreSpecProviderWebhookResult:
         :schema: SecretStoreSpecProviderWebhookResult
         '''
         if __debug__:
-            def stub(*, json_path: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cafbe3e08c7de16cc8da33377789a932dd134a8b6b6e0f97dd20f9ad9855b525)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
             self._values["json_path"] = json_path
 
@@ -29710,7 +27366,7 @@ class SecretStoreSpecProviderWebhookSecrets:
         self,
         *,
         name: builtins.str,
-        secret_ref: typing.Union["SecretStoreSpecProviderWebhookSecretsSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreSpecProviderWebhookSecretsSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param name: Name of this secret in templates.
@@ -29721,16 +27377,10 @@ class SecretStoreSpecProviderWebhookSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreSpecProviderWebhookSecretsSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                secret_ref: typing.Union[SecretStoreSpecProviderWebhookSecretsSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3e93ce843f65bae96c79261461e439cfe309d889743e564fb465715ac0c23a02)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "secret_ref": secret_ref,
         }
@@ -29789,18 +27439,11 @@ class SecretStoreSpecProviderWebhookSecretsSecretRef:
         :schema: SecretStoreSpecProviderWebhookSecretsSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ea63366696c859af5d2a5362752db30665aea1a23df692b606dd25c3c877c26f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -29864,9 +27507,9 @@ class SecretStoreSpecProviderYandexlockbox:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreSpecProviderYandexlockboxAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreSpecProviderYandexlockboxAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
 
@@ -29881,18 +27524,11 @@ class SecretStoreSpecProviderYandexlockbox:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreSpecProviderYandexlockboxCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreSpecProviderYandexlockboxAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__96053fb82850a86b14c63904db9ada416f60bfc3669c2d8475be1a94daf8b13d)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -29951,7 +27587,7 @@ class SecretStoreSpecProviderYandexlockboxAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Lockbox.
 
@@ -29962,14 +27598,9 @@ class SecretStoreSpecProviderYandexlockboxAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__63938f9991ccca07eaa1b529f96cc1fd913594543c10333f42261d9982731728)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -30018,18 +27649,11 @@ class SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
         :schema: SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a751dc60535eb863895eb7c23eb9dcea4fb168088a67affab4456e33bfde401c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -30089,7 +27713,7 @@ class SecretStoreSpecProviderYandexlockboxCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -30100,14 +27724,9 @@ class SecretStoreSpecProviderYandexlockboxCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9d9055787165578835dde87a2c4abe39336ef0799f4ac41721d94cbc23f3325e)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -30156,18 +27775,11 @@ class SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
         :schema: SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__27b77f15061632174e6c2312f622d30ab57aa2a455aca37f308b86a7d9850d4e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -30238,16 +27850,10 @@ class SecretStoreSpecRetrySettings:
         :schema: SecretStoreSpecRetrySettings
         '''
         if __debug__:
-            def stub(
-                *,
-                max_retries: typing.Optional[jsii.Number] = None,
-                retry_interval: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ab1b2959f3a84685392b7376862f54f9c2af1a3c8607a0325c24aa2e5739ede8)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if max_retries is not None:
             self._values["max_retries"] = max_retries
         if retry_interval is not None:
@@ -30282,7 +27888,7 @@ class SecretStoreSpecRetrySettings:
 
 
 class SecretStoreV1Beta1(
-    cdk8s.ApiObject,
+    _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1",
 ):
@@ -30293,11 +27899,11 @@ class SecretStoreV1Beta1(
 
     def __init__(
         self,
-        scope: constructs.Construct,
+        scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines a "SecretStoreV1Beta1" API object.
 
@@ -30307,15 +27913,7 @@ class SecretStoreV1Beta1(
         :param spec: SecretStoreSpec defines the desired state of SecretStore.
         '''
         if __debug__:
-            def stub(
-                scope: constructs.Construct,
-                id: builtins.str,
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[SecretStoreV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7f3552b2035d2dc266ffbe6203fea53942c8094aacfba3f6974b214efef55f98)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = SecretStoreV1Beta1Props(metadata=metadata, spec=spec)
@@ -30327,8 +27925,8 @@ class SecretStoreV1Beta1(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
         '''Renders a Kubernetes manifest for "SecretStoreV1Beta1".
 
@@ -30348,9 +27946,9 @@ class SecretStoreV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> cdk8s.GroupVersionKind:
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "SecretStoreV1Beta1".'''
-        return typing.cast(cdk8s.GroupVersionKind, jsii.sget(cls, "GVK"))
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
@@ -30362,8 +27960,8 @@ class SecretStoreV1Beta1Props:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[str, typing.Any]]] = None,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["SecretStoreV1Beta1Spec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStore represents a secure external location for storing secrets, which can be referenced as part of ``storeRef`` fields.
 
@@ -30373,32 +27971,26 @@ class SecretStoreV1Beta1Props:
         :schema: SecretStoreV1Beta1
         '''
         if isinstance(metadata, dict):
-            metadata = cdk8s.ApiObjectMetadata(**metadata)
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if isinstance(spec, dict):
             spec = SecretStoreV1Beta1Spec(**spec)
         if __debug__:
-            def stub(
-                *,
-                metadata: typing.Optional[typing.Union[cdk8s.ApiObjectMetadata, typing.Dict[str, typing.Any]]] = None,
-                spec: typing.Optional[typing.Union[SecretStoreV1Beta1Spec, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__dfa8dbd2d0c2a721eab5f6a87539e2f56289de2b823686d13df4bbaf39467296)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
             self._values["metadata"] = metadata
         if spec is not None:
             self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional[cdk8s.ApiObjectMetadata]:
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
         '''
         :schema: SecretStoreV1Beta1#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional[cdk8s.ApiObjectMetadata], result)
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
 
     @builtins.property
     def spec(self) -> typing.Optional["SecretStoreV1Beta1Spec"]:
@@ -30436,11 +28028,11 @@ class SecretStoreV1Beta1Spec:
     def __init__(
         self,
         *,
-        provider: typing.Union["SecretStoreV1Beta1SpecProvider", typing.Dict[str, typing.Any]],
-        conditions: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecConditions", typing.Dict[str, typing.Any]]]] = None,
+        provider: typing.Union["SecretStoreV1Beta1SpecProvider", typing.Dict[builtins.str, typing.Any]],
+        conditions: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecConditions", typing.Dict[builtins.str, typing.Any]]]] = None,
         controller: typing.Optional[builtins.str] = None,
         refresh_interval: typing.Optional[jsii.Number] = None,
-        retry_settings: typing.Optional[typing.Union["SecretStoreV1Beta1SpecRetrySettings", typing.Dict[str, typing.Any]]] = None,
+        retry_settings: typing.Optional[typing.Union["SecretStoreV1Beta1SpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''SecretStoreSpec defines the desired state of SecretStore.
 
@@ -30457,22 +28049,13 @@ class SecretStoreV1Beta1Spec:
         if isinstance(retry_settings, dict):
             retry_settings = SecretStoreV1Beta1SpecRetrySettings(**retry_settings)
         if __debug__:
-            def stub(
-                *,
-                provider: typing.Union[SecretStoreV1Beta1SpecProvider, typing.Dict[str, typing.Any]],
-                conditions: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecConditions, typing.Dict[str, typing.Any]]]] = None,
-                controller: typing.Optional[builtins.str] = None,
-                refresh_interval: typing.Optional[jsii.Number] = None,
-                retry_settings: typing.Optional[typing.Union[SecretStoreV1Beta1SpecRetrySettings, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e887ced4c6bd3b61a242644b3eeab6a61e1a3f1981cea3e885f9d1548225d729)
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument conditions", value=conditions, expected_type=type_hints["conditions"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
             check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "provider": provider,
         }
         if conditions is not None:
@@ -30563,7 +28146,7 @@ class SecretStoreV1Beta1SpecConditions:
         self,
         *,
         namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
-        namespace_selector: typing.Optional[typing.Union["SecretStoreV1Beta1SpecConditionsNamespaceSelector", typing.Dict[str, typing.Any]]] = None,
+        namespace_selector: typing.Optional[typing.Union["SecretStoreV1Beta1SpecConditionsNamespaceSelector", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ClusterSecretStoreCondition describes a condition by which to choose namespaces to process ExternalSecrets in for a ClusterSecretStore instance.
 
@@ -30575,16 +28158,10 @@ class SecretStoreV1Beta1SpecConditions:
         if isinstance(namespace_selector, dict):
             namespace_selector = SecretStoreV1Beta1SpecConditionsNamespaceSelector(**namespace_selector)
         if __debug__:
-            def stub(
-                *,
-                namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace_selector: typing.Optional[typing.Union[SecretStoreV1Beta1SpecConditionsNamespaceSelector, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__781f0a3fce525ee313d188cf41c0cb440a85aa5de7791f933d055b4023d7ff2e)
             check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if namespaces is not None:
             self._values["namespaces"] = namespaces
         if namespace_selector is not None:
@@ -30634,7 +28211,7 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelector:
     def __init__(
         self,
         *,
-        match_expressions: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions", typing.Dict[str, typing.Any]]]] = None,
+        match_expressions: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions", typing.Dict[builtins.str, typing.Any]]]] = None,
         match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     ) -> None:
         '''Choose namespace using a labelSelector.
@@ -30645,16 +28222,10 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelector:
         :schema: SecretStoreV1Beta1SpecConditionsNamespaceSelector
         '''
         if __debug__:
-            def stub(
-                *,
-                match_expressions: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions, typing.Dict[str, typing.Any]]]] = None,
-                match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2044c5fddb5d84a07100f5e6505b6d7c7423848a6be1069e04b243a1af9d8134)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
             check_type(argname="argument match_labels", value=match_labels, expected_type=type_hints["match_labels"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_expressions is not None:
             self._values["match_expressions"] = match_expressions
         if match_labels is not None:
@@ -30720,18 +28291,11 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
         :schema: SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                operator: builtins.str,
-                values: typing.Optional[typing.Sequence[builtins.str]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__39b5ca4819b9b954dfdfd05453fcef64f9e52a3792efaa16ae3fa7fb24d8740a)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
             "operator": operator,
         }
@@ -30810,23 +28374,23 @@ class SecretStoreV1Beta1SpecProvider:
     def __init__(
         self,
         *,
-        akeyless: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeyless", typing.Dict[str, typing.Any]]] = None,
-        alibaba: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[str, typing.Any]]] = None,
-        aws: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAws", typing.Dict[str, typing.Any]]] = None,
-        azurekv: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[str, typing.Any]]] = None,
-        doppler: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderDoppler", typing.Dict[str, typing.Any]]] = None,
-        fake: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFake", typing.Dict[str, typing.Any]]] = None,
-        gcpsm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[str, typing.Any]]] = None,
-        gitlab: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGitlab", typing.Dict[str, typing.Any]]] = None,
-        ibm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbm", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[str, typing.Any]]] = None,
-        onepassword: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[str, typing.Any]]] = None,
-        oracle: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracle", typing.Dict[str, typing.Any]]] = None,
-        senhasegura: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[str, typing.Any]]] = None,
-        vault: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVault", typing.Dict[str, typing.Any]]] = None,
-        webhook: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderWebhook", typing.Dict[str, typing.Any]]] = None,
-        yandexcertificatemanager: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanager", typing.Dict[str, typing.Any]]] = None,
-        yandexlockbox: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockbox", typing.Dict[str, typing.Any]]] = None,
+        akeyless: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeyless", typing.Dict[builtins.str, typing.Any]]] = None,
+        alibaba: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
+        aws: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
+        azurekv: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        doppler: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderDoppler", typing.Dict[builtins.str, typing.Any]]] = None,
+        fake: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcpsm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
+        gitlab: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
+        ibm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        onepassword: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        oracle: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        senhasegura: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
+        webhook: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexcertificatemanager: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanager", typing.Dict[builtins.str, typing.Any]]] = None,
+        yandexlockbox: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Used to configure the provider.
 
@@ -30887,28 +28451,7 @@ class SecretStoreV1Beta1SpecProvider:
         if isinstance(yandexlockbox, dict):
             yandexlockbox = SecretStoreV1Beta1SpecProviderYandexlockbox(**yandexlockbox)
         if __debug__:
-            def stub(
-                *,
-                akeyless: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeyless, typing.Dict[str, typing.Any]]] = None,
-                alibaba: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[str, typing.Any]]] = None,
-                aws: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAws, typing.Dict[str, typing.Any]]] = None,
-                azurekv: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[str, typing.Any]]] = None,
-                doppler: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderDoppler, typing.Dict[str, typing.Any]]] = None,
-                fake: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFake, typing.Dict[str, typing.Any]]] = None,
-                gcpsm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[str, typing.Any]]] = None,
-                gitlab: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGitlab, typing.Dict[str, typing.Any]]] = None,
-                ibm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbm, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[str, typing.Any]]] = None,
-                onepassword: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[str, typing.Any]]] = None,
-                oracle: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracle, typing.Dict[str, typing.Any]]] = None,
-                senhasegura: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[str, typing.Any]]] = None,
-                vault: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVault, typing.Dict[str, typing.Any]]] = None,
-                webhook: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderWebhook, typing.Dict[str, typing.Any]]] = None,
-                yandexcertificatemanager: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanager, typing.Dict[str, typing.Any]]] = None,
-                yandexlockbox: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockbox, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ea7dd9e387afcb814f7b73b94bda5cdd7dfdba58759fb42c1d35129125adb364)
             check_type(argname="argument akeyless", value=akeyless, expected_type=type_hints["akeyless"])
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
@@ -30926,7 +28469,7 @@ class SecretStoreV1Beta1SpecProvider:
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexcertificatemanager", value=yandexcertificatemanager, expected_type=type_hints["yandexcertificatemanager"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if akeyless is not None:
             self._values["akeyless"] = akeyless
         if alibaba is not None:
@@ -31148,7 +28691,7 @@ class SecretStoreV1Beta1SpecProviderAkeyless:
         self,
         *,
         akeyless_gw_api_url: builtins.str,
-        auth_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef", typing.Dict[str, typing.Any]],
+        auth_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Akeyless configures this store to sync secrets using Akeyless Vault provider.
 
@@ -31160,16 +28703,10 @@ class SecretStoreV1Beta1SpecProviderAkeyless:
         if isinstance(auth_secret_ref, dict):
             auth_secret_ref = SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef(**auth_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                akeyless_gw_api_url: builtins.str,
-                auth_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bed89082ee43718091d9f91d5d7aa30aeb89d80fd22689743ea9be9a5910bf5b)
             check_type(argname="argument akeyless_gw_api_url", value=akeyless_gw_api_url, expected_type=type_hints["akeyless_gw_api_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "akeyless_gw_api_url": akeyless_gw_api_url,
             "auth_secret_ref": auth_secret_ref,
         }
@@ -31215,8 +28752,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef:
     def __init__(
         self,
         *,
-        kubernetes_auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Akeyless.
 
@@ -31230,16 +28767,10 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                kubernetes_auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__74121be233be822179e1fffc40d7f70e1bf5baac40b64c026d41ae76c44bbc9e)
             check_type(argname="argument kubernetes_auth", value=kubernetes_auth, expected_type=type_hints["kubernetes_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if kubernetes_auth is not None:
             self._values["kubernetes_auth"] = kubernetes_auth
         if secret_ref is not None:
@@ -31295,8 +28826,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
         *,
         access_id: builtins.str,
         k8_s_conf_name: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.
 
@@ -31312,20 +28843,12 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                access_id: builtins.str,
-                k8_s_conf_name: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__44b30cb7361730d5728dbfc7861be5dacffb630732bbecffb28ad09986b1158d)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument k8_s_conf_name", value=k8_s_conf_name, expected_type=type_hints["k8_s_conf_name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_id": access_id,
             "k8_s_conf_name": k8_s_conf_name,
         }
@@ -31416,18 +28939,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2a4c510b386734e858a3a16c1320574f58f9264bdd1977dead494c9ff909e85c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -31502,18 +29018,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a2972b9bdc93422fb8750e2e18bacb0b5b9bcf80476ae1c9bee4a833c9e5ab9a)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -31576,9 +29085,9 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef:
     def __init__(
         self,
         *,
-        access_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[str, typing.Any]]] = None,
-        access_type: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[str, typing.Any]]] = None,
-        access_type_param: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[str, typing.Any]]] = None,
+        access_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType", typing.Dict[builtins.str, typing.Any]]] = None,
+        access_type_param: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Reference to a Secret that contains the details to authenticate with Akeyless.
 
@@ -31595,18 +29104,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef:
         if isinstance(access_type_param, dict):
             access_type_param = SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam(**access_type_param)
         if __debug__:
-            def stub(
-                *,
-                access_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[str, typing.Any]]] = None,
-                access_type: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[str, typing.Any]]] = None,
-                access_type_param: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d95ece84921a933e967386c74f586317717bf443bedaecf37737f310f3e2270d)
             check_type(argname="argument access_id", value=access_id, expected_type=type_hints["access_id"])
             check_type(argname="argument access_type", value=access_type, expected_type=type_hints["access_type"])
             check_type(argname="argument access_type_param", value=access_type_param, expected_type=type_hints["access_type_param"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_id is not None:
             self._values["access_id"] = access_id
         if access_type is not None:
@@ -31681,18 +29183,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId:
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9f495e81081fb2ba9d62c740c6018c154847feb6578b054444bda7cf8c2e72e8)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -31765,18 +29260,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType:
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__613c40b00b05241cf57899cf71d7762d8469acdd57708faaf8c9301e21d587ad)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -31849,18 +29337,11 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__58018932fd4ec7fd73bc3ed194e6908b462e22712506f25eca23a0d659847886)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -31920,7 +29401,7 @@ class SecretStoreV1Beta1SpecProviderAlibaba:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuth", typing.Dict[builtins.str, typing.Any]],
         region_id: builtins.str,
         endpoint: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -31935,18 +29416,11 @@ class SecretStoreV1Beta1SpecProviderAlibaba:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderAlibabaAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuth, typing.Dict[str, typing.Any]],
-                region_id: builtins.str,
-                endpoint: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f96a153d300ff01c20e7fb7ab637a3c4d57d1fd8e61d2e8bb6d65f9f38d1896e)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument region_id", value=region_id, expected_type=type_hints["region_id"])
             check_type(argname="argument endpoint", value=endpoint, expected_type=type_hints["endpoint"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "region_id": region_id,
         }
@@ -32002,7 +29476,7 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuth contains a secretRef for credentials.
 
@@ -32013,14 +29487,9 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2271b3fcb686cc99d754c4b2b01c0ce3516bdcbb9b0f6136412860adeae20e97)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -32058,8 +29527,8 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]],
-        access_key_secret_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[str, typing.Any]],
+        access_key_id_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        access_key_secret_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AlibabaAuthSecretRef holds secret references for Alibaba credentials.
 
@@ -32073,16 +29542,10 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef:
         if isinstance(access_key_secret_secret_ref, dict):
             access_key_secret_secret_ref = SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef(**access_key_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]],
-                access_key_secret_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0187fad4e721a6222f70c1884497a2f1eddd6e74a1337f9aaaa4c5f758a1ac58)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument access_key_secret_secret_ref", value=access_key_secret_secret_ref, expected_type=type_hints["access_key_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "access_key_id_secret_ref": access_key_id_secret_ref,
             "access_key_secret_secret_ref": access_key_secret_secret_ref,
         }
@@ -32145,18 +29608,11 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6fa998fa7196a6f87d3e357648846c1a7d7b95b2e6022399c6040182086165b1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -32229,18 +29685,11 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e42973e9b7595404724b2fe7f3f242219216c842943642924d043a0da2113ce3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -32307,7 +29756,7 @@ class SecretStoreV1Beta1SpecProviderAws:
         *,
         region: builtins.str,
         service: "SecretStoreV1Beta1SpecProviderAwsService",
-        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AWS configures this store to sync secrets using AWS Secret Manager provider.
@@ -32322,20 +29771,12 @@ class SecretStoreV1Beta1SpecProviderAws:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderAwsAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                service: SecretStoreV1Beta1SpecProviderAwsService,
-                auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__62290ee01214cf301e7987fdab68bcb3b685aa43bf724e7dc735e5ac63111a0a)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "service": service,
         }
@@ -32403,8 +29844,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuth:
     def __init__(
         self,
         *,
-        jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
 
@@ -32418,16 +29859,10 @@ class SecretStoreV1Beta1SpecProviderAwsAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderAwsAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__00dddb0c8e37de3d9e897dfc11a386c82ccfcf7edf6a64799db1526ec6a85166)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if jwt is not None:
             self._values["jwt"] = jwt
         if secret_ref is not None:
@@ -32474,7 +29909,7 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwt:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Authenticate against AWS using service account tokens.
 
@@ -32485,14 +29920,9 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c8774a4feb5c9e404a52e2e99d1f871029c8430064a6fb0c7ca04e1c1c826f84)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -32541,18 +29971,11 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2394d475836b18dbaa6f40ecb6933020b781a95f1720db6e096a3cc03be94805)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -32614,8 +30037,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRef:
     def __init__(
         self,
         *,
-        access_key_id_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[str, typing.Any]]] = None,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        access_key_id_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.
 
@@ -32629,16 +30052,10 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                access_key_id_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[str, typing.Any]]] = None,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9b57dc85c1f30d4578476b7d7451b50a139cc6f25cb7fca4b2c86fa4f34d3b8e)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_key_id_secret_ref is not None:
             self._values["access_key_id_secret_ref"] = access_key_id_secret_ref
         if secret_access_key_secret_ref is not None:
@@ -32700,18 +30117,11 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8c1d3d92125450f26fe4347f50a5577043aaca83943223aa5b36e49c2ba807b9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -32784,18 +30194,11 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bb31e0cbd82e41937767722aae600636c68f79c57d03b3180dfc1c5e96f96b09)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -32877,11 +30280,11 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
         self,
         *,
         vault_url: builtins.str,
-        auth_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        auth_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         auth_type: typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthType"] = None,
         environment_type: typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType"] = None,
         identity_id: typing.Optional[builtins.str] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
         tenant_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
@@ -32901,18 +30304,7 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                vault_url: builtins.str,
-                auth_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                auth_type: typing.Optional[SecretStoreV1Beta1SpecProviderAzurekvAuthType] = None,
-                environment_type: typing.Optional[SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType] = None,
-                identity_id: typing.Optional[builtins.str] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-                tenant_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1102c98a03f32b51f230ee6adf278c19d54673b52c8312fe8182f941b2335ddc)
             check_type(argname="argument vault_url", value=vault_url, expected_type=type_hints["vault_url"])
             check_type(argname="argument auth_secret_ref", value=auth_secret_ref, expected_type=type_hints["auth_secret_ref"])
             check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
@@ -32920,7 +30312,7 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "vault_url": vault_url,
         }
         if auth_secret_ref is not None:
@@ -33037,8 +30429,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
-        client_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[str, typing.Any]]] = None,
-        client_secret: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[str, typing.Any]]] = None,
+        client_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_secret: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
@@ -33054,16 +30446,10 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
         if isinstance(client_secret, dict):
             client_secret = SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
         if __debug__:
-            def stub(
-                *,
-                client_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[str, typing.Any]]] = None,
-                client_secret: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0a4938b5255f3aa984783f676bc89cdd2bd990505a85f0fd72b37dbaa5f7b4ef)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
@@ -33125,18 +30511,11 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1ed9139f1201d752d0544dffe465265042c7b8a6bad36a96c27ac55fb5b4efad)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -33209,18 +30588,11 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b5781b1e7d687e6973d4e5221625c7edbeae341526205210eb53c47810c7b1c3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -33333,18 +30705,11 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
         :schema: SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c3701d52a6b4ef32f42230c1c20ac928c8800856543ae008bb3eff3348b988ed)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -33409,7 +30774,7 @@ class SecretStoreV1Beta1SpecProviderDoppler:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuth", typing.Dict[builtins.str, typing.Any]],
         config: typing.Optional[builtins.str] = None,
         format: typing.Optional["SecretStoreV1Beta1SpecProviderDopplerFormat"] = None,
         name_transformer: typing.Optional["SecretStoreV1Beta1SpecProviderDopplerNameTransformer"] = None,
@@ -33428,22 +30793,13 @@ class SecretStoreV1Beta1SpecProviderDoppler:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderDopplerAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuth, typing.Dict[str, typing.Any]],
-                config: typing.Optional[builtins.str] = None,
-                format: typing.Optional[SecretStoreV1Beta1SpecProviderDopplerFormat] = None,
-                name_transformer: typing.Optional[SecretStoreV1Beta1SpecProviderDopplerNameTransformer] = None,
-                project: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9b0a6de8fe3255ce5836d963fc77fd83dc33e4967030d8a35f633edcc4974573)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument format", value=format, expected_type=type_hints["format"])
             check_type(argname="argument name_transformer", value=name_transformer, expected_type=type_hints["name_transformer"])
             check_type(argname="argument project", value=project, expected_type=type_hints["project"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if config is not None:
@@ -33524,7 +30880,7 @@ class SecretStoreV1Beta1SpecProviderDopplerAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how the Operator authenticates with the Doppler API.
 
@@ -33535,14 +30891,9 @@ class SecretStoreV1Beta1SpecProviderDopplerAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e8841d8359ddc01188720737ada5a706c1619c22e7425a5d663b94eea33309b7)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -33576,7 +30927,7 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
     def __init__(
         self,
         *,
-        doppler_token: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken", typing.Dict[str, typing.Any]],
+        doppler_token: typing.Union["SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param doppler_token: The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
@@ -33586,14 +30937,9 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
         if isinstance(doppler_token, dict):
             doppler_token = SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken(**doppler_token)
         if __debug__:
-            def stub(
-                *,
-                doppler_token: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4731b7ff6b5f7e1c67462193a0401491586b1d1d2101fea57353fb824e4ced21)
             check_type(argname="argument doppler_token", value=doppler_token, expected_type=type_hints["doppler_token"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "doppler_token": doppler_token,
         }
 
@@ -33647,18 +30993,11 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
         :schema: SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a1fea7caeb42148ebb3eb2e91a01eb769cb2308b62b93143a35ea56f351310c4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -33758,7 +31097,7 @@ class SecretStoreV1Beta1SpecProviderFake:
     def __init__(
         self,
         *,
-        data: typing.Sequence[typing.Union["SecretStoreV1Beta1SpecProviderFakeData", typing.Dict[str, typing.Any]]],
+        data: typing.Sequence[typing.Union["SecretStoreV1Beta1SpecProviderFakeData", typing.Dict[builtins.str, typing.Any]]],
     ) -> None:
         '''Fake configures a store with static key/value pairs.
 
@@ -33767,14 +31106,9 @@ class SecretStoreV1Beta1SpecProviderFake:
         :schema: SecretStoreV1Beta1SpecProviderFake
         '''
         if __debug__:
-            def stub(
-                *,
-                data: typing.Sequence[typing.Union[SecretStoreV1Beta1SpecProviderFakeData, typing.Dict[str, typing.Any]]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d93a6c92c9c0b83f9c3884e6f384592e50aa4a8ce8673c5eb495ba612323373b)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "data": data,
         }
 
@@ -33827,20 +31161,12 @@ class SecretStoreV1Beta1SpecProviderFakeData:
         :schema: SecretStoreV1Beta1SpecProviderFakeData
         '''
         if __debug__:
-            def stub(
-                *,
-                key: builtins.str,
-                value: typing.Optional[builtins.str] = None,
-                value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                version: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__29a0c184f90e7b31b38a333f23beda06732b2fd6367a56e1d22e214b8eebaeac)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument value_map", value=value_map, expected_type=type_hints["value_map"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "key": key,
         }
         if value is not None:
@@ -33904,7 +31230,7 @@ class SecretStoreV1Beta1SpecProviderGcpsm:
     def __init__(
         self,
         *,
-        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
@@ -33917,16 +31243,10 @@ class SecretStoreV1Beta1SpecProviderGcpsm:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderGcpsmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuth, typing.Dict[str, typing.Any]]] = None,
-                project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c3ecb75384dd8f76bb3e29feed63aaf82819c4952cd30b31a059d987820d165a)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if auth is not None:
             self._values["auth"] = auth
         if project_id is not None:
@@ -33971,8 +31291,8 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
-        workload_identity: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against GCP.
 
@@ -33986,16 +31306,10 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuth:
         if isinstance(workload_identity, dict):
             workload_identity = SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-                workload_identity: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ece6b6ecf5d7444ab38286c886b12f5ae237b3e61e0410bf7a06e137cc5ddcbf)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if workload_identity is not None:
@@ -34042,7 +31356,7 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_access_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_access_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -34052,14 +31366,9 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c1368bb18127d39725cce7022c44341150fd77fd75a76890278cb64f891d90cc)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
             self._values["secret_access_key_secret_ref"] = secret_access_key_secret_ref
 
@@ -34108,18 +31417,11 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__364aa3a256ffb1db5e8aad80987b84984403cd06f707862457451651798f5d95)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -34186,7 +31488,7 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity:
         *,
         cluster_location: builtins.str,
         cluster_name: builtins.str,
-        service_account_ref: typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         cluster_project_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''
@@ -34200,20 +31502,12 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                cluster_location: builtins.str,
-                cluster_name: builtins.str,
-                service_account_ref: typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[str, typing.Any]],
-                cluster_project_id: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9b5ffa9b3599a682d44be37badcece2843f9e11c0c3af162dcd58dd5faa12281)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_project_id", value=cluster_project_id, expected_type=type_hints["cluster_project_id"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "cluster_location": cluster_location,
             "cluster_name": cluster_name,
             "service_account_ref": service_account_ref,
@@ -34293,18 +31587,11 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c85d822f9260d7b2e71fd3554e55b1fb5aafb3791ffbc13548a56267364e098e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -34368,7 +31655,7 @@ class SecretStoreV1Beta1SpecProviderGitlab:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuth", typing.Dict[builtins.str, typing.Any]],
         environment: typing.Optional[builtins.str] = None,
         project_id: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
@@ -34385,20 +31672,12 @@ class SecretStoreV1Beta1SpecProviderGitlab:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderGitlabAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuth, typing.Dict[str, typing.Any]],
-                environment: typing.Optional[builtins.str] = None,
-                project_id: typing.Optional[builtins.str] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b398588d0e2703fe1f91c36ee1116bd611797b0d35e42ae69ec6f3a660a899aa)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if environment is not None:
@@ -34470,7 +31749,7 @@ class SecretStoreV1Beta1SpecProviderGitlabAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth configures how secret-manager authenticates with a GitLab instance.
 
@@ -34481,14 +31760,9 @@ class SecretStoreV1Beta1SpecProviderGitlabAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__20deece46bd316fa7ee77d2cd3ef1138ae550b6a6852687ee249f45373fb65bb)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -34522,7 +31796,7 @@ class SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef:
     def __init__(
         self,
         *,
-        access_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[str, typing.Any]]] = None,
+        access_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param access_token: AccessToken is used for authentication.
@@ -34532,14 +31806,9 @@ class SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef:
         if isinstance(access_token, dict):
             access_token = SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken(**access_token)
         if __debug__:
-            def stub(
-                *,
-                access_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9cc2000edfcefc04ea18587adbfe7cc7cccc9ee68e326e76edb3ac39b2d4e766)
             check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if access_token is not None:
             self._values["access_token"] = access_token
 
@@ -34588,18 +31857,11 @@ class SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
         :schema: SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d5024106fecce7059ce27d090bc0293130bbb172a7cd76a1e71a78bb7c515931)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -34659,7 +31921,7 @@ class SecretStoreV1Beta1SpecProviderIbm:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderIbmAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderIbmAuth", typing.Dict[builtins.str, typing.Any]],
         service_url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''IBM configures this store to sync secrets using IBM Cloud provider.
@@ -34672,16 +31934,10 @@ class SecretStoreV1Beta1SpecProviderIbm:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderIbmAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderIbmAuth, typing.Dict[str, typing.Any]],
-                service_url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d0267097db94e6dd73fdfcea08ec320aa5df8c05909723119660daa4697d4e89)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_url", value=service_url, expected_type=type_hints["service_url"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if service_url is not None:
@@ -34727,8 +31983,8 @@ class SecretStoreV1Beta1SpecProviderIbmAuth:
     def __init__(
         self,
         *,
-        container_auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthSecretRef", typing.Dict[str, typing.Any]]] = None,
+        container_auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the IBM secrets manager.
 
@@ -34742,16 +31998,10 @@ class SecretStoreV1Beta1SpecProviderIbmAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderIbmAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                container_auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__7442a2e4e22992bf0d9ad03fd141ee4789ea32cf7e9bf2c281bf6c2de12799ff)
             check_type(argname="argument container_auth", value=container_auth, expected_type=type_hints["container_auth"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if container_auth is not None:
             self._values["container_auth"] = container_auth
         if secret_ref is not None:
@@ -34816,18 +32066,11 @@ class SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth:
         :schema: SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth
         '''
         if __debug__:
-            def stub(
-                *,
-                profile: builtins.str,
-                iam_endpoint: typing.Optional[builtins.str] = None,
-                token_location: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8eb8570d22a9232e49428aadfeff673e7c1bb95db459a128da09d18dd9a877f4)
             check_type(argname="argument profile", value=profile, expected_type=type_hints["profile"])
             check_type(argname="argument iam_endpoint", value=iam_endpoint, expected_type=type_hints["iam_endpoint"])
             check_type(argname="argument token_location", value=token_location, expected_type=type_hints["token_location"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "profile": profile,
         }
         if iam_endpoint is not None:
@@ -34883,7 +32126,7 @@ class SecretStoreV1Beta1SpecProviderIbmAuthSecretRef:
     def __init__(
         self,
         *,
-        secret_api_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_api_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param secret_api_key_secret_ref: The SecretAccessKey is used for authentication.
@@ -34893,14 +32136,9 @@ class SecretStoreV1Beta1SpecProviderIbmAuthSecretRef:
         if isinstance(secret_api_key_secret_ref, dict):
             secret_api_key_secret_ref = SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef(**secret_api_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_api_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f9228a280e6a7ce80f5fcf86b911b502c8f53a339a0ca0037fc7b01e92346ab2)
             check_type(argname="argument secret_api_key_secret_ref", value=secret_api_key_secret_ref, expected_type=type_hints["secret_api_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_api_key_secret_ref is not None:
             self._values["secret_api_key_secret_ref"] = secret_api_key_secret_ref
 
@@ -34949,18 +32187,11 @@ class SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
         :schema: SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b80417f3083dcb5866dfa1ab42fde962e8a28bdfaebc05ed9c45e28155f05db3)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -35024,9 +32255,9 @@ class SecretStoreV1Beta1SpecProviderKubernetes:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuth", typing.Dict[builtins.str, typing.Any]],
         remote_namespace: typing.Optional[builtins.str] = None,
-        server: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesServer", typing.Dict[str, typing.Any]]] = None,
+        server: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesServer", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
 
@@ -35041,18 +32272,11 @@ class SecretStoreV1Beta1SpecProviderKubernetes:
         if isinstance(server, dict):
             server = SecretStoreV1Beta1SpecProviderKubernetesServer(**server)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuth, typing.Dict[str, typing.Any]],
-                remote_namespace: typing.Optional[builtins.str] = None,
-                server: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesServer, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0eb51a2fef268ed31500d17e2a6bb9611a7ee40a9b4d213ac395b958c064a2f0)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument remote_namespace", value=remote_namespace, expected_type=type_hints["remote_namespace"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if remote_namespace is not None:
@@ -35115,9 +32339,9 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuth:
     def __init__(
         self,
         *,
-        cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCert", typing.Dict[str, typing.Any]]] = None,
-        service_account: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount", typing.Dict[str, typing.Any]]] = None,
-        token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthToken", typing.Dict[str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with a Kubernetes instance.
 
@@ -35134,18 +32358,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuth:
         if isinstance(token, dict):
             token = SecretStoreV1Beta1SpecProviderKubernetesAuthToken(**token)
         if __debug__:
-            def stub(
-                *,
-                cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCert, typing.Dict[str, typing.Any]]] = None,
-                service_account: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount, typing.Dict[str, typing.Any]]] = None,
-                token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4febf2b0eb0fdcdfa0b17099ffe8a84a5a1941668925d672dbf362202f1660e3)
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert is not None:
             self._values["cert"] = cert
         if service_account is not None:
@@ -35207,8 +32424,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        client_key: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        client_key: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''has both clientCert and clientKey as secretKeySelector.
 
@@ -35222,16 +32439,10 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCert:
         if isinstance(client_key, dict):
             client_key = SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey(**client_key)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                client_key: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__18a4079b17dfbbd744c6cdfc7ae7b0d97805f749bb4c0b3e9619dea0f53e5c7a)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument client_key", value=client_key, expected_type=type_hints["client_key"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if client_key is not None:
@@ -35293,18 +32504,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d9b3f78cc3bb7658dd3c35554318220b15eb7c942accae3ec4b352f516ebd14c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -35377,18 +32581,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__42f24331268dcb0d9cdbf6ec4b18b536c5d9105df0ca060410bcb16e7844262d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -35461,18 +32658,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__eacf4713dc2dbb9bc810892d116a1fcbcb9d0e0841869a5d07ada3bc56701208)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -35531,7 +32721,7 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthToken:
     def __init__(
         self,
         *,
-        bearer_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken", typing.Dict[str, typing.Any]]] = None,
+        bearer_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''use static token to authenticate with.
 
@@ -35542,14 +32732,9 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthToken:
         if isinstance(bearer_token, dict):
             bearer_token = SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken(**bearer_token)
         if __debug__:
-            def stub(
-                *,
-                bearer_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bec138ba036b38e5ba6a971a6c04acb29aa345aaef6e195f213ad1536637c5a0)
             check_type(argname="argument bearer_token", value=bearer_token, expected_type=type_hints["bearer_token"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if bearer_token is not None:
             self._values["bearer_token"] = bearer_token
 
@@ -35598,18 +32783,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__eb2c93bb0eef9af5c6b7d58045d71fc562b13e87a832f12bc87da48410851e8e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -35670,7 +32848,7 @@ class SecretStoreV1Beta1SpecProviderKubernetesServer:
         self,
         *,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''configures the Kubernetes server Address.
@@ -35684,18 +32862,11 @@ class SecretStoreV1Beta1SpecProviderKubernetesServer:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider, typing.Dict[str, typing.Any]]] = None,
-                url: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d679aa7557793ca3a8fd37725eb27302305e012ef0651a9008e422fc4c78bc81)
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -35773,20 +32944,12 @@ class SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider:
         :schema: SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1f682dc01ab3544124912213346c39e299a227713b49003eb2742c133629f431)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -35871,7 +33034,7 @@ class SecretStoreV1Beta1SpecProviderOnepassword:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuth", typing.Dict[builtins.str, typing.Any]],
         connect_host: builtins.str,
         vaults: typing.Mapping[builtins.str, jsii.Number],
     ) -> None:
@@ -35886,18 +33049,11 @@ class SecretStoreV1Beta1SpecProviderOnepassword:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderOnepasswordAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[str, typing.Any]],
-                connect_host: builtins.str,
-                vaults: typing.Mapping[builtins.str, jsii.Number],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__f1799d8f5d4e7fd3e38d4ffda5fbe26f701abb1ac72c72e62e17dc32d661c52f)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument connect_host", value=connect_host, expected_type=type_hints["connect_host"])
             check_type(argname="argument vaults", value=vaults, expected_type=type_hints["vaults"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "connect_host": connect_host,
             "vaults": vaults,
@@ -35954,7 +33110,7 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth defines the information necessary to authenticate against OnePassword Connect Server.
 
@@ -35965,14 +33121,9 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c9f3cb1f01e83febb00d40ac37067b4cc2c02b4e11d32c06354ac23c9793b112)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
         }
 
@@ -36007,7 +33158,7 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef:
     def __init__(
         self,
         *,
-        connect_token_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef", typing.Dict[str, typing.Any]],
+        connect_token_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''OnePasswordAuthSecretRef holds secret references for 1Password credentials.
 
@@ -36018,14 +33169,9 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef:
         if isinstance(connect_token_secret_ref, dict):
             connect_token_secret_ref = SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef(**connect_token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                connect_token_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__0e8a9e24241a42ff9102923f86463f8b2434e409b96b1c3372c47f7d6ee914a5)
             check_type(argname="argument connect_token_secret_ref", value=connect_token_secret_ref, expected_type=type_hints["connect_token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "connect_token_secret_ref": connect_token_secret_ref,
         }
 
@@ -36075,18 +33221,11 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRe
         :schema: SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e920371298eef9ef64fd417d1fe1a190eecd25d510ddfae09033af8d91ea611e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -36148,7 +33287,7 @@ class SecretStoreV1Beta1SpecProviderOracle:
         *,
         region: builtins.str,
         vault: builtins.str,
-        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[str, typing.Any]]] = None,
+        auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
@@ -36161,18 +33300,11 @@ class SecretStoreV1Beta1SpecProviderOracle:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderOracleAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                region: builtins.str,
-                vault: builtins.str,
-                auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__64a73f7d94141f654d20eea2b114031d06b98e3f17f51f9796818f7873200e73)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
@@ -36231,7 +33363,7 @@ class SecretStoreV1Beta1SpecProviderOracleAuth:
     def __init__(
         self,
         *,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
         tenancy: builtins.str,
         user: builtins.str,
     ) -> None:
@@ -36248,18 +33380,11 @@ class SecretStoreV1Beta1SpecProviderOracleAuth:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderOracleAuthSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRef, typing.Dict[str, typing.Any]],
-                tenancy: builtins.str,
-                user: builtins.str,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__40b8eeb85088c31aca7e5df4dc593a08848c08806890a3d02fa7948995f3437c)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument tenancy", value=tenancy, expected_type=type_hints["tenancy"])
             check_type(argname="argument user", value=user, expected_type=type_hints["user"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
             "tenancy": tenancy,
             "user": user,
@@ -36316,8 +33441,8 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRef:
     def __init__(
         self,
         *,
-        fingerprint: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint", typing.Dict[str, typing.Any]],
-        privatekey: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[str, typing.Any]],
+        fingerprint: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint", typing.Dict[builtins.str, typing.Any]],
+        privatekey: typing.Union["SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''SecretRef to pass through sensitive information.
 
@@ -36331,16 +33456,10 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRef:
         if isinstance(privatekey, dict):
             privatekey = SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey(**privatekey)
         if __debug__:
-            def stub(
-                *,
-                fingerprint: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint, typing.Dict[str, typing.Any]],
-                privatekey: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__01ef1bc632be3346170362a1c030bf5ed1f64b4233140ff0036f5a882b11c524)
             check_type(argname="argument fingerprint", value=fingerprint, expected_type=type_hints["fingerprint"])
             check_type(argname="argument privatekey", value=privatekey, expected_type=type_hints["privatekey"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "fingerprint": fingerprint,
             "privatekey": privatekey,
         }
@@ -36403,18 +33522,11 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2e820022cd3ecbb7e3073fe7f41bda9fb729f513cd9da4945a925a300cc26d1b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -36487,18 +33599,11 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3d4cbeb2d65fda2f0f86577a2ee9cf1784799a03e0ec4de73ae3d4116a51b7c1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -36563,7 +33668,7 @@ class SecretStoreV1Beta1SpecProviderSenhasegura:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderSenhaseguraAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderSenhaseguraAuth", typing.Dict[builtins.str, typing.Any]],
         module: builtins.str,
         url: builtins.str,
         ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
@@ -36580,20 +33685,12 @@ class SecretStoreV1Beta1SpecProviderSenhasegura:
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderSenhaseguraAuth(**auth)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderSenhaseguraAuth, typing.Dict[str, typing.Any]],
-                module: builtins.str,
-                url: builtins.str,
-                ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__78623254f8b4480d65a04e698f672f51438d8f6ad30f23ac1407edfaba7874bf)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument module", value=module, expected_type=type_hints["module"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument ignore_ssl_certificate", value=ignore_ssl_certificate, expected_type=type_hints["ignore_ssl_certificate"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "module": module,
             "url": url,
@@ -36665,7 +33762,7 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuth:
         self,
         *,
         client_id: builtins.str,
-        client_secret_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef", typing.Dict[str, typing.Any]],
+        client_secret_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''Auth defines parameters to authenticate in senhasegura.
 
@@ -36677,16 +33774,10 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuth:
         if isinstance(client_secret_secret_ref, dict):
             client_secret_secret_ref = SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef(**client_secret_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_id: builtins.str,
-                client_secret_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2b2808e6be5de7fcbdf0e82d2a489f69451abfdc33dc24f27bda74709537de26)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret_secret_ref", value=client_secret_secret_ref, expected_type=type_hints["client_secret_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "client_id": client_id,
             "client_secret_secret_ref": client_secret_secret_ref,
         }
@@ -36746,18 +33837,11 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bea4e571f5932fe123738bee25182a721382ee4f520f5c5424bdf47102fc5952)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -36827,10 +33911,10 @@ class SecretStoreV1Beta1SpecProviderVault:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
@@ -36856,20 +33940,7 @@ class SecretStoreV1Beta1SpecProviderVault:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderVaultCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuth, typing.Dict[str, typing.Any]],
-                server: builtins.str,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultCaProvider, typing.Dict[str, typing.Any]]] = None,
-                forward_inconsistent: typing.Optional[builtins.bool] = None,
-                namespace: typing.Optional[builtins.str] = None,
-                path: typing.Optional[builtins.str] = None,
-                read_your_writes: typing.Optional[builtins.bool] = None,
-                version: typing.Optional[SecretStoreV1Beta1SpecProviderVaultVersion] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__9fc4023c465f1be1a5c234fc3840fd441fe986a5b257d0ae414a562c34af5757)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -36879,7 +33950,7 @@ class SecretStoreV1Beta1SpecProviderVault:
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "server": server,
         }
@@ -37021,12 +34092,12 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
     def __init__(
         self,
         *,
-        app_role: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthAppRole", typing.Dict[str, typing.Any]]] = None,
-        cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCert", typing.Dict[str, typing.Any]]] = None,
-        jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[str, typing.Any]]] = None,
-        kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[str, typing.Any]]] = None,
-        ldap: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[str, typing.Any]]] = None,
-        token_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[str, typing.Any]]] = None,
+        app_role: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        ldap: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        token_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -37052,24 +34123,14 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         if isinstance(token_secret_ref, dict):
             token_secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                app_role: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthAppRole, typing.Dict[str, typing.Any]]] = None,
-                cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCert, typing.Dict[str, typing.Any]]] = None,
-                jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[str, typing.Any]]] = None,
-                kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[str, typing.Any]]] = None,
-                ldap: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[str, typing.Any]]] = None,
-                token_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__400104a61eab9ca884187e2efbafa3aa344cc85d8fcba6bbf7136fc0639c2284)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
         if cert is not None:
@@ -37166,7 +34227,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRole:
         *,
         path: builtins.str,
         role_id: builtins.str,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.
 
@@ -37179,18 +34240,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRole:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                role_id: builtins.str,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__2612fd31ff239b5943a7df02b5760bc325d209684ea6b63f06098ab23d9a896b)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "role_id": role_id,
             "secret_ref": secret_ref,
@@ -37264,18 +34318,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__3eedd159a87fe07e72cce871971add22df1a8d80a195cfeacb05a624140b9884)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -37335,8 +34382,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCert:
     def __init__(
         self,
         *,
-        client_cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert", typing.Dict[str, typing.Any]]] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        client_cert: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
@@ -37350,16 +34397,10 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                client_cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert, typing.Dict[str, typing.Any]]] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__a2b41d62225e08c00b6e892d8bf36e67169f93c0a408c744fe8a1d0619927eaf)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
         if secret_ref is not None:
@@ -37421,18 +34462,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__81b9aa8a124bab828cff9a54e645168f18bd4cb1346e28b31c135ec26d61be17)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -37505,18 +34539,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__657764136effba05124a02f44146e137354371a76c2326fe46f2a98a9578d15c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -37582,9 +34609,9 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwt:
         self,
         *,
         path: builtins.str,
-        kubernetes_service_account_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[str, typing.Any]]] = None,
+        kubernetes_service_account_token: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken", typing.Dict[builtins.str, typing.Any]]] = None,
         role: typing.Optional[builtins.str] = None,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
 
@@ -37600,20 +34627,12 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                kubernetes_service_account_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[str, typing.Any]]] = None,
-                role: typing.Optional[builtins.str] = None,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6d12691f0946a3be88b3813dd9e0f8618296ec3e293c8acdabef8eacd866a2c0)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
         }
         if kubernetes_service_account_token is not None:
@@ -37689,7 +34708,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken:
     def __init__(
         self,
         *,
-        service_account_ref: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[str, typing.Any]],
+        service_account_ref: typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
         audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
         expiration_seconds: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -37704,18 +34723,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                service_account_ref: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[str, typing.Any]],
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                expiration_seconds: typing.Optional[jsii.Number] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__c244c831d1b55ba6714b2abfe1ec15f86e2d2e02854d87e4b37e4b5fa8cf5aac)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "service_account_ref": service_account_ref,
         }
         if audiences is not None:
@@ -37795,18 +34807,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__581d82abfc24873710a507cda618c0e4e6ae222d91b35a395a9b26c7d8017c4f)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -37878,18 +34883,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__4ef4ba406e97456fd40e81e83a1b292cf26640faa7de7c46bc8d554c0d636659)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -37956,8 +34954,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
         *,
         mount_path: builtins.str,
         role: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef", typing.Dict[str, typing.Any]]] = None,
-        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
 
@@ -37973,20 +34971,12 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            def stub(
-                *,
-                mount_path: builtins.str,
-                role: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef, typing.Dict[str, typing.Any]]] = None,
-                service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__1336a204e0559ec7dfb15e3a1be1add384c119b846b080cc482c4ca2dbc0f301)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "mount_path": mount_path,
             "role": role,
         }
@@ -38079,18 +35069,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6f9c90383fbc90b9ffe85575c9a5dab35b486f50b27d31d5d2c4c44954cc18ad)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -38165,18 +35148,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__22b5d8d69b247e7e694dbd8a0366bd7c5c79be42ffba34090f076bba7dfc8150)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
         }
         if audiences is not None:
@@ -38237,7 +35213,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthLdap:
         *,
         path: builtins.str,
         username: builtins.str,
-        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef", typing.Dict[str, typing.Any]]] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
@@ -38250,18 +35226,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                path: builtins.str,
-                username: builtins.str,
-                secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__e2b90e477cfebcc2b16c4c2fcce1ab775265e753d97d71cc18bf29c5cde3a9c9)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "path": path,
             "username": username,
         }
@@ -38333,18 +35302,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__b3e2b5ca54356668b28b28010a671ca9c9051d330ec2474db708d50ec1cafc20)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -38417,18 +35379,11 @@ class SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d517595b96eeeec71f466e5bfb29bd6b5c39213c8c5e12d513ed5717a5e79f6c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -38508,20 +35463,12 @@ class SecretStoreV1Beta1SpecProviderVaultCaProvider:
         :schema: SecretStoreV1Beta1SpecProviderVaultCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreV1Beta1SpecProviderVaultCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__32dea37cf93e2ea75f29adf17d3938b2218a712b370866878b2757313182fb2d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -38631,14 +35578,14 @@ class SecretStoreV1Beta1SpecProviderWebhook:
     def __init__(
         self,
         *,
-        result: typing.Union["SecretStoreV1Beta1SpecProviderWebhookResult", typing.Dict[str, typing.Any]],
+        result: typing.Union["SecretStoreV1Beta1SpecProviderWebhookResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderWebhookCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderWebhookCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         method: typing.Optional[builtins.str] = None,
-        secrets: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecProviderWebhookSecrets", typing.Dict[str, typing.Any]]]] = None,
+        secrets: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecProviderWebhookSecrets", typing.Dict[builtins.str, typing.Any]]]] = None,
         timeout: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Webhook configures this store to sync secrets using a generic templated webhook.
@@ -38660,20 +35607,7 @@ class SecretStoreV1Beta1SpecProviderWebhook:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderWebhookCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                result: typing.Union[SecretStoreV1Beta1SpecProviderWebhookResult, typing.Dict[str, typing.Any]],
-                url: builtins.str,
-                body: typing.Optional[builtins.str] = None,
-                ca_bundle: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderWebhookCaProvider, typing.Dict[str, typing.Any]]] = None,
-                headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-                method: typing.Optional[builtins.str] = None,
-                secrets: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecProviderWebhookSecrets, typing.Dict[str, typing.Any]]]] = None,
-                timeout: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cf5abb92c60012a2736376d90e7ef4e3c9cd3bcf7cf74f99e2df1cd1a13680c0)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
@@ -38683,7 +35617,7 @@ class SecretStoreV1Beta1SpecProviderWebhook:
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument secrets", value=secrets, expected_type=type_hints["secrets"])
             check_type(argname="argument timeout", value=timeout, expected_type=type_hints["timeout"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "result": result,
             "url": url,
         }
@@ -38832,20 +35766,12 @@ class SecretStoreV1Beta1SpecProviderWebhookCaProvider:
         :schema: SecretStoreV1Beta1SpecProviderWebhookCaProvider
         '''
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                type: SecretStoreV1Beta1SpecProviderWebhookCaProviderType,
-                key: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__5fce432ce0e2eae6e5a8f1412837e18641603a6e8b15d4aec34e332993b5462d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "type": type,
         }
@@ -38933,11 +35859,9 @@ class SecretStoreV1Beta1SpecProviderWebhookResult:
         :schema: SecretStoreV1Beta1SpecProviderWebhookResult
         '''
         if __debug__:
-            def stub(*, json_path: typing.Optional[builtins.str] = None) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__58b32e121616882afc75d18b197bdf2ce88622a99c612074a8bd3b067ca6b802)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
             self._values["json_path"] = json_path
 
@@ -38972,7 +35896,7 @@ class SecretStoreV1Beta1SpecProviderWebhookSecrets:
         self,
         *,
         name: builtins.str,
-        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef", typing.Dict[str, typing.Any]],
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef", typing.Dict[builtins.str, typing.Any]],
     ) -> None:
         '''
         :param name: Name of this secret in templates.
@@ -38983,16 +35907,10 @@ class SecretStoreV1Beta1SpecProviderWebhookSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef(**secret_ref)
         if __debug__:
-            def stub(
-                *,
-                name: builtins.str,
-                secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef, typing.Dict[str, typing.Any]],
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__778a8f2be6f5511228d406820684a94d08bd1a9b6159ffdc456566fb25eb337c)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "secret_ref": secret_ref,
         }
@@ -39051,18 +35969,11 @@ class SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d7dca2ad9349a9d2fe7a5896781f6b52ecbf67e082b9d411ea3413a41b00a7e2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -39126,9 +36037,9 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanager:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexCertificateManager configures this store to sync secrets using Yandex Certificate Manager provider.
 
@@ -39143,18 +36054,11 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanager:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__08d808c8d7f62d085e205bb96b9a022d41d531ac28d062038109210ab5c79576)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -39213,7 +36117,7 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Certificate Manager.
 
@@ -39224,14 +36128,9 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__ddd2993bc954fd084ce9e84b9bbea1a36c9f386d6fe8911f4f2f6fd2d5960b5c)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -39280,18 +36179,11 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySec
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__cfe09b0333f706d3c8197ef3f83ef7d4cc18d05556e2702e2179d843c118df6d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -39351,7 +36243,7 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -39362,14 +36254,9 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d449498ebeb1647186fb96828f0f757a8d444078c80997ab79f408890f18fb19)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -39418,18 +36305,11 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecret
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__58a3bafa9427d99fbe6f7e616a670af9a996c35120dd0ab4a536cff4eb503180)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -39493,9 +36373,9 @@ class SecretStoreV1Beta1SpecProviderYandexlockbox:
     def __init__(
         self,
         *,
-        auth: typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxAuth", typing.Dict[str, typing.Any]],
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxAuth", typing.Dict[builtins.str, typing.Any]],
         api_endpoint: typing.Optional[builtins.str] = None,
-        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider", typing.Dict[str, typing.Any]]] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
 
@@ -39510,18 +36390,11 @@ class SecretStoreV1Beta1SpecProviderYandexlockbox:
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider(**ca_provider)
         if __debug__:
-            def stub(
-                *,
-                auth: typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxAuth, typing.Dict[str, typing.Any]],
-                api_endpoint: typing.Optional[builtins.str] = None,
-                ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__bf99b289f0ca917180063a71bc7afdafa9ac3bbfc28ac2c699675e6901606a6d)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument api_endpoint", value=api_endpoint, expected_type=type_hints["api_endpoint"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
-        self._values: typing.Dict[str, typing.Any] = {
+        self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
         }
         if api_endpoint is not None:
@@ -39580,7 +36453,7 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxAuth:
     def __init__(
         self,
         *,
-        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[str, typing.Any]]] = None,
+        authorized_key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines the information necessary to authenticate against Yandex Lockbox.
 
@@ -39591,14 +36464,9 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxAuth:
         if isinstance(authorized_key_secret_ref, dict):
             authorized_key_secret_ref = SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef(**authorized_key_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__320475850982319810875521d97ba7cfe93494d4e6f6a9a7089951c51615ec74)
             check_type(argname="argument authorized_key_secret_ref", value=authorized_key_secret_ref, expected_type=type_hints["authorized_key_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if authorized_key_secret_ref is not None:
             self._values["authorized_key_secret_ref"] = authorized_key_secret_ref
 
@@ -39647,18 +36515,11 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__46b50c4851b420ec30ee452030b4a8396b34001ade1064d279f4751c9ee31d43)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -39718,7 +36579,7 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider:
     def __init__(
         self,
         *,
-        cert_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[str, typing.Any]]] = None,
+        cert_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''The provider for the CA bundle to use to validate Yandex.Cloud server certificate.
 
@@ -39729,14 +36590,9 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider:
         if isinstance(cert_secret_ref, dict):
             cert_secret_ref = SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef(**cert_secret_ref)
         if __debug__:
-            def stub(
-                *,
-                cert_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[str, typing.Any]]] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__d16120f78f7e83f30028a83b52f165e3bf6cc402c2caf7b6507c86dc972c9a6b)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cert_secret_ref is not None:
             self._values["cert_secret_ref"] = cert_secret_ref
 
@@ -39785,18 +36641,11 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef
         '''
         if __debug__:
-            def stub(
-                *,
-                key: typing.Optional[builtins.str] = None,
-                name: typing.Optional[builtins.str] = None,
-                namespace: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__8756909219ad777e25fd1653205d832b6153e484056da252932b6eceb6f5fe7b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if key is not None:
             self._values["key"] = key
         if name is not None:
@@ -39867,16 +36716,10 @@ class SecretStoreV1Beta1SpecRetrySettings:
         :schema: SecretStoreV1Beta1SpecRetrySettings
         '''
         if __debug__:
-            def stub(
-                *,
-                max_retries: typing.Optional[jsii.Number] = None,
-                retry_interval: typing.Optional[builtins.str] = None,
-            ) -> None:
-                ...
-            type_hints = typing.get_type_hints(stub)
+            type_hints = typing.get_type_hints(_typecheckingstub__6ad5b45d0afd8807d66e967985db427563f25d7a6fb6ec3e2329dbe8187b09b1)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
-        self._values: typing.Dict[str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
         if max_retries is not None:
             self._values["max_retries"] = max_retries
         if retry_interval is not None:
@@ -40408,3 +37251,4124 @@ __all__ = [
 ]
 
 publication.publish()
+
+def _typecheckingstub__94e60b949b245b48a41fb74f8b3d1eb0f99bd46fa142d6bbb376323f6a4b972a(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterExternalSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f74e2ba2ccb6cd4ff807d66b5a3c6750a98bf9aadca80dd11e5f2ce993d61ce5(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterExternalSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8ef14ba98eb89c9ca89bac0d3d6a848b1d08606ee897d4645723837a3a0c8363(
+    *,
+    external_secret_spec: typing.Union[ClusterExternalSecretSpecExternalSecretSpec, typing.Dict[builtins.str, typing.Any]],
+    namespace_selector: typing.Union[ClusterExternalSecretSpecNamespaceSelector, typing.Dict[builtins.str, typing.Any]],
+    external_secret_name: typing.Optional[builtins.str] = None,
+    refresh_time: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e3cb3046c16e6500023803a31ec0aefdedf2075416c3070aa91ce798a65a14b2(
+    *,
+    secret_store_ref: typing.Union[ClusterExternalSecretSpecExternalSecretSpecSecretStoreRef, typing.Dict[builtins.str, typing.Any]],
+    data: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecData, typing.Dict[builtins.str, typing.Any]]]] = None,
+    data_from: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    refresh_interval: typing.Optional[builtins.str] = None,
+    target: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTarget, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__698893d044926c5b5ba8069507216c8ba018dab3a976050e982d04ab806c4f9c(
+    *,
+    remote_ref: typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef, typing.Dict[builtins.str, typing.Any]],
+    secret_key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ab42e9c8e44193a216bc48255b69844a18cb95933d526955a5d60b90a2fe67fa(
+    *,
+    extract: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromExtract, typing.Dict[builtins.str, typing.Any]]] = None,
+    find: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromFind, typing.Dict[builtins.str, typing.Any]]] = None,
+    rewrite: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4e03ff5f59a1789f7214696b1cee4651df4495261ab18a2629aa1a0b877896e6(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    metadata_policy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__92077ca7c2f4d118e3eed11ddd89115353a2bba1dbb58f94f8e98f0407ce8371(
+    *,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    name: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromFindName, typing.Dict[builtins.str, typing.Any]]] = None,
+    path: typing.Optional[builtins.str] = None,
+    tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5968a6b40dcf2aead8c61044c5dee50fa9d4651e3d45dc7f12383fe7760e25ac(
+    *,
+    regexp: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f601bc7c910f4395527a2edbe9ff719509d7d8808af893ad08740c049a2c5b76(
+    *,
+    regexp: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5b713d8124b2c817097f753f8dc9f6051b182ef78b70ea61bbbb37b1e8c58d59(
+    *,
+    source: builtins.str,
+    target: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e6f3244609ebbc535f95a19792829d629cfcad19ee4566882417287402c07f3f(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    metadata_policy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bbbc20c608aad33b8e32e75a11fc646a7ee61bc1d1f2e94de5bf32865235fd04(
+    *,
+    name: builtins.str,
+    kind: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d7d283c53e5807e3a14479debfe5a62ad7d33bbe1884db78b4005c97d7f9e572(
+    *,
+    creation_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetCreationPolicy] = None,
+    deletion_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetDeletionPolicy] = None,
+    immutable: typing.Optional[builtins.bool] = None,
+    name: typing.Optional[builtins.str] = None,
+    template: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e17311f817cc6c3870009753fdfc8659a03aed047d52e1c28f68c66c22f4326d(
+    *,
+    data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    engine_version: typing.Optional[builtins.str] = None,
+    metadata: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    template_from: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    type: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e700cd106840de6b6b862611a9af63e0d1be6bba0dd554c7aed6acca92d19244(
+    *,
+    annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6afaa4c609906e7626220c4fddf4bc3a8fcc807598ec8beb344f6b9de0f6269b(
+    *,
+    config_map: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e735e4983134a60d5944c221483b47abb6e945d1e4363c5bd39324ef1f6d902e(
+    *,
+    items: typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4cea9f6b57f176e25de456cef3b2ecab038f70307e22ed475c43feffc210d187(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__57da7f59eff3d4d95d8055111305c41a7897499965ce955542ca053061957d87(
+    *,
+    items: typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__679753049e28b5f77ae12540862ccff4cbfe346de1a2af57688741fa5517fdcf(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e67e15ae7413ec89e9e1b028ba41fd1a6808fa4799949e1144033db1bce9375f(
+    *,
+    match_expressions: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecNamespaceSelectorMatchExpressions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__29a0c54f3edfd70da195fb2028a37b74ef6137c8c5c102801f6e46ea8544e824(
+    *,
+    key: builtins.str,
+    operator: builtins.str,
+    values: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8dd63b4b951d1c0f1810393f2ea2739eb3c8df2dbba5c1c17c9369fa23105354(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterSecretStoreSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e52cd74f3e3dc5a6f5e0e0439c1ee7ea1bd2ae23d61a00f1d7d48f492e9adc87(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterSecretStoreSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__57b6b1dbca3a9f2481bd32974c96162d85bfa5e7fd9e1324c70c72f4c047323e(
+    *,
+    provider: typing.Union[ClusterSecretStoreSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    controller: typing.Optional[builtins.str] = None,
+    retry_settings: typing.Optional[typing.Union[ClusterSecretStoreSpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b577f0ccbbef07f08ad1ab52f92fc2ed139f3591354a8294c647ea76a6470491(
+    *,
+    akeyless: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeyless, typing.Dict[builtins.str, typing.Any]]] = None,
+    alibaba: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
+    aws: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
+    azurekv: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    fake: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcpsm: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
+    gitlab: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
+    ibm: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    oracle: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
+    webhook: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexlockbox: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eb1f3b613f8eb456b5c2efddbc3a0dcaaa7290a58a21df5ba0e0ad6d189c7245(
+    *,
+    akeyless_gw_api_url: builtins.str,
+    auth_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a1add6ad905d4b2103c32761e6970d8d214a73ed5201b1a98c08d00a43c853f7(
+    *,
+    kubernetes_auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__09e802798f87b8377e20a5baa142f3095f97079a62d35b23ac9b89263cbfac51(
+    *,
+    access_id: builtins.str,
+    k8_s_conf_name: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fe2322d9ce4d70c2c6498168db62dc60ec37d6d55fbdb7b4595d224eadbb7f4d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4c89202b1ec979b714ae00fcaa502eaf9b609424705834f082bf349b7f789d59(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__035cb6945bc194f917abd47ca70a68244da344a68f14f7f033c3b028e0dee454(
+    *,
+    access_id: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type_param: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a938d7a10afd24ef476da4a5595b2a159a6ff353311720640d3183cab2237e9b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__762aa62305da5c5cd7def193e14a6fa135c8f017f035428cf738add22df97bc8(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2dcf00eb7f5ff015d34783bafe7aaa9f134a7caabbca3827419d5ae0205adbc9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a5ff624b83768ab7e3f6981bd9dbaf0c920598597111dc90a49f4e43af854503(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuth, typing.Dict[builtins.str, typing.Any]],
+    region_id: builtins.str,
+    endpoint: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a3e71811aee1daf711f7bac2275e4c3a683aa7203798d77f39b0ef34d5bd4d8f(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__91e926199bf20fc1a102ce65ad3b639e0398edcf53243008995020f063edf9ab(
+    *,
+    access_key_id_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    access_key_secret_secret_ref: typing.Union[ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__577c863fea491e359b51abf5fe73e1d4acc1c81ea7401361e1c6cd8c07c011ee(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__48b18145fd0d8fe181e65bd8874d2e03b8e44f3a00137400c5dc630d92c474bb(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0b890d76e5f0d682e477d7b20c0020358b39d98bd01a9432e52c7c4a8ac616f0(
+    *,
+    region: builtins.str,
+    service: ClusterSecretStoreSpecProviderAwsService,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a6dd72e093e44f4d176c7ac71615a880705b99b630555e7ce1e4ea69742c5efb(
+    *,
+    jwt: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e7d772d91778f286ba674c40734f79974636800252dcb80ba3aedb4417ec64cb(
+    *,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__de10cf2ddb938d6fc92b26c35d489e4b0afd1f528224b33c4acedc8f7b7c55d4(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__382d054259503c641b10cacac05db506fe361c058f5e49c99de7f0f9505e7137(
+    *,
+    access_key_id_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6651cda229033cd18398fe288cd6b6e8a7837eb3b8dcacc21b46f1303f7ab9fb(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__14d2105b0a56fd40c4ef74beca49699465299985a43951d9b6c98760df53d36d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c241f0bdca3970aef7e1768427fdaa91976bc172e6a9adf9266bf73940958d82(
+    *,
+    vault_url: builtins.str,
+    auth_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[ClusterSecretStoreSpecProviderAzurekvAuthType] = None,
+    identity_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__50107c061e058c695ef89a240623f5c9f9c8bdec05e3550652703edc1613a9d6(
+    *,
+    client_id: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_secret: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__07b0ecddeaed41a84aa2643dd718d462b1146ec6772530b4f5c3c47e1b733cf5(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__68559f3a5d6b2b8a93dcb32624f88b8d3a6cfd24de8ffe4e2e190efd3965eba4(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6f9bc3908e702dbfc1f5487ab0c0ab8d9ac9fbe77dc944911fa425330ed9bf8c(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f2d1b2afe891f49350ca0f79d38693b672edb585eb22bca05a5a2a9cc67c77a0(
+    *,
+    data: typing.Sequence[typing.Union[ClusterSecretStoreSpecProviderFakeData, typing.Dict[builtins.str, typing.Any]]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__06c3a06c0205d70bc5e04befc5fa15e0d81efb1d139829a1b10122852ccddee3(
+    *,
+    key: builtins.str,
+    value: typing.Optional[builtins.str] = None,
+    value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fc3cec52aba3dbdf7d2c68d2cdddb38491fbe4a67b6aa1610ba59832fa6a4e41(
+    *,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d2178385ff92d231b452c07f1848576db93a846b578537d723ad23942c8b8f59(
+    *,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8b68c9d3be6662c6d5127a4f57c77b4fa8ec1231c6761283310dd0437fa26405(
+    *,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1ae3e18a30bbb404e9e981c4110af8ad2c78dced856b1094667d4d8757f4bea3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__998b6e77f1f37298ed0da77f6068e5d0e918cf71ed7b2bfdbcba34ba026e718a(
+    *,
+    cluster_location: builtins.str,
+    cluster_name: builtins.str,
+    service_account_ref: typing.Union[ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    cluster_project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__99dacaa9d9ab0fbbdd69de40485d6ea7f5b6f30154d2c2f17a52d025fcda16dc(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cd6c28ce03a61453b779c63be95c17f14c569df7b7901767be17f3b916f7b7b9(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderGitlabAuth, typing.Dict[builtins.str, typing.Any]],
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d971866ec4831049f0c5995bf4f89457244b6a35dbd74909afa8f7d95a5fc3b6(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderGitlabAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__adda72bd6677360eef05f5b60cec8e46b4703afb4f11ce2fe2c17d0af65b64f9(
+    *,
+    access_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__511067b3b8641da6fae0b888268797929d1d7d4597ddb24ebbdc23c763a8daf5(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__568b57667a8f87d52e74f6c92542b41178d303a303d0f63f1ad0201e4e4f6e85(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderIbmAuth, typing.Dict[builtins.str, typing.Any]],
+    service_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b8ba31df5a3dec6ffb4e43109f3b738a61dd208cf1d49917f4a5d9e2ed7016ba(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderIbmAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d26bdf357d63f5060f85dd85dfff97aea5186ba28331fba88305c92f7bf2bee(
+    *,
+    secret_api_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6f2338fd96004be09c4ba23dde6c13751a616732acd950c786cd2d83bf1b80e0(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0a875c33cb733cde737d2ea40684faf938dd9c5fcfe7ad0f13f5323f4fc03599(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderKubernetesAuth, typing.Dict[builtins.str, typing.Any]],
+    remote_namespace: typing.Optional[builtins.str] = None,
+    server: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesServer, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2e4a87865577536425d7db2b507a944df25c5643ebce9d8f972d9d17bf404d2a(
+    *,
+    cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cc095c5099a968982782878a596ee1c32a31cf4bdb1595995f7aa2fd8ff43b5b(
+    *,
+    client_cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_key: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__503bdfbb632686635165459120fcc39e2961fcc53fedf28a69b21f187ec6435c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f49b9d81a293f0e46cea1637a6e7534771c88694becfeb4b3af69ee54782ec9c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ebcfbd9e4143ba94379ca90a47ef3b5d8e1544a99ce7a639bbd61a7e7c6b4666(
+    *,
+    service_account: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__be61c3feb305ef226f10dab3e8225b282e360f0182870360ffdbca079919d353(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1ba41a3478e9d8ac767c1a13cc7dd298a12d94292b029f7fa8368b3d3e44096b(
+    *,
+    bearer_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__df798fd077691a5778cc00f1de4848673a52dac5d0d5ebe0d03af6720cbc95d2(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__29f1d40a83933b0205abc121837f1b6a50b2409b7fb1e5f58dade818e3e3a609(
+    *,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetesServerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__df516d591cd72e3ccea6b112524dbfa0323479fb2ee403ab24a5bbaddb4efd8c(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreSpecProviderKubernetesServerCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d51df236a603c6f74a911105acff1a4f51f5d893faa22fc50dae2e587588ebc8(
+    *,
+    region: builtins.str,
+    vault: builtins.str,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8747f797eb13c03383ce6b0134915d891783a8be5d68b6ee24b3c6cb9fbd4985(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+    tenancy: builtins.str,
+    user: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2c97225be105acf4e293cecfb2d1feaa37ea94578c86cdf4d2e336b439a2559a(
+    *,
+    fingerprint: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint, typing.Dict[builtins.str, typing.Any]],
+    privatekey: typing.Union[ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c531d2ca3bee95d25c32bb91772fb25d1b2643838ab4bc843e512cb39e63bb61(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f4eb6469dd176c588e8c4a9bd39111e7f84482a99f9af9e62ed077924beaf37f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ef68b3d001dc894733c01b794ca1a457786564b75fec9c23ebf82feb51a68d1c(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
+    server: builtins.str,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    forward_inconsistent: typing.Optional[builtins.bool] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    path: typing.Optional[builtins.str] = None,
+    read_your_writes: typing.Optional[builtins.bool] = None,
+    version: typing.Optional[ClusterSecretStoreSpecProviderVaultVersion] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__edca367d70e999e0f4d8dd93f60480965022b2731a2804bfea499b897354fe2e(
+    *,
+    app_role: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    ldap: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d653069145d43079e69f7719f5cc231f7e70d871ff44e92d01049340d8bb524(
+    *,
+    path: builtins.str,
+    role_id: builtins.str,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f35712d423d432dfcb07ff112a69b3cfbd19b55783043b4a29d483f336f4a433(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__07ecf610e8623a95c7882b7b3820871610e76bb4497f36c406038735e020e9dd(
+    *,
+    client_cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4b68473b3bece52963e18111c31aa00fc82a8ebd6235ce6cdc6d52305f88978b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__297cfe9ec7b6f0ff6acb7be39420d3c9df2218f1bf1753129109b58cb815db1c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c70b5f2d0d755f91281254925c299e6b7812ab873f8af74181b9bed9ddf549d3(
+    *,
+    path: builtins.str,
+    kubernetes_service_account_token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__079c46fff0c57b42b35cdf20bd2601cdf20258393616adf107cd21057b8a5756(
+    *,
+    service_account_ref: typing.Union[ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    expiration_seconds: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cf1afed0cbd44ce1e181c71dfbce5c80cec5b966a2a854753d10efa060ee9f6f(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7a340df94e1a417e5d884f82e933c5560f15f85713299092866951369e007294(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7e0431af4eda83f334246027b08a06ec6fc9a31808931500a0447cbf67873dc8(
+    *,
+    mount_path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c7378e072626052b95a87646e5ef2b5aff3fbcb23a3222fc3bdb7a5423e66529(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e39b709ef4e009ad2207ce73f97c37c051ea9f48db9c0406f1c522ebaacfb7ca(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8666d1368531371d385fa490f9ec11641fb095a166fb9e1b592dcc40182fa86b(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__55cf6198c624abda137c052d1dc014ca36b71dd2d46492befe116265455ee36d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__19291a9702423000e44c226f201a482aea5e992dd47a71153ebb3070b6856b2d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__595609c1cb77ac8d0172cebab30d5f44428ed4331922d82d47b326431302591b(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreSpecProviderVaultCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__567875e5230d606c5c4ae9dfad288f18e0d73f5564ac4e3e6ec54c667c14e548(
+    *,
+    result: typing.Union[ClusterSecretStoreSpecProviderWebhookResult, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+    body: typing.Optional[builtins.str] = None,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderWebhookCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    method: typing.Optional[builtins.str] = None,
+    secrets: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreSpecProviderWebhookSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
+    timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6af71527adcfa428fc129c129960c07c67fa441f1545f10e5dcefc09fca81c33(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreSpecProviderWebhookCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eb7bc09013491f073871fae2ceecbef13b45de0131befa24ed148a2477ce78d4(
+    *,
+    json_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9d5b27c62208713fb27769c2499653451dbf2faa38b53342a2fb2e0a38cb9b74(
+    *,
+    name: builtins.str,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderWebhookSecretsSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2cb2e940c5c2aaaf9bab8c136ca4833e3d43a06ef0d1472d9c82372927475b73(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2c07a0a205f8c8fe18207380dcf1b0dfd37eee884a6e932cd28cc4f665d658d7(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderYandexlockboxAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f7af5ccd38a738e138a4da5ed3536313b5fe188c2b865f812b232b7860654d44(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__84df0d5ae303fe803ec5407c1564c124f89ce2f877cf951164b5346e358facc7(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__76304aa64a9b969f7e70594f92303a19605c96d6cc52a1e762c1f60949328f79(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bdd207953372b8d88637204be9363b54f139d39e52bca9557f9caf7bd4d55bc8(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e47d412c07158576d9f7496f0a0011a69595d8febfe76d46ed415887b59df8a3(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8dc69ba83ec04594930db7e5543a7852c705a1ef67b59aa2efb6d2f5fad31ca0(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__37dcaec4116fd103182a4f47c276c1a112b670414846040cdef450a01c9e5a73(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__96137c80a93e24eeba29fafca095a8203971811207350934aeba8d7893de9dc3(
+    *,
+    provider: typing.Union[ClusterSecretStoreV1Beta1SpecProvider, typing.Dict[builtins.str, typing.Any]],
+    conditions: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecConditions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    controller: typing.Optional[builtins.str] = None,
+    refresh_interval: typing.Optional[jsii.Number] = None,
+    retry_settings: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7a0202bb2fa72e90fc4694fed122e588c991e624b62e6209c28dc3a91ec50c85(
+    *,
+    namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace_selector: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__60d6e4eff1efa2b67d55a0694a4bc3737bb79c33a7e3ef1e953aded7c9e48b6a(
+    *,
+    match_expressions: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2f6837a7309a755123acc2e7f78d1774390ea2fa5b1b52a1281d7fe46f9b6fa9(
+    *,
+    key: builtins.str,
+    operator: builtins.str,
+    values: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__68ba9e9c4c46e5f6c6fca915ad8c80109c0ed4a1cdb61ca84e474072d126bde6(
+    *,
+    akeyless: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeyless, typing.Dict[builtins.str, typing.Any]]] = None,
+    alibaba: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
+    aws: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
+    azurekv: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    doppler: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderDoppler, typing.Dict[builtins.str, typing.Any]]] = None,
+    fake: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcpsm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
+    gitlab: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
+    ibm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    onepassword: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    oracle: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    senhasegura: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
+    webhook: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexcertificatemanager: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanager, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexlockbox: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__df929457145ba1be8a095a8bc3301089b349253206306ae5f336cd315970c692(
+    *,
+    akeyless_gw_api_url: builtins.str,
+    auth_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__abebeff323eca27bea60a3ac92c48bbbc7420eab45f346bf2c362df8bbb1c671(
+    *,
+    kubernetes_auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__192a0fd934e6a1d07615d2afd0795c3df7c4aa34d47ff452bedf3fc29fa86266(
+    *,
+    access_id: builtins.str,
+    k8_s_conf_name: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c14314d094e94d395d2ccff2cf0206fe712c51cc34cb705d9bc8551ecd029b3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4f478b9b41d5e678b636bd675c0ec2c7f55c4865d490d5fcc185441264c97d93(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__60e63983e9ec9d9bfcca0afd0a14c5370b8a8c7b94a6b979643b8044b38aa115(
+    *,
+    access_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type_param: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__590589c4f0ffc4f7a23fc7be01fd06b9606c7490a060d9b41f3fce96cd350a4b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6833336a565db04ecd89b0aa463de48ce00c5f1b845b44dd43ce9dab14465672(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d06232497d385b58bfbdd183ed5f662b436ad66cd940f49635d36c2df433b70d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3eb80c03d9d589e644cb87d2292cd9b0100e384bc2944213b7aa5376062baa73(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuth, typing.Dict[builtins.str, typing.Any]],
+    region_id: builtins.str,
+    endpoint: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f66b02e4c9c411cbc556b143e0d872bfef186a37724247912aa8fcc440a97ef5(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9952ed78896c2d9e3124276209d8d30534064f05539cbe262b52dc19a0d35935(
+    *,
+    access_key_id_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    access_key_secret_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a0a97c63b2968bfb08081c4620d8d386f9d89e66db4ee38df5e4cc06736a7481(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0b830df319081a50f248ad0423e39dc55ca4f62f813b541532fe44af6c0cb6c5(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6627988073d9ff383a854cf295ddb2aa2cfe69af584935d6041de0fd6369c2f2(
+    *,
+    region: builtins.str,
+    service: ClusterSecretStoreV1Beta1SpecProviderAwsService,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9edc5295784c46ee0e2ea751f45dd384e14e357e55ab66dbd253a053803e6150(
+    *,
+    jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9184e71a5ae0b63160a31c441f3e767c7e9fe4ccdeb7eb6d0313b1e446630e7c(
+    *,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__870111368203389e739228502d0d717a15cc9b15fa8225662b2e8b801afa6d57(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e52b02bc80a06882a9b54890d7cfecec33b6ea34945389922ff0d8635877f5c5(
+    *,
+    access_key_id_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3ce640ed09fb68e1ec7ffae5b6f1bdeeb3b0254c8fe3a3a1ca738807848e9bef(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__594f5480cf09e605b57bbf933433bc689ecce1570797dbdf19a46e8f5ddf16c1(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__abf7c19186023102b0e55132e0eeb8f816d43879e662f9fc61393882d66c7d54(
+    *,
+    vault_url: builtins.str,
+    auth_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType] = None,
+    environment_type: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType] = None,
+    identity_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5b5c6576dd0bcff847eb542793197cccaed967a7895b6800a3297ababb2258a6(
+    *,
+    client_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_secret: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c666df2b9f723e3fa73884c25af477951655f8afbb53d585a2431dff1d9219de(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__00f7e356b48005cce89b72ead3be30d457b3e32c2e5bcf50f43bdf1678d0c242(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__99524d6c465621fc67233b99280c814ee97e0c6e2aaad7b7fb19183628a5f5f4(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d8dabb978cd9c207e6c33f6b87227d8fceb1a850813a315b0fb3daf464977a0e(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuth, typing.Dict[builtins.str, typing.Any]],
+    config: typing.Optional[builtins.str] = None,
+    format: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderDopplerFormat] = None,
+    name_transformer: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer] = None,
+    project: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__562144337f6c00cb855087476ff46a1b6075c3696089e7f7cb03e95e120c00bf(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__00f6e9b3449566bea57b329f0ae730c49bd1c1c616b069d52c0775f572e041b5(
+    *,
+    doppler_token: typing.Union[ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__77ea0d87e66e97c0e9723355f88c6c77c3cbfd9c14f230f8c829e375f9d83cee(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4a19fbd425ec3f1bcd367c838d58b4bccdcdecc7d9b6f0bb62ff3321bf204aa7(
+    *,
+    data: typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFakeData, typing.Dict[builtins.str, typing.Any]]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__aecd81391352349eccc8183460b87996d0fb8c9e4bd5f75c376baf485f1b6934(
+    *,
+    key: builtins.str,
+    value: typing.Optional[builtins.str] = None,
+    value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__611ca919961e90d0ef7f227bbac8c881013ca7cc44d14799bbb24bc4f0eb3677(
+    *,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__24c1979ee54e5143d4359a3a275ddd182b9dd1799b60c36713217703ba84b3c8(
+    *,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8d5ae13c791298e83966ee3151a839a5800890f0e978cc6f5f8bcbf799102c7d(
+    *,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__befcc03dadc53716c9f45d6c64f5ca1f64c5c39f92273dce93970a6ea7cb2afc(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0ad5be2b93a35f2cf663f2139d82f10ed2303f6fd46bcd8be22dfb7c6d07ce9d(
+    *,
+    cluster_location: builtins.str,
+    cluster_name: builtins.str,
+    service_account_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    cluster_project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__dbbfaf536015025ead4874e316b663e27b4c506f8792288c86be86d4e197205d(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b842bc57f7fd92b2b56e655e52606a5bebb9bcb992f4ddde8e086b665b8aba49(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuth, typing.Dict[builtins.str, typing.Any]],
+    environment: typing.Optional[builtins.str] = None,
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d5e2849acdcd3f4807f8b1d36de4a61ceec968c342a5f01c5a86f3125aecbb7(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__04f95d713ed9c72c3c6ac92864bfa1ad99f6fdfbe237d224b272b47c56f183eb(
+    *,
+    access_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e80400499c318d990d15b26a86d2debab77bc685ec0bdf02963692ecfb1024b5(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7f963142b89244cfeecfff807ef899252614263348620700809657bec1f530b9(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuth, typing.Dict[builtins.str, typing.Any]],
+    service_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__89b06a143259e47bb87419627c763e0e429b891a2be7d13124c04b8311b2569a(
+    *,
+    container_auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthContainerAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ab7f9219b29d2442359e806a87ce2a170537b2e8f66c99292e852859d2d501e2(
+    *,
+    profile: builtins.str,
+    iam_endpoint: typing.Optional[builtins.str] = None,
+    token_location: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__103f7d95032cc629e6d26292a6477d0ed74e34827b75d026c15ecc133c641e07(
+    *,
+    secret_api_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3e5730dcd5a104ceac8cb1e536a747e8d4666a82d2bcfb90eaa96292a77009ea(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__649ae35e91afd368380d7dcf6b83dcb17d871a308c44fa3c417593e5eb164998(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuth, typing.Dict[builtins.str, typing.Any]],
+    remote_namespace: typing.Optional[builtins.str] = None,
+    server: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesServer, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__aa84d767397938230357c9460f0da92fd27caf2560c4febd4db2b1946dbc1a5a(
+    *,
+    cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__575fe398163e0264fc9cc318f5b63077e40822b1e8607c6f85b40057e5a91186(
+    *,
+    client_cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_key: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__221783d76f7a636012233fe6be08a91a99912dd5418e80c4f5e22a44a9b16cf3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6dfe1da476f2ed826b423e04e21f7ee460e7f9163e2c8242f2cb83e8ff997e81(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0efc0826b2f3217518a7e2c85f96d8b9872418b61e028eac0ae806c4e580bb3d(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__db5aaa410704bbf457b4dcbf24af03e4aaab852ef8f192060599932d0d94ed2f(
+    *,
+    bearer_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f8a74ed4d0d51a9d802908b11ac516af3b90bbe5e93a70c4f766f84a2b3d33a8(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__334ade9bed56e5f41ca8625f7989056de67a4ab314b2d286d7c305cef1d84b45(
+    *,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b4e3f7f956c039a12dbeed25ac8b12f48c513e3306b05774406b2ce6fe2661f7(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e7023e452cdb4cf6a57594c3ae644dd93fd67ddecc86ef9bcc979edb5f9aebe4(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[builtins.str, typing.Any]],
+    connect_host: builtins.str,
+    vaults: typing.Mapping[builtins.str, jsii.Number],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__774fac14fd73ee729045af64d77ecd440ce05c35c3e5a53f860c8d58b15dc3e1(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d3aba248a06dd8137580c089c2215674acf58e010721b05475ec86c4c4a00214(
+    *,
+    connect_token_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e77c7583da6824bee3f7242200e93b841cf55888927c6900b619907c5e020884(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8799a207c6f9af8f59bb32f362d3937320020eec54a1cc499d831392110f8a7a(
+    *,
+    region: builtins.str,
+    vault: builtins.str,
+    auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1059d0e050af9730791fb51609c13da6c9e6644134ff8920a849b11fc9530224(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+    tenancy: builtins.str,
+    user: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6066dd054248d30379dd581e24cbdc9afe6660138d4ad8fa3fc38af7347a3990(
+    *,
+    fingerprint: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint, typing.Dict[builtins.str, typing.Any]],
+    privatekey: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__287e9ae6268a6e788ae12f7ac12e8fbb9c885f4ff3d45a0caf28cd5b8d169176(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5ef933a14bdabe16081013d01aaf091a9b526ae2581143345eefebbda8c252e6(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__784088abfe52d375c8846da70040ac2e8a3a7fa8b88275b3433f77ed7167b0bb(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuth, typing.Dict[builtins.str, typing.Any]],
+    module: builtins.str,
+    url: builtins.str,
+    ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0968cf6c587cfe7e19f4d78b9bfccbab47ad4922f6924b0e57fee2840889975f(
+    *,
+    client_id: builtins.str,
+    client_secret_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e46f714e97c2c006c0dbdfdddca33d85e4f65fd4e9785f239d767d95af2ea339(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d1ed82d254940b706af74554873fa54b86cd8804d7fee8da566eedeb386d5b29(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
+    server: builtins.str,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    forward_inconsistent: typing.Optional[builtins.bool] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    path: typing.Optional[builtins.str] = None,
+    read_your_writes: typing.Optional[builtins.bool] = None,
+    version: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderVaultVersion] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fa1611c7ca8d9fedadb92afb290e6c41419ad09bd43146b4bdf9c1d75b8a578a(
+    *,
+    app_role: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    ldap: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__37344579b6c7a990af00af0b70741d46bed82ecd50a1667f46a0a209f98d358e(
+    *,
+    path: builtins.str,
+    role_id: builtins.str,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1a567a5819c4a04fddc6a249b2d5873b97787e972002e493d8366c84cf35e833(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f25011ba998dabb5c8c1b1408c88fa08a117eed82a2c013e79cfb8818779b7df(
+    *,
+    client_cert: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c2ad4618f79f3d33c7e840b1487a7f1d766d69e4eb44fdf9127c82a83ab3cd28(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2be91ee51069c6922509e3c0ea70cb74f2e82e7f7a28829a95990ebbe870adf0(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0516f9862f945b4b6129c24cc3a1ecb2da2a492e6c162dc238992faf6ad42566(
+    *,
+    path: builtins.str,
+    kubernetes_service_account_token: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d9635b4909e716c335632ee7fbb0defc729d2aa215fa0e2ecf9b58c670ed974b(
+    *,
+    service_account_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    expiration_seconds: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__503a402a2f8a60f71248b4d66efb68127bb876fab9dc95581f2ab8c3dc6766f7(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__27456e5e3297f3a6c07e214fd809cfe592c755afe64370c36586faf0b4ff536a(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e3234a480af19889bfdd0bcf31963e9ffcca79ad4549d1c673c3d21aa0be1f89(
+    *,
+    mount_path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a7c01ad25d6903e2b94170c5306163dc83c37d167d03d2e947b8dfbce92360c9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__68e19fd3a505ed8443bd824708b4f25994c9d40acb32b52b89a503ed39bc5c8e(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e8f4902f761c246ffc6f920fc8bd963e2f8140fd3d65b4da75c7025dcec6765c(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a061597668e45a3b5881fb989859fa9ba9fa59812f88447e7d1fb50d91d4578c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f030b58112bf019c388c92034c3321dfa7a6cf28ed27ede3f4de94d581d5035b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__614ead02a45818d7b842fdb84071c31ffdc2fa1b565a7ebdc48c6a9773ceeb9e(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__541a85086d1f97223810cca4d54c92f289ed5a73007e8e7009b98285d97578ca(
+    *,
+    result: typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookResult, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+    body: typing.Optional[builtins.str] = None,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    method: typing.Optional[builtins.str] = None,
+    secrets: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
+    timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__68283da0c213c61ac76c8b9dc18fd6a446a8666903a6779c4e450ffbb7638d41(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreV1Beta1SpecProviderWebhookCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ffe032a875d453ef67efba038253b55e781313fcf9727a2e190e0f07bc7a7781(
+    *,
+    json_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a4adfaf99cc3249a4b88e7b23a2ff492e444c10ff063c6260a50441d20189774(
+    *,
+    name: builtins.str,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b04a124282f6cc28a9350a757f666203390ebbfddda7e54a523fdeba3026ceaa(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3ff9cd98361d4846493719df1ded33affcd4d8eace2485af38ef75d671c1dfbb(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__51a1a90bc0ea5f1d7006ba171eeb03cabe219c2e3b1a59e18c03f47111a2886e(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c5002745ef7984d16f7c455def03b6a31678dc133c5daf8bf4c6847270703834(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bb4082ecd7921b9fbfec3f37b117a6e5cbf96687643a0da1deb5e9606facb5cb(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__031cafe781180219b4b5259d9846e47719fde28b6e66b15223a100bd6914f19f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2d723d21a6c0b24e7b6edf9808d7e46ac0dbf01d99571c220621355462524b02(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__550fc853f971ebf114ea0c29cde1e781f93eb593ff32b6f1d018ad5990e4710f(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c3f7bb16b26a20247381202a6e31627cab93618b40ec15086c087dff5bf26be9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__64744aa417489ee5da00031086b34f8bb9d5d1e2842de076efd366b85e968725(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e64f2aba41167a866d087c9b87db2a78c49a3c78a857f4d63a3332b8dc04c173(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6cfd20d24fce68320069ccd4f9b78ce19df25d0bfb6d04f99d46f3caf0d6c97e(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c3b70f22c7723f819f402a6957ab71e8991db57a58ba85047be7a2faaad81e0(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ExternalSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__37e904970e3dbc8f880d53222da8b9d6ad0e642ffbccba70fe72cb9cdfbe3289(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ExternalSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__074b53f8506e2f7772a36a26ed9736680e0342754c5f0ccf2218c6fef874937d(
+    *,
+    secret_store_ref: typing.Union[ExternalSecretSpecSecretStoreRef, typing.Dict[builtins.str, typing.Any]],
+    target: typing.Union[ExternalSecretSpecTarget, typing.Dict[builtins.str, typing.Any]],
+    data: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecData, typing.Dict[builtins.str, typing.Any]]]] = None,
+    data_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecDataFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    refresh_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__475d807ac9fbc706d9ba6234ed898b602897f6af687b51a5cfabc7a77de0d4ce(
+    *,
+    remote_ref: typing.Union[ExternalSecretSpecDataRemoteRef, typing.Dict[builtins.str, typing.Any]],
+    secret_key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5652c1cf0894311801be60a13dd81647750db80e32bc8f49fe3e8235021c6c91(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8fa135eb71c3b0e514a59fb4221d3694ecf54b320c828591b0435c574fdfb02c(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6387a5fae9528a5204090c40d2c2889305f5e0931cd3c9f56f16b857a47f6aab(
+    *,
+    name: builtins.str,
+    kind: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__827bc50a1daa2c072beabe447d39f5aa425b2533370b434284005378aa9a35c4(
+    *,
+    creation_policy: typing.Optional[builtins.str] = None,
+    immutable: typing.Optional[builtins.bool] = None,
+    name: typing.Optional[builtins.str] = None,
+    template: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8a97a9d748a88e76340582885a47a889666e169b36bf601e948fa8fbaf8eacb8(
+    *,
+    data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    engine_version: typing.Optional[builtins.str] = None,
+    metadata: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    type: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fd5588a79e0c2ae668496ad557535214d7832b67410c55764b5ebcb0df34aa6e(
+    *,
+    annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__31faa86a5c98b99d6ee0e61c7febcb6d057f4f2d66a77088ff59e58fd22c0e21(
+    *,
+    config_map: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__02bb153304316c1d27d8cc2666b4bffdf0b5ee46f914eb90f501ff4d279aff79(
+    *,
+    items: typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__183828d27464f0cb7be30c7fcfa871d537b68ad5d70c9895876220619c3ee123(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a0091308b64027190e4220f919c8b9fe8606081a83a7cac89b8d6f66850f27d9(
+    *,
+    items: typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFromSecretItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__dd62afc90b918a7a93df148a8f114e0416daaaa6276fbdd86d8d0b7a8b3a5886(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cfd09e377328d190f8f7b77670ab85f29c4518dcbb58d06f05a9a27a25809189(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ExternalSecretV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__461761ed0edddc73d403b793c8ed04d0bc0a2534dd95e8eae4158f95cf880b21(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ExternalSecretV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__93f730c43130f4e637999febc8307761ffd7173d07e0fb0252beb9d33999daae(
+    *,
+    secret_store_ref: typing.Union[ExternalSecretV1Beta1SpecSecretStoreRef, typing.Dict[builtins.str, typing.Any]],
+    data: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecData, typing.Dict[builtins.str, typing.Any]]]] = None,
+    data_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecDataFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    refresh_interval: typing.Optional[builtins.str] = None,
+    target: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTarget, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__57cac15896a1d924720292c54c0d0f922c9daf2aa81f875475449aef38e0e295(
+    *,
+    remote_ref: typing.Union[ExternalSecretV1Beta1SpecDataRemoteRef, typing.Dict[builtins.str, typing.Any]],
+    secret_key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7a22f4fe792b72c3eaf030666d89e08718509ca8d74cccad99560062b6eeb559(
+    *,
+    extract: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromExtract, typing.Dict[builtins.str, typing.Any]]] = None,
+    find: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromFind, typing.Dict[builtins.str, typing.Any]]] = None,
+    rewrite: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecDataFromRewrite, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4470abe995b704cbdcdf0492e1e91e23a97f5bd83a22269ccf3af13015136970(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    metadata_policy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__22b4b957dbb9cd8460e4e930700a48d34f638298827b6fe53d68d1b82de6f401(
+    *,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    name: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromFindName, typing.Dict[builtins.str, typing.Any]]] = None,
+    path: typing.Optional[builtins.str] = None,
+    tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6f615a184713f5d364337da92283293111522fd42282ad325a8afbd2d1962916(
+    *,
+    regexp: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__454681f1cc3a392e81ef5c92bfa786dde1e38e7aaa5f2a3ed665e0b4cb009c13(
+    *,
+    regexp: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromRewriteRegexp, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__22d63d6e820ab00e4df04c49344342bd4731978ef6611c06c5ac4b5332794e7c(
+    *,
+    source: builtins.str,
+    target: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__823faeef50b2c0df69c9ae99b8ab132511378b031b5042afba0c9fe24ba93dd4(
+    *,
+    key: builtins.str,
+    conversion_strategy: typing.Optional[builtins.str] = None,
+    decoding_strategy: typing.Optional[builtins.str] = None,
+    metadata_policy: typing.Optional[builtins.str] = None,
+    property: typing.Optional[builtins.str] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7f1f99a615b28ea8c79a67cd067ee214dfafc7d9ce344d5895cdcba82c5d4337(
+    *,
+    name: builtins.str,
+    kind: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__137058ee7bb8bbf207a1c6bea2d7edc847fcb8e66808b8a474d9e3f6cf606abd(
+    *,
+    creation_policy: typing.Optional[ExternalSecretV1Beta1SpecTargetCreationPolicy] = None,
+    deletion_policy: typing.Optional[ExternalSecretV1Beta1SpecTargetDeletionPolicy] = None,
+    immutable: typing.Optional[builtins.bool] = None,
+    name: typing.Optional[builtins.str] = None,
+    template: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0845c9cb8505c291793a6fac848aa5d4340d17ecc2e58386511e13ecba7b0d77(
+    *,
+    data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    engine_version: typing.Optional[builtins.str] = None,
+    metadata: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    type: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__018d8922bc23dbcc72288a6bb9df1ee13ec20a354c2863ebe6f5778d0547c2b9(
+    *,
+    annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cf8068a43ca684f4a943d7d5e82ab5f65a31b37cd2681ead194fa54dd950d01d(
+    *,
+    config_map: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d4521141f13b4bd1ec1e9d03377bb4f8fb99f832992af18de111f17b9698448(
+    *,
+    items: typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__450b9bfafc5b457a75263d0420c05dfd89276947b601ed2cd9c63bca7bc8c6ed(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a4a2e35d3be01cb8a634eeb73ba90e80dfeb0ffe5653a7d44637ac186ee815e7(
+    *,
+    items: typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2623eb672daf55d319267bd37583020eebefd412a2e3fa6a451b378cf22e9522(
+    *,
+    key: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__180aec373b8c9c56e68a264b2b4b4d292b94771886f0aa691cf5bb6dbec97d6b(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[SecretStoreSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d1dab5bf5499b6000b83acce303ccadfb92208c478648fa8e4071edb8459ed03(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[SecretStoreSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ba085ab3c8441d364a5007e3094da84533695a382d5308b8e6f1b321858ef625(
+    *,
+    provider: typing.Union[SecretStoreSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    controller: typing.Optional[builtins.str] = None,
+    retry_settings: typing.Optional[typing.Union[SecretStoreSpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c530965dc9a8ce9c6b19c8fa2f1a1209e5d3f087076176d43c9a82a73ad3e971(
+    *,
+    akeyless: typing.Optional[typing.Union[SecretStoreSpecProviderAkeyless, typing.Dict[builtins.str, typing.Any]]] = None,
+    alibaba: typing.Optional[typing.Union[SecretStoreSpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
+    aws: typing.Optional[typing.Union[SecretStoreSpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
+    azurekv: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    fake: typing.Optional[typing.Union[SecretStoreSpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcpsm: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
+    gitlab: typing.Optional[typing.Union[SecretStoreSpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
+    ibm: typing.Optional[typing.Union[SecretStoreSpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    oracle: typing.Optional[typing.Union[SecretStoreSpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[typing.Union[SecretStoreSpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
+    webhook: typing.Optional[typing.Union[SecretStoreSpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexlockbox: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f597bf285afb5c633e38c431ce82655d4616622b525a2d703b9381af3a1804f2(
+    *,
+    akeyless_gw_api_url: builtins.str,
+    auth_secret_ref: typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cda0f12fb61f2949b2c77d5bb0d1e8a9b9b4301454fc1cffb9952a3b1658e2cc(
+    *,
+    kubernetes_auth: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ae1d5d2c1b8d1b1723c903970ab7cdf664c090a69850bbe33bba4d43dc332342(
+    *,
+    access_id: builtins.str,
+    k8_s_conf_name: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e370d9d39bba6f7ee010e33d276f110d5075548ecb7b73f373d703f886030b6c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__35cb94b11cba70c093368a79eb257455da6fabf4fac8ef68d4d39b90bf654dee(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f212895f3238ae558cc70d86c5e96033e438ae08bbac34bb207c998d69db8b4a(
+    *,
+    access_id: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type_param: typing.Optional[typing.Union[SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e9bc19061bf794b228ae3c85bd2c8a539641c474838c3d24b0534ac2df4a3000(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__64d37657fe77dbb1beb16d7928cf21adb979d050e6ff461f18aed915d564ebd6(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a8a8e97d38f881fa234c143b578f9406cde35bb5cb65d61338b15321de80fc9e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__160555d984538fdfb12b506e87bb6765d149005405f5ae079b3691db6a1d770f(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderAlibabaAuth, typing.Dict[builtins.str, typing.Any]],
+    region_id: builtins.str,
+    endpoint: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2d8b50e50e137fe4e3f84cfad896da01555d6ac69b57ae5d2e585611bb05e278(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__83b732209a24571a7a96042e186e91398c6b74cf7cb865114ea675a90ddfc6e2(
+    *,
+    access_key_id_secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    access_key_secret_secret_ref: typing.Union[SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c21bb376b2e3a0198bfcc4ef9da1f454aec69fed4187ddac868a437f5508e1de(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__26d4e7fa82cee06a66db9f84afb99426b45555f9719c95d7984dc5ae97cec7b4(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b934c6cb3d89ed6210132277f1834ba27f8d6f93e4b788d15911d29aeb2a073b(
+    *,
+    region: builtins.str,
+    service: SecretStoreSpecProviderAwsService,
+    auth: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__95a0f277ee0cad3e87fc8f88b3beed52a176e997459eb96b21bfc2cd7e6867ce(
+    *,
+    jwt: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0a2de8e353bd8a9c6b2b307f5edcfd83259dd689ddb1c7bcd7cba6aebd896d14(
+    *,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ee83739484981a1313ee3e396d008fd0daa33cea2f3bd4c940e1bdf71a18c74a(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__70319a335a332153f12e762b41f5b67aee107bc3136ea70ae53f2a2c716a612a(
+    *,
+    access_key_id_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6cd067b142a207713dbe0c26baf3421dbaec7cf34b10e08c3a3958201b4d09fb(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0cbfd65dc9abbf06dee97c10e01c18ce7e875a3784134a02e09c54fe3a7fa425(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3fff1dbb3fb26f345ccf9d164d11d27cdf0bf449ee80995bab7f58ed4e6cb4bf(
+    *,
+    vault_url: builtins.str,
+    auth_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[SecretStoreSpecProviderAzurekvAuthType] = None,
+    identity_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__218003f6825cc8cc0f958bebabc2f3bdbc7a157e9b92d6f96a4ff08a85a92c40(
+    *,
+    client_id: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_secret: typing.Optional[typing.Union[SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e73937a53a8dc05dc2cb3c6f7e3d8c47478e39bae10ddb5f9395a603af3ed23b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__94e37ecd5e686fb55810fc919ea1112f411c31d0570fa8910d7e09c861c65366(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6270c5495b069a85f3a72915c6c9d3b066899e220bc6fe5e733e75e8528cd46c(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ee8ed03db2e828edd909617b817e612179bd4710b9592d45bedc827e7382a817(
+    *,
+    data: typing.Sequence[typing.Union[SecretStoreSpecProviderFakeData, typing.Dict[builtins.str, typing.Any]]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9ee3f4b0c98c7c6c6914d11356c215cf3cf27d54394699eb8536a18709255bde(
+    *,
+    key: builtins.str,
+    value: typing.Optional[builtins.str] = None,
+    value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__433356edd23ff339815e78dd403eb845c5557e0e984de228fc0019869438b798(
+    *,
+    auth: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c3dac985af09163062ee0f100a6f27f060ab84a70f92e464b0e33f194f9d2144(
+    *,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3ca5c2e53d8308a5605105725f2c5e7bdd938b3d8ecb9bea29c97128ee49603c(
+    *,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d6e8ae2d693f0cb3bb2f015f58e3bdbb1cf79d29d3c7d7a1da2a8f171c0b9b0d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__545f2582e9eda3209742adff37223ac38c989705d97ddaaaf2d68951ec464e1b(
+    *,
+    cluster_location: builtins.str,
+    cluster_name: builtins.str,
+    service_account_ref: typing.Union[SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    cluster_project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__00880ada914c2988e4f81a2bbf81f548e12d991c753f3632924ed040061739f9(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__74a9704961b5ebc67a85b13e3ea0b0eecabb2dbda2aee0064fc2ce88d60d1a03(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderGitlabAuth, typing.Dict[builtins.str, typing.Any]],
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__46cdf91513510c8d21322132a5945d246a0875325bc127c14fdce554439269e1(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderGitlabAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6d22720edc8e41b53bce4c708816fbc06868a093474e54079ed99d225ce461ee(
+    *,
+    access_token: typing.Optional[typing.Union[SecretStoreSpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__09362b98cec758e02e93e69b896f7fb16827ce7a4e50ce19232e7d22f62986e3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__087ffef410337619c50c121e7ef3359e554a57b9a10ce1edf8770b3d81e0ed8e(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderIbmAuth, typing.Dict[builtins.str, typing.Any]],
+    service_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f61c15804c1ea14aba8f3312c92149924d5fc9171c095620ebd5ce368db03750(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderIbmAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__07e5284d9a003aeaf572246b0e4192e0b1555336a7526ede354d24b2bfa9117d(
+    *,
+    secret_api_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__af92c8b92be448c0919d7ddf59d73c1f0547837b33364f979a4c39d387ae914d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__904b128b7718fcd2bf2de42ebd0e146d997e1d49742e3ca3719f98eb5ebb46c7(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderKubernetesAuth, typing.Dict[builtins.str, typing.Any]],
+    remote_namespace: typing.Optional[builtins.str] = None,
+    server: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesServer, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__151388d9b4c0b03790206cc929e9596ecfff49de852b599072600264a970c257(
+    *,
+    cert: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a96c6e462ac166552fd43d6e853ebe6677ad7313751774413548c4dc9d9cbd6d(
+    *,
+    client_cert: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_key: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthCertClientKey, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0f622c6fa4b3f98c8c90256538cfe1195389eea246105b866e4f8226a3e11a92(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ee6e0f3141539f98753d7f8c7f84109da05ee28cbb2496c62158aa37893c4e1f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4a38f6830f593f71ee328bf0bb7a2d5348dbd4c5a2a2c8ccab3acbabf77e63fc(
+    *,
+    service_account: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__586cee09f8cca7480473d65c3cc68fe9848fa4209f08b883dea677a950b66013(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1581d621227fc42b2bc6fab0466a744ec14017ab25b27c4f605a3d67acfbe832(
+    *,
+    bearer_token: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesAuthTokenBearerToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__341d7ee7c9f1813146f595b6ac86827f52e296fbd90e305fbe30e75e6d1d7f0c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__49350e64932573067989f27f2c978c32a0b68db7780223b97496498ba0769b76(
+    *,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetesServerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__363e9db3b763eedad22dc94f5b2adaec3fea7bb6f5e0ffec6fb69f3806f91fe2(
+    *,
+    name: builtins.str,
+    type: SecretStoreSpecProviderKubernetesServerCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c20124e1b995d76a5c23860f9ecff1ebac42889eac56116daf01652dc9c1605(
+    *,
+    region: builtins.str,
+    vault: builtins.str,
+    auth: typing.Optional[typing.Union[SecretStoreSpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8b0d6d1c44297738b31436d4946a4a8ce29246ad70f9d793df2188ecdc9b9017(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderOracleAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+    tenancy: builtins.str,
+    user: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eb3832cb9223d922c95e110bd9960a050b0d42eb510f564caa0903e89a57f31e(
+    *,
+    fingerprint: typing.Union[SecretStoreSpecProviderOracleAuthSecretRefFingerprint, typing.Dict[builtins.str, typing.Any]],
+    privatekey: typing.Union[SecretStoreSpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6a8123501f8e589da765eda43eddefc179135d62dafdff666b2dc162230854b9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a26c7af5eb3d372a1a790a6143a7ae00bd502b4516c33828cd4f888eff60809f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4ae354c0bc0f63e88460e1b51ccf0b056861e4af5089834a48e7ffbaa7318995(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
+    server: builtins.str,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderVaultCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    forward_inconsistent: typing.Optional[builtins.bool] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    path: typing.Optional[builtins.str] = None,
+    read_your_writes: typing.Optional[builtins.bool] = None,
+    version: typing.Optional[SecretStoreSpecProviderVaultVersion] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a906da5a2a53f521d3aa7cb2ceff2f87f28a7ec0f7ac71cdcd6107bccdff2daa(
+    *,
+    app_role: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    cert: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    ldap: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    token_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__91ec9daf30d4aa20417e9735e38cf1e7dc0f2bba40719ebfe97b72e5371bbd5b(
+    *,
+    path: builtins.str,
+    role_id: builtins.str,
+    secret_ref: typing.Union[SecretStoreSpecProviderVaultAuthAppRoleSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3c921248240c9e8f809f8693886a7967a63ac9e70ce931585f66f97fd47efbc4(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__926989828203f27389b7a872e486f9f7c761453b969101d248844147a4d6af7e(
+    *,
+    client_cert: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__de593eb1b62d872aa65a4baa74a37a4975d8e4386948886c952b85872f5397de(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8f69eeab4ca0ffa1bd204d31e5ed09f8168d70e5803d92d9f822a900f1b42155(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2641227e47ad754e8439010181c6cc78330135cee499741a0a3871027938bf40(
+    *,
+    path: builtins.str,
+    kubernetes_service_account_token: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__746f956d1234f789608405b291bad7714e1859d2bf8667f7c8135f4799fd156b(
+    *,
+    service_account_ref: typing.Union[SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    expiration_seconds: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fe5149b96feef31ec30a430a00c72547d518e3e2b7d981a8647dc81c003207bd(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3d4bd1e46d55696da0dd1d35870cc436c6ed2e3062fd0765d4f20fe3651d10c5(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ca939cc68749570d2ef4889f201ab3b3fd38c8f6dcd83bf12fe08aaab436b8fb(
+    *,
+    mount_path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5576d3db2bcf7331d72c3646834111e13f1a9b0768bd6843887a4bfb2a37c2b7(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1902bb9d0d46785a88bbf171a4e8d3512c9b72ff2e89a4e8d8cdaf67c675514c(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__54daf7044cfb5a8fba7a5cc3a68df9e10b72c56cc5b8c6bb1588d528e2890dc1(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderVaultAuthLdapSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3781d82032a4838e8854e5d94439e01ad2c1ec8dbaf02e83334a9a1204deb736(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7e96f47c442da148ae8f99573a79d554a4379a383748a113ceb3bd9974830296(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a7694f04b7ccf70eddb5e62a956b1c20f67af5fdd544be8ab6f057460eaf8e64(
+    *,
+    name: builtins.str,
+    type: SecretStoreSpecProviderVaultCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d1fafecaff262b0c905232c30dcb29512b172ba2eadfc2e0fbd39779df81871c(
+    *,
+    result: typing.Union[SecretStoreSpecProviderWebhookResult, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+    body: typing.Optional[builtins.str] = None,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderWebhookCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    method: typing.Optional[builtins.str] = None,
+    secrets: typing.Optional[typing.Sequence[typing.Union[SecretStoreSpecProviderWebhookSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
+    timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f39587f1eb17b18ee2e637058f85bf78cfe6380cb981390c8095b0f017c4e18e(
+    *,
+    name: builtins.str,
+    type: SecretStoreSpecProviderWebhookCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cafbe3e08c7de16cc8da33377789a932dd134a8b6b6e0f97dd20f9ad9855b525(
+    *,
+    json_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3e93ce843f65bae96c79261461e439cfe309d889743e564fb465715ac0c23a02(
+    *,
+    name: builtins.str,
+    secret_ref: typing.Union[SecretStoreSpecProviderWebhookSecretsSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ea63366696c859af5d2a5362752db30665aea1a23df692b606dd25c3c877c26f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__96053fb82850a86b14c63904db9ada416f60bfc3669c2d8475be1a94daf8b13d(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderYandexlockboxAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__63938f9991ccca07eaa1b529f96cc1fd913594543c10333f42261d9982731728(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a751dc60535eb863895eb7c23eb9dcea4fb168088a67affab4456e33bfde401c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9d9055787165578835dde87a2c4abe39336ef0799f4ac41721d94cbc23f3325e(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__27b77f15061632174e6c2312f622d30ab57aa2a455aca37f308b86a7d9850d4e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ab1b2959f3a84685392b7376862f54f9c2af1a3c8607a0325c24aa2e5739ede8(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7f3552b2035d2dc266ffbe6203fea53942c8094aacfba3f6974b214efef55f98(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[SecretStoreV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__dfa8dbd2d0c2a721eab5f6a87539e2f56289de2b823686d13df4bbaf39467296(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[SecretStoreV1Beta1Spec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e887ced4c6bd3b61a242644b3eeab6a61e1a3f1981cea3e885f9d1548225d729(
+    *,
+    provider: typing.Union[SecretStoreV1Beta1SpecProvider, typing.Dict[builtins.str, typing.Any]],
+    conditions: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecConditions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    controller: typing.Optional[builtins.str] = None,
+    refresh_interval: typing.Optional[jsii.Number] = None,
+    retry_settings: typing.Optional[typing.Union[SecretStoreV1Beta1SpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__781f0a3fce525ee313d188cf41c0cb440a85aa5de7791f933d055b4023d7ff2e(
+    *,
+    namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace_selector: typing.Optional[typing.Union[SecretStoreV1Beta1SpecConditionsNamespaceSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2044c5fddb5d84a07100f5e6505b6d7c7423848a6be1069e04b243a1af9d8134(
+    *,
+    match_expressions: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__39b5ca4819b9b954dfdfd05453fcef64f9e52a3792efaa16ae3fa7fb24d8740a(
+    *,
+    key: builtins.str,
+    operator: builtins.str,
+    values: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ea7dd9e387afcb814f7b73b94bda5cdd7dfdba58759fb42c1d35129125adb364(
+    *,
+    akeyless: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeyless, typing.Dict[builtins.str, typing.Any]]] = None,
+    alibaba: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
+    aws: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
+    azurekv: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    doppler: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderDoppler, typing.Dict[builtins.str, typing.Any]]] = None,
+    fake: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcpsm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
+    gitlab: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
+    ibm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    onepassword: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    oracle: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    senhasegura: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
+    webhook: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexcertificatemanager: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanager, typing.Dict[builtins.str, typing.Any]]] = None,
+    yandexlockbox: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bed89082ee43718091d9f91d5d7aa30aeb89d80fd22689743ea9be9a5910bf5b(
+    *,
+    akeyless_gw_api_url: builtins.str,
+    auth_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__74121be233be822179e1fffc40d7f70e1bf5baac40b64c026d41ae76c44bbc9e(
+    *,
+    kubernetes_auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__44b30cb7361730d5728dbfc7861be5dacffb630732bbecffb28ad09986b1158d(
+    *,
+    access_id: builtins.str,
+    k8_s_conf_name: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2a4c510b386734e858a3a16c1320574f58f9264bdd1977dead494c9ff909e85c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a2972b9bdc93422fb8750e2e18bacb0b5b9bcf80476ae1c9bee4a833c9e5ab9a(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d95ece84921a933e967386c74f586317717bf443bedaecf37737f310f3e2270d(
+    *,
+    access_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType, typing.Dict[builtins.str, typing.Any]]] = None,
+    access_type_param: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9f495e81081fb2ba9d62c740c6018c154847feb6578b054444bda7cf8c2e72e8(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__613c40b00b05241cf57899cf71d7762d8469acdd57708faaf8c9301e21d587ad(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__58018932fd4ec7fd73bc3ed194e6908b462e22712506f25eca23a0d659847886(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f96a153d300ff01c20e7fb7ab637a3c4d57d1fd8e61d2e8bb6d65f9f38d1896e(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuth, typing.Dict[builtins.str, typing.Any]],
+    region_id: builtins.str,
+    endpoint: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2271b3fcb686cc99d754c4b2b01c0ce3516bdcbb9b0f6136412860adeae20e97(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0187fad4e721a6222f70c1884497a2f1eddd6e74a1337f9aaaa4c5f758a1ac58(
+    *,
+    access_key_id_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    access_key_secret_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6fa998fa7196a6f87d3e357648846c1a7d7b95b2e6022399c6040182086165b1(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e42973e9b7595404724b2fe7f3f242219216c842943642924d043a0da2113ce3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__62290ee01214cf301e7987fdab68bcb3b685aa43bf724e7dc735e5ac63111a0a(
+    *,
+    region: builtins.str,
+    service: SecretStoreV1Beta1SpecProviderAwsService,
+    auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__00dddb0c8e37de3d9e897dfc11a386c82ccfcf7edf6a64799db1526ec6a85166(
+    *,
+    jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c8774a4feb5c9e404a52e2e99d1f871029c8430064a6fb0c7ca04e1c1c826f84(
+    *,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2394d475836b18dbaa6f40ecb6933020b781a95f1720db6e096a3cc03be94805(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9b57dc85c1f30d4578476b7d7451b50a139cc6f25cb7fca4b2c86fa4f34d3b8e(
+    *,
+    access_key_id_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c1d3d92125450f26fe4347f50a5577043aaca83943223aa5b36e49c2ba807b9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bb31e0cbd82e41937767722aae600636c68f79c57d03b3180dfc1c5e96f96b09(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1102c98a03f32b51f230ee6adf278c19d54673b52c8312fe8182f941b2335ddc(
+    *,
+    vault_url: builtins.str,
+    auth_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[SecretStoreV1Beta1SpecProviderAzurekvAuthType] = None,
+    environment_type: typing.Optional[SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType] = None,
+    identity_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0a4938b5255f3aa984783f676bc89cdd2bd990505a85f0fd72b37dbaa5f7b4ef(
+    *,
+    client_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_secret: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1ed9139f1201d752d0544dffe465265042c7b8a6bad36a96c27ac55fb5b4efad(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b5781b1e7d687e6973d4e5221625c7edbeae341526205210eb53c47810c7b1c3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c3701d52a6b4ef32f42230c1c20ac928c8800856543ae008bb3eff3348b988ed(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9b0a6de8fe3255ce5836d963fc77fd83dc33e4967030d8a35f633edcc4974573(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuth, typing.Dict[builtins.str, typing.Any]],
+    config: typing.Optional[builtins.str] = None,
+    format: typing.Optional[SecretStoreV1Beta1SpecProviderDopplerFormat] = None,
+    name_transformer: typing.Optional[SecretStoreV1Beta1SpecProviderDopplerNameTransformer] = None,
+    project: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e8841d8359ddc01188720737ada5a706c1619c22e7425a5d663b94eea33309b7(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4731b7ff6b5f7e1c67462193a0401491586b1d1d2101fea57353fb824e4ced21(
+    *,
+    doppler_token: typing.Union[SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a1fea7caeb42148ebb3eb2e91a01eb769cb2308b62b93143a35ea56f351310c4(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d93a6c92c9c0b83f9c3884e6f384592e50aa4a8ce8673c5eb495ba612323373b(
+    *,
+    data: typing.Sequence[typing.Union[SecretStoreV1Beta1SpecProviderFakeData, typing.Dict[builtins.str, typing.Any]]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__29a0c184f90e7b31b38a333f23beda06732b2fd6367a56e1d22e214b8eebaeac(
+    *,
+    key: builtins.str,
+    value: typing.Optional[builtins.str] = None,
+    value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c3ecb75384dd8f76bb3e29feed63aaf82819c4952cd30b31a059d987820d165a(
+    *,
+    auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ece6b6ecf5d7444ab38286c886b12f5ae237b3e61e0410bf7a06e137cc5ddcbf(
+    *,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c1368bb18127d39725cce7022c44341150fd77fd75a76890278cb64f891d90cc(
+    *,
+    secret_access_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__364aa3a256ffb1db5e8aad80987b84984403cd06f707862457451651798f5d95(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9b5ffa9b3599a682d44be37badcece2843f9e11c0c3af162dcd58dd5faa12281(
+    *,
+    cluster_location: builtins.str,
+    cluster_name: builtins.str,
+    service_account_ref: typing.Union[SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    cluster_project_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c85d822f9260d7b2e71fd3554e55b1fb5aafb3791ffbc13548a56267364e098e(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b398588d0e2703fe1f91c36ee1116bd611797b0d35e42ae69ec6f3a660a899aa(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuth, typing.Dict[builtins.str, typing.Any]],
+    environment: typing.Optional[builtins.str] = None,
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__20deece46bd316fa7ee77d2cd3ef1138ae550b6a6852687ee249f45373fb65bb(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9cc2000edfcefc04ea18587adbfe7cc7cccc9ee68e326e76edb3ac39b2d4e766(
+    *,
+    access_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d5024106fecce7059ce27d090bc0293130bbb172a7cd76a1e71a78bb7c515931(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d0267097db94e6dd73fdfcea08ec320aa5df8c05909723119660daa4697d4e89(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderIbmAuth, typing.Dict[builtins.str, typing.Any]],
+    service_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7442a2e4e22992bf0d9ad03fd141ee4789ea32cf7e9bf2c281bf6c2de12799ff(
+    *,
+    container_auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthContainerAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8eb8570d22a9232e49428aadfeff673e7c1bb95db459a128da09d18dd9a877f4(
+    *,
+    profile: builtins.str,
+    iam_endpoint: typing.Optional[builtins.str] = None,
+    token_location: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f9228a280e6a7ce80f5fcf86b911b502c8f53a339a0ca0037fc7b01e92346ab2(
+    *,
+    secret_api_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b80417f3083dcb5866dfa1ab42fde962e8a28bdfaebc05ed9c45e28155f05db3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0eb51a2fef268ed31500d17e2a6bb9611a7ee40a9b4d213ac395b958c064a2f0(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuth, typing.Dict[builtins.str, typing.Any]],
+    remote_namespace: typing.Optional[builtins.str] = None,
+    server: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesServer, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4febf2b0eb0fdcdfa0b17099ffe8a84a5a1941668925d672dbf362202f1660e3(
+    *,
+    cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__18a4079b17dfbbd744c6cdfc7ae7b0d97805f749bb4c0b3e9619dea0f53e5c7a(
+    *,
+    client_cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    client_key: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d9b3f78cc3bb7658dd3c35554318220b15eb7c942accae3ec4b352f516ebd14c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__42f24331268dcb0d9cdbf6ec4b18b536c5d9105df0ca060410bcb16e7844262d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eacf4713dc2dbb9bc810892d116a1fcbcb9d0e0841869a5d07ada3bc56701208(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bec138ba036b38e5ba6a971a6c04acb29aa345aaef6e195f213ad1536637c5a0(
+    *,
+    bearer_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eb2c93bb0eef9af5c6b7d58045d71fc562b13e87a832f12bc87da48410851e8e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d679aa7557793ca3a8fd37725eb27302305e012ef0651a9008e422fc4c78bc81(
+    *,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1f682dc01ab3544124912213346c39e299a227713b49003eb2742c133629f431(
+    *,
+    name: builtins.str,
+    type: SecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f1799d8f5d4e7fd3e38d4ffda5fbe26f701abb1ac72c72e62e17dc32d661c52f(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[builtins.str, typing.Any]],
+    connect_host: builtins.str,
+    vaults: typing.Mapping[builtins.str, jsii.Number],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c9f3cb1f01e83febb00d40ac37067b4cc2c02b4e11d32c06354ac23c9793b112(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0e8a9e24241a42ff9102923f86463f8b2434e409b96b1c3372c47f7d6ee914a5(
+    *,
+    connect_token_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e920371298eef9ef64fd417d1fe1a190eecd25d510ddfae09033af8d91ea611e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__64a73f7d94141f654d20eea2b114031d06b98e3f17f51f9796818f7873200e73(
+    *,
+    region: builtins.str,
+    vault: builtins.str,
+    auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__40b8eeb85088c31aca7e5df4dc593a08848c08806890a3d02fa7948995f3437c(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+    tenancy: builtins.str,
+    user: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__01ef1bc632be3346170362a1c030bf5ed1f64b4233140ff0036f5a882b11c524(
+    *,
+    fingerprint: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint, typing.Dict[builtins.str, typing.Any]],
+    privatekey: typing.Union[SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2e820022cd3ecbb7e3073fe7f41bda9fb729f513cd9da4945a925a300cc26d1b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3d4cbeb2d65fda2f0f86577a2ee9cf1784799a03e0ec4de73ae3d4116a51b7c1(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__78623254f8b4480d65a04e698f672f51438d8f6ad30f23ac1407edfaba7874bf(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderSenhaseguraAuth, typing.Dict[builtins.str, typing.Any]],
+    module: builtins.str,
+    url: builtins.str,
+    ignore_ssl_certificate: typing.Optional[builtins.bool] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2b2808e6be5de7fcbdf0e82d2a489f69451abfdc33dc24f27bda74709537de26(
+    *,
+    client_id: builtins.str,
+    client_secret_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bea4e571f5932fe123738bee25182a721382ee4f520f5c5424bdf47102fc5952(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9fc4023c465f1be1a5c234fc3840fd441fe986a5b257d0ae414a562c34af5757(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
+    server: builtins.str,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    forward_inconsistent: typing.Optional[builtins.bool] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    path: typing.Optional[builtins.str] = None,
+    read_your_writes: typing.Optional[builtins.bool] = None,
+    version: typing.Optional[SecretStoreV1Beta1SpecProviderVaultVersion] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__400104a61eab9ca884187e2efbafa3aa344cc85d8fcba6bbf7136fc0639c2284(
+    *,
+    app_role: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    ldap: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    token_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2612fd31ff239b5943a7df02b5760bc325d209684ea6b63f06098ab23d9a896b(
+    *,
+    path: builtins.str,
+    role_id: builtins.str,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3eedd159a87fe07e72cce871971add22df1a8d80a195cfeacb05a624140b9884(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a2b41d62225e08c00b6e892d8bf36e67169f93c0a408c744fe8a1d0619927eaf(
+    *,
+    client_cert: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__81b9aa8a124bab828cff9a54e645168f18bd4cb1346e28b31c135ec26d61be17(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__657764136effba05124a02f44146e137354371a76c2326fe46f2a98a9578d15c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6d12691f0946a3be88b3813dd9e0f8618296ec3e293c8acdabef8eacd866a2c0(
+    *,
+    path: builtins.str,
+    kubernetes_service_account_token: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken, typing.Dict[builtins.str, typing.Any]]] = None,
+    role: typing.Optional[builtins.str] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c244c831d1b55ba6714b2abfe1ec15f86e2d2e02854d87e4b37e4b5fa8cf5aac(
+    *,
+    service_account_ref: typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    expiration_seconds: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__581d82abfc24873710a507cda618c0e4e6ae222d91b35a395a9b26c7d8017c4f(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4ef4ba406e97456fd40e81e83a1b292cf26640faa7de7c46bc8d554c0d636659(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1336a204e0559ec7dfb15e3a1be1add384c119b846b080cc482c4ca2dbc0f301(
+    *,
+    mount_path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6f9c90383fbc90b9ffe85575c9a5dab35b486f50b27d31d5d2c4c44954cc18ad(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__22b5d8d69b247e7e694dbd8a0366bd7c5c79be42ffba34090f076bba7dfc8150(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e2b90e477cfebcc2b16c4c2fcce1ab775265e753d97d71cc18bf29c5cde3a9c9(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b3e2b5ca54356668b28b28010a671ca9c9051d330ec2474db708d50ec1cafc20(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d517595b96eeeec71f466e5bfb29bd6b5c39213c8c5e12d513ed5717a5e79f6c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__32dea37cf93e2ea75f29adf17d3938b2218a712b370866878b2757313182fb2d(
+    *,
+    name: builtins.str,
+    type: SecretStoreV1Beta1SpecProviderVaultCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cf5abb92c60012a2736376d90e7ef4e3c9cd3bcf7cf74f99e2df1cd1a13680c0(
+    *,
+    result: typing.Union[SecretStoreV1Beta1SpecProviderWebhookResult, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+    body: typing.Optional[builtins.str] = None,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderWebhookCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    method: typing.Optional[builtins.str] = None,
+    secrets: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecProviderWebhookSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
+    timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5fce432ce0e2eae6e5a8f1412837e18641603a6e8b15d4aec34e332993b5462d(
+    *,
+    name: builtins.str,
+    type: SecretStoreV1Beta1SpecProviderWebhookCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__58b32e121616882afc75d18b197bdf2ce88622a99c612074a8bd3b067ca6b802(
+    *,
+    json_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__778a8f2be6f5511228d406820684a94d08bd1a9b6159ffdc456566fb25eb337c(
+    *,
+    name: builtins.str,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d7dca2ad9349a9d2fe7a5896781f6b52ecbf67e082b9d411ea3413a41b00a7e2(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__08d808c8d7f62d085e205bb96b9a022d41d531ac28d062038109210ab5c79576(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ddd2993bc954fd084ce9e84b9bbea1a36c9f386d6fe8911f4f2f6fd2d5960b5c(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cfe09b0333f706d3c8197ef3f83ef7d4cc18d05556e2702e2179d843c118df6d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d449498ebeb1647186fb96828f0f757a8d444078c80997ab79f408890f18fb19(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__58a3bafa9427d99fbe6f7e616a670af9a996c35120dd0ab4a536cff4eb503180(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bf99b289f0ca917180063a71bc7afdafa9ac3bbfc28ac2c699675e6901606a6d(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxAuth, typing.Dict[builtins.str, typing.Any]],
+    api_endpoint: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__320475850982319810875521d97ba7cfe93494d4e6f6a9a7089951c51615ec74(
+    *,
+    authorized_key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__46b50c4851b420ec30ee452030b4a8396b34001ade1064d279f4751c9ee31d43(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d16120f78f7e83f30028a83b52f165e3bf6cc402c2caf7b6507c86dc972c9a6b(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8756909219ad777e25fd1653205d832b6153e484056da252932b6eceb6f5fe7b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6ad5b45d0afd8807d66e967985db427563f25d7a6fb6ec3e2329dbe8187b09b1(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
