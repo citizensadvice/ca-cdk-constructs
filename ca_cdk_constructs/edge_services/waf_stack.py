@@ -29,11 +29,14 @@ from ca_cdk_constructs.edge_services.waf_assets.known_bad_inputs_rule import (
 
 class WafStack(Stack):
     # deploys the WAF automations solution stack using the template in the assets/ folder
-    def __init__(self, scope:
-            Construct, id: str,
-            params: dict,
-            custom_rules: Optional[wafv2.CfnWebACL.RuleProperty] = [],
-            **kwargs) -> None:
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        params: dict,
+        custom_rules: Optional[wafv2.CfnWebACL.RuleProperty] = [],
+        **kwargs,
+    ) -> None:
         super().__init__(scope, id, **kwargs)
 
         dirname = os.path.dirname(__file__)

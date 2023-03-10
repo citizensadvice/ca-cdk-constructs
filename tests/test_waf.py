@@ -23,19 +23,19 @@ def test_waf_created():
     )
 
     waf_stack = WafStack(
-            cloudfront,
-            "TestWafStack",
-            params={
-                "ActivateAWSManagedRulesParam": "yes",
-                "ActivateSqlInjectionProtectionParam": "yes",
-                "ActivateCrossSiteScriptingProtectionParam": "yes",
-                "ActivateHttpFloodProtectionParam": "yes - AWS WAF rate based rule",
-                "ActivateScannersProbesProtectionParam": "no",
-                "ActivateReputationListsProtectionParam": "yes",
-                "ActivateBadBotProtectionParam": "no",
-            },
-            env=env,
-            custom_rules=[],
+        cloudfront,
+        "TestWafStack",
+        params={
+            "ActivateAWSManagedRulesParam": "yes",
+            "ActivateSqlInjectionProtectionParam": "yes",
+            "ActivateCrossSiteScriptingProtectionParam": "yes",
+            "ActivateHttpFloodProtectionParam": "yes - AWS WAF rate based rule",
+            "ActivateScannersProbesProtectionParam": "no",
+            "ActivateReputationListsProtectionParam": "yes",
+            "ActivateBadBotProtectionParam": "no",
+        },
+        env=env,
+        custom_rules=[],
     )
     template = assertions.Template.from_stack(waf_stack)
 
@@ -44,17 +44,17 @@ def test_waf_created():
     # so users of the template will need to do their own testing/checks on the deployed waf
     template.has_resource_properties(
         "AWS::CloudFormation::Stack",
-            {"Parameters":
-                {
-                    "ActivateAWSManagedRulesParam": "yes",
-                    "ActivateSqlInjectionProtectionParam": "yes",
-                    "ActivateCrossSiteScriptingProtectionParam": "yes",
-                    "ActivateHttpFloodProtectionParam": "yes - AWS WAF rate based rule",
-                    "ActivateScannersProbesProtectionParam": "no",
-                    "ActivateReputationListsProtectionParam": "yes",
-                    "ActivateBadBotProtectionParam": "no",
-                },
-            }
+        {
+            "Parameters": {
+                "ActivateAWSManagedRulesParam": "yes",
+                "ActivateSqlInjectionProtectionParam": "yes",
+                "ActivateCrossSiteScriptingProtectionParam": "yes",
+                "ActivateHttpFloodProtectionParam": "yes - AWS WAF rate based rule",
+                "ActivateScannersProbesProtectionParam": "no",
+                "ActivateReputationListsProtectionParam": "yes",
+                "ActivateBadBotProtectionParam": "no",
+            },
+        },
     )
 
     dirname = os.path.dirname(__file__)
@@ -66,9 +66,7 @@ def test_waf_created():
     nested_waf_stack = CfnInclude(
         waf_stack,
         "TestWafAutomationsTemplate",
-        template_file=os.path.join(
-            dirname, "waf_assets/aws-waf-security-automations.json"
-        ),
+        template_file=os.path.join(dirname, "waf_assets/aws-waf-security-automations.json"),
         load_nested_stacks={
             "WebACLStack": CfnIncludeProps(
                 template_file=os.path.join(dirname, "waf_assets/nested_template.yaml"),

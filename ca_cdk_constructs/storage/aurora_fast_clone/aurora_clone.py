@@ -22,7 +22,7 @@ def lambda_handler(event, context):
         DBClusterIdentifier=source_db_cluster_identifier
     )
 
-    tags = cluster_query["DBClusters"][0]["TagList"]  + event["TargetTags"]
+    tags = cluster_query["DBClusters"][0]["TagList"] + event["TargetTags"]
     # deduplicate tags and ignore these starting with aws:
     target_tags = {}
     for entry in tags:
@@ -30,7 +30,7 @@ def lambda_handler(event, context):
             target_tags[entry["Key"]] = entry["Value"]
 
     target_tags["Name"] = target_db_cluster_identifier
-    tag_list = [{"Key": k, "Value": v} for k,v in target_tags.items() ]
+    tag_list = [{"Key": k, "Value": v} for k, v in target_tags.items()]
 
     port = int(event["Port"])
 

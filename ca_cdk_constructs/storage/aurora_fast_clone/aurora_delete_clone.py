@@ -20,7 +20,6 @@ def lambda_handler(event, context):
     except client.exceptions.DBInstanceNotFoundFault:
         print(f"WARN: Cluster {target_db_cluster_identifier} has no instances...")
 
-
     client.delete_db_cluster(
         DBClusterIdentifier=target_db_cluster_identifier,
         SkipFinalSnapshot=True,
@@ -28,5 +27,5 @@ def lambda_handler(event, context):
     waiter = client.get_waiter("db_cluster_deleted")
     waiter.wait(DBClusterIdentifier=target_db_cluster_identifier)
 
-    payload["message"]= "deleted"
+    payload["message"] = "deleted"
     return payload
