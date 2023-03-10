@@ -16,31 +16,31 @@ tests_no_zope = ["hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist", "c
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.63.0"
+version = "2.68.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = ">=2.2.52,<3.0.0"
+"aws-cdk.asset-awscli-v1" = ">=2.2.97,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.1,<3.0.0"
-"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.42,<3.0.0"
+"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.77,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.74.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.asset-awscli-v1"
-version = "2.2.52"
+version = "2.2.99"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.73.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -59,36 +59,36 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.asset-node-proxy-agent-v5"
-version = "2.0.42"
+version = "2.0.79"
 description = "@aws-cdk/asset-node-proxy-agent-v5"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.73.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk.aws-lambda-python-alpha"
-version = "2.63.0a0"
+version = "2.68.0a0"
 description = "The CDK Construct Library for AWS Lambda in Python"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-aws-cdk-lib = ">=2.63.0,<3.0.0"
+aws-cdk-lib = ">=2.68.0,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.74.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "aws-cdk.lambda-layer-kubectl-v24"
-version = "2.0.85"
-description = "A Lambda Layer that contains kubectl v1.24"
+name = "aws-cdk.lambda-layer-kubectl-v25"
+version = "2.0.3"
+description = "A Lambda Layer that contains kubectl v1.25"
 category = "main"
 optional = false
 python-versions = "~=3.7"
@@ -96,7 +96,7 @@ python-versions = "~=3.7"
 [package.dependencies]
 aws-cdk-lib = ">=2.0.0,<3.0.0"
 constructs = ">=10.0.5,<11.0.0"
-jsii = ">=1.74.0,<2.0.0"
+jsii = ">=1.76.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -150,7 +150,7 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.6.36"
+version = "2.7.25"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 category = "main"
 optional = false
@@ -158,22 +158,22 @@ python-versions = "~=3.7"
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.74.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "cdk8s-plus-24"
-version = "2.4.8"
-description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-24 synthesizes Kubernetes manifests for Kubernetes 1.24.0"
+name = "cdk8s-plus-25"
+version = "2.4.47"
+description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-25 synthesizes Kubernetes manifests for Kubernetes 1.25.0"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-cdk8s = ">=2.6.36,<3.0.0"
-constructs = ">=10.1.237,<11.0.0"
-jsii = ">=1.74.0,<2.0.0"
+cdk8s = ">=2.7.25,<3.0.0"
+constructs = ">=10.1.272,<11.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -206,14 +206,14 @@ python-versions = "*"
 
 [[package]]
 name = "constructs"
-version = "10.1.237"
+version = "10.1.272"
 description = "A programming model for software-defined state"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.74.0,<2.0.0"
+jsii = ">=1.77.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -229,6 +229,18 @@ python-versions = ">=3.7"
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "importlib-resources"
+version = "5.12.0"
+description = "Read resources from Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["sphinx (>=3.5)", "jaraco.packaging (>=9)", "rst.linker (>=1.9)", "furo", "sphinx-lint", "jaraco.tidelift (>=1.4)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)", "pytest-flake8"]
+
+[[package]]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
@@ -238,7 +250,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "jsii"
-version = "1.74.0"
+version = "1.77.0"
 description = "Python client for jsii runtime"
 category = "main"
 optional = false
@@ -247,6 +259,7 @@ python-versions = "~=3.7"
 [package.dependencies]
 attrs = ">=21.2,<23.0"
 cattrs = ">=1.8,<22.3"
+importlib-resources = ">=5.2.0"
 publication = ">=0.0.3"
 python-dateutil = "*"
 typeguard = ">=2.13.3,<2.14.0"
@@ -254,11 +267,11 @@ typing-extensions = ">=3.7,<5.0"
 
 [[package]]
 name = "mypy-extensions"
-version = "0.4.3"
-description = "Experimental type system extensions for programs checked with the mypy typechecker."
+version = "1.0.0"
+description = "Type system extensions for programs checked with the mypy type checker."
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.5"
 
 [[package]]
 name = "packaging"
@@ -278,15 +291,15 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "platformdirs"
-version = "2.6.2"
+version = "3.1.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2022.12.7)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>=1.19.5)", "sphinx (>=5.3)"]
-test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "pytest (>=7.2)"]
+docs = ["furo (>=2022.12.7)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>=1.22,!=1.23.4)", "sphinx (>=6.1.3)"]
+test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "pytest (>=7.2.1)"]
 
 [[package]]
 name = "pluggy"
@@ -310,7 +323,7 @@ python-versions = "*"
 
 [[package]]
 name = "pytest"
-version = "7.2.1"
+version = "7.2.2"
 description = "pytest: simple powerful testing with Python"
 category = "dev"
 optional = false
@@ -381,7 +394,7 @@ test = ["pytest", "typing-extensions", "mypy"]
 
 [[package]]
 name = "typing-extensions"
-version = "4.4.0"
+version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
@@ -390,7 +403,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "0b93e84b53661ff6aa6c79ccdc55ae8eadfa233c4373ed4e42502dc385d76182"
+content-hash = "ca3772267f9ad089823ef1777f5c74d342fede84d66236a55f74f2e037854e13"
 
 [metadata.files]
 attrs = []
@@ -399,17 +412,18 @@ aws-cdk-lib = []
 "aws-cdk.asset-kubectl-v20" = []
 "aws-cdk.asset-node-proxy-agent-v5" = []
 "aws-cdk.aws-lambda-python-alpha" = []
-"aws-cdk.lambda-layer-kubectl-v24" = []
+"aws-cdk.lambda-layer-kubectl-v25" = []
 black = []
 cattrs = []
 cdk-remote-stack = []
 cdk8s = []
-cdk8s-plus-24 = []
+cdk8s-plus-25 = []
 click = []
 colorama = []
 colored = []
 constructs = []
 exceptiongroup = []
+importlib-resources = []
 iniconfig = []
 jsii = []
 mypy-extensions = []

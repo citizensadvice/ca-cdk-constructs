@@ -8,10 +8,10 @@ homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 [tool.poetry.dependencies]
 python = "^3.10"
 aws-cdk-lib = "~=2.63"
-cdk8s-plus-24 = "~=2.3"
+cdk8s-plus-25 = "~=2.4"
 constructs = "~=10.1"
 cdk_remote_stack = "~=2.0"
-"aws-cdk.lambda-layer-kubectl-v24" = "^2.0.56"
+"aws-cdk.lambda-layer-kubectl-v25" = "~=2.0"
 "aws-cdk.aws-lambda-python-alpha" = "^2.61.1a0"
 
 [tool.poetry.dev-dependencies]

@@ -3,7 +3,7 @@ from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
 from aws_cdk.aws_eks import Cluster, OpenIdConnectProvider
 from aws_cdk.aws_iam import IRole, Role, AccountRootPrincipal
-from aws_cdk.lambda_layer_kubectl_v24 import KubectlV24Layer
+from aws_cdk.lambda_layer_kubectl_v25 import KubectlV25Layer as KubectlLayer
 from constructs import Construct
 
 
@@ -99,7 +99,7 @@ class EksClusterIntegration(Construct):
             cluster_name=cluster_name,
             kubectl_private_subnet_ids=private_subnets,
             kubectl_security_group_id=sg_id,
-            kubectl_layer=KubectlV24Layer(self, "KubectlLayer"),
+            kubectl_layer=KubectlLayer(self, "KubectlLayer"),
             vpc=vpc,
             prune=prune,  # https://github.com/aws/aws-cdk/issues/19843
         )
