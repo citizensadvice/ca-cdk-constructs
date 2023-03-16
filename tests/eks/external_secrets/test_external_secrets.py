@@ -20,7 +20,7 @@ def test_external_secret(snapshot):
         "secret1",
         k8s_secret_name="app-vault-secret",
         secret_source=ExternalSecretSource(
-            store=ExternalSecretStore.VAULT,
+            store="vault",
             source_secret="path/to/secret",
             secret_mappings={"key": "ENV_VAR", "key.two": ""},
         ),
