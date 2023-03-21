@@ -1,6 +1,7 @@
 from attr import Factory, define, ib
 import re
 
+from typing import Union, Any
 from cdk8s import ApiObjectMetadata
 from constructs import Construct
 
@@ -8,9 +9,9 @@ from ca_cdk_constructs.eks.imports.io.external_secrets import (
     ExternalSecretV1Beta1,
     ExternalSecretV1Beta1Spec,
     ExternalSecretV1Beta1SpecSecretStoreRef,
+    ExternalSecretV1Beta1SpecDataRemoteRef,
     ExternalSecretV1Beta1SpecTarget,
     ExternalSecretV1Beta1SpecData,
-    ExternalSecretV1Beta1SpecDataRemoteRef,
 )
 
 
@@ -48,20 +49,20 @@ class ExternalSecret(Construct):
         - requires existing external secret stores, possibly created by a different workflow as explained in https://external-secrets.io/v0.6.1/overview/#roles-and-responsibilities
         - provides a simpler interface for creating known, supported external secrets configurations, e.g. it does not support custom [templating](https://external-secrets.io/v0.7.0-rc1/guides/templating/)
         - always uses an ExternalSecret API version that is compatible and supported in CA - managed clusters.
-        - is restricted to only some supported secret stores - `~ca_cdk_constructs.eks.external_secrets.ExternalSecretStore`
 
     Usage:
+
         ExternalSecret(
             self,
-            "secret",
-            k8s_secret_name="app-secret", # the destination Secret in k8s will be called "app-secret"
+            "dbSecret",
+            store_name = "secrets-manager",
             secret_source=ExternalSecretSource(
-                store=ExternalSecretStore.VAULT,
-                source_secret="path/in/vault",
+                source_secret="secret-1", # AWS Secrets manager secret name
+                k8s_secret_name="app-secret2", # defaults to dns compliant name derived from source_secret
+                refresh_interval = "1h", # default
                 secret_mappings={
-                    "key_in_vault": "KEY_IN_K8S_SECRET",
-                    "key_in_vault.subkey": "KEY_IN_K8S_SECRET2",
-                    "key_in_vault2": "", # sets key in secret = key in external secret, i.e 'key_in_vault2'
+                    "KEY_IN_SECRET": "KEY_IN_K8S_SECRET",
+                    "KEY_IN_SECRET.SUBKEY": "KEY_IN_K8S_SECRET", # lookup nested secret values
                 }
             ),
             metadata={
@@ -70,33 +71,18 @@ class ExternalSecret(Construct):
                 "labels": {"foo": "bar"}
             }
         )
-
-        ExternalSecret(
-            self,
-            "secret2",
-            k8s_secret_name="app-secret2",
-            secret_source=ExternalSecretSource(
-                store=ExternalSecretStore.AWS_PARAMETER_STORE,
-                source_secret="secret-1", # AWS parameter store parameter name
-                secret_mappings={
-                    "some_key": "KEY_IN_K8S_SECRET",
-                    "some_key.subkey": "FOO",
-                }
-            ),
-        )
     """
 
     def __init__(
         self,
         scope: Construct,
         id: str,
+        store_name: str,
         secret_source: ExternalSecretSource,
-        k8s_secret_name: str,
-        metadata: Union[ApiObjectMetadata, dict] = {},
+        metadata: Union[dict[str, Any], ApiObjectMetadata] = {},
     ):
         super().__init__(scope, id)
-        self._secret_source = secret_source
-        self._k8s_secret_name = k8s_secret_name
+        self._k8s_secret_name = secret_source.k8s_secret_name
 
         ExternalSecretV1Beta1(
             self,
@@ -104,15 +90,14 @@ class ExternalSecret(Construct):
             metadata=metadata,
             spec=ExternalSecretV1Beta1Spec(
                 secret_store_ref=ExternalSecretV1Beta1SpecSecretStoreRef(
-                    name=secret_source.secret_store.value,
-                    kind="SecretStore",  # known, existing store
+                    name=store_name,
+                    kind="SecretStore",
                 ),
-                refresh_interval="1h",
-                target=ExternalSecretV1Beta1SpecTarget(name=k8s_secret_name),
+                refresh_interval=secret_source.refresh_interval,
+                target=ExternalSecretV1Beta1SpecTarget(name=secret_source.k8s_secret_name),
                 data=[
                     ExternalSecretV1Beta1SpecData(
                         remote_ref=ExternalSecretV1Beta1SpecDataRemoteRef(
-                            # the source ID, e.g. AWS SSM secret name or Vault path
                             key=secret_source.source_secret,
                             # which property to retrieve from provider
                             property=k,
@@ -129,11 +114,3 @@ class ExternalSecret(Construct):
     @property
     def k8s_secret_name(self) -> str:
         return self._k8s_secret_name
-
-    @property
-    def source_secret(self) -> str:
-        return self._secret_source.source_secret
-
-    @property
-    def secret_store(self) -> ExternalSecretStore:
-        return self._secret_source.secret_store
