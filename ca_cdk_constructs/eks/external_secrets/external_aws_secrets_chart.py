@@ -49,8 +49,9 @@ class ExternalAwsSecretsChart(Chart):
             labels: Labels to apply to all resources in this chart. Default: - no common labels
             namespace: The default namespace for all objects defined in this chart (directly or indirectly). This namespace will only apply to objects that don't have a ``namespace`` explicitly defined for them. Default: - no namespace is synthesized (usually this implies "default")
         """
-        labels["app.kubernetes.io/managed-by"] = "aws-cdk"
-        labels["app.kubernetes.io/component"] = "external-secrets"
+        labels.setdefault("app.kubernetes.io/managed-by", "aws-cdk")
+        labels.setdefault("app.kubernetes.io/component", "external-secrets")
+
         super().__init__(
             scope,
             id,
