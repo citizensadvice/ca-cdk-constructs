@@ -224,11 +224,11 @@ eks_integration.cluster
 </details>
 
 <details>
-  <summary>ExternalSecrets</summary>
+  <summary>ExternalAwsSecretsChart</summary>
 
-Deploys K8s [External Secrets](https://external-secrets.io/v0.5.8/)
+cdk8s Chart to deploy [External Secrets](https://external-secrets.io/) referencing one or more AWS SecretsManager or ParameterStore secrets.
 
-See [external_secrets](./ca_cdk_constructs/eks/external_secrets/external_secrets.py)
+See [the tests](./tests/eks/external_secrets/test_external_secrets_chart.py)
 
 </details>
 
