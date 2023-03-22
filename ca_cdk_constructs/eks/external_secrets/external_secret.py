@@ -1,5 +1,4 @@
 from attr import Factory, define, ib
-import re
 
 from typing import Union, Any
 from cdk8s import ApiObjectMetadata
@@ -22,7 +21,7 @@ class ExternalSecretSource:
 
         ExternalSecretSource(
             source_secret="secret-1", # e.g AWS Secrets manager secret name
-            k8s_secret_name="app-secret2", # defaults to a dns-compliant value derived from `~source_secret~`
+            k8s_secret_name="app-secret2",
             refresh_interval = "1h", # default
             secret_mappings={
                 "some_key": "KEY_IN_K8S_SECRET",
@@ -33,14 +32,9 @@ class ExternalSecretSource:
     """
 
     source_secret: str
+    k8s_secret_name: str
     secret_mappings: dict[str, str]
     refresh_interval: str = "1h"
-    k8s_secret_name: str = ib(
-        default=Factory(
-            lambda self: re.sub("[^0-9a-zA-Z-_.]", "", self.source_secret.lower())[0:63],
-            takes_self=True,
-        )
-    )
 
 
 class ExternalSecret(Construct):

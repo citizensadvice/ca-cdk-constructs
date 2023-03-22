@@ -17,8 +17,7 @@ def test_external_secret_chart(snapshot):
     source = ExternalSecretSource(
         source_secret="db-secret",
         secret_mappings={"username": "DB_USER"},
-        # deriving k8s_secret_name from source_secret
-        # k8s_secret_name="database-secret"
+        k8s_secret_name="db-secret"
     )
 
     ExternalAwsSecretsChart(
