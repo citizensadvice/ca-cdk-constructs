@@ -1546,6 +1546,76 @@ class CinderVolumeSource:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ClaimSource",
+    jsii_struct_bases=[],
+    name_mapping={
+        "resource_claim_name": "resourceClaimName",
+        "resource_claim_template_name": "resourceClaimTemplateName",
+    },
+)
+class ClaimSource:
+    def __init__(
+        self,
+        *,
+        resource_claim_name: typing.Optional[builtins.str] = None,
+        resource_claim_template_name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ClaimSource describes a reference to a ResourceClaim.
+
+        Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.
+
+        :param resource_claim_name: ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.
+        :param resource_claim_template_name: ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be -, where is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
+
+        :schema: io.k8s.api.core.v1.ClaimSource
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__40bafd005da56b205ce1497f55b1fac61f4c26ca711edfc77173ea503ca29f1c)
+            check_type(argname="argument resource_claim_name", value=resource_claim_name, expected_type=type_hints["resource_claim_name"])
+            check_type(argname="argument resource_claim_template_name", value=resource_claim_template_name, expected_type=type_hints["resource_claim_template_name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if resource_claim_name is not None:
+            self._values["resource_claim_name"] = resource_claim_name
+        if resource_claim_template_name is not None:
+            self._values["resource_claim_template_name"] = resource_claim_template_name
+
+    @builtins.property
+    def resource_claim_name(self) -> typing.Optional[builtins.str]:
+        '''ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.
+
+        :schema: io.k8s.api.core.v1.ClaimSource#resourceClaimName
+        '''
+        result = self._values.get("resource_claim_name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def resource_claim_template_name(self) -> typing.Optional[builtins.str]:
+        '''ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.
+
+        The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be -, where  is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long).
+
+        An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed.
+
+        This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
+
+        :schema: io.k8s.api.core.v1.ClaimSource#resourceClaimTemplateName
+        '''
+        result = self._values.get("resource_claim_template_name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClaimSource(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ClientIpConfig",
     jsii_struct_bases=[],
     name_mapping={"timeout_seconds": "timeoutSeconds"},
@@ -1611,7 +1681,7 @@ class ClusterCidrSpecV1Alpha1:
 
         :param per_node_host_bits: PerNodeHostBits defines the number of host bits to be configured per node. A subnet mask determines how much of the address is used for network bits and host bits. For example an IPv4 address of 192.168.0.0/24, splits the address into 24 bits for the network portion and 8 bits for the host portion. To allocate 256 IPs, set this field to 8 (a /24 mask for IPv4 or a /120 for IPv6). Minimum value is 4 (16 IPs). This field is immutable.
         :param ipv4: IPv4 defines an IPv4 IP block in CIDR notation(e.g. "10.0.0.0/8"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
-        :param ipv6: IPv6 defines an IPv6 IP block in CIDR notation(e.g. "fd12:3456:789a:1::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
+        :param ipv6: IPv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
         :param node_selector: NodeSelector defines which nodes the config is applicable to. An empty or nil NodeSelector selects all nodes. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec
@@ -1657,7 +1727,7 @@ class ClusterCidrSpecV1Alpha1:
 
     @builtins.property
     def ipv6(self) -> typing.Optional[builtins.str]:
-        '''IPv6 defines an IPv6 IP block in CIDR notation(e.g. "fd12:3456:789a:1::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
+        '''IPv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec#ipv6
         '''
@@ -2842,82 +2912,6 @@ class ContainerResourceMetricSourceV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ContainerResourceMetricSourceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"container": "container", "name": "name", "target": "target"},
-)
-class ContainerResourceMetricSourceV2Beta2:
-    def __init__(
-        self,
-        *,
-        container: builtins.str,
-        name: builtins.str,
-        target: typing.Union["MetricTargetV2Beta2", typing.Dict[builtins.str, typing.Any]],
-    ) -> None:
-        '''ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
-
-        :param container: container is the name of the container in the pods of the scaling target.
-        :param name: name is the name of the resource in question.
-        :param target: target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ContainerResourceMetricSource
-        '''
-        if isinstance(target, dict):
-            target = MetricTargetV2Beta2(**target)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__deaf7c22f061fbe661e76746c494a28c73dc2cf41824e082b5c14b9ddd01e253)
-            check_type(argname="argument container", value=container, expected_type=type_hints["container"])
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "container": container,
-            "name": name,
-            "target": target,
-        }
-
-    @builtins.property
-    def container(self) -> builtins.str:
-        '''container is the name of the container in the pods of the scaling target.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ContainerResourceMetricSource#container
-        '''
-        result = self._values.get("container")
-        assert result is not None, "Required property 'container' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''name is the name of the resource in question.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ContainerResourceMetricSource#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def target(self) -> "MetricTargetV2Beta2":
-        '''target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ContainerResourceMetricSource#target
-        '''
-        result = self._values.get("target")
-        assert result is not None, "Required property 'target' is missing"
-        return typing.cast("MetricTargetV2Beta2", result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ContainerResourceMetricSourceV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.CronJobSpec",
     jsii_struct_bases=[],
     name_mapping={
@@ -3103,7 +3097,7 @@ class CrossVersionObjectReference:
     ) -> None:
         '''CrossVersionObjectReference contains enough information to let you identify the referred resource.
 
-        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
         :param api_version: API version of the referent.
 
@@ -3125,7 +3119,7 @@ class CrossVersionObjectReference:
     def kind(self) -> builtins.str:
         '''Kind of the referent;
 
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
         :schema: io.k8s.api.autoscaling.v1.CrossVersionObjectReference#kind
         '''
@@ -3181,7 +3175,7 @@ class CrossVersionObjectReferenceV2:
     ) -> None:
         '''CrossVersionObjectReference contains enough information to let you identify the referred resource.
 
-        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
         :param api_version: API version of the referent.
 
@@ -3203,7 +3197,7 @@ class CrossVersionObjectReferenceV2:
     def kind(self) -> builtins.str:
         '''Kind of the referent;
 
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
         :schema: io.k8s.api.autoscaling.v2.CrossVersionObjectReference#kind
         '''
@@ -3240,84 +3234,6 @@ class CrossVersionObjectReferenceV2:
 
     def __repr__(self) -> str:
         return "CrossVersionObjectReferenceV2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.CrossVersionObjectReferenceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"kind": "kind", "name": "name", "api_version": "apiVersion"},
-)
-class CrossVersionObjectReferenceV2Beta2:
-    def __init__(
-        self,
-        *,
-        kind: builtins.str,
-        name: builtins.str,
-        api_version: typing.Optional[builtins.str] = None,
-    ) -> None:
-        '''CrossVersionObjectReference contains enough information to let you identify the referred resource.
-
-        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-        :param name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
-        :param api_version: API version of the referent.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.CrossVersionObjectReference
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__530c15d443179d6ce70ead6f59f91b5903cdefab8d1a309ca08ff2c8371b9816)
-            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "kind": kind,
-            "name": name,
-        }
-        if api_version is not None:
-            self._values["api_version"] = api_version
-
-    @builtins.property
-    def kind(self) -> builtins.str:
-        '''Kind of the referent;
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-
-        :schema: io.k8s.api.autoscaling.v2beta2.CrossVersionObjectReference#kind
-        '''
-        result = self._values.get("kind")
-        assert result is not None, "Required property 'kind' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''Name of the referent;
-
-        More info: http://kubernetes.io/docs/user-guide/identifiers#names
-
-        :schema: io.k8s.api.autoscaling.v2beta2.CrossVersionObjectReference#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def api_version(self) -> typing.Optional[builtins.str]:
-        '''API version of the referent.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.CrossVersionObjectReference#apiVersion
-        '''
-        result = self._values.get("api_version")
-        return typing.cast(typing.Optional[builtins.str], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "CrossVersionObjectReferenceV2Beta2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -4377,7 +4293,7 @@ class CustomResourceDefinitionSpec:
         :param scope: scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are ``Cluster`` and ``Namespaced``.
         :param versions: versions is the list of all API versions of the defined custom resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
         :param conversion: conversion defines conversion settings for the CRD.
-        :param preserve_unknown_fields: preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting ``x-preserve-unknown-fields`` to true in ``spec.versions[*].schema.openAPIV3Schema``. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.
+        :param preserve_unknown_fields: preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting ``x-preserve-unknown-fields`` to true in ``spec.versions[*].schema.openAPIV3Schema``. See https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#field-pruning for details.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionSpec
         '''
@@ -4463,7 +4379,7 @@ class CustomResourceDefinitionSpec:
     def preserve_unknown_fields(self) -> typing.Optional[builtins.bool]:
         '''preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage.
 
-        apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting ``x-preserve-unknown-fields`` to true in ``spec.versions[*].schema.openAPIV3Schema``. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.
+        apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting ``x-preserve-unknown-fields`` to true in ``spec.versions[*].schema.openAPIV3Schema``. See https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#field-pruning for details.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionSpec#preserveUnknownFields
         '''
@@ -5997,8 +5913,8 @@ class EndpointConditions:
         '''EndpointConditions represents the current condition of an endpoint.
 
         :param ready: ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints.
-        :param serving: serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
-        :param terminating: terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
+        :param serving: serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition.
+        :param terminating: terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating.
 
         :schema: io.k8s.api.discovery.v1.EndpointConditions
         '''
@@ -6030,7 +5946,7 @@ class EndpointConditions:
     def serving(self) -> typing.Optional[builtins.bool]:
         '''serving is identical to ready except that it is set regardless of the terminating state of endpoints.
 
-        This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
+        This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition.
 
         :schema: io.k8s.api.discovery.v1.EndpointConditions#serving
         '''
@@ -6041,7 +5957,7 @@ class EndpointConditions:
     def terminating(self) -> typing.Optional[builtins.bool]:
         '''terminating indicates that this endpoint is terminating.
 
-        A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating. This field can be enabled with the EndpointSliceTerminatingCondition feature gate.
+        A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating.
 
         :schema: io.k8s.api.discovery.v1.EndpointConditions#terminating
         '''
@@ -7349,70 +7265,6 @@ class ExternalMetricSourceV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ExternalMetricSourceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"metric": "metric", "target": "target"},
-)
-class ExternalMetricSourceV2Beta2:
-    def __init__(
-        self,
-        *,
-        metric: typing.Union["MetricIdentifierV2Beta2", typing.Dict[builtins.str, typing.Any]],
-        target: typing.Union["MetricTargetV2Beta2", typing.Dict[builtins.str, typing.Any]],
-    ) -> None:
-        '''ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
-
-        :param metric: metric identifies the target metric by name and selector.
-        :param target: target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ExternalMetricSource
-        '''
-        if isinstance(metric, dict):
-            metric = MetricIdentifierV2Beta2(**metric)
-        if isinstance(target, dict):
-            target = MetricTargetV2Beta2(**target)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__36b252acbc556d35519402150f6787f9c6501c5c096b81ad8387447ce2884dd5)
-            check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
-            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "metric": metric,
-            "target": target,
-        }
-
-    @builtins.property
-    def metric(self) -> "MetricIdentifierV2Beta2":
-        '''metric identifies the target metric by name and selector.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ExternalMetricSource#metric
-        '''
-        result = self._values.get("metric")
-        assert result is not None, "Required property 'metric' is missing"
-        return typing.cast("MetricIdentifierV2Beta2", result)
-
-    @builtins.property
-    def target(self) -> "MetricTargetV2Beta2":
-        '''target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ExternalMetricSource#target
-        '''
-        result = self._values.get("target")
-        assert result is not None, "Required property 'target' is missing"
-        return typing.cast("MetricTargetV2Beta2", result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ExternalMetricSourceV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.FcVolumeSource",
     jsii_struct_bases=[],
     name_mapping={
@@ -7823,50 +7675,6 @@ class FlockerVolumeSource:
 
 
 @jsii.data_type(
-    jsii_type="k8s.FlowDistinguisherMethodV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"type": "type"},
-)
-class FlowDistinguisherMethodV1Beta1:
-    def __init__(self, *, type: builtins.str) -> None:
-        '''FlowDistinguisherMethod specifies the method of a flow distinguisher.
-
-        :param type: ``type`` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace". Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowDistinguisherMethod
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0de11763ca7b8a2bf1ef1b3ae0c47957da616c87e760eefd04aea283fc2ccd59)
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "type": type,
-        }
-
-    @builtins.property
-    def type(self) -> builtins.str:
-        '''``type`` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace".
-
-        Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowDistinguisherMethod#type
-        '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
-        return typing.cast(builtins.str, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "FlowDistinguisherMethodV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.FlowDistinguisherMethodV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"type": "type"},
@@ -7911,99 +7719,36 @@ class FlowDistinguisherMethodV1Beta2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.FlowSchemaSpecV1Beta1",
+    jsii_type="k8s.FlowDistinguisherMethodV1Beta3",
     jsii_struct_bases=[],
-    name_mapping={
-        "priority_level_configuration": "priorityLevelConfiguration",
-        "distinguisher_method": "distinguisherMethod",
-        "matching_precedence": "matchingPrecedence",
-        "rules": "rules",
-    },
+    name_mapping={"type": "type"},
 )
-class FlowSchemaSpecV1Beta1:
-    def __init__(
-        self,
-        *,
-        priority_level_configuration: typing.Union["PriorityLevelConfigurationReferenceV1Beta1", typing.Dict[builtins.str, typing.Any]],
-        distinguisher_method: typing.Optional[typing.Union[FlowDistinguisherMethodV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-        matching_precedence: typing.Optional[jsii.Number] = None,
-        rules: typing.Optional[typing.Sequence[typing.Union["PolicyRulesWithSubjectsV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
-    ) -> None:
-        '''FlowSchemaSpec describes how the FlowSchema's specification looks like.
+class FlowDistinguisherMethodV1Beta3:
+    def __init__(self, *, type: builtins.str) -> None:
+        '''FlowDistinguisherMethod specifies the method of a flow distinguisher.
 
-        :param priority_level_configuration: ``priorityLevelConfiguration`` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
-        :param distinguisher_method: ``distinguisherMethod`` defines how to compute the flow distinguisher for requests that match this schema. ``nil`` specifies that the distinguisher is disabled and thus will always be the empty string.
-        :param matching_precedence: ``matchingPrecedence`` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
-        :param rules: ``rules`` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
+        :param type: ``type`` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace". Required.
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaSpec
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowDistinguisherMethod
         '''
-        if isinstance(priority_level_configuration, dict):
-            priority_level_configuration = PriorityLevelConfigurationReferenceV1Beta1(**priority_level_configuration)
-        if isinstance(distinguisher_method, dict):
-            distinguisher_method = FlowDistinguisherMethodV1Beta1(**distinguisher_method)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aed7ef608648ac85bd801d8fc51fdb594a41a071450bb28fdd76f79392f236ac)
-            check_type(argname="argument priority_level_configuration", value=priority_level_configuration, expected_type=type_hints["priority_level_configuration"])
-            check_type(argname="argument distinguisher_method", value=distinguisher_method, expected_type=type_hints["distinguisher_method"])
-            check_type(argname="argument matching_precedence", value=matching_precedence, expected_type=type_hints["matching_precedence"])
-            check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
+            type_hints = typing.get_type_hints(_typecheckingstub__bffd4b6077b1400f76c8885e39b16536445fb17247f408a55f48c1989bb500f7)
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "priority_level_configuration": priority_level_configuration,
+            "type": type,
         }
-        if distinguisher_method is not None:
-            self._values["distinguisher_method"] = distinguisher_method
-        if matching_precedence is not None:
-            self._values["matching_precedence"] = matching_precedence
-        if rules is not None:
-            self._values["rules"] = rules
 
     @builtins.property
-    def priority_level_configuration(
-        self,
-    ) -> "PriorityLevelConfigurationReferenceV1Beta1":
-        '''``priorityLevelConfiguration`` should reference a PriorityLevelConfiguration in the cluster.
+    def type(self) -> builtins.str:
+        '''``type`` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace".
 
-        If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
+        Required.
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaSpec#priorityLevelConfiguration
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowDistinguisherMethod#type
         '''
-        result = self._values.get("priority_level_configuration")
-        assert result is not None, "Required property 'priority_level_configuration' is missing"
-        return typing.cast("PriorityLevelConfigurationReferenceV1Beta1", result)
-
-    @builtins.property
-    def distinguisher_method(self) -> typing.Optional[FlowDistinguisherMethodV1Beta1]:
-        '''``distinguisherMethod`` defines how to compute the flow distinguisher for requests that match this schema.
-
-        ``nil`` specifies that the distinguisher is disabled and thus will always be the empty string.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaSpec#distinguisherMethod
-        '''
-        result = self._values.get("distinguisher_method")
-        return typing.cast(typing.Optional[FlowDistinguisherMethodV1Beta1], result)
-
-    @builtins.property
-    def matching_precedence(self) -> typing.Optional[jsii.Number]:
-        '''``matchingPrecedence`` is used to choose among the FlowSchemas that match a given request.
-
-        The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaSpec#matchingPrecedence
-        '''
-        result = self._values.get("matching_precedence")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    @builtins.property
-    def rules(self) -> typing.Optional[typing.List["PolicyRulesWithSubjectsV1Beta1"]]:
-        '''``rules`` describes which requests will match this flow schema.
-
-        This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaSpec#rules
-        '''
-        result = self._values.get("rules")
-        return typing.cast(typing.Optional[typing.List["PolicyRulesWithSubjectsV1Beta1"]], result)
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast(builtins.str, result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -8012,7 +7757,7 @@ class FlowSchemaSpecV1Beta1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "FlowSchemaSpecV1Beta1(%s)" % ", ".join(
+        return "FlowDistinguisherMethodV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -8120,6 +7865,113 @@ class FlowSchemaSpecV1Beta2:
 
     def __repr__(self) -> str:
         return "FlowSchemaSpecV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.FlowSchemaSpecV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "priority_level_configuration": "priorityLevelConfiguration",
+        "distinguisher_method": "distinguisherMethod",
+        "matching_precedence": "matchingPrecedence",
+        "rules": "rules",
+    },
+)
+class FlowSchemaSpecV1Beta3:
+    def __init__(
+        self,
+        *,
+        priority_level_configuration: typing.Union["PriorityLevelConfigurationReferenceV1Beta3", typing.Dict[builtins.str, typing.Any]],
+        distinguisher_method: typing.Optional[typing.Union[FlowDistinguisherMethodV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+        matching_precedence: typing.Optional[jsii.Number] = None,
+        rules: typing.Optional[typing.Sequence[typing.Union["PolicyRulesWithSubjectsV1Beta3", typing.Dict[builtins.str, typing.Any]]]] = None,
+    ) -> None:
+        '''FlowSchemaSpec describes how the FlowSchema's specification looks like.
+
+        :param priority_level_configuration: ``priorityLevelConfiguration`` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
+        :param distinguisher_method: ``distinguisherMethod`` defines how to compute the flow distinguisher for requests that match this schema. ``nil`` specifies that the distinguisher is disabled and thus will always be the empty string.
+        :param matching_precedence: ``matchingPrecedence`` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
+        :param rules: ``rules`` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec
+        '''
+        if isinstance(priority_level_configuration, dict):
+            priority_level_configuration = PriorityLevelConfigurationReferenceV1Beta3(**priority_level_configuration)
+        if isinstance(distinguisher_method, dict):
+            distinguisher_method = FlowDistinguisherMethodV1Beta3(**distinguisher_method)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__52d981628f2120d6117e98080ee21cdc5a95544b4e345b4f2083d09e3e6ac908)
+            check_type(argname="argument priority_level_configuration", value=priority_level_configuration, expected_type=type_hints["priority_level_configuration"])
+            check_type(argname="argument distinguisher_method", value=distinguisher_method, expected_type=type_hints["distinguisher_method"])
+            check_type(argname="argument matching_precedence", value=matching_precedence, expected_type=type_hints["matching_precedence"])
+            check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "priority_level_configuration": priority_level_configuration,
+        }
+        if distinguisher_method is not None:
+            self._values["distinguisher_method"] = distinguisher_method
+        if matching_precedence is not None:
+            self._values["matching_precedence"] = matching_precedence
+        if rules is not None:
+            self._values["rules"] = rules
+
+    @builtins.property
+    def priority_level_configuration(
+        self,
+    ) -> "PriorityLevelConfigurationReferenceV1Beta3":
+        '''``priorityLevelConfiguration`` should reference a PriorityLevelConfiguration in the cluster.
+
+        If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec#priorityLevelConfiguration
+        '''
+        result = self._values.get("priority_level_configuration")
+        assert result is not None, "Required property 'priority_level_configuration' is missing"
+        return typing.cast("PriorityLevelConfigurationReferenceV1Beta3", result)
+
+    @builtins.property
+    def distinguisher_method(self) -> typing.Optional[FlowDistinguisherMethodV1Beta3]:
+        '''``distinguisherMethod`` defines how to compute the flow distinguisher for requests that match this schema.
+
+        ``nil`` specifies that the distinguisher is disabled and thus will always be the empty string.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec#distinguisherMethod
+        '''
+        result = self._values.get("distinguisher_method")
+        return typing.cast(typing.Optional[FlowDistinguisherMethodV1Beta3], result)
+
+    @builtins.property
+    def matching_precedence(self) -> typing.Optional[jsii.Number]:
+        '''``matchingPrecedence`` is used to choose among the FlowSchemas that match a given request.
+
+        The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec#matchingPrecedence
+        '''
+        result = self._values.get("matching_precedence")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def rules(self) -> typing.Optional[typing.List["PolicyRulesWithSubjectsV1Beta3"]]:
+        '''``rules`` describes which requests will match this flow schema.
+
+        This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaSpec#rules
+        '''
+        result = self._values.get("rules")
+        return typing.cast(typing.Optional[typing.List["PolicyRulesWithSubjectsV1Beta3"]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "FlowSchemaSpecV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -8545,50 +8397,6 @@ class GlusterfsVolumeSource:
 
 
 @jsii.data_type(
-    jsii_type="k8s.GroupSubjectV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"name": "name"},
-)
-class GroupSubjectV1Beta1:
-    def __init__(self, *, name: builtins.str) -> None:
-        '''GroupSubject holds detailed information for group-kind subject.
-
-        :param name: name is the user group that matches, or "*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.GroupSubject
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e92765ab399fe3122755f1d74d66158908c107381fd38f1d72e54731d41699fd)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "name": name,
-        }
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''name is the user group that matches, or "*" to match all user groups.
-
-        See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.GroupSubject#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "GroupSubjectV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.GroupSubjectV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"name": "name"},
@@ -8628,6 +8436,50 @@ class GroupSubjectV1Beta2:
 
     def __repr__(self) -> str:
         return "GroupSubjectV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.GroupSubjectV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name"},
+)
+class GroupSubjectV1Beta3:
+    def __init__(self, *, name: builtins.str) -> None:
+        '''GroupSubject holds detailed information for group-kind subject.
+
+        :param name: name is the user group that matches, or "*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.GroupSubject
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__812aaf4ed41fa0dc75191b6335a0c23c3c9c9b13e69060ba616483b441140f2e)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''name is the user group that matches, or "*" to match all user groups.
+
+        See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.GroupSubject#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GroupSubjectV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -8762,77 +8614,6 @@ class HorizontalPodAutoscalerBehaviorV2:
 
     def __repr__(self) -> str:
         return "HorizontalPodAutoscalerBehaviorV2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.HorizontalPodAutoscalerBehaviorV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"scale_down": "scaleDown", "scale_up": "scaleUp"},
-)
-class HorizontalPodAutoscalerBehaviorV2Beta2:
-    def __init__(
-        self,
-        *,
-        scale_down: typing.Optional[typing.Union["HpaScalingRulesV2Beta2", typing.Dict[builtins.str, typing.Any]]] = None,
-        scale_up: typing.Optional[typing.Union["HpaScalingRulesV2Beta2", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).
-
-        :param scale_down: scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).
-        :param scale_up: scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: - increase no more than 4 pods per 60 seconds - double the number of pods per 60 seconds No stabilization is used.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerBehavior
-        '''
-        if isinstance(scale_down, dict):
-            scale_down = HpaScalingRulesV2Beta2(**scale_down)
-        if isinstance(scale_up, dict):
-            scale_up = HpaScalingRulesV2Beta2(**scale_up)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bf4f9cb7b66a8c55f24e47bf9de8c9cbb33ce5e7db80786dbd9eb59d1cba90f3)
-            check_type(argname="argument scale_down", value=scale_down, expected_type=type_hints["scale_down"])
-            check_type(argname="argument scale_up", value=scale_up, expected_type=type_hints["scale_up"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if scale_down is not None:
-            self._values["scale_down"] = scale_down
-        if scale_up is not None:
-            self._values["scale_up"] = scale_up
-
-    @builtins.property
-    def scale_down(self) -> typing.Optional["HpaScalingRulesV2Beta2"]:
-        '''scaleDown is scaling policy for scaling Down.
-
-        If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerBehavior#scaleDown
-        '''
-        result = self._values.get("scale_down")
-        return typing.cast(typing.Optional["HpaScalingRulesV2Beta2"], result)
-
-    @builtins.property
-    def scale_up(self) -> typing.Optional["HpaScalingRulesV2Beta2"]:
-        '''scaleUp is scaling policy for scaling Up.
-
-        If not set, the default value is the higher of:
-
-        - increase no more than 4 pods per 60 seconds
-        - double the number of pods per 60 seconds
-          No stabilization is used.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerBehavior#scaleUp
-        '''
-        result = self._values.get("scale_up")
-        return typing.cast(typing.Optional["HpaScalingRulesV2Beta2"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "HorizontalPodAutoscalerBehaviorV2Beta2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -9061,126 +8842,6 @@ class HorizontalPodAutoscalerSpecV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.HorizontalPodAutoscalerSpecV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={
-        "max_replicas": "maxReplicas",
-        "scale_target_ref": "scaleTargetRef",
-        "behavior": "behavior",
-        "metrics": "metrics",
-        "min_replicas": "minReplicas",
-    },
-)
-class HorizontalPodAutoscalerSpecV2Beta2:
-    def __init__(
-        self,
-        *,
-        max_replicas: jsii.Number,
-        scale_target_ref: typing.Union[CrossVersionObjectReferenceV2Beta2, typing.Dict[builtins.str, typing.Any]],
-        behavior: typing.Optional[typing.Union[HorizontalPodAutoscalerBehaviorV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-        metrics: typing.Optional[typing.Sequence[typing.Union["MetricSpecV2Beta2", typing.Dict[builtins.str, typing.Any]]]] = None,
-        min_replicas: typing.Optional[jsii.Number] = None,
-    ) -> None:
-        '''HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.
-
-        :param max_replicas: maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
-        :param scale_target_ref: scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
-        :param behavior: behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used.
-        :param metrics: metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used). The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods. Ergo, metrics used must decrease as the pod count is increased, and vice-versa. See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.
-        :param min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec
-        '''
-        if isinstance(scale_target_ref, dict):
-            scale_target_ref = CrossVersionObjectReferenceV2Beta2(**scale_target_ref)
-        if isinstance(behavior, dict):
-            behavior = HorizontalPodAutoscalerBehaviorV2Beta2(**behavior)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ccb29672b38ef2cc860de9d96f1749668761f44d8ef40599d6a8b9f100a4f35a)
-            check_type(argname="argument max_replicas", value=max_replicas, expected_type=type_hints["max_replicas"])
-            check_type(argname="argument scale_target_ref", value=scale_target_ref, expected_type=type_hints["scale_target_ref"])
-            check_type(argname="argument behavior", value=behavior, expected_type=type_hints["behavior"])
-            check_type(argname="argument metrics", value=metrics, expected_type=type_hints["metrics"])
-            check_type(argname="argument min_replicas", value=min_replicas, expected_type=type_hints["min_replicas"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "max_replicas": max_replicas,
-            "scale_target_ref": scale_target_ref,
-        }
-        if behavior is not None:
-            self._values["behavior"] = behavior
-        if metrics is not None:
-            self._values["metrics"] = metrics
-        if min_replicas is not None:
-            self._values["min_replicas"] = min_replicas
-
-    @builtins.property
-    def max_replicas(self) -> jsii.Number:
-        '''maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up.
-
-        It cannot be less that minReplicas.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec#maxReplicas
-        '''
-        result = self._values.get("max_replicas")
-        assert result is not None, "Required property 'max_replicas' is missing"
-        return typing.cast(jsii.Number, result)
-
-    @builtins.property
-    def scale_target_ref(self) -> CrossVersionObjectReferenceV2Beta2:
-        '''scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec#scaleTargetRef
-        '''
-        result = self._values.get("scale_target_ref")
-        assert result is not None, "Required property 'scale_target_ref' is missing"
-        return typing.cast(CrossVersionObjectReferenceV2Beta2, result)
-
-    @builtins.property
-    def behavior(self) -> typing.Optional[HorizontalPodAutoscalerBehaviorV2Beta2]:
-        '''behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).
-
-        If not set, the default HPAScalingRules for scale up and scale down are used.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec#behavior
-        '''
-        result = self._values.get("behavior")
-        return typing.cast(typing.Optional[HorizontalPodAutoscalerBehaviorV2Beta2], result)
-
-    @builtins.property
-    def metrics(self) -> typing.Optional[typing.List["MetricSpecV2Beta2"]]:
-        '''metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).
-
-        The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec#metrics
-        '''
-        result = self._values.get("metrics")
-        return typing.cast(typing.Optional[typing.List["MetricSpecV2Beta2"]], result)
-
-    @builtins.property
-    def min_replicas(self) -> typing.Optional[jsii.Number]:
-        '''minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.
-
-        It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec#minReplicas
-        '''
-        result = self._values.get("min_replicas")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "HorizontalPodAutoscalerSpecV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.HostAlias",
     jsii_struct_bases=[],
     name_mapping={"hostnames": "hostnames", "ip": "ip"},
@@ -9384,84 +9045,6 @@ class HpaScalingPolicyV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.HpaScalingPolicyV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"period_seconds": "periodSeconds", "type": "type", "value": "value"},
-)
-class HpaScalingPolicyV2Beta2:
-    def __init__(
-        self,
-        *,
-        period_seconds: jsii.Number,
-        type: builtins.str,
-        value: jsii.Number,
-    ) -> None:
-        '''HPAScalingPolicy is a single policy which must hold true for a specified past interval.
-
-        :param period_seconds: PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
-        :param type: Type is used to specify the scaling policy.
-        :param value: Value contains the amount of change which is permitted by the policy. It must be greater than zero
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingPolicy
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b9a39d03e42a02a240dadb3d016219021b0718aa9dd1d5cc2305724a876a6652)
-            check_type(argname="argument period_seconds", value=period_seconds, expected_type=type_hints["period_seconds"])
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-            check_type(argname="argument value", value=value, expected_type=type_hints["value"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "period_seconds": period_seconds,
-            "type": type,
-            "value": value,
-        }
-
-    @builtins.property
-    def period_seconds(self) -> jsii.Number:
-        '''PeriodSeconds specifies the window of time for which the policy should hold true.
-
-        PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingPolicy#periodSeconds
-        '''
-        result = self._values.get("period_seconds")
-        assert result is not None, "Required property 'period_seconds' is missing"
-        return typing.cast(jsii.Number, result)
-
-    @builtins.property
-    def type(self) -> builtins.str:
-        '''Type is used to specify the scaling policy.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingPolicy#type
-        '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def value(self) -> jsii.Number:
-        '''Value contains the amount of change which is permitted by the policy.
-
-        It must be greater than zero
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingPolicy#value
-        '''
-        result = self._values.get("value")
-        assert result is not None, "Required property 'value' is missing"
-        return typing.cast(jsii.Number, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "HpaScalingPolicyV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.HpaScalingRulesV2",
     jsii_struct_bases=[],
     name_mapping={
@@ -9542,91 +9125,6 @@ class HpaScalingRulesV2:
 
     def __repr__(self) -> str:
         return "HpaScalingRulesV2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.HpaScalingRulesV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={
-        "policies": "policies",
-        "select_policy": "selectPolicy",
-        "stabilization_window_seconds": "stabilizationWindowSeconds",
-    },
-)
-class HpaScalingRulesV2Beta2:
-    def __init__(
-        self,
-        *,
-        policies: typing.Optional[typing.Sequence[typing.Union[HpaScalingPolicyV2Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
-        select_policy: typing.Optional[builtins.str] = None,
-        stabilization_window_seconds: typing.Optional[jsii.Number] = None,
-    ) -> None:
-        '''HPAScalingRules configures the scaling behavior for one direction.
-
-        These Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.
-
-        :param policies: policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid
-        :param select_policy: selectPolicy is used to specify which policy should be used. If not set, the default value MaxPolicySelect is used.
-        :param stabilization_window_seconds: StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingRules
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__19cec94ecc00bf7bf6cfc17c6f5b098af65a2cd7a1a04a7a1f983629b3244999)
-            check_type(argname="argument policies", value=policies, expected_type=type_hints["policies"])
-            check_type(argname="argument select_policy", value=select_policy, expected_type=type_hints["select_policy"])
-            check_type(argname="argument stabilization_window_seconds", value=stabilization_window_seconds, expected_type=type_hints["stabilization_window_seconds"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if policies is not None:
-            self._values["policies"] = policies
-        if select_policy is not None:
-            self._values["select_policy"] = select_policy
-        if stabilization_window_seconds is not None:
-            self._values["stabilization_window_seconds"] = stabilization_window_seconds
-
-    @builtins.property
-    def policies(self) -> typing.Optional[typing.List[HpaScalingPolicyV2Beta2]]:
-        '''policies is a list of potential scaling polices which can be used during scaling.
-
-        At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingRules#policies
-        '''
-        result = self._values.get("policies")
-        return typing.cast(typing.Optional[typing.List[HpaScalingPolicyV2Beta2]], result)
-
-    @builtins.property
-    def select_policy(self) -> typing.Optional[builtins.str]:
-        '''selectPolicy is used to specify which policy should be used.
-
-        If not set, the default value MaxPolicySelect is used.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingRules#selectPolicy
-        '''
-        result = self._values.get("select_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
-
-    @builtins.property
-    def stabilization_window_seconds(self) -> typing.Optional[jsii.Number]:
-        '''StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.
-
-        StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HPAScalingRules#stabilizationWindowSeconds
-        '''
-        result = self._values.get("stabilization_window_seconds")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "HpaScalingRulesV2Beta2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -10557,10 +10055,10 @@ class IpBlock:
     ) -> None:
         '''IPBlock describes a particular CIDR (Ex.
 
-        "192.168.1.1/24","2001:db9::/64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
+        "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
 
-        :param cidr: CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64".
-        :param except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range.
+        :param cidr: CIDR is a string representing the IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64".
+        :param except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the CIDR range.
 
         :schema: io.k8s.api.networking.v1.IPBlock
         '''
@@ -10576,7 +10074,7 @@ class IpBlock:
 
     @builtins.property
     def cidr(self) -> builtins.str:
-        '''CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64".
+        '''CIDR is a string representing the IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64".
 
         :schema: io.k8s.api.networking.v1.IPBlock#cidr
         '''
@@ -10586,7 +10084,7 @@ class IpBlock:
 
     @builtins.property
     def except_(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range.
+        '''Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the CIDR range.
 
         :schema: io.k8s.api.networking.v1.IPBlock#except
         '''
@@ -18041,134 +17539,6 @@ class KubeEvictionProps:
         )
 
 
-class KubeFlowSchemaListV1Beta1(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeFlowSchemaListV1Beta1",
-):
-    '''FlowSchemaList is a list of FlowSchema objects.
-
-    :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaList
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.flowcontrol.v1beta1.FlowSchemaList" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param items: ``items`` is a list of FlowSchemas.
-        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3b4d3de1d76cfd7e27b25abded34fa03c7565390268d322a30f69ad0c49d464f)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeFlowSchemaListV1Beta1Props(items=items, metadata=metadata)
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta1.FlowSchemaList".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param items: ``items`` is a list of FlowSchemas.
-        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        '''
-        props = KubeFlowSchemaListV1Beta1Props(items=items, metadata=metadata)
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta1.FlowSchemaList".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubeFlowSchemaListV1Beta1Props",
-    jsii_struct_bases=[],
-    name_mapping={"items": "items", "metadata": "metadata"},
-)
-class KubeFlowSchemaListV1Beta1Props:
-    def __init__(
-        self,
-        *,
-        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''FlowSchemaList is a list of FlowSchema objects.
-
-        :param items: ``items`` is a list of FlowSchemas.
-        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaList
-        '''
-        if isinstance(metadata, dict):
-            metadata = ListMeta(**metadata)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fd12b53a22e371f554ea3b92b04b95d4c936156c053f08b0f7def6a091b102d1)
-            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "items": items,
-        }
-        if metadata is not None:
-            self._values["metadata"] = metadata
-
-    @builtins.property
-    def items(self) -> typing.List["KubeFlowSchemaV1Beta1Props"]:
-        '''``items`` is a list of FlowSchemas.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaList#items
-        '''
-        result = self._values.get("items")
-        assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeFlowSchemaV1Beta1Props"], result)
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ListMeta"]:
-        '''``metadata`` is the standard list metadata.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchemaList#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ListMeta"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubeFlowSchemaListV1Beta1Props(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
 class KubeFlowSchemaListV1Beta2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -18297,16 +17667,14 @@ class KubeFlowSchemaListV1Beta2Props:
         )
 
 
-class KubeFlowSchemaV1Beta1(
+class KubeFlowSchemaListV1Beta3(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeFlowSchemaV1Beta1",
+    jsii_type="k8s.KubeFlowSchemaListV1Beta3",
 ):
-    '''FlowSchema defines the schema of a group of flows.
+    '''FlowSchemaList is a list of FlowSchema objects.
 
-    Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
-
-    :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchema
+    :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaList
     '''
 
     def __init__(
@@ -18314,21 +17682,21 @@ class KubeFlowSchemaV1Beta1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.flowcontrol.v1beta1.FlowSchema" API object.
+        '''Defines a "io.k8s.api.flowcontrol.v1beta3.FlowSchemaList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param items: ``items`` is a list of FlowSchemas.
+        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__03ca8902846b394a52781bdbcdca3fcbcf9ffe6f49e072c09ece3c8e98509770)
+            type_hints = typing.get_type_hints(_typecheckingstub__3d77a2bc947160fa8c8b7379c2b017e6bb43ad9bb7d61e92ce9feee34f94bfe9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeFlowSchemaV1Beta1Props(metadata=metadata, spec=spec)
+        props = KubeFlowSchemaListV1Beta3Props(items=items, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -18337,17 +17705,17 @@ class KubeFlowSchemaV1Beta1(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta1.FlowSchema".
+        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta3.FlowSchemaList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param items: ``items`` is a list of FlowSchemas.
+        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
-        props = KubeFlowSchemaV1Beta1Props(metadata=metadata, spec=spec)
+        props = KubeFlowSchemaListV1Beta3Props(items=items, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -18359,66 +17727,61 @@ class KubeFlowSchemaV1Beta1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta1.FlowSchema".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta3.FlowSchemaList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeFlowSchemaV1Beta1Props",
+    jsii_type="k8s.KubeFlowSchemaListV1Beta3Props",
     jsii_struct_bases=[],
-    name_mapping={"metadata": "metadata", "spec": "spec"},
+    name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubeFlowSchemaV1Beta1Props:
+class KubeFlowSchemaListV1Beta3Props:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubeFlowSchemaV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''FlowSchema defines the schema of a group of flows.
+        '''FlowSchemaList is a list of FlowSchema objects.
 
-        Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
+        :param items: ``items`` is a list of FlowSchemas.
+        :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchema
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaList
         '''
         if isinstance(metadata, dict):
-            metadata = ObjectMeta(**metadata)
-        if isinstance(spec, dict):
-            spec = FlowSchemaSpecV1Beta1(**spec)
+            metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7f28e33322d138a4326e67cf7f4c1c37c20add91579b4d996f246ec4b8cc8c24)
+            type_hints = typing.get_type_hints(_typecheckingstub__9324188a061c5eae530453984a55d9350e8a735317db123e7ead7e0c73209b67)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
         if metadata is not None:
             self._values["metadata"] = metadata
-        if spec is not None:
-            self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional["ObjectMeta"]:
-        '''``metadata`` is the standard object's metadata.
+    def items(self) -> typing.List["KubeFlowSchemaV1Beta3Props"]:
+        '''``items`` is a list of FlowSchemas.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeFlowSchemaV1Beta3Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''``metadata`` is the standard list metadata.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchema#metadata
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchemaList#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ObjectMeta"], result)
-
-    @builtins.property
-    def spec(self) -> typing.Optional[FlowSchemaSpecV1Beta1]:
-        '''``spec`` is the specification of the desired behavior of a FlowSchema.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.FlowSchema#spec
-        '''
-        result = self._values.get("spec")
-        return typing.cast(typing.Optional[FlowSchemaSpecV1Beta1], result)
+        return typing.cast(typing.Optional["ListMeta"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -18427,7 +17790,7 @@ class KubeFlowSchemaV1Beta1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeFlowSchemaV1Beta1Props(%s)" % ", ".join(
+        return "KubeFlowSchemaListV1Beta3Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -18563,6 +17926,141 @@ class KubeFlowSchemaV1Beta2Props:
 
     def __repr__(self) -> str:
         return "KubeFlowSchemaV1Beta2Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeFlowSchemaV1Beta3(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeFlowSchemaV1Beta3",
+):
+    '''FlowSchema defines the schema of a group of flows.
+
+    Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
+
+    :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchema
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.flowcontrol.v1beta3.FlowSchema" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a9b9348b12fce50fb80513761ddfb24eea7f7945e13e61ce1aa0681387d5b265)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeFlowSchemaV1Beta3Props(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta3.FlowSchema".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        props = KubeFlowSchemaV1Beta3Props(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta3.FlowSchema".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeFlowSchemaV1Beta3Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeFlowSchemaV1Beta3Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''FlowSchema defines the schema of a group of flows.
+
+        Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
+
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchema
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = FlowSchemaSpecV1Beta3(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6410a409fbe720f8a5200bbc56c83314c2abbde52a3f3e6d86dcffa538d45f0e)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''``metadata`` is the standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchema#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional[FlowSchemaSpecV1Beta3]:
+        '''``spec`` is the specification of the desired behavior of a FlowSchema.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.FlowSchema#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional[FlowSchemaSpecV1Beta3], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeFlowSchemaV1Beta3Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -18821,136 +18319,6 @@ class KubeHorizontalPodAutoscalerListV2(
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
-class KubeHorizontalPodAutoscalerListV2Beta2(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeHorizontalPodAutoscalerListV2Beta2",
-):
-    '''HorizontalPodAutoscalerList is a list of horizontal pod autoscaler objects.
-
-    :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        items: typing.Sequence[typing.Union["KubeHorizontalPodAutoscalerV2Beta2Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param items: items is the list of horizontal pod autoscaler objects.
-        :param metadata: metadata is the standard list metadata.
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d447d08c141a5cef252cf22f7eba3e5de334a41fc8dafbc877b92000f7de1df7)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeHorizontalPodAutoscalerListV2Beta2Props(
-            items=items, metadata=metadata
-        )
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        items: typing.Sequence[typing.Union["KubeHorizontalPodAutoscalerV2Beta2Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param items: items is the list of horizontal pod autoscaler objects.
-        :param metadata: metadata is the standard list metadata.
-        '''
-        props = KubeHorizontalPodAutoscalerListV2Beta2Props(
-            items=items, metadata=metadata
-        )
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubeHorizontalPodAutoscalerListV2Beta2Props",
-    jsii_struct_bases=[],
-    name_mapping={"items": "items", "metadata": "metadata"},
-)
-class KubeHorizontalPodAutoscalerListV2Beta2Props:
-    def __init__(
-        self,
-        *,
-        items: typing.Sequence[typing.Union["KubeHorizontalPodAutoscalerV2Beta2Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''HorizontalPodAutoscalerList is a list of horizontal pod autoscaler objects.
-
-        :param items: items is the list of horizontal pod autoscaler objects.
-        :param metadata: metadata is the standard list metadata.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList
-        '''
-        if isinstance(metadata, dict):
-            metadata = ListMeta(**metadata)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__257dd97a73be8c036b0a414876dac8a0e349837cd171f89719ce7b4444b7afa8)
-            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "items": items,
-        }
-        if metadata is not None:
-            self._values["metadata"] = metadata
-
-    @builtins.property
-    def items(self) -> typing.List["KubeHorizontalPodAutoscalerV2Beta2Props"]:
-        '''items is the list of horizontal pod autoscaler objects.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList#items
-        '''
-        result = self._values.get("items")
-        assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeHorizontalPodAutoscalerV2Beta2Props"], result)
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ListMeta"]:
-        '''metadata is the standard list metadata.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerList#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ListMeta"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubeHorizontalPodAutoscalerListV2Beta2Props(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
 @jsii.data_type(
     jsii_type="k8s.KubeHorizontalPodAutoscalerListV2Props",
     jsii_struct_bases=[],
@@ -19142,137 +18510,6 @@ class KubeHorizontalPodAutoscalerV2(
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
         '''Returns the apiVersion and kind for "io.k8s.api.autoscaling.v2.HorizontalPodAutoscaler".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-class KubeHorizontalPodAutoscalerV2Beta2(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeHorizontalPodAutoscalerV2Beta2",
-):
-    '''HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.
-
-    :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param metadata: metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4b094c2c6a6b7cae820ceb967b94ae81a1ca2f3a5f1a4213c3ea534721bfd68c)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeHorizontalPodAutoscalerV2Beta2Props(metadata=metadata, spec=spec)
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param metadata: metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
-        '''
-        props = KubeHorizontalPodAutoscalerV2Beta2Props(metadata=metadata, spec=spec)
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubeHorizontalPodAutoscalerV2Beta2Props",
-    jsii_struct_bases=[],
-    name_mapping={"metadata": "metadata", "spec": "spec"},
-)
-class KubeHorizontalPodAutoscalerV2Beta2Props:
-    def __init__(
-        self,
-        *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.
-
-        :param metadata: metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler
-        '''
-        if isinstance(metadata, dict):
-            metadata = ObjectMeta(**metadata)
-        if isinstance(spec, dict):
-            spec = HorizontalPodAutoscalerSpecV2Beta2(**spec)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f0bcdfb5f008efc2a03750fc157837530cf925cc326c18d102ab67f8fa7c1e08)
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if metadata is not None:
-            self._values["metadata"] = metadata
-        if spec is not None:
-            self._values["spec"] = spec
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ObjectMeta"]:
-        '''metadata is the standard object metadata.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ObjectMeta"], result)
-
-    @builtins.property
-    def spec(self) -> typing.Optional[HorizontalPodAutoscalerSpecV2Beta2]:
-        '''spec is the specification for the behaviour of the autoscaler.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscaler#spec
-        '''
-        result = self._values.get("spec")
-        return typing.cast(typing.Optional[HorizontalPodAutoscalerSpecV2Beta2], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubeHorizontalPodAutoscalerV2Beta2Props(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
 
 
 @jsii.data_type(
@@ -22875,6 +22112,264 @@ class KubePodProps:
         )
 
 
+class KubePodSchedulingListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubePodSchedulingListV1Alpha1",
+):
+    '''PodSchedulingList is a collection of Pod scheduling objects.
+
+    :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.PodSchedulingList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: Items is the list of PodScheduling objects.
+        :param metadata: Standard list metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ca5c307c4cf8c1a6abfe2594c184c4510f1f094dbb431db9ed4c05139b0636a3)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubePodSchedulingListV1Alpha1Props(items=items, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.PodSchedulingList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: Items is the list of PodScheduling objects.
+        :param metadata: Standard list metadata.
+        '''
+        props = KubePodSchedulingListV1Alpha1Props(items=items, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.PodSchedulingList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubePodSchedulingListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubePodSchedulingListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''PodSchedulingList is a collection of Pod scheduling objects.
+
+        :param items: Items is the list of PodScheduling objects.
+        :param metadata: Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__7a3f9f9a13fab7ad4309606460387114d09f26fe708e57d0ade367760eba22d4)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubePodSchedulingV1Alpha1Props"]:
+        '''Items is the list of PodScheduling objects.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubePodSchedulingV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubePodSchedulingListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubePodSchedulingV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubePodSchedulingV1Alpha1",
+):
+    '''PodScheduling objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
+
+    This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+    :schema: io.k8s.api.resource.v1alpha1.PodScheduling
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.PodScheduling" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param spec: Spec describes where resources for the Pod are needed.
+        :param metadata: Standard object metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3f4856868eca18e4ac926608e85a1bc5de5344771a17d102cda0ca44b4a61ee2)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubePodSchedulingV1Alpha1Props(spec=spec, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.PodScheduling".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param spec: Spec describes where resources for the Pod are needed.
+        :param metadata: Standard object metadata.
+        '''
+        props = KubePodSchedulingV1Alpha1Props(spec=spec, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.PodScheduling".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubePodSchedulingV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"spec": "spec", "metadata": "metadata"},
+)
+class KubePodSchedulingV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''PodScheduling objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
+
+        This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+        :param spec: Spec describes where resources for the Pod are needed.
+        :param metadata: Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodScheduling
+        '''
+        if isinstance(spec, dict):
+            spec = PodSchedulingSpecV1Alpha1(**spec)
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b8378dcaf5913bb1f58986bd024042b8cd1b3448b4c03b331937a17870ffaac0)
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "spec": spec,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def spec(self) -> "PodSchedulingSpecV1Alpha1":
+        '''Spec describes where resources for the Pod are needed.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodScheduling#spec
+        '''
+        result = self._values.get("spec")
+        assert result is not None, "Required property 'spec' is missing"
+        return typing.cast("PodSchedulingSpecV1Alpha1", result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodScheduling#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubePodSchedulingV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class KubePodTemplate(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -23472,138 +22967,6 @@ class KubePriorityClassProps:
         )
 
 
-class KubePriorityLevelConfigurationListV1Beta1(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubePriorityLevelConfigurationListV1Beta1",
-):
-    '''PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects.
-
-    :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param items: ``items`` is a list of request-priorities.
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9ed9969a1bef945930df460c81070da8f93058b33159cdf963fec40032ce0bb0)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubePriorityLevelConfigurationListV1Beta1Props(
-            items=items, metadata=metadata
-        )
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param items: ``items`` is a list of request-priorities.
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        '''
-        props = KubePriorityLevelConfigurationListV1Beta1Props(
-            items=items, metadata=metadata
-        )
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubePriorityLevelConfigurationListV1Beta1Props",
-    jsii_struct_bases=[],
-    name_mapping={"items": "items", "metadata": "metadata"},
-)
-class KubePriorityLevelConfigurationListV1Beta1Props:
-    def __init__(
-        self,
-        *,
-        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects.
-
-        :param items: ``items`` is a list of request-priorities.
-        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList
-        '''
-        if isinstance(metadata, dict):
-            metadata = ListMeta(**metadata)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f2066baacdc4c2f98dd091b740553e2876e8fceefae49bf1c9b35963222f84a9)
-            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "items": items,
-        }
-        if metadata is not None:
-            self._values["metadata"] = metadata
-
-    @builtins.property
-    def items(self) -> typing.List["KubePriorityLevelConfigurationV1Beta1Props"]:
-        '''``items`` is a list of request-priorities.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList#items
-        '''
-        result = self._values.get("items")
-        assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubePriorityLevelConfigurationV1Beta1Props"], result)
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ListMeta"]:
-        '''``metadata`` is the standard object's metadata.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationList#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ListMeta"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubePriorityLevelConfigurationListV1Beta1Props(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
 class KubePriorityLevelConfigurationListV1Beta2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -23736,14 +23099,14 @@ class KubePriorityLevelConfigurationListV1Beta2Props:
         )
 
 
-class KubePriorityLevelConfigurationV1Beta1(
+class KubePriorityLevelConfigurationListV1Beta3(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubePriorityLevelConfigurationV1Beta1",
+    jsii_type="k8s.KubePriorityLevelConfigurationListV1Beta3",
 ):
-    '''PriorityLevelConfiguration represents the configuration of a priority level.
+    '''PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects.
 
-    :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration
+    :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList
     '''
 
     def __init__(
@@ -23751,22 +23114,22 @@ class KubePriorityLevelConfigurationV1Beta1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration" API object.
+        '''Defines a "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
+        :param items: ``items`` is a list of request-priorities.
         :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9f3280057d5349a4f6f847b5c6491972daebb4a2c375a0b2f7d45d359fc1aa73)
+            type_hints = typing.get_type_hints(_typecheckingstub__64fe405e3b84d29190baf774ed90a32c12ed6a17a342bae6b6bb18c8e57ca058)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubePriorityLevelConfigurationV1Beta1Props(
-            metadata=metadata, spec=spec
+        props = KubePriorityLevelConfigurationListV1Beta3Props(
+            items=items, metadata=metadata
         )
 
         jsii.create(self.__class__, self, [scope, id, props])
@@ -23776,18 +23139,18 @@ class KubePriorityLevelConfigurationV1Beta1(
     def manifest(
         cls,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration".
+        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
+        :param items: ``items`` is a list of request-priorities.
         :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
-        props = KubePriorityLevelConfigurationV1Beta1Props(
-            metadata=metadata, spec=spec
+        props = KubePriorityLevelConfigurationListV1Beta3Props(
+            items=items, metadata=metadata
         )
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
@@ -23800,64 +23163,61 @@ class KubePriorityLevelConfigurationV1Beta1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubePriorityLevelConfigurationV1Beta1Props",
+    jsii_type="k8s.KubePriorityLevelConfigurationListV1Beta3Props",
     jsii_struct_bases=[],
-    name_mapping={"metadata": "metadata", "spec": "spec"},
+    name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubePriorityLevelConfigurationV1Beta1Props:
+class KubePriorityLevelConfigurationListV1Beta3Props:
     def __init__(
         self,
         *,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+        items: typing.Sequence[typing.Union["KubePriorityLevelConfigurationV1Beta3Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''PriorityLevelConfiguration represents the configuration of a priority level.
+        '''PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects.
 
+        :param items: ``items`` is a list of request-priorities.
         :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList
         '''
         if isinstance(metadata, dict):
-            metadata = ObjectMeta(**metadata)
-        if isinstance(spec, dict):
-            spec = PriorityLevelConfigurationSpecV1Beta1(**spec)
+            metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6bf85eef92b7f4676e52956de81da99188362fbd624e04a43587ce9f1fe0084d)
+            type_hints = typing.get_type_hints(_typecheckingstub__8a9a2b4f57da24e68294448c136ed1b7f46757a2e39eb80d97db30d3fae1887e)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
         if metadata is not None:
             self._values["metadata"] = metadata
-        if spec is not None:
-            self._values["spec"] = spec
 
     @builtins.property
-    def metadata(self) -> typing.Optional["ObjectMeta"]:
+    def items(self) -> typing.List["KubePriorityLevelConfigurationV1Beta3Props"]:
+        '''``items`` is a list of request-priorities.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubePriorityLevelConfigurationV1Beta3Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
         '''``metadata`` is the standard object's metadata.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration#metadata
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationList#metadata
         '''
         result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ObjectMeta"], result)
-
-    @builtins.property
-    def spec(self) -> typing.Optional["PriorityLevelConfigurationSpecV1Beta1"]:
-        '''``spec`` is the specification of the desired behavior of a "request-priority".
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfiguration#spec
-        '''
-        result = self._values.get("spec")
-        return typing.cast(typing.Optional["PriorityLevelConfigurationSpecV1Beta1"], result)
+        return typing.cast(typing.Optional["ListMeta"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -23866,7 +23226,7 @@ class KubePriorityLevelConfigurationV1Beta1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubePriorityLevelConfigurationV1Beta1Props(%s)" % ", ".join(
+        return "KubePriorityLevelConfigurationListV1Beta3Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -24002,6 +23362,141 @@ class KubePriorityLevelConfigurationV1Beta2Props:
 
     def __repr__(self) -> str:
         return "KubePriorityLevelConfigurationV1Beta2Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubePriorityLevelConfigurationV1Beta3(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubePriorityLevelConfigurationV1Beta3",
+):
+    '''PriorityLevelConfiguration represents the configuration of a priority level.
+
+    :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta3", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e5b00c189c9bee05bebcfdcd22a465297c6da0c35fbc81c5172ea3c48f65b7f2)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubePriorityLevelConfigurationV1Beta3Props(
+            metadata=metadata, spec=spec
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta3", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        props = KubePriorityLevelConfigurationV1Beta3Props(
+            metadata=metadata, spec=spec
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubePriorityLevelConfigurationV1Beta3Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubePriorityLevelConfigurationV1Beta3Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["PriorityLevelConfigurationSpecV1Beta3", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''PriorityLevelConfiguration represents the configuration of a priority level.
+
+        :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = PriorityLevelConfigurationSpecV1Beta3(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__77fb534a06fef313d54401762de300dc3563bf4d8411dada16072154c0234ba3)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''``metadata`` is the standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["PriorityLevelConfigurationSpecV1Beta3"]:
+        '''``spec`` is the specification of the desired behavior of a "request-priority".
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["PriorityLevelConfigurationSpecV1Beta3"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubePriorityLevelConfigurationV1Beta3Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -24524,6 +24019,849 @@ class KubeReplicationControllerProps:
 
     def __repr__(self) -> str:
         return "KubeReplicationControllerProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClaimListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClaimListV1Alpha1",
+):
+    '''ResourceClaimList is a collection of claims.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: Items is the list of resource claims.
+        :param metadata: Standard list metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e200cdf7bdfd425880660ef6ebcb90da88783cb7874f700af41261d226802408)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClaimListV1Alpha1Props(items=items, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: Items is the list of resource claims.
+        :param metadata: Standard list metadata.
+        '''
+        props = KubeResourceClaimListV1Alpha1Props(items=items, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClaimListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeResourceClaimListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaimList is a collection of claims.
+
+        :param items: Items is the list of resource claims.
+        :param metadata: Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__de1fd43faf0ba317c36809119ca61ff37dc7311bff784a153466481f3c1f7aac)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubeResourceClaimV1Alpha1Props"]:
+        '''Items is the list of resource claims.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeResourceClaimV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClaimListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClaimTemplateListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha1",
+):
+    '''ResourceClaimTemplateList is a collection of claim templates.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: Items is the list of resource claim templates.
+        :param metadata: Standard list metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6fbb34cbc640559672bb256ab485dc10d838f47767a362a9647924f5939ec9b7)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClaimTemplateListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: Items is the list of resource claim templates.
+        :param metadata: Standard list metadata.
+        '''
+        props = KubeResourceClaimTemplateListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeResourceClaimTemplateListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaimTemplateList is a collection of claim templates.
+
+        :param items: Items is the list of resource claim templates.
+        :param metadata: Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__28698822e45bda3d63db1ad3983a08b594ae8089817211a639d0d2b2212c5c0e)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubeResourceClaimTemplateV1Alpha1Props"]:
+        '''Items is the list of resource claim templates.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeResourceClaimTemplateV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClaimTemplateListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClaimTemplateV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha1",
+):
+    '''ResourceClaimTemplate is used to produce ResourceClaim objects.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param spec: Describes the ResourceClaim that is to be generated. This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
+        :param metadata: Standard object metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__19b55a664e022e7cf75a2e7db6a0c16e6791ff0f493db7b0ac8902687bdfc771)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClaimTemplateV1Alpha1Props(spec=spec, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param spec: Describes the ResourceClaim that is to be generated. This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
+        :param metadata: Standard object metadata.
+        '''
+        props = KubeResourceClaimTemplateV1Alpha1Props(spec=spec, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"spec": "spec", "metadata": "metadata"},
+)
+class KubeResourceClaimTemplateV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaimTemplate is used to produce ResourceClaim objects.
+
+        :param spec: Describes the ResourceClaim that is to be generated. This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
+        :param metadata: Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate
+        '''
+        if isinstance(spec, dict):
+            spec = ResourceClaimTemplateSpecV1Alpha1(**spec)
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__895c0745ae5288dd68b676af5ebba5862e4ff365a8b6cb7256b72cebb64ed32f)
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "spec": spec,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def spec(self) -> "ResourceClaimTemplateSpecV1Alpha1":
+        '''Describes the ResourceClaim that is to be generated.
+
+        This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate#spec
+        '''
+        result = self._values.get("spec")
+        assert result is not None, "Required property 'spec' is missing"
+        return typing.cast("ResourceClaimTemplateSpecV1Alpha1", result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClaimTemplateV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClaimV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClaimV1Alpha1",
+):
+    '''ResourceClaim describes which resources are needed by a resource consumer.
+
+    Its status tracks whether the resource has been allocated and what the resulting attributes are.
+
+    This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClaim
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaim" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param spec: Spec describes the desired attributes of a resource that then needs to be allocated. It can only be set once when creating the ResourceClaim.
+        :param metadata: Standard object metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a1f97fddc933efea2a1616dae66764060c73225f24ca19f70ab4da1cff53e88f)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClaimV1Alpha1Props(spec=spec, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaim".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param spec: Spec describes the desired attributes of a resource that then needs to be allocated. It can only be set once when creating the ResourceClaim.
+        :param metadata: Standard object metadata.
+        '''
+        props = KubeResourceClaimV1Alpha1Props(spec=spec, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaim".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClaimV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"spec": "spec", "metadata": "metadata"},
+)
+class KubeResourceClaimV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaim describes which resources are needed by a resource consumer.
+
+        Its status tracks whether the resource has been allocated and what the resulting attributes are.
+
+        This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+        :param spec: Spec describes the desired attributes of a resource that then needs to be allocated. It can only be set once when creating the ResourceClaim.
+        :param metadata: Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim
+        '''
+        if isinstance(spec, dict):
+            spec = ResourceClaimSpecV1Alpha1(**spec)
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__881875cd1d5513534efa2e6323236285dc2d6c692541f339978f5f88cbd7191d)
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "spec": spec,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def spec(self) -> "ResourceClaimSpecV1Alpha1":
+        '''Spec describes the desired attributes of a resource that then needs to be allocated.
+
+        It can only be set once when creating the ResourceClaim.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim#spec
+        '''
+        result = self._values.get("spec")
+        assert result is not None, "Required property 'spec' is missing"
+        return typing.cast("ResourceClaimSpecV1Alpha1", result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClaimV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClassListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClassListV1Alpha1",
+):
+    '''ResourceClassList is a collection of classes.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClassList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClassList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: Items is the list of resource classes.
+        :param metadata: Standard list metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e1695fa3fd0da9c0899fd14ab89c516ae780955a7fabddea610d77da29a44ed4)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClassListV1Alpha1Props(items=items, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClassList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: Items is the list of resource classes.
+        :param metadata: Standard list metadata.
+        '''
+        props = KubeResourceClassListV1Alpha1Props(items=items, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClassList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClassListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeResourceClassListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClassList is a collection of classes.
+
+        :param items: Items is the list of resource classes.
+        :param metadata: Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ac68af0f54677d6e7e28921a84e980663e5bbd36841ef1ddab313b91449b124a)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubeResourceClassV1Alpha1Props"]:
+        '''Items is the list of resource classes.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeResourceClassV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClassListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeResourceClassV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeResourceClassV1Alpha1",
+):
+    '''ResourceClass is used by administrators to influence how resources are allocated.
+
+    This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+    :schema: io.k8s.api.resource.v1alpha1.ResourceClass
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        driver_name: builtins.str,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClass" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param driver_name: DriverName defines the name of the dynamic resource driver that is used for allocation of a ResourceClaim that uses this class. Resource drivers have a unique name in forward domain order (acme.example.com).
+        :param metadata: Standard object metadata.
+        :param parameters_ref: ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class. A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
+        :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__73e955754ed6b0a944de335f682e555ee872f783b244a6172a6174b18e2953f2)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeResourceClassV1Alpha1Props(
+            driver_name=driver_name,
+            metadata=metadata,
+            parameters_ref=parameters_ref,
+            suitable_nodes=suitable_nodes,
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        driver_name: builtins.str,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClass".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param driver_name: DriverName defines the name of the dynamic resource driver that is used for allocation of a ResourceClaim that uses this class. Resource drivers have a unique name in forward domain order (acme.example.com).
+        :param metadata: Standard object metadata.
+        :param parameters_ref: ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class. A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
+        :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
+        '''
+        props = KubeResourceClassV1Alpha1Props(
+            driver_name=driver_name,
+            metadata=metadata,
+            parameters_ref=parameters_ref,
+            suitable_nodes=suitable_nodes,
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClass".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeResourceClassV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={
+        "driver_name": "driverName",
+        "metadata": "metadata",
+        "parameters_ref": "parametersRef",
+        "suitable_nodes": "suitableNodes",
+    },
+)
+class KubeResourceClassV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        driver_name: builtins.str,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClass is used by administrators to influence how resources are allocated.
+
+        This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
+
+        :param driver_name: DriverName defines the name of the dynamic resource driver that is used for allocation of a ResourceClaim that uses this class. Resource drivers have a unique name in forward domain order (acme.example.com).
+        :param metadata: Standard object metadata.
+        :param parameters_ref: ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class. A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
+        :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClass
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(parameters_ref, dict):
+            parameters_ref = ResourceClassParametersReferenceV1Alpha1(**parameters_ref)
+        if isinstance(suitable_nodes, dict):
+            suitable_nodes = NodeSelector(**suitable_nodes)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4dcda1419c55ac01a43092063ef99623f9153c117048d8a4d4a0ebd85bae5430)
+            check_type(argname="argument driver_name", value=driver_name, expected_type=type_hints["driver_name"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument parameters_ref", value=parameters_ref, expected_type=type_hints["parameters_ref"])
+            check_type(argname="argument suitable_nodes", value=suitable_nodes, expected_type=type_hints["suitable_nodes"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "driver_name": driver_name,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if parameters_ref is not None:
+            self._values["parameters_ref"] = parameters_ref
+        if suitable_nodes is not None:
+            self._values["suitable_nodes"] = suitable_nodes
+
+    @builtins.property
+    def driver_name(self) -> builtins.str:
+        '''DriverName defines the name of the dynamic resource driver that is used for allocation of a ResourceClaim that uses this class.
+
+        Resource drivers have a unique name in forward domain order (acme.example.com).
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#driverName
+        '''
+        result = self._values.get("driver_name")
+        assert result is not None, "Required property 'driver_name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def parameters_ref(
+        self,
+    ) -> typing.Optional["ResourceClassParametersReferenceV1Alpha1"]:
+        '''ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class.
+
+        A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#parametersRef
+        '''
+        result = self._values.get("parameters_ref")
+        return typing.cast(typing.Optional["ResourceClassParametersReferenceV1Alpha1"], result)
+
+    @builtins.property
+    def suitable_nodes(self) -> typing.Optional["NodeSelector"]:
+        '''Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet.
+
+        Setting this field is optional. If null, all nodes are candidates.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#suitableNodes
+        '''
+        result = self._values.get("suitable_nodes")
+        return typing.cast(typing.Optional["NodeSelector"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeResourceClassV1Alpha1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -26252,6 +26590,119 @@ class KubeSelfSubjectAccessReviewProps:
 
     def __repr__(self) -> str:
         return "KubeSelfSubjectAccessReviewProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeSelfSubjectReviewV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeSelfSubjectReviewV1Alpha1",
+):
+    '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+    When using impersonation, users will receive the user info of the user being impersonated.
+
+    :schema: io.k8s.api.authentication.v1alpha1.SelfSubjectReview
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.authentication.v1alpha1.SelfSubjectReview" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__dc60febb32a5f5f830b0cbfeae492a65d79ebf66796edf824b494c89482a7e3f)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeSelfSubjectReviewV1Alpha1Props(metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.authentication.v1alpha1.SelfSubjectReview".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        props = KubeSelfSubjectReviewV1Alpha1Props(metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.authentication.v1alpha1.SelfSubjectReview".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeSelfSubjectReviewV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata"},
+)
+class KubeSelfSubjectReviewV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+        When using impersonation, users will receive the user info of the user being impersonated.
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1alpha1.SelfSubjectReview
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__740c60c3b930f3570c75be79b9daab533abd7ec5f3e5998f46de9d7e22d8dd90)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1alpha1.SelfSubjectReview#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeSelfSubjectReviewV1Alpha1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -28494,6 +28945,542 @@ class KubeTokenReviewProps:
         )
 
 
+class KubeValidatingAdmissionPolicyBindingListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingListV1Alpha1",
+):
+    '''ValidatingAdmissionPolicyBindingList is a list of ValidatingAdmissionPolicyBinding.
+
+    :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__aba7512ee266951498a04cd9a269f09706de6ad19ad3648606375a371fb62628)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyBindingListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        props = KubeValidatingAdmissionPolicyBindingListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeValidatingAdmissionPolicyBindingListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBindingList is a list of ValidatingAdmissionPolicyBinding.
+
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__58df6ed691a95aca20efd7ea05e0fc7ba9fc3d6f3743649a0799ed2ed11983ec)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if items is not None:
+            self._values["items"] = items
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(
+        self,
+    ) -> typing.Optional[typing.List["KubeValidatingAdmissionPolicyBindingV1Alpha1Props"]]:
+        '''List of PolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList#items
+        '''
+        result = self._values.get("items")
+        return typing.cast(typing.Optional[typing.List["KubeValidatingAdmissionPolicyBindingV1Alpha1Props"]], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyBindingListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeValidatingAdmissionPolicyBindingV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingV1Alpha1",
+):
+    '''ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
+
+    ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
+
+    :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__56be5cfcf392871de51369cb7627d15581b617ac5c85c34c2825c7dc7b3feaf2)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyBindingV1Alpha1Props(
+            metadata=metadata, spec=spec
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+        '''
+        props = KubeValidatingAdmissionPolicyBindingV1Alpha1Props(
+            metadata=metadata, spec=spec
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeValidatingAdmissionPolicyBindingV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
+
+        ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = ValidatingAdmissionPolicyBindingSpecV1Alpha1(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__02dcc69943131299a07758a92f8e2cda2225cdddcbbf84f8acd3bb912a2792da)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata;
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["ValidatingAdmissionPolicyBindingSpecV1Alpha1"]:
+        '''Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["ValidatingAdmissionPolicyBindingSpecV1Alpha1"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyBindingV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeValidatingAdmissionPolicyListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyListV1Alpha1",
+):
+    '''ValidatingAdmissionPolicyList is a list of ValidatingAdmissionPolicy.
+
+    :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5a03cdbc2d5280c7b4ec9ffb4625db7a698d7ded6744c1e54ec807bff308084f)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        props = KubeValidatingAdmissionPolicyListV1Alpha1Props(
+            items=items, metadata=metadata
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeValidatingAdmissionPolicyListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyList is a list of ValidatingAdmissionPolicy.
+
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__27f6c645b042b326a7c234f10c50683e94fe2b281a2747e856507e896bcdba42)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if items is not None:
+            self._values["items"] = items
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(
+        self,
+    ) -> typing.Optional[typing.List["KubeValidatingAdmissionPolicyV1Alpha1Props"]]:
+        '''List of ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList#items
+        '''
+        result = self._values.get("items")
+        return typing.cast(typing.Optional[typing.List["KubeValidatingAdmissionPolicyV1Alpha1Props"]], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeValidatingAdmissionPolicyV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyV1Alpha1",
+):
+    '''ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.
+
+    :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__40d71fe31ba527f1708a40aa586fc9c2850b09853dfc30d5893fce5bd4e83459)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyV1Alpha1Props(
+            metadata=metadata, spec=spec
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+        '''
+        props = KubeValidatingAdmissionPolicyV1Alpha1Props(
+            metadata=metadata, spec=spec
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeValidatingAdmissionPolicyV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = ValidatingAdmissionPolicySpecV1Alpha1(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__040f3513e9b89931f8fae1a4242c8701b631d9855f134d09d77119b9a1eee24f)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata;
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["ValidatingAdmissionPolicySpecV1Alpha1"]:
+        '''Specification of the desired behavior of the ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicy#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["ValidatingAdmissionPolicySpecV1Alpha1"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class KubeValidatingWebhookConfiguration(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -29606,72 +30593,6 @@ class LimitRangeSpec:
 
 
 @jsii.data_type(
-    jsii_type="k8s.LimitResponseV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"type": "type", "queuing": "queuing"},
-)
-class LimitResponseV1Beta1:
-    def __init__(
-        self,
-        *,
-        type: builtins.str,
-        queuing: typing.Optional[typing.Union["QueuingConfigurationV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''LimitResponse defines how to handle requests that can not be executed right now.
-
-        :param type: ``type`` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
-        :param queuing: ``queuing`` holds the configuration parameters for queuing. This field may be non-empty only if ``type`` is ``"Queue"``.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitResponse
-        '''
-        if isinstance(queuing, dict):
-            queuing = QueuingConfigurationV1Beta1(**queuing)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c6a31d26dd1825fed6969f220d5de82c7753778878cd3ff82c2f5f0d49f8e043)
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-            check_type(argname="argument queuing", value=queuing, expected_type=type_hints["queuing"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "type": type,
-        }
-        if queuing is not None:
-            self._values["queuing"] = queuing
-
-    @builtins.property
-    def type(self) -> builtins.str:
-        '''``type`` is "Queue" or "Reject".
-
-        "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitResponse#type
-        '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def queuing(self) -> typing.Optional["QueuingConfigurationV1Beta1"]:
-        '''``queuing`` holds the configuration parameters for queuing.
-
-        This field may be non-empty only if ``type`` is ``"Queue"``.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitResponse#queuing
-        '''
-        result = self._values.get("queuing")
-        return typing.cast(typing.Optional["QueuingConfigurationV1Beta1"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "LimitResponseV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.LimitResponseV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"type": "type", "queuing": "queuing"},
@@ -29738,67 +30659,58 @@ class LimitResponseV1Beta2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.LimitedPriorityLevelConfigurationV1Beta1",
+    jsii_type="k8s.LimitResponseV1Beta3",
     jsii_struct_bases=[],
-    name_mapping={
-        "assured_concurrency_shares": "assuredConcurrencyShares",
-        "limit_response": "limitResponse",
-    },
+    name_mapping={"type": "type", "queuing": "queuing"},
 )
-class LimitedPriorityLevelConfigurationV1Beta1:
+class LimitResponseV1Beta3:
     def __init__(
         self,
         *,
-        assured_concurrency_shares: typing.Optional[jsii.Number] = None,
-        limit_response: typing.Optional[typing.Union[LimitResponseV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        type: builtins.str,
+        queuing: typing.Optional[typing.Union["QueuingConfigurationV1Beta3", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits.
+        '''LimitResponse defines how to handle requests that can not be executed right now.
 
-        It addresses two issues:
+        :param type: ``type`` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
+        :param queuing: ``queuing`` holds the configuration parameters for queuing. This field may be non-empty only if ``type`` is ``"Queue"``.
 
-        - How are requests for this priority level limited?
-        - What should be done with requests that exceed the limit?
-
-        :param assured_concurrency_shares: ``assuredConcurrencyShares`` (ACS) configures the execution limit, which is a limit on the number of requests of this priority level that may be exeucting at a given time. ACS must be a positive number. The server's concurrency limit (SCL) is divided among the concurrency-controlled priority levels in proportion to their assured concurrency shares. This produces the assured concurrency value (ACV) --- the number of requests that may be executing at a time --- for each such priority level: ACV(l) = ceil( SCL * ACS(l) / ( sum[priority levels k] ACS(k) ) ) bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
-        :param limit_response: ``limitResponse`` indicates what to do with requests that can not be executed right now.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitedPriorityLevelConfiguration
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitResponse
         '''
-        if isinstance(limit_response, dict):
-            limit_response = LimitResponseV1Beta1(**limit_response)
+        if isinstance(queuing, dict):
+            queuing = QueuingConfigurationV1Beta3(**queuing)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__41d971b8a7a21ba91caea15cee41c4815f31c85df21694fcda26ff7bcf37200f)
-            check_type(argname="argument assured_concurrency_shares", value=assured_concurrency_shares, expected_type=type_hints["assured_concurrency_shares"])
-            check_type(argname="argument limit_response", value=limit_response, expected_type=type_hints["limit_response"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if assured_concurrency_shares is not None:
-            self._values["assured_concurrency_shares"] = assured_concurrency_shares
-        if limit_response is not None:
-            self._values["limit_response"] = limit_response
+            type_hints = typing.get_type_hints(_typecheckingstub__d647edc50a3472caac98caf06f5a31e4200bbd7ef2bb53fe956d146e70245f10)
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument queuing", value=queuing, expected_type=type_hints["queuing"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "type": type,
+        }
+        if queuing is not None:
+            self._values["queuing"] = queuing
 
     @builtins.property
-    def assured_concurrency_shares(self) -> typing.Optional[jsii.Number]:
-        '''``assuredConcurrencyShares`` (ACS) configures the execution limit, which is a limit on the number of requests of this priority level that may be exeucting at a given time.
+    def type(self) -> builtins.str:
+        '''``type`` is "Queue" or "Reject".
 
-        ACS must be a positive number. The server's concurrency limit (SCL) is divided among the concurrency-controlled priority levels in proportion to their assured concurrency shares. This produces the assured concurrency value (ACV) --- the number of requests that may be executing at a time --- for each such priority level:
+        "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
 
-        ACV(l) = ceil( SCL * ACS(l) / ( sum[priority levels k] ACS(k) ) )
-
-        bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitedPriorityLevelConfiguration#assuredConcurrencyShares
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitResponse#type
         '''
-        result = self._values.get("assured_concurrency_shares")
-        return typing.cast(typing.Optional[jsii.Number], result)
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast(builtins.str, result)
 
     @builtins.property
-    def limit_response(self) -> typing.Optional[LimitResponseV1Beta1]:
-        '''``limitResponse`` indicates what to do with requests that can not be executed right now.
+    def queuing(self) -> typing.Optional["QueuingConfigurationV1Beta3"]:
+        '''``queuing`` holds the configuration parameters for queuing.
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.LimitedPriorityLevelConfiguration#limitResponse
+        This field may be non-empty only if ``type`` is ``"Queue"``.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitResponse#queuing
         '''
-        result = self._values.get("limit_response")
-        return typing.cast(typing.Optional[LimitResponseV1Beta1], result)
+        result = self._values.get("queuing")
+        return typing.cast(typing.Optional["QueuingConfigurationV1Beta3"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -29807,7 +30719,7 @@ class LimitedPriorityLevelConfigurationV1Beta1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "LimitedPriorityLevelConfigurationV1Beta1(%s)" % ", ".join(
+        return "LimitResponseV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -29817,6 +30729,8 @@ class LimitedPriorityLevelConfigurationV1Beta1:
     jsii_struct_bases=[],
     name_mapping={
         "assured_concurrency_shares": "assuredConcurrencyShares",
+        "borrowing_limit_percent": "borrowingLimitPercent",
+        "lendable_percent": "lendablePercent",
         "limit_response": "limitResponse",
     },
 )
@@ -29825,6 +30739,8 @@ class LimitedPriorityLevelConfigurationV1Beta2:
         self,
         *,
         assured_concurrency_shares: typing.Optional[jsii.Number] = None,
+        borrowing_limit_percent: typing.Optional[jsii.Number] = None,
+        lendable_percent: typing.Optional[jsii.Number] = None,
         limit_response: typing.Optional[typing.Union[LimitResponseV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits.
@@ -29835,6 +30751,8 @@ class LimitedPriorityLevelConfigurationV1Beta2:
         - What should be done with requests that exceed the limit?
 
         :param assured_concurrency_shares: ``assuredConcurrencyShares`` (ACS) configures the execution limit, which is a limit on the number of requests of this priority level that may be exeucting at a given time. ACS must be a positive number. The server's concurrency limit (SCL) is divided among the concurrency-controlled priority levels in proportion to their assured concurrency shares. This produces the assured concurrency value (ACV) --- the number of requests that may be executing at a time --- for each such priority level: ACV(l) = ceil( SCL * ACS(l) / ( sum[priority levels k] ACS(k) ) ) bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
+        :param borrowing_limit_percent: ``borrowingLimitPercent``, if present, configures a limit on how many seats this priority level can borrow from other priority levels. The limit is known as this level's BorrowingConcurrencyLimit (BorrowingCL) and is a limit on the total number of seats that this level may borrow at any one time. This field holds the ratio of that limit to the level's nominal concurrency limit. When this field is non-nil, it must hold a non-negative integer and the limit is calculated as follows. BorrowingCL(i) = round( NominalCL(i) * borrowingLimitPercent(i)/100.0 ) The value of this field can be more than 100, implying that this priority level can borrow a number of seats that is greater than its own nominal concurrency limit (NominalCL). When this field is left ``nil``, the limit is effectively infinite.
+        :param lendable_percent: ``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels. The value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows. LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
         :param limit_response: ``limitResponse`` indicates what to do with requests that can not be executed right now.
 
         :schema: io.k8s.api.flowcontrol.v1beta2.LimitedPriorityLevelConfiguration
@@ -29844,10 +30762,16 @@ class LimitedPriorityLevelConfigurationV1Beta2:
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__1de531b9c958a31d6159e3de559aad52ec6bc11571ae701ec5b953bf9aac78cf)
             check_type(argname="argument assured_concurrency_shares", value=assured_concurrency_shares, expected_type=type_hints["assured_concurrency_shares"])
+            check_type(argname="argument borrowing_limit_percent", value=borrowing_limit_percent, expected_type=type_hints["borrowing_limit_percent"])
+            check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
             check_type(argname="argument limit_response", value=limit_response, expected_type=type_hints["limit_response"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if assured_concurrency_shares is not None:
             self._values["assured_concurrency_shares"] = assured_concurrency_shares
+        if borrowing_limit_percent is not None:
+            self._values["borrowing_limit_percent"] = borrowing_limit_percent
+        if lendable_percent is not None:
+            self._values["lendable_percent"] = lendable_percent
         if limit_response is not None:
             self._values["limit_response"] = limit_response
 
@@ -29867,6 +30791,34 @@ class LimitedPriorityLevelConfigurationV1Beta2:
         return typing.cast(typing.Optional[jsii.Number], result)
 
     @builtins.property
+    def borrowing_limit_percent(self) -> typing.Optional[jsii.Number]:
+        '''``borrowingLimitPercent``, if present, configures a limit on how many seats this priority level can borrow from other priority levels.
+
+        The limit is known as this level's BorrowingConcurrencyLimit (BorrowingCL) and is a limit on the total number of seats that this level may borrow at any one time. This field holds the ratio of that limit to the level's nominal concurrency limit. When this field is non-nil, it must hold a non-negative integer and the limit is calculated as follows.
+
+        BorrowingCL(i) = round( NominalCL(i) * borrowingLimitPercent(i)/100.0 )
+
+        The value of this field can be more than 100, implying that this priority level can borrow a number of seats that is greater than its own nominal concurrency limit (NominalCL). When this field is left ``nil``, the limit is effectively infinite.
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.LimitedPriorityLevelConfiguration#borrowingLimitPercent
+        '''
+        result = self._values.get("borrowing_limit_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def lendable_percent(self) -> typing.Optional[jsii.Number]:
+        '''``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels.
+
+        The value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows.
+
+        LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.LimitedPriorityLevelConfiguration#lendablePercent
+        '''
+        result = self._values.get("lendable_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
     def limit_response(self) -> typing.Optional[LimitResponseV1Beta2]:
         '''``limitResponse`` indicates what to do with requests that can not be executed right now.
 
@@ -29883,6 +30835,121 @@ class LimitedPriorityLevelConfigurationV1Beta2:
 
     def __repr__(self) -> str:
         return "LimitedPriorityLevelConfigurationV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.LimitedPriorityLevelConfigurationV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "borrowing_limit_percent": "borrowingLimitPercent",
+        "lendable_percent": "lendablePercent",
+        "limit_response": "limitResponse",
+        "nominal_concurrency_shares": "nominalConcurrencyShares",
+    },
+)
+class LimitedPriorityLevelConfigurationV1Beta3:
+    def __init__(
+        self,
+        *,
+        borrowing_limit_percent: typing.Optional[jsii.Number] = None,
+        lendable_percent: typing.Optional[jsii.Number] = None,
+        limit_response: typing.Optional[typing.Union[LimitResponseV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+        nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits.
+
+        It addresses two issues:
+
+        - How are requests for this priority level limited?
+        - What should be done with requests that exceed the limit?
+
+        :param borrowing_limit_percent: ``borrowingLimitPercent``, if present, configures a limit on how many seats this priority level can borrow from other priority levels. The limit is known as this level's BorrowingConcurrencyLimit (BorrowingCL) and is a limit on the total number of seats that this level may borrow at any one time. This field holds the ratio of that limit to the level's nominal concurrency limit. When this field is non-nil, it must hold a non-negative integer and the limit is calculated as follows. BorrowingCL(i) = round( NominalCL(i) * borrowingLimitPercent(i)/100.0 ) The value of this field can be more than 100, implying that this priority level can borrow a number of seats that is greater than its own nominal concurrency limit (NominalCL). When this field is left ``nil``, the limit is effectively infinite.
+        :param lendable_percent: ``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels. The value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows. LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+        :param limit_response: ``limitResponse`` indicates what to do with requests that can not be executed right now.
+        :param nominal_concurrency_shares: ``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level. This is the number of execution seats available at this priority level. This is used both for requests dispatched from this priority level as well as requests dispatched from other priority levels borrowing seats from this level. The server's concurrency limit (ServerCL) is divided among the Limited priority levels in proportion to their NCS values: NominalCL(i) = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[limited priority level k] NCS(k) Bigger numbers mean a larger nominal concurrency limit, at the expense of every other Limited priority level. This field has a default value of 30.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration
+        '''
+        if isinstance(limit_response, dict):
+            limit_response = LimitResponseV1Beta3(**limit_response)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6f5ecffd25d8896c671c9cdd6db9659e0a8f6678e8899d85af3d7ddb13cef0ef)
+            check_type(argname="argument borrowing_limit_percent", value=borrowing_limit_percent, expected_type=type_hints["borrowing_limit_percent"])
+            check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
+            check_type(argname="argument limit_response", value=limit_response, expected_type=type_hints["limit_response"])
+            check_type(argname="argument nominal_concurrency_shares", value=nominal_concurrency_shares, expected_type=type_hints["nominal_concurrency_shares"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if borrowing_limit_percent is not None:
+            self._values["borrowing_limit_percent"] = borrowing_limit_percent
+        if lendable_percent is not None:
+            self._values["lendable_percent"] = lendable_percent
+        if limit_response is not None:
+            self._values["limit_response"] = limit_response
+        if nominal_concurrency_shares is not None:
+            self._values["nominal_concurrency_shares"] = nominal_concurrency_shares
+
+    @builtins.property
+    def borrowing_limit_percent(self) -> typing.Optional[jsii.Number]:
+        '''``borrowingLimitPercent``, if present, configures a limit on how many seats this priority level can borrow from other priority levels.
+
+        The limit is known as this level's BorrowingConcurrencyLimit (BorrowingCL) and is a limit on the total number of seats that this level may borrow at any one time. This field holds the ratio of that limit to the level's nominal concurrency limit. When this field is non-nil, it must hold a non-negative integer and the limit is calculated as follows.
+
+        BorrowingCL(i) = round( NominalCL(i) * borrowingLimitPercent(i)/100.0 )
+
+        The value of this field can be more than 100, implying that this priority level can borrow a number of seats that is greater than its own nominal concurrency limit (NominalCL). When this field is left ``nil``, the limit is effectively infinite.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration#borrowingLimitPercent
+        '''
+        result = self._values.get("borrowing_limit_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def lendable_percent(self) -> typing.Optional[jsii.Number]:
+        '''``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels.
+
+        The value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows.
+
+        LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration#lendablePercent
+        '''
+        result = self._values.get("lendable_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def limit_response(self) -> typing.Optional[LimitResponseV1Beta3]:
+        '''``limitResponse`` indicates what to do with requests that can not be executed right now.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration#limitResponse
+        '''
+        result = self._values.get("limit_response")
+        return typing.cast(typing.Optional[LimitResponseV1Beta3], result)
+
+    @builtins.property
+    def nominal_concurrency_shares(self) -> typing.Optional[jsii.Number]:
+        '''``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level.
+
+        This is the number of execution seats available at this priority level. This is used both for requests dispatched from this priority level as well as requests dispatched from other priority levels borrowing seats from this level. The server's concurrency limit (ServerCL) is divided among the Limited priority levels in proportion to their NCS values:
+
+        NominalCL(i)  = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[limited priority level k] NCS(k)
+
+        Bigger numbers mean a larger nominal concurrency limit, at the expense of every other Limited priority level. This field has a default value of 30.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration#nominalConcurrencyShares
+        '''
+        result = self._values.get("nominal_concurrency_shares")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "LimitedPriorityLevelConfigurationV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -30242,6 +31309,172 @@ class ManagedFieldsEntry:
 
 
 @jsii.data_type(
+    jsii_type="k8s.MatchResourcesV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "exclude_resource_rules": "excludeResourceRules",
+        "match_policy": "matchPolicy",
+        "namespace_selector": "namespaceSelector",
+        "object_selector": "objectSelector",
+        "resource_rules": "resourceRules",
+    },
+)
+class MatchResourcesV1Alpha1:
+    def __init__(
+        self,
+        *,
+        exclude_resource_rules: typing.Optional[typing.Sequence[typing.Union["NamedRuleWithOperationsV1Alpha1", typing.Dict[builtins.str, typing.Any]]]] = None,
+        match_policy: typing.Optional[builtins.str] = None,
+        namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+        object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+        resource_rules: typing.Optional[typing.Sequence[typing.Union["NamedRuleWithOperationsV1Alpha1", typing.Dict[builtins.str, typing.Any]]]] = None,
+    ) -> None:
+        '''MatchResources decides whether to run the admission control policy on an object based on whether it meets the match criteria.
+
+        The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+
+        :param exclude_resource_rules: ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about. The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+        :param match_policy: matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy. Defaults to "Equivalent" Default: Equivalent"
+        :param namespace_selector: NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "runlevel", "operator": "NotIn", "values": [ "0", "1" ] } ] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "environment", "operator": "In", "values": [ "prod", "staging" ] } ] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
+        :param object_selector: ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
+        :param resource_rules: ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches. The policy cares about an operation if it matches *any* Rule.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources
+        '''
+        if isinstance(namespace_selector, dict):
+            namespace_selector = LabelSelector(**namespace_selector)
+        if isinstance(object_selector, dict):
+            object_selector = LabelSelector(**object_selector)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008c59202f)
+            check_type(argname="argument exclude_resource_rules", value=exclude_resource_rules, expected_type=type_hints["exclude_resource_rules"])
+            check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
+            check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
+            check_type(argname="argument object_selector", value=object_selector, expected_type=type_hints["object_selector"])
+            check_type(argname="argument resource_rules", value=resource_rules, expected_type=type_hints["resource_rules"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if exclude_resource_rules is not None:
+            self._values["exclude_resource_rules"] = exclude_resource_rules
+        if match_policy is not None:
+            self._values["match_policy"] = match_policy
+        if namespace_selector is not None:
+            self._values["namespace_selector"] = namespace_selector
+        if object_selector is not None:
+            self._values["object_selector"] = object_selector
+        if resource_rules is not None:
+            self._values["resource_rules"] = resource_rules
+
+    @builtins.property
+    def exclude_resource_rules(
+        self,
+    ) -> typing.Optional[typing.List["NamedRuleWithOperationsV1Alpha1"]]:
+        '''ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about.
+
+        The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources#excludeResourceRules
+        '''
+        result = self._values.get("exclude_resource_rules")
+        return typing.cast(typing.Optional[typing.List["NamedRuleWithOperationsV1Alpha1"]], result)
+
+    @builtins.property
+    def match_policy(self) -> typing.Optional[builtins.str]:
+        '''matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
+
+        - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy.
+        - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy.
+
+        Defaults to "Equivalent"
+
+        :default: Equivalent"
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources#matchPolicy
+        '''
+        result = self._values.get("match_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace_selector(self) -> typing.Optional[LabelSelector]:
+        '''NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector.
+
+        If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy.
+
+        For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {
+        "matchExpressions": [
+        {
+        "key": "runlevel",
+        "operator": "NotIn",
+        "values": [
+        "0",
+        "1"
+        ]
+        }
+        ]
+        }
+
+        If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {
+        "matchExpressions": [
+        {
+        "key": "environment",
+        "operator": "In",
+        "values": [
+        "prod",
+        "staging"
+        ]
+        }
+        ]
+        }
+
+        See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors.
+
+        Default to the empty LabelSelector, which matches everything.
+
+        :default: the empty LabelSelector, which matches everything.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources#namespaceSelector
+        '''
+        result = self._values.get("namespace_selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    @builtins.property
+    def object_selector(self) -> typing.Optional[LabelSelector]:
+        '''ObjectSelector decides whether to run the validation based on if the object has matching labels.
+
+        objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
+
+        :default: the empty LabelSelector, which matches everything.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources#objectSelector
+        '''
+        result = self._values.get("object_selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    @builtins.property
+    def resource_rules(
+        self,
+    ) -> typing.Optional[typing.List["NamedRuleWithOperationsV1Alpha1"]]:
+        '''ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches.
+
+        The policy cares about an operation if it matches *any* Rule.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchResources#resourceRules
+        '''
+        result = self._values.get("resource_rules")
+        return typing.cast(typing.Optional[typing.List["NamedRuleWithOperationsV1Alpha1"]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "MatchResourcesV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.MetricIdentifierV2",
     jsii_struct_bases=[],
     name_mapping={"name": "name", "selector": "selector"},
@@ -30301,70 +31534,6 @@ class MetricIdentifierV2:
 
     def __repr__(self) -> str:
         return "MetricIdentifierV2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.MetricIdentifierV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"name": "name", "selector": "selector"},
-)
-class MetricIdentifierV2Beta2:
-    def __init__(
-        self,
-        *,
-        name: builtins.str,
-        selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''MetricIdentifier defines the name and optionally selector for a metric.
-
-        :param name: name is the name of the given metric.
-        :param selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricIdentifier
-        '''
-        if isinstance(selector, dict):
-            selector = LabelSelector(**selector)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d9d6a3394dfd9e0635e4d647883fc283d3b7b55ec6bbb2d3cc457e82c9e65cae)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "name": name,
-        }
-        if selector is not None:
-            self._values["selector"] = selector
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''name is the name of the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricIdentifier#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def selector(self) -> typing.Optional[LabelSelector]:
-        '''selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping.
-
-        When unset, just the metricName will be used to gather metrics.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricIdentifier#selector
-        '''
-        result = self._values.get("selector")
-        return typing.cast(typing.Optional[LabelSelector], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "MetricIdentifierV2Beta2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -30509,147 +31678,6 @@ class MetricSpecV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.MetricSpecV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={
-        "type": "type",
-        "container_resource": "containerResource",
-        "external": "external",
-        "object": "object",
-        "pods": "pods",
-        "resource": "resource",
-    },
-)
-class MetricSpecV2Beta2:
-    def __init__(
-        self,
-        *,
-        type: builtins.str,
-        container_resource: typing.Optional[typing.Union[ContainerResourceMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-        external: typing.Optional[typing.Union[ExternalMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-        object: typing.Optional[typing.Union["ObjectMetricSourceV2Beta2", typing.Dict[builtins.str, typing.Any]]] = None,
-        pods: typing.Optional[typing.Union["PodsMetricSourceV2Beta2", typing.Dict[builtins.str, typing.Any]]] = None,
-        resource: typing.Optional[typing.Union["ResourceMetricSourceV2Beta2", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''MetricSpec specifies how to scale based on a single metric (only ``type`` and one other matching field should be set at once).
-
-        :param type: type is the type of metric source. It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
-        :param container_resource: container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.
-        :param external: external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
-        :param object: object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
-        :param pods: pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.
-        :param resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec
-        '''
-        if isinstance(container_resource, dict):
-            container_resource = ContainerResourceMetricSourceV2Beta2(**container_resource)
-        if isinstance(external, dict):
-            external = ExternalMetricSourceV2Beta2(**external)
-        if isinstance(object, dict):
-            object = ObjectMetricSourceV2Beta2(**object)
-        if isinstance(pods, dict):
-            pods = PodsMetricSourceV2Beta2(**pods)
-        if isinstance(resource, dict):
-            resource = ResourceMetricSourceV2Beta2(**resource)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__909e08fbeed2f839abc3ca11a89218dc0237fcf98ab4b4ac7727a93409e917ec)
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-            check_type(argname="argument container_resource", value=container_resource, expected_type=type_hints["container_resource"])
-            check_type(argname="argument external", value=external, expected_type=type_hints["external"])
-            check_type(argname="argument object", value=object, expected_type=type_hints["object"])
-            check_type(argname="argument pods", value=pods, expected_type=type_hints["pods"])
-            check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "type": type,
-        }
-        if container_resource is not None:
-            self._values["container_resource"] = container_resource
-        if external is not None:
-            self._values["external"] = external
-        if object is not None:
-            self._values["object"] = object
-        if pods is not None:
-            self._values["pods"] = pods
-        if resource is not None:
-            self._values["resource"] = resource
-
-    @builtins.property
-    def type(self) -> builtins.str:
-        '''type is the type of metric source.
-
-        It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. Note: "ContainerResource" type is available on when the feature-gate HPAContainerMetrics is enabled
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#type
-        '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def container_resource(
-        self,
-    ) -> typing.Optional[ContainerResourceMetricSourceV2Beta2]:
-        '''container resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing a single container in each pod of the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. This is an alpha feature and can be enabled by the HPAContainerMetrics feature flag.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#containerResource
-        '''
-        result = self._values.get("container_resource")
-        return typing.cast(typing.Optional[ContainerResourceMetricSourceV2Beta2], result)
-
-    @builtins.property
-    def external(self) -> typing.Optional[ExternalMetricSourceV2Beta2]:
-        '''external refers to a global metric that is not associated with any Kubernetes object.
-
-        It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#external
-        '''
-        result = self._values.get("external")
-        return typing.cast(typing.Optional[ExternalMetricSourceV2Beta2], result)
-
-    @builtins.property
-    def object(self) -> typing.Optional["ObjectMetricSourceV2Beta2"]:
-        '''object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#object
-        '''
-        result = self._values.get("object")
-        return typing.cast(typing.Optional["ObjectMetricSourceV2Beta2"], result)
-
-    @builtins.property
-    def pods(self) -> typing.Optional["PodsMetricSourceV2Beta2"]:
-        '''pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
-
-        The values will be averaged together before being compared to the target value.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#pods
-        '''
-        result = self._values.get("pods")
-        return typing.cast(typing.Optional["PodsMetricSourceV2Beta2"], result)
-
-    @builtins.property
-    def resource(self) -> typing.Optional["ResourceMetricSourceV2Beta2"]:
-        '''resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricSpec#resource
-        '''
-        result = self._values.get("resource")
-        return typing.cast(typing.Optional["ResourceMetricSourceV2Beta2"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "MetricSpecV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.MetricTargetV2",
     jsii_struct_bases=[],
     name_mapping={
@@ -30740,101 +31768,6 @@ class MetricTargetV2:
 
     def __repr__(self) -> str:
         return "MetricTargetV2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.MetricTargetV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={
-        "type": "type",
-        "average_utilization": "averageUtilization",
-        "average_value": "averageValue",
-        "value": "value",
-    },
-)
-class MetricTargetV2Beta2:
-    def __init__(
-        self,
-        *,
-        type: builtins.str,
-        average_utilization: typing.Optional[jsii.Number] = None,
-        average_value: typing.Optional["Quantity"] = None,
-        value: typing.Optional["Quantity"] = None,
-    ) -> None:
-        '''MetricTarget defines the target value, average value, or average utilization of a specific metric.
-
-        :param type: type represents whether the metric type is Utilization, Value, or AverageValue.
-        :param average_utilization: averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
-        :param average_value: averageValue is the target value of the average of the metric across all relevant pods (as a quantity).
-        :param value: value is the target value of the metric (as a quantity).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricTarget
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a875785cdfda077be38d004ca502a87fd98eac78e57c53a334e7f63f63b2debd)
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-            check_type(argname="argument average_utilization", value=average_utilization, expected_type=type_hints["average_utilization"])
-            check_type(argname="argument average_value", value=average_value, expected_type=type_hints["average_value"])
-            check_type(argname="argument value", value=value, expected_type=type_hints["value"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "type": type,
-        }
-        if average_utilization is not None:
-            self._values["average_utilization"] = average_utilization
-        if average_value is not None:
-            self._values["average_value"] = average_value
-        if value is not None:
-            self._values["value"] = value
-
-    @builtins.property
-    def type(self) -> builtins.str:
-        '''type represents whether the metric type is Utilization, Value, or AverageValue.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricTarget#type
-        '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def average_utilization(self) -> typing.Optional[jsii.Number]:
-        '''averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
-
-        Currently only valid for Resource metric source type
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricTarget#averageUtilization
-        '''
-        result = self._values.get("average_utilization")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    @builtins.property
-    def average_value(self) -> typing.Optional["Quantity"]:
-        '''averageValue is the target value of the average of the metric across all relevant pods (as a quantity).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricTarget#averageValue
-        '''
-        result = self._values.get("average_value")
-        return typing.cast(typing.Optional["Quantity"], result)
-
-    @builtins.property
-    def value(self) -> typing.Optional["Quantity"]:
-        '''value is the target value of the metric (as a quantity).
-
-        :schema: io.k8s.api.autoscaling.v2beta2.MetricTarget#value
-        '''
-        result = self._values.get("value")
-        return typing.cast(typing.Optional["Quantity"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "MetricTargetV2Beta2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -31112,6 +32045,146 @@ class MutatingWebhook:
 
     def __repr__(self) -> str:
         return "MutatingWebhook(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.NamedRuleWithOperationsV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "api_groups": "apiGroups",
+        "api_versions": "apiVersions",
+        "operations": "operations",
+        "resource_names": "resourceNames",
+        "resources": "resources",
+        "scope": "scope",
+    },
+)
+class NamedRuleWithOperationsV1Alpha1:
+    def __init__(
+        self,
+        *,
+        api_groups: typing.Optional[typing.Sequence[builtins.str]] = None,
+        api_versions: typing.Optional[typing.Sequence[builtins.str]] = None,
+        operations: typing.Optional[typing.Sequence[builtins.str]] = None,
+        resource_names: typing.Optional[typing.Sequence[builtins.str]] = None,
+        resources: typing.Optional[typing.Sequence[builtins.str]] = None,
+        scope: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames.
+
+        :param api_groups: APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
+        :param api_versions: APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
+        :param operations: Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
+        :param resource_names: ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.
+        :param resources: Resources is a list of resources this rule applies to. For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/*' means all subresources of pods. '*/scale' means all scale subresources. '*/*' means all resources and their subresources. If wildcard is present, the validation rule will ensure resources do not overlap with each other. Depending on the enclosing object, subresources might not be allowed. Required.
+        :param scope: scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*". Default: .
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__86254bd3c48c4175d2d8989d74b51ebf1d5e08f635d6ca938cbe71ad127a3055)
+            check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
+            check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
+            check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
+            check_type(argname="argument resource_names", value=resource_names, expected_type=type_hints["resource_names"])
+            check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if api_groups is not None:
+            self._values["api_groups"] = api_groups
+        if api_versions is not None:
+            self._values["api_versions"] = api_versions
+        if operations is not None:
+            self._values["operations"] = operations
+        if resource_names is not None:
+            self._values["resource_names"] = resource_names
+        if resources is not None:
+            self._values["resources"] = resources
+        if scope is not None:
+            self._values["scope"] = scope
+
+    @builtins.property
+    def api_groups(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''APIGroups is the API groups the resources belong to.
+
+        '*' is all groups. If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#apiGroups
+        '''
+        result = self._values.get("api_groups")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def api_versions(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''APIVersions is the API versions the resources belong to.
+
+        '*' is all versions. If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#apiVersions
+        '''
+        result = self._values.get("api_versions")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def operations(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added.
+
+        If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#operations
+        '''
+        result = self._values.get("operations")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def resource_names(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''ResourceNames is an optional white list of names that the rule applies to.
+
+        An empty set means that everything is allowed.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#resourceNames
+        '''
+        result = self._values.get("resource_names")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def resources(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Resources is a list of resources this rule applies to.
+
+        For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/*' means all subresources of pods. '*/scale' means all scale subresources. '*/*' means all resources and their subresources.
+
+        If wildcard is present, the validation rule will ensure resources do not overlap with each other.
+
+        Depending on the enclosing object, subresources might not be allowed. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#resources
+        '''
+        result = self._values.get("resources")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def scope(self) -> typing.Optional[builtins.str]:
+        '''scope specifies the scope of this rule.
+
+        Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
+
+        :default: .
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations#scope
+        '''
+        result = self._values.get("scope")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "NamedRuleWithOperationsV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -31996,7 +33069,7 @@ class NodeSpec:
     ) -> None:
         '''NodeSpec describes the attributes that a node is created with.
 
-        :param config_source: Deprecated: Previously used to specify the source of the node's configuration for the DynamicKubeletConfig feature. This feature is removed from Kubelets as of 1.24 and will be fully removed in 1.26.
+        :param config_source: Deprecated: Previously used to specify the source of the node's configuration for the DynamicKubeletConfig feature. This feature is removed.
         :param external_id: Deprecated. Not all kubelets will set this field. Remove field after 1.13. see: https://issues.k8s.io/61966
         :param pod_cidr: PodCIDR represents the pod IP range assigned to the node.
         :param pod_cid_rs: podCIDRs represents the IP ranges assigned to the node for usage by Pods on that node. If this field is specified, the 0th entry must match the podCIDR field. It may contain at most 1 value for each of IPv4 and IPv6.
@@ -32037,7 +33110,7 @@ class NodeSpec:
     def config_source(self) -> typing.Optional[NodeConfigSource]:
         '''Deprecated: Previously used to specify the source of the node's configuration for the DynamicKubeletConfig feature.
 
-        This feature is removed from Kubelets as of 1.24 and will be fully removed in 1.26.
+        This feature is removed.
 
         :schema: io.k8s.api.core.v1.NodeSpec#configSource
         '''
@@ -32176,79 +33249,6 @@ class NonResourceAttributes:
 
 
 @jsii.data_type(
-    jsii_type="k8s.NonResourcePolicyRuleV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"non_resource_ur_ls": "nonResourceUrLs", "verbs": "verbs"},
-)
-class NonResourcePolicyRuleV1Beta1:
-    def __init__(
-        self,
-        *,
-        non_resource_ur_ls: typing.Sequence[builtins.str],
-        verbs: typing.Sequence[builtins.str],
-    ) -> None:
-        '''NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL.
-
-        A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request.
-
-        :param non_resource_ur_ls: ``nonResourceURLs`` is a set of url prefixes that a user should have access to and may not be empty. For example: - "/healthz" is legal - "/hea*" is illegal - "/hea" is legal but matches nothing - "/hea/*" also matches nothing - "/healthz/*" matches all per-component health checks. "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
-        :param verbs: ``verbs`` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.NonResourcePolicyRule
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67cb72f3c9d1be981ed8680709b60cf9fe8a87527b6f9c70f8d2d56da286bb08)
-            check_type(argname="argument non_resource_ur_ls", value=non_resource_ur_ls, expected_type=type_hints["non_resource_ur_ls"])
-            check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "non_resource_ur_ls": non_resource_ur_ls,
-            "verbs": verbs,
-        }
-
-    @builtins.property
-    def non_resource_ur_ls(self) -> typing.List[builtins.str]:
-        '''``nonResourceURLs`` is a set of url prefixes that a user should have access to and may not be empty.
-
-        For example:
-
-        - "/healthz" is legal
-        - "/hea*" is illegal
-        - "/hea" is legal but matches nothing
-        - "/hea/*" also matches nothing
-        - "/healthz/*" matches all per-component health checks.
-          "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.NonResourcePolicyRule#nonResourceURLs
-        '''
-        result = self._values.get("non_resource_ur_ls")
-        assert result is not None, "Required property 'non_resource_ur_ls' is missing"
-        return typing.cast(typing.List[builtins.str], result)
-
-    @builtins.property
-    def verbs(self) -> typing.List[builtins.str]:
-        '''``verbs`` is a list of matching verbs and may not be empty.
-
-        "*" matches all verbs. If it is present, it must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.NonResourcePolicyRule#verbs
-        '''
-        result = self._values.get("verbs")
-        assert result is not None, "Required property 'verbs' is missing"
-        return typing.cast(typing.List[builtins.str], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "NonResourcePolicyRuleV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.NonResourcePolicyRuleV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"non_resource_ur_ls": "nonResourceUrLs", "verbs": "verbs"},
@@ -32317,6 +33317,79 @@ class NonResourcePolicyRuleV1Beta2:
 
     def __repr__(self) -> str:
         return "NonResourcePolicyRuleV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.NonResourcePolicyRuleV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={"non_resource_ur_ls": "nonResourceUrLs", "verbs": "verbs"},
+)
+class NonResourcePolicyRuleV1Beta3:
+    def __init__(
+        self,
+        *,
+        non_resource_ur_ls: typing.Sequence[builtins.str],
+        verbs: typing.Sequence[builtins.str],
+    ) -> None:
+        '''NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL.
+
+        A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request.
+
+        :param non_resource_ur_ls: ``nonResourceURLs`` is a set of url prefixes that a user should have access to and may not be empty. For example: - "/healthz" is legal - "/hea*" is illegal - "/hea" is legal but matches nothing - "/hea/*" also matches nothing - "/healthz/*" matches all per-component health checks. "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
+        :param verbs: ``verbs`` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.NonResourcePolicyRule
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__549b23213444b2d234a332570b6d25763ed069c291b506dcbc8e9cfbd8b38579)
+            check_type(argname="argument non_resource_ur_ls", value=non_resource_ur_ls, expected_type=type_hints["non_resource_ur_ls"])
+            check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "non_resource_ur_ls": non_resource_ur_ls,
+            "verbs": verbs,
+        }
+
+    @builtins.property
+    def non_resource_ur_ls(self) -> typing.List[builtins.str]:
+        '''``nonResourceURLs`` is a set of url prefixes that a user should have access to and may not be empty.
+
+        For example:
+
+        - "/healthz" is legal
+        - "/hea*" is illegal
+        - "/hea" is legal but matches nothing
+        - "/hea/*" also matches nothing
+        - "/healthz/*" matches all per-component health checks.
+          "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.NonResourcePolicyRule#nonResourceURLs
+        '''
+        result = self._values.get("non_resource_ur_ls")
+        assert result is not None, "Required property 'non_resource_ur_ls' is missing"
+        return typing.cast(typing.List[builtins.str], result)
+
+    @builtins.property
+    def verbs(self) -> typing.List[builtins.str]:
+        '''``verbs`` is a list of matching verbs and may not be empty.
+
+        "*" matches all verbs. If it is present, it must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.NonResourcePolicyRule#verbs
+        '''
+        result = self._values.get("verbs")
+        assert result is not None, "Required property 'verbs' is missing"
+        return typing.cast(typing.List[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "NonResourcePolicyRuleV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -32767,89 +33840,6 @@ class ObjectMetricSourceV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ObjectMetricSourceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={
-        "described_object": "describedObject",
-        "metric": "metric",
-        "target": "target",
-    },
-)
-class ObjectMetricSourceV2Beta2:
-    def __init__(
-        self,
-        *,
-        described_object: typing.Union[CrossVersionObjectReferenceV2Beta2, typing.Dict[builtins.str, typing.Any]],
-        metric: typing.Union[MetricIdentifierV2Beta2, typing.Dict[builtins.str, typing.Any]],
-        target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    ) -> None:
-        '''ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
-
-        :param described_object: 
-        :param metric: metric identifies the target metric by name and selector.
-        :param target: target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ObjectMetricSource
-        '''
-        if isinstance(described_object, dict):
-            described_object = CrossVersionObjectReferenceV2Beta2(**described_object)
-        if isinstance(metric, dict):
-            metric = MetricIdentifierV2Beta2(**metric)
-        if isinstance(target, dict):
-            target = MetricTargetV2Beta2(**target)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ef8bdab30daace0db5f7f5e3f35434e3a17d875bdd22c51b11fe95f7bd90f752)
-            check_type(argname="argument described_object", value=described_object, expected_type=type_hints["described_object"])
-            check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
-            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "described_object": described_object,
-            "metric": metric,
-            "target": target,
-        }
-
-    @builtins.property
-    def described_object(self) -> CrossVersionObjectReferenceV2Beta2:
-        '''
-        :schema: io.k8s.api.autoscaling.v2beta2.ObjectMetricSource#describedObject
-        '''
-        result = self._values.get("described_object")
-        assert result is not None, "Required property 'described_object' is missing"
-        return typing.cast(CrossVersionObjectReferenceV2Beta2, result)
-
-    @builtins.property
-    def metric(self) -> MetricIdentifierV2Beta2:
-        '''metric identifies the target metric by name and selector.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ObjectMetricSource#metric
-        '''
-        result = self._values.get("metric")
-        assert result is not None, "Required property 'metric' is missing"
-        return typing.cast(MetricIdentifierV2Beta2, result)
-
-    @builtins.property
-    def target(self) -> MetricTargetV2Beta2:
-        '''target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ObjectMetricSource#target
-        '''
-        result = self._values.get("target")
-        assert result is not None, "Required property 'target' is missing"
-        return typing.cast(MetricTargetV2Beta2, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ObjectMetricSourceV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.ObjectReference",
     jsii_struct_bases=[],
     name_mapping={
@@ -33177,6 +34167,130 @@ class OwnerReference:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ParamKindV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"api_version": "apiVersion", "kind": "kind"},
+)
+class ParamKindV1Alpha1:
+    def __init__(
+        self,
+        *,
+        api_version: typing.Optional[builtins.str] = None,
+        kind: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ParamKind is a tuple of Group Kind and Version.
+
+        :param api_version: APIVersion is the API group version the resources belong to. In format of "group/version". Required.
+        :param kind: Kind is the API kind the resources belong to. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamKind
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ca366a1a5a55375a1aef0df1d3a5ee87b07269561ad4145843c552a10838efa1)
+            check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if api_version is not None:
+            self._values["api_version"] = api_version
+        if kind is not None:
+            self._values["kind"] = kind
+
+    @builtins.property
+    def api_version(self) -> typing.Optional[builtins.str]:
+        '''APIVersion is the API group version the resources belong to.
+
+        In format of "group/version". Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamKind#apiVersion
+        '''
+        result = self._values.get("api_version")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def kind(self) -> typing.Optional[builtins.str]:
+        '''Kind is the API kind the resources belong to.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamKind#kind
+        '''
+        result = self._values.get("kind")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ParamKindV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ParamRefV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "namespace": "namespace"},
+)
+class ParamRefV1Alpha1:
+    def __init__(
+        self,
+        *,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ParamRef references a parameter resource.
+
+        :param name: Name of the resource being referenced.
+        :param namespace: Namespace of the referenced resource. Should be empty for the cluster-scoped resources
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''Name of the resource being referenced.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the referenced resource.
+
+        Should be empty for the cluster-scoped resources
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ParamRefV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.PersistentVolumeClaimSpec",
     jsii_struct_bases=[],
     name_mapping={
@@ -33196,7 +34310,7 @@ class PersistentVolumeClaimSpec:
         *,
         access_modes: typing.Optional[typing.Sequence[builtins.str]] = None,
         data_source: typing.Optional[typing.Union["TypedLocalObjectReference", typing.Dict[builtins.str, typing.Any]]] = None,
-        data_source_ref: typing.Optional[typing.Union["TypedLocalObjectReference", typing.Dict[builtins.str, typing.Any]]] = None,
+        data_source_ref: typing.Optional[typing.Union["TypedObjectReference", typing.Dict[builtins.str, typing.Any]]] = None,
         resources: typing.Optional[typing.Union["ResourceRequirements", typing.Dict[builtins.str, typing.Any]]] = None,
         selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
         storage_class_name: typing.Optional[builtins.str] = None,
@@ -33206,8 +34320,8 @@ class PersistentVolumeClaimSpec:
         '''PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes.
 
         :param access_modes: accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-        :param data_source: dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.
-        :param data_source_ref: dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. - While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.
+        :param data_source: dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.
+        :param data_source_ref: dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. - While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. - While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
         :param resources: resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
         :param selector: selector is a label query over volumes to consider for binding.
         :param storage_class_name: storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
@@ -33219,7 +34333,7 @@ class PersistentVolumeClaimSpec:
         if isinstance(data_source, dict):
             data_source = TypedLocalObjectReference(**data_source)
         if isinstance(data_source_ref, dict):
-            data_source_ref = TypedLocalObjectReference(**data_source_ref)
+            data_source_ref = TypedObjectReference(**data_source_ref)
         if isinstance(resources, dict):
             resources = ResourceRequirements(**resources)
         if isinstance(selector, dict):
@@ -33265,7 +34379,7 @@ class PersistentVolumeClaimSpec:
 
     @builtins.property
     def data_source(self) -> typing.Optional["TypedLocalObjectReference"]:
-        '''dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.
+        '''dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.
 
         :schema: io.k8s.api.core.v1.PersistentVolumeClaimSpec#dataSource
         '''
@@ -33273,21 +34387,23 @@ class PersistentVolumeClaimSpec:
         return typing.cast(typing.Optional["TypedLocalObjectReference"], result)
 
     @builtins.property
-    def data_source_ref(self) -> typing.Optional["TypedLocalObjectReference"]:
+    def data_source_ref(self) -> typing.Optional["TypedObjectReference"]:
         '''dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired.
 
-        This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef
+        This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef
         allows any non-core object, as well as PersistentVolumeClaim objects.
 
-        - While DataSource ignores disallowed values (dropping them), DataSourceRef
+        - While dataSource ignores disallowed values (dropping them), dataSourceRef
           preserves all values, and generates an error if a disallowed value is
           specified.
-          (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.
+        - While dataSource only allows local objects, dataSourceRef allows objects
+          in any namespaces.
+          (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
         :schema: io.k8s.api.core.v1.PersistentVolumeClaimSpec#dataSourceRef
         '''
         result = self._values.get("data_source_ref")
-        return typing.cast(typing.Optional["TypedLocalObjectReference"], result)
+        return typing.cast(typing.Optional["TypedObjectReference"], result)
 
     @builtins.property
     def resources(self) -> typing.Optional["ResourceRequirements"]:
@@ -34364,6 +35480,7 @@ class PodAntiAffinity:
         "max_unavailable": "maxUnavailable",
         "min_available": "minAvailable",
         "selector": "selector",
+        "unhealthy_pod_eviction_policy": "unhealthyPodEvictionPolicy",
     },
 )
 class PodDisruptionBudgetSpec:
@@ -34373,12 +35490,14 @@ class PodDisruptionBudgetSpec:
         max_unavailable: typing.Optional[IntOrString] = None,
         min_available: typing.Optional[IntOrString] = None,
         selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+        unhealthy_pod_eviction_policy: typing.Optional[builtins.str] = None,
     ) -> None:
         '''PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.
 
         :param max_unavailable: An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
         :param min_available: An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%".
         :param selector: Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace.
+        :param unhealthy_pod_eviction_policy: UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. This field is alpha-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (disabled by default).
 
         :schema: io.k8s.api.policy.v1.PodDisruptionBudgetSpec
         '''
@@ -34389,6 +35508,7 @@ class PodDisruptionBudgetSpec:
             check_type(argname="argument max_unavailable", value=max_unavailable, expected_type=type_hints["max_unavailable"])
             check_type(argname="argument min_available", value=min_available, expected_type=type_hints["min_available"])
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
+            check_type(argname="argument unhealthy_pod_eviction_policy", value=unhealthy_pod_eviction_policy, expected_type=type_hints["unhealthy_pod_eviction_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if max_unavailable is not None:
             self._values["max_unavailable"] = max_unavailable
@@ -34396,6 +35516,8 @@ class PodDisruptionBudgetSpec:
             self._values["min_available"] = min_available
         if selector is not None:
             self._values["selector"] = selector
+        if unhealthy_pod_eviction_policy is not None:
+            self._values["unhealthy_pod_eviction_policy"] = unhealthy_pod_eviction_policy
 
     @builtins.property
     def max_unavailable(self) -> typing.Optional[IntOrString]:
@@ -34425,6 +35547,27 @@ class PodDisruptionBudgetSpec:
         '''
         result = self._values.get("selector")
         return typing.cast(typing.Optional[LabelSelector], result)
+
+    @builtins.property
+    def unhealthy_pod_eviction_policy(self) -> typing.Optional[builtins.str]:
+        '''UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction.
+
+        Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True".
+
+        Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.
+
+        IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.
+
+        AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.
+
+        Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.
+
+        This field is alpha-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (disabled by default).
+
+        :schema: io.k8s.api.policy.v1.PodDisruptionBudgetSpec#unhealthyPodEvictionPolicy
+        '''
+        result = self._values.get("unhealthy_pod_eviction_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -34961,6 +36104,180 @@ class PodReadinessGate:
 
 
 @jsii.data_type(
+    jsii_type="k8s.PodResourceClaim",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "source": "source"},
+)
+class PodResourceClaim:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        source: typing.Optional[typing.Union[ClaimSource, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''PodResourceClaim references exactly one ResourceClaim through a ClaimSource.
+
+        It adds a name to it that uniquely identifies the ResourceClaim inside the Pod. Containers that need access to the ResourceClaim reference it with this name.
+
+        :param name: Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL.
+        :param source: Source describes where to find the ResourceClaim.
+
+        :schema: io.k8s.api.core.v1.PodResourceClaim
+        '''
+        if isinstance(source, dict):
+            source = ClaimSource(**source)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__593eecd9b8e25f27db87859570a28b2ffda74b52af7ef080a6bc114f4b263f52)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument source", value=source, expected_type=type_hints["source"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if source is not None:
+            self._values["source"] = source
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name uniquely identifies this resource claim inside the pod.
+
+        This must be a DNS_LABEL.
+
+        :schema: io.k8s.api.core.v1.PodResourceClaim#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def source(self) -> typing.Optional[ClaimSource]:
+        '''Source describes where to find the ResourceClaim.
+
+        :schema: io.k8s.api.core.v1.PodResourceClaim#source
+        '''
+        result = self._values.get("source")
+        return typing.cast(typing.Optional[ClaimSource], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PodResourceClaim(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.PodSchedulingGate",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name"},
+)
+class PodSchedulingGate:
+    def __init__(self, *, name: builtins.str) -> None:
+        '''PodSchedulingGate is associated to a Pod to guard its scheduling.
+
+        :param name: Name of the scheduling gate. Each scheduling gate must have a unique name field.
+
+        :schema: io.k8s.api.core.v1.PodSchedulingGate
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name of the scheduling gate.
+
+        Each scheduling gate must have a unique name field.
+
+        :schema: io.k8s.api.core.v1.PodSchedulingGate#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PodSchedulingGate(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.PodSchedulingSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "potential_nodes": "potentialNodes",
+        "selected_node": "selectedNode",
+    },
+)
+class PodSchedulingSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
+        selected_node: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''PodSchedulingSpec describes where resources for the Pod are needed.
+
+        :param potential_nodes: PotentialNodes lists nodes where the Pod might be able to run. The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
+        :param selected_node: SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__cbaa152d2aa3b0f9ec0ecda0ddb7625c4422ee7ea4ee6a8b3c47fc6deee35d21)
+            check_type(argname="argument potential_nodes", value=potential_nodes, expected_type=type_hints["potential_nodes"])
+            check_type(argname="argument selected_node", value=selected_node, expected_type=type_hints["selected_node"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if potential_nodes is not None:
+            self._values["potential_nodes"] = potential_nodes
+        if selected_node is not None:
+            self._values["selected_node"] = selected_node
+
+    @builtins.property
+    def potential_nodes(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''PotentialNodes lists nodes where the Pod might be able to run.
+
+        The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec#potentialNodes
+        '''
+        result = self._values.get("potential_nodes")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def selected_node(self) -> typing.Optional[builtins.str]:
+        '''SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
+
+        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec#selectedNode
+        '''
+        result = self._values.get("selected_node")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PodSchedulingSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.PodSecurityContext",
     jsii_struct_bases=[],
     name_mapping={
@@ -35002,7 +36319,7 @@ class PodSecurityContext:
         :param run_as_user: The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. Default: user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
         :param seccomp_profile: The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.
         :param se_linux_options: The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-        :param supplemental_groups: A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
+        :param supplemental_groups: A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
         :param sysctls: Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.
         :param windows_options: The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.
 
@@ -35133,9 +36450,9 @@ class PodSecurityContext:
 
     @builtins.property
     def supplemental_groups(self) -> typing.Optional[typing.List[jsii.Number]]:
-        '''A list of groups applied to the first process run in each container, in addition to the container's primary GID.
+        '''A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process.
 
-        If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
+        If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 
         :schema: io.k8s.api.core.v1.PodSecurityContext#supplementalGroups
         '''
@@ -35204,9 +36521,11 @@ class PodSecurityContext:
         "priority": "priority",
         "priority_class_name": "priorityClassName",
         "readiness_gates": "readinessGates",
+        "resource_claims": "resourceClaims",
         "restart_policy": "restartPolicy",
         "runtime_class_name": "runtimeClassName",
         "scheduler_name": "schedulerName",
+        "scheduling_gates": "schedulingGates",
         "security_context": "securityContext",
         "service_account": "serviceAccount",
         "service_account_name": "serviceAccountName",
@@ -35247,9 +36566,11 @@ class PodSpec:
         priority: typing.Optional[jsii.Number] = None,
         priority_class_name: typing.Optional[builtins.str] = None,
         readiness_gates: typing.Optional[typing.Sequence[typing.Union[PodReadinessGate, typing.Dict[builtins.str, typing.Any]]]] = None,
+        resource_claims: typing.Optional[typing.Sequence[typing.Union[PodResourceClaim, typing.Dict[builtins.str, typing.Any]]]] = None,
         restart_policy: typing.Optional[builtins.str] = None,
         runtime_class_name: typing.Optional[builtins.str] = None,
         scheduler_name: typing.Optional[builtins.str] = None,
+        scheduling_gates: typing.Optional[typing.Sequence[typing.Union[PodSchedulingGate, typing.Dict[builtins.str, typing.Any]]]] = None,
         security_context: typing.Optional[typing.Union[PodSecurityContext, typing.Dict[builtins.str, typing.Any]]] = None,
         service_account: typing.Optional[builtins.str] = None,
         service_account_name: typing.Optional[builtins.str] = None,
@@ -35287,9 +36608,11 @@ class PodSpec:
         :param priority: The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
         :param priority_class_name: If specified, indicates the pod's priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
         :param readiness_gates: If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True" More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates
+        :param resource_claims: ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.
         :param restart_policy: Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy Default: Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
         :param runtime_class_name: RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod. If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class.
         :param scheduler_name: If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
+        :param scheduling_gates: SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info: https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness. This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.
         :param security_context: SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field. Default: empty. See type description for default values of each field.
         :param service_account: DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
         :param service_account_name: ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
@@ -35337,9 +36660,11 @@ class PodSpec:
             check_type(argname="argument priority", value=priority, expected_type=type_hints["priority"])
             check_type(argname="argument priority_class_name", value=priority_class_name, expected_type=type_hints["priority_class_name"])
             check_type(argname="argument readiness_gates", value=readiness_gates, expected_type=type_hints["readiness_gates"])
+            check_type(argname="argument resource_claims", value=resource_claims, expected_type=type_hints["resource_claims"])
             check_type(argname="argument restart_policy", value=restart_policy, expected_type=type_hints["restart_policy"])
             check_type(argname="argument runtime_class_name", value=runtime_class_name, expected_type=type_hints["runtime_class_name"])
             check_type(argname="argument scheduler_name", value=scheduler_name, expected_type=type_hints["scheduler_name"])
+            check_type(argname="argument scheduling_gates", value=scheduling_gates, expected_type=type_hints["scheduling_gates"])
             check_type(argname="argument security_context", value=security_context, expected_type=type_hints["security_context"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument service_account_name", value=service_account_name, expected_type=type_hints["service_account_name"])
@@ -35399,12 +36724,16 @@ class PodSpec:
             self._values["priority_class_name"] = priority_class_name
         if readiness_gates is not None:
             self._values["readiness_gates"] = readiness_gates
+        if resource_claims is not None:
+            self._values["resource_claims"] = resource_claims
         if restart_policy is not None:
             self._values["restart_policy"] = restart_policy
         if runtime_class_name is not None:
             self._values["runtime_class_name"] = runtime_class_name
         if scheduler_name is not None:
             self._values["scheduler_name"] = scheduler_name
+        if scheduling_gates is not None:
+            self._values["scheduling_gates"] = scheduling_gates
         if security_context is not None:
             self._values["security_context"] = security_context
         if service_account is not None:
@@ -35706,6 +37035,21 @@ class PodSpec:
         return typing.cast(typing.Optional[typing.List[PodReadinessGate]], result)
 
     @builtins.property
+    def resource_claims(self) -> typing.Optional[typing.List[PodResourceClaim]]:
+        '''ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start.
+
+        The resources will be made available to those containers which consume them by name.
+
+        This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.
+
+        This field is immutable.
+
+        :schema: io.k8s.api.core.v1.PodSpec#resourceClaims
+        '''
+        result = self._values.get("resource_claims")
+        return typing.cast(typing.Optional[typing.List[PodResourceClaim]], result)
+
+    @builtins.property
     def restart_policy(self) -> typing.Optional[builtins.str]:
         '''Restart policy for all containers within the pod.
 
@@ -35737,6 +37081,17 @@ class PodSpec:
         '''
         result = self._values.get("scheduler_name")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def scheduling_gates(self) -> typing.Optional[typing.List[PodSchedulingGate]]:
+        '''SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.
+
+        This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.
+
+        :schema: io.k8s.api.core.v1.PodSpec#schedulingGates
+        '''
+        result = self._values.get("scheduling_gates")
+        return typing.cast(typing.Optional[typing.List[PodSchedulingGate]], result)
 
     @builtins.property
     def security_context(self) -> typing.Optional[PodSecurityContext]:
@@ -36000,72 +37355,6 @@ class PodsMetricSourceV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.PodsMetricSourceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"metric": "metric", "target": "target"},
-)
-class PodsMetricSourceV2Beta2:
-    def __init__(
-        self,
-        *,
-        metric: typing.Union[MetricIdentifierV2Beta2, typing.Dict[builtins.str, typing.Any]],
-        target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    ) -> None:
-        '''PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
-
-        The values will be averaged together before being compared to the target value.
-
-        :param metric: metric identifies the target metric by name and selector.
-        :param target: target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.PodsMetricSource
-        '''
-        if isinstance(metric, dict):
-            metric = MetricIdentifierV2Beta2(**metric)
-        if isinstance(target, dict):
-            target = MetricTargetV2Beta2(**target)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__af6e95edab4fa42f3fcb4fd8a3030117ab87d32c7458daf6d7987f64a8f27b94)
-            check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
-            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "metric": metric,
-            "target": target,
-        }
-
-    @builtins.property
-    def metric(self) -> MetricIdentifierV2Beta2:
-        '''metric identifies the target metric by name and selector.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.PodsMetricSource#metric
-        '''
-        result = self._values.get("metric")
-        assert result is not None, "Required property 'metric' is missing"
-        return typing.cast(MetricIdentifierV2Beta2, result)
-
-    @builtins.property
-    def target(self) -> MetricTargetV2Beta2:
-        '''target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.PodsMetricSource#target
-        '''
-        result = self._values.get("target")
-        assert result is not None, "Required property 'target' is missing"
-        return typing.cast(MetricTargetV2Beta2, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "PodsMetricSourceV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.PolicyRule",
     jsii_struct_bases=[],
     name_mapping={
@@ -36184,94 +37473,6 @@ class PolicyRule:
 
 
 @jsii.data_type(
-    jsii_type="k8s.PolicyRulesWithSubjectsV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={
-        "subjects": "subjects",
-        "non_resource_rules": "nonResourceRules",
-        "resource_rules": "resourceRules",
-    },
-)
-class PolicyRulesWithSubjectsV1Beta1:
-    def __init__(
-        self,
-        *,
-        subjects: typing.Sequence[typing.Union["SubjectV1Beta1", typing.Dict[builtins.str, typing.Any]]],
-        non_resource_rules: typing.Optional[typing.Sequence[typing.Union[NonResourcePolicyRuleV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
-        resource_rules: typing.Optional[typing.Sequence[typing.Union["ResourcePolicyRuleV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
-    ) -> None:
-        '''PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver.
-
-        The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.
-
-        :param subjects: subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
-        :param non_resource_rules: ``nonResourceRules`` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
-        :param resource_rules: ``resourceRules`` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of ``resourceRules`` and ``nonResourceRules`` has to be non-empty.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PolicyRulesWithSubjects
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__406eb14bf98c8f3f6931d191e32e945ebfe5d267e0bb9e0517475a1bf2c6833b)
-            check_type(argname="argument subjects", value=subjects, expected_type=type_hints["subjects"])
-            check_type(argname="argument non_resource_rules", value=non_resource_rules, expected_type=type_hints["non_resource_rules"])
-            check_type(argname="argument resource_rules", value=resource_rules, expected_type=type_hints["resource_rules"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "subjects": subjects,
-        }
-        if non_resource_rules is not None:
-            self._values["non_resource_rules"] = non_resource_rules
-        if resource_rules is not None:
-            self._values["resource_rules"] = resource_rules
-
-    @builtins.property
-    def subjects(self) -> typing.List["SubjectV1Beta1"]:
-        '''subjects is the list of normal user, serviceaccount, or group that this rule cares about.
-
-        There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PolicyRulesWithSubjects#subjects
-        '''
-        result = self._values.get("subjects")
-        assert result is not None, "Required property 'subjects' is missing"
-        return typing.cast(typing.List["SubjectV1Beta1"], result)
-
-    @builtins.property
-    def non_resource_rules(
-        self,
-    ) -> typing.Optional[typing.List[NonResourcePolicyRuleV1Beta1]]:
-        '''``nonResourceRules`` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PolicyRulesWithSubjects#nonResourceRules
-        '''
-        result = self._values.get("non_resource_rules")
-        return typing.cast(typing.Optional[typing.List[NonResourcePolicyRuleV1Beta1]], result)
-
-    @builtins.property
-    def resource_rules(
-        self,
-    ) -> typing.Optional[typing.List["ResourcePolicyRuleV1Beta1"]]:
-        '''``resourceRules`` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource.
-
-        At least one of ``resourceRules`` and ``nonResourceRules`` has to be non-empty.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PolicyRulesWithSubjects#resourceRules
-        '''
-        result = self._values.get("resource_rules")
-        return typing.cast(typing.Optional[typing.List["ResourcePolicyRuleV1Beta1"]], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "PolicyRulesWithSubjectsV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.PolicyRulesWithSubjectsV1Beta2",
     jsii_struct_bases=[],
     name_mapping={
@@ -36355,6 +37556,94 @@ class PolicyRulesWithSubjectsV1Beta2:
 
     def __repr__(self) -> str:
         return "PolicyRulesWithSubjectsV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.PolicyRulesWithSubjectsV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "subjects": "subjects",
+        "non_resource_rules": "nonResourceRules",
+        "resource_rules": "resourceRules",
+    },
+)
+class PolicyRulesWithSubjectsV1Beta3:
+    def __init__(
+        self,
+        *,
+        subjects: typing.Sequence[typing.Union["SubjectV1Beta3", typing.Dict[builtins.str, typing.Any]]],
+        non_resource_rules: typing.Optional[typing.Sequence[typing.Union[NonResourcePolicyRuleV1Beta3, typing.Dict[builtins.str, typing.Any]]]] = None,
+        resource_rules: typing.Optional[typing.Sequence[typing.Union["ResourcePolicyRuleV1Beta3", typing.Dict[builtins.str, typing.Any]]]] = None,
+    ) -> None:
+        '''PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver.
+
+        The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.
+
+        :param subjects: subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
+        :param non_resource_rules: ``nonResourceRules`` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
+        :param resource_rules: ``resourceRules`` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of ``resourceRules`` and ``nonResourceRules`` has to be non-empty.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PolicyRulesWithSubjects
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d696363024826d8d1400b937d2aa6b61b3eaaa59024841f169586f09d8fa40dd)
+            check_type(argname="argument subjects", value=subjects, expected_type=type_hints["subjects"])
+            check_type(argname="argument non_resource_rules", value=non_resource_rules, expected_type=type_hints["non_resource_rules"])
+            check_type(argname="argument resource_rules", value=resource_rules, expected_type=type_hints["resource_rules"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "subjects": subjects,
+        }
+        if non_resource_rules is not None:
+            self._values["non_resource_rules"] = non_resource_rules
+        if resource_rules is not None:
+            self._values["resource_rules"] = resource_rules
+
+    @builtins.property
+    def subjects(self) -> typing.List["SubjectV1Beta3"]:
+        '''subjects is the list of normal user, serviceaccount, or group that this rule cares about.
+
+        There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PolicyRulesWithSubjects#subjects
+        '''
+        result = self._values.get("subjects")
+        assert result is not None, "Required property 'subjects' is missing"
+        return typing.cast(typing.List["SubjectV1Beta3"], result)
+
+    @builtins.property
+    def non_resource_rules(
+        self,
+    ) -> typing.Optional[typing.List[NonResourcePolicyRuleV1Beta3]]:
+        '''``nonResourceRules`` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PolicyRulesWithSubjects#nonResourceRules
+        '''
+        result = self._values.get("non_resource_rules")
+        return typing.cast(typing.Optional[typing.List[NonResourcePolicyRuleV1Beta3]], result)
+
+    @builtins.property
+    def resource_rules(
+        self,
+    ) -> typing.Optional[typing.List["ResourcePolicyRuleV1Beta3"]]:
+        '''``resourceRules`` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource.
+
+        At least one of ``resourceRules`` and ``nonResourceRules`` has to be non-empty.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PolicyRulesWithSubjects#resourceRules
+        '''
+        result = self._values.get("resource_rules")
+        return typing.cast(typing.Optional[typing.List["ResourcePolicyRuleV1Beta3"]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PolicyRulesWithSubjectsV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -36563,48 +37852,6 @@ class PreferredSchedulingTerm:
 
 
 @jsii.data_type(
-    jsii_type="k8s.PriorityLevelConfigurationReferenceV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"name": "name"},
-)
-class PriorityLevelConfigurationReferenceV1Beta1:
-    def __init__(self, *, name: builtins.str) -> None:
-        '''PriorityLevelConfigurationReference contains information that points to the "request-priority" being used.
-
-        :param name: ``name`` is the name of the priority level configuration being referenced Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationReference
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f92cedddee0558bfe683f631e904ef04dba790e750f288484442263adad1af26)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "name": name,
-        }
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''``name`` is the name of the priority level configuration being referenced Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationReference#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "PriorityLevelConfigurationReferenceV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.PriorityLevelConfigurationReferenceV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"name": "name"},
@@ -36647,58 +37894,34 @@ class PriorityLevelConfigurationReferenceV1Beta2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.PriorityLevelConfigurationSpecV1Beta1",
+    jsii_type="k8s.PriorityLevelConfigurationReferenceV1Beta3",
     jsii_struct_bases=[],
-    name_mapping={"type": "type", "limited": "limited"},
+    name_mapping={"name": "name"},
 )
-class PriorityLevelConfigurationSpecV1Beta1:
-    def __init__(
-        self,
-        *,
-        type: builtins.str,
-        limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''PriorityLevelConfigurationSpec specifies the configuration of a priority level.
+class PriorityLevelConfigurationReferenceV1Beta3:
+    def __init__(self, *, name: builtins.str) -> None:
+        '''PriorityLevelConfigurationReference contains information that points to the "request-priority" being used.
 
-        :param type: ``type`` indicates whether this priority level is subject to limitation on request execution. A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels. A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
-        :param limited: ``limited`` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if ``type`` is ``"Limited"``.
+        :param name: ``name`` is the name of the priority level configuration being referenced Required.
 
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationSpec
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationReference
         '''
-        if isinstance(limited, dict):
-            limited = LimitedPriorityLevelConfigurationV1Beta1(**limited)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ff7b855e9b5061c7098a1f063797b5bd6b7b0352d095d9a738899059e365a817)
-            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
-            check_type(argname="argument limited", value=limited, expected_type=type_hints["limited"])
+            type_hints = typing.get_type_hints(_typecheckingstub__9a0146b969cc8a7d1c0ff18cf7d2f32e995d6c975b94478b11b395aca5759667)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "type": type,
+            "name": name,
         }
-        if limited is not None:
-            self._values["limited"] = limited
 
     @builtins.property
-    def type(self) -> builtins.str:
-        '''``type`` indicates whether this priority level is subject to limitation on request execution.
+    def name(self) -> builtins.str:
+        '''``name`` is the name of the priority level configuration being referenced Required.
 
-        A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationSpec#type
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationReference#name
         '''
-        result = self._values.get("type")
-        assert result is not None, "Required property 'type' is missing"
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
         return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def limited(self) -> typing.Optional[LimitedPriorityLevelConfigurationV1Beta1]:
-        '''``limited`` specifies how requests are handled for a Limited priority level.
-
-        This field must be non-empty if and only if ``type`` is ``"Limited"``.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.PriorityLevelConfigurationSpec#limited
-        '''
-        result = self._values.get("limited")
-        return typing.cast(typing.Optional[LimitedPriorityLevelConfigurationV1Beta1], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -36707,7 +37930,7 @@ class PriorityLevelConfigurationSpecV1Beta1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "PriorityLevelConfigurationSpecV1Beta1(%s)" % ", ".join(
+        return "PriorityLevelConfigurationReferenceV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -36774,6 +37997,72 @@ class PriorityLevelConfigurationSpecV1Beta2:
 
     def __repr__(self) -> str:
         return "PriorityLevelConfigurationSpecV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.PriorityLevelConfigurationSpecV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={"type": "type", "limited": "limited"},
+)
+class PriorityLevelConfigurationSpecV1Beta3:
+    def __init__(
+        self,
+        *,
+        type: builtins.str,
+        limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''PriorityLevelConfigurationSpec specifies the configuration of a priority level.
+
+        :param type: ``type`` indicates whether this priority level is subject to limitation on request execution. A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels. A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+        :param limited: ``limited`` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if ``type`` is ``"Limited"``.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec
+        '''
+        if isinstance(limited, dict):
+            limited = LimitedPriorityLevelConfigurationV1Beta3(**limited)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c30b61d9bf19716fdc32867c5d90748be48b5c7c3c858ba8b5c867223594eb77)
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument limited", value=limited, expected_type=type_hints["limited"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "type": type,
+        }
+        if limited is not None:
+            self._values["limited"] = limited
+
+    @builtins.property
+    def type(self) -> builtins.str:
+        '''``type`` indicates whether this priority level is subject to limitation on request execution.
+
+        A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def limited(self) -> typing.Optional[LimitedPriorityLevelConfigurationV1Beta3]:
+        '''``limited`` specifies how requests are handled for a Limited priority level.
+
+        This field must be non-empty if and only if ``type`` is ``"Limited"``.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec#limited
+        '''
+        result = self._values.get("limited")
+        return typing.cast(typing.Optional[LimitedPriorityLevelConfigurationV1Beta3], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PriorityLevelConfigurationSpecV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -37085,89 +38374,6 @@ class Quantity(metaclass=jsii.JSIIMeta, jsii_type="k8s.Quantity"):
 
 
 @jsii.data_type(
-    jsii_type="k8s.QueuingConfigurationV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={
-        "hand_size": "handSize",
-        "queue_length_limit": "queueLengthLimit",
-        "queues": "queues",
-    },
-)
-class QueuingConfigurationV1Beta1:
-    def __init__(
-        self,
-        *,
-        hand_size: typing.Optional[jsii.Number] = None,
-        queue_length_limit: typing.Optional[jsii.Number] = None,
-        queues: typing.Optional[jsii.Number] = None,
-    ) -> None:
-        '''QueuingConfiguration holds the configuration parameters for queuing.
-
-        :param hand_size: ``handSize`` is a small positive number that configures the shuffle sharding of requests into queues. When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here. The request is put into one of the shortest queues in that hand. ``handSize`` must be no larger than ``queues``, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues). See the user-facing documentation for more extensive guidance on setting this field. This field has a default value of 8.
-        :param queue_length_limit: ``queueLengthLimit`` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected. This value must be positive. If not specified, it will be defaulted to 50.
-        :param queues: ``queues`` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive. Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant. This field has a default value of 64.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.QueuingConfiguration
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f9c6dd2b600f4e303f9b17590a095b0d825ab3afdad346ec4254ec0a18b691ec)
-            check_type(argname="argument hand_size", value=hand_size, expected_type=type_hints["hand_size"])
-            check_type(argname="argument queue_length_limit", value=queue_length_limit, expected_type=type_hints["queue_length_limit"])
-            check_type(argname="argument queues", value=queues, expected_type=type_hints["queues"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if hand_size is not None:
-            self._values["hand_size"] = hand_size
-        if queue_length_limit is not None:
-            self._values["queue_length_limit"] = queue_length_limit
-        if queues is not None:
-            self._values["queues"] = queues
-
-    @builtins.property
-    def hand_size(self) -> typing.Optional[jsii.Number]:
-        '''``handSize`` is a small positive number that configures the shuffle sharding of requests into queues.
-
-        When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here.  The request is put into one of the shortest queues in that hand. ``handSize`` must be no larger than ``queues``, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues).  See the user-facing documentation for more extensive guidance on setting this field.  This field has a default value of 8.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.QueuingConfiguration#handSize
-        '''
-        result = self._values.get("hand_size")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    @builtins.property
-    def queue_length_limit(self) -> typing.Optional[jsii.Number]:
-        '''``queueLengthLimit`` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time;
-
-        excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.QueuingConfiguration#queueLengthLimit
-        '''
-        result = self._values.get("queue_length_limit")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    @builtins.property
-    def queues(self) -> typing.Optional[jsii.Number]:
-        '''``queues`` is the number of queues for this priority level.
-
-        The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.QueuingConfiguration#queues
-        '''
-        result = self._values.get("queues")
-        return typing.cast(typing.Optional[jsii.Number], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "QueuingConfigurationV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.QueuingConfigurationV1Beta2",
     jsii_struct_bases=[],
     name_mapping={
@@ -37246,6 +38452,89 @@ class QueuingConfigurationV1Beta2:
 
     def __repr__(self) -> str:
         return "QueuingConfigurationV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.QueuingConfigurationV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "hand_size": "handSize",
+        "queue_length_limit": "queueLengthLimit",
+        "queues": "queues",
+    },
+)
+class QueuingConfigurationV1Beta3:
+    def __init__(
+        self,
+        *,
+        hand_size: typing.Optional[jsii.Number] = None,
+        queue_length_limit: typing.Optional[jsii.Number] = None,
+        queues: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''QueuingConfiguration holds the configuration parameters for queuing.
+
+        :param hand_size: ``handSize`` is a small positive number that configures the shuffle sharding of requests into queues. When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here. The request is put into one of the shortest queues in that hand. ``handSize`` must be no larger than ``queues``, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues). See the user-facing documentation for more extensive guidance on setting this field. This field has a default value of 8.
+        :param queue_length_limit: ``queueLengthLimit`` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected. This value must be positive. If not specified, it will be defaulted to 50.
+        :param queues: ``queues`` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive. Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant. This field has a default value of 64.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.QueuingConfiguration
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a1037b25a0b4c030cbae5567cfd92e97afe9e0798778e912b05229e9373472d1)
+            check_type(argname="argument hand_size", value=hand_size, expected_type=type_hints["hand_size"])
+            check_type(argname="argument queue_length_limit", value=queue_length_limit, expected_type=type_hints["queue_length_limit"])
+            check_type(argname="argument queues", value=queues, expected_type=type_hints["queues"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if hand_size is not None:
+            self._values["hand_size"] = hand_size
+        if queue_length_limit is not None:
+            self._values["queue_length_limit"] = queue_length_limit
+        if queues is not None:
+            self._values["queues"] = queues
+
+    @builtins.property
+    def hand_size(self) -> typing.Optional[jsii.Number]:
+        '''``handSize`` is a small positive number that configures the shuffle sharding of requests into queues.
+
+        When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here.  The request is put into one of the shortest queues in that hand. ``handSize`` must be no larger than ``queues``, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues).  See the user-facing documentation for more extensive guidance on setting this field.  This field has a default value of 8.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.QueuingConfiguration#handSize
+        '''
+        result = self._values.get("hand_size")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def queue_length_limit(self) -> typing.Optional[jsii.Number]:
+        '''``queueLengthLimit`` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time;
+
+        excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.QueuingConfiguration#queueLengthLimit
+        '''
+        result = self._values.get("queue_length_limit")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def queues(self) -> typing.Optional[jsii.Number]:
+        '''``queues`` is the number of queues for this priority level.
+
+        The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.QueuingConfiguration#queues
+        '''
+        result = self._values.get("queues")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "QueuingConfigurationV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -38116,6 +39405,381 @@ class ResourceAttributes:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ResourceClaim",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name"},
+)
+class ResourceClaim:
+    def __init__(self, *, name: builtins.str) -> None:
+        '''ResourceClaim references one entry in PodSpec.ResourceClaims.
+
+        :param name: Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+        :schema: io.k8s.api.core.v1.ResourceClaim
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__91cfdd0118d393ecd84db840ef420f5ffe5190ebbd91733137901a1accc49509)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+        :schema: io.k8s.api.core.v1.ResourceClaim#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourceClaim(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ResourceClaimParametersReferenceV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"kind": "kind", "name": "name", "api_group": "apiGroup"},
+)
+class ResourceClaimParametersReferenceV1Alpha1:
+    def __init__(
+        self,
+        *,
+        kind: builtins.str,
+        name: builtins.str,
+        api_group: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ResourceClaimParametersReference contains enough information to let you locate the parameters for a ResourceClaim.
+
+        The object must be in the same namespace as the ResourceClaim.
+
+        :param kind: Kind is the type of resource being referenced. This is the same value as in the parameter object's metadata, for example "ConfigMap".
+        :param name: Name is the name of resource being referenced.
+        :param api_group: APIGroup is the group for the resource being referenced. It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3577080f3432d03b6855e16ee80a2c353219d63b419c899aeaa67829a6e5c1fd)
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "kind": kind,
+            "name": name,
+        }
+        if api_group is not None:
+            self._values["api_group"] = api_group
+
+    @builtins.property
+    def kind(self) -> builtins.str:
+        '''Kind is the type of resource being referenced.
+
+        This is the same value as in the parameter object's metadata, for example "ConfigMap".
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#kind
+        '''
+        result = self._values.get("kind")
+        assert result is not None, "Required property 'kind' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of resource being referenced.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def api_group(self) -> typing.Optional[builtins.str]:
+        '''APIGroup is the group for the resource being referenced.
+
+        It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#apiGroup
+        '''
+        result = self._values.get("api_group")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourceClaimParametersReferenceV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ResourceClaimSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "resource_class_name": "resourceClassName",
+        "allocation_mode": "allocationMode",
+        "parameters_ref": "parametersRef",
+    },
+)
+class ResourceClaimSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        resource_class_name: builtins.str,
+        allocation_mode: typing.Optional[builtins.str] = None,
+        parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaimSpec defines how a resource is to be allocated.
+
+        :param resource_class_name: ResourceClassName references the driver and additional parameters via the name of a ResourceClass that was created as part of the driver deployment.
+        :param allocation_mode: Allocation can start immediately or when a Pod wants to use the resource. "WaitForFirstConsumer" is the default.
+        :param parameters_ref: ParametersRef references a separate object with arbitrary parameters that will be used by the driver when allocating a resource for the claim. The object must be in the same namespace as the ResourceClaim.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec
+        '''
+        if isinstance(parameters_ref, dict):
+            parameters_ref = ResourceClaimParametersReferenceV1Alpha1(**parameters_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__222e0cbad16de6e748d8f212a7f2442c819c2ab8c5a44ca7bae369ddd8d4b534)
+            check_type(argname="argument resource_class_name", value=resource_class_name, expected_type=type_hints["resource_class_name"])
+            check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
+            check_type(argname="argument parameters_ref", value=parameters_ref, expected_type=type_hints["parameters_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "resource_class_name": resource_class_name,
+        }
+        if allocation_mode is not None:
+            self._values["allocation_mode"] = allocation_mode
+        if parameters_ref is not None:
+            self._values["parameters_ref"] = parameters_ref
+
+    @builtins.property
+    def resource_class_name(self) -> builtins.str:
+        '''ResourceClassName references the driver and additional parameters via the name of a ResourceClass that was created as part of the driver deployment.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#resourceClassName
+        '''
+        result = self._values.get("resource_class_name")
+        assert result is not None, "Required property 'resource_class_name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def allocation_mode(self) -> typing.Optional[builtins.str]:
+        '''Allocation can start immediately or when a Pod wants to use the resource.
+
+        "WaitForFirstConsumer" is the default.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#allocationMode
+        '''
+        result = self._values.get("allocation_mode")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def parameters_ref(
+        self,
+    ) -> typing.Optional[ResourceClaimParametersReferenceV1Alpha1]:
+        '''ParametersRef references a separate object with arbitrary parameters that will be used by the driver when allocating a resource for the claim.
+
+        The object must be in the same namespace as the ResourceClaim.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#parametersRef
+        '''
+        result = self._values.get("parameters_ref")
+        return typing.cast(typing.Optional[ResourceClaimParametersReferenceV1Alpha1], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourceClaimSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ResourceClaimTemplateSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"spec": "spec", "metadata": "metadata"},
+)
+class ResourceClaimTemplateSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim.
+
+        :param spec: Spec for the ResourceClaim. The entire content is copied unchanged into the ResourceClaim that gets created from this template. The same fields as in a ResourceClaim are also valid here.
+        :param metadata: ObjectMeta may contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec
+        '''
+        if isinstance(spec, dict):
+            spec = ResourceClaimSpecV1Alpha1(**spec)
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e997f36b60700a40ef5d273c773afd5de1bd6dd5b1729cba9b1011cf89235456)
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "spec": spec,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def spec(self) -> ResourceClaimSpecV1Alpha1:
+        '''Spec for the ResourceClaim.
+
+        The entire content is copied unchanged into the ResourceClaim that gets created from this template. The same fields as in a ResourceClaim are also valid here.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec#spec
+        '''
+        result = self._values.get("spec")
+        assert result is not None, "Required property 'spec' is missing"
+        return typing.cast(ResourceClaimSpecV1Alpha1, result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[ObjectMeta]:
+        '''ObjectMeta may contain labels and annotations that will be copied into the PVC when creating it.
+
+        No other fields are allowed and will be rejected during validation.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[ObjectMeta], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourceClaimTemplateSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ResourceClassParametersReferenceV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "kind": "kind",
+        "name": "name",
+        "api_group": "apiGroup",
+        "namespace": "namespace",
+    },
+)
+class ResourceClassParametersReferenceV1Alpha1:
+    def __init__(
+        self,
+        *,
+        kind: builtins.str,
+        name: builtins.str,
+        api_group: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ResourceClassParametersReference contains enough information to let you locate the parameters for a ResourceClass.
+
+        :param kind: Kind is the type of resource being referenced. This is the same value as in the parameter object's metadata.
+        :param name: Name is the name of resource being referenced.
+        :param api_group: APIGroup is the group for the resource being referenced. It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
+        :param namespace: Namespace that contains the referenced resource. Must be empty for cluster-scoped resources and non-empty for namespaced resources.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5afcc6783d7cbb47b83e346e5c573888b38fd04b8cfd4d6ca64f7b0a4392f11c)
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "kind": kind,
+            "name": name,
+        }
+        if api_group is not None:
+            self._values["api_group"] = api_group
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def kind(self) -> builtins.str:
+        '''Kind is the type of resource being referenced.
+
+        This is the same value as in the parameter object's metadata.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#kind
+        '''
+        result = self._values.get("kind")
+        assert result is not None, "Required property 'kind' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of resource being referenced.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def api_group(self) -> typing.Optional[builtins.str]:
+        '''APIGroup is the group for the resource being referenced.
+
+        It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#apiGroup
+        '''
+        result = self._values.get("api_group")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace that contains the referenced resource.
+
+        Must be empty for cluster-scoped resources and non-empty for namespaced resources.
+
+        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourceClassParametersReferenceV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ResourceFieldSelector",
     jsii_struct_bases=[],
     name_mapping={
@@ -38256,186 +39920,6 @@ class ResourceMetricSourceV2:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ResourceMetricSourceV2Beta2",
-    jsii_struct_bases=[],
-    name_mapping={"name": "name", "target": "target"},
-)
-class ResourceMetricSourceV2Beta2:
-    def __init__(
-        self,
-        *,
-        name: builtins.str,
-        target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    ) -> None:
-        '''ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
-
-        :param name: name is the name of the resource in question.
-        :param target: target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ResourceMetricSource
-        '''
-        if isinstance(target, dict):
-            target = MetricTargetV2Beta2(**target)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__15369127b05c14237fb5e0ef9c4038f7ace5c2cd7e5ddafef694be84238ee26d)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "name": name,
-            "target": target,
-        }
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''name is the name of the resource in question.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ResourceMetricSource#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def target(self) -> MetricTargetV2Beta2:
-        '''target specifies the target value for the given metric.
-
-        :schema: io.k8s.api.autoscaling.v2beta2.ResourceMetricSource#target
-        '''
-        result = self._values.get("target")
-        assert result is not None, "Required property 'target' is missing"
-        return typing.cast(MetricTargetV2Beta2, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ResourceMetricSourceV2Beta2(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.ResourcePolicyRuleV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={
-        "api_groups": "apiGroups",
-        "resources": "resources",
-        "verbs": "verbs",
-        "cluster_scope": "clusterScope",
-        "namespaces": "namespaces",
-    },
-)
-class ResourcePolicyRuleV1Beta1:
-    def __init__(
-        self,
-        *,
-        api_groups: typing.Sequence[builtins.str],
-        resources: typing.Sequence[builtins.str],
-        verbs: typing.Sequence[builtins.str],
-        cluster_scope: typing.Optional[builtins.bool] = None,
-        namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
-    ) -> None:
-        '''ResourcePolicyRule is a predicate that matches some resource requests, testing the request's verb and the target resource.
-
-        A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) either (d1) the request does not specify a namespace (i.e., ``Namespace==""``) and clusterScope is true or (d2) the request specifies a namespace and least one member of namespaces matches the request's namespace.
-
-        :param api_groups: ``apiGroups`` is a list of matching API groups and may not be empty. "*" matches all API groups and, if present, must be the only entry. Required.
-        :param resources: ``resources`` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, [ "services", "nodes/status" ]. This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
-        :param verbs: ``verbs`` is a list of matching verbs and may not be empty. "*" matches all verbs and, if present, must be the only entry. Required.
-        :param cluster_scope: ``clusterScope`` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the ``namespaces`` field must contain a non-empty list.
-        :param namespaces: ``namespaces`` is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*". Note that "*" matches any specified namespace but does not match a request that *does not specify* a namespace (see the ``clusterScope`` field for that). This list may be empty, but only if ``clusterScope`` is true.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b51c9b340a22c0d7b0aaa580e42209b88460ecb7d5e6070a0ac55800ebc8dc63)
-            check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
-            check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
-            check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
-            check_type(argname="argument cluster_scope", value=cluster_scope, expected_type=type_hints["cluster_scope"])
-            check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "api_groups": api_groups,
-            "resources": resources,
-            "verbs": verbs,
-        }
-        if cluster_scope is not None:
-            self._values["cluster_scope"] = cluster_scope
-        if namespaces is not None:
-            self._values["namespaces"] = namespaces
-
-    @builtins.property
-    def api_groups(self) -> typing.List[builtins.str]:
-        '''``apiGroups`` is a list of matching API groups and may not be empty.
-
-        "*" matches all API groups and, if present, must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule#apiGroups
-        '''
-        result = self._values.get("api_groups")
-        assert result is not None, "Required property 'api_groups' is missing"
-        return typing.cast(typing.List[builtins.str], result)
-
-    @builtins.property
-    def resources(self) -> typing.List[builtins.str]:
-        '''``resources`` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule#resources
-        '''
-        result = self._values.get("resources")
-        assert result is not None, "Required property 'resources' is missing"
-        return typing.cast(typing.List[builtins.str], result)
-
-    @builtins.property
-    def verbs(self) -> typing.List[builtins.str]:
-        '''``verbs`` is a list of matching verbs and may not be empty.
-
-        "*" matches all verbs and, if present, must be the only entry. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule#verbs
-        '''
-        result = self._values.get("verbs")
-        assert result is not None, "Required property 'verbs' is missing"
-        return typing.cast(typing.List[builtins.str], result)
-
-    @builtins.property
-    def cluster_scope(self) -> typing.Optional[builtins.bool]:
-        '''``clusterScope`` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces).
-
-        If this field is omitted or false then the ``namespaces`` field must contain a non-empty list.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule#clusterScope
-        '''
-        result = self._values.get("cluster_scope")
-        return typing.cast(typing.Optional[builtins.bool], result)
-
-    @builtins.property
-    def namespaces(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''``namespaces`` is a list of target namespaces that restricts matches.
-
-        A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that *does not specify* a namespace (see the ``clusterScope`` field for that). This list may be empty, but only if ``clusterScope`` is true.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ResourcePolicyRule#namespaces
-        '''
-        result = self._values.get("namespaces")
-        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ResourcePolicyRuleV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.ResourcePolicyRuleV1Beta2",
     jsii_struct_bases=[],
     name_mapping={
@@ -38554,6 +40038,124 @@ class ResourcePolicyRuleV1Beta2:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ResourcePolicyRuleV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "api_groups": "apiGroups",
+        "resources": "resources",
+        "verbs": "verbs",
+        "cluster_scope": "clusterScope",
+        "namespaces": "namespaces",
+    },
+)
+class ResourcePolicyRuleV1Beta3:
+    def __init__(
+        self,
+        *,
+        api_groups: typing.Sequence[builtins.str],
+        resources: typing.Sequence[builtins.str],
+        verbs: typing.Sequence[builtins.str],
+        cluster_scope: typing.Optional[builtins.bool] = None,
+        namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
+    ) -> None:
+        '''ResourcePolicyRule is a predicate that matches some resource requests, testing the request's verb and the target resource.
+
+        A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) either (d1) the request does not specify a namespace (i.e., ``Namespace==""``) and clusterScope is true or (d2) the request specifies a namespace and least one member of namespaces matches the request's namespace.
+
+        :param api_groups: ``apiGroups`` is a list of matching API groups and may not be empty. "*" matches all API groups and, if present, must be the only entry. Required.
+        :param resources: ``resources`` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, [ "services", "nodes/status" ]. This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
+        :param verbs: ``verbs`` is a list of matching verbs and may not be empty. "*" matches all verbs and, if present, must be the only entry. Required.
+        :param cluster_scope: ``clusterScope`` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the ``namespaces`` field must contain a non-empty list.
+        :param namespaces: ``namespaces`` is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*". Note that "*" matches any specified namespace but does not match a request that *does not specify* a namespace (see the ``clusterScope`` field for that). This list may be empty, but only if ``clusterScope`` is true.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c9ae6771cea2f9e8c2c610a5b19310cef1a10452a5eab35dc8eb9198c9ed8025)
+            check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
+            check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
+            check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
+            check_type(argname="argument cluster_scope", value=cluster_scope, expected_type=type_hints["cluster_scope"])
+            check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_groups": api_groups,
+            "resources": resources,
+            "verbs": verbs,
+        }
+        if cluster_scope is not None:
+            self._values["cluster_scope"] = cluster_scope
+        if namespaces is not None:
+            self._values["namespaces"] = namespaces
+
+    @builtins.property
+    def api_groups(self) -> typing.List[builtins.str]:
+        '''``apiGroups`` is a list of matching API groups and may not be empty.
+
+        "*" matches all API groups and, if present, must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule#apiGroups
+        '''
+        result = self._values.get("api_groups")
+        assert result is not None, "Required property 'api_groups' is missing"
+        return typing.cast(typing.List[builtins.str], result)
+
+    @builtins.property
+    def resources(self) -> typing.List[builtins.str]:
+        '''``resources`` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule#resources
+        '''
+        result = self._values.get("resources")
+        assert result is not None, "Required property 'resources' is missing"
+        return typing.cast(typing.List[builtins.str], result)
+
+    @builtins.property
+    def verbs(self) -> typing.List[builtins.str]:
+        '''``verbs`` is a list of matching verbs and may not be empty.
+
+        "*" matches all verbs and, if present, must be the only entry. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule#verbs
+        '''
+        result = self._values.get("verbs")
+        assert result is not None, "Required property 'verbs' is missing"
+        return typing.cast(typing.List[builtins.str], result)
+
+    @builtins.property
+    def cluster_scope(self) -> typing.Optional[builtins.bool]:
+        '''``clusterScope`` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces).
+
+        If this field is omitted or false then the ``namespaces`` field must contain a non-empty list.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule#clusterScope
+        '''
+        result = self._values.get("cluster_scope")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
+    def namespaces(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''``namespaces`` is a list of target namespaces that restricts matches.
+
+        A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that *does not specify* a namespace (see the ``clusterScope`` field for that). This list may be empty, but only if ``clusterScope`` is true.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ResourcePolicyRule#namespaces
+        '''
+        result = self._values.get("namespaces")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ResourcePolicyRuleV1Beta3(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ResourceQuotaSpec",
     jsii_struct_bases=[],
     name_mapping={
@@ -38641,17 +40243,19 @@ class ResourceQuotaSpec:
 @jsii.data_type(
     jsii_type="k8s.ResourceRequirements",
     jsii_struct_bases=[],
-    name_mapping={"limits": "limits", "requests": "requests"},
+    name_mapping={"claims": "claims", "limits": "limits", "requests": "requests"},
 )
 class ResourceRequirements:
     def __init__(
         self,
         *,
+        claims: typing.Optional[typing.Sequence[typing.Union[ResourceClaim, typing.Dict[builtins.str, typing.Any]]]] = None,
         limits: typing.Optional[typing.Mapping[builtins.str, Quantity]] = None,
         requests: typing.Optional[typing.Mapping[builtins.str, Quantity]] = None,
     ) -> None:
         '''ResourceRequirements describes the compute resource requirements.
 
+        :param claims: Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.
         :param limits: Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
         :param requests: Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -38659,13 +40263,29 @@ class ResourceRequirements:
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__6f28381f115e86cc4a857dc64662f80338d1b27b3fbd53665d90231711e3a3cd)
+            check_type(argname="argument claims", value=claims, expected_type=type_hints["claims"])
             check_type(argname="argument limits", value=limits, expected_type=type_hints["limits"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if claims is not None:
+            self._values["claims"] = claims
         if limits is not None:
             self._values["limits"] = limits
         if requests is not None:
             self._values["requests"] = requests
+
+    @builtins.property
+    def claims(self) -> typing.Optional[typing.List[ResourceClaim]]:
+        '''Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.
+
+        This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.
+
+        This field is immutable.
+
+        :schema: io.k8s.api.core.v1.ResourceRequirements#claims
+        '''
+        result = self._values.get("claims")
+        return typing.cast(typing.Optional[typing.List[ResourceClaim]], result)
 
     @builtins.property
     def limits(self) -> typing.Optional[typing.Mapping[builtins.str, Quantity]]:
@@ -40609,65 +42229,6 @@ class SelfSubjectRulesReviewSpec:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ServiceAccountSubjectV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={"name": "name", "namespace": "namespace"},
-)
-class ServiceAccountSubjectV1Beta1:
-    def __init__(self, *, name: builtins.str, namespace: builtins.str) -> None:
-        '''ServiceAccountSubject holds detailed information for service-account-kind subject.
-
-        :param name: ``name`` is the name of matching ServiceAccount objects, or "*" to match regardless of name. Required.
-        :param namespace: ``namespace`` is the namespace of matching ServiceAccount objects. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ServiceAccountSubject
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__61963d107ef57ef39479e4cedc8d798c8a5fe7c3cadd84f9e066a50fa37d75a1)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "name": name,
-            "namespace": namespace,
-        }
-
-    @builtins.property
-    def name(self) -> builtins.str:
-        '''``name`` is the name of matching ServiceAccount objects, or "*" to match regardless of name.
-
-        Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ServiceAccountSubject#name
-        '''
-        result = self._values.get("name")
-        assert result is not None, "Required property 'name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def namespace(self) -> builtins.str:
-        '''``namespace`` is the namespace of matching ServiceAccount objects.
-
-        Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.ServiceAccountSubject#namespace
-        '''
-        result = self._values.get("namespace")
-        assert result is not None, "Required property 'namespace' is missing"
-        return typing.cast(builtins.str, result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "ServiceAccountSubjectV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.ServiceAccountSubjectV1Beta2",
     jsii_struct_bases=[],
     name_mapping={"name": "name", "namespace": "namespace"},
@@ -40722,6 +42283,65 @@ class ServiceAccountSubjectV1Beta2:
 
     def __repr__(self) -> str:
         return "ServiceAccountSubjectV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ServiceAccountSubjectV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "namespace": "namespace"},
+)
+class ServiceAccountSubjectV1Beta3:
+    def __init__(self, *, name: builtins.str, namespace: builtins.str) -> None:
+        '''ServiceAccountSubject holds detailed information for service-account-kind subject.
+
+        :param name: ``name`` is the name of matching ServiceAccount objects, or "*" to match regardless of name. Required.
+        :param namespace: ``namespace`` is the namespace of matching ServiceAccount objects. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ServiceAccountSubject
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__324da826cf3bc07c48d0532607d6bac7ab807122d6cde1c86aaf149e3ac5a926)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "namespace": namespace,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''``name`` is the name of matching ServiceAccount objects, or "*" to match regardless of name.
+
+        Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ServiceAccountSubject#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def namespace(self) -> builtins.str:
+        '''``namespace`` is the namespace of matching ServiceAccount objects.
+
+        Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ServiceAccountSubject#namespace
+        '''
+        result = self._values.get("namespace")
+        assert result is not None, "Required property 'namespace' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ServiceAccountSubjectV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -41518,6 +43138,52 @@ class SessionAffinityConfig:
 
 
 @jsii.data_type(
+    jsii_type="k8s.StatefulSetOrdinals",
+    jsii_struct_bases=[],
+    name_mapping={"start": "start"},
+)
+class StatefulSetOrdinals:
+    def __init__(self, *, start: typing.Optional[jsii.Number] = None) -> None:
+        '''StatefulSetOrdinals describes the policy used for replica ordinal assignment in this StatefulSet.
+
+        :param start: start is the number representing the first replica's index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range: [.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range: [0, .spec.replicas).
+
+        :schema: io.k8s.api.apps.v1.StatefulSetOrdinals
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1e58617ce6e9215ed1ab28dc2eee5d66eab33dc7bfaa27792ade3a835dd2b944)
+            check_type(argname="argument start", value=start, expected_type=type_hints["start"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if start is not None:
+            self._values["start"] = start
+
+    @builtins.property
+    def start(self) -> typing.Optional[jsii.Number]:
+        '''start is the number representing the first replica's index.
+
+        It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:
+        [.spec.ordinals.start, .spec.ordinals.start + .spec.replicas).
+        If unset, defaults to 0. Replica indices will be in the range:
+        [0, .spec.replicas).
+
+        :schema: io.k8s.api.apps.v1.StatefulSetOrdinals#start
+        '''
+        result = self._values.get("start")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "StatefulSetOrdinals(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.StatefulSetPersistentVolumeClaimRetentionPolicy",
     jsii_struct_bases=[],
     name_mapping={"when_deleted": "whenDeleted", "when_scaled": "whenScaled"},
@@ -41588,6 +43254,7 @@ class StatefulSetPersistentVolumeClaimRetentionPolicy:
         "service_name": "serviceName",
         "template": "template",
         "min_ready_seconds": "minReadySeconds",
+        "ordinals": "ordinals",
         "persistent_volume_claim_retention_policy": "persistentVolumeClaimRetentionPolicy",
         "pod_management_policy": "podManagementPolicy",
         "replicas": "replicas",
@@ -41604,6 +43271,7 @@ class StatefulSetSpec:
         service_name: builtins.str,
         template: typing.Union[PodTemplateSpec, typing.Dict[builtins.str, typing.Any]],
         min_ready_seconds: typing.Optional[jsii.Number] = None,
+        ordinals: typing.Optional[typing.Union[StatefulSetOrdinals, typing.Dict[builtins.str, typing.Any]]] = None,
         persistent_volume_claim_retention_policy: typing.Optional[typing.Union[StatefulSetPersistentVolumeClaimRetentionPolicy, typing.Dict[builtins.str, typing.Any]]] = None,
         pod_management_policy: typing.Optional[builtins.str] = None,
         replicas: typing.Optional[jsii.Number] = None,
@@ -41615,8 +43283,9 @@ class StatefulSetSpec:
 
         :param selector: selector is a label query over pods that should match the replica count. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         :param service_name: serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where "pod-specific-string" is managed by the StatefulSet controller.
-        :param template: template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet.
+        :param template: template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3".
         :param min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) Default: 0 (pod will be considered available as soon as it is ready)
+        :param ordinals: ordinals controls the numbering of replica indices in a StatefulSet. The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is alpha.
         :param persistent_volume_claim_retention_policy: persistentVolumeClaimRetentionPolicy describes the lifecycle of persistent volume claims created from volumeClaimTemplates. By default, all persistent volume claims are created as needed and retained until manually deleted. This policy allows the lifecycle to be altered, for example by deleting persistent volume claims when their stateful set is deleted, or when their pod is scaled down. This requires the StatefulSetAutoDeletePVC feature gate to be enabled, which is alpha. +optional
         :param pod_management_policy: podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is ``OrderedReady``, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is ``Parallel`` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
         :param replicas: replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
@@ -41630,6 +43299,8 @@ class StatefulSetSpec:
             selector = LabelSelector(**selector)
         if isinstance(template, dict):
             template = PodTemplateSpec(**template)
+        if isinstance(ordinals, dict):
+            ordinals = StatefulSetOrdinals(**ordinals)
         if isinstance(persistent_volume_claim_retention_policy, dict):
             persistent_volume_claim_retention_policy = StatefulSetPersistentVolumeClaimRetentionPolicy(**persistent_volume_claim_retention_policy)
         if isinstance(update_strategy, dict):
@@ -41640,6 +43311,7 @@ class StatefulSetSpec:
             check_type(argname="argument service_name", value=service_name, expected_type=type_hints["service_name"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
+            check_type(argname="argument ordinals", value=ordinals, expected_type=type_hints["ordinals"])
             check_type(argname="argument persistent_volume_claim_retention_policy", value=persistent_volume_claim_retention_policy, expected_type=type_hints["persistent_volume_claim_retention_policy"])
             check_type(argname="argument pod_management_policy", value=pod_management_policy, expected_type=type_hints["pod_management_policy"])
             check_type(argname="argument replicas", value=replicas, expected_type=type_hints["replicas"])
@@ -41653,6 +43325,8 @@ class StatefulSetSpec:
         }
         if min_ready_seconds is not None:
             self._values["min_ready_seconds"] = min_ready_seconds
+        if ordinals is not None:
+            self._values["ordinals"] = ordinals
         if persistent_volume_claim_retention_policy is not None:
             self._values["persistent_volume_claim_retention_policy"] = persistent_volume_claim_retention_policy
         if pod_management_policy is not None:
@@ -41694,7 +43368,7 @@ class StatefulSetSpec:
     def template(self) -> PodTemplateSpec:
         '''template is the object that describes the pod that will be created if insufficient replicas are detected.
 
-        Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet.
+        Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3".
 
         :schema: io.k8s.api.apps.v1.StatefulSetSpec#template
         '''
@@ -41714,6 +43388,17 @@ class StatefulSetSpec:
         '''
         result = self._values.get("min_ready_seconds")
         return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def ordinals(self) -> typing.Optional[StatefulSetOrdinals]:
+        '''ordinals controls the numbering of replica indices in a StatefulSet.
+
+        The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is alpha.
+
+        :schema: io.k8s.api.apps.v1.StatefulSetSpec#ordinals
+        '''
+        result = self._values.get("ordinals")
+        return typing.cast(typing.Optional[StatefulSetOrdinals], result)
 
     @builtins.property
     def persistent_volume_claim_retention_policy(
@@ -42551,109 +44236,6 @@ class SubjectAccessReviewSpec:
 
 
 @jsii.data_type(
-    jsii_type="k8s.SubjectV1Beta1",
-    jsii_struct_bases=[],
-    name_mapping={
-        "kind": "kind",
-        "group": "group",
-        "service_account": "serviceAccount",
-        "user": "user",
-    },
-)
-class SubjectV1Beta1:
-    def __init__(
-        self,
-        *,
-        kind: builtins.str,
-        group: typing.Optional[typing.Union[GroupSubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-        service_account: typing.Optional[typing.Union[ServiceAccountSubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-        user: typing.Optional[typing.Union["UserSubjectV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Subject matches the originator of a request, as identified by the request authentication system.
-
-        There are three ways of matching an originator; by user, group, or service account.
-
-        :param kind: ``kind`` indicates which one of the other fields is non-empty. Required
-        :param group: ``group`` matches based on user group name.
-        :param service_account: ``serviceAccount`` matches ServiceAccounts.
-        :param user: ``user`` matches based on username.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.Subject
-        '''
-        if isinstance(group, dict):
-            group = GroupSubjectV1Beta1(**group)
-        if isinstance(service_account, dict):
-            service_account = ServiceAccountSubjectV1Beta1(**service_account)
-        if isinstance(user, dict):
-            user = UserSubjectV1Beta1(**user)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__00c2c846d28282e25b92e68e8654dd5201d4b7e1f4f91d3d397d2f683994d2cd)
-            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
-            check_type(argname="argument group", value=group, expected_type=type_hints["group"])
-            check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
-            check_type(argname="argument user", value=user, expected_type=type_hints["user"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "kind": kind,
-        }
-        if group is not None:
-            self._values["group"] = group
-        if service_account is not None:
-            self._values["service_account"] = service_account
-        if user is not None:
-            self._values["user"] = user
-
-    @builtins.property
-    def kind(self) -> builtins.str:
-        '''``kind`` indicates which one of the other fields is non-empty.
-
-        Required
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.Subject#kind
-        '''
-        result = self._values.get("kind")
-        assert result is not None, "Required property 'kind' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def group(self) -> typing.Optional[GroupSubjectV1Beta1]:
-        '''``group`` matches based on user group name.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.Subject#group
-        '''
-        result = self._values.get("group")
-        return typing.cast(typing.Optional[GroupSubjectV1Beta1], result)
-
-    @builtins.property
-    def service_account(self) -> typing.Optional[ServiceAccountSubjectV1Beta1]:
-        '''``serviceAccount`` matches ServiceAccounts.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.Subject#serviceAccount
-        '''
-        result = self._values.get("service_account")
-        return typing.cast(typing.Optional[ServiceAccountSubjectV1Beta1], result)
-
-    @builtins.property
-    def user(self) -> typing.Optional["UserSubjectV1Beta1"]:
-        '''``user`` matches based on username.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.Subject#user
-        '''
-        result = self._values.get("user")
-        return typing.cast(typing.Optional["UserSubjectV1Beta1"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "SubjectV1Beta1(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
     jsii_type="k8s.SubjectV1Beta2",
     jsii_struct_bases=[],
     name_mapping={
@@ -42752,6 +44334,109 @@ class SubjectV1Beta2:
 
     def __repr__(self) -> str:
         return "SubjectV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.SubjectV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "kind": "kind",
+        "group": "group",
+        "service_account": "serviceAccount",
+        "user": "user",
+    },
+)
+class SubjectV1Beta3:
+    def __init__(
+        self,
+        *,
+        kind: builtins.str,
+        group: typing.Optional[typing.Union[GroupSubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account: typing.Optional[typing.Union[ServiceAccountSubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+        user: typing.Optional[typing.Union["UserSubjectV1Beta3", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Subject matches the originator of a request, as identified by the request authentication system.
+
+        There are three ways of matching an originator; by user, group, or service account.
+
+        :param kind: ``kind`` indicates which one of the other fields is non-empty. Required
+        :param group: ``group`` matches based on user group name.
+        :param service_account: ``serviceAccount`` matches ServiceAccounts.
+        :param user: ``user`` matches based on username.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.Subject
+        '''
+        if isinstance(group, dict):
+            group = GroupSubjectV1Beta3(**group)
+        if isinstance(service_account, dict):
+            service_account = ServiceAccountSubjectV1Beta3(**service_account)
+        if isinstance(user, dict):
+            user = UserSubjectV1Beta3(**user)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a46ab1f8a869330d80daeca76c731f5168b250899559c5f9260da9dae23b95e3)
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
+            check_type(argname="argument group", value=group, expected_type=type_hints["group"])
+            check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
+            check_type(argname="argument user", value=user, expected_type=type_hints["user"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "kind": kind,
+        }
+        if group is not None:
+            self._values["group"] = group
+        if service_account is not None:
+            self._values["service_account"] = service_account
+        if user is not None:
+            self._values["user"] = user
+
+    @builtins.property
+    def kind(self) -> builtins.str:
+        '''``kind`` indicates which one of the other fields is non-empty.
+
+        Required
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.Subject#kind
+        '''
+        result = self._values.get("kind")
+        assert result is not None, "Required property 'kind' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def group(self) -> typing.Optional[GroupSubjectV1Beta3]:
+        '''``group`` matches based on user group name.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.Subject#group
+        '''
+        result = self._values.get("group")
+        return typing.cast(typing.Optional[GroupSubjectV1Beta3], result)
+
+    @builtins.property
+    def service_account(self) -> typing.Optional[ServiceAccountSubjectV1Beta3]:
+        '''``serviceAccount`` matches ServiceAccounts.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.Subject#serviceAccount
+        '''
+        result = self._values.get("service_account")
+        return typing.cast(typing.Optional[ServiceAccountSubjectV1Beta3], result)
+
+    @builtins.property
+    def user(self) -> typing.Optional["UserSubjectV1Beta3"]:
+        '''``user`` matches based on username.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.Subject#user
+        '''
+        result = self._values.get("user")
+        return typing.cast(typing.Optional["UserSubjectV1Beta3"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SubjectV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -43450,8 +45135,8 @@ class TopologySpreadConstraint:
         :param label_selector: LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
         :param match_label_keys: MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
         :param min_domains: MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-        :param node_affinity_policy: NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-        :param node_taints_policy: NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+        :param node_affinity_policy: NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+        :param node_taints_policy: NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
         :schema: io.k8s.api.core.v1.TopologySpreadConstraint
         '''
@@ -43565,7 +45250,7 @@ class TopologySpreadConstraint:
 
         Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.
 
-        If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+        If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
         :schema: io.k8s.api.core.v1.TopologySpreadConstraint#nodeAffinityPolicy
         '''
@@ -43578,7 +45263,7 @@ class TopologySpreadConstraint:
 
         Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.
 
-        If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+        If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
         :schema: io.k8s.api.core.v1.TopologySpreadConstraint#nodeTaintsPolicy
         '''
@@ -43674,36 +45359,86 @@ class TypedLocalObjectReference:
 
 
 @jsii.data_type(
-    jsii_type="k8s.UserSubjectV1Beta1",
+    jsii_type="k8s.TypedObjectReference",
     jsii_struct_bases=[],
-    name_mapping={"name": "name"},
+    name_mapping={
+        "kind": "kind",
+        "name": "name",
+        "api_group": "apiGroup",
+        "namespace": "namespace",
+    },
 )
-class UserSubjectV1Beta1:
-    def __init__(self, *, name: builtins.str) -> None:
-        '''UserSubject holds detailed information for user-kind subject.
+class TypedObjectReference:
+    def __init__(
+        self,
+        *,
+        kind: builtins.str,
+        name: builtins.str,
+        api_group: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''
+        :param kind: Kind is the type of resource being referenced.
+        :param name: Name is the name of resource being referenced.
+        :param api_group: APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+        :param namespace: Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
-        :param name: ``name`` is the username that matches, or "*" to match all usernames. Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.UserSubject
+        :schema: io.k8s.api.core.v1.TypedObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2edb6688bf69dc15fdf62b12bf01bea97bae3ca422e64b95b5af8662d8706de9)
+            type_hints = typing.get_type_hints(_typecheckingstub__bece17868eb3d8e19bda1cfa4d9b7e4762df845f22f80e0d969ca1a026323551)
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
+            "kind": kind,
             "name": name,
         }
+        if api_group is not None:
+            self._values["api_group"] = api_group
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def kind(self) -> builtins.str:
+        '''Kind is the type of resource being referenced.
+
+        :schema: io.k8s.api.core.v1.TypedObjectReference#kind
+        '''
+        result = self._values.get("kind")
+        assert result is not None, "Required property 'kind' is missing"
+        return typing.cast(builtins.str, result)
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''``name`` is the username that matches, or "*" to match all usernames.
+        '''Name is the name of resource being referenced.
 
-        Required.
-
-        :schema: io.k8s.api.flowcontrol.v1beta1.UserSubject#name
+        :schema: io.k8s.api.core.v1.TypedObjectReference#name
         '''
         result = self._values.get("name")
         assert result is not None, "Required property 'name' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def api_group(self) -> typing.Optional[builtins.str]:
+        '''APIGroup is the group for the resource being referenced.
+
+        If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+        :schema: io.k8s.api.core.v1.TypedObjectReference#apiGroup
+        '''
+        result = self._values.get("api_group")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
+
+        :schema: io.k8s.api.core.v1.TypedObjectReference#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -43712,7 +45447,7 @@ class UserSubjectV1Beta1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "UserSubjectV1Beta1(%s)" % ", ".join(
+        return "TypedObjectReference(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -43757,6 +45492,244 @@ class UserSubjectV1Beta2:
 
     def __repr__(self) -> str:
         return "UserSubjectV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.UserSubjectV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name"},
+)
+class UserSubjectV1Beta3:
+    def __init__(self, *, name: builtins.str) -> None:
+        '''UserSubject holds detailed information for user-kind subject.
+
+        :param name: ``name`` is the username that matches, or "*" to match all usernames. Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.UserSubject
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4922cdd9a47a2508da7b0db66f1f2de9875fc489bfc823c7fc81b715099a31b6)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''``name`` is the username that matches, or "*" to match all usernames.
+
+        Required.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.UserSubject#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "UserSubjectV1Beta3(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ValidatingAdmissionPolicyBindingSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "match_resources": "matchResources",
+        "param_ref": "paramRef",
+        "policy_name": "policyName",
+    },
+)
+class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        match_resources: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+        param_ref: typing.Optional[typing.Union[ParamRefV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+        policy_name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.
+
+        :param match_resources: MatchResources declares what resources match this binding and will be validated by it. Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required.
+        :param param_ref: ParamRef specifies the parameter resource used to configure the admission control policy. It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied.
+        :param policy_name: PolicyName references a ValidatingAdmissionPolicy name which the ValidatingAdmissionPolicyBinding binds to. If the referenced resource does not exist, this binding is considered invalid and will be ignored Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec
+        '''
+        if isinstance(match_resources, dict):
+            match_resources = MatchResourcesV1Alpha1(**match_resources)
+        if isinstance(param_ref, dict):
+            param_ref = ParamRefV1Alpha1(**param_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0d38c442b8405ac15b84cec7d96ee561544c67c7960c701be6a4e8938804eefa)
+            check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
+            check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
+            check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if match_resources is not None:
+            self._values["match_resources"] = match_resources
+        if param_ref is not None:
+            self._values["param_ref"] = param_ref
+        if policy_name is not None:
+            self._values["policy_name"] = policy_name
+
+    @builtins.property
+    def match_resources(self) -> typing.Optional[MatchResourcesV1Alpha1]:
+        '''MatchResources declares what resources match this binding and will be validated by it.
+
+        Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec#matchResources
+        '''
+        result = self._values.get("match_resources")
+        return typing.cast(typing.Optional[MatchResourcesV1Alpha1], result)
+
+    @builtins.property
+    def param_ref(self) -> typing.Optional[ParamRefV1Alpha1]:
+        '''ParamRef specifies the parameter resource used to configure the admission control policy.
+
+        It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec#paramRef
+        '''
+        result = self._values.get("param_ref")
+        return typing.cast(typing.Optional[ParamRefV1Alpha1], result)
+
+    @builtins.property
+    def policy_name(self) -> typing.Optional[builtins.str]:
+        '''PolicyName references a ValidatingAdmissionPolicy name which the ValidatingAdmissionPolicyBinding binds to.
+
+        If the referenced resource does not exist, this binding is considered invalid and will be ignored Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec#policyName
+        '''
+        result = self._values.get("policy_name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidatingAdmissionPolicyBindingSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ValidatingAdmissionPolicySpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "validations": "validations",
+        "failure_policy": "failurePolicy",
+        "match_constraints": "matchConstraints",
+        "param_kind": "paramKind",
+    },
+)
+class ValidatingAdmissionPolicySpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        validations: typing.Sequence[typing.Union["ValidationV1Alpha1", typing.Dict[builtins.str, typing.Any]]],
+        failure_policy: typing.Optional[builtins.str] = None,
+        match_constraints: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+        param_kind: typing.Optional[typing.Union[ParamKindV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.
+
+        :param validations: Validations contain CEL expressions which is used to apply the validation. A minimum of one validation is required for a policy definition. Required.
+        :param failure_policy: FailurePolicy defines how to handle failures for the admission policy. Failures can occur from invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. Allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param match_constraints: MatchConstraints specifies what resources this policy is designed to validate. The AdmissionPolicy cares about a request if it matches *all* Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required.
+        :param param_kind: ParamKind specifies the kind of resources used to parameterize this policy. If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec
+        '''
+        if isinstance(match_constraints, dict):
+            match_constraints = MatchResourcesV1Alpha1(**match_constraints)
+        if isinstance(param_kind, dict):
+            param_kind = ParamKindV1Alpha1(**param_kind)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0419a6826a131473eb218fd7b964c8f1501e74582c4575a39889f77a48866837)
+            check_type(argname="argument validations", value=validations, expected_type=type_hints["validations"])
+            check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
+            check_type(argname="argument match_constraints", value=match_constraints, expected_type=type_hints["match_constraints"])
+            check_type(argname="argument param_kind", value=param_kind, expected_type=type_hints["param_kind"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "validations": validations,
+        }
+        if failure_policy is not None:
+            self._values["failure_policy"] = failure_policy
+        if match_constraints is not None:
+            self._values["match_constraints"] = match_constraints
+        if param_kind is not None:
+            self._values["param_kind"] = param_kind
+
+    @builtins.property
+    def validations(self) -> typing.List["ValidationV1Alpha1"]:
+        '''Validations contain CEL expressions which is used to apply the validation.
+
+        A minimum of one validation is required for a policy definition. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#validations
+        '''
+        result = self._values.get("validations")
+        assert result is not None, "Required property 'validations' is missing"
+        return typing.cast(typing.List["ValidationV1Alpha1"], result)
+
+    @builtins.property
+    def failure_policy(self) -> typing.Optional[builtins.str]:
+        '''FailurePolicy defines how to handle failures for the admission policy.
+
+        Failures can occur from invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. Allowed values are Ignore or Fail. Defaults to Fail.
+
+        :default: Fail.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#failurePolicy
+        '''
+        result = self._values.get("failure_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def match_constraints(self) -> typing.Optional[MatchResourcesV1Alpha1]:
+        '''MatchConstraints specifies what resources this policy is designed to validate.
+
+        The AdmissionPolicy cares about a request if it matches *all* Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#matchConstraints
+        '''
+        result = self._values.get("match_constraints")
+        return typing.cast(typing.Optional[MatchResourcesV1Alpha1], result)
+
+    @builtins.property
+    def param_kind(self) -> typing.Optional[ParamKindV1Alpha1]:
+        '''ParamKind specifies the kind of resources used to parameterize this policy.
+
+        If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#paramKind
+        '''
+        result = self._values.get("param_kind")
+        return typing.cast(typing.Optional[ParamKindV1Alpha1], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidatingAdmissionPolicySpecV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -44100,6 +46073,112 @@ class ValidationRule:
 
     def __repr__(self) -> str:
         return "ValidationRule(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ValidationV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "expression": "expression",
+        "message": "message",
+        "reason": "reason",
+    },
+)
+class ValidationV1Alpha1:
+    def __init__(
+        self,
+        *,
+        expression: builtins.str,
+        message: typing.Optional[builtins.str] = None,
+        reason: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Validation specifies the CEL expression which is used to apply the validation.
+
+        :param expression: Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the Admission request/response, organized into CEL variables as well as some other useful variables: 'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are: "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", "import", "let", "loop", "package", "namespace", "return". Examples: - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"} - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"} - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and non-intersecting elements in ``Y`` are appended, retaining their partial order. - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with non-intersecting keys are appended, retaining their partial order. Required.
+        :param message: Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {Expression}".
+        :param reason: Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Validation
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2e42e86e2cf6a0b9c2247c2d420d94cd03debba0ad4391ae8e0001bde4c15b3f)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument message", value=message, expected_type=type_hints["message"])
+            check_type(argname="argument reason", value=reason, expected_type=type_hints["reason"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+        }
+        if message is not None:
+            self._values["message"] = message
+        if reason is not None:
+            self._values["reason"] = reason
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression represents the expression which will be evaluated by CEL.
+
+        ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the Admission request/response, organized into CEL variables as well as some other useful variables:
+
+        'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind.
+
+        The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible.
+
+        Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are:
+        "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if",
+        "import", "let", "loop", "package", "namespace", "return".
+        Examples:
+
+        - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"}
+        - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"}
+        - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"}
+
+        Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:
+
+        - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and
+          non-intersecting elements in ``Y`` are appended, retaining their partial order.
+        - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values
+          are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with
+          non-intersecting keys are appended, retaining their partial order.
+          Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Validation#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def message(self) -> typing.Optional[builtins.str]:
+        '''Message represents the message displayed when validation fails.
+
+        The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {Expression}".
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Validation#message
+        '''
+        result = self._values.get("message")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def reason(self) -> typing.Optional[builtins.str]:
+        '''Reason represents a machine-readable description of why this validation failed.
+
+        If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Validation#reason
+        '''
+        result = self._values.get("reason")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidationV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -45652,6 +47731,7 @@ __all__ = [
     "CertificateSigningRequestSpec",
     "CinderPersistentVolumeSource",
     "CinderVolumeSource",
+    "ClaimSource",
     "ClientIpConfig",
     "ClusterCidrSpecV1Alpha1",
     "ComponentCondition",
@@ -45663,11 +47743,9 @@ __all__ = [
     "Container",
     "ContainerPort",
     "ContainerResourceMetricSourceV2",
-    "ContainerResourceMetricSourceV2Beta2",
     "CronJobSpec",
     "CrossVersionObjectReference",
     "CrossVersionObjectReferenceV2",
-    "CrossVersionObjectReferenceV2Beta2",
     "CsiDriverSpec",
     "CsiNodeDriver",
     "CsiNodeSpec",
@@ -45706,34 +47784,29 @@ __all__ = [
     "ExecAction",
     "ExternalDocumentation",
     "ExternalMetricSourceV2",
-    "ExternalMetricSourceV2Beta2",
     "FcVolumeSource",
     "FlexPersistentVolumeSource",
     "FlexVolumeSource",
     "FlockerVolumeSource",
-    "FlowDistinguisherMethodV1Beta1",
     "FlowDistinguisherMethodV1Beta2",
-    "FlowSchemaSpecV1Beta1",
+    "FlowDistinguisherMethodV1Beta3",
     "FlowSchemaSpecV1Beta2",
+    "FlowSchemaSpecV1Beta3",
     "ForZone",
     "GcePersistentDiskVolumeSource",
     "GitRepoVolumeSource",
     "GlusterfsPersistentVolumeSource",
     "GlusterfsVolumeSource",
-    "GroupSubjectV1Beta1",
     "GroupSubjectV1Beta2",
+    "GroupSubjectV1Beta3",
     "GrpcAction",
     "HorizontalPodAutoscalerBehaviorV2",
-    "HorizontalPodAutoscalerBehaviorV2Beta2",
     "HorizontalPodAutoscalerSpec",
     "HorizontalPodAutoscalerSpecV2",
-    "HorizontalPodAutoscalerSpecV2Beta2",
     "HostAlias",
     "HostPathVolumeSource",
     "HpaScalingPolicyV2",
-    "HpaScalingPolicyV2Beta2",
     "HpaScalingRulesV2",
-    "HpaScalingRulesV2Beta2",
     "HttpGetAction",
     "HttpHeader",
     "HttpIngressPath",
@@ -45834,25 +47907,21 @@ __all__ = [
     "KubeEventProps",
     "KubeEviction",
     "KubeEvictionProps",
-    "KubeFlowSchemaListV1Beta1",
-    "KubeFlowSchemaListV1Beta1Props",
     "KubeFlowSchemaListV1Beta2",
     "KubeFlowSchemaListV1Beta2Props",
-    "KubeFlowSchemaV1Beta1",
-    "KubeFlowSchemaV1Beta1Props",
+    "KubeFlowSchemaListV1Beta3",
+    "KubeFlowSchemaListV1Beta3Props",
     "KubeFlowSchemaV1Beta2",
     "KubeFlowSchemaV1Beta2Props",
+    "KubeFlowSchemaV1Beta3",
+    "KubeFlowSchemaV1Beta3Props",
     "KubeHorizontalPodAutoscaler",
     "KubeHorizontalPodAutoscalerList",
     "KubeHorizontalPodAutoscalerListProps",
     "KubeHorizontalPodAutoscalerListV2",
-    "KubeHorizontalPodAutoscalerListV2Beta2",
-    "KubeHorizontalPodAutoscalerListV2Beta2Props",
     "KubeHorizontalPodAutoscalerListV2Props",
     "KubeHorizontalPodAutoscalerProps",
     "KubeHorizontalPodAutoscalerV2",
-    "KubeHorizontalPodAutoscalerV2Beta2",
-    "KubeHorizontalPodAutoscalerV2Beta2Props",
     "KubeHorizontalPodAutoscalerV2Props",
     "KubeIngress",
     "KubeIngressClass",
@@ -45908,6 +47977,10 @@ __all__ = [
     "KubePodList",
     "KubePodListProps",
     "KubePodProps",
+    "KubePodSchedulingListV1Alpha1",
+    "KubePodSchedulingListV1Alpha1Props",
+    "KubePodSchedulingV1Alpha1",
+    "KubePodSchedulingV1Alpha1Props",
     "KubePodTemplate",
     "KubePodTemplateList",
     "KubePodTemplateListProps",
@@ -45916,14 +47989,14 @@ __all__ = [
     "KubePriorityClassList",
     "KubePriorityClassListProps",
     "KubePriorityClassProps",
-    "KubePriorityLevelConfigurationListV1Beta1",
-    "KubePriorityLevelConfigurationListV1Beta1Props",
     "KubePriorityLevelConfigurationListV1Beta2",
     "KubePriorityLevelConfigurationListV1Beta2Props",
-    "KubePriorityLevelConfigurationV1Beta1",
-    "KubePriorityLevelConfigurationV1Beta1Props",
+    "KubePriorityLevelConfigurationListV1Beta3",
+    "KubePriorityLevelConfigurationListV1Beta3Props",
     "KubePriorityLevelConfigurationV1Beta2",
     "KubePriorityLevelConfigurationV1Beta2Props",
+    "KubePriorityLevelConfigurationV1Beta3",
+    "KubePriorityLevelConfigurationV1Beta3Props",
     "KubeReplicaSet",
     "KubeReplicaSetList",
     "KubeReplicaSetListProps",
@@ -45932,6 +48005,18 @@ __all__ = [
     "KubeReplicationControllerList",
     "KubeReplicationControllerListProps",
     "KubeReplicationControllerProps",
+    "KubeResourceClaimListV1Alpha1",
+    "KubeResourceClaimListV1Alpha1Props",
+    "KubeResourceClaimTemplateListV1Alpha1",
+    "KubeResourceClaimTemplateListV1Alpha1Props",
+    "KubeResourceClaimTemplateV1Alpha1",
+    "KubeResourceClaimTemplateV1Alpha1Props",
+    "KubeResourceClaimV1Alpha1",
+    "KubeResourceClaimV1Alpha1Props",
+    "KubeResourceClassListV1Alpha1",
+    "KubeResourceClassListV1Alpha1Props",
+    "KubeResourceClassV1Alpha1",
+    "KubeResourceClassV1Alpha1Props",
     "KubeResourceQuota",
     "KubeResourceQuotaList",
     "KubeResourceQuotaListProps",
@@ -45956,6 +48041,8 @@ __all__ = [
     "KubeSecretProps",
     "KubeSelfSubjectAccessReview",
     "KubeSelfSubjectAccessReviewProps",
+    "KubeSelfSubjectReviewV1Alpha1",
+    "KubeSelfSubjectReviewV1Alpha1Props",
     "KubeSelfSubjectRulesReview",
     "KubeSelfSubjectRulesReviewProps",
     "KubeService",
@@ -45986,6 +48073,14 @@ __all__ = [
     "KubeTokenRequestProps",
     "KubeTokenReview",
     "KubeTokenReviewProps",
+    "KubeValidatingAdmissionPolicyBindingListV1Alpha1",
+    "KubeValidatingAdmissionPolicyBindingListV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyBindingV1Alpha1",
+    "KubeValidatingAdmissionPolicyBindingV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyListV1Alpha1",
+    "KubeValidatingAdmissionPolicyListV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyV1Alpha1",
+    "KubeValidatingAdmissionPolicyV1Alpha1Props",
     "KubeValidatingWebhookConfiguration",
     "KubeValidatingWebhookConfigurationList",
     "KubeValidatingWebhookConfigurationListProps",
@@ -46001,21 +48096,20 @@ __all__ = [
     "LifecycleHandler",
     "LimitRangeItem",
     "LimitRangeSpec",
-    "LimitResponseV1Beta1",
     "LimitResponseV1Beta2",
-    "LimitedPriorityLevelConfigurationV1Beta1",
+    "LimitResponseV1Beta3",
     "LimitedPriorityLevelConfigurationV1Beta2",
+    "LimitedPriorityLevelConfigurationV1Beta3",
     "ListMeta",
     "LocalObjectReference",
     "LocalVolumeSource",
     "ManagedFieldsEntry",
+    "MatchResourcesV1Alpha1",
     "MetricIdentifierV2",
-    "MetricIdentifierV2Beta2",
     "MetricSpecV2",
-    "MetricSpecV2Beta2",
     "MetricTargetV2",
-    "MetricTargetV2Beta2",
     "MutatingWebhook",
+    "NamedRuleWithOperationsV1Alpha1",
     "NamespaceSpec",
     "NetworkPolicyEgressRule",
     "NetworkPolicyIngressRule",
@@ -46030,15 +48124,16 @@ __all__ = [
     "NodeSelectorTerm",
     "NodeSpec",
     "NonResourceAttributes",
-    "NonResourcePolicyRuleV1Beta1",
     "NonResourcePolicyRuleV1Beta2",
+    "NonResourcePolicyRuleV1Beta3",
     "ObjectFieldSelector",
     "ObjectMeta",
     "ObjectMetricSourceV2",
-    "ObjectMetricSourceV2Beta2",
     "ObjectReference",
     "Overhead",
     "OwnerReference",
+    "ParamKindV1Alpha1",
+    "ParamRefV1Alpha1",
     "PersistentVolumeClaimSpec",
     "PersistentVolumeClaimTemplate",
     "PersistentVolumeClaimVolumeSource",
@@ -46056,37 +48151,43 @@ __all__ = [
     "PodFailurePolicyRule",
     "PodOs",
     "PodReadinessGate",
+    "PodResourceClaim",
+    "PodSchedulingGate",
+    "PodSchedulingSpecV1Alpha1",
     "PodSecurityContext",
     "PodSpec",
     "PodTemplateSpec",
     "PodsMetricSourceV2",
-    "PodsMetricSourceV2Beta2",
     "PolicyRule",
-    "PolicyRulesWithSubjectsV1Beta1",
     "PolicyRulesWithSubjectsV1Beta2",
+    "PolicyRulesWithSubjectsV1Beta3",
     "PortworxVolumeSource",
     "Preconditions",
     "PreferredSchedulingTerm",
-    "PriorityLevelConfigurationReferenceV1Beta1",
     "PriorityLevelConfigurationReferenceV1Beta2",
-    "PriorityLevelConfigurationSpecV1Beta1",
+    "PriorityLevelConfigurationReferenceV1Beta3",
     "PriorityLevelConfigurationSpecV1Beta2",
+    "PriorityLevelConfigurationSpecV1Beta3",
     "Probe",
     "ProjectedVolumeSource",
     "Quantity",
-    "QueuingConfigurationV1Beta1",
     "QueuingConfigurationV1Beta2",
+    "QueuingConfigurationV1Beta3",
     "QuobyteVolumeSource",
     "RbdPersistentVolumeSource",
     "RbdVolumeSource",
     "ReplicaSetSpec",
     "ReplicationControllerSpec",
     "ResourceAttributes",
+    "ResourceClaim",
+    "ResourceClaimParametersReferenceV1Alpha1",
+    "ResourceClaimSpecV1Alpha1",
+    "ResourceClaimTemplateSpecV1Alpha1",
+    "ResourceClassParametersReferenceV1Alpha1",
     "ResourceFieldSelector",
     "ResourceMetricSourceV2",
-    "ResourceMetricSourceV2Beta2",
-    "ResourcePolicyRuleV1Beta1",
     "ResourcePolicyRuleV1Beta2",
+    "ResourcePolicyRuleV1Beta3",
     "ResourceQuotaSpec",
     "ResourceRequirements",
     "RoleRef",
@@ -46110,14 +48211,15 @@ __all__ = [
     "SecurityContext",
     "SelfSubjectAccessReviewSpec",
     "SelfSubjectRulesReviewSpec",
-    "ServiceAccountSubjectV1Beta1",
     "ServiceAccountSubjectV1Beta2",
+    "ServiceAccountSubjectV1Beta3",
     "ServiceAccountTokenProjection",
     "ServiceBackendPort",
     "ServicePort",
     "ServiceReference",
     "ServiceSpec",
     "SessionAffinityConfig",
+    "StatefulSetOrdinals",
     "StatefulSetPersistentVolumeClaimRetentionPolicy",
     "StatefulSetSpec",
     "StatefulSetUpdateStrategy",
@@ -46127,8 +48229,8 @@ __all__ = [
     "StorageOsVolumeSource",
     "Subject",
     "SubjectAccessReviewSpec",
-    "SubjectV1Beta1",
     "SubjectV1Beta2",
+    "SubjectV1Beta3",
     "Sysctl",
     "Taint",
     "TcpSocketAction",
@@ -46140,10 +48242,14 @@ __all__ = [
     "TopologySelectorTerm",
     "TopologySpreadConstraint",
     "TypedLocalObjectReference",
-    "UserSubjectV1Beta1",
+    "TypedObjectReference",
     "UserSubjectV1Beta2",
+    "UserSubjectV1Beta3",
+    "ValidatingAdmissionPolicyBindingSpecV1Alpha1",
+    "ValidatingAdmissionPolicySpecV1Alpha1",
     "ValidatingWebhook",
     "ValidationRule",
+    "ValidationV1Alpha1",
     "Volume",
     "VolumeAttachmentSource",
     "VolumeAttachmentSpec",
@@ -46307,6 +48413,14 @@ def _typecheckingstub__06ae43f93ff756a310e6d5117e9cf8625447a987c3d9a7fda373017a1
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__40bafd005da56b205ce1497f55b1fac61f4c26ca711edfc77173ea503ca29f1c(
+    *,
+    resource_claim_name: typing.Optional[builtins.str] = None,
+    resource_claim_template_name: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__29a449f3b3357364e9fe2eedbf3639c327226f11ef6b646b27d4a54e71dc5c9e(
     *,
     timeout_seconds: typing.Optional[jsii.Number] = None,
@@ -46429,15 +48543,6 @@ def _typecheckingstub__b4e84c9f4f18c845b4719ea9f3557e5fb076a9b483c5cb7bcb93a992c
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__deaf7c22f061fbe661e76746c494a28c73dc2cf41824e082b5c14b9ddd01e253(
-    *,
-    container: builtins.str,
-    name: builtins.str,
-    target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__ede2ac625e6994d9a90814ee390559d5afe3fc8cbac21bd43b66df929f6dc946(
     *,
     job_template: typing.Union[JobTemplateSpec, typing.Dict[builtins.str, typing.Any]],
@@ -46462,15 +48567,6 @@ def _typecheckingstub__16088e27454cd0459d4b0c1ddae21a0af78275822fe3ad5b12a9c2a78
     pass
 
 def _typecheckingstub__3af8150f9f5d358140c2abd5fb9f92e0e98dd7941df54ff76043b6eff438e4e5(
-    *,
-    kind: builtins.str,
-    name: builtins.str,
-    api_version: typing.Optional[builtins.str] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__530c15d443179d6ce70ead6f59f91b5903cdefab8d1a309ca08ff2c8371b9816(
     *,
     kind: builtins.str,
     name: builtins.str,
@@ -46868,14 +48964,6 @@ def _typecheckingstub__991911955f55da3c4dbd38270ac60d304756b0eac9946bf6bab366840
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__36b252acbc556d35519402150f6787f9c6501c5c096b81ad8387447ce2884dd5(
-    *,
-    metric: typing.Union[MetricIdentifierV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__2745107e20cb778ffd413fedde9112e0e0e1ad8530ac6be3aa44daf745945cd1(
     *,
     fs_type: typing.Optional[builtins.str] = None,
@@ -46917,13 +49005,6 @@ def _typecheckingstub__c8da19b7f0ffd9cf70dddb6e7c6984f3d78d5aa2c70fad98b528bc4ad
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__0de11763ca7b8a2bf1ef1b3ae0c47957da616c87e760eefd04aea283fc2ccd59(
-    *,
-    type: builtins.str,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__f097bb4fbe672878a09ccbc6c996fba34cd3cbbd412e738d7df0e2c5790f6b10(
     *,
     type: builtins.str,
@@ -46931,12 +49012,9 @@ def _typecheckingstub__f097bb4fbe672878a09ccbc6c996fba34cd3cbbd412e738d7df0e2c57
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__aed7ef608648ac85bd801d8fc51fdb594a41a071450bb28fdd76f79392f236ac(
+def _typecheckingstub__bffd4b6077b1400f76c8885e39b16536445fb17247f408a55f48c1989bb500f7(
     *,
-    priority_level_configuration: typing.Union[PriorityLevelConfigurationReferenceV1Beta1, typing.Dict[builtins.str, typing.Any]],
-    distinguisher_method: typing.Optional[typing.Union[FlowDistinguisherMethodV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-    matching_precedence: typing.Optional[jsii.Number] = None,
-    rules: typing.Optional[typing.Sequence[typing.Union[PolicyRulesWithSubjectsV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    type: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -46947,6 +49025,16 @@ def _typecheckingstub__95a7a4e1d128cef7bb866d233e06c9bb0da818b45bcd627a65d99a570
     distinguisher_method: typing.Optional[typing.Union[FlowDistinguisherMethodV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     matching_precedence: typing.Optional[jsii.Number] = None,
     rules: typing.Optional[typing.Sequence[typing.Union[PolicyRulesWithSubjectsV1Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__52d981628f2120d6117e98080ee21cdc5a95544b4e345b4f2083d09e3e6ac908(
+    *,
+    priority_level_configuration: typing.Union[PriorityLevelConfigurationReferenceV1Beta3, typing.Dict[builtins.str, typing.Any]],
+    distinguisher_method: typing.Optional[typing.Union[FlowDistinguisherMethodV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    matching_precedence: typing.Optional[jsii.Number] = None,
+    rules: typing.Optional[typing.Sequence[typing.Union[PolicyRulesWithSubjectsV1Beta3, typing.Dict[builtins.str, typing.Any]]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -46996,14 +49084,14 @@ def _typecheckingstub__ee9a1041172608f39bf295d6750ada62e4ab7bf9812fabbb918c35d5f
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__e92765ab399fe3122755f1d74d66158908c107381fd38f1d72e54731d41699fd(
+def _typecheckingstub__ea5fa7eede3defacccd3e49dd371a89a25a4831d1e7a6ecb1660bf6a617768ed(
     *,
     name: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ea5fa7eede3defacccd3e49dd371a89a25a4831d1e7a6ecb1660bf6a617768ed(
+def _typecheckingstub__812aaf4ed41fa0dc75191b6335a0c23c3c9c9b13e69060ba616483b441140f2e(
     *,
     name: builtins.str,
 ) -> None:
@@ -47026,14 +49114,6 @@ def _typecheckingstub__fda77f8a90785391fbbcd3ca1c11f062fa6bf7ae954e80fb24e4e288f
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__bf4f9cb7b66a8c55f24e47bf9de8c9cbb33ce5e7db80786dbd9eb59d1cba90f3(
-    *,
-    scale_down: typing.Optional[typing.Union[HpaScalingRulesV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    scale_up: typing.Optional[typing.Union[HpaScalingRulesV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__67e90701cb6e8283c6dcdce1a9bcefa03010668cc5c0dc412f36e77d3b94c2c6(
     *,
     max_replicas: jsii.Number,
@@ -47050,17 +49130,6 @@ def _typecheckingstub__a1323a69e978b64e93ef7f04e8455a1c9a9c3bb874ab3f67e7522bf7d
     scale_target_ref: typing.Union[CrossVersionObjectReferenceV2, typing.Dict[builtins.str, typing.Any]],
     behavior: typing.Optional[typing.Union[HorizontalPodAutoscalerBehaviorV2, typing.Dict[builtins.str, typing.Any]]] = None,
     metrics: typing.Optional[typing.Sequence[typing.Union[MetricSpecV2, typing.Dict[builtins.str, typing.Any]]]] = None,
-    min_replicas: typing.Optional[jsii.Number] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__ccb29672b38ef2cc860de9d96f1749668761f44d8ef40599d6a8b9f100a4f35a(
-    *,
-    max_replicas: jsii.Number,
-    scale_target_ref: typing.Union[CrossVersionObjectReferenceV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    behavior: typing.Optional[typing.Union[HorizontalPodAutoscalerBehaviorV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    metrics: typing.Optional[typing.Sequence[typing.Union[MetricSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
     min_replicas: typing.Optional[jsii.Number] = None,
 ) -> None:
     """Type checking stubs"""
@@ -47091,27 +49160,9 @@ def _typecheckingstub__aeb589a0fa4d0cc40251749153c9f79afe4dfc58697049ab09f63ee49
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__b9a39d03e42a02a240dadb3d016219021b0718aa9dd1d5cc2305724a876a6652(
-    *,
-    period_seconds: jsii.Number,
-    type: builtins.str,
-    value: jsii.Number,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__01955266417ee884ef4e85d0ff6d261477e416614ba711701a5aa2f989ee95ae(
     *,
     policies: typing.Optional[typing.Sequence[typing.Union[HpaScalingPolicyV2, typing.Dict[builtins.str, typing.Any]]]] = None,
-    select_policy: typing.Optional[builtins.str] = None,
-    stabilization_window_seconds: typing.Optional[jsii.Number] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__19cec94ecc00bf7bf6cfc17c6f5b098af65a2cd7a1a04a7a1f983629b3244999(
-    *,
-    policies: typing.Optional[typing.Sequence[typing.Union[HpaScalingPolicyV2Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
     select_policy: typing.Optional[builtins.str] = None,
     stabilization_window_seconds: typing.Optional[jsii.Number] = None,
 ) -> None:
@@ -48124,24 +50175,6 @@ def _typecheckingstub__87cf0d2be9c3f9f8ef8e2278ad8544565ff3211d2445691804c2609bf
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__3b4d3de1d76cfd7e27b25abded34fa03c7565390268d322a30f69ad0c49d464f(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    items: typing.Sequence[typing.Union[KubeFlowSchemaV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__fd12b53a22e371f554ea3b92b04b95d4c936156c053f08b0f7def6a091b102d1(
-    *,
-    items: typing.Sequence[typing.Union[KubeFlowSchemaV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__78dcce4ae43399b690dc9289853b5102369f03ffcdfb89350c8411a78672d51b(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -48160,20 +50193,20 @@ def _typecheckingstub__7840b0ea66b23c128361bc5a2f5b97608be83a0c9fb75ed5aa96409d6
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__03ca8902846b394a52781bdbcdca3fcbcf9ffe6f49e072c09ece3c8e98509770(
+def _typecheckingstub__3d77a2bc947160fa8c8b7379c2b017e6bb43ad9bb7d61e92ce9feee34f94bfe9(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    items: typing.Sequence[typing.Union[KubeFlowSchemaV1Beta3Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__7f28e33322d138a4326e67cf7f4c1c37c20add91579b4d996f246ec4b8cc8c24(
+def _typecheckingstub__9324188a061c5eae530453984a55d9350e8a735317db123e7ead7e0c73209b67(
     *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    items: typing.Sequence[typing.Union[KubeFlowSchemaV1Beta3Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48192,6 +50225,24 @@ def _typecheckingstub__e106d80425e44c2dfdc8be52665b26e79dc781475001784de3ddaa904
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a9b9348b12fce50fb80513761ddfb24eea7f7945e13e61ce1aa0681387d5b265(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6410a409fbe720f8a5200bbc56c83314c2abbde52a3f3e6d86dcffa538d45f0e(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[FlowSchemaSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48234,24 +50285,6 @@ def _typecheckingstub__612b9b7f601cf85679f8310aba2b1726e9093cf95529f5cdb32980ecb
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__d447d08c141a5cef252cf22f7eba3e5de334a41fc8dafbc877b92000f7de1df7(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    items: typing.Sequence[typing.Union[KubeHorizontalPodAutoscalerV2Beta2Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__257dd97a73be8c036b0a414876dac8a0e349837cd171f89719ce7b4444b7afa8(
-    *,
-    items: typing.Sequence[typing.Union[KubeHorizontalPodAutoscalerV2Beta2Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__82d754c8d97bd9130289b15ea62a398adf7971a9304499522bbc19f063139128(
     *,
     items: typing.Sequence[typing.Union[KubeHorizontalPodAutoscalerV2Props, typing.Dict[builtins.str, typing.Any]]],
@@ -48274,24 +50307,6 @@ def _typecheckingstub__9ca507f6cd5ee9c7cea60234c215b0a4ffad2c91ec0a23f8d44798e35
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__4b094c2c6a6b7cae820ceb967b94ae81a1ca2f3a5f1a4213c3ea534721bfd68c(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__f0bcdfb5f008efc2a03750fc157837530cf925cc326c18d102ab67f8fa7c1e08(
-    *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[HorizontalPodAutoscalerSpecV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48790,6 +50805,42 @@ def _typecheckingstub__a49e5de6a1c7d64f87b3fd99f6f3a7f9173827eb846d6b3423f251cc8
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__ca5c307c4cf8c1a6abfe2594c184c4510f1f094dbb431db9ed4c05139b0636a3(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubePodSchedulingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7a3f9f9a13fab7ad4309606460387114d09f26fe708e57d0ade367760eba22d4(
+    *,
+    items: typing.Sequence[typing.Union[KubePodSchedulingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3f4856868eca18e4ac926608e85a1bc5de5344771a17d102cda0ca44b4a61ee2(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    spec: typing.Union[PodSchedulingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b8378dcaf5913bb1f58986bd024042b8cd1b3448b4c03b331937a17870ffaac0(
+    *,
+    spec: typing.Union[PodSchedulingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__0ef25d47e407a94a1f7c5da1b4a8137999b9f10f2eb06612819328e43413ecaa(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -48868,24 +50919,6 @@ def _typecheckingstub__d2a7a0f6e62dd93fbc211f3259e5bdec03162b72d41924ec9b0431446
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__9ed9969a1bef945930df460c81070da8f93058b33159cdf963fec40032ce0bb0(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    items: typing.Sequence[typing.Union[KubePriorityLevelConfigurationV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__f2066baacdc4c2f98dd091b740553e2876e8fceefae49bf1c9b35963222f84a9(
-    *,
-    items: typing.Sequence[typing.Union[KubePriorityLevelConfigurationV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__b037d843ce4cd847a493957e491386d8281a274d20cb7ecfd13937547ca54046(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -48904,20 +50937,20 @@ def _typecheckingstub__a6a9dc2a0db58fcbfb69d80748f76fed9e1834c5756fcc6381cf1cbb8
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__9f3280057d5349a4f6f847b5c6491972daebb4a2c375a0b2f7d45d359fc1aa73(
+def _typecheckingstub__64fe405e3b84d29190baf774ed90a32c12ed6a17a342bae6b6bb18c8e57ca058(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[PriorityLevelConfigurationSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    items: typing.Sequence[typing.Union[KubePriorityLevelConfigurationV1Beta3Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__6bf85eef92b7f4676e52956de81da99188362fbd624e04a43587ce9f1fe0084d(
+def _typecheckingstub__8a9a2b4f57da24e68294448c136ed1b7f46757a2e39eb80d97db30d3fae1887e(
     *,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    spec: typing.Optional[typing.Union[PriorityLevelConfigurationSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    items: typing.Sequence[typing.Union[KubePriorityLevelConfigurationV1Beta3Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48936,6 +50969,24 @@ def _typecheckingstub__ebcd2e792a37c952b3b0359c48478c4abfbe9ef8402855ed70cefd887
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[PriorityLevelConfigurationSpecV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e5b00c189c9bee05bebcfdcd22a465297c6da0c35fbc81c5172ea3c48f65b7f2(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[PriorityLevelConfigurationSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__77fb534a06fef313d54401762de300dc3563bf4d8411dada16072154c0234ba3(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[PriorityLevelConfigurationSpecV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49008,6 +51059,118 @@ def _typecheckingstub__d1907ebb731e0f56418eaea7fe01ae75a6a0f7a66fe54291e68654e73
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[ReplicationControllerSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e200cdf7bdfd425880660ef6ebcb90da88783cb7874f700af41261d226802408(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__de1fd43faf0ba317c36809119ca61ff37dc7311bff784a153466481f3c1f7aac(
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6fbb34cbc640559672bb256ab485dc10d838f47767a362a9647924f5939ec9b7(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__28698822e45bda3d63db1ad3983a08b594ae8089817211a639d0d2b2212c5c0e(
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__19b55a664e022e7cf75a2e7db6a0c16e6791ff0f493db7b0ac8902687bdfc771(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__895c0745ae5288dd68b676af5ebba5862e4ff365a8b6cb7256b72cebb64ed32f(
+    *,
+    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a1f97fddc933efea2a1616dae66764060c73225f24ca19f70ab4da1cff53e88f(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__881875cd1d5513534efa2e6323236285dc2d6c692541f339978f5f88cbd7191d(
+    *,
+    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e1695fa3fd0da9c0899fd14ab89c516ae780955a7fabddea610d77da29a44ed4(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ac68af0f54677d6e7e28921a84e980663e5bbd36841ef1ddab313b91449b124a(
+    *,
+    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__73e955754ed6b0a944de335f682e555ee872f783b244a6172a6174b18e2953f2(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    driver_name: builtins.str,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    suitable_nodes: typing.Optional[typing.Union[NodeSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4dcda1419c55ac01a43092063ef99623f9153c117048d8a4d4a0ebd85bae5430(
+    *,
+    driver_name: builtins.str,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    suitable_nodes: typing.Optional[typing.Union[NodeSelector, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49235,6 +51398,22 @@ def _typecheckingstub__df9b9cd04099ed39eea458145ab91abff6e618a668a3f190dd8dd744c
 def _typecheckingstub__eb99da3761969040fbad9ae0f21de6f39fd7f9db7330ac8a2e14fd12dbe08b62(
     *,
     spec: typing.Union[SelfSubjectAccessReviewSpec, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__dc60febb32a5f5f830b0cbfeae492a65d79ebf66796edf824b494c89482a7e3f(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__740c60c3b930f3570c75be79b9daab533abd7ec5f3e5998f46de9d7e22d8dd90(
+    *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -49532,6 +51711,78 @@ def _typecheckingstub__fdad9a9e34ccb530008909556ec697b7e32e7e75a62c0a40b2de70d6f
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__aba7512ee266951498a04cd9a269f09706de6ad19ad3648606375a371fb62628(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyBindingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__58df6ed691a95aca20efd7ea05e0fc7ba9fc3d6f3743649a0799ed2ed11983ec(
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyBindingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__56be5cfcf392871de51369cb7627d15581b617ac5c85c34c2825c7dc7b3feaf2(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicyBindingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__02dcc69943131299a07758a92f8e2cda2225cdddcbbf84f8acd3bb912a2792da(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicyBindingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5a03cdbc2d5280c7b4ec9ffb4625db7a698d7ded6744c1e54ec807bff308084f(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__27f6c645b042b326a7c234f10c50683e94fe2b281a2747e856507e896bcdba42(
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__40d71fe31ba527f1708a40aa586fc9c2850b09853dfc30d5893fce5bd4e83459(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicySpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__040f3513e9b89931f8fae1a4242c8701b631d9855f134d09d77119b9a1eee24f(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicySpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__34e339703b236d0321dab9bd748a6980939b9f38a87e67f04aca4a50ee3aecf8(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -49668,14 +51919,6 @@ def _typecheckingstub__027b4c522c19844f185c6e4f67a4d23daf36b62d09bea8f4986779625
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__c6a31d26dd1825fed6969f220d5de82c7753778878cd3ff82c2f5f0d49f8e043(
-    *,
-    type: builtins.str,
-    queuing: typing.Optional[typing.Union[QueuingConfigurationV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__a7d2e84b41662f85530d92f23057ed1bfa4d969fe97f435f241fb59d9e3bcf55(
     *,
     type: builtins.str,
@@ -49684,10 +51927,10 @@ def _typecheckingstub__a7d2e84b41662f85530d92f23057ed1bfa4d969fe97f435f241fb59d9
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__41d971b8a7a21ba91caea15cee41c4815f31c85df21694fcda26ff7bcf37200f(
+def _typecheckingstub__d647edc50a3472caac98caf06f5a31e4200bbd7ef2bb53fe956d146e70245f10(
     *,
-    assured_concurrency_shares: typing.Optional[jsii.Number] = None,
-    limit_response: typing.Optional[typing.Union[LimitResponseV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    type: builtins.str,
+    queuing: typing.Optional[typing.Union[QueuingConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49695,7 +51938,19 @@ def _typecheckingstub__41d971b8a7a21ba91caea15cee41c4815f31c85df21694fcda26ff7bc
 def _typecheckingstub__1de531b9c958a31d6159e3de559aad52ec6bc11571ae701ec5b953bf9aac78cf(
     *,
     assured_concurrency_shares: typing.Optional[jsii.Number] = None,
+    borrowing_limit_percent: typing.Optional[jsii.Number] = None,
+    lendable_percent: typing.Optional[jsii.Number] = None,
     limit_response: typing.Optional[typing.Union[LimitResponseV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6f5ecffd25d8896c671c9cdd6db9659e0a8f6678e8899d85af3d7ddb13cef0ef(
+    *,
+    borrowing_limit_percent: typing.Optional[jsii.Number] = None,
+    lendable_percent: typing.Optional[jsii.Number] = None,
+    limit_response: typing.Optional[typing.Union[LimitResponseV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49738,15 +51993,18 @@ def _typecheckingstub__7d4739bc7dc7000dc6e5fca030c204929e2fd79081deaecd9bb2d31a8
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__05f3c3477ee039ee62c1437881247ebc79634cd90deb0f404da58859b54f239b(
+def _typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008c59202f(
     *,
-    name: builtins.str,
-    selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    exclude_resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_policy: typing.Optional[builtins.str] = None,
+    namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__d9d6a3394dfd9e0635e4d647883fc283d3b7b55ec6bbb2d3cc457e82c9e65cae(
+def _typecheckingstub__05f3c3477ee039ee62c1437881247ebc79634cd90deb0f404da58859b54f239b(
     *,
     name: builtins.str,
     selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -49766,29 +52024,7 @@ def _typecheckingstub__776c3a518a700d093a83bf2abc7751e45a06a623a34cd032f17c5caa3
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__909e08fbeed2f839abc3ca11a89218dc0237fcf98ab4b4ac7727a93409e917ec(
-    *,
-    type: builtins.str,
-    container_resource: typing.Optional[typing.Union[ContainerResourceMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    external: typing.Optional[typing.Union[ExternalMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    object: typing.Optional[typing.Union[ObjectMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    pods: typing.Optional[typing.Union[PodsMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-    resource: typing.Optional[typing.Union[ResourceMetricSourceV2Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__91b2fc60d3480fdb5746f707be7158323bd2542cb5bf771776ee1d23f94b5209(
-    *,
-    type: builtins.str,
-    average_utilization: typing.Optional[jsii.Number] = None,
-    average_value: typing.Optional[Quantity] = None,
-    value: typing.Optional[Quantity] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__a875785cdfda077be38d004ca502a87fd98eac78e57c53a334e7f63f63b2debd(
     *,
     type: builtins.str,
     average_utilization: typing.Optional[jsii.Number] = None,
@@ -49811,6 +52047,18 @@ def _typecheckingstub__3b2b9fcd912bddbb67354eb50436e2e46cb9c69e54efee129d032491e
     reinvocation_policy: typing.Optional[builtins.str] = None,
     rules: typing.Optional[typing.Sequence[typing.Union[RuleWithOperations, typing.Dict[builtins.str, typing.Any]]]] = None,
     timeout_seconds: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__86254bd3c48c4175d2d8989d74b51ebf1d5e08f635d6ca938cbe71ad127a3055(
+    *,
+    api_groups: typing.Optional[typing.Sequence[builtins.str]] = None,
+    api_versions: typing.Optional[typing.Sequence[builtins.str]] = None,
+    operations: typing.Optional[typing.Sequence[builtins.str]] = None,
+    resource_names: typing.Optional[typing.Sequence[builtins.str]] = None,
+    resources: typing.Optional[typing.Sequence[builtins.str]] = None,
+    scope: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49935,7 +52183,7 @@ def _typecheckingstub__87614183732b5aa4dd1bacd6db0063d066b6c9f07ce5f58af69ea84b6
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__67cb72f3c9d1be981ed8680709b60cf9fe8a87527b6f9c70f8d2d56da286bb08(
+def _typecheckingstub__78a3ae6e3e68c976f8ca44549a07d51b42b5a18ad0717f0a4f2148124dce3b35(
     *,
     non_resource_ur_ls: typing.Sequence[builtins.str],
     verbs: typing.Sequence[builtins.str],
@@ -49943,7 +52191,7 @@ def _typecheckingstub__67cb72f3c9d1be981ed8680709b60cf9fe8a87527b6f9c70f8d2d56da
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__78a3ae6e3e68c976f8ca44549a07d51b42b5a18ad0717f0a4f2148124dce3b35(
+def _typecheckingstub__549b23213444b2d234a332570b6d25763ed069c291b506dcbc8e9cfbd8b38579(
     *,
     non_resource_ur_ls: typing.Sequence[builtins.str],
     verbs: typing.Sequence[builtins.str],
@@ -49989,15 +52237,6 @@ def _typecheckingstub__059fe76b0567d05ad5259ae2145743ed0bb9b8ff4488936dba8234b46
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ef8bdab30daace0db5f7f5e3f35434e3a17d875bdd22c51b11fe95f7bd90f752(
-    *,
-    described_object: typing.Union[CrossVersionObjectReferenceV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    metric: typing.Union[MetricIdentifierV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__c20094532bd9f73694f77438189bb3de9c66cbdd0365b5006af71270a4661cc5(
     *,
     api_version: typing.Optional[builtins.str] = None,
@@ -50030,11 +52269,27 @@ def _typecheckingstub__f492c2fd31467da33dd2714b04585d0827fb1e1b0cf0b750d6db405bd
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__ca366a1a5a55375a1aef0df1d3a5ee87b07269561ad4145843c552a10838efa1(
+    *,
+    api_version: typing.Optional[builtins.str] = None,
+    kind: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e(
+    *,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__be23e20b8fae04cc3c5f02f0df1e7da53e588f89c5d6bcc9ca2ad145ca3ea9ac(
     *,
     access_modes: typing.Optional[typing.Sequence[builtins.str]] = None,
     data_source: typing.Optional[typing.Union[TypedLocalObjectReference, typing.Dict[builtins.str, typing.Any]]] = None,
-    data_source_ref: typing.Optional[typing.Union[TypedLocalObjectReference, typing.Dict[builtins.str, typing.Any]]] = None,
+    data_source_ref: typing.Optional[typing.Union[TypedObjectReference, typing.Dict[builtins.str, typing.Any]]] = None,
     resources: typing.Optional[typing.Union[ResourceRequirements, typing.Dict[builtins.str, typing.Any]]] = None,
     selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     storage_class_name: typing.Optional[builtins.str] = None,
@@ -50135,6 +52390,7 @@ def _typecheckingstub__fcf659f51d3ad1ddb70e76f4550c401ae77b9bed37d6671e9b1895983
     max_unavailable: typing.Optional[IntOrString] = None,
     min_available: typing.Optional[IntOrString] = None,
     selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    unhealthy_pod_eviction_policy: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -50203,6 +52459,29 @@ def _typecheckingstub__6efa6da68115e82d6b27bff9f91e3ed47585fedf0e8e6358afee97da2
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__593eecd9b8e25f27db87859570a28b2ffda74b52af7ef080a6bc114f4b263f52(
+    *,
+    name: builtins.str,
+    source: typing.Optional[typing.Union[ClaimSource, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc(
+    *,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cbaa152d2aa3b0f9ec0ecda0ddb7625c4422ee7ea4ee6a8b3c47fc6deee35d21(
+    *,
+    potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
+    selected_node: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__b23f586ca6b5b102b009640138cfcb7cb8db5fffa8d48ddb6c723e2d52bc60bc(
     *,
     fs_group: typing.Optional[jsii.Number] = None,
@@ -50245,9 +52524,11 @@ def _typecheckingstub__9ddad62f26f59d5b393ec9c7814efae31dbad75f06f4456a0bef61a6c
     priority: typing.Optional[jsii.Number] = None,
     priority_class_name: typing.Optional[builtins.str] = None,
     readiness_gates: typing.Optional[typing.Sequence[typing.Union[PodReadinessGate, typing.Dict[builtins.str, typing.Any]]]] = None,
+    resource_claims: typing.Optional[typing.Sequence[typing.Union[PodResourceClaim, typing.Dict[builtins.str, typing.Any]]]] = None,
     restart_policy: typing.Optional[builtins.str] = None,
     runtime_class_name: typing.Optional[builtins.str] = None,
     scheduler_name: typing.Optional[builtins.str] = None,
+    scheduling_gates: typing.Optional[typing.Sequence[typing.Union[PodSchedulingGate, typing.Dict[builtins.str, typing.Any]]]] = None,
     security_context: typing.Optional[typing.Union[PodSecurityContext, typing.Dict[builtins.str, typing.Any]]] = None,
     service_account: typing.Optional[builtins.str] = None,
     service_account_name: typing.Optional[builtins.str] = None,
@@ -50278,14 +52559,6 @@ def _typecheckingstub__4e1daa232feea2f9ba7daaf3807ee414905ce98c0d3805ab6cd957f84
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__af6e95edab4fa42f3fcb4fd8a3030117ab87d32c7458daf6d7987f64a8f27b94(
-    *,
-    metric: typing.Union[MetricIdentifierV2Beta2, typing.Dict[builtins.str, typing.Any]],
-    target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__faa1080f7a02c3d2eac7f18aad0cdbef93f8f9cff0f9825224a9dd8a829faf0a(
     *,
     verbs: typing.Sequence[builtins.str],
@@ -50297,20 +52570,20 @@ def _typecheckingstub__faa1080f7a02c3d2eac7f18aad0cdbef93f8f9cff0f9825224a9dd8a8
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__406eb14bf98c8f3f6931d191e32e945ebfe5d267e0bb9e0517475a1bf2c6833b(
-    *,
-    subjects: typing.Sequence[typing.Union[SubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]],
-    non_resource_rules: typing.Optional[typing.Sequence[typing.Union[NonResourcePolicyRuleV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
-    resource_rules: typing.Optional[typing.Sequence[typing.Union[ResourcePolicyRuleV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__b8fb123532a9c4783d0f6374006effe94f2abbd28e993ae2827ad3601ddf98c5(
     *,
     subjects: typing.Sequence[typing.Union[SubjectV1Beta2, typing.Dict[builtins.str, typing.Any]]],
     non_resource_rules: typing.Optional[typing.Sequence[typing.Union[NonResourcePolicyRuleV1Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
     resource_rules: typing.Optional[typing.Sequence[typing.Union[ResourcePolicyRuleV1Beta2, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d696363024826d8d1400b937d2aa6b61b3eaaa59024841f169586f09d8fa40dd(
+    *,
+    subjects: typing.Sequence[typing.Union[SubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]],
+    non_resource_rules: typing.Optional[typing.Sequence[typing.Union[NonResourcePolicyRuleV1Beta3, typing.Dict[builtins.str, typing.Any]]]] = None,
+    resource_rules: typing.Optional[typing.Sequence[typing.Union[ResourcePolicyRuleV1Beta3, typing.Dict[builtins.str, typing.Any]]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -50340,13 +52613,6 @@ def _typecheckingstub__4778017af685ac589aca31cd5f8aed67ddd4b8d050f99423b40b402a8
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__f92cedddee0558bfe683f631e904ef04dba790e750f288484442263adad1af26(
-    *,
-    name: builtins.str,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__76bd97c74c99efa5169495b9849f8685fb180d45e0f29dbce62f0fe15e286f13(
     *,
     name: builtins.str,
@@ -50354,10 +52620,9 @@ def _typecheckingstub__76bd97c74c99efa5169495b9849f8685fb180d45e0f29dbce62f0fe15
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ff7b855e9b5061c7098a1f063797b5bd6b7b0352d095d9a738899059e365a817(
+def _typecheckingstub__9a0146b969cc8a7d1c0ff18cf7d2f32e995d6c975b94478b11b395aca5759667(
     *,
-    type: builtins.str,
-    limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    name: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -50366,6 +52631,14 @@ def _typecheckingstub__94bca280ba8f7fad3c10c340b8cf6039d7a0f6cbd700ea283a8eeb4f1
     *,
     type: builtins.str,
     limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c30b61d9bf19716fdc32867c5d90748be48b5c7c3c858ba8b5c867223594eb77(
+    *,
+    type: builtins.str,
+    limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -50406,7 +52679,7 @@ def _typecheckingstub__abf2ed361dde0b07fa7185d50da371e8631fdccf28cb302e7e5d62f67
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__f9c6dd2b600f4e303f9b17590a095b0d825ab3afdad346ec4254ec0a18b691ec(
+def _typecheckingstub__8d5a34c8cf9c81ed2f5b31625c4cec39f9cc1c5c9d4fb1cd5b7c4ea13cbfecda(
     *,
     hand_size: typing.Optional[jsii.Number] = None,
     queue_length_limit: typing.Optional[jsii.Number] = None,
@@ -50415,7 +52688,7 @@ def _typecheckingstub__f9c6dd2b600f4e303f9b17590a095b0d825ab3afdad346ec4254ec0a1
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__8d5a34c8cf9c81ed2f5b31625c4cec39f9cc1c5c9d4fb1cd5b7c4ea13cbfecda(
+def _typecheckingstub__a1037b25a0b4c030cbae5567cfd92e97afe9e0798778e912b05229e9373472d1(
     *,
     hand_size: typing.Optional[jsii.Number] = None,
     queue_length_limit: typing.Optional[jsii.Number] = None,
@@ -50497,6 +52770,49 @@ def _typecheckingstub__1389ee6ee42f772dc34e626fc6cda72a7449fbddee89e52988179f65c
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__91cfdd0118d393ecd84db840ef420f5ffe5190ebbd91733137901a1accc49509(
+    *,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3577080f3432d03b6855e16ee80a2c353219d63b419c899aeaa67829a6e5c1fd(
+    *,
+    kind: builtins.str,
+    name: builtins.str,
+    api_group: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__222e0cbad16de6e748d8f212a7f2442c819c2ab8c5a44ca7bae369ddd8d4b534(
+    *,
+    resource_class_name: builtins.str,
+    allocation_mode: typing.Optional[builtins.str] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e997f36b60700a40ef5d273c773afd5de1bd6dd5b1729cba9b1011cf89235456(
+    *,
+    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5afcc6783d7cbb47b83e346e5c573888b38fd04b8cfd4d6ca64f7b0a4392f11c(
+    *,
+    kind: builtins.str,
+    name: builtins.str,
+    api_group: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__7117ce5ef6d2382048cc325329ebe4abba77c2be754492f7322ea7cc6b3c8c8c(
     *,
     resource: builtins.str,
@@ -50514,15 +52830,7 @@ def _typecheckingstub__62e5706b1c72eb3d6f6b070e53fc6646c3236f3cf9b9bbbbfc3f1022d
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__15369127b05c14237fb5e0ef9c4038f7ace5c2cd7e5ddafef694be84238ee26d(
-    *,
-    name: builtins.str,
-    target: typing.Union[MetricTargetV2Beta2, typing.Dict[builtins.str, typing.Any]],
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__b51c9b340a22c0d7b0aaa580e42209b88460ecb7d5e6070a0ac55800ebc8dc63(
+def _typecheckingstub__36c3728ec619997c16f03e7e503f9b6faa92c7d0be82c87e3f0a2c89c144f2bb(
     *,
     api_groups: typing.Sequence[builtins.str],
     resources: typing.Sequence[builtins.str],
@@ -50533,7 +52841,7 @@ def _typecheckingstub__b51c9b340a22c0d7b0aaa580e42209b88460ecb7d5e6070a0ac55800e
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__36c3728ec619997c16f03e7e503f9b6faa92c7d0be82c87e3f0a2c89c144f2bb(
+def _typecheckingstub__c9ae6771cea2f9e8c2c610a5b19310cef1a10452a5eab35dc8eb9198c9ed8025(
     *,
     api_groups: typing.Sequence[builtins.str],
     resources: typing.Sequence[builtins.str],
@@ -50555,6 +52863,7 @@ def _typecheckingstub__1f38b292c93787ac346fc7bdbff50edd3c17b9ea8d3ae69b3ef92ad11
 
 def _typecheckingstub__6f28381f115e86cc4a857dc64662f80338d1b27b3fbd53665d90231711e3a3cd(
     *,
+    claims: typing.Optional[typing.Sequence[typing.Union[ResourceClaim, typing.Dict[builtins.str, typing.Any]]]] = None,
     limits: typing.Optional[typing.Mapping[builtins.str, Quantity]] = None,
     requests: typing.Optional[typing.Mapping[builtins.str, Quantity]] = None,
 ) -> None:
@@ -50762,7 +53071,7 @@ def _typecheckingstub__e8dd2a0d136f9e7e8480f73531aaae29fb249c5b4c11d47022b16354c
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__61963d107ef57ef39479e4cedc8d798c8a5fe7c3cadd84f9e066a50fa37d75a1(
+def _typecheckingstub__ed7e13eb7021a2b0809d1809b6e9d20476c12f8399abed5e9535445cd3a54214(
     *,
     name: builtins.str,
     namespace: builtins.str,
@@ -50770,7 +53079,7 @@ def _typecheckingstub__61963d107ef57ef39479e4cedc8d798c8a5fe7c3cadd84f9e066a50fa
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ed7e13eb7021a2b0809d1809b6e9d20476c12f8399abed5e9535445cd3a54214(
+def _typecheckingstub__324da826cf3bc07c48d0532607d6bac7ab807122d6cde1c86aaf149e3ac5a926(
     *,
     name: builtins.str,
     namespace: builtins.str,
@@ -50849,6 +53158,13 @@ def _typecheckingstub__41fa363df0cef39b3a21ee7d4b32e767f771c391235a46bf9ce8b369b
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__1e58617ce6e9215ed1ab28dc2eee5d66eab33dc7bfaa27792ade3a835dd2b944(
+    *,
+    start: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__94098796780c55cdb42c5b053d638803027114010a1003ea7430353fd3179c5a(
     *,
     when_deleted: typing.Optional[builtins.str] = None,
@@ -50863,6 +53179,7 @@ def _typecheckingstub__6b3479a4db27d16f25eff18cf9e8bad5d98c3cce86039a11df4bfd5a6
     service_name: builtins.str,
     template: typing.Union[PodTemplateSpec, typing.Dict[builtins.str, typing.Any]],
     min_ready_seconds: typing.Optional[jsii.Number] = None,
+    ordinals: typing.Optional[typing.Union[StatefulSetOrdinals, typing.Dict[builtins.str, typing.Any]]] = None,
     persistent_volume_claim_retention_policy: typing.Optional[typing.Union[StatefulSetPersistentVolumeClaimRetentionPolicy, typing.Dict[builtins.str, typing.Any]]] = None,
     pod_management_policy: typing.Optional[builtins.str] = None,
     replicas: typing.Optional[jsii.Number] = None,
@@ -50946,22 +53263,22 @@ def _typecheckingstub__aecec73f519b5097699d859a6173cfe87c594463900289ecfb24c4a3c
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__00c2c846d28282e25b92e68e8654dd5201d4b7e1f4f91d3d397d2f683994d2cd(
-    *,
-    kind: builtins.str,
-    group: typing.Optional[typing.Union[GroupSubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-    service_account: typing.Optional[typing.Union[ServiceAccountSubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-    user: typing.Optional[typing.Union[UserSubjectV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__65ada18dc9b20030468e8eb483d832680b97ad6e44b4cc62b86e84cd497f848d(
     *,
     kind: builtins.str,
     group: typing.Optional[typing.Union[GroupSubjectV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     service_account: typing.Optional[typing.Union[ServiceAccountSubjectV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     user: typing.Optional[typing.Union[UserSubjectV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a46ab1f8a869330d80daeca76c731f5168b250899559c5f9260da9dae23b95e3(
+    *,
+    kind: builtins.str,
+    group: typing.Optional[typing.Union[GroupSubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account: typing.Optional[typing.Union[ServiceAccountSubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
+    user: typing.Optional[typing.Union[UserSubjectV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51066,9 +53383,12 @@ def _typecheckingstub__e0c8161c6a54145904571f1150bbbdb550defbe6c662fd937bd97bb2f
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__2edb6688bf69dc15fdf62b12bf01bea97bae3ca422e64b95b5af8662d8706de9(
+def _typecheckingstub__bece17868eb3d8e19bda1cfa4d9b7e4762df845f22f80e0d969ca1a026323551(
     *,
+    kind: builtins.str,
     name: builtins.str,
+    api_group: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51076,6 +53396,32 @@ def _typecheckingstub__2edb6688bf69dc15fdf62b12bf01bea97bae3ca422e64b95b5af8662d
 def _typecheckingstub__17a6f5ab5147a857e5ba844ed1dbdafc559b209da7c06b37c6aab6dc5f5ceaab(
     *,
     name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4922cdd9a47a2508da7b0db66f1f2de9875fc489bfc823c7fc81b715099a31b6(
+    *,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0d38c442b8405ac15b84cec7d96ee561544c67c7960c701be6a4e8938804eefa(
+    *,
+    match_resources: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    param_ref: typing.Optional[typing.Union[ParamRefV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    policy_name: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0419a6826a131473eb218fd7b964c8f1501e74582c4575a39889f77a48866837(
+    *,
+    validations: typing.Sequence[typing.Union[ValidationV1Alpha1, typing.Dict[builtins.str, typing.Any]]],
+    failure_policy: typing.Optional[builtins.str] = None,
+    match_constraints: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    param_kind: typing.Optional[typing.Union[ParamKindV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51100,6 +53446,15 @@ def _typecheckingstub__8500698ff415569f959cc71557c593435adb8418cbc4abf4ced8324f4
     *,
     rule: builtins.str,
     message: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2e42e86e2cf6a0b9c2247c2d420d94cd03debba0ad4391ae8e0001bde4c15b3f(
+    *,
+    expression: builtins.str,
+    message: typing.Optional[builtins.str] = None,
+    reason: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
