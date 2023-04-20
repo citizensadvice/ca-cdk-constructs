@@ -71,25 +71,6 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "aws-cdk-aws-lambda-python-alpha"
-version = "2.76.0a0"
-description = "The CDK Construct Library for AWS Lambda in Python"
-category = "main"
-optional = false
-python-versions = "~=3.7"
-files = [
-    {file = "aws-cdk.aws-lambda-python-alpha-2.76.0a0.tar.gz", hash = "sha256:56c62d364553341d6c0ed6312cdf8a930d3202df2ca1c964387118aa64f01e10"},
-    {file = "aws_cdk.aws_lambda_python_alpha-2.76.0a0-py3-none-any.whl", hash = "sha256:53c71f02f2977568df1e4d265d18b021e6095c8279e01b2e3a9be61ba7420adb"},
-]
-
-[package.dependencies]
-aws-cdk-lib = "2.76.0"
-constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.78.1,<2.0.0"
-publication = ">=0.0.3"
-typeguard = ">=2.13.3,<2.14.0"
-
-[[package]]
 name = "aws-cdk-lambda-layer-kubectl-v26"
 version = "2.0.0"
 description = "A Lambda Layer that contains kubectl v1.26"
@@ -544,4 +525,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "aa5f5fbb87055c240f058d9bc82360a0c970f5b04a342bd54f7a39f04bf67aa4"
+content-hash = "8a21afd0bfc1b6cbb82fb4e4bf9b2c1cdfb99e348c139b7ac31e2f5ec8896b4f"

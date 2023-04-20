@@ -2,20 +2,15 @@ import json
 import os
 from os import path
 
-from aws_cdk import Duration, Stack, BundlingFileAccess
-from aws_cdk.aws_iam import PolicyStatement, Effect
-from aws_cdk.aws_lambda import Runtime
-from aws_cdk.aws_lambda_python_alpha import PythonLayerVersion, PythonFunction
+from aws_cdk import Duration, Stack
+from aws_cdk.aws_iam import Effect, PolicyStatement
+from aws_cdk.aws_lambda import Code, Function, Runtime
 from aws_cdk.aws_secretsmanager import ISecret
-from aws_cdk.custom_resources import (
-    AwsCustomResourcePolicy,
-    AwsSdkCall,
-    PhysicalResourceId,
-    AwsCustomResource,
-)
+from aws_cdk.custom_resources import (AwsCustomResource,
+                                      AwsCustomResourcePolicy, AwsSdkCall,
+                                      PhysicalResourceId)
 from constructs import Construct
 
-from ca_cdk_constructs.aws_lambda.layers.boto3 import Boto3LambdaLayer
 
 
 class ModifyDBClusterPassword(Construct):
@@ -74,20 +69,18 @@ class ModifyDBClusterPassword(Construct):
         self.cluster_id = cluster_id
         self.secret_name = secret.secret_name
 
-        boto3_lambda_layer = Boto3LambdaLayer(self, "BotoLayer").layer
+        with open(
+            os.path.join(self.LAMBDA_SOURCE_DIR, "modify_db_cluster_password.py"), "r"
+        ) as file:
+            lambda_code = file.read()
 
-        self.lambda_funct = PythonFunction(
+        self.lambda_funct = Function(
             self,
             "ModifyDBClusterPasswordLambda",
-            runtime=Runtime.PYTHON_3_9,
-            layers=[boto3_lambda_layer],
-            entry=self.LAMBDA_SOURCE_DIR,
-            index="modify_db_cluster_password.py",
-            handler="handler",
-            bundling={
-                # supports docker in docker
-                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
-            },
+            runtime=Runtime.PYTHON_3_10,
+            timeout=Duration.minutes(15),
+            code=Code.from_inline(lambda_code),
+            handler="index.handler",
         )
 
         secret.grant_read(self.lambda_funct)
@@ -108,7 +101,7 @@ class ModifyDBClusterPassword(Construct):
             service="Lambda",
             action="invoke",
             parameters={
-                "FunctionName": self.reset_pass_lambda.function_name,
+                "FunctionName": self.lambda_funct.function_name,
                 "InvocationType": "Event",
                 "Payload": json.dumps(
                     {
@@ -116,7 +109,7 @@ class ModifyDBClusterPassword(Construct):
                             "secret_name": self.secret_name,
                             "cluster_identifier": self.cluster_id,
                         },
-                        "FunctionName": self.reset_pass_lambda.function_name,
+                        "FunctionName": self.lambda_funct.function_name,
                         "InvocationType": "Event",
                     }
                 ),
@@ -134,7 +127,7 @@ class ModifyDBClusterPassword(Construct):
                         PolicyStatement(
                             actions=["lambda:InvokeFunction"],
                             effect=Effect.ALLOW,
-                            resources=[self.reset_pass_lambda.function_arn],
+                            resources=[self.lambda_funct.function_arn],
                         )
                     ]
                 )

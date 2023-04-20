@@ -1,39 +1,25 @@
 import os
+from os.path import join
 from typing import Optional
 
-from aws_cdk import CfnOutput, Stack, BundlingFileAccess
-from aws_cdk import Duration
-from aws_cdk.aws_ec2 import SubnetSelection, IVpc, SecurityGroup, IConnectable, Port
-from aws_cdk.aws_events import Rule, Schedule, RuleTargetInput
+from aws_cdk import CfnOutput, Duration, Stack
+from aws_cdk.aws_ec2 import (IConnectable, IVpc, Port, SecurityGroup,
+                             SubnetSelection)
+from aws_cdk.aws_events import Rule, RuleTargetInput, Schedule
 from aws_cdk.aws_events_targets import SfnStateMachine
 from aws_cdk.aws_iam import PolicyStatement
-from aws_cdk.aws_lambda import Runtime
-from aws_cdk.aws_lambda_python_alpha import PythonFunction
-from aws_cdk.aws_rds import (
-    DatabaseSecret,
-    SubnetGroup,
-    CfnDBClusterParameterGroup,
-    CfnDBParameterGroup,
-    IDatabaseCluster,
-)
-from aws_cdk.aws_sns import Topic, ITopic
-from aws_cdk.aws_stepfunctions import (
-    JsonPath,
-    Choice,
-    Wait,
-    WaitTime,
-    Condition,
-    StateMachine,
-    Fail,
-    TaskInput,
-    Chain,
-    Pass,
-)
+from aws_cdk.aws_lambda import Code, Function, InlineCode, Runtime
+from aws_cdk.aws_rds import (CfnDBClusterParameterGroup, CfnDBParameterGroup,
+                             DatabaseSecret, IDatabaseCluster, SubnetGroup)
+from aws_cdk.aws_sns import ITopic, Topic
+from aws_cdk.aws_stepfunctions import (Chain, Choice, Condition, Fail,
+                                       JsonPath, Pass, StateMachine, TaskInput,
+                                       Wait, WaitTime)
 from aws_cdk.aws_stepfunctions_tasks import LambdaInvoke, SnsPublish
 from constructs import Construct
 
-from ca_cdk_constructs.aws_lambda.layers.boto3 import Boto3LambdaLayer
-from ca_cdk_constructs.storage.modify_db_cluster_password import ModifyDBClusterPassword
+from ca_cdk_constructs.storage.modify_db_cluster_password import \
+    ModifyDBClusterPassword
 
 
 class AuroraCloneRefresh(Construct):
@@ -117,21 +103,13 @@ class AuroraCloneRefresh(Construct):
             "TargetTags": tag_list,
         }
 
-        boto3_lambda_layer = Boto3LambdaLayer(self, "BotoLayer").layer
-
-        cluster_clone_lambda = PythonFunction(
+        cluster_clone_lambda = Function(
             self,
             "AuroraCloneLambda",
-            runtime=Runtime.PYTHON_3_9,
-            handler="lambda_handler",
+            runtime=Runtime.PYTHON_3_10,
             timeout=Duration.minutes(15),
-            layers=[boto3_lambda_layer],
-            entry=self.LAMBDA_SOURCE_DIR,
-            index="aurora_clone.py",
-            bundling={
-                # supports docker in docker
-                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
-            },
+            code=self.lambda_source_code("aurora_clone.py"),
+            handler="index.lambda_handler",
         )
 
         cluster_clone_lambda.add_to_role_policy(
@@ -173,18 +151,13 @@ class AuroraCloneRefresh(Construct):
             ),
         )
 
-        cluster_status_lambda = PythonFunction(
+        cluster_status_lambda = Function(
             self,
             "AuroraStatusCheckLambda",
-            runtime=Runtime.PYTHON_3_9,
-            handler="lambda_handler",
-            layers=[boto3_lambda_layer],
-            entry=self.LAMBDA_SOURCE_DIR,
-            index="aurora_check_status.py",
-            bundling={
-                # supports docker in docker
-                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
-            },
+            runtime=Runtime.PYTHON_3_10,
+            timeout=Duration.minutes(15),
+            code=self.lambda_source_code("aurora_check_status.py"),
+            handler="index.lambda_handler",
         )
 
         cluster_status_lambda.add_to_role_policy(
@@ -194,19 +167,13 @@ class AuroraCloneRefresh(Construct):
             )
         )
 
-        aurora_delete_clone_lambda = PythonFunction(
+        aurora_delete_clone_lambda = Function(
             self,
             "AuroraDeleteClusterLambda",
-            runtime=Runtime.PYTHON_3_9,
+            runtime=Runtime.PYTHON_3_10,
             timeout=Duration.minutes(15),
-            layers=[boto3_lambda_layer],
-            handler="lambda_handler",
-            entry=self.LAMBDA_SOURCE_DIR,
-            index="aurora_delete_clone.py",
-            bundling={
-                # supports docker in docker
-                "bundling_file_access": BundlingFileAccess.VOLUME_COPY,
-            },
+            code=self.lambda_source_code("aurora_delete_clone.py"),
+            handler="index.lambda_handler",
         )
 
         aurora_delete_clone_lambda.add_to_role_policy(
@@ -390,3 +357,7 @@ class AuroraCloneRefresh(Construct):
     def allow_from(self, *args: IConnectable):
         for peer in args:
             self.cluster_sg.connections.allow_from(peer, port_range=Port.all_traffic())
+
+    def lambda_source_code(self, file_name: str) -> InlineCode:
+        with open(join(self.LAMBDA_SOURCE_DIR, file_name), "r") as file:
+            return Code.from_inline(file.read())
