@@ -1,2 +1,0 @@
-# older versions of boto3 don't have the RDS DB cluster waiters used in the lambdas
-boto3==1.24.46
