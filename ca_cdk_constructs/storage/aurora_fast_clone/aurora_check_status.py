@@ -21,6 +21,6 @@ def lambda_handler(event, context):
         print(e)
 
         payload["status"] = "not-found"
-        payload["message"] = f"{target_db_cluster_identifier} cannot be found"
+        payload["message"] = f"ERROR: Aurora cluster {target_db_cluster_identifier} cannot be found"
 
         return payload

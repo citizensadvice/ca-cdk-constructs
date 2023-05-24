@@ -79,7 +79,7 @@ def lambda_handler(event, context):
     endpoint = describe_endpoints_response["DBClusterEndpoints"][0]["Endpoint"]
     return {
         "status": "clone-complete",
-        "message": f"The cluster {source_db_cluster_identifier} was cloned to {clone_cluster_id} available at {endpoint}",
+        "message": f"The cluster {source_db_cluster_identifier} was cloned to {clone_cluster_id}, available at {endpoint}",
         "cluster_identifier": clone_cluster_id,
         "endpoint": describe_endpoints_response["DBClusterEndpoints"][0]["Endpoint"],
     }
