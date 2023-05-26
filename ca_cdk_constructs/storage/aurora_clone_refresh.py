@@ -246,12 +246,13 @@ class AuroraCloneRefresh(Construct):
             "Publish to SNS",
             result_path=JsonPath.DISCARD,
             topic=self.notifications_topic,
-            message=TaskInput.from_json_path_at("$.Payload.message"),
+            message=TaskInput.from_json_path_at(f"States.Format('Task: Recreating cluster {clone_cluster_id}.\n Message: {{}}', $.message)"),
         )
+
         is_success = Choice(self, "Success?")
         notification_job.next(
             is_success.when(
-                Condition.string_equals("$.Payload.status", "clone-complete"),
+                Condition.string_equals("$.status", "clone-complete"),
                 Pass(self, "Pass"),
             ).otherwise(Fail(self, "Fail"))
         )
