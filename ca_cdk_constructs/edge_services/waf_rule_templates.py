@@ -5,7 +5,7 @@ from aws_cdk import aws_wafv2 as waf
 ###################################################################
 
 
-def managed_rule_reference(
+def managed_rule_group_property(
     name: str,
     priority: int,
     managed_rule_name: str,
@@ -28,7 +28,7 @@ def managed_rule_reference(
     :example:
     ```
     managed_rule_reference(
-        name=f"{scope.stack_name}CoreRuleSet",
+        name=f"{scope.stack_name}CommonRuleSet",
         priority=2,
         managed_rule_name="AWSManagedRulesCommonRuleSet",
         managed_rule_vendor="AWS",
@@ -78,13 +78,11 @@ def managed_rule_reference(
     )
 
 
-def ip_rule(
+def ip_rule_property(
     scope,
     name: str,
     priority: int,
-    addresses: list[str],
-    ip_version: str,
-    description: str | None = None,
+    addresses: dict[str, list[str]] = {},
     allow: bool = False,
     count_only: bool = False,
     cloud_watch_metrics_enabled: bool = False,
@@ -94,29 +92,22 @@ def ip_rule(
     :param scope: `self`, scope in which this resource is defined.
     :param name: The name of the rule. You can't change the name of a Rule after you create it.
     :param priority: If you define more than one Rule in a WebACL , AWS WAF evaluates each request against the Rules in order based on the value of Priority . AWS WAF processes rules with lower priority first. The priorities don't need to be consecutive, but they must all be different.
-    :param addresses: An array of strings that specifies zero or more IP addresses or blocks of IP addresses. All addresses must be specified using Classless Inter-Domain Routing (CIDR) notation.
-    :param ip_version: The string 'IPV4' or IPV6' to set the IP version of the rule.
-    :param description: A description for the IpSet, defaults to None.
+    :param addresses: A dictionary of strings that specifies zero or more IP addresses or blocks of IP addresses for "IPV4" and "IPV6". Defaults to {}. All addresses must be specified using Classless Inter-Domain Routing (CIDR) notation.
     :param allow: Set to True to allow the IP addresses, False to block, defaults to False.
     :param count_only: Set to True to only count and not take action on matching requests, defaults to False.
-    :param cloudwatch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to Fasle.
+    :param cloud_watch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to Fasle.
     :return: aws_cdk.aws_wafv2.CfnWebACL.RuleProperty.
 
     :example:
     ```
     ip_rule(
         scope,
-        name=f"{scope.stack_name}IPv4Allow",
+        name=f"{scope.stack_name}Allow",
         priority=0,
-        addresses=[],
-        ip_version="IPV4",
-        description=f"IPv4 allow list for Witnessbox v2 {config.stage_name}",
+        addresses={"IPV4": ["1.1.1.1/32"], "IPV6": ["2a00:1d40:11a5::111"]},
         allow=True,
     )
     """
-
-    if ip_version not in ["IPV4", "IPV6"]:
-        raise AttributeError("ip_version must be type 'string' containing 'IPV4' or 'IPV6'")
 
     # Count must be set to {} or None.
     if count_only:
@@ -133,14 +124,31 @@ def ip_rule(
             count=count_only, block=waf.CfnWebACL.BlockActionProperty()
         )
 
-    ip_set = waf.CfnIPSet(
+    # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
+    # check is by using set differences
+    if set(addresses.keys()) - set(list(['IPV4', 'IPV6'])) != set(list([])):
+        raise AttributeError(
+            "keys for addresses dict must only be 'IPV4' or 'IPV6'!"
+        )
+
+    # Need IPv4 and IPv6 IP sets
+    ipv4_arn = waf.CfnIPSet(
         scope,
-        f"{name}IpSet",
-        addresses=addresses,
-        description=description,
+        f"{name}IpSetIPV4",
+        addresses=addresses.get("IPV4", []),
+        description=f"{name}IpSetIPV4",
         ip_address_version="IPV4",
         scope="CLOUDFRONT",
-    )
+    ).attr_arn
+
+    ipv6_arn = waf.CfnIPSet(
+        scope,
+        f"{name}IpSetIPV6",
+        addresses=addresses.get("IPV6", []),
+        description=f"{name}IpSetIPV4",
+        ip_address_version="IPV6",
+        scope="CLOUDFRONT",
+    ).attr_arn
 
     return waf.CfnWebACL.RuleProperty(
         name=f"{name}Rule",
@@ -152,8 +160,19 @@ def ip_rule(
         ),
         action=action,
         statement=waf.CfnWebACL.StatementProperty(
-            ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
-                arn=ip_set.attr_arn
-            ),
-        ),
+            or_statement=waf.CfnWebACL.OrStatementProperty(
+                statements=[
+                    waf.CfnWebACL.StatementProperty(
+                        ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
+                            arn=ipv4_arn
+                        ),
+                    ),
+                    waf.CfnWebACL.StatementProperty(
+                        ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
+                            arn=ipv6_arn
+                        ),
+                    )
+                ]
+            )
+        )
     )
