@@ -12,7 +12,6 @@ class WafV2Builder:
     A builder class that generates a WAFv2 WebACL.
 
     :param scope: The scope of the construct, i.e the parent stack or construct.
-    :param stage: The stage of the construct, i.e dev, test, prod.
     :param name: The name of the WAF ACL.
     :param description: The description of the WAF ACL.
     :param tags: The tags of the WAF ACL. Defaults to {"Component": "WAF", "Stage": stage}.
@@ -29,8 +28,7 @@ class WafV2Builder:
     ```python
 
     waf_builder = WafV2Builder(
-      Stack(stack),
-      stage="test",
+      self,
       name="TestWaf",
       description="A dummy WAF for testing",
       tags={"Foo": "Bar"},
@@ -51,7 +49,6 @@ class WafV2Builder:
     def __init__(
         self,
         scope: Construct,
-        stage: str,
         name: str,
         description: str,
         tags: dict = dict(),
@@ -61,7 +58,6 @@ class WafV2Builder:
     ) -> None:
         self.rules = list()
         self.scope = scope
-        self.stage = stage
         self.name = name
         self.waf_scope = waf_scope
         self.description = description
@@ -85,7 +81,7 @@ class WafV2Builder:
                 sampled_requests_enabled=False,
             )
 
-        self.tags = tags | {"Component": "WAF", "Stage": stage}
+        self.tags = tags | {"Component": "WAF"}
 
     def add_custom_rule(self, rule: waf.CfnWebACL.RuleProperty) -> None:
         self.rules.append(rule)

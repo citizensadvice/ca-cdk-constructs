@@ -9,7 +9,6 @@ from ca_cdk_constructs.edge_services.waf_v2_builder import WafV2Builder
 def waf_builder():
     waf_builder = WafV2Builder(
         Stack(App(), "TestStack"),
-        stage="test",
         name="TestWaf",
         description="A dummy WAF for testing",
         tags={"Foo": "Bar"},
@@ -72,7 +71,6 @@ def test_waf_v2_logging_enabled():
     test_log_group = aws_logs.LogGroup(stack, "TestLogGroup")
     waf_builder = WafV2Builder(
         stack,
-        stage="test",
         name="TestWaf",
         description="A dummy WAF for testing",
         tags={"Foo": "Bar"},
