@@ -22,6 +22,8 @@ class WafV2Builder:
     Functions:
     add_custom_rule: Adds a custom rule to the WAFv2 WebACL.
     add_managed_rule: Adds a managed rule to the WAFv2 WebACL.
+    add_ip_rule: Adds an IP rule to the WAFv2 WebACL.
+    get_rules: Returns the list of rules added to the WAFv2 WebACL.
     build: Builds the WAFv2 WebACL.
 
     Example:
@@ -84,6 +86,11 @@ class WafV2Builder:
         self.tags = tags | {"Component": "WAF"}
 
     def add_custom_rule(self, rule: waf.CfnWebACL.RuleProperty) -> None:
+        """
+        Adds a custom rule to the WAFv2 WebACL.
+
+        :param rule: The rule to add.
+        """
         self.rules.append(rule)
 
     def add_managed_rule(
@@ -149,6 +156,12 @@ class WafV2Builder:
                 cloud_watch_metrics_enabled,
             )
         )
+
+    def get_rules(self) -> list[waf.CfnWebACL.RuleProperty]:
+        """
+        Returns the list of rules that have been added to the builder.
+        """
+        return self.rules
 
     def build(self) -> waf.CfnWebACL:
         """

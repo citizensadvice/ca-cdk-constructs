@@ -13,7 +13,6 @@ def waf_builder():
         description="A dummy WAF for testing",
         tags={"Foo": "Bar"},
     )
-
     yield waf_builder
 
 
@@ -78,3 +77,16 @@ def test_waf_v2_logging_enabled():
     )
     waf = waf_builder.build()
     assert waf.visibility_config.cloud_watch_metrics_enabled == True
+
+
+def test_waf_v2_get_rules(waf_builder):
+    waf_builder.add_managed_rule(
+        name="TestManaged",
+        priority=1,
+        managed_rule_name="AWSManagedRulesCommonRuleSet",
+        managed_rule_vendor="AWS",
+        count_only=True,
+    )
+    rules = waf_builder.get_rules()
+    assert len(rules) == 1
+    assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty

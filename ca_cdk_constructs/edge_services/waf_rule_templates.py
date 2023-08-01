@@ -4,6 +4,11 @@ from aws_cdk import aws_wafv2 as waf
 # A COLLECTION OF HELPER FUNCTIONS FOR GENERATING AWS WAFV2 RULES #
 ###################################################################
 
+# Note for developers: These rule builder functions are used within
+# the WAF builder class. If you change any interfaces or make any
+# major changes to these functions, please update the WAF builder
+# class to match, including the docstrings.
+
 
 def managed_rule_group_property(
     name: str,
@@ -126,10 +131,8 @@ def ip_rule_property(
 
     # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
     # check is by using set differences
-    if set(addresses.keys()) - set(list(['IPV4', 'IPV6'])) != set(list([])):
-        raise AttributeError(
-            "keys for addresses dict must only be 'IPV4' or 'IPV6'!"
-        )
+    if set(addresses.keys()) - set(list(["IPV4", "IPV6"])) != set(list([])):
+        raise AttributeError("keys for addresses dict must only be 'IPV4' or 'IPV6'!")
 
     # Need IPv4 and IPv6 IP sets
     ipv4_arn = waf.CfnIPSet(
@@ -171,8 +174,8 @@ def ip_rule_property(
                         ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
                             arn=ipv6_arn
                         ),
-                    )
+                    ),
                 ]
             )
-        )
+        ),
     )
