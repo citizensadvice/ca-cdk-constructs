@@ -14,7 +14,7 @@ class WafV2Builder:
     :param scope: The scope of the construct, i.e the parent stack or construct.
     :param name: The name of the WAF ACL.
     :param description: The description of the WAF ACL.
-    :param tags: The tags of the WAF ACL. Defaults to {"Component": "WAF", "Stage": stage}.
+    :param tags: The tags of the WAF ACL. {"Component": "WAF"} is added in addition to this.
     :param waf_scope: The scope of the WAF ACL. Defaults to CLOUDFRONT.
     :param log_group: The CloudWatch log group to use for logging. If not included logging will be disabled.
     :param default_action: The default action of the WAF ACL. Defaults to Allow.
