@@ -110,7 +110,7 @@ class WafV2Builder:
         :param priority: The priority of the rule.
         :param managed_rule_name: The managed rule name.
         :param managed_rule_vendor: The managed rule vendor.
-        :param count_only: Whether to only count the requests. Defaulse to False
+        :param count_only: Whether to only count the requests. Defaults to False
         :param rules_to_exclude: A list of rules to exclude. Defaults to an empty list.
         :param cloud_watch_metrics_enabled: Whether to enable CloudWatch metrics. Defaults to False.
         """
@@ -142,7 +142,7 @@ class WafV2Builder:
         :param priority: The priority of the rule.
         :param addresses: The addresses to use. A dictionary of address types to addresses.
         :param allow: Whether to allow or block the addresses. Defaults to False.
-        :param count_only: Whether to only count the requests. Defaulse to False
+        :param count_only: Whether to only count the requests. Defaults to False
         :param cloud_watch_metrics_enabled: Whether to enable CloudWatch metrics. Defaults to False.
         """
         self.rules.append(
