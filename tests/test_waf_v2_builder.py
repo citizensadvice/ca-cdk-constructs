@@ -46,6 +46,19 @@ def test_waf_v2_ip_rule(waf_builder):
     assert waf.rules[0].name == "TestIpRule"
 
 
+def test_waf_v2_ip_rule_error(waf_builder):
+    with pytest.raises(Exception):
+        waf_builder.add_ip_rule(
+            name="TestIp",
+            priority=1,
+            addresses={"IPV5": ["17.0.0.0.1/24"], "IPV7": ["::"]},
+            allow=True,
+            count_only=False,
+            cloud_watch_metrics_enabled=False,
+        )
+        waf = waf_builder.build()
+
+
 def test_waf_v2_empty_ip_rule(waf_builder):
     waf_builder.add_ip_rule(
         name="TestIp",
