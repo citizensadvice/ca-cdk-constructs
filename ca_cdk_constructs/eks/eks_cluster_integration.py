@@ -93,7 +93,7 @@ class EksClusterIntegration(Construct):
 
         self.cluster = Cluster.from_cluster_attributes(
             self,
-            cluster_name,
+            "Resource",
             kubectl_role_arn=self.role.role_arn,
             open_id_connect_provider=oidc_provider,
             cluster_name=cluster_name,
