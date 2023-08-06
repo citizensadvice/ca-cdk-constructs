@@ -58,6 +58,7 @@ class EksClusterIntegration(Construct):
             ],
         )
 
+        # to the imported cluster
         describe_cluster_cr = cr.AwsCustomResource(
             self,
             "OidcConfigNameLookup",
