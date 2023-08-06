@@ -16,8 +16,8 @@ class EksClusterIntegration(Construct):
         id: str,
         vpc: IVpc,
         cluster_name: str,
-        role_name: str = None,
-        role: IRole = None,
+        role_name: Optional[str] = None,
+        role: Optional[IRole] = None,
         prune: bool = True,
     ):
         """
