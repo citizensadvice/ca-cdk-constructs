@@ -1,3 +1,4 @@
+from typing import Optional
 import aws_cdk.custom_resources as cr
 from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
@@ -16,8 +17,8 @@ class EksClusterIntegration(Construct):
         id: str,
         vpc: IVpc,
         cluster_name: str,
-        role_name: str = None,
-        role: IRole = None,
+        role_name: Optional[str] = None,
+        role: Optional[IRole] = None,
         prune: bool = True,
     ):
         """
@@ -58,6 +59,8 @@ class EksClusterIntegration(Construct):
             ],
         )
 
+        # we need the OIDC provider in order to deploy Service accounts
+        # to the imported cluster
         describe_cluster_cr = cr.AwsCustomResource(
             self,
             "OidcConfigNameLookup",
@@ -93,7 +96,7 @@ class EksClusterIntegration(Construct):
 
         self.cluster = Cluster.from_cluster_attributes(
             self,
-            cluster_name,
+            "Resource",
             kubectl_role_arn=self.role.role_arn,
             open_id_connect_provider=oidc_provider,
             cluster_name=cluster_name,
