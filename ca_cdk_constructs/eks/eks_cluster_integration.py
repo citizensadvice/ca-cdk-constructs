@@ -1,3 +1,4 @@
+from typing import Optional
 import aws_cdk.custom_resources as cr
 from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
