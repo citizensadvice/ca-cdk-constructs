@@ -93,7 +93,9 @@ def test_waf_v2_logging_disabled(waf_builder):
 
 def test_waf_v2_logging_enabled():
     stack = Stack(App(), "TestStack")
-    test_log_group = aws_logs.LogGroup(stack, "TestLogGroup")
+    test_log_group = aws_logs.LogGroup(
+        stack, "TestLogGroup", log_group_name="aws-waf-logs-test-group"
+    )
     waf_builder = WafV2Builder(
         stack,
         name="TestWaf",
