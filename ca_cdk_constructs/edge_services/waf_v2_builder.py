@@ -1,6 +1,6 @@
 from constructs import Construct
 from aws_cdk import aws_wafv2 as waf, aws_logs as cf_logs, Tags
-
+from typing import Optional
 from ca_cdk_constructs.edge_services.waf_rule_templates import (
     managed_rule_group_property,
     ip_rule_property,
@@ -16,7 +16,7 @@ class WafV2Builder:
     :param description: The description of the WAF ACL.
     :param tags: The tags of the WAF ACL. {"Component": "WAF"} is added in addition to this.
     :param waf_scope: The scope of the WAF ACL. Defaults to CLOUDFRONT.
-    :param log_group: The CloudWatch log group to use for logging. If not included logging will be disabled.
+    :param log_group: The CloudWatch log group to use for logging. Log group name MUST start with 'aws-waf-logs-'. If not included logging will be disabled.
     :param default_action: The default action of the WAF ACL. Defaults to Allow.
 
     Functions:
@@ -53,10 +53,10 @@ class WafV2Builder:
         scope: Construct,
         name: str,
         description: str,
-        tags: dict = dict(),
-        waf_scope: str = "CLOUDFRONT",
-        log_group: cf_logs.LogGroup = None,
-        default_action: waf.CfnWebACL.DefaultActionProperty = None,
+        tags: Optional[dict] = dict(),
+        waf_scope: Optional[str] = "CLOUDFRONT",
+        log_group: Optional[cf_logs.LogGroup] = None,
+        default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
     ) -> None:
         self.rules = list()
         self.scope = scope
@@ -70,7 +70,7 @@ class WafV2Builder:
                 allow=waf.CfnWebACL.AllowActionProperty()
             )
 
-        if log_group:
+        if self.log_group:
             self.visibility_config = waf.CfnWebACL.VisibilityConfigProperty(
                 cloud_watch_metrics_enabled=True,
                 metric_name=self.name,
@@ -99,9 +99,9 @@ class WafV2Builder:
         priority: int,
         managed_rule_name: str,
         managed_rule_vendor: str,
-        count_only: bool = False,
-        rules_to_exclude: list[str] = [],
-        cloud_watch_metrics_enabled: bool = False,
+        count_only: Optional[bool] = False,
+        rules_to_exclude: Optional[list[str]] = [],
+        cloud_watch_metrics_enabled: Optional[bool] = False,
     ) -> None:
         """
         Adds a managed rule to the WAFv2 WebACL.
@@ -131,9 +131,9 @@ class WafV2Builder:
         name: str,
         priority: int,
         addresses: dict[str, list[str]],
-        allow: bool = False,
-        count_only: bool = False,
-        cloud_watch_metrics_enabled: bool = False,
+        allow: Optional[bool] = False,
+        count_only: Optional[bool] = False,
+        cloud_watch_metrics_enabled: Optional[bool] = False,
     ) -> None:
         """
         Adds an IP rule to the WAFv2 WebACL.
@@ -170,7 +170,7 @@ class WafV2Builder:
 
         web_acl = waf.CfnWebACL(
             self.scope,
-            self.name,
+            "Default",
             name=self.name,
             description=self.description,
             default_action=self.default_action,
@@ -185,7 +185,7 @@ class WafV2Builder:
             self.logging_config = waf.CfnLoggingConfiguration(
                 self.scope,
                 f"{self.name}LogConfig",
-                log_destination_configs=[web_acl.attr_arn],
+                log_destination_configs=[self.log_group.log_group_arn],
                 resource_arn=web_acl.attr_arn,
             )
 
