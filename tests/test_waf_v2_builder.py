@@ -11,7 +11,6 @@ def waf_builder():
         Stack(App(), "TestStack"),
         name="TestWaf",
         description="A dummy WAF for testing",
-        tags={"Foo": "Bar"},
     )
     yield waf_builder
 
@@ -100,7 +99,6 @@ def test_waf_v2_logging_enabled():
         stack,
         name="TestWaf",
         description="A dummy WAF for testing",
-        tags={"Foo": "Bar"},
         log_group=test_log_group,
     )
     waf = waf_builder.build()

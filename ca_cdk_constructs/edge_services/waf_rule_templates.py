@@ -148,7 +148,7 @@ def ip_rule_property(
         scope,
         f"{name}IpSetIPV6",
         addresses=addresses.get("IPV6", []),
-        description=f"{name}IpSetIPV4",
+        description=f"{name}IpSetIPV6",
         ip_address_version="IPV6",
         scope="CLOUDFRONT",
     ).attr_arn
