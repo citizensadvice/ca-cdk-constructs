@@ -59,6 +59,7 @@ class EksClusterIntegration(Construct):
             ],
         )
 
+        # we need the OIDC provider in order to deploy Service accounts
         # to the imported cluster
         describe_cluster_cr = cr.AwsCustomResource(
             self,
