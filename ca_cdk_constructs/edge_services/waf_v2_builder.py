@@ -14,7 +14,6 @@ class WafV2Builder:
     :param scope: The scope of the construct, i.e the parent stack or construct.
     :param name: The name of the WAF ACL.
     :param description: The description of the WAF ACL.
-    :param tags: The tags of the WAF ACL. {"Component": "WAF"} is added in addition to this.
     :param waf_scope: The scope of the WAF ACL. Defaults to CLOUDFRONT.
     :param log_group: The CloudWatch log group to use for logging. Log group name MUST start with 'aws-waf-logs-'. If not included logging will be disabled.
     :param default_action: The default action of the WAF ACL. Defaults to Allow.
@@ -33,7 +32,6 @@ class WafV2Builder:
       self,
       name="TestWaf",
       description="A dummy WAF for testing",
-      tags={"Foo": "Bar"},
     )
 
     waf_builder.add_ip_rule(
@@ -53,7 +51,6 @@ class WafV2Builder:
         scope: Construct,
         name: str,
         description: str,
-        tags: Optional[dict] = dict(),
         waf_scope: Optional[str] = "CLOUDFRONT",
         log_group: Optional[cf_logs.LogGroup] = None,
         default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
@@ -82,8 +79,6 @@ class WafV2Builder:
                 metric_name=self.name,
                 sampled_requests_enabled=False,
             )
-
-        self.tags = tags | {"Component": "WAF"}
 
     def add_custom_rule(self, rule: waf.CfnWebACL.RuleProperty) -> None:
         """
@@ -178,8 +173,6 @@ class WafV2Builder:
             visibility_config=self.visibility_config,
             rules=self.rules,
         )
-        for key, value in self.tags.items():
-            Tags.of(web_acl).add(key, value)
 
         if self.log_group:
             self.logging_config = waf.CfnLoggingConfiguration(
