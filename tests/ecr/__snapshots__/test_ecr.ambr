@@ -1,0 +1,260 @@
+# name: test_ecr_additional_accounts_pull
+  dict({
+    'Parameters': dict({
+      'BootstrapVersion': dict({
+        'Default': '/cdk-bootstrap/hnb659fds/version',
+        'Description': 'Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]',
+        'Type': 'AWS::SSM::Parameter::Value<String>',
+      }),
+    }),
+    'Resources': dict({
+      'TestECRRepository654024A6': dict({
+        'DeletionPolicy': 'Retain',
+        'Properties': dict({
+          'LifecyclePolicy': dict({
+            'LifecyclePolicyText': '{"rules":[{"rulePriority":19,"description":"Delete untagged images","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countNumber":1,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":18,"description":"Delete development images after 90 days year","selection":{"tagStatus":"tagged","tagPrefixList":["dev_"],"countType":"sinceImagePushed","countNumber":90,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":20,"description":"Limit max number of images","selection":{"tagStatus":"any","countType":"imageCountMoreThan","countNumber":1000},"action":{"type":"expire"}}]}',
+          }),
+          'RepositoryName': 'test-repository',
+          'RepositoryPolicyText': dict({
+            'Statement': list([
+              dict({
+                'Action': list([
+                  'ecr:BatchCheckLayerAvailability',
+                  'ecr:GetDownloadUrlForLayer',
+                  'ecr:BatchGetImage',
+                ]),
+                'Effect': 'Allow',
+                'Principal': dict({
+                  'AWS': dict({
+                    'Fn::Join': list([
+                      '',
+                      list([
+                        'arn:',
+                        dict({
+                          'Ref': 'AWS::Partition',
+                        }),
+                        ':iam::123456789012:root',
+                      ]),
+                    ]),
+                  }),
+                }),
+              }),
+            ]),
+            'Version': '2012-10-17',
+          }),
+        }),
+        'Type': 'AWS::ECR::Repository',
+        'UpdateReplacePolicy': 'Retain',
+      }),
+    }),
+    'Rules': dict({
+      'CheckBootstrapVersion': dict({
+        'Assertions': list([
+          dict({
+            'Assert': dict({
+              'Fn::Not': list([
+                dict({
+                  'Fn::Contains': list([
+                    list([
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                    ]),
+                    dict({
+                      'Ref': 'BootstrapVersion',
+                    }),
+                  ]),
+                }),
+              ]),
+            }),
+            'AssertDescription': "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_ecr_additional_accounts_push
+  dict({
+    'Parameters': dict({
+      'BootstrapVersion': dict({
+        'Default': '/cdk-bootstrap/hnb659fds/version',
+        'Description': 'Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]',
+        'Type': 'AWS::SSM::Parameter::Value<String>',
+      }),
+    }),
+    'Resources': dict({
+      'TestECRRepository654024A6': dict({
+        'DeletionPolicy': 'Retain',
+        'Properties': dict({
+          'LifecyclePolicy': dict({
+            'LifecyclePolicyText': '{"rules":[{"rulePriority":19,"description":"Delete untagged images","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countNumber":1,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":18,"description":"Delete development images after 90 days year","selection":{"tagStatus":"tagged","tagPrefixList":["dev_"],"countType":"sinceImagePushed","countNumber":90,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":20,"description":"Limit max number of images","selection":{"tagStatus":"any","countType":"imageCountMoreThan","countNumber":1000},"action":{"type":"expire"}}]}',
+          }),
+          'RepositoryName': 'test-repository',
+          'RepositoryPolicyText': dict({
+            'Statement': list([
+              dict({
+                'Action': list([
+                  'ecr:CompleteLayerUpload',
+                  'ecr:UploadLayerPart',
+                  'ecr:InitiateLayerUpload',
+                  'ecr:BatchCheckLayerAvailability',
+                  'ecr:PutImage',
+                ]),
+                'Effect': 'Allow',
+                'Principal': dict({
+                  'AWS': dict({
+                    'Fn::Join': list([
+                      '',
+                      list([
+                        'arn:',
+                        dict({
+                          'Ref': 'AWS::Partition',
+                        }),
+                        ':iam::123456789012:root',
+                      ]),
+                    ]),
+                  }),
+                }),
+              }),
+            ]),
+            'Version': '2012-10-17',
+          }),
+        }),
+        'Type': 'AWS::ECR::Repository',
+        'UpdateReplacePolicy': 'Retain',
+      }),
+    }),
+    'Rules': dict({
+      'CheckBootstrapVersion': dict({
+        'Assertions': list([
+          dict({
+            'Assert': dict({
+              'Fn::Not': list([
+                dict({
+                  'Fn::Contains': list([
+                    list([
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                    ]),
+                    dict({
+                      'Ref': 'BootstrapVersion',
+                    }),
+                  ]),
+                }),
+              ]),
+            }),
+            'AssertDescription': "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_ecr_additional_rules
+  dict({
+    'Parameters': dict({
+      'BootstrapVersion': dict({
+        'Default': '/cdk-bootstrap/hnb659fds/version',
+        'Description': 'Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]',
+        'Type': 'AWS::SSM::Parameter::Value<String>',
+      }),
+    }),
+    'Resources': dict({
+      'TestECRRepository654024A6': dict({
+        'DeletionPolicy': 'Retain',
+        'Properties': dict({
+          'LifecyclePolicy': dict({
+            'LifecyclePolicyText': '{"rules":[{"rulePriority":19,"description":"Delete untagged images","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countNumber":1,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":18,"description":"Delete development images after 90 days year","selection":{"tagStatus":"tagged","tagPrefixList":["dev_"],"countType":"sinceImagePushed","countNumber":90,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":10,"description":"Test rule","selection":{"tagStatus":"untagged","countType":"imageCountMoreThan","countNumber":10},"action":{"type":"expire"}},{"rulePriority":20,"description":"Limit max number of images","selection":{"tagStatus":"any","countType":"imageCountMoreThan","countNumber":1000},"action":{"type":"expire"}}]}',
+          }),
+          'RepositoryName': 'test-repository',
+        }),
+        'Type': 'AWS::ECR::Repository',
+        'UpdateReplacePolicy': 'Retain',
+      }),
+    }),
+    'Rules': dict({
+      'CheckBootstrapVersion': dict({
+        'Assertions': list([
+          dict({
+            'Assert': dict({
+              'Fn::Not': list([
+                dict({
+                  'Fn::Contains': list([
+                    list([
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                    ]),
+                    dict({
+                      'Ref': 'BootstrapVersion',
+                    }),
+                  ]),
+                }),
+              ]),
+            }),
+            'AssertDescription': "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
+# name: test_ecr_defaults
+  dict({
+    'Parameters': dict({
+      'BootstrapVersion': dict({
+        'Default': '/cdk-bootstrap/hnb659fds/version',
+        'Description': 'Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]',
+        'Type': 'AWS::SSM::Parameter::Value<String>',
+      }),
+    }),
+    'Resources': dict({
+      'TestECRRepository654024A6': dict({
+        'DeletionPolicy': 'Retain',
+        'Properties': dict({
+          'LifecyclePolicy': dict({
+            'LifecyclePolicyText': '{"rules":[{"rulePriority":19,"description":"Delete untagged images","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countNumber":1,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":18,"description":"Delete development images after 90 days year","selection":{"tagStatus":"tagged","tagPrefixList":["dev_"],"countType":"sinceImagePushed","countNumber":90,"countUnit":"days"},"action":{"type":"expire"}},{"rulePriority":20,"description":"Limit max number of images","selection":{"tagStatus":"any","countType":"imageCountMoreThan","countNumber":1000},"action":{"type":"expire"}}]}',
+          }),
+          'RepositoryName': 'test-repository',
+        }),
+        'Type': 'AWS::ECR::Repository',
+        'UpdateReplacePolicy': 'Retain',
+      }),
+    }),
+    'Rules': dict({
+      'CheckBootstrapVersion': dict({
+        'Assertions': list([
+          dict({
+            'Assert': dict({
+              'Fn::Not': list([
+                dict({
+                  'Fn::Contains': list([
+                    list([
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                    ]),
+                    dict({
+                      'Ref': 'BootstrapVersion',
+                    }),
+                  ]),
+                }),
+              ]),
+            }),
+            'AssertDescription': "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
