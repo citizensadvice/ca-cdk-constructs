@@ -49,3 +49,8 @@ def test_ecr_additional_accounts_push(stack, snapshot):
         additional_accounts_push=["123456789012"],
     )
     assert assertions.Template.from_stack(stack).to_json() == snapshot
+
+
+def test_ecr_scan_disabled(stack, snapshot):
+    ECRRepository(stack, "TestECRRepository", name="test-repository", scan_on_push=False)
+    assert assertions.Template.from_stack(stack).to_json() == snapshot

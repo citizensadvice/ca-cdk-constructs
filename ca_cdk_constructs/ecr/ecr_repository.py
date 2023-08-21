@@ -22,6 +22,7 @@ class ECRRepository(Construct):
     :param additional_accounts_push: Additional accounts that are allowed to push to the repository in the form of their account number.
     :param dev_image_max_age: The maximum age of a development image in days. Defaults to 90.
     :param max_images: The maximum number of images allowed in the repository. Defaults to 1000.
+    :param scan_on_push: Whether to scan for vulnerabilities on the image on push. Defaults to True.
     """
 
     def __init__(
@@ -34,6 +35,7 @@ class ECRRepository(Construct):
         additional_accounts_push: list[str] = [],
         dev_image_max_age: int = 90,
         max_images: int = 1000,
+        scan_on_push: bool = True,
     ):
         super().__init__(scope, id)
         lifecycle_rules = []
@@ -71,6 +73,7 @@ class ECRRepository(Construct):
             "Default",
             repository_name=name,
             lifecycle_rules=lifecycle_rules,
+            image_scan_on_push=scan_on_push,
         )
 
         for account in additional_accounts_pull:
