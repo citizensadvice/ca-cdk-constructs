@@ -54,3 +54,8 @@ def test_ecr_additional_accounts_push(stack, snapshot):
 def test_ecr_scan_disabled(stack, snapshot):
     ECRRepository(stack, "TestECRRepository", name="test-repository", scan_on_push=False)
     assert assertions.Template.from_stack(stack).to_json() == snapshot
+
+
+def test_ecr_output_disabled(stack, snapshot):
+    ECRRepository(stack, "TestECRRepository", name="test-repository", outputs_enabled=False)
+    assert assertions.Template.from_stack(stack).to_json() == snapshot
