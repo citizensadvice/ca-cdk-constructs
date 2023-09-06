@@ -17,7 +17,6 @@ class ECRRepository(Construct):
     :param scope: The scope of the construct, usually self.
     :param id: The id of the construct.
     :param name: The name of the repository. Must be unique within the account.
-    :param additional_lifecycle_rules: Additional lifecycle rules to add in addition to the default rules. Priority must be unique and equal to or less than 10 as not to conflict with existing rules.
     :param dev_image_max_age: The maximum age of a development image in days. Defaults to 90.
     :param max_images: The maximum number of images allowed in the repository. Defaults to 1000.
     :param scan_on_push: Whether to scan for vulnerabilities on the image on push. Defaults to True.
@@ -28,7 +27,6 @@ class ECRRepository(Construct):
         scope: Construct,
         id: str,
         name: str,
-        additional_lifecycle_rules: list[LifecycleRule] = [],
         dev_image_max_age: int = 90,
         max_images: int = 1000,
         scan_on_push: bool = True,
@@ -61,8 +59,6 @@ class ECRRepository(Construct):
                 tag_status=TagStatus.ANY,
             )
         )
-
-        lifecycle_rules += additional_lifecycle_rules
 
         self.repository = Repository(
             self,
