@@ -36,7 +36,6 @@ class ECRRepository(Construct):
         dev_image_max_age: int = 90,
         max_images: int = 1000,
         scan_on_push: bool = True,
-        outputs_enabled: bool = True,
     ):
         super().__init__(scope, id)
         lifecycle_rules = []
@@ -82,11 +81,3 @@ class ECRRepository(Construct):
 
         for account in additional_accounts_push:
             self.repository.grant_push(iam.AccountPrincipal(account))
-
-        if outputs_enabled:
-            CfnOutput(
-                scope,
-                "RepositoryArn",
-                value=self.repository.repository_arn,
-                description=f"ARN for ECR Repository {name}",
-            )
