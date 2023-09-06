@@ -18,8 +18,6 @@ class ECRRepository(Construct):
     :param id: The id of the construct.
     :param name: The name of the repository. Must be unique within the account.
     :param additional_lifecycle_rules: Additional lifecycle rules to add in addition to the default rules. Priority must be unique and equal to or less than 10 as not to conflict with existing rules.
-    :param additional_accounts_pull: Additional accounts that are allowed to pull from the repository in the form of their account number
-    :param additional_accounts_push: Additional accounts that are allowed to push to the repository in the form of their account number.
     :param dev_image_max_age: The maximum age of a development image in days. Defaults to 90.
     :param max_images: The maximum number of images allowed in the repository. Defaults to 1000.
     :param scan_on_push: Whether to scan for vulnerabilities on the image on push. Defaults to True.
@@ -31,8 +29,6 @@ class ECRRepository(Construct):
         id: str,
         name: str,
         additional_lifecycle_rules: list[LifecycleRule] = [],
-        additional_accounts_pull: list[str] = [],
-        additional_accounts_push: list[str] = [],
         dev_image_max_age: int = 90,
         max_images: int = 1000,
         scan_on_push: bool = True,
@@ -75,9 +71,3 @@ class ECRRepository(Construct):
             lifecycle_rules=lifecycle_rules,
             image_scan_on_push=scan_on_push,
         )
-
-        for account in additional_accounts_pull:
-            self.repository.grant_pull(iam.AccountPrincipal(account))
-
-        for account in additional_accounts_push:
-            self.repository.grant_push(iam.AccountPrincipal(account))
