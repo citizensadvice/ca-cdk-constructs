@@ -43,10 +43,11 @@ class ECRRepository(Construct):
 
         lifecycle_rules.append(
             LifecycleRule(
-                rule_priority=20,
-                description="Limit max number of images",
-                max_image_count=max_images,
-                tag_status=TagStatus.ANY,
+                rule_priority=18,
+                description="Delete development images after 90 days year",
+                tag_status=TagStatus.TAGGED,
+                tag_prefix_list=["dev_"],
+                max_image_age=Duration.days(dev_image_max_age),
             )
         )
         lifecycle_rules.append(
@@ -59,11 +60,10 @@ class ECRRepository(Construct):
         )
         lifecycle_rules.append(
             LifecycleRule(
-                rule_priority=18,
-                description="Delete development images after 90 days year",
-                tag_status=TagStatus.TAGGED,
-                tag_prefix_list=["dev_"],
-                max_image_age=Duration.days(dev_image_max_age),
+                rule_priority=20,
+                description="Limit max number of images",
+                max_image_count=max_images,
+                tag_status=TagStatus.ANY,
             )
         )
 
