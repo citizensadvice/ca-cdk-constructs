@@ -5,12 +5,14 @@ from os import path
 from aws_cdk import Duration, Stack
 from aws_cdk.aws_iam import Effect, PolicyStatement
 from aws_cdk.aws_lambda import Code, Function, Runtime
-from aws_cdk.aws_secretsmanager import ISecret
-from aws_cdk.custom_resources import (AwsCustomResource,
-                                      AwsCustomResourcePolicy, AwsSdkCall,
-                                      PhysicalResourceId)
+from aws_cdk.aws_secretsmanager import Secret
+from aws_cdk.custom_resources import (
+    AwsCustomResource,
+    AwsCustomResourcePolicy,
+    AwsSdkCall,
+    PhysicalResourceId,
+)
 from constructs import Construct
-
 
 
 class ModifyDBClusterPassword(Construct):
@@ -63,7 +65,7 @@ class ModifyDBClusterPassword(Construct):
         path.dirname(path.realpath(__file__)), "modify_cluster_password_lambda"
     )
 
-    def __init__(self, scope: Construct, id: str, cluster_id: str, secret: ISecret) -> None:
+    def __init__(self, scope: Construct, id: str, cluster_id: str, secret: Secret) -> None:
         super().__init__(scope, id)
 
         self.cluster_id = cluster_id
@@ -85,6 +87,13 @@ class ModifyDBClusterPassword(Construct):
 
         secret.grant_read(self.lambda_funct)
         secret.grant_write(self.lambda_funct)
+        self.lambda_funct.role.add_to_principal_policy(
+            PolicyStatement(
+                effect=Effect.ALLOW,
+                actions=["kms:CreateGrant", "kms:DescribeKey"],
+                resources=["*"],
+            )
+        )
 
         self.lambda_funct.add_to_role_policy(
             PolicyStatement(
