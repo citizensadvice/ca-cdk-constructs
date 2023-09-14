@@ -30,13 +30,23 @@ def handler(event, _context):
         WaiterConfig={"Delay": 30, "MaxAttempts": 30},  # sec
     )
 
-    secret_update_response = secrets_client.update_secret(
+    try:
+        db_name = resp["DBCluster"]["DatabaseName"]
+    except KeyError:
+        # the db name was not set when creating the source cluster
+        # use the defaults: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.CreateInstance.html
+        if "postgres" in resp["DBCluster"]["Engine"]:
+            db_name = "postgres"
+        else:
+            db_name = ""
+
+    secrets_client.update_secret(
         SecretId=payload["secret_name"],
         SecretString=json.dumps(
             {
                 "dbClusterIdentifier": resp["DBCluster"]["DBClusterIdentifier"],
                 "password": secret_data["password"],
-                "dbname": resp["DBCluster"]["DatabaseName"],
+                "dbname": db_name,
                 "engine": resp["DBCluster"]["Engine"],
                 "port": resp["DBCluster"]["Port"],
                 "host": resp["DBCluster"]["Endpoint"],
