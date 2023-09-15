@@ -8,14 +8,14 @@ rds_client = session.client(service_name="rds")
 secrets_client = session.client(service_name="secretsmanager")
 
 
-def get_secret(secret_name: str) -> dict:
-    secret_data_response = secrets_client.get_secret_value(SecretId=secret_name)
+def get_secret(secret_arn: str) -> dict:
+    secret_data_response = secrets_client.get_secret_value(SecretId=secret_arn)
     return json.loads(secret_data_response["SecretString"])
 
 
 def handler(event, _context):
     payload = event.copy()
-    secret_data = get_secret(payload["secret_name"])
+    secret_data = get_secret(payload["secret_arn"])
 
     resp = rds_client.modify_db_cluster(
         DBClusterIdentifier=payload["cluster_identifier"],
@@ -41,7 +41,7 @@ def handler(event, _context):
             db_name = ""
 
     secrets_client.update_secret(
-        SecretId=payload["secret_name"],
+        SecretId=payload["secret_arn"],
         SecretString=json.dumps(
             {
                 "dbClusterIdentifier": resp["DBCluster"]["DBClusterIdentifier"],

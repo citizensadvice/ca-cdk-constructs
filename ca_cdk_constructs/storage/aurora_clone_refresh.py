@@ -287,7 +287,7 @@ class AuroraCloneRefresh(Construct):
             result_path=JsonPath.DISCARD,  # pass the input through
             payload=TaskInput.from_object(
                 {
-                    "secret_name": self.clone_secret.secret_name,
+                    "secret_arn": self.clone_secret.secret_arn,
                     "cluster_identifier": JsonPath.string_at("$.Payload.cluster_identifier"),
                     "source_cluster": source_cluster.cluster_identifier,
                     "endpoint": JsonPath.string_at("$.Payload.endpoint"),
