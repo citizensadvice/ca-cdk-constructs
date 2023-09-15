@@ -91,14 +91,14 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.96.0"
+version = "2.96.1"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk-lib-2.96.0.tar.gz", hash = "sha256:fd83f38da85180fa40d355df506cda39b40287e82916a2138ecc35a061de23a2"},
-    {file = "aws_cdk_lib-2.96.0-py3-none-any.whl", hash = "sha256:d939f1587bdd85948d6d775f8811936f5bfeb39a2ece1ef761dab259b9bcfd8f"},
+    {file = "aws-cdk-lib-2.96.1.tar.gz", hash = "sha256:95cacdd3cf433e90f333f6c22d00fed69354c67a4354e8f39db69a110f58a919"},
+    {file = "aws_cdk_lib-2.96.1-py3-none-any.whl", hash = "sha256:5e6bbeba2f3dd077b2de3c320080caa107860fe403f7f4ea8880eb0c58aad4f5"},
 ]
 
 [package.dependencies]
@@ -567,14 +567,14 @@ ujson = ["ujson (>=5.4.0,<6.0.0)"]
 
 [[package]]
 name = "cdk-remote-stack"
-version = "2.0.67"
+version = "2.0.68"
 description = "Get outputs and AWS SSM parameters from cross-region AWS CloudFormation stacks"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk-remote-stack-2.0.67.tar.gz", hash = "sha256:73a3f8caf5a2abd207e67d206b6de1e9cee57b3a04e6d7eeb006e98c699ac714"},
-    {file = "cdk_remote_stack-2.0.67-py3-none-any.whl", hash = "sha256:a417e5b2acbc9532a4ba67f108d8aef5c0da0c612db78c0589311fd97676d25e"},
+    {file = "cdk-remote-stack-2.0.68.tar.gz", hash = "sha256:e70400f480484b7c757c48e0b636463166ff7e5e83992703ffabbbf7581b4bbc"},
+    {file = "cdk_remote_stack-2.0.68-py3-none-any.whl", hash = "sha256:3ca380d5612f7e65bd4f4dcd2f5c4d6f7746d345a0836a9dd792bce2c61adc64"},
 ]
 
 [package.dependencies]
