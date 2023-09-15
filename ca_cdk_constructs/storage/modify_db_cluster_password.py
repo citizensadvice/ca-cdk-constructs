@@ -87,13 +87,6 @@ class ModifyDBClusterPassword(Construct):
 
         secret.grant_read(self.lambda_funct)
         secret.grant_write(self.lambda_funct)
-        self.lambda_funct.role.add_to_principal_policy(
-            PolicyStatement(
-                effect=Effect.ALLOW,
-                actions=["kms:CreateGrant", "kms:DescribeKey"],
-                resources=["*"],
-            )
-        )
 
         self.lambda_funct.add_to_role_policy(
             PolicyStatement(
