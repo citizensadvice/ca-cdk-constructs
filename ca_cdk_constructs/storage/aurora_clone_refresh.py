@@ -3,23 +3,35 @@ from os.path import join
 from typing import Optional
 
 from aws_cdk import CfnOutput, Duration, Stack
-from aws_cdk.aws_ec2 import (IConnectable, IVpc, Port, SecurityGroup,
-                             SubnetSelection)
+from aws_cdk.aws_ec2 import IConnectable, IVpc, Port, SecurityGroup, SubnetSelection
 from aws_cdk.aws_events import Rule, RuleTargetInput, Schedule
 from aws_cdk.aws_events_targets import SfnStateMachine
 from aws_cdk.aws_iam import PolicyStatement
 from aws_cdk.aws_lambda import Code, Function, InlineCode, Runtime
-from aws_cdk.aws_rds import (CfnDBClusterParameterGroup, CfnDBParameterGroup,
-                             DatabaseSecret, IDatabaseCluster, SubnetGroup)
+from aws_cdk.aws_rds import (
+    CfnDBClusterParameterGroup,
+    CfnDBParameterGroup,
+    DatabaseSecret,
+    IDatabaseCluster,
+    SubnetGroup,
+)
 from aws_cdk.aws_sns import ITopic, Topic
-from aws_cdk.aws_stepfunctions import (Chain, Choice, Condition, Fail,
-                                       JsonPath, Pass, StateMachine, TaskInput,
-                                       Wait, WaitTime)
+from aws_cdk.aws_stepfunctions import (
+    Chain,
+    Choice,
+    Condition,
+    Fail,
+    JsonPath,
+    Pass,
+    StateMachine,
+    TaskInput,
+    Wait,
+    WaitTime,
+)
 from aws_cdk.aws_stepfunctions_tasks import LambdaInvoke, SnsPublish
 from constructs import Construct
 
-from ca_cdk_constructs.storage.modify_db_cluster_password import \
-    ModifyDBClusterPassword
+from ca_cdk_constructs.storage.modify_db_cluster_password import ModifyDBClusterPassword
 
 
 class AuroraCloneRefresh(Construct):
@@ -239,6 +251,7 @@ class AuroraCloneRefresh(Construct):
             "AuroraClone",
             payload=TaskInput.from_object(rule_input),
             lambda_function=cluster_clone_lambda,
+            output_path="$.Payload",
         )
 
         notification_job = SnsPublish(
@@ -246,7 +259,9 @@ class AuroraCloneRefresh(Construct):
             "Publish to SNS",
             result_path=JsonPath.DISCARD,
             topic=self.notifications_topic,
-            message=TaskInput.from_json_path_at(f"States.Format('Task: Recreating cluster {clone_cluster_id}.\n Message: {{}}', $.message)"),
+            message=TaskInput.from_json_path_at(
+                f"States.Format('Task: Recreating cluster {clone_cluster_id}.\n Message: {{}}', $.message)"
+            ),
         )
 
         is_success = Choice(self, "Success?")
@@ -287,10 +302,10 @@ class AuroraCloneRefresh(Construct):
             result_path=JsonPath.DISCARD,  # pass the input through
             payload=TaskInput.from_object(
                 {
-                    "secret_name": self.clone_secret.secret_name,
-                    "cluster_identifier": JsonPath.string_at("$.Payload.cluster_identifier"),
+                    "secret_arn": self.clone_secret.secret_arn,
+                    "cluster_identifier": JsonPath.string_at("$.cluster_identifier"),
                     "source_cluster": source_cluster.cluster_identifier,
-                    "endpoint": JsonPath.string_at("$.Payload.endpoint"),
+                    "endpoint": JsonPath.string_at("$.endpoint"),
                 }
             ),
         )
