@@ -1,5 +1,5 @@
 from aws_cdk.aws_ecr import Repository, LifecycleRule, TagStatus
-from aws_cdk import Duration, aws_iam as iam, CfnOutput
+from aws_cdk import Duration
 from constructs import Construct
 
 
@@ -54,7 +54,7 @@ class ECRRepository(Construct):
         lifecycle_rules.append(
             LifecycleRule(
                 rule_priority=20,
-                description="fLimit max number of images to {max_images}",
+                description=f"Limit max number of images to {max_images}",
                 max_image_count=max_images,
                 tag_status=TagStatus.ANY,
             )
