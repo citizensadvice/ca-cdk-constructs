@@ -11,7 +11,7 @@ aws-cdk-lib = "~=2.77"
 cdk8s-plus-26 = "~=2.3"
 constructs = "~=10.1"
 cdk_remote_stack = "~=2.0"
-"aws-cdk.lambda-layer-kubectl-v26" = "~=2.0"
+aws-cdk-lambda-layer-kubectl-v27 = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "~=7.1"
