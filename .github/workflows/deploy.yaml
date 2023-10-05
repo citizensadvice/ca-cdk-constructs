@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    tags: "v[0-9]+.[0-9]+.[0-9]+"
+
+# Requires env-var POETRY_PYPI_TOKEN_PYPI
+
+jobs:
+  deploy:
+    name: Deploy to PyPi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v4
+      - uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Run poetry Install
+        run: poetry install
+      - name: Run poetry publish
+        run: poetry publish --build --no-interaction
