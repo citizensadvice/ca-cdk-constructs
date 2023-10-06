@@ -176,3 +176,5 @@ poetry run pytest
 ## Versioning and deployments
 
 Versioning and depoyments are done via Github releases. Information on creating releases can be found [here](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release). Please follow the existing convention for version names and use automatic patch notes for consistence unless a major change is being made.
+
+When making a new release, please ensure that the **package version in `pyproject.toml` is updated** with the version matching the tag name.
