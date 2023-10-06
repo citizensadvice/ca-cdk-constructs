@@ -1,14 +1,14 @@
 from constructs import Construct
 
 from ca_cdk_constructs.eks.imports.io.external_secrets import (
-    SecretStore,
-    SecretStoreSpec,
-    SecretStoreSpecProvider,
-    SecretStoreSpecProviderAws,
-    SecretStoreSpecProviderAwsAuth,
-    SecretStoreSpecProviderAwsAuthJwt,
-    SecretStoreSpecProviderAwsAuthJwtServiceAccountRef,
-    SecretStoreSpecProviderAwsService,
+    SecretStoreV1Beta1 as SecretStore,
+    SecretStoreV1Beta1Spec as SecretStoreSpec,
+    SecretStoreV1Beta1SpecProvider as SecretStoreSpecProvider,
+    SecretStoreV1Beta1SpecProviderAws as SecretStoreSpecProviderAws,
+    SecretStoreV1Beta1SpecProviderAwsAuth as SecretStoreSpecProviderAwsAuth,
+    SecretStoreV1Beta1SpecProviderAwsAuthJwt as SecretStoreSpecProviderAwsAuthJwt,
+    SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef as SecretStoreSpecProviderAwsAuthJwtServiceAccountRef,
+    SecretStoreV1Beta1SpecProviderAwsService as SecretStoreSpecProviderAwsService,
 )
 
 

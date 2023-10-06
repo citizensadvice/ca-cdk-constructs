@@ -1,7 +1,9 @@
 from cdk8s import Chart
 from constructs import Construct
 
-from ca_cdk_constructs.eks.imports.io.external_secrets import SecretStoreSpecProviderAwsService
+from ca_cdk_constructs.eks.imports.io.external_secrets import (
+    SecretStoreV1Beta1SpecProviderAwsService as SecretStoreSpecProviderAwsService,
+)
 from ca_cdk_constructs.eks.external_secrets.external_secrets_aws_secret_store import (
     ExternalSecretsAwsSecretStore,
 )
