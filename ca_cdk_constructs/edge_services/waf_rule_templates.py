@@ -179,3 +179,122 @@ def ip_rule_property(
             )
         ),
     )
+
+def restricted_uri_string_property(
+    scope,
+    name: str,
+    priority: int,
+    restricted_uri_string: str,
+    allowed_addresses: dict[str, list[str]] = {},
+    count_only: bool = False,
+    cloud_watch_metrics_enabled: bool = False,
+) -> waf.CfnWebACL.RuleProperty:
+    """A wrapper that returns an `aws_wafv2.CfnWebACL.RuleProperty` object to be used in a list and passed to the CfnWebACL instance.
+
+    :param scope: `self`, scope in which this resource is defined.
+    :param name: The name of the rule. You can't change the name of a Rule after you create it.
+    :param priority: If you define more than one Rule in a WebACL , AWS WAF evaluates each request against the Rules in order based on the value of Priority . AWS WAF processes rules with lower priority first. The priorities don't need to be consecutive, but they must all be different.
+    :param restricted_uri_string: Access to any URL containing this string will be restricted to the IP addresses in allowed_addresses
+    :param allowed_addresses: A dictionary of strings that specifies zero or more IP addresses or blocks of IP addresses for "IPV4" and "IPV6". Defaults to {}. All addresses must be specified using Classless Inter-Domain Routing (CIDR) notation.
+    :param count_only: Set to True to only count and not BLOCK on matching requests, defaults to False.
+    :param cloud_watch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to Fasle.
+    :return: aws_cdk.aws_wafv2.CfnWebACL.RuleProperty.
+
+    :example:
+    ```
+     restricted_uri_string_property(
+        scope,
+        name=f"{scope.stack_name}AllowToAccessUriString-helptoclaim",
+        priority=0,
+        restricted_uri_string="helptoclaim"
+        allowed_addresses={"IPV4": ["1.1.1.1/32"], "IPV6": ["2a00:1d40:11a5::111"]},
+        count_only=True,
+    )
+    """
+
+    # Count must be set to {} or None.
+    if count_only:
+        count_only = {}
+    else:
+        count_only = None
+
+    # block unless counting
+    action = waf.CfnWebACL.RuleActionProperty(
+        count=count_only, block=waf.CfnWebACL.BlockActionProperty()
+    )
+
+    # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
+    # check is by using set differences
+    if set(allowed_addresses.keys()) - set(list(["IPV4", "IPV6"])) != set(list([])):
+        raise AttributeError("keys for addresses dict must only be 'IPV4' or 'IPV6'!")
+
+    # Need IPv4 and IPv6 IP sets
+    ipv4_arn = waf.CfnIPSet(
+        scope,
+        f"{name}IpSetIPV4",
+        addresses=allowed_addresses.get("IPV4", []),
+        description=f"{name}IpSetIPV4",
+        ip_address_version="IPV4",
+        scope="CLOUDFRONT",
+    ).attr_arn
+
+    ipv6_arn = waf.CfnIPSet(
+        scope,
+        f"{name}IpSetIPV6",
+        addresses=allowed_addresses.get("IPV6", []),
+        description=f"{name}IpSetIPV6",
+        ip_address_version="IPV6",
+        scope="CLOUDFRONT",
+    ).attr_arn
+
+    return waf.CfnWebACL.RuleProperty(
+        name=f"{name}Rule",
+        priority=priority,
+        visibility_config=waf.CfnWebACL.VisibilityConfigProperty(
+            cloud_watch_metrics_enabled=cloud_watch_metrics_enabled,
+            metric_name=f"{name}Metric",
+            sampled_requests_enabled=True,
+        ),
+        action=action,
+        statement=waf.CfnWebACL.StatementProperty(
+            and_statement=waf.CfnWebACL.AndStatementProperty(
+                # Block if uri contains our string AND ip address NOT in IPv4 OR IPv6 allowed lists.
+                statements=[
+                    waf.CfnWebACL.StatementProperty(
+                        byte_match_statement=waf.CfnWebACL.ByteMatchStatementProperty(
+                            field_to_match=waf.CfnWebACL.FieldToMatchProperty(
+                                uri_path={}
+                            ),
+                            positional_constraint="CONTAINS",
+                            text_transformations=[
+                                waf.CfnWebACL.TextTransformationProperty(
+                                    priority=0, type="URL_DECODE"
+                                )
+                            ],
+                            search_string=restricted_uri_string,
+                        ),
+                    ),
+                    waf.CfnWebACL.StatementProperty(
+                        not_statement=waf.CfnWebACL.NotStatementProperty(
+                            statement=waf.CfnWebACL.StatementProperty(
+                                or_statement=waf.CfnWebACL.OrStatementProperty(
+                                    statements=[
+                                        waf.CfnWebACL.StatementProperty(
+                                            ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
+                                                arn=ipv4_arn
+                                            ),
+                                        ),
+                                        waf.CfnWebACL.StatementProperty(
+                                            ip_set_reference_statement=waf.CfnWebACL.IPSetReferenceStatementProperty(
+                                                arn=ipv6_arn
+                                            ),
+                                        ),
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                ]
+            )
+        )
+    )
