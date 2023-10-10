@@ -116,3 +116,14 @@ def test_waf_v2_get_rules(waf_builder):
     rules = waf_builder.get_rules()
     assert len(rules) == 1
     assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+
+
+def test_waf_v2_restricted_uri_string_rule(waf_builder):
+    waf_builder.add_restricted_uri_string_rule(
+        name="RestrictAccessToURIFoo",
+        priority=0,
+        restricted_uri_string="Foo",
+        allowed_addresses={"IPV4": ["1.1.1.1/32"], "IPV6": []}
+    )
+    waf = waf_builder.build()
+    assert len(waf.rules) == 1

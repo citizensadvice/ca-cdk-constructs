@@ -23,6 +23,7 @@ class WafV2Builder:
     add_custom_rule: Adds a custom rule to the WAFv2 WebACL.
     add_managed_rule: Adds a managed rule to the WAFv2 WebACL.
     add_ip_rule: Adds an IP rule to the WAFv2 WebACL.
+    add_restricted_uri_string_rule: Adds a rule to the WAFv2 WebACL that restricts access to specific URIs to specific IP addresses
     get_rules: Returns the list of rules added to the WAFv2 WebACL.
     build: Builds the WAFv2 WebACL.
 
