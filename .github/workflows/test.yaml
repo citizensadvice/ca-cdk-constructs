@@ -11,5 +11,4 @@ jobs:
       - uses: citizensadvice/python-poetry-setup-action@v1
 
       - name: Run tests
-        run: |
-          poetry run pytest tests/
+        run: poetry run pytest
