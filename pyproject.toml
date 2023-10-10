@@ -6,7 +6,7 @@ authors = ["CA"]
 homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 
 [tool.poetry.dependencies]
-python = ">=3.10 <3.11"
+python = ">=3.10, <3.11"
 aws-cdk-lib = "~=2.77"
 cdk8s-plus-26 = "~=2.3"
 constructs = "~=10.1"
