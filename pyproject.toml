@@ -16,7 +16,7 @@ aws-cdk-lambda-layer-kubectl-v27 = "^2.0.0"
 [tool.poetry.dev-dependencies]
 pytest = "~=7.1"
 black = "~=23.9"
-syrupy = "~=3.0"
+syrupy = "~=4.5"
 
 [tool.poetry.group.dev.dependencies]
 boto3-stubs = {version = "1.28.47", extras = ["rds", "secretsmanager"]}
