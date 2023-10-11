@@ -572,13 +572,13 @@ ujson = ["ujson (>=5.4.0,<6.0.0)"]
 
 [[package]]
 name = "cdk-remote-stack"
-version = "2.0.92"
+version = "2.0.93"
 description = "Get outputs and AWS SSM parameters from cross-region AWS CloudFormation stacks"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk-remote-stack-2.0.92.tar.gz", hash = "sha256:85c2473d97fb6c5393b073ea6a8454532f2f4b50445c6aa47617ab8ae413f431"},
-    {file = "cdk_remote_stack-2.0.92-py3-none-any.whl", hash = "sha256:f60d3c1f5c5a1648e145a66fb6e94ded18c7404f44c31fcdd8e20635c0f3643b"},
+    {file = "cdk-remote-stack-2.0.93.tar.gz", hash = "sha256:57202d80bcba3f88ad6dd1f2b32f0aeea62218fd190e9275f2d529f7dcf36ad5"},
+    {file = "cdk_remote_stack-2.0.93-py3-none-any.whl", hash = "sha256:2fc0eabf7e82ac9e50808d9587e9aff05d9eadaed80c09d3ca57e89a3f93dfa5"},
 ]
 
 [package.dependencies]
