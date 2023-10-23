@@ -587,13 +587,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.66.9"
+version = "2.67.1"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-2.66.9-py3-none-any.whl", hash = "sha256:c12c6e4b4910cabf5c40e36d8e820ff89535219009e8bcfff0c95a1e7116416d"},
-    {file = "cdk8s-2.66.9.tar.gz", hash = "sha256:b192ea7459a4c40e72d0a505168e86f98d4dbe179d16541fadfa0d8f97b4244a"},
+    {file = "cdk8s-2.67.1-py3-none-any.whl", hash = "sha256:d2acfe490ab0a7e6972c8d48baad7edd1b25131f626eda0088b738a2c724d6ff"},
+    {file = "cdk8s-2.67.1.tar.gz", hash = "sha256:5a42ef4d732c4f1eac64d274e991f708237babaa7fe4b435722305c5f38988f9"},
 ]
 
 [package.dependencies]
@@ -604,17 +604,17 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s-plus-26"
-version = "2.18.35"
+version = "2.18.45"
 description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-26 synthesizes Kubernetes manifests for Kubernetes 1.26.0"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-plus-26-2.18.35.tar.gz", hash = "sha256:3ac3b20b3fcd67443e37fecc89706cd63d3cd790b361a1ed630c19b476dc3f92"},
-    {file = "cdk8s_plus_26-2.18.35-py3-none-any.whl", hash = "sha256:c8453f17be0519cdc1a6bfec929580cbeb51a36d68188146306ae11b35e32d57"},
+    {file = "cdk8s-plus-26-2.18.45.tar.gz", hash = "sha256:ca4676bc55704daa937043ddaa3eeea60552b055de05db6bfaa7feb2b043a23d"},
+    {file = "cdk8s_plus_26-2.18.45-py3-none-any.whl", hash = "sha256:a921819a70ade42f56c906468c3b7fdb0b9adc989328c265a856047ee87d8ce8"},
 ]
 
 [package.dependencies]
-cdk8s = ">=2.66.9,<3.0.0"
+cdk8s = ">=2.67.1,<3.0.0"
 constructs = ">=10.3.0,<11.0.0"
 jsii = ">=1.90.0,<2.0.0"
 publication = ">=0.0.3"
