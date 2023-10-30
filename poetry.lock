@@ -85,6 +85,24 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
+name = "aws-cdk-lambda-layer-kubectl-v28"
+version = "2.0.0"
+description = "A Lambda Layer that contains kubectl v1.28"
+optional = false
+python-versions = "~=3.7"
+files = [
+    {file = "aws-cdk.lambda-layer-kubectl-v28-2.0.0.tar.gz", hash = "sha256:8ee0739004817053c842b6a3084c9445dd92e33dc11830c05a49769aab9b193f"},
+    {file = "aws_cdk.lambda_layer_kubectl_v28-2.0.0-py3-none-any.whl", hash = "sha256:d7527c1239cf6f2f8e44d22778151015b17f5898963aaed6b225fc399d548f37"},
+]
+
+[package.dependencies]
+aws-cdk-lib = ">=2.28.0,<3.0.0"
+constructs = ">=10.0.5,<11.0.0"
+jsii = ">=1.84.0,<2.0.0"
+publication = ">=0.0.3"
+typeguard = ">=2.13.3,<2.14.0"
+
+[[package]]
 name = "aws-cdk-lib"
 version = "2.100.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
@@ -957,4 +975,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.11"
-content-hash = "f71856cdcd955f5c4f6bfff07902ac589d104244061114a1778f7fa3464b33e0"
+content-hash = "4458194bf79ff242a6cc88f5cc93a61b6455d96c95e49af4695ddd393d0c8b1d"
