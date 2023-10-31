@@ -67,24 +67,6 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "aws-cdk-lambda-layer-kubectl-v27"
-version = "2.0.0"
-description = "A Lambda Layer that contains kubectl v1.27"
-optional = false
-python-versions = "~=3.7"
-files = [
-    {file = "aws-cdk.lambda-layer-kubectl-v27-2.0.0.tar.gz", hash = "sha256:eda4078c3c0c7a158c60ead83c410a1649839009e6636c613098c26319c6fa14"},
-    {file = "aws_cdk.lambda_layer_kubectl_v27-2.0.0-py3-none-any.whl", hash = "sha256:61b5c675ab24afef28be4f38ba2d7d77eee711019223483579e0aec3648fca9b"},
-]
-
-[package.dependencies]
-aws-cdk-lib = ">=2.28.0,<3.0.0"
-constructs = ">=10.0.5,<11.0.0"
-jsii = ">=1.84.0,<2.0.0"
-publication = ">=0.0.3"
-typeguard = ">=2.13.3,<2.14.0"
-
-[[package]]
 name = "aws-cdk-lambda-layer-kubectl-v28"
 version = "2.0.0"
 description = "A Lambda Layer that contains kubectl v1.28"
@@ -104,13 +86,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.100.0"
+version = "2.103.1"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk-lib-2.100.0.tar.gz", hash = "sha256:39d6ab3ffcd87b60a541b4714f0ecefd169055a647376521728d64786393680a"},
-    {file = "aws_cdk_lib-2.100.0-py3-none-any.whl", hash = "sha256:8c43fe03e1e9e7dc9a4f8003d1c4e04c5ac5fe2ec4a44928695785dff6d086ee"},
+    {file = "aws-cdk-lib-2.103.1.tar.gz", hash = "sha256:798d5acdb4603d9f49466216781686a1e2dcf7d9bd2ffdc05a002730739e92a3"},
+    {file = "aws_cdk_lib-2.103.1-py3-none-any.whl", hash = "sha256:e558c5ae5ee7a5fe0560368cee65d1ace28a203078fa98ce99007c539085e083"},
 ]
 
 [package.dependencies]
@@ -605,36 +587,36 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.66.9"
+version = "2.67.5"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-2.66.9-py3-none-any.whl", hash = "sha256:c12c6e4b4910cabf5c40e36d8e820ff89535219009e8bcfff0c95a1e7116416d"},
-    {file = "cdk8s-2.66.9.tar.gz", hash = "sha256:b192ea7459a4c40e72d0a505168e86f98d4dbe179d16541fadfa0d8f97b4244a"},
+    {file = "cdk8s-2.67.5-py3-none-any.whl", hash = "sha256:7d47100c8a746c53ba48cb457741e3a4916a965ae66f1990180223e73ddc2db2"},
+    {file = "cdk8s-2.67.5.tar.gz", hash = "sha256:cb779b838d9e0f14304214247b38f9228cbbde7236e90b94e2ce581ce0543b62"},
 ]
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.90.0,<2.0.0"
+jsii = ">=1.91.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s-plus-26"
-version = "2.18.35"
+version = "2.18.51"
 description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-26 synthesizes Kubernetes manifests for Kubernetes 1.26.0"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-plus-26-2.18.35.tar.gz", hash = "sha256:3ac3b20b3fcd67443e37fecc89706cd63d3cd790b361a1ed630c19b476dc3f92"},
-    {file = "cdk8s_plus_26-2.18.35-py3-none-any.whl", hash = "sha256:c8453f17be0519cdc1a6bfec929580cbeb51a36d68188146306ae11b35e32d57"},
+    {file = "cdk8s-plus-26-2.18.51.tar.gz", hash = "sha256:25223e86c8fdb522a1a7e6c29f5014432d53dae78eebe4ca5b3bffade21b59f8"},
+    {file = "cdk8s_plus_26-2.18.51-py3-none-any.whl", hash = "sha256:ea713ec02c319626e4367822b9a5ec8bc72c7e94b530f1bbc5af18901fd8bc08"},
 ]
 
 [package.dependencies]
-cdk8s = ">=2.66.9,<3.0.0"
+cdk8s = ">=2.67.4,<3.0.0"
 constructs = ">=10.3.0,<11.0.0"
-jsii = ">=1.90.0,<2.0.0"
+jsii = ">=1.91.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -731,13 +713,13 @@ files = [
 
 [[package]]
 name = "jsii"
-version = "1.90.0"
+version = "1.91.0"
 description = "Python client for jsii runtime"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "jsii-1.90.0-py3-none-any.whl", hash = "sha256:e8a9a94c5116da96f11e79f16d4a290e1e7e1652b4addb8cce5c56f8ef570479"},
-    {file = "jsii-1.90.0.tar.gz", hash = "sha256:2fcc68d8cf88260bc8e502789d43ab46e7672b6f82d498ed62a52a4366fbccc5"},
+    {file = "jsii-1.91.0-py3-none-any.whl", hash = "sha256:2905a4ea030ae7289b859e97003c01f4569650b4865c51e7f83d975b95c5b20a"},
+    {file = "jsii-1.91.0.tar.gz", hash = "sha256:9600ac7d04b237ee229c74ffde65ece27202ceec5df5e7eebd88a532d2cb28d6"},
 ]
 
 [package.dependencies]
@@ -975,4 +957,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.11"
-content-hash = "4458194bf79ff242a6cc88f5cc93a61b6455d96c95e49af4695ddd393d0c8b1d"
+content-hash = "2addfd77cbce98f52c776569d229d680613850c9c21d7a91a8b00f3f1ba61e38"
