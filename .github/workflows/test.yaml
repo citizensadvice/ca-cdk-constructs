@@ -4,6 +4,7 @@ on: pull_request
 
 jobs:
   test:
+    name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
 
     strategy:
