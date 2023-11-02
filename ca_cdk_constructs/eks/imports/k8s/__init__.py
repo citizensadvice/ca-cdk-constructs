@@ -301,6 +301,144 @@ class ApiServiceSpec:
 
 
 @jsii.data_type(
+    jsii_type="k8s.AuditAnnotationV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "value_expression": "valueExpression"},
+)
+class AuditAnnotationV1Alpha1:
+    def __init__(self, *, key: builtins.str, value_expression: builtins.str) -> None:
+        '''AuditAnnotation describes how to produce an audit annotation for an API request.
+
+        :param key: key specifies the audit annotation key. The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length. The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: "{ValidatingAdmissionPolicy name}/{key}". If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded. Required.
+        :param value_expression: valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value. The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb. If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__06e3d0e3bbf4c4e620f434b6daa397dd0074dc42c25d1068072ec406d734bb9d)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument value_expression", value=value_expression, expected_type=type_hints["value_expression"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "key": key,
+            "value_expression": value_expression,
+        }
+
+    @builtins.property
+    def key(self) -> builtins.str:
+        '''key specifies the audit annotation key.
+
+        The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.
+
+        The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: "{ValidatingAdmissionPolicy name}/{key}".
+
+        If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation#key
+        '''
+        result = self._values.get("key")
+        assert result is not None, "Required property 'key' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def value_expression(self) -> builtins.str:
+        '''valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value.
+
+        The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb.
+
+        If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation#valueExpression
+        '''
+        result = self._values.get("value_expression")
+        assert result is not None, "Required property 'value_expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "AuditAnnotationV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.AuditAnnotationV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "value_expression": "valueExpression"},
+)
+class AuditAnnotationV1Beta1:
+    def __init__(self, *, key: builtins.str, value_expression: builtins.str) -> None:
+        '''AuditAnnotation describes how to produce an audit annotation for an API request.
+
+        :param key: key specifies the audit annotation key. The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length. The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: "{ValidatingAdmissionPolicy name}/{key}". If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded. Required.
+        :param value_expression: valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value. The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb. If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.AuditAnnotation
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__548eadcd270008f2227b095d2dba595b8db90696605ff11f2c0b702853ecc837)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument value_expression", value=value_expression, expected_type=type_hints["value_expression"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "key": key,
+            "value_expression": value_expression,
+        }
+
+    @builtins.property
+    def key(self) -> builtins.str:
+        '''key specifies the audit annotation key.
+
+        The audit annotation keys of a ValidatingAdmissionPolicy must be unique. The key must be a qualified name ([A-Za-z0-9][-A-Za-z0-9_.]*) no more than 63 bytes in length.
+
+        The key is combined with the resource name of the ValidatingAdmissionPolicy to construct an audit annotation key: "{ValidatingAdmissionPolicy name}/{key}".
+
+        If an admission webhook uses the same resource name as this ValidatingAdmissionPolicy and the same audit annotation key, the annotation key will be identical. In this case, the first annotation written with the key will be included in the audit event and all subsequent annotations with the same key will be discarded.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.AuditAnnotation#key
+        '''
+        result = self._values.get("key")
+        assert result is not None, "Required property 'key' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def value_expression(self) -> builtins.str:
+        '''valueExpression represents the expression which is evaluated by CEL to produce an audit annotation value.
+
+        The expression must evaluate to either a string or null value. If the expression evaluates to a string, the audit annotation is included with the string value. If the expression evaluates to null or empty string the audit annotation will be omitted. The valueExpression may be no longer than 5kb in length. If the result of the valueExpression is more than 10kb in length, it will be truncated to 10kb.
+
+        If multiple ValidatingAdmissionPolicyBinding resources match an API request, then the valueExpression will be evaluated for each binding. All unique values produced by the valueExpressions will be joined together in a comma-separated list.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.AuditAnnotation#valueExpression
+        '''
+        result = self._values.get("value_expression")
+        assert result is not None, "Required property 'value_expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "AuditAnnotationV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.AwsElasticBlockStoreVolumeSource",
     jsii_struct_bases=[],
     name_mapping={
@@ -1565,7 +1703,7 @@ class ClaimSource:
         Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.
 
         :param resource_claim_name: ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.
-        :param resource_claim_template_name: ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be -, where is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long). An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
+        :param resource_claim_template_name: ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
 
         :schema: io.k8s.api.core.v1.ClaimSource
         '''
@@ -1592,9 +1730,7 @@ class ClaimSource:
     def resource_claim_template_name(self) -> typing.Optional[builtins.str]:
         '''ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.
 
-        The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be -, where  is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long).
-
-        An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed.
+        The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.
 
         This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
 
@@ -1679,10 +1815,10 @@ class ClusterCidrSpecV1Alpha1:
     ) -> None:
         '''ClusterCIDRSpec defines the desired state of ClusterCIDR.
 
-        :param per_node_host_bits: PerNodeHostBits defines the number of host bits to be configured per node. A subnet mask determines how much of the address is used for network bits and host bits. For example an IPv4 address of 192.168.0.0/24, splits the address into 24 bits for the network portion and 8 bits for the host portion. To allocate 256 IPs, set this field to 8 (a /24 mask for IPv4 or a /120 for IPv6). Minimum value is 4 (16 IPs). This field is immutable.
-        :param ipv4: IPv4 defines an IPv4 IP block in CIDR notation(e.g. "10.0.0.0/8"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
-        :param ipv6: IPv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
-        :param node_selector: NodeSelector defines which nodes the config is applicable to. An empty or nil NodeSelector selects all nodes. This field is immutable.
+        :param per_node_host_bits: perNodeHostBits defines the number of host bits to be configured per node. A subnet mask determines how much of the address is used for network bits and host bits. For example an IPv4 address of 192.168.0.0/24, splits the address into 24 bits for the network portion and 8 bits for the host portion. To allocate 256 IPs, set this field to 8 (a /24 mask for IPv4 or a /120 for IPv6). Minimum value is 4 (16 IPs). This field is immutable.
+        :param ipv4: ipv4 defines an IPv4 IP block in CIDR notation(e.g. "10.0.0.0/8"). At least one of ipv4 and ipv6 must be specified. This field is immutable.
+        :param ipv6: ipv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of ipv4 and ipv6 must be specified. This field is immutable.
+        :param node_selector: nodeSelector defines which nodes the config is applicable to. An empty or nil nodeSelector selects all nodes. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec
         '''
@@ -1706,7 +1842,7 @@ class ClusterCidrSpecV1Alpha1:
 
     @builtins.property
     def per_node_host_bits(self) -> jsii.Number:
-        '''PerNodeHostBits defines the number of host bits to be configured per node.
+        '''perNodeHostBits defines the number of host bits to be configured per node.
 
         A subnet mask determines how much of the address is used for network bits and host bits. For example an IPv4 address of 192.168.0.0/24, splits the address into 24 bits for the network portion and 8 bits for the host portion. To allocate 256 IPs, set this field to 8 (a /24 mask for IPv4 or a /120 for IPv6). Minimum value is 4 (16 IPs). This field is immutable.
 
@@ -1718,7 +1854,7 @@ class ClusterCidrSpecV1Alpha1:
 
     @builtins.property
     def ipv4(self) -> typing.Optional[builtins.str]:
-        '''IPv4 defines an IPv4 IP block in CIDR notation(e.g. "10.0.0.0/8"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
+        '''ipv4 defines an IPv4 IP block in CIDR notation(e.g. "10.0.0.0/8"). At least one of ipv4 and ipv6 must be specified. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec#ipv4
         '''
@@ -1727,7 +1863,7 @@ class ClusterCidrSpecV1Alpha1:
 
     @builtins.property
     def ipv6(self) -> typing.Optional[builtins.str]:
-        '''IPv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of IPv4 and IPv6 must be specified. This field is immutable.
+        '''ipv6 defines an IPv6 IP block in CIDR notation(e.g. "2001:db8::/64"). At least one of ipv4 and ipv6 must be specified. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec#ipv6
         '''
@@ -1736,9 +1872,9 @@ class ClusterCidrSpecV1Alpha1:
 
     @builtins.property
     def node_selector(self) -> typing.Optional["NodeSelector"]:
-        '''NodeSelector defines which nodes the config is applicable to.
+        '''nodeSelector defines which nodes the config is applicable to.
 
-        An empty or nil NodeSelector selects all nodes. This field is immutable.
+        An empty or nil nodeSelector selects all nodes. This field is immutable.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRSpec#nodeSelector
         '''
@@ -1753,6 +1889,78 @@ class ClusterCidrSpecV1Alpha1:
 
     def __repr__(self) -> str:
         return "ClusterCidrSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ClusterTrustBundleSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"trust_bundle": "trustBundle", "signer_name": "signerName"},
+)
+class ClusterTrustBundleSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        trust_bundle: builtins.str,
+        signer_name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ClusterTrustBundleSpec contains the signer and trust anchors.
+
+        :param trust_bundle: trustBundle contains the individual X.509 trust anchors for this bundle, as PEM bundle of PEM-wrapped, DER-formatted X.509 certificates. The data must consist only of PEM certificate blocks that parse as valid X.509 certificates. Each certificate must include a basic constraints extension with the CA bit set. The API server will reject objects that contain duplicate certificates, or that use PEM block headers. Users of ClusterTrustBundles, including Kubelet, are free to reorder and deduplicate certificate blocks in this file according to their own logic, as well as to drop PEM block headers and inter-block data.
+        :param signer_name: signerName indicates the associated signer, if any. In order to create or update a ClusterTrustBundle that sets signerName, you must have the following cluster-scoped permission: group=certificates.k8s.io resource=signers resourceName= verb=attest. If signerName is not empty, then the ClusterTrustBundle object must be named with the signer name as a prefix (translating slashes to colons). For example, for the signer name ``example.com/foo``, valid ClusterTrustBundle object names include ``example.com:foo:abc`` and ``example.com:foo:v1``. If signerName is empty, then the ClusterTrustBundle object's name must not have such a prefix. List/watch requests for ClusterTrustBundles can filter on this field using a ``spec.signerName=NAME`` field selector.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6a9bef18641cae2e8ea743ffce231b3a70e8274b3f75e68f15b194722bd3ae46)
+            check_type(argname="argument trust_bundle", value=trust_bundle, expected_type=type_hints["trust_bundle"])
+            check_type(argname="argument signer_name", value=signer_name, expected_type=type_hints["signer_name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "trust_bundle": trust_bundle,
+        }
+        if signer_name is not None:
+            self._values["signer_name"] = signer_name
+
+    @builtins.property
+    def trust_bundle(self) -> builtins.str:
+        '''trustBundle contains the individual X.509 trust anchors for this bundle, as PEM bundle of PEM-wrapped, DER-formatted X.509 certificates.
+
+        The data must consist only of PEM certificate blocks that parse as valid X.509 certificates.  Each certificate must include a basic constraints extension with the CA bit set.  The API server will reject objects that contain duplicate certificates, or that use PEM block headers.
+
+        Users of ClusterTrustBundles, including Kubelet, are free to reorder and deduplicate certificate blocks in this file according to their own logic, as well as to drop PEM block headers and inter-block data.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec#trustBundle
+        '''
+        result = self._values.get("trust_bundle")
+        assert result is not None, "Required property 'trust_bundle' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def signer_name(self) -> typing.Optional[builtins.str]:
+        '''signerName indicates the associated signer, if any.
+
+        In order to create or update a ClusterTrustBundle that sets signerName, you must have the following cluster-scoped permission: group=certificates.k8s.io resource=signers resourceName= verb=attest.
+
+        If signerName is not empty, then the ClusterTrustBundle object must be named with the signer name as a prefix (translating slashes to colons). For example, for the signer name ``example.com/foo``, valid ClusterTrustBundle object names include ``example.com:foo:abc`` and ``example.com:foo:v1``.
+
+        If signerName is empty, then the ClusterTrustBundle object's name must not have such a prefix.
+
+        List/watch requests for ClusterTrustBundles can filter on this field using a ``spec.signerName=NAME`` field selector.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec#signerName
+        '''
+        result = self._values.get("signer_name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterTrustBundleSpecV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -2303,7 +2511,9 @@ class ConfigMapVolumeSource:
         "liveness_probe": "livenessProbe",
         "ports": "ports",
         "readiness_probe": "readinessProbe",
+        "resize_policy": "resizePolicy",
         "resources": "resources",
+        "restart_policy": "restartPolicy",
         "security_context": "securityContext",
         "startup_probe": "startupProbe",
         "stdin": "stdin",
@@ -2331,7 +2541,9 @@ class Container:
         liveness_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
         ports: typing.Optional[typing.Sequence[typing.Union["ContainerPort", typing.Dict[builtins.str, typing.Any]]]] = None,
         readiness_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
+        resize_policy: typing.Optional[typing.Sequence[typing.Union["ContainerResizePolicy", typing.Dict[builtins.str, typing.Any]]]] = None,
         resources: typing.Optional[typing.Union["ResourceRequirements", typing.Dict[builtins.str, typing.Any]]] = None,
+        restart_policy: typing.Optional[builtins.str] = None,
         security_context: typing.Optional[typing.Union["SecurityContext", typing.Dict[builtins.str, typing.Any]]] = None,
         startup_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
         stdin: typing.Optional[builtins.bool] = None,
@@ -2356,7 +2568,9 @@ class Container:
         :param liveness_probe: Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         :param ports: List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default "0.0.0.0" address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.
         :param readiness_probe: Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+        :param resize_policy: Resources resize policy for the container.
         :param resources: Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        :param restart_policy: RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is "Always". For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as "Always" for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy "Always" will be shut down. This lifecycle differs from normal init containers and is often referred to as a "sidecar" container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
         :param security_context: SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
         :param startup_probe: StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         :param stdin: Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. Default: false.
@@ -2395,7 +2609,9 @@ class Container:
             check_type(argname="argument liveness_probe", value=liveness_probe, expected_type=type_hints["liveness_probe"])
             check_type(argname="argument ports", value=ports, expected_type=type_hints["ports"])
             check_type(argname="argument readiness_probe", value=readiness_probe, expected_type=type_hints["readiness_probe"])
+            check_type(argname="argument resize_policy", value=resize_policy, expected_type=type_hints["resize_policy"])
             check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
+            check_type(argname="argument restart_policy", value=restart_policy, expected_type=type_hints["restart_policy"])
             check_type(argname="argument security_context", value=security_context, expected_type=type_hints["security_context"])
             check_type(argname="argument startup_probe", value=startup_probe, expected_type=type_hints["startup_probe"])
             check_type(argname="argument stdin", value=stdin, expected_type=type_hints["stdin"])
@@ -2429,8 +2645,12 @@ class Container:
             self._values["ports"] = ports
         if readiness_probe is not None:
             self._values["readiness_probe"] = readiness_probe
+        if resize_policy is not None:
+            self._values["resize_policy"] = resize_policy
         if resources is not None:
             self._values["resources"] = resources
+        if restart_policy is not None:
+            self._values["restart_policy"] = restart_policy
         if security_context is not None:
             self._values["security_context"] = security_context
         if startup_probe is not None:
@@ -2577,6 +2797,15 @@ class Container:
         return typing.cast(typing.Optional["Probe"], result)
 
     @builtins.property
+    def resize_policy(self) -> typing.Optional[typing.List["ContainerResizePolicy"]]:
+        '''Resources resize policy for the container.
+
+        :schema: io.k8s.api.core.v1.Container#resizePolicy
+        '''
+        result = self._values.get("resize_policy")
+        return typing.cast(typing.Optional[typing.List["ContainerResizePolicy"]], result)
+
+    @builtins.property
     def resources(self) -> typing.Optional["ResourceRequirements"]:
         '''Compute Resources required by this container.
 
@@ -2586,6 +2815,17 @@ class Container:
         '''
         result = self._values.get("resources")
         return typing.cast(typing.Optional["ResourceRequirements"], result)
+
+    @builtins.property
+    def restart_policy(self) -> typing.Optional[builtins.str]:
+        '''RestartPolicy defines the restart behavior of individual containers in a pod.
+
+        This field may only be set for init containers, and the only allowed value is "Always". For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as "Always" for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy "Always" will be shut down. This lifecycle differs from normal init containers and is often referred to as a "sidecar" container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
+
+        :schema: io.k8s.api.core.v1.Container#restartPolicy
+        '''
+        result = self._values.get("restart_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def security_context(self) -> typing.Optional["SecurityContext"]:
@@ -2836,6 +3076,70 @@ class ContainerPort:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ContainerResizePolicy",
+    jsii_struct_bases=[],
+    name_mapping={"resource_name": "resourceName", "restart_policy": "restartPolicy"},
+)
+class ContainerResizePolicy:
+    def __init__(
+        self,
+        *,
+        resource_name: builtins.str,
+        restart_policy: builtins.str,
+    ) -> None:
+        '''ContainerResizePolicy represents resource resize policy for the container.
+
+        :param resource_name: Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.
+        :param restart_policy: Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.
+
+        :schema: io.k8s.api.core.v1.ContainerResizePolicy
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e67f6595895fd5a9a7fe0c13ca80d8c3fa406cb081f8f5aff47e39181112e7d9)
+            check_type(argname="argument resource_name", value=resource_name, expected_type=type_hints["resource_name"])
+            check_type(argname="argument restart_policy", value=restart_policy, expected_type=type_hints["restart_policy"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "resource_name": resource_name,
+            "restart_policy": restart_policy,
+        }
+
+    @builtins.property
+    def resource_name(self) -> builtins.str:
+        '''Name of the resource to which this resource resize policy applies.
+
+        Supported values: cpu, memory.
+
+        :schema: io.k8s.api.core.v1.ContainerResizePolicy#resourceName
+        '''
+        result = self._values.get("resource_name")
+        assert result is not None, "Required property 'resource_name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def restart_policy(self) -> builtins.str:
+        '''Restart policy to apply when specified resource is resized.
+
+        If not specified, it defaults to NotRequired.
+
+        :schema: io.k8s.api.core.v1.ContainerResizePolicy#restartPolicy
+        '''
+        result = self._values.get("restart_policy")
+        assert result is not None, "Required property 'restart_policy' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ContainerResizePolicy(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ContainerResourceMetricSourceV2",
     jsii_struct_bases=[],
     name_mapping={"container": "container", "name": "name", "target": "target"},
@@ -2942,12 +3246,12 @@ class CronJobSpec:
 
         :param job_template: Specifies the job that will be created when executing a CronJob.
         :param schedule: The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
-        :param concurrency_policy: Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+        :param concurrency_policy: Specifies how to treat concurrent executions of a Job. Valid values are:. - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
         :param failed_jobs_history_limit: The number of failed finished jobs to retain. Value must be non-negative integer. Defaults to 1. Default: 1.
         :param starting_deadline_seconds: Optional deadline in seconds for starting the job if it misses scheduled time for any reason. Missed jobs executions will be counted as failed ones.
         :param successful_jobs_history_limit: The number of successful finished jobs to retain. Value must be non-negative integer. Defaults to 3. Default: 3.
         :param suspend: This flag tells the controller to suspend subsequent executions, it does not apply to already started executions. Defaults to false. Default: false.
-        :param time_zone: The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones This is beta field and must be enabled via the ``CronJobTimeZone`` feature gate.
+        :param time_zone: The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones.
 
         :schema: io.k8s.api.batch.v1.CronJobSpec
         '''
@@ -3002,9 +3306,9 @@ class CronJobSpec:
 
     @builtins.property
     def concurrency_policy(self) -> typing.Optional[builtins.str]:
-        '''Specifies how to treat concurrent executions of a Job.
+        '''Specifies how to treat concurrent executions of a Job. Valid values are:.
 
-        Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+        - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
 
         :schema: io.k8s.api.batch.v1.CronJobSpec#concurrencyPolicy
         '''
@@ -3063,7 +3367,7 @@ class CronJobSpec:
 
     @builtins.property
     def time_zone(self) -> typing.Optional[builtins.str]:
-        '''The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones This is beta field and must be enabled via the ``CronJobTimeZone`` feature gate.
+        '''The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones.
 
         :schema: io.k8s.api.batch.v1.CronJobSpec#timeZone
         '''
@@ -3097,9 +3401,9 @@ class CrossVersionObjectReference:
     ) -> None:
         '''CrossVersionObjectReference contains enough information to let you identify the referred resource.
 
-        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
-        :param api_version: API version of the referent.
+        :param kind: kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param name: name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+        :param api_version: apiVersion is the API version of the referent.
 
         :schema: io.k8s.api.autoscaling.v1.CrossVersionObjectReference
         '''
@@ -3117,7 +3421,7 @@ class CrossVersionObjectReference:
 
     @builtins.property
     def kind(self) -> builtins.str:
-        '''Kind of the referent;
+        '''kind is the kind of the referent;
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
@@ -3129,9 +3433,9 @@ class CrossVersionObjectReference:
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''Name of the referent;
+        '''name is the name of the referent;
 
-        More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
         :schema: io.k8s.api.autoscaling.v1.CrossVersionObjectReference#name
         '''
@@ -3141,7 +3445,7 @@ class CrossVersionObjectReference:
 
     @builtins.property
     def api_version(self) -> typing.Optional[builtins.str]:
-        '''API version of the referent.
+        '''apiVersion is the API version of the referent.
 
         :schema: io.k8s.api.autoscaling.v1.CrossVersionObjectReference#apiVersion
         '''
@@ -3175,9 +3479,9 @@ class CrossVersionObjectReferenceV2:
     ) -> None:
         '''CrossVersionObjectReference contains enough information to let you identify the referred resource.
 
-        :param kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
-        :param api_version: API version of the referent.
+        :param kind: kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param name: name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+        :param api_version: apiVersion is the API version of the referent.
 
         :schema: io.k8s.api.autoscaling.v2.CrossVersionObjectReference
         '''
@@ -3195,7 +3499,7 @@ class CrossVersionObjectReferenceV2:
 
     @builtins.property
     def kind(self) -> builtins.str:
-        '''Kind of the referent;
+        '''kind is the kind of the referent;
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
@@ -3207,9 +3511,9 @@ class CrossVersionObjectReferenceV2:
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''Name of the referent;
+        '''name is the name of the referent;
 
-        More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
         :schema: io.k8s.api.autoscaling.v2.CrossVersionObjectReference#name
         '''
@@ -3219,7 +3523,7 @@ class CrossVersionObjectReferenceV2:
 
     @builtins.property
     def api_version(self) -> typing.Optional[builtins.str]:
-        '''API version of the referent.
+        '''apiVersion is the API version of the referent.
 
         :schema: io.k8s.api.autoscaling.v2.CrossVersionObjectReference#apiVersion
         '''
@@ -3268,12 +3572,12 @@ class CsiDriverSpec:
         '''CSIDriverSpec is the specification of a CSIDriver.
 
         :param attach_required: attachRequired indicates this CSI volume driver requires an attach operation (because it implements the CSI ControllerPublishVolume() method), and that the Kubernetes attach detach controller should call the attach volume interface which checks the volumeattachment status and waits until the volume is attached before proceeding to mounting. The CSI external-attacher coordinates with CSI volume driver and updates the volumeattachment status when the attach operation is complete. If the CSIDriverRegistry feature gate is enabled and the value is specified to false, the attach operation will be skipped. Otherwise the attach operation will be called. This field is immutable.
-        :param fs_group_policy: Defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is immutable. Defaults to ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce. Default: ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce.
-        :param pod_info_on_mount: If set to true, podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations. If set to false, pod information will not be passed on mount. Default is false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume defined by a CSIVolumeSource, otherwise "false". "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver. This field is immutable. Default: false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume
-        :param requires_republish: RequiresRepublish indicates the CSI driver wants ``NodePublishVolume`` being periodically called to reflect any possible change in the mounted volume. This field defaults to false. Note: After a successful initial NodePublishVolume call, subsequent calls to NodePublishVolume should only update the contents of the volume. New mount points will not be seen by a running container.
-        :param se_linux_mount: SELinuxMount specifies if the CSI driver supports "-o context" mount option. When "true", the CSI driver must ensure that all volumes provided by this CSI driver can be mounted separately with different ``-o context`` options. This is typical for storage backends that provide volumes as filesystems on block devices or as independent shared volumes. Kubernetes will call NodeStage / NodePublish with "-o context=xyz" mount option when mounting a ReadWriteOncePod volume used in Pod that has explicitly set SELinux context. In the future, it may be expanded to other volume AccessModes. In any case, Kubernetes will ensure that the volume is mounted only with a single SELinux context. When "false", Kubernetes won't pass any special SELinux mount options to the driver. This is typical for volumes that represent subdirectories of a bigger shared filesystem. Default is "false". Default: false".
-        :param storage_capacity: If set to true, storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information. The check can be enabled immediately when deploying a driver. In that case, provisioning new volumes with late binding will pause until the driver deployment has published some suitable CSIStorageCapacity object. Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published. This field was immutable in Kubernetes <= 1.22 and now is mutable.
-        :param token_requests: TokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": { "": { "token": , "expirationTimestamp": , }, ... } Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically.
+        :param fs_group_policy: fsGroupPolicy defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is immutable. Defaults to ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce. Default: ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce.
+        :param pod_info_on_mount: podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations, if set to true. If set to false, pod information will not be passed on mount. Default is false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume defined by a CSIVolumeSource, otherwise "false" "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver. This field is immutable. Default: false.
+        :param requires_republish: requiresRepublish indicates the CSI driver wants ``NodePublishVolume`` being periodically called to reflect any possible change in the mounted volume. This field defaults to false. Note: After a successful initial NodePublishVolume call, subsequent calls to NodePublishVolume should only update the contents of the volume. New mount points will not be seen by a running container.
+        :param se_linux_mount: seLinuxMount specifies if the CSI driver supports "-o context" mount option. When "true", the CSI driver must ensure that all volumes provided by this CSI driver can be mounted separately with different ``-o context`` options. This is typical for storage backends that provide volumes as filesystems on block devices or as independent shared volumes. Kubernetes will call NodeStage / NodePublish with "-o context=xyz" mount option when mounting a ReadWriteOncePod volume used in Pod that has explicitly set SELinux context. In the future, it may be expanded to other volume AccessModes. In any case, Kubernetes will ensure that the volume is mounted only with a single SELinux context. When "false", Kubernetes won't pass any special SELinux mount options to the driver. This is typical for volumes that represent subdirectories of a bigger shared filesystem. Default is "false". Default: false".
+        :param storage_capacity: storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information, if set to true. The check can be enabled immediately when deploying a driver. In that case, provisioning new volumes with late binding will pause until the driver deployment has published some suitable CSIStorageCapacity object. Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published. This field was immutable in Kubernetes <= 1.22 and now is mutable.
+        :param token_requests: tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": { "": { "token": , "expirationTimestamp": , }, ... } Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically.
         :param volume_lifecycle_modes: volumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future. This field is beta. This field is immutable.
 
         :schema: io.k8s.api.storage.v1.CSIDriverSpec
@@ -3321,7 +3625,7 @@ class CsiDriverSpec:
 
     @builtins.property
     def fs_group_policy(self) -> typing.Optional[builtins.str]:
-        '''Defines if the underlying volume supports changing ownership and permission of the volume before being mounted.
+        '''fsGroupPolicy defines if the underlying volume supports changing ownership and permission of the volume before being mounted.
 
         Refer to the specific FSGroupPolicy values for additional details.
 
@@ -3338,13 +3642,18 @@ class CsiDriverSpec:
 
     @builtins.property
     def pod_info_on_mount(self) -> typing.Optional[builtins.bool]:
-        '''If set to true, podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations. If set to false, pod information will not be passed on mount. Default is false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume defined by a CSIVolumeSource, otherwise "false".
+        '''podInfoOnMount indicates this CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount operations, if set to true. If set to false, pod information will not be passed on mount. Default is false.
+
+        The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext.
+
+        The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume
+        defined by a CSIVolumeSource, otherwise "false"
 
         "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver.
 
         This field is immutable.
 
-        :default: false. The CSI driver specifies podInfoOnMount as part of driver deployment. If true, Kubelet will pass pod information as VolumeContext in the CSI NodePublishVolume() calls. The CSI driver is responsible for parsing and validating the information passed in as VolumeContext. The following VolumeConext will be passed if podInfoOnMount is set to true. This list might grow, but the prefix will be used. "csi.storage.k8s.io/pod.name": pod.Name "csi.storage.k8s.io/pod.namespace": pod.Namespace "csi.storage.k8s.io/pod.uid": string(pod.UID) "csi.storage.k8s.io/ephemeral": "true" if the volume is an ephemeral inline volume
+        :default: false.
 
         :schema: io.k8s.api.storage.v1.CSIDriverSpec#podInfoOnMount
         '''
@@ -3353,7 +3662,7 @@ class CsiDriverSpec:
 
     @builtins.property
     def requires_republish(self) -> typing.Optional[builtins.bool]:
-        '''RequiresRepublish indicates the CSI driver wants ``NodePublishVolume`` being periodically called to reflect any possible change in the mounted volume.
+        '''requiresRepublish indicates the CSI driver wants ``NodePublishVolume`` being periodically called to reflect any possible change in the mounted volume.
 
         This field defaults to false.
 
@@ -3366,7 +3675,7 @@ class CsiDriverSpec:
 
     @builtins.property
     def se_linux_mount(self) -> typing.Optional[builtins.bool]:
-        '''SELinuxMount specifies if the CSI driver supports "-o context" mount option.
+        '''seLinuxMount specifies if the CSI driver supports "-o context" mount option.
 
         When "true", the CSI driver must ensure that all volumes provided by this CSI driver can be mounted separately with different ``-o context`` options. This is typical for storage backends that provide volumes as filesystems on block devices or as independent shared volumes. Kubernetes will call NodeStage / NodePublish with "-o context=xyz" mount option when mounting a ReadWriteOncePod volume used in Pod that has explicitly set SELinux context. In the future, it may be expanded to other volume AccessModes. In any case, Kubernetes will ensure that the volume is mounted only with a single SELinux context.
 
@@ -3383,7 +3692,7 @@ class CsiDriverSpec:
 
     @builtins.property
     def storage_capacity(self) -> typing.Optional[builtins.bool]:
-        '''If set to true, storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information.
+        '''storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information, if set to true.
 
         The check can be enabled immediately when deploying a driver. In that case, provisioning new volumes with late binding will pause until the driver deployment has published some suitable CSIStorageCapacity object.
 
@@ -3398,7 +3707,7 @@ class CsiDriverSpec:
 
     @builtins.property
     def token_requests(self) -> typing.Optional[typing.List["TokenRequest"]]:
-        '''TokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication.
+        '''tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication.
 
         Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": {
         "": {
@@ -3419,9 +3728,13 @@ class CsiDriverSpec:
     def volume_lifecycle_modes(self) -> typing.Optional[typing.List[builtins.str]]:
         '''volumeLifecycleModes defines what kind of volumes this CSI volume driver supports.
 
-        The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future. This field is beta.
+        The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism.
 
-        This field is immutable.
+        The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume.
+
+        For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future.
+
+        This field is beta. This field is immutable.
 
         :schema: io.k8s.api.storage.v1.CSIDriverSpec#volumeLifecycleModes
         '''
@@ -3461,7 +3774,7 @@ class CsiNodeDriver:
     ) -> None:
         '''CSINodeDriver holds information about the specification of one CSI driver installed on a node.
 
-        :param name: This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.
+        :param name: name represents the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.
         :param node_id: nodeID of the node from the driver point of view. This field enables Kubernetes to communicate with storage systems that do not share the same nomenclature for nodes. For example, Kubernetes may refer to a given node as "node1", but the storage system may refer to the same node as "nodeA". When Kubernetes issues a command to the storage system to attach a volume to a specific node, it can use this field to refer to the node name using the ID that the storage system will understand, e.g. "nodeA" instead of "node1". This field is required.
         :param allocatable: allocatable represents the volume resources of a node that are available for scheduling. This field is beta.
         :param topology_keys: topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.com/zone", "company.com/region"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology.
@@ -3487,7 +3800,7 @@ class CsiNodeDriver:
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''This is the name of the CSI driver that this object refers to.
+        '''name represents the name of the CSI driver that this object refers to.
 
         This MUST be the same name returned by the CSI GetPluginName() call for that driver.
 
@@ -3626,10 +3939,10 @@ class CsiPersistentVolumeSource:
 
         :param driver: driver is the name of the driver to use for this volume. Required.
         :param volume_handle: volumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.
-        :param controller_expand_secret_ref: controllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an beta field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+        :param controller_expand_secret_ref: controllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         :param controller_publish_secret_ref: controllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         :param fs_type: fsType to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs".
-        :param node_expand_secret_ref: nodeExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeExpandVolume call. This is an alpha field and requires enabling CSINodeExpandSecret feature gate. This field is optional, may be omitted if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+        :param node_expand_secret_ref: nodeExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeExpandVolume call. This is a beta field which is enabled default by CSINodeExpandSecret feature gate. This field is optional, may be omitted if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         :param node_publish_secret_ref: nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         :param node_stage_secret_ref: nodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         :param read_only: readOnly value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write). Default: false (read/write).
@@ -3708,7 +4021,7 @@ class CsiPersistentVolumeSource:
     def controller_expand_secret_ref(self) -> typing.Optional["SecretReference"]:
         '''controllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call.
 
-        This is an beta field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+        This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
 
         :schema: io.k8s.api.core.v1.CSIPersistentVolumeSource#controllerExpandSecretRef
         '''
@@ -3741,7 +4054,7 @@ class CsiPersistentVolumeSource:
     def node_expand_secret_ref(self) -> typing.Optional["SecretReference"]:
         '''nodeExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeExpandVolume call.
 
-        This is an alpha field and requires enabling CSINodeExpandSecret feature gate. This field is optional, may be omitted if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+        This is a beta field which is enabled default by CSINodeExpandSecret feature gate. This field is optional, may be omitted if no secret is required. If the secret object contains more than one secret, all secrets are passed.
 
         :schema: io.k8s.api.core.v1.CSIPersistentVolumeSource#nodeExpandSecretRef
         '''
@@ -4073,8 +4386,8 @@ class CustomResourceConversion:
     ) -> None:
         '''CustomResourceConversion describes how to convert different versions of a CR.
 
-        :param strategy: strategy specifies how custom resources are converted between versions. Allowed values are: - ``None``: The converter only change the apiVersion and would not touch any other field in the custom resource. - ``Webhook``: API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
-        :param webhook: webhook describes how to call the conversion webhook. Required when ``strategy`` is set to ``Webhook``.
+        :param strategy: strategy specifies how custom resources are converted between versions. Allowed values are: - ``"None"``: The converter only change the apiVersion and would not touch any other field in the custom resource. - ``"Webhook"``: API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
+        :param webhook: webhook describes how to call the conversion webhook. Required when ``strategy`` is set to ``"Webhook"``.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceConversion
         '''
@@ -4094,7 +4407,7 @@ class CustomResourceConversion:
     def strategy(self) -> builtins.str:
         '''strategy specifies how custom resources are converted between versions.
 
-        Allowed values are: - ``None``: The converter only change the apiVersion and would not touch any other field in the custom resource. - ``Webhook``: API Server will call to an external webhook to do the conversion. Additional information
+        Allowed values are: - ``"None"``: The converter only change the apiVersion and would not touch any other field in the custom resource. - ``"Webhook"``: API Server will call to an external webhook to do the conversion. Additional information
         is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceConversion#strategy
@@ -4107,7 +4420,7 @@ class CustomResourceConversion:
     def webhook(self) -> typing.Optional["WebhookConversion"]:
         '''webhook describes how to call the conversion webhook.
 
-        Required when ``strategy`` is set to ``Webhook``.
+        Required when ``strategy`` is set to ``"Webhook"``.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceConversion#webhook
         '''
@@ -4779,7 +5092,7 @@ class DaemonSetSpec:
         '''DaemonSetSpec is the specification of a daemon set.
 
         :param selector: A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-        :param template: An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
+        :param template: An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
         :param min_ready_seconds: The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready). Default: 0 (pod will be considered available as soon as it is ready).
         :param revision_history_limit: The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10. Default: 10.
         :param update_strategy: An update strategy to replace existing DaemonSet pods with new pods.
@@ -4826,7 +5139,7 @@ class DaemonSetSpec:
     def template(self) -> "PodTemplateSpec":
         '''An object that describes the pod that will be created.
 
-        The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
+        The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
 
         :schema: io.k8s.api.apps.v1.DaemonSetSpec#template
         '''
@@ -5133,7 +5446,7 @@ class DeploymentSpec:
         '''DeploymentSpec is the specification of the desired behavior of the Deployment.
 
         :param selector: Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template's labels.
-        :param template: Template describes the pods that will be created.
+        :param template: Template describes the pods that will be created. The only allowed template.spec.restartPolicy value is "Always".
         :param min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) Default: 0 (pod will be considered available as soon as it is ready)
         :param paused: Indicates that the deployment is paused.
         :param progress_deadline_seconds: The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s. Default: 600s.
@@ -5191,6 +5504,8 @@ class DeploymentSpec:
     @builtins.property
     def template(self) -> "PodTemplateSpec":
         '''Template describes the pods that will be created.
+
+        The only allowed template.spec.restartPolicy value is "Always".
 
         :schema: io.k8s.api.apps.v1.DeploymentSpec#template
         '''
@@ -5577,7 +5892,7 @@ class EmptyDirVolumeSource:
         Empty directory volumes support ownership management and SELinux relabeling.
 
         :param medium: medium represents what type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-        :param size_limit: sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+        :param size_limit: sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
         :schema: io.k8s.api.core.v1.EmptyDirVolumeSource
         '''
@@ -5606,7 +5921,7 @@ class EmptyDirVolumeSource:
     def size_limit(self) -> typing.Optional["Quantity"]:
         '''sizeLimit is the total amount of local storage required for this EmptyDir volume.
 
-        The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+        The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
         :schema: io.k8s.api.core.v1.EmptyDirVolumeSource#sizeLimit
         '''
@@ -5815,7 +6130,7 @@ class EndpointAddress:
     ) -> None:
         '''EndpointAddress is a tuple that describes single IP address.
 
-        :param ip: The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready.
+        :param ip: The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).
         :param hostname: The Hostname of this endpoint.
         :param node_name: Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
         :param target_ref: Reference to object providing the endpoint.
@@ -5844,7 +6159,7 @@ class EndpointAddress:
     def ip(self) -> builtins.str:
         '''The IP of this endpoint.
 
-        May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready.
+        May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).
 
         :schema: io.k8s.api.core.v1.EndpointAddress#ip
         '''
@@ -5912,7 +6227,7 @@ class EndpointConditions:
     ) -> None:
         '''EndpointConditions represents the current condition of an endpoint.
 
-        :param ready: ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints.
+        :param ready: ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints, except when the normal readiness behavior is being explicitly overridden, for example when the associated Service has set the publishNotReadyAddresses flag.
         :param serving: serving is identical to ready except that it is set regardless of the terminating state of endpoints. This condition should be set to true for a ready endpoint that is terminating. If nil, consumers should defer to the ready condition.
         :param terminating: terminating indicates that this endpoint is terminating. A nil value indicates an unknown state. Consumers should interpret this unknown state to mean that the endpoint is not terminating.
 
@@ -5935,7 +6250,7 @@ class EndpointConditions:
     def ready(self) -> typing.Optional[builtins.bool]:
         '''ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint.
 
-        A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints.
+        A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. For compatibility reasons, ready should never be "true" for terminating endpoints, except when the normal readiness behavior is being explicitly overridden, for example when the associated Service has set the publishNotReadyAddresses flag.
 
         :schema: io.k8s.api.discovery.v1.EndpointConditions#ready
         '''
@@ -6043,7 +6358,7 @@ class EndpointPort:
         '''EndpointPort is a tuple that describes a single port.
 
         :param port: The port number of the endpoint.
-        :param app_protocol: The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+        :param app_protocol: The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: - Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). - Kubernetes-defined prefixed names: - 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540 - 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 - 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 - Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.
         :param name: The name of this port. This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
         :param protocol: The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP. Default: TCP.
 
@@ -6079,7 +6394,14 @@ class EndpointPort:
     def app_protocol(self) -> typing.Optional[builtins.str]:
         '''The application protocol for this port.
 
-        This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+        This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:
+
+        - Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).
+        - Kubernetes-defined prefixed names:
+        - 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540
+        - 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455
+        - 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455
+        - Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.
 
         :schema: io.k8s.api.core.v1.EndpointPort#appProtocol
         '''
@@ -6495,7 +6817,9 @@ class EnvVarSource:
         "liveness_probe": "livenessProbe",
         "ports": "ports",
         "readiness_probe": "readinessProbe",
+        "resize_policy": "resizePolicy",
         "resources": "resources",
+        "restart_policy": "restartPolicy",
         "security_context": "securityContext",
         "startup_probe": "startupProbe",
         "stdin": "stdin",
@@ -6524,7 +6848,9 @@ class EphemeralContainer:
         liveness_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
         ports: typing.Optional[typing.Sequence[typing.Union[ContainerPort, typing.Dict[builtins.str, typing.Any]]]] = None,
         readiness_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
+        resize_policy: typing.Optional[typing.Sequence[typing.Union[ContainerResizePolicy, typing.Dict[builtins.str, typing.Any]]]] = None,
         resources: typing.Optional[typing.Union["ResourceRequirements", typing.Dict[builtins.str, typing.Any]]] = None,
+        restart_policy: typing.Optional[builtins.str] = None,
         security_context: typing.Optional[typing.Union["SecurityContext", typing.Dict[builtins.str, typing.Any]]] = None,
         startup_probe: typing.Optional[typing.Union["Probe", typing.Dict[builtins.str, typing.Any]]] = None,
         stdin: typing.Optional[builtins.bool] = None,
@@ -6554,7 +6880,9 @@ class EphemeralContainer:
         :param liveness_probe: Probes are not allowed for ephemeral containers.
         :param ports: Ports are not allowed for ephemeral containers.
         :param readiness_probe: Probes are not allowed for ephemeral containers.
+        :param resize_policy: Resources resize policy for the container.
         :param resources: Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.
+        :param restart_policy: Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.
         :param security_context: Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.
         :param startup_probe: Probes are not allowed for ephemeral containers.
         :param stdin: Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. Default: false.
@@ -6594,7 +6922,9 @@ class EphemeralContainer:
             check_type(argname="argument liveness_probe", value=liveness_probe, expected_type=type_hints["liveness_probe"])
             check_type(argname="argument ports", value=ports, expected_type=type_hints["ports"])
             check_type(argname="argument readiness_probe", value=readiness_probe, expected_type=type_hints["readiness_probe"])
+            check_type(argname="argument resize_policy", value=resize_policy, expected_type=type_hints["resize_policy"])
             check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
+            check_type(argname="argument restart_policy", value=restart_policy, expected_type=type_hints["restart_policy"])
             check_type(argname="argument security_context", value=security_context, expected_type=type_hints["security_context"])
             check_type(argname="argument startup_probe", value=startup_probe, expected_type=type_hints["startup_probe"])
             check_type(argname="argument stdin", value=stdin, expected_type=type_hints["stdin"])
@@ -6629,8 +6959,12 @@ class EphemeralContainer:
             self._values["ports"] = ports
         if readiness_probe is not None:
             self._values["readiness_probe"] = readiness_probe
+        if resize_policy is not None:
+            self._values["resize_policy"] = resize_policy
         if resources is not None:
             self._values["resources"] = resources
+        if restart_policy is not None:
+            self._values["restart_policy"] = restart_policy
         if security_context is not None:
             self._values["security_context"] = security_context
         if startup_probe is not None:
@@ -6771,6 +7105,15 @@ class EphemeralContainer:
         return typing.cast(typing.Optional["Probe"], result)
 
     @builtins.property
+    def resize_policy(self) -> typing.Optional[typing.List[ContainerResizePolicy]]:
+        '''Resources resize policy for the container.
+
+        :schema: io.k8s.api.core.v1.EphemeralContainer#resizePolicy
+        '''
+        result = self._values.get("resize_policy")
+        return typing.cast(typing.Optional[typing.List[ContainerResizePolicy]], result)
+
+    @builtins.property
     def resources(self) -> typing.Optional["ResourceRequirements"]:
         '''Resources are not allowed for ephemeral containers.
 
@@ -6780,6 +7123,17 @@ class EphemeralContainer:
         '''
         result = self._values.get("resources")
         return typing.cast(typing.Optional["ResourceRequirements"], result)
+
+    @builtins.property
+    def restart_policy(self) -> typing.Optional[builtins.str]:
+        '''Restart policy for the container to manage the restart behavior of each container within a pod.
+
+        This may only be set for init containers. You cannot set this field on ephemeral containers.
+
+        :schema: io.k8s.api.core.v1.EphemeralContainer#restartPolicy
+        '''
+        result = self._values.get("restart_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def security_context(self) -> typing.Optional["SecurityContext"]:
@@ -7139,6 +7493,154 @@ class ExecAction:
 
     def __repr__(self) -> str:
         return "ExecAction(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ExemptPriorityLevelConfigurationV1Beta2",
+    jsii_struct_bases=[],
+    name_mapping={
+        "lendable_percent": "lendablePercent",
+        "nominal_concurrency_shares": "nominalConcurrencyShares",
+    },
+)
+class ExemptPriorityLevelConfigurationV1Beta2:
+    def __init__(
+        self,
+        *,
+        lendable_percent: typing.Optional[jsii.Number] = None,
+        nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''ExemptPriorityLevelConfiguration describes the configurable aspects of the handling of exempt requests.
+
+        In the mandatory exempt configuration object the values in the fields here can be modified by authorized users, unlike the rest of the ``spec``.
+
+        :param lendable_percent: ``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels. This value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows. LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+        :param nominal_concurrency_shares: ``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level. This is the number of execution seats nominally reserved for this priority level. This DOES NOT limit the dispatching from this priority level but affects the other priority levels through the borrowing mechanism. The server's concurrency limit (ServerCL) is divided among all the priority levels in proportion to their NCS values: NominalCL(i) = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k) Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of zero.
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.ExemptPriorityLevelConfiguration
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9122228acb7453c780a0d83288ba779d6e0adbe011be63493bc83fea4ccfc45a)
+            check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
+            check_type(argname="argument nominal_concurrency_shares", value=nominal_concurrency_shares, expected_type=type_hints["nominal_concurrency_shares"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if lendable_percent is not None:
+            self._values["lendable_percent"] = lendable_percent
+        if nominal_concurrency_shares is not None:
+            self._values["nominal_concurrency_shares"] = nominal_concurrency_shares
+
+    @builtins.property
+    def lendable_percent(self) -> typing.Optional[jsii.Number]:
+        '''``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels.
+
+        This value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows.
+
+        LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.ExemptPriorityLevelConfiguration#lendablePercent
+        '''
+        result = self._values.get("lendable_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def nominal_concurrency_shares(self) -> typing.Optional[jsii.Number]:
+        '''``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level.
+
+        This is the number of execution seats nominally reserved for this priority level. This DOES NOT limit the dispatching from this priority level but affects the other priority levels through the borrowing mechanism. The server's concurrency limit (ServerCL) is divided among all the priority levels in proportion to their NCS values:
+
+        NominalCL(i)  = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k)
+
+        Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of zero.
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.ExemptPriorityLevelConfiguration#nominalConcurrencyShares
+        '''
+        result = self._values.get("nominal_concurrency_shares")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ExemptPriorityLevelConfigurationV1Beta2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ExemptPriorityLevelConfigurationV1Beta3",
+    jsii_struct_bases=[],
+    name_mapping={
+        "lendable_percent": "lendablePercent",
+        "nominal_concurrency_shares": "nominalConcurrencyShares",
+    },
+)
+class ExemptPriorityLevelConfigurationV1Beta3:
+    def __init__(
+        self,
+        *,
+        lendable_percent: typing.Optional[jsii.Number] = None,
+        nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''ExemptPriorityLevelConfiguration describes the configurable aspects of the handling of exempt requests.
+
+        In the mandatory exempt configuration object the values in the fields here can be modified by authorized users, unlike the rest of the ``spec``.
+
+        :param lendable_percent: ``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels. This value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows. LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+        :param nominal_concurrency_shares: ``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level. This is the number of execution seats nominally reserved for this priority level. This DOES NOT limit the dispatching from this priority level but affects the other priority levels through the borrowing mechanism. The server's concurrency limit (ServerCL) is divided among all the priority levels in proportion to their NCS values: NominalCL(i) = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k) Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of zero.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ExemptPriorityLevelConfiguration
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__8c7dd41ac5f22bba1faaae4f1d7e26e1e81a74e532182f239a3d325536bc9dd0)
+            check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
+            check_type(argname="argument nominal_concurrency_shares", value=nominal_concurrency_shares, expected_type=type_hints["nominal_concurrency_shares"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if lendable_percent is not None:
+            self._values["lendable_percent"] = lendable_percent
+        if nominal_concurrency_shares is not None:
+            self._values["nominal_concurrency_shares"] = nominal_concurrency_shares
+
+    @builtins.property
+    def lendable_percent(self) -> typing.Optional[jsii.Number]:
+        '''``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels.
+
+        This value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows.
+
+        LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ExemptPriorityLevelConfiguration#lendablePercent
+        '''
+        result = self._values.get("lendable_percent")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def nominal_concurrency_shares(self) -> typing.Optional[jsii.Number]:
+        '''``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level.
+
+        This is the number of execution seats nominally reserved for this priority level. This DOES NOT limit the dispatching from this priority level but affects the other priority levels through the borrowing mechanism. The server's concurrency limit (ServerCL) is divided among all the priority levels in proportion to their NCS values:
+
+        NominalCL(i)  = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k)
+
+        Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of zero.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.ExemptPriorityLevelConfiguration#nominalConcurrencyShares
+        '''
+        result = self._values.get("nominal_concurrency_shares")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ExemptPriorityLevelConfigurationV1Beta3(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -8639,10 +9141,10 @@ class HorizontalPodAutoscalerSpec:
     ) -> None:
         '''specification of a horizontal pod autoscaler.
 
-        :param max_replicas: upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
+        :param max_replicas: maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
         :param scale_target_ref: reference to scaled resource; horizontal pod autoscaler will learn the current resource consumption and will set the desired number of pods by using its Scale subresource.
         :param min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available.
-        :param target_cpu_utilization_percentage: target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
+        :param target_cpu_utilization_percentage: targetCPUUtilizationPercentage is the target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
 
         :schema: io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerSpec
         '''
@@ -8665,7 +9167,7 @@ class HorizontalPodAutoscalerSpec:
 
     @builtins.property
     def max_replicas(self) -> jsii.Number:
-        '''upper limit for the number of pods that can be set by the autoscaler;
+        '''maxReplicas is the upper limit for the number of pods that can be set by the autoscaler;
 
         cannot be smaller than MinReplicas.
 
@@ -8700,7 +9202,7 @@ class HorizontalPodAutoscalerSpec:
 
     @builtins.property
     def target_cpu_utilization_percentage(self) -> typing.Optional[jsii.Number]:
-        '''target average CPU utilization (represented as a percentage of requested CPU) over all the pods;
+        '''targetCPUUtilizationPercentage is the target average CPU utilization (represented as a percentage of requested CPU) over all the pods;
 
         if not specified the default autoscaling policy will be used.
 
@@ -8981,9 +9483,9 @@ class HpaScalingPolicyV2:
     ) -> None:
         '''HPAScalingPolicy is a single policy which must hold true for a specified past interval.
 
-        :param period_seconds: PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
-        :param type: Type is used to specify the scaling policy.
-        :param value: Value contains the amount of change which is permitted by the policy. It must be greater than zero
+        :param period_seconds: periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+        :param type: type is used to specify the scaling policy.
+        :param value: value contains the amount of change which is permitted by the policy. It must be greater than zero
 
         :schema: io.k8s.api.autoscaling.v2.HPAScalingPolicy
         '''
@@ -9000,7 +9502,7 @@ class HpaScalingPolicyV2:
 
     @builtins.property
     def period_seconds(self) -> jsii.Number:
-        '''PeriodSeconds specifies the window of time for which the policy should hold true.
+        '''periodSeconds specifies the window of time for which the policy should hold true.
 
         PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
 
@@ -9012,7 +9514,7 @@ class HpaScalingPolicyV2:
 
     @builtins.property
     def type(self) -> builtins.str:
-        '''Type is used to specify the scaling policy.
+        '''type is used to specify the scaling policy.
 
         :schema: io.k8s.api.autoscaling.v2.HPAScalingPolicy#type
         '''
@@ -9022,7 +9524,7 @@ class HpaScalingPolicyV2:
 
     @builtins.property
     def value(self) -> jsii.Number:
-        '''Value contains the amount of change which is permitted by the policy.
+        '''value contains the amount of change which is permitted by the policy.
 
         It must be greater than zero
 
@@ -9067,7 +9569,7 @@ class HpaScalingRulesV2:
 
         :param policies: policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid
         :param select_policy: selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
-        :param stabilization_window_seconds: StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+        :param stabilization_window_seconds: stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
         :schema: io.k8s.api.autoscaling.v2.HPAScalingRules
         '''
@@ -9108,7 +9610,7 @@ class HpaScalingRulesV2:
 
     @builtins.property
     def stabilization_window_seconds(self) -> typing.Optional[jsii.Number]:
-        '''StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.
+        '''stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.
 
         StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
@@ -9256,7 +9758,7 @@ class HttpHeader:
     def __init__(self, *, name: builtins.str, value: builtins.str) -> None:
         '''HTTPHeader describes a custom header to be used in HTTP probes.
 
-        :param name: The header field name.
+        :param name: The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
         :param value: The header field value.
 
         :schema: io.k8s.api.core.v1.HTTPHeader
@@ -9273,6 +9775,8 @@ class HttpHeader:
     @builtins.property
     def name(self) -> builtins.str:
         '''The header field name.
+
+        This will be canonicalized upon output, so case-variant names will be understood as the same header.
 
         :schema: io.k8s.api.core.v1.HTTPHeader#name
         '''
@@ -9319,9 +9823,9 @@ class HttpIngressPath:
 
         Incoming urls matching the path are forwarded to the backend.
 
-        :param backend: Backend defines the referenced service endpoint to which the traffic will be forwarded to.
-        :param path_type: PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is done on a path element by element basis. A path element refers is the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). - ImplementationSpecific: Interpretation of the Path matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. Implementations are required to support all path types.
-        :param path: Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix".
+        :param backend: backend defines the referenced service endpoint to which the traffic will be forwarded to.
+        :param path_type: pathType determines the interpretation of the path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is done on a path element by element basis. A path element refers is the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). - ImplementationSpecific: Interpretation of the Path matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. Implementations are required to support all path types.
+        :param path: path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix".
 
         :schema: io.k8s.api.networking.v1.HTTPIngressPath
         '''
@@ -9341,7 +9845,7 @@ class HttpIngressPath:
 
     @builtins.property
     def backend(self) -> "IngressBackend":
-        '''Backend defines the referenced service endpoint to which the traffic will be forwarded to.
+        '''backend defines the referenced service endpoint to which the traffic will be forwarded to.
 
         :schema: io.k8s.api.networking.v1.HTTPIngressPath#backend
         '''
@@ -9351,7 +9855,7 @@ class HttpIngressPath:
 
     @builtins.property
     def path_type(self) -> builtins.str:
-        '''PathType determines the interpretation of the Path matching.
+        '''pathType determines the interpretation of the path matching.
 
         PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is
         done on a path element by element basis. A path element refers is the
@@ -9374,7 +9878,7 @@ class HttpIngressPath:
 
     @builtins.property
     def path(self) -> typing.Optional[builtins.str]:
-        '''Path is matched against the path of an incoming request.
+        '''path is matched against the path of an incoming request.
 
         Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix".
 
@@ -9410,7 +9914,7 @@ class HttpIngressRuleValue:
 
         In the example: http:///? -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
 
-        :param paths: A collection of paths that map requests to backends.
+        :param paths: paths is a collection of paths that map requests to backends.
 
         :schema: io.k8s.api.networking.v1.HTTPIngressRuleValue
         '''
@@ -9423,7 +9927,7 @@ class HttpIngressRuleValue:
 
     @builtins.property
     def paths(self) -> typing.List[HttpIngressPath]:
-        '''A collection of paths that map requests to backends.
+        '''paths is a collection of paths that map requests to backends.
 
         :schema: io.k8s.api.networking.v1.HTTPIngressRuleValue#paths
         '''
@@ -9457,8 +9961,8 @@ class IngressBackend:
     ) -> None:
         '''IngressBackend describes all endpoints for a given service and port.
 
-        :param resource: Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with "Service".
-        :param service: Service references a Service as a Backend. This is a mutually exclusive setting with "Resource".
+        :param resource: resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with "Service".
+        :param service: service references a service as a backend. This is a mutually exclusive setting with "Resource".
 
         :schema: io.k8s.api.networking.v1.IngressBackend
         '''
@@ -9478,7 +9982,7 @@ class IngressBackend:
 
     @builtins.property
     def resource(self) -> typing.Optional["TypedLocalObjectReference"]:
-        '''Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object.
+        '''resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object.
 
         If resource is specified, a service.Name and service.Port must not be specified. This is a mutually exclusive setting with "Service".
 
@@ -9489,7 +9993,7 @@ class IngressBackend:
 
     @builtins.property
     def service(self) -> typing.Optional["IngressServiceBackend"]:
-        '''Service references a Service as a Backend.
+        '''service references a service as a backend.
 
         This is a mutually exclusive setting with "Resource".
 
@@ -9535,11 +10039,11 @@ class IngressClassParametersReference:
 
         This can be used to specify a cluster or namespace-scoped resource.
 
-        :param kind: Kind is the type of resource being referenced.
-        :param name: Name is the name of resource being referenced.
-        :param api_group: APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-        :param namespace: Namespace is the namespace of the resource being referenced. This field is required when scope is set to "Namespace" and must be unset when scope is set to "Cluster".
-        :param scope: Scope represents if this refers to a cluster or namespace scoped resource. This may be set to "Cluster" (default) or "Namespace".
+        :param kind: kind is the type of resource being referenced.
+        :param name: name is the name of resource being referenced.
+        :param api_group: apiGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+        :param namespace: namespace is the namespace of the resource being referenced. This field is required when scope is set to "Namespace" and must be unset when scope is set to "Cluster".
+        :param scope: scope represents if this refers to a cluster or namespace scoped resource. This may be set to "Cluster" (default) or "Namespace".
 
         :schema: io.k8s.api.networking.v1.IngressClassParametersReference
         '''
@@ -9563,7 +10067,7 @@ class IngressClassParametersReference:
 
     @builtins.property
     def kind(self) -> builtins.str:
-        '''Kind is the type of resource being referenced.
+        '''kind is the type of resource being referenced.
 
         :schema: io.k8s.api.networking.v1.IngressClassParametersReference#kind
         '''
@@ -9573,7 +10077,7 @@ class IngressClassParametersReference:
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''Name is the name of resource being referenced.
+        '''name is the name of resource being referenced.
 
         :schema: io.k8s.api.networking.v1.IngressClassParametersReference#name
         '''
@@ -9583,7 +10087,7 @@ class IngressClassParametersReference:
 
     @builtins.property
     def api_group(self) -> typing.Optional[builtins.str]:
-        '''APIGroup is the group for the resource being referenced.
+        '''apiGroup is the group for the resource being referenced.
 
         If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
@@ -9594,7 +10098,7 @@ class IngressClassParametersReference:
 
     @builtins.property
     def namespace(self) -> typing.Optional[builtins.str]:
-        '''Namespace is the namespace of the resource being referenced.
+        '''namespace is the namespace of the resource being referenced.
 
         This field is required when scope is set to "Namespace" and must be unset when scope is set to "Cluster".
 
@@ -9605,7 +10109,7 @@ class IngressClassParametersReference:
 
     @builtins.property
     def scope(self) -> typing.Optional[builtins.str]:
-        '''Scope represents if this refers to a cluster or namespace scoped resource.
+        '''scope represents if this refers to a cluster or namespace scoped resource.
 
         This may be set to "Cluster" (default) or "Namespace".
 
@@ -9640,8 +10144,8 @@ class IngressClassSpec:
     ) -> None:
         '''IngressClassSpec provides information about the class of an Ingress.
 
-        :param controller: Controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
-        :param parameters: Parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.
+        :param controller: controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
+        :param parameters: parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.
 
         :schema: io.k8s.api.networking.v1.IngressClassSpec
         '''
@@ -9659,9 +10163,9 @@ class IngressClassSpec:
 
     @builtins.property
     def controller(self) -> typing.Optional[builtins.str]:
-        '''Controller refers to the name of the controller that should handle this class.
+        '''controller refers to the name of the controller that should handle this class.
 
-        This allows for different "flavors" that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
+        This allows for different "flavors" that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
 
         :schema: io.k8s.api.networking.v1.IngressClassSpec#controller
         '''
@@ -9670,7 +10174,7 @@ class IngressClassSpec:
 
     @builtins.property
     def parameters(self) -> typing.Optional[IngressClassParametersReference]:
-        '''Parameters is a link to a custom resource containing additional configuration for the controller.
+        '''parameters is a link to a custom resource containing additional configuration for the controller.
 
         This is optional if the controller does not require extra parameters.
 
@@ -9707,7 +10211,7 @@ class IngressRule:
 
         Incoming requests are first evaluated for a host match, then routed to the backend associated with the matching IngressRuleValue.
 
-        :param host: Host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to the IP in the Spec of the parent Ingress. 2. The ``:`` delimiter is not respected because ports are not allowed. Currently the port of an Ingress is implicitly :80 for http and :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue. Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
+        :param host: host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to the IP in the Spec of the parent Ingress. 2. The ``:`` delimiter is not respected because ports are not allowed. Currently the port of an Ingress is implicitly :80 for http and :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue. host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If host is precise, the request matches this rule if the http host header is equal to Host. 2. If host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
         :param http: 
 
         :schema: io.k8s.api.networking.v1.IngressRule
@@ -9726,7 +10230,7 @@ class IngressRule:
 
     @builtins.property
     def host(self) -> typing.Optional[builtins.str]:
-        '''Host is the fully qualified domain name of a network host, as defined by RFC 3986.
+        '''host is the fully qualified domain name of a network host, as defined by RFC 3986.
 
         Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to
         the IP in the Spec of the parent Ingress.
@@ -9735,7 +10239,7 @@ class IngressRule:
         :443 for https.
         Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue.
 
-        Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
+        host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If host is precise, the request matches this rule if the http host header is equal to Host. 2. If host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
 
         :schema: io.k8s.api.networking.v1.IngressRule#host
         '''
@@ -9776,8 +10280,8 @@ class IngressServiceBackend:
     ) -> None:
         '''IngressServiceBackend references a Kubernetes Service as a Backend.
 
-        :param name: Name is the referenced service. The service must exist in the same namespace as the Ingress object.
-        :param port: Port of the referenced service. A port name or port number is required for a IngressServiceBackend.
+        :param name: name is the referenced service. The service must exist in the same namespace as the Ingress object.
+        :param port: port of the referenced service. A port name or port number is required for a IngressServiceBackend.
 
         :schema: io.k8s.api.networking.v1.IngressServiceBackend
         '''
@@ -9795,7 +10299,7 @@ class IngressServiceBackend:
 
     @builtins.property
     def name(self) -> builtins.str:
-        '''Name is the referenced service.
+        '''name is the referenced service.
 
         The service must exist in the same namespace as the Ingress object.
 
@@ -9807,7 +10311,7 @@ class IngressServiceBackend:
 
     @builtins.property
     def port(self) -> typing.Optional["ServiceBackendPort"]:
-        '''Port of the referenced service.
+        '''port of the referenced service.
 
         A port name or port number is required for a IngressServiceBackend.
 
@@ -9849,10 +10353,10 @@ class IngressSpec:
     ) -> None:
         '''IngressSpec describes the Ingress the user wishes to exist.
 
-        :param default_backend: DefaultBackend is the backend that should handle requests that don't match any rule. If Rules are not specified, DefaultBackend must be specified. If DefaultBackend is not set, the handling of requests that do not match any of the rules will be up to the Ingress controller.
-        :param ingress_class_name: IngressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). Although the ``kubernetes.io/ingress.class`` annotation (simple constant name) was never formally defined, it was widely supported by Ingress controllers to create a direct binding between Ingress controller and Ingress resources. Newly created Ingress resources should prefer using the field. However, even though the annotation is officially deprecated, for backwards compatibility reasons, ingress controllers should still honor that annotation if present.
-        :param rules: A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
-        :param tls: TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
+        :param default_backend: defaultBackend is the backend that should handle requests that don't match any rule. If Rules are not specified, DefaultBackend must be specified. If DefaultBackend is not set, the handling of requests that do not match any of the rules will be up to the Ingress controller.
+        :param ingress_class_name: ingressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). Although the ``kubernetes.io/ingress.class`` annotation (simple constant name) was never formally defined, it was widely supported by Ingress controllers to create a direct binding between Ingress controller and Ingress resources. Newly created Ingress resources should prefer using the field. However, even though the annotation is officially deprecated, for backwards compatibility reasons, ingress controllers should still honor that annotation if present.
+        :param rules: rules is a list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
+        :param tls: tls represents the TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
 
         :schema: io.k8s.api.networking.v1.IngressSpec
         '''
@@ -9876,7 +10380,7 @@ class IngressSpec:
 
     @builtins.property
     def default_backend(self) -> typing.Optional[IngressBackend]:
-        '''DefaultBackend is the backend that should handle requests that don't match any rule.
+        '''defaultBackend is the backend that should handle requests that don't match any rule.
 
         If Rules are not specified, DefaultBackend must be specified. If DefaultBackend is not set, the handling of requests that do not match any of the rules will be up to the Ingress controller.
 
@@ -9887,7 +10391,7 @@ class IngressSpec:
 
     @builtins.property
     def ingress_class_name(self) -> typing.Optional[builtins.str]:
-        '''IngressClassName is the name of an IngressClass cluster resource.
+        '''ingressClassName is the name of an IngressClass cluster resource.
 
         Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). Although the ``kubernetes.io/ingress.class`` annotation (simple constant name) was never formally defined, it was widely supported by Ingress controllers to create a direct binding between Ingress controller and Ingress resources. Newly created Ingress resources should prefer using the field. However, even though the annotation is officially deprecated, for backwards compatibility reasons, ingress controllers should still honor that annotation if present.
 
@@ -9898,7 +10402,7 @@ class IngressSpec:
 
     @builtins.property
     def rules(self) -> typing.Optional[typing.List[IngressRule]]:
-        '''A list of host rules used to configure the Ingress.
+        '''rules is a list of host rules used to configure the Ingress.
 
         If unspecified, or no rule matches, all traffic is sent to the default backend.
 
@@ -9909,7 +10413,7 @@ class IngressSpec:
 
     @builtins.property
     def tls(self) -> typing.Optional[typing.List["IngressTls"]]:
-        '''TLS configuration.
+        '''tls represents the TLS configuration.
 
         Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
 
@@ -9942,10 +10446,10 @@ class IngressTls:
         hosts: typing.Optional[typing.Sequence[builtins.str]] = None,
         secret_name: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''IngressTLS describes the transport layer security associated with an Ingress.
+        '''IngressTLS describes the transport layer security associated with an ingress.
 
-        :param hosts: Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified. Default: the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
-        :param secret_name: SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
+        :param hosts: hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified. Default: the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
+        :param secret_name: secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the "Host" header is used for routing.
 
         :schema: io.k8s.api.networking.v1.IngressTLS
         '''
@@ -9961,7 +10465,7 @@ class IngressTls:
 
     @builtins.property
     def hosts(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Hosts are a list of hosts included in the TLS certificate.
+        '''hosts is a list of hosts included in the TLS certificate.
 
         The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
 
@@ -9974,9 +10478,9 @@ class IngressTls:
 
     @builtins.property
     def secret_name(self) -> typing.Optional[builtins.str]:
-        '''SecretName is the name of the secret used to terminate TLS traffic on port 443.
+        '''secretName is the name of the secret used to terminate TLS traffic on port 443.
 
-        Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
+        Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the "Host" header is used for routing.
 
         :schema: io.k8s.api.networking.v1.IngressTLS#secretName
         '''
@@ -10042,6 +10546,55 @@ class IoK8SApimachineryPkgApisMetaV1DeleteOptionsKind(enum.Enum):
 
 
 @jsii.data_type(
+    jsii_type="k8s.IpAddressSpecV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"parent_ref": "parentRef"},
+)
+class IpAddressSpecV1Alpha1:
+    def __init__(
+        self,
+        *,
+        parent_ref: typing.Optional[typing.Union["ParentReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''IPAddressSpec describe the attributes in an IP Address.
+
+        :param parent_ref: ParentRef references the resource that an IPAddress is attached to. An IPAddress must reference a parent object.
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddressSpec
+        '''
+        if isinstance(parent_ref, dict):
+            parent_ref = ParentReferenceV1Alpha1(**parent_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__508fc7610428ce7741a3a96af183f6afdf5d8e6b7952c600590f0d51058c7486)
+            check_type(argname="argument parent_ref", value=parent_ref, expected_type=type_hints["parent_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if parent_ref is not None:
+            self._values["parent_ref"] = parent_ref
+
+    @builtins.property
+    def parent_ref(self) -> typing.Optional["ParentReferenceV1Alpha1"]:
+        '''ParentRef references the resource that an IPAddress is attached to.
+
+        An IPAddress must reference a parent object.
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddressSpec#parentRef
+        '''
+        result = self._values.get("parent_ref")
+        return typing.cast(typing.Optional["ParentReferenceV1Alpha1"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "IpAddressSpecV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.IpBlock",
     jsii_struct_bases=[],
     name_mapping={"cidr": "cidr", "except_": "except"},
@@ -10057,8 +10610,8 @@ class IpBlock:
 
         "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
 
-        :param cidr: CIDR is a string representing the IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64".
-        :param except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the CIDR range.
+        :param cidr: cidr is a string representing the IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64".
+        :param except_: except is a slice of CIDRs that should not be included within an IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the cidr range.
 
         :schema: io.k8s.api.networking.v1.IPBlock
         '''
@@ -10074,7 +10627,7 @@ class IpBlock:
 
     @builtins.property
     def cidr(self) -> builtins.str:
-        '''CIDR is a string representing the IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64".
+        '''cidr is a string representing the IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64".
 
         :schema: io.k8s.api.networking.v1.IPBlock#cidr
         '''
@@ -10084,7 +10637,7 @@ class IpBlock:
 
     @builtins.property
     def except_(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the CIDR range.
+        '''except is a slice of CIDRs that should not be included within an IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the cidr range.
 
         :schema: io.k8s.api.networking.v1.IPBlock#except
         '''
@@ -10546,11 +11099,14 @@ class IscsiVolumeSource:
         "template": "template",
         "active_deadline_seconds": "activeDeadlineSeconds",
         "backoff_limit": "backoffLimit",
+        "backoff_limit_per_index": "backoffLimitPerIndex",
         "completion_mode": "completionMode",
         "completions": "completions",
         "manual_selector": "manualSelector",
+        "max_failed_indexes": "maxFailedIndexes",
         "parallelism": "parallelism",
         "pod_failure_policy": "podFailurePolicy",
+        "pod_replacement_policy": "podReplacementPolicy",
         "selector": "selector",
         "suspend": "suspend",
         "ttl_seconds_after_finished": "ttlSecondsAfterFinished",
@@ -10563,27 +11119,33 @@ class JobSpec:
         template: typing.Union["PodTemplateSpec", typing.Dict[builtins.str, typing.Any]],
         active_deadline_seconds: typing.Optional[jsii.Number] = None,
         backoff_limit: typing.Optional[jsii.Number] = None,
+        backoff_limit_per_index: typing.Optional[jsii.Number] = None,
         completion_mode: typing.Optional[builtins.str] = None,
         completions: typing.Optional[jsii.Number] = None,
         manual_selector: typing.Optional[builtins.bool] = None,
+        max_failed_indexes: typing.Optional[jsii.Number] = None,
         parallelism: typing.Optional[jsii.Number] = None,
         pod_failure_policy: typing.Optional[typing.Union["PodFailurePolicy", typing.Dict[builtins.str, typing.Any]]] = None,
+        pod_replacement_policy: typing.Optional[builtins.str] = None,
         selector: typing.Optional[typing.Union["LabelSelector", typing.Dict[builtins.str, typing.Any]]] = None,
         suspend: typing.Optional[builtins.bool] = None,
         ttl_seconds_after_finished: typing.Optional[jsii.Number] = None,
     ) -> None:
         '''JobSpec describes how the job execution will look like.
 
-        :param template: Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+        :param template: Describes the pod that will be created when executing a job. The only allowed template.spec.restartPolicy values are "Never" or "OnFailure". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         :param active_deadline_seconds: Specifies the duration in seconds relative to the startTime that the job may be continuously active before the system tries to terminate it; value must be positive integer. If a Job is suspended (at creation or through an update), this timer will effectively be stopped and reset when the Job is resumed again.
         :param backoff_limit: Specifies the number of retries before marking this job failed. Defaults to 6 Default: 6
-        :param completion_mode: CompletionMode specifies how Pod completions are tracked. It can be ``NonIndexed`` (default) or ``Indexed``. ``NonIndexed`` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other. ``Indexed`` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is ``Indexed``, .spec.completions must be specified and ``.spec.parallelism`` must be less than or equal to 10^5. In addition, The Pod name takes the form ``$(job-name)-$(index)-$(random-string)``, the Pod hostname takes the form ``$(job-name)-$(index)``. More completion modes can be added in the future. If the Job controller observes a mode that it doesn't recognize, which is possible during upgrades due to version skew, the controller skips updates for the Job.
-        :param completions: Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+        :param backoff_limit_per_index: Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is alpha-level. It can be used when the ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default).
+        :param completion_mode: completionMode specifies how Pod completions are tracked. It can be ``NonIndexed`` (default) or ``Indexed``. ``NonIndexed`` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other. ``Indexed`` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is ``Indexed``, .spec.completions must be specified and ``.spec.parallelism`` must be less than or equal to 10^5. In addition, The Pod name takes the form ``$(job-name)-$(index)-$(random-string)``, the Pod hostname takes the form ``$(job-name)-$(index)``. More completion modes can be added in the future. If the Job controller observes a mode that it doesn't recognize, which is possible during upgrades due to version skew, the controller skips updates for the Job.
+        :param completions: Specifies the desired number of successfully finished pods the job should be run with. Setting to null means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         :param manual_selector: manualSelector controls generation of pod labels and pod selectors. Leave ``manualSelector`` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ``manualSelector=true`` in jobs that were created with the old ``extensions/v1beta1`` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector
+        :param max_failed_indexes: Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the ``Complete`` Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is alpha-level. It can be used when the ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default).
         :param parallelism: Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
-        :param pod_failure_policy: Specifies the policy of handling failed pods. In particular, it allows to specify the set of actions and conditions which need to be satisfied to take the associated action. If empty, the default behaviour applies - the counter of failed pods, represented by the jobs's .status.failed field, is incremented and it is checked against the backoffLimit. This field cannot be used in combination with restartPolicy=OnFailure. This field is alpha-level. To use this field, you must enable the ``JobPodFailurePolicy`` feature gate (disabled by default).
+        :param pod_failure_policy: Specifies the policy of handling failed pods. In particular, it allows to specify the set of actions and conditions which need to be satisfied to take the associated action. If empty, the default behaviour applies - the counter of failed pods, represented by the jobs's .status.failed field, is incremented and it is checked against the backoffLimit. This field cannot be used in combination with restartPolicy=OnFailure. This field is beta-level. It can be used when the ``JobPodFailurePolicy`` feature gate is enabled (enabled by default).
+        :param pod_replacement_policy: podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. - Failed means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod. When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an alpha field. Enable JobPodReplacementPolicy to be able to use this field.
         :param selector: A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-        :param suspend: Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false. Default: false.
+        :param suspend: suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false. Default: false.
         :param ttl_seconds_after_finished: ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes.
 
         :schema: io.k8s.api.batch.v1.JobSpec
@@ -10599,11 +11161,14 @@ class JobSpec:
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument active_deadline_seconds", value=active_deadline_seconds, expected_type=type_hints["active_deadline_seconds"])
             check_type(argname="argument backoff_limit", value=backoff_limit, expected_type=type_hints["backoff_limit"])
+            check_type(argname="argument backoff_limit_per_index", value=backoff_limit_per_index, expected_type=type_hints["backoff_limit_per_index"])
             check_type(argname="argument completion_mode", value=completion_mode, expected_type=type_hints["completion_mode"])
             check_type(argname="argument completions", value=completions, expected_type=type_hints["completions"])
             check_type(argname="argument manual_selector", value=manual_selector, expected_type=type_hints["manual_selector"])
+            check_type(argname="argument max_failed_indexes", value=max_failed_indexes, expected_type=type_hints["max_failed_indexes"])
             check_type(argname="argument parallelism", value=parallelism, expected_type=type_hints["parallelism"])
             check_type(argname="argument pod_failure_policy", value=pod_failure_policy, expected_type=type_hints["pod_failure_policy"])
+            check_type(argname="argument pod_replacement_policy", value=pod_replacement_policy, expected_type=type_hints["pod_replacement_policy"])
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
             check_type(argname="argument suspend", value=suspend, expected_type=type_hints["suspend"])
             check_type(argname="argument ttl_seconds_after_finished", value=ttl_seconds_after_finished, expected_type=type_hints["ttl_seconds_after_finished"])
@@ -10614,16 +11179,22 @@ class JobSpec:
             self._values["active_deadline_seconds"] = active_deadline_seconds
         if backoff_limit is not None:
             self._values["backoff_limit"] = backoff_limit
+        if backoff_limit_per_index is not None:
+            self._values["backoff_limit_per_index"] = backoff_limit_per_index
         if completion_mode is not None:
             self._values["completion_mode"] = completion_mode
         if completions is not None:
             self._values["completions"] = completions
         if manual_selector is not None:
             self._values["manual_selector"] = manual_selector
+        if max_failed_indexes is not None:
+            self._values["max_failed_indexes"] = max_failed_indexes
         if parallelism is not None:
             self._values["parallelism"] = parallelism
         if pod_failure_policy is not None:
             self._values["pod_failure_policy"] = pod_failure_policy
+        if pod_replacement_policy is not None:
+            self._values["pod_replacement_policy"] = pod_replacement_policy
         if selector is not None:
             self._values["selector"] = selector
         if suspend is not None:
@@ -10635,7 +11206,7 @@ class JobSpec:
     def template(self) -> "PodTemplateSpec":
         '''Describes the pod that will be created when executing a job.
 
-        More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+        The only allowed template.spec.restartPolicy values are "Never" or "OnFailure". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 
         :schema: io.k8s.api.batch.v1.JobSpec#template
         '''
@@ -10668,8 +11239,19 @@ class JobSpec:
         return typing.cast(typing.Optional[jsii.Number], result)
 
     @builtins.property
+    def backoff_limit_per_index(self) -> typing.Optional[jsii.Number]:
+        '''Specifies the limit for the number of retries within an index before marking this index as failed.
+
+        When enabled the number of failures per index is kept in the pod's batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job's completionMode=Indexed, and the Pod's restart policy is Never. The field is immutable. This field is alpha-level. It can be used when the ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default).
+
+        :schema: io.k8s.api.batch.v1.JobSpec#backoffLimitPerIndex
+        '''
+        result = self._values.get("backoff_limit_per_index")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
     def completion_mode(self) -> typing.Optional[builtins.str]:
-        '''CompletionMode specifies how Pod completions are tracked. It can be ``NonIndexed`` (default) or ``Indexed``.
+        '''completionMode specifies how Pod completions are tracked. It can be ``NonIndexed`` (default) or ``Indexed``.
 
         ``NonIndexed`` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other.
 
@@ -10686,7 +11268,7 @@ class JobSpec:
     def completions(self) -> typing.Optional[jsii.Number]:
         '''Specifies the desired number of successfully finished pods the job should be run with.
 
-        Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+        Setting to null means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 
         :schema: io.k8s.api.batch.v1.JobSpec#completions
         '''
@@ -10705,6 +11287,17 @@ class JobSpec:
         return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
+    def max_failed_indexes(self) -> typing.Optional[jsii.Number]:
+        '''Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set.
+
+        Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the ``Complete`` Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is alpha-level. It can be used when the ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default).
+
+        :schema: io.k8s.api.batch.v1.JobSpec#maxFailedIndexes
+        '''
+        result = self._values.get("max_failed_indexes")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
     def parallelism(self) -> typing.Optional[jsii.Number]:
         '''Specifies the maximum desired number of pods the job should run at any given time.
 
@@ -10721,12 +11314,29 @@ class JobSpec:
 
         In particular, it allows to specify the set of actions and conditions which need to be satisfied to take the associated action. If empty, the default behaviour applies - the counter of failed pods, represented by the jobs's .status.failed field, is incremented and it is checked against the backoffLimit. This field cannot be used in combination with restartPolicy=OnFailure.
 
-        This field is alpha-level. To use this field, you must enable the ``JobPodFailurePolicy`` feature gate (disabled by default).
+        This field is beta-level. It can be used when the ``JobPodFailurePolicy`` feature gate is enabled (enabled by default).
 
         :schema: io.k8s.api.batch.v1.JobSpec#podFailurePolicy
         '''
         result = self._values.get("pod_failure_policy")
         return typing.cast(typing.Optional["PodFailurePolicy"], result)
+
+    @builtins.property
+    def pod_replacement_policy(self) -> typing.Optional[builtins.str]:
+        '''podReplacementPolicy specifies when to create replacement Pods.
+
+        Possible values are: - TerminatingOrFailed means that we recreate pods
+        when they are terminating (has a metadata.deletionTimestamp) or failed.
+
+        - Failed means to wait until a previously created Pod is fully terminated (has phase
+          Failed or Succeeded) before creating a replacement Pod.
+
+        When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an alpha field. Enable JobPodReplacementPolicy to be able to use this field.
+
+        :schema: io.k8s.api.batch.v1.JobSpec#podReplacementPolicy
+        '''
+        result = self._values.get("pod_replacement_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def selector(self) -> typing.Optional["LabelSelector"]:
@@ -10741,7 +11351,7 @@ class JobSpec:
 
     @builtins.property
     def suspend(self) -> typing.Optional[builtins.bool]:
-        '''Suspend specifies whether the Job controller should create Pods or not.
+        '''suspend specifies whether the Job controller should create Pods or not.
 
         If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
 
@@ -12324,7 +12934,7 @@ class KubeClusterCidrListV1Alpha1(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of ClusterCIDRs.
+        :param items: items is the list of ClusterCIDRs.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -12347,7 +12957,7 @@ class KubeClusterCidrListV1Alpha1(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of ClusterCIDRs.
+        :param items: items is the list of ClusterCIDRs.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeClusterCidrListV1Alpha1Props(items=items, metadata=metadata)
@@ -12380,7 +12990,7 @@ class KubeClusterCidrListV1Alpha1Props:
     ) -> None:
         '''ClusterCIDRList contains a list of ClusterCIDR.
 
-        :param items: Items is the list of ClusterCIDRs.
+        :param items: items is the list of ClusterCIDRs.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRList
@@ -12399,7 +13009,7 @@ class KubeClusterCidrListV1Alpha1Props:
 
     @builtins.property
     def items(self) -> typing.List["KubeClusterCidrv1Alpha1Props"]:
-        '''Items is the list of ClusterCIDRs.
+        '''items is the list of ClusterCIDRs.
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDRList#items
         '''
@@ -12455,7 +13065,7 @@ class KubeClusterCidrv1Alpha1(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__38c199ac22bb3d8686743ec4676956ef1167fe20e7487535199d00a97bec4353)
@@ -12478,7 +13088,7 @@ class KubeClusterCidrv1Alpha1(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         props = KubeClusterCidrv1Alpha1Props(metadata=metadata, spec=spec)
 
@@ -12513,7 +13123,7 @@ class KubeClusterCidrv1Alpha1Props:
         A cluster may have any number of ClusterCIDR resources, all of which will be considered when allocating a CIDR for a Node.  A ClusterCIDR is eligible to be used for a given Node when the node selector matches the node in question and has free CIDRs to allocate.  In case of multiple matching ClusterCIDR resources, the allocator will attempt to break ties using internal heuristics, but any ClusterCIDR whose node selector matches the Node may be used.
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the ClusterCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
         :schema: io.k8s.api.networking.v1alpha1.ClusterCIDR
         '''
@@ -12544,7 +13154,7 @@ class KubeClusterCidrv1Alpha1Props:
 
     @builtins.property
     def spec(self) -> typing.Optional[ClusterCidrSpecV1Alpha1]:
-        '''Spec is the desired state of the ClusterCIDR.
+        '''spec is the desired state of the ClusterCIDR.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
@@ -12662,7 +13272,7 @@ class KubeClusterRoleBinding(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
@@ -12689,7 +13299,7 @@ class KubeClusterRoleBinding(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
@@ -12858,7 +13468,7 @@ class KubeClusterRoleBindingProps:
 
         It can reference a ClusterRole in the global namespace, and adds who information via Subject.
 
-        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
 
@@ -12885,7 +13495,7 @@ class KubeClusterRoleBindingProps:
     def role_ref(self) -> "RoleRef":
         '''RoleRef can only reference a ClusterRole in the global namespace.
 
-        If the RoleRef cannot be resolved, the Authorizer must return an error.
+        If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
 
         :schema: io.k8s.api.rbac.v1.ClusterRoleBinding#roleRef
         '''
@@ -13128,6 +13738,268 @@ class KubeClusterRoleProps:
 
     def __repr__(self) -> str:
         return "KubeClusterRoleProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeClusterTrustBundleListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeClusterTrustBundleListV1Alpha1",
+):
+    '''ClusterTrustBundleList is a collection of ClusterTrustBundle objects.
+
+    :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubeClusterTrustBundleV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: items is a collection of ClusterTrustBundle objects.
+        :param metadata: metadata contains the list metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f93fc4d82dfde6a6fc160e1494922e8fd6164f65d1a44c956d746ca3f3f072ec)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeClusterTrustBundleListV1Alpha1Props(items=items, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubeClusterTrustBundleV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: items is a collection of ClusterTrustBundle objects.
+        :param metadata: metadata contains the list metadata.
+        '''
+        props = KubeClusterTrustBundleListV1Alpha1Props(items=items, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeClusterTrustBundleListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeClusterTrustBundleListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubeClusterTrustBundleV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ClusterTrustBundleList is a collection of ClusterTrustBundle objects.
+
+        :param items: items is a collection of ClusterTrustBundle objects.
+        :param metadata: metadata contains the list metadata.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2a1744260f576ca046c6a966a4564d3d3422d0d87cef3cc630a777a4344c4c6f)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubeClusterTrustBundleV1Alpha1Props"]:
+        '''items is a collection of ClusterTrustBundle objects.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeClusterTrustBundleV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''metadata contains the list metadata.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeClusterTrustBundleListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeClusterTrustBundleV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeClusterTrustBundleV1Alpha1",
+):
+    '''ClusterTrustBundle is a cluster-scoped container for X.509 trust anchors (root certificates).
+
+    ClusterTrustBundle objects are considered to be readable by any authenticated user in the cluster, because they can be mounted by pods using the ``clusterTrustBundle`` projection.  All service accounts have read access to ClusterTrustBundles by default.  Users who only have namespace-level access to a cluster can read ClusterTrustBundles by impersonating a serviceaccount that they have access to.
+
+    It can be optionally associated with a particular assigner, in which case it contains one valid set of trust anchors for that signer. Signers may have multiple associated ClusterTrustBundles; each is an independent set of trust anchors for that signer. Admission control is used to enforce that only users with permissions on the signer can create or modify the corresponding bundle.
+
+    :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundle
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        spec: typing.Union[ClusterTrustBundleSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.certificates.v1alpha1.ClusterTrustBundle" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param spec: spec contains the signer (if any) and trust anchors.
+        :param metadata: metadata contains the object metadata.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__30285f82fa8bc6746329e40f965ecc6be9f1035835a23fb7c6b2c34d159abfcc)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeClusterTrustBundleV1Alpha1Props(spec=spec, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        spec: typing.Union[ClusterTrustBundleSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.certificates.v1alpha1.ClusterTrustBundle".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param spec: spec contains the signer (if any) and trust anchors.
+        :param metadata: metadata contains the object metadata.
+        '''
+        props = KubeClusterTrustBundleV1Alpha1Props(spec=spec, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.certificates.v1alpha1.ClusterTrustBundle".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeClusterTrustBundleV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"spec": "spec", "metadata": "metadata"},
+)
+class KubeClusterTrustBundleV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        spec: typing.Union[ClusterTrustBundleSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ClusterTrustBundle is a cluster-scoped container for X.509 trust anchors (root certificates).
+
+        ClusterTrustBundle objects are considered to be readable by any authenticated user in the cluster, because they can be mounted by pods using the ``clusterTrustBundle`` projection.  All service accounts have read access to ClusterTrustBundles by default.  Users who only have namespace-level access to a cluster can read ClusterTrustBundles by impersonating a serviceaccount that they have access to.
+
+        It can be optionally associated with a particular assigner, in which case it contains one valid set of trust anchors for that signer. Signers may have multiple associated ClusterTrustBundles; each is an independent set of trust anchors for that signer. Admission control is used to enforce that only users with permissions on the signer can create or modify the corresponding bundle.
+
+        :param spec: spec contains the signer (if any) and trust anchors.
+        :param metadata: metadata contains the object metadata.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundle
+        '''
+        if isinstance(spec, dict):
+            spec = ClusterTrustBundleSpecV1Alpha1(**spec)
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9539a89df5b132edfa3c817a6357b431b64b4db27fadd919e70b3004d3f2fef5)
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "spec": spec,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def spec(self) -> ClusterTrustBundleSpecV1Alpha1:
+        '''spec contains the signer (if any) and trust anchors.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundle#spec
+        '''
+        result = self._values.get("spec")
+        assert result is not None, "Required property 'spec' is missing"
+        return typing.cast(ClusterTrustBundleSpecV1Alpha1, result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''metadata contains the object metadata.
+
+        :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundle#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeClusterTrustBundleV1Alpha1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -14264,7 +15136,7 @@ class KubeCsiDriver(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param spec: Specification of the CSI Driver.
+        :param spec: spec represents the specification of the CSI Driver.
         :param metadata: Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -14287,7 +15159,7 @@ class KubeCsiDriver(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param spec: Specification of the CSI Driver.
+        :param spec: spec represents the specification of the CSI Driver.
         :param metadata: Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeCsiDriverProps(spec=spec, metadata=metadata)
@@ -14448,7 +15320,7 @@ class KubeCsiDriverProps:
 
         Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.
 
-        :param spec: Specification of the CSI Driver.
+        :param spec: spec represents the specification of the CSI Driver.
         :param metadata: Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.storage.v1.CSIDriver
@@ -14469,7 +15341,7 @@ class KubeCsiDriverProps:
 
     @builtins.property
     def spec(self) -> CsiDriverSpec:
-        '''Specification of the CSI Driver.
+        '''spec represents the specification of the CSI Driver.
 
         :schema: io.k8s.api.storage.v1.CSIDriver#spec
         '''
@@ -14525,7 +15397,7 @@ class KubeCsiNode(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param spec: spec is the specification of CSINode.
-        :param metadata: metadata.name must be the Kubernetes node name.
+        :param metadata: Standard object's metadata. metadata.name must be the Kubernetes node name.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__7dd065420aed16ce38e08784b9f9c9401b5ee146421a5de47261e92390d97f7f)
@@ -14548,7 +15420,7 @@ class KubeCsiNode(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param spec: spec is the specification of CSINode.
-        :param metadata: metadata.name must be the Kubernetes node name.
+        :param metadata: Standard object's metadata. metadata.name must be the Kubernetes node name.
         '''
         props = KubeCsiNodeProps(spec=spec, metadata=metadata)
 
@@ -14709,7 +15581,7 @@ class KubeCsiNodeProps:
         CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.
 
         :param spec: spec is the specification of CSINode.
-        :param metadata: metadata.name must be the Kubernetes node name.
+        :param metadata: Standard object's metadata. metadata.name must be the Kubernetes node name.
 
         :schema: io.k8s.api.storage.v1.CSINode
         '''
@@ -14739,7 +15611,9 @@ class KubeCsiNodeProps:
 
     @builtins.property
     def metadata(self) -> typing.Optional["ObjectMeta"]:
-        '''metadata.name must be the Kubernetes node name.
+        '''Standard object's metadata.
+
+        metadata.name must be the Kubernetes node name.
 
         :schema: io.k8s.api.storage.v1.CSINode#metadata
         '''
@@ -14793,11 +15667,11 @@ class KubeCsiStorageCapacity(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
+        :param storage_class_name: storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
+        :param capacity: capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
+        :param maximum_volume_size: maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
+        :param metadata: Standard object's metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param node_topology: nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__672a59a6175ac3d81f59910bb1d738e8e11c47b69c2c3db2480f4a98e073f0df)
@@ -14828,11 +15702,11 @@ class KubeCsiStorageCapacity(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
+        :param storage_class_name: storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
+        :param capacity: capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
+        :param maximum_volume_size: maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
+        :param metadata: Standard object's metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param node_topology: nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
         '''
         props = KubeCsiStorageCapacityProps(
             storage_class_name=storage_class_name,
@@ -14878,7 +15752,7 @@ class KubeCsiStorageCapacityList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of CSIStorageCapacity objects.
+        :param items: items is the list of CSIStorageCapacity objects.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
@@ -14901,7 +15775,7 @@ class KubeCsiStorageCapacityList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of CSIStorageCapacity objects.
+        :param items: items is the list of CSIStorageCapacity objects.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         props = KubeCsiStorageCapacityListProps(items=items, metadata=metadata)
@@ -14934,7 +15808,7 @@ class KubeCsiStorageCapacityListProps:
     ) -> None:
         '''CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
 
-        :param items: Items is the list of CSIStorageCapacity objects.
+        :param items: items is the list of CSIStorageCapacity objects.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
 
         :schema: io.k8s.api.storage.v1.CSIStorageCapacityList
@@ -14953,7 +15827,7 @@ class KubeCsiStorageCapacityListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeCsiStorageCapacityProps"]:
-        '''Items is the list of CSIStorageCapacity objects.
+        '''items is the list of CSIStorageCapacity objects.
 
         :schema: io.k8s.api.storage.v1.CSIStorageCapacityList#items
         '''
@@ -14978,132 +15852,6 @@ class KubeCsiStorageCapacityListProps:
 
     def __repr__(self) -> str:
         return "KubeCsiStorageCapacityListProps(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-class KubeCsiStorageCapacityListV1Beta1(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeCsiStorageCapacityListV1Beta1",
-):
-    '''CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
-
-    :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacityList
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        items: typing.Sequence[typing.Union["KubeCsiStorageCapacityV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.storage.v1beta1.CSIStorageCapacityList" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param items: Items is the list of CSIStorageCapacity objects.
-        :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__661ec608be88da1c7692b081e6f7c74ef61ce4e8d4a37bd7ec5da8d2611cf0a8)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeCsiStorageCapacityListV1Beta1Props(items=items, metadata=metadata)
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        items: typing.Sequence[typing.Union["KubeCsiStorageCapacityV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.storage.v1beta1.CSIStorageCapacityList".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param items: Items is the list of CSIStorageCapacity objects.
-        :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        '''
-        props = KubeCsiStorageCapacityListV1Beta1Props(items=items, metadata=metadata)
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.storage.v1beta1.CSIStorageCapacityList".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubeCsiStorageCapacityListV1Beta1Props",
-    jsii_struct_bases=[],
-    name_mapping={"items": "items", "metadata": "metadata"},
-)
-class KubeCsiStorageCapacityListV1Beta1Props:
-    def __init__(
-        self,
-        *,
-        items: typing.Sequence[typing.Union["KubeCsiStorageCapacityV1Beta1Props", typing.Dict[builtins.str, typing.Any]]],
-        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
-
-        :param items: Items is the list of CSIStorageCapacity objects.
-        :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacityList
-        '''
-        if isinstance(metadata, dict):
-            metadata = ListMeta(**metadata)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__400eae37cc38d2ad1a0f22a496ee8496cb5d543295c2d8fb25d899afe6986998)
-            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "items": items,
-        }
-        if metadata is not None:
-            self._values["metadata"] = metadata
-
-    @builtins.property
-    def items(self) -> typing.List["KubeCsiStorageCapacityV1Beta1Props"]:
-        '''Items is the list of CSIStorageCapacity objects.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacityList#items
-        '''
-        result = self._values.get("items")
-        assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeCsiStorageCapacityV1Beta1Props"], result)
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ListMeta"]:
-        '''Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacityList#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ListMeta"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubeCsiStorageCapacityListV1Beta1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -15141,11 +15889,11 @@ class KubeCsiStorageCapacityProps:
 
         They are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node.
 
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
+        :param storage_class_name: storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
+        :param capacity: capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
+        :param maximum_volume_size: maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
+        :param metadata: Standard object's metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param node_topology: nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
 
         :schema: io.k8s.api.storage.v1.CSIStorageCapacity
         '''
@@ -15174,7 +15922,7 @@ class KubeCsiStorageCapacityProps:
 
     @builtins.property
     def storage_class_name(self) -> builtins.str:
-        '''The name of the StorageClass that the reported capacity applies to.
+        '''storageClassName represents the name of the StorageClass that the reported capacity applies to.
 
         It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
 
@@ -15186,7 +15934,7 @@ class KubeCsiStorageCapacityProps:
 
     @builtins.property
     def capacity(self) -> typing.Optional["Quantity"]:
-        '''Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
+        '''capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
 
         The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
 
@@ -15197,7 +15945,7 @@ class KubeCsiStorageCapacityProps:
 
     @builtins.property
     def maximum_volume_size(self) -> typing.Optional["Quantity"]:
-        '''MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
+        '''maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
 
         This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
 
@@ -15210,7 +15958,7 @@ class KubeCsiStorageCapacityProps:
     def metadata(self) -> typing.Optional["ObjectMeta"]:
         '''Standard object's metadata.
 
-        The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name.
+        The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name.
 
         Objects are namespaced.
 
@@ -15223,7 +15971,7 @@ class KubeCsiStorageCapacityProps:
 
     @builtins.property
     def node_topology(self) -> typing.Optional["LabelSelector"]:
-        '''NodeTopology defines which nodes have access to the storage for which capacity was reported.
+        '''nodeTopology defines which nodes have access to the storage for which capacity was reported.
 
         If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
 
@@ -15240,240 +15988,6 @@ class KubeCsiStorageCapacityProps:
 
     def __repr__(self) -> str:
         return "KubeCsiStorageCapacityProps(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-class KubeCsiStorageCapacityV1Beta1(
-    _cdk8s_d3d9af27.ApiObject,
-    metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeCsiStorageCapacityV1Beta1",
-):
-    '''CSIStorageCapacity stores the result of one CSI GetCapacity call.
-
-    For a given StorageClass, this describes the available capacity in a particular topology segment.  This can be used when considering where to instantiate new PersistentVolumes.
-
-    For example this can express things like: - StorageClass "standard" has "1234 GiB" available in "topology.kubernetes.io/zone=us-east1" - StorageClass "localssd" has "10 GiB" available in "kubernetes.io/hostname=knode-abc123"
-
-    The following three cases all imply that no capacity is available for a certain combination: - no object exists with suitable topology and storage class name - such an object exists, but the capacity is unset - such an object exists, but the capacity is zero
-
-    The producer of these objects can decide which approach is more suitable.
-
-    They are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node.
-
-    :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity
-    '''
-
-    def __init__(
-        self,
-        scope: _constructs_77d1e7e8.Construct,
-        id: builtins.str,
-        *,
-        storage_class_name: builtins.str,
-        capacity: typing.Optional["Quantity"] = None,
-        maximum_volume_size: typing.Optional["Quantity"] = None,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        node_topology: typing.Optional[typing.Union["LabelSelector", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''Defines a "io.k8s.api.storage.v1beta1.CSIStorageCapacity" API object.
-
-        :param scope: the scope in which to define this object.
-        :param id: a scope-local name for the object.
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cce715b0cafab1814f8745ad981ca208df4018c7a12f6d649842f804831cf83e)
-            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
-            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeCsiStorageCapacityV1Beta1Props(
-            storage_class_name=storage_class_name,
-            capacity=capacity,
-            maximum_volume_size=maximum_volume_size,
-            metadata=metadata,
-            node_topology=node_topology,
-        )
-
-        jsii.create(self.__class__, self, [scope, id, props])
-
-    @jsii.member(jsii_name="manifest")
-    @builtins.classmethod
-    def manifest(
-        cls,
-        *,
-        storage_class_name: builtins.str,
-        capacity: typing.Optional["Quantity"] = None,
-        maximum_volume_size: typing.Optional["Quantity"] = None,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        node_topology: typing.Optional[typing.Union["LabelSelector", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.storage.v1beta1.CSIStorageCapacity".
-
-        This can be used to inline resource manifests inside other objects (e.g. as templates).
-
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
-        '''
-        props = KubeCsiStorageCapacityV1Beta1Props(
-            storage_class_name=storage_class_name,
-            capacity=capacity,
-            maximum_volume_size=maximum_volume_size,
-            metadata=metadata,
-            node_topology=node_topology,
-        )
-
-        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
-
-    @jsii.member(jsii_name="toJson")
-    def to_json(self) -> typing.Any:
-        '''Renders the object to Kubernetes JSON.'''
-        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
-
-    @jsii.python.classproperty
-    @jsii.member(jsii_name="GVK")
-    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.storage.v1beta1.CSIStorageCapacity".'''
-        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
-
-
-@jsii.data_type(
-    jsii_type="k8s.KubeCsiStorageCapacityV1Beta1Props",
-    jsii_struct_bases=[],
-    name_mapping={
-        "storage_class_name": "storageClassName",
-        "capacity": "capacity",
-        "maximum_volume_size": "maximumVolumeSize",
-        "metadata": "metadata",
-        "node_topology": "nodeTopology",
-    },
-)
-class KubeCsiStorageCapacityV1Beta1Props:
-    def __init__(
-        self,
-        *,
-        storage_class_name: builtins.str,
-        capacity: typing.Optional["Quantity"] = None,
-        maximum_volume_size: typing.Optional["Quantity"] = None,
-        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        node_topology: typing.Optional[typing.Union["LabelSelector", typing.Dict[builtins.str, typing.Any]]] = None,
-    ) -> None:
-        '''CSIStorageCapacity stores the result of one CSI GetCapacity call.
-
-        For a given StorageClass, this describes the available capacity in a particular topology segment.  This can be used when considering where to instantiate new PersistentVolumes.
-
-        For example this can express things like: - StorageClass "standard" has "1234 GiB" available in "topology.kubernetes.io/zone=us-east1" - StorageClass "localssd" has "10 GiB" available in "kubernetes.io/hostname=knode-abc123"
-
-        The following three cases all imply that no capacity is available for a certain combination: - no object exists with suitable topology and storage class name - such an object exists, but the capacity is unset - such an object exists, but the capacity is zero
-
-        The producer of these objects can decide which approach is more suitable.
-
-        They are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node.
-
-        :param storage_class_name: The name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-        :param capacity: Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-        :param maximum_volume_size: MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-        :param metadata: Standard object's metadata. The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param node_topology: NodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity
-        '''
-        if isinstance(metadata, dict):
-            metadata = ObjectMeta(**metadata)
-        if isinstance(node_topology, dict):
-            node_topology = LabelSelector(**node_topology)
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8418b166e025fb1853c1ac02bf35c29f522036d884cff7a2ce4f670249d87d99)
-            check_type(argname="argument storage_class_name", value=storage_class_name, expected_type=type_hints["storage_class_name"])
-            check_type(argname="argument capacity", value=capacity, expected_type=type_hints["capacity"])
-            check_type(argname="argument maximum_volume_size", value=maximum_volume_size, expected_type=type_hints["maximum_volume_size"])
-            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
-            check_type(argname="argument node_topology", value=node_topology, expected_type=type_hints["node_topology"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "storage_class_name": storage_class_name,
-        }
-        if capacity is not None:
-            self._values["capacity"] = capacity
-        if maximum_volume_size is not None:
-            self._values["maximum_volume_size"] = maximum_volume_size
-        if metadata is not None:
-            self._values["metadata"] = metadata
-        if node_topology is not None:
-            self._values["node_topology"] = node_topology
-
-    @builtins.property
-    def storage_class_name(self) -> builtins.str:
-        '''The name of the StorageClass that the reported capacity applies to.
-
-        It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity#storageClassName
-        '''
-        result = self._values.get("storage_class_name")
-        assert result is not None, "Required property 'storage_class_name' is missing"
-        return typing.cast(builtins.str, result)
-
-    @builtins.property
-    def capacity(self) -> typing.Optional["Quantity"]:
-        '''Capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
-
-        The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity#capacity
-        '''
-        result = self._values.get("capacity")
-        return typing.cast(typing.Optional["Quantity"], result)
-
-    @builtins.property
-    def maximum_volume_size(self) -> typing.Optional["Quantity"]:
-        '''MaximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.
-
-        This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity#maximumVolumeSize
-        '''
-        result = self._values.get("maximum_volume_size")
-        return typing.cast(typing.Optional["Quantity"], result)
-
-    @builtins.property
-    def metadata(self) -> typing.Optional["ObjectMeta"]:
-        '''Standard object's metadata.
-
-        The name has no particular meaning. It must be be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-, a generated name, or a reverse-domain name which ends with the unique CSI driver name.
-
-        Objects are namespaced.
-
-        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity#metadata
-        '''
-        result = self._values.get("metadata")
-        return typing.cast(typing.Optional["ObjectMeta"], result)
-
-    @builtins.property
-    def node_topology(self) -> typing.Optional["LabelSelector"]:
-        '''NodeTopology defines which nodes have access to the storage for which capacity was reported.
-
-        If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
-
-        :schema: io.k8s.api.storage.v1beta1.CSIStorageCapacity#nodeTopology
-        '''
-        result = self._values.get("node_topology")
-        return typing.cast(typing.Optional["LabelSelector"], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "KubeCsiStorageCapacityV1Beta1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -16356,7 +16870,7 @@ class KubeEndpointSliceList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: List of endpoint slices.
+        :param items: items is the list of endpoint slices.
         :param metadata: Standard list metadata.
         '''
         if __debug__:
@@ -16379,7 +16893,7 @@ class KubeEndpointSliceList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: List of endpoint slices.
+        :param items: items is the list of endpoint slices.
         :param metadata: Standard list metadata.
         '''
         props = KubeEndpointSliceListProps(items=items, metadata=metadata)
@@ -16412,7 +16926,7 @@ class KubeEndpointSliceListProps:
     ) -> None:
         '''EndpointSliceList represents a list of endpoint slices.
 
-        :param items: List of endpoint slices.
+        :param items: items is the list of endpoint slices.
         :param metadata: Standard list metadata.
 
         :schema: io.k8s.api.discovery.v1.EndpointSliceList
@@ -16431,7 +16945,7 @@ class KubeEndpointSliceListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeEndpointSliceProps"]:
-        '''List of endpoint slices.
+        '''items is the list of endpoint slices.
 
         :schema: io.k8s.api.discovery.v1.EndpointSliceList#items
         '''
@@ -18088,7 +18602,7 @@ class KubeHorizontalPodAutoscaler(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__3659a33a1f8b87b529d9e9023dd6bb01e0bfb73facc829ec1a43b27043decca0)
@@ -18111,7 +18625,7 @@ class KubeHorizontalPodAutoscaler(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         props = KubeHorizontalPodAutoscalerProps(metadata=metadata, spec=spec)
 
@@ -18151,7 +18665,7 @@ class KubeHorizontalPodAutoscalerList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: list of horizontal pod autoscaler objects.
+        :param items: items is the list of horizontal pod autoscaler objects.
         :param metadata: Standard list metadata.
         '''
         if __debug__:
@@ -18174,7 +18688,7 @@ class KubeHorizontalPodAutoscalerList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: list of horizontal pod autoscaler objects.
+        :param items: items is the list of horizontal pod autoscaler objects.
         :param metadata: Standard list metadata.
         '''
         props = KubeHorizontalPodAutoscalerListProps(items=items, metadata=metadata)
@@ -18207,7 +18721,7 @@ class KubeHorizontalPodAutoscalerListProps:
     ) -> None:
         '''list of horizontal pod autoscaler objects.
 
-        :param items: list of horizontal pod autoscaler objects.
+        :param items: items is the list of horizontal pod autoscaler objects.
         :param metadata: Standard list metadata.
 
         :schema: io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerList
@@ -18226,7 +18740,7 @@ class KubeHorizontalPodAutoscalerListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeHorizontalPodAutoscalerProps"]:
-        '''list of horizontal pod autoscaler objects.
+        '''items is the list of horizontal pod autoscaler objects.
 
         :schema: io.k8s.api.autoscaling.v1.HorizontalPodAutoscalerList#items
         '''
@@ -18396,7 +18910,7 @@ class KubeHorizontalPodAutoscalerProps:
         '''configuration of a horizontal pod autoscaler.
 
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
 
         :schema: io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler
         '''
@@ -18427,7 +18941,7 @@ class KubeHorizontalPodAutoscalerProps:
 
     @builtins.property
     def spec(self) -> typing.Optional[HorizontalPodAutoscalerSpec]:
-        '''behaviour of autoscaler.
+        '''spec defines the behaviour of autoscaler.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
 
@@ -18604,7 +19118,7 @@ class KubeIngress(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__fecb69d0c5ae696fc26dfb5e8ab4fdf624ec8c1b40d730da8ee18908df85a89a)
@@ -18627,7 +19141,7 @@ class KubeIngress(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         props = KubeIngressProps(metadata=metadata, spec=spec)
 
@@ -18670,7 +19184,7 @@ class KubeIngressClass(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__d418ae2f0a6f2d90c9b2dd88ca1f6a84e3153a97a96e7ff6807e07b0dd61c0b7)
@@ -18693,7 +19207,7 @@ class KubeIngressClass(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         props = KubeIngressClassProps(metadata=metadata, spec=spec)
 
@@ -18733,7 +19247,7 @@ class KubeIngressClassList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of IngressClasses.
+        :param items: items is the list of IngressClasses.
         :param metadata: Standard list metadata.
         '''
         if __debug__:
@@ -18756,7 +19270,7 @@ class KubeIngressClassList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of IngressClasses.
+        :param items: items is the list of IngressClasses.
         :param metadata: Standard list metadata.
         '''
         props = KubeIngressClassListProps(items=items, metadata=metadata)
@@ -18789,7 +19303,7 @@ class KubeIngressClassListProps:
     ) -> None:
         '''IngressClassList is a collection of IngressClasses.
 
-        :param items: Items is the list of IngressClasses.
+        :param items: items is the list of IngressClasses.
         :param metadata: Standard list metadata.
 
         :schema: io.k8s.api.networking.v1.IngressClassList
@@ -18808,7 +19322,7 @@ class KubeIngressClassListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeIngressClassProps"]:
-        '''Items is the list of IngressClasses.
+        '''items is the list of IngressClasses.
 
         :schema: io.k8s.api.networking.v1.IngressClassList#items
         '''
@@ -18854,7 +19368,7 @@ class KubeIngressClassProps:
         The ``ingressclass.kubernetes.io/is-default-class`` annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class.
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
         :schema: io.k8s.api.networking.v1.IngressClass
         '''
@@ -18885,7 +19399,7 @@ class KubeIngressClassProps:
 
     @builtins.property
     def spec(self) -> typing.Optional[IngressClassSpec]:
-        '''Spec is the desired state of the IngressClass.
+        '''spec is the desired state of the IngressClass.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
@@ -18928,7 +19442,7 @@ class KubeIngressList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of Ingress.
+        :param items: items is the list of Ingress.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -18951,7 +19465,7 @@ class KubeIngressList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of Ingress.
+        :param items: items is the list of Ingress.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeIngressListProps(items=items, metadata=metadata)
@@ -18984,7 +19498,7 @@ class KubeIngressListProps:
     ) -> None:
         '''IngressList is a collection of Ingress.
 
-        :param items: Items is the list of Ingress.
+        :param items: items is the list of Ingress.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.networking.v1.IngressList
@@ -19003,7 +19517,7 @@ class KubeIngressListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeIngressProps"]:
-        '''Items is the list of Ingress.
+        '''items is the list of Ingress.
 
         :schema: io.k8s.api.networking.v1.IngressList#items
         '''
@@ -19051,7 +19565,7 @@ class KubeIngressProps:
         An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc.
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
         :schema: io.k8s.api.networking.v1.Ingress
         '''
@@ -19082,7 +19596,7 @@ class KubeIngressProps:
 
     @builtins.property
     def spec(self) -> typing.Optional[IngressSpec]:
-        '''Spec is the desired state of the Ingress.
+        '''spec is the desired state of the Ingress.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
@@ -19099,6 +19613,269 @@ class KubeIngressProps:
 
     def __repr__(self) -> str:
         return "KubeIngressProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeIpAddressListV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeIpAddressListV1Alpha1",
+):
+    '''IPAddressList contains a list of IPAddress.
+
+    :schema: io.k8s.api.networking.v1alpha1.IPAddressList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Sequence[typing.Union["KubeIpAddressV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.networking.v1alpha1.IPAddressList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: items is the list of IPAddresses.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__bcf11abb8b9443f87e23bfdfb6dc3b915facd380cc6fc7a457bdc486d302ed8e)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeIpAddressListV1Alpha1Props(items=items, metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Sequence[typing.Union["KubeIpAddressV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.networking.v1alpha1.IPAddressList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: items is the list of IPAddresses.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        props = KubeIpAddressListV1Alpha1Props(items=items, metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.networking.v1alpha1.IPAddressList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeIpAddressListV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeIpAddressListV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["KubeIpAddressV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''IPAddressList contains a list of IPAddress.
+
+        :param items: items is the list of IPAddresses.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddressList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__da522343584f9d62148ebf8e4faef99731e6c5001445d9d127ff492dce2783b3)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+        }
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(self) -> typing.List["KubeIpAddressV1Alpha1Props"]:
+        '''items is the list of IPAddresses.
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddressList#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["KubeIpAddressV1Alpha1Props"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddressList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeIpAddressListV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeIpAddressV1Alpha1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeIpAddressV1Alpha1",
+):
+    '''IPAddress represents a single IP of a single IP Family.
+
+    The object is designed to be used by APIs that operate on IP addresses. The object is used by the Service core API for allocation of IP addresses. An IP address can be represented in different formats, to guarantee the uniqueness of the IP, the name of the object is the IP address in canonical format, four decimal digits separated by dots suppressing leading zeros for IPv4 and the representation defined by RFC 5952 for IPv6. Valid: 192.168.1.5 or 2001:db8::1 or 2001:db8:aaaa:bbbb:cccc:dddd:eeee:1 Invalid: 10.01.2.3 or 2001:db8:0:0:0::1
+
+    :schema: io.k8s.api.networking.v1alpha1.IPAddress
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[IpAddressSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.networking.v1alpha1.IPAddress" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: spec is the desired state of the IPAddress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5e8dae727b235c6474d14285a84cfcae9fba91354f4c46921b53ad02a3902ec3)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeIpAddressV1Alpha1Props(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[IpAddressSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.networking.v1alpha1.IPAddress".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: spec is the desired state of the IPAddress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        '''
+        props = KubeIpAddressV1Alpha1Props(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.networking.v1alpha1.IPAddress".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeIpAddressV1Alpha1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeIpAddressV1Alpha1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union[IpAddressSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''IPAddress represents a single IP of a single IP Family.
+
+        The object is designed to be used by APIs that operate on IP addresses. The object is used by the Service core API for allocation of IP addresses. An IP address can be represented in different formats, to guarantee the uniqueness of the IP, the name of the object is the IP address in canonical format, four decimal digits separated by dots suppressing leading zeros for IPv4 and the representation defined by RFC 5952 for IPv6. Valid: 192.168.1.5 or 2001:db8::1 or 2001:db8:aaaa:bbbb:cccc:dddd:eeee:1 Invalid: 10.01.2.3 or 2001:db8:0:0:0::1
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param spec: spec is the desired state of the IPAddress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddress
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = IpAddressSpecV1Alpha1(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__10f6e17701a7ffb1a0ad6e04fa6e0be8bad8b0c14a71ab5ff1477d076fab249e)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddress#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional[IpAddressSpecV1Alpha1]:
+        '''spec is the desired state of the IPAddress.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+        :schema: io.k8s.api.networking.v1alpha1.IPAddress#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional[IpAddressSpecV1Alpha1], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeIpAddressV1Alpha1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -19385,7 +20162,7 @@ class KubeLease(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__9d7ac416a382b84ffda17705003bcb5bf298edcb4ce565074e252fb3615f92b2)
@@ -19408,7 +20185,7 @@ class KubeLease(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         props = KubeLeaseProps(metadata=metadata, spec=spec)
 
@@ -19448,7 +20225,7 @@ class KubeLeaseList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -19471,7 +20248,7 @@ class KubeLeaseList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeLeaseListProps(items=items, metadata=metadata)
@@ -19504,7 +20281,7 @@ class KubeLeaseListProps:
     ) -> None:
         '''LeaseList is a list of Lease objects.
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.coordination.v1.LeaseList
@@ -19523,7 +20300,7 @@ class KubeLeaseListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeLeaseProps"]:
-        '''Items is a list of schema objects.
+        '''items is a list of schema objects.
 
         :schema: io.k8s.api.coordination.v1.LeaseList#items
         '''
@@ -19569,7 +20346,7 @@ class KubeLeaseProps:
         '''Lease defines a lease concept.
 
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
         :schema: io.k8s.api.coordination.v1.Lease
         '''
@@ -19598,7 +20375,7 @@ class KubeLeaseProps:
 
     @builtins.property
     def spec(self) -> typing.Optional["LeaseSpec"]:
-        '''Specification of the Lease.
+        '''spec contains the specification of the Lease.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 
@@ -20567,7 +21344,7 @@ class KubeNetworkPolicy(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Specification of the desired behavior for this NetworkPolicy.
+        :param spec: spec represents the specification of the desired behavior for this NetworkPolicy.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__3711bfdbb9ff2b20fcc1d837ff64f7be94291bbcbda2f8e20d3fe735d0fca788)
@@ -20590,7 +21367,7 @@ class KubeNetworkPolicy(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Specification of the desired behavior for this NetworkPolicy.
+        :param spec: spec represents the specification of the desired behavior for this NetworkPolicy.
         '''
         props = KubeNetworkPolicyProps(metadata=metadata, spec=spec)
 
@@ -20630,7 +21407,7 @@ class KubeNetworkPolicyList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -20653,7 +21430,7 @@ class KubeNetworkPolicyList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeNetworkPolicyListProps(items=items, metadata=metadata)
@@ -20686,7 +21463,7 @@ class KubeNetworkPolicyListProps:
     ) -> None:
         '''NetworkPolicyList is a list of NetworkPolicy objects.
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyList
@@ -20705,7 +21482,7 @@ class KubeNetworkPolicyListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeNetworkPolicyProps"]:
-        '''Items is a list of schema objects.
+        '''items is a list of schema objects.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyList#items
         '''
@@ -20751,7 +21528,7 @@ class KubeNetworkPolicyProps:
         '''NetworkPolicy describes what network traffic is allowed for a set of Pods.
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param spec: Specification of the desired behavior for this NetworkPolicy.
+        :param spec: spec represents the specification of the desired behavior for this NetworkPolicy.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicy
         '''
@@ -20782,7 +21559,7 @@ class KubeNetworkPolicyProps:
 
     @builtins.property
     def spec(self) -> typing.Optional["NetworkPolicySpec"]:
-        '''Specification of the desired behavior for this NetworkPolicy.
+        '''spec represents the specification of the desired behavior for this NetworkPolicy.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicy#spec
         '''
@@ -22112,14 +22889,14 @@ class KubePodProps:
         )
 
 
-class KubePodSchedulingListV1Alpha1(
+class KubePodSchedulingContextListV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubePodSchedulingListV1Alpha1",
+    jsii_type="k8s.KubePodSchedulingContextListV1Alpha2",
 ):
-    '''PodSchedulingList is a collection of Pod scheduling objects.
+    '''PodSchedulingContextList is a collection of Pod scheduling objects.
 
-    :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList
+    :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextList
     '''
 
     def __init__(
@@ -22127,21 +22904,23 @@ class KubePodSchedulingListV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubePodSchedulingContextV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.PodSchedulingList" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.PodSchedulingContextList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of PodScheduling objects.
+        :param items: Items is the list of PodSchedulingContext objects.
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ca5c307c4cf8c1a6abfe2594c184c4510f1f094dbb431db9ed4c05139b0636a3)
+            type_hints = typing.get_type_hints(_typecheckingstub__0e769858501b1199df66439c6b95697a00f19085c9eeca4f68c18433b11355f8)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubePodSchedulingListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubePodSchedulingContextListV1Alpha2Props(
+            items=items, metadata=metadata
+        )
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -22150,17 +22929,19 @@ class KubePodSchedulingListV1Alpha1(
     def manifest(
         cls,
         *,
-        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubePodSchedulingContextV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.PodSchedulingList".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.PodSchedulingContextList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of PodScheduling objects.
+        :param items: Items is the list of PodSchedulingContext objects.
         :param metadata: Standard list metadata.
         '''
-        props = KubePodSchedulingListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubePodSchedulingContextListV1Alpha2Props(
+            items=items, metadata=metadata
+        )
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -22172,33 +22953,33 @@ class KubePodSchedulingListV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.PodSchedulingList".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.PodSchedulingContextList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubePodSchedulingListV1Alpha1Props",
+    jsii_type="k8s.KubePodSchedulingContextListV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubePodSchedulingListV1Alpha1Props:
+class KubePodSchedulingContextListV1Alpha2Props:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["KubePodSchedulingV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubePodSchedulingContextV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''PodSchedulingList is a collection of Pod scheduling objects.
+        '''PodSchedulingContextList is a collection of Pod scheduling objects.
 
-        :param items: Items is the list of PodScheduling objects.
+        :param items: Items is the list of PodSchedulingContext objects.
         :param metadata: Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextList
         '''
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7a3f9f9a13fab7ad4309606460387114d09f26fe708e57d0ade367760eba22d4)
+            type_hints = typing.get_type_hints(_typecheckingstub__fcf15b32818c8985186b2881ec2a6320b146240c0592811797b146fe466c2666)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22208,20 +22989,20 @@ class KubePodSchedulingListV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def items(self) -> typing.List["KubePodSchedulingV1Alpha1Props"]:
-        '''Items is the list of PodScheduling objects.
+    def items(self) -> typing.List["KubePodSchedulingContextV1Alpha2Props"]:
+        '''Items is the list of PodSchedulingContext objects.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList#items
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextList#items
         '''
         result = self._values.get("items")
         assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubePodSchedulingV1Alpha1Props"], result)
+        return typing.cast(typing.List["KubePodSchedulingContextV1Alpha2Props"], result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ListMeta"]:
         '''Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingList#metadata
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextList#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ListMeta"], result)
@@ -22233,21 +23014,21 @@ class KubePodSchedulingListV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubePodSchedulingListV1Alpha1Props(%s)" % ", ".join(
+        return "KubePodSchedulingContextListV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubePodSchedulingV1Alpha1(
+class KubePodSchedulingContextV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubePodSchedulingV1Alpha1",
+    jsii_type="k8s.KubePodSchedulingContextV1Alpha2",
 ):
-    '''PodScheduling objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
+    '''PodSchedulingContext objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
 
     This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
 
-    :schema: io.k8s.api.resource.v1alpha1.PodScheduling
+    :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContext
     '''
 
     def __init__(
@@ -22255,10 +23036,10 @@ class KubePodSchedulingV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["PodSchedulingContextSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.PodScheduling" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.PodSchedulingContext" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -22266,10 +23047,10 @@ class KubePodSchedulingV1Alpha1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3f4856868eca18e4ac926608e85a1bc5de5344771a17d102cda0ca44b4a61ee2)
+            type_hints = typing.get_type_hints(_typecheckingstub__83608ce8cd267369c7a063156097c1701114f7ebb8921ec16d59a65e1548526b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubePodSchedulingV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubePodSchedulingContextV1Alpha2Props(spec=spec, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -22278,17 +23059,17 @@ class KubePodSchedulingV1Alpha1(
     def manifest(
         cls,
         *,
-        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["PodSchedulingContextSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.PodScheduling".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.PodSchedulingContext".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param spec: Spec describes where resources for the Pod are needed.
         :param metadata: Standard object metadata.
         '''
-        props = KubePodSchedulingV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubePodSchedulingContextV1Alpha2Props(spec=spec, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -22300,37 +23081,37 @@ class KubePodSchedulingV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.PodScheduling".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.PodSchedulingContext".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubePodSchedulingV1Alpha1Props",
+    jsii_type="k8s.KubePodSchedulingContextV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"spec": "spec", "metadata": "metadata"},
 )
-class KubePodSchedulingV1Alpha1Props:
+class KubePodSchedulingContextV1Alpha2Props:
     def __init__(
         self,
         *,
-        spec: typing.Union["PodSchedulingSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["PodSchedulingContextSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''PodScheduling objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
+        '''PodSchedulingContext objects hold information that is needed to schedule a Pod with ResourceClaims that use "WaitForFirstConsumer" allocation mode.
 
         This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
 
         :param spec: Spec describes where resources for the Pod are needed.
         :param metadata: Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodScheduling
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContext
         '''
         if isinstance(spec, dict):
-            spec = PodSchedulingSpecV1Alpha1(**spec)
+            spec = PodSchedulingContextSpecV1Alpha2(**spec)
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b8378dcaf5913bb1f58986bd024042b8cd1b3448b4c03b331937a17870ffaac0)
+            type_hints = typing.get_type_hints(_typecheckingstub__d693ea691123239a8330860b15758058ccb136fa2359a74282f94861727f677b)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22340,20 +23121,20 @@ class KubePodSchedulingV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def spec(self) -> "PodSchedulingSpecV1Alpha1":
+    def spec(self) -> "PodSchedulingContextSpecV1Alpha2":
         '''Spec describes where resources for the Pod are needed.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodScheduling#spec
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContext#spec
         '''
         result = self._values.get("spec")
         assert result is not None, "Required property 'spec' is missing"
-        return typing.cast("PodSchedulingSpecV1Alpha1", result)
+        return typing.cast("PodSchedulingContextSpecV1Alpha2", result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ObjectMeta"]:
         '''Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.PodScheduling#metadata
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContext#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ObjectMeta"], result)
@@ -22365,7 +23146,7 @@ class KubePodSchedulingV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubePodSchedulingV1Alpha1Props(%s)" % ", ".join(
+        return "KubePodSchedulingContextV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -22656,11 +23437,11 @@ class KubePriorityClass(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param value: The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
+        :param value: value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
         :param description: description is an arbitrary string that usually provides guidelines on when this priority class should be used.
         :param global_default: globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as ``globalDefault``. However, if more than one PriorityClasses exists with their ``globalDefault`` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param preemption_policy: PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
+        :param preemption_policy: preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__7849121f7cc4169719bf7c0334ed5b358df3185c443cdcca26f3ba64a177342f)
@@ -22691,11 +23472,11 @@ class KubePriorityClass(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param value: The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
+        :param value: value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
         :param description: description is an arbitrary string that usually provides guidelines on when this priority class should be used.
         :param global_default: globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as ``globalDefault``. However, if more than one PriorityClasses exists with their ``globalDefault`` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param preemption_policy: PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
+        :param preemption_policy: preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
         '''
         props = KubePriorityClassProps(
             value=value,
@@ -22870,11 +23651,11 @@ class KubePriorityClassProps:
 
         The value can be any valid integer.
 
-        :param value: The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
+        :param value: value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
         :param description: description is an arbitrary string that usually provides guidelines on when this priority class should be used.
         :param global_default: globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as ``globalDefault``. However, if more than one PriorityClasses exists with their ``globalDefault`` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param preemption_policy: PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
+        :param preemption_policy: preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
 
         :schema: io.k8s.api.scheduling.v1.PriorityClass
         '''
@@ -22901,7 +23682,7 @@ class KubePriorityClassProps:
 
     @builtins.property
     def value(self) -> jsii.Number:
-        '''The value of this priority class.
+        '''value represents the integer value of this priority class.
 
         This is the actual priority that pods receive when they have the name of this class in their pod spec.
 
@@ -22944,7 +23725,7 @@ class KubePriorityClassProps:
 
     @builtins.property
     def preemption_policy(self) -> typing.Optional[builtins.str]:
-        '''PreemptionPolicy is the Policy for preempting pods with lower priority.
+        '''preemptionPolicy is the Policy for preempting pods with lower priority.
 
         One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
 
@@ -24023,14 +24804,14 @@ class KubeReplicationControllerProps:
         )
 
 
-class KubeResourceClaimListV1Alpha1(
+class KubeResourceClaimListV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClaimListV1Alpha1",
+    jsii_type="k8s.KubeResourceClaimListV1Alpha2",
 ):
     '''ResourceClaimList is a collection of claims.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClaimList
     '''
 
     def __init__(
@@ -24038,10 +24819,10 @@ class KubeResourceClaimListV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimList" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClaimList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24049,10 +24830,10 @@ class KubeResourceClaimListV1Alpha1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e200cdf7bdfd425880660ef6ebcb90da88783cb7874f700af41261d226802408)
+            type_hints = typing.get_type_hints(_typecheckingstub__1a725bfe3a37b80cc81a28a99fbe22f0a3c585e5a3f0a8786f41a3abd6b3263c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClaimListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubeResourceClaimListV1Alpha2Props(items=items, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -24061,17 +24842,17 @@ class KubeResourceClaimListV1Alpha1(
     def manifest(
         cls,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimList".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClaimList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param items: Items is the list of resource claims.
         :param metadata: Standard list metadata.
         '''
-        props = KubeResourceClaimListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubeResourceClaimListV1Alpha2Props(items=items, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -24083,20 +24864,20 @@ class KubeResourceClaimListV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimList".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClaimList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClaimListV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClaimListV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubeResourceClaimListV1Alpha1Props:
+class KubeResourceClaimListV1Alpha2Props:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaimList is a collection of claims.
@@ -24104,12 +24885,12 @@ class KubeResourceClaimListV1Alpha1Props:
         :param items: Items is the list of resource claims.
         :param metadata: Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimList
         '''
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__de1fd43faf0ba317c36809119ca61ff37dc7311bff784a153466481f3c1f7aac)
+            type_hints = typing.get_type_hints(_typecheckingstub__97c69be384e7db5e08b03dc4530748e0c5653a56dba1ffee1030be1140eae63c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24119,20 +24900,20 @@ class KubeResourceClaimListV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def items(self) -> typing.List["KubeResourceClaimV1Alpha1Props"]:
+    def items(self) -> typing.List["KubeResourceClaimV1Alpha2Props"]:
         '''Items is the list of resource claims.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList#items
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimList#items
         '''
         result = self._values.get("items")
         assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeResourceClaimV1Alpha1Props"], result)
+        return typing.cast(typing.List["KubeResourceClaimV1Alpha2Props"], result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ListMeta"]:
         '''Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimList#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimList#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ListMeta"], result)
@@ -24144,19 +24925,19 @@ class KubeResourceClaimListV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClaimListV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClaimListV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubeResourceClaimTemplateListV1Alpha1(
+class KubeResourceClaimTemplateListV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha1",
+    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha2",
 ):
     '''ResourceClaimTemplateList is a collection of claim templates.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList
     '''
 
     def __init__(
@@ -24164,10 +24945,10 @@ class KubeResourceClaimTemplateListV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24175,10 +24956,10 @@ class KubeResourceClaimTemplateListV1Alpha1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6fbb34cbc640559672bb256ab485dc10d838f47767a362a9647924f5939ec9b7)
+            type_hints = typing.get_type_hints(_typecheckingstub__009932b8547bced8adca4b2114556aaf3f6154cbf42c71be48f2401290f1d5dd)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClaimTemplateListV1Alpha1Props(
+        props = KubeResourceClaimTemplateListV1Alpha2Props(
             items=items, metadata=metadata
         )
 
@@ -24189,17 +24970,17 @@ class KubeResourceClaimTemplateListV1Alpha1(
     def manifest(
         cls,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param items: Items is the list of resource claim templates.
         :param metadata: Standard list metadata.
         '''
-        props = KubeResourceClaimTemplateListV1Alpha1Props(
+        props = KubeResourceClaimTemplateListV1Alpha2Props(
             items=items, metadata=metadata
         )
 
@@ -24213,20 +24994,20 @@ class KubeResourceClaimTemplateListV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClaimTemplateListV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubeResourceClaimTemplateListV1Alpha1Props:
+class KubeResourceClaimTemplateListV1Alpha2Props:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClaimTemplateV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaimTemplateList is a collection of claim templates.
@@ -24234,12 +25015,12 @@ class KubeResourceClaimTemplateListV1Alpha1Props:
         :param items: Items is the list of resource claim templates.
         :param metadata: Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList
         '''
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__28698822e45bda3d63db1ad3983a08b594ae8089817211a639d0d2b2212c5c0e)
+            type_hints = typing.get_type_hints(_typecheckingstub__d7dda3de94ea8f0e7b464cab642b0160245ee6dd28416fdb9c33e33aba0b81ca)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24249,20 +25030,20 @@ class KubeResourceClaimTemplateListV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def items(self) -> typing.List["KubeResourceClaimTemplateV1Alpha1Props"]:
+    def items(self) -> typing.List["KubeResourceClaimTemplateV1Alpha2Props"]:
         '''Items is the list of resource claim templates.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList#items
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList#items
         '''
         result = self._values.get("items")
         assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeResourceClaimTemplateV1Alpha1Props"], result)
+        return typing.cast(typing.List["KubeResourceClaimTemplateV1Alpha2Props"], result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ListMeta"]:
         '''Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateList#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateList#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ListMeta"], result)
@@ -24274,19 +25055,19 @@ class KubeResourceClaimTemplateListV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClaimTemplateListV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClaimTemplateListV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubeResourceClaimTemplateV1Alpha1(
+class KubeResourceClaimTemplateV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha1",
+    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha2",
 ):
     '''ResourceClaimTemplate is used to produce ResourceClaim objects.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplate
     '''
 
     def __init__(
@@ -24294,10 +25075,10 @@ class KubeResourceClaimTemplateV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClaimTemplate" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24305,10 +25086,10 @@ class KubeResourceClaimTemplateV1Alpha1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__19b55a664e022e7cf75a2e7db6a0c16e6791ff0f493db7b0ac8902687bdfc771)
+            type_hints = typing.get_type_hints(_typecheckingstub__d37c61e97861ec4b0cd7abf3f229620788ebb89501c52698c12b776ce6d684d2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClaimTemplateV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubeResourceClaimTemplateV1Alpha2Props(spec=spec, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -24317,17 +25098,17 @@ class KubeResourceClaimTemplateV1Alpha1(
     def manifest(
         cls,
         *,
-        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClaimTemplate".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param spec: Describes the ResourceClaim that is to be generated. This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
         :param metadata: Standard object metadata.
         '''
-        props = KubeResourceClaimTemplateV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubeResourceClaimTemplateV1Alpha2Props(spec=spec, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -24339,20 +25120,20 @@ class KubeResourceClaimTemplateV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaimTemplate".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClaimTemplate".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClaimTemplateV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"spec": "spec", "metadata": "metadata"},
 )
-class KubeResourceClaimTemplateV1Alpha1Props:
+class KubeResourceClaimTemplateV1Alpha2Props:
     def __init__(
         self,
         *,
-        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimTemplateSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaimTemplate is used to produce ResourceClaim objects.
@@ -24360,14 +25141,14 @@ class KubeResourceClaimTemplateV1Alpha1Props:
         :param spec: Describes the ResourceClaim that is to be generated. This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
         :param metadata: Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplate
         '''
         if isinstance(spec, dict):
-            spec = ResourceClaimTemplateSpecV1Alpha1(**spec)
+            spec = ResourceClaimTemplateSpecV1Alpha2(**spec)
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__895c0745ae5288dd68b676af5ebba5862e4ff365a8b6cb7256b72cebb64ed32f)
+            type_hints = typing.get_type_hints(_typecheckingstub__bf0cae014b877038f30b7503c9f70abb49f03efcd08b2eb2e02f0da857d1a470)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24377,22 +25158,22 @@ class KubeResourceClaimTemplateV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def spec(self) -> "ResourceClaimTemplateSpecV1Alpha1":
+    def spec(self) -> "ResourceClaimTemplateSpecV1Alpha2":
         '''Describes the ResourceClaim that is to be generated.
 
         This field is immutable. A ResourceClaim will get created by the control plane for a Pod when needed and then not get updated anymore.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate#spec
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplate#spec
         '''
         result = self._values.get("spec")
         assert result is not None, "Required property 'spec' is missing"
-        return typing.cast("ResourceClaimTemplateSpecV1Alpha1", result)
+        return typing.cast("ResourceClaimTemplateSpecV1Alpha2", result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ObjectMeta"]:
         '''Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplate#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplate#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ObjectMeta"], result)
@@ -24404,15 +25185,15 @@ class KubeResourceClaimTemplateV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClaimTemplateV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClaimTemplateV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubeResourceClaimV1Alpha1(
+class KubeResourceClaimV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClaimV1Alpha1",
+    jsii_type="k8s.KubeResourceClaimV1Alpha2",
 ):
     '''ResourceClaim describes which resources are needed by a resource consumer.
 
@@ -24420,7 +25201,7 @@ class KubeResourceClaimV1Alpha1(
 
     This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClaim
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClaim
     '''
 
     def __init__(
@@ -24428,10 +25209,10 @@ class KubeResourceClaimV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClaim" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClaim" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24439,10 +25220,10 @@ class KubeResourceClaimV1Alpha1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a1f97fddc933efea2a1616dae66764060c73225f24ca19f70ab4da1cff53e88f)
+            type_hints = typing.get_type_hints(_typecheckingstub__e38ffd78c09b98ed593176ad75b835361bf2225de5e8a719c16caf30e2533d75)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClaimV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubeResourceClaimV1Alpha2Props(spec=spec, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -24451,17 +25232,17 @@ class KubeResourceClaimV1Alpha1(
     def manifest(
         cls,
         *,
-        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClaim".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClaim".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param spec: Spec describes the desired attributes of a resource that then needs to be allocated. It can only be set once when creating the ResourceClaim.
         :param metadata: Standard object metadata.
         '''
-        props = KubeResourceClaimV1Alpha1Props(spec=spec, metadata=metadata)
+        props = KubeResourceClaimV1Alpha2Props(spec=spec, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -24473,20 +25254,20 @@ class KubeResourceClaimV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClaim".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClaim".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClaimV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClaimV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"spec": "spec", "metadata": "metadata"},
 )
-class KubeResourceClaimV1Alpha1Props:
+class KubeResourceClaimV1Alpha2Props:
     def __init__(
         self,
         *,
-        spec: typing.Union["ResourceClaimSpecV1Alpha1", typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union["ResourceClaimSpecV1Alpha2", typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaim describes which resources are needed by a resource consumer.
@@ -24498,14 +25279,14 @@ class KubeResourceClaimV1Alpha1Props:
         :param spec: Spec describes the desired attributes of a resource that then needs to be allocated. It can only be set once when creating the ResourceClaim.
         :param metadata: Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaim
         '''
         if isinstance(spec, dict):
-            spec = ResourceClaimSpecV1Alpha1(**spec)
+            spec = ResourceClaimSpecV1Alpha2(**spec)
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__881875cd1d5513534efa2e6323236285dc2d6c692541f339978f5f88cbd7191d)
+            type_hints = typing.get_type_hints(_typecheckingstub__4a7a83b200fd148f42334ca72d033906132f0f15e48ac3ec1f1e2fb03578a26d)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24515,22 +25296,22 @@ class KubeResourceClaimV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def spec(self) -> "ResourceClaimSpecV1Alpha1":
+    def spec(self) -> "ResourceClaimSpecV1Alpha2":
         '''Spec describes the desired attributes of a resource that then needs to be allocated.
 
         It can only be set once when creating the ResourceClaim.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim#spec
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaim#spec
         '''
         result = self._values.get("spec")
         assert result is not None, "Required property 'spec' is missing"
-        return typing.cast("ResourceClaimSpecV1Alpha1", result)
+        return typing.cast("ResourceClaimSpecV1Alpha2", result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ObjectMeta"]:
         '''Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaim#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaim#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ObjectMeta"], result)
@@ -24542,19 +25323,19 @@ class KubeResourceClaimV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClaimV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClaimV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubeResourceClassListV1Alpha1(
+class KubeResourceClassListV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClassListV1Alpha1",
+    jsii_type="k8s.KubeResourceClassListV1Alpha2",
 ):
     '''ResourceClassList is a collection of classes.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClassList
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClassList
     '''
 
     def __init__(
@@ -24562,10 +25343,10 @@ class KubeResourceClassListV1Alpha1(
         scope: _constructs_77d1e7e8.Construct,
         id: builtins.str,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClassList" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClassList" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24573,10 +25354,10 @@ class KubeResourceClassListV1Alpha1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e1695fa3fd0da9c0899fd14ab89c516ae780955a7fabddea610d77da29a44ed4)
+            type_hints = typing.get_type_hints(_typecheckingstub__dda9ddbe117e7ea17b435661001ef85b5656b51c9200ab12be9ab56f19b27a24)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClassListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubeResourceClassListV1Alpha2Props(items=items, metadata=metadata)
 
         jsii.create(self.__class__, self, [scope, id, props])
 
@@ -24585,17 +25366,17 @@ class KubeResourceClassListV1Alpha1(
     def manifest(
         cls,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClassList".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClassList".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param items: Items is the list of resource classes.
         :param metadata: Standard list metadata.
         '''
-        props = KubeResourceClassListV1Alpha1Props(items=items, metadata=metadata)
+        props = KubeResourceClassListV1Alpha2Props(items=items, metadata=metadata)
 
         return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
 
@@ -24607,20 +25388,20 @@ class KubeResourceClassListV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClassList".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClassList".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClassListV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClassListV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={"items": "items", "metadata": "metadata"},
 )
-class KubeResourceClassListV1Alpha1Props:
+class KubeResourceClassListV1Alpha2Props:
     def __init__(
         self,
         *,
-        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha1Props", typing.Dict[builtins.str, typing.Any]]],
+        items: typing.Sequence[typing.Union["KubeResourceClassV1Alpha2Props", typing.Dict[builtins.str, typing.Any]]],
         metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClassList is a collection of classes.
@@ -24628,12 +25409,12 @@ class KubeResourceClassListV1Alpha1Props:
         :param items: Items is the list of resource classes.
         :param metadata: Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassList
         '''
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ac68af0f54677d6e7e28921a84e980663e5bbd36841ef1ddab313b91449b124a)
+            type_hints = typing.get_type_hints(_typecheckingstub__2631ccc8a78c7984a6aa072a2b1daca446e10cfd9f6dd9cac19b31fb7604ef71)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24643,20 +25424,20 @@ class KubeResourceClassListV1Alpha1Props:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def items(self) -> typing.List["KubeResourceClassV1Alpha1Props"]:
+    def items(self) -> typing.List["KubeResourceClassV1Alpha2Props"]:
         '''Items is the list of resource classes.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList#items
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassList#items
         '''
         result = self._values.get("items")
         assert result is not None, "Required property 'items' is missing"
-        return typing.cast(typing.List["KubeResourceClassV1Alpha1Props"], result)
+        return typing.cast(typing.List["KubeResourceClassV1Alpha2Props"], result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ListMeta"]:
         '''Standard list metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassList#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassList#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ListMeta"], result)
@@ -24668,21 +25449,21 @@ class KubeResourceClassListV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClassListV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClassListV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
-class KubeResourceClassV1Alpha1(
+class KubeResourceClassV1Alpha2(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
-    jsii_type="k8s.KubeResourceClassV1Alpha1",
+    jsii_type="k8s.KubeResourceClassV1Alpha2",
 ):
     '''ResourceClass is used by administrators to influence how resources are allocated.
 
     This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.
 
-    :schema: io.k8s.api.resource.v1alpha1.ResourceClass
+    :schema: io.k8s.api.resource.v1alpha2.ResourceClass
     '''
 
     def __init__(
@@ -24692,10 +25473,10 @@ class KubeResourceClassV1Alpha1(
         *,
         driver_name: builtins.str,
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha2", typing.Dict[builtins.str, typing.Any]]] = None,
         suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''Defines a "io.k8s.api.resource.v1alpha1.ResourceClass" API object.
+        '''Defines a "io.k8s.api.resource.v1alpha2.ResourceClass" API object.
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
@@ -24705,10 +25486,10 @@ class KubeResourceClassV1Alpha1(
         :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__73e955754ed6b0a944de335f682e555ee872f783b244a6172a6174b18e2953f2)
+            type_hints = typing.get_type_hints(_typecheckingstub__0f50b812a66b98ca18e00f2fcf254f016015262864e7841f2de4335164b5bb0f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
-        props = KubeResourceClassV1Alpha1Props(
+        props = KubeResourceClassV1Alpha2Props(
             driver_name=driver_name,
             metadata=metadata,
             parameters_ref=parameters_ref,
@@ -24724,10 +25505,10 @@ class KubeResourceClassV1Alpha1(
         *,
         driver_name: builtins.str,
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha2", typing.Dict[builtins.str, typing.Any]]] = None,
         suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> typing.Any:
-        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha1.ResourceClass".
+        '''Renders a Kubernetes manifest for "io.k8s.api.resource.v1alpha2.ResourceClass".
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
@@ -24736,7 +25517,7 @@ class KubeResourceClassV1Alpha1(
         :param parameters_ref: ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class. A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
         :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
         '''
-        props = KubeResourceClassV1Alpha1Props(
+        props = KubeResourceClassV1Alpha2Props(
             driver_name=driver_name,
             metadata=metadata,
             parameters_ref=parameters_ref,
@@ -24753,12 +25534,12 @@ class KubeResourceClassV1Alpha1(
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
     def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
-        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha1.ResourceClass".'''
+        '''Returns the apiVersion and kind for "io.k8s.api.resource.v1alpha2.ResourceClass".'''
         return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
 
 
 @jsii.data_type(
-    jsii_type="k8s.KubeResourceClassV1Alpha1Props",
+    jsii_type="k8s.KubeResourceClassV1Alpha2Props",
     jsii_struct_bases=[],
     name_mapping={
         "driver_name": "driverName",
@@ -24767,13 +25548,13 @@ class KubeResourceClassV1Alpha1(
         "suitable_nodes": "suitableNodes",
     },
 )
-class KubeResourceClassV1Alpha1Props:
+class KubeResourceClassV1Alpha2Props:
     def __init__(
         self,
         *,
         driver_name: builtins.str,
         metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
-        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha1", typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union["ResourceClassParametersReferenceV1Alpha2", typing.Dict[builtins.str, typing.Any]]] = None,
         suitable_nodes: typing.Optional[typing.Union["NodeSelector", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClass is used by administrators to influence how resources are allocated.
@@ -24785,16 +25566,16 @@ class KubeResourceClassV1Alpha1Props:
         :param parameters_ref: ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class. A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
         :param suitable_nodes: Only nodes matching the selector will be considered by the scheduler when trying to find a Node that fits a Pod when that Pod uses a ResourceClaim that has not been allocated yet. Setting this field is optional. If null, all nodes are candidates.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClass
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClass
         '''
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if isinstance(parameters_ref, dict):
-            parameters_ref = ResourceClassParametersReferenceV1Alpha1(**parameters_ref)
+            parameters_ref = ResourceClassParametersReferenceV1Alpha2(**parameters_ref)
         if isinstance(suitable_nodes, dict):
             suitable_nodes = NodeSelector(**suitable_nodes)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4dcda1419c55ac01a43092063ef99623f9153c117048d8a4d4a0ebd85bae5430)
+            type_hints = typing.get_type_hints(_typecheckingstub__4d0ab5927817ed3395257f52a52ae9de85a0db99829265383dba600b6fbccbe6)
             check_type(argname="argument driver_name", value=driver_name, expected_type=type_hints["driver_name"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument parameters_ref", value=parameters_ref, expected_type=type_hints["parameters_ref"])
@@ -24815,7 +25596,7 @@ class KubeResourceClassV1Alpha1Props:
 
         Resource drivers have a unique name in forward domain order (acme.example.com).
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#driverName
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClass#driverName
         '''
         result = self._values.get("driver_name")
         assert result is not None, "Required property 'driver_name' is missing"
@@ -24825,7 +25606,7 @@ class KubeResourceClassV1Alpha1Props:
     def metadata(self) -> typing.Optional["ObjectMeta"]:
         '''Standard object metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClass#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional["ObjectMeta"], result)
@@ -24833,15 +25614,15 @@ class KubeResourceClassV1Alpha1Props:
     @builtins.property
     def parameters_ref(
         self,
-    ) -> typing.Optional["ResourceClassParametersReferenceV1Alpha1"]:
+    ) -> typing.Optional["ResourceClassParametersReferenceV1Alpha2"]:
         '''ParametersRef references an arbitrary separate object that may hold parameters that will be used by the driver when allocating a resource that uses this class.
 
         A dynamic resource driver can distinguish between parameters stored here and and those stored in ResourceClaimSpec.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#parametersRef
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClass#parametersRef
         '''
         result = self._values.get("parameters_ref")
-        return typing.cast(typing.Optional["ResourceClassParametersReferenceV1Alpha1"], result)
+        return typing.cast(typing.Optional["ResourceClassParametersReferenceV1Alpha2"], result)
 
     @builtins.property
     def suitable_nodes(self) -> typing.Optional["NodeSelector"]:
@@ -24849,7 +25630,7 @@ class KubeResourceClassV1Alpha1Props:
 
         Setting this field is optional. If null, all nodes are candidates.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClass#suitableNodes
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClass#suitableNodes
         '''
         result = self._values.get("suitable_nodes")
         return typing.cast(typing.Optional["NodeSelector"], result)
@@ -24861,7 +25642,7 @@ class KubeResourceClassV1Alpha1Props:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "KubeResourceClassV1Alpha1Props(%s)" % ", ".join(
+        return "KubeResourceClassV1Alpha2Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -25216,7 +25997,7 @@ class KubeRoleBinding(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
@@ -25243,7 +26024,7 @@ class KubeRoleBinding(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
@@ -25412,7 +26193,7 @@ class KubeRoleBindingProps:
 
         It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace.
 
-        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        :param role_ref: RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
         :param metadata: Standard object's metadata.
         :param subjects: Subjects holds references to the objects the role applies to.
 
@@ -25439,7 +26220,7 @@ class KubeRoleBindingProps:
     def role_ref(self) -> "RoleRef":
         '''RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace.
 
-        If the RoleRef cannot be resolved, the Authorizer must return an error.
+        If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.
 
         :schema: io.k8s.api.rbac.v1.RoleBinding#roleRef
         '''
@@ -25690,10 +26471,10 @@ class KubeRuntimeClass(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param handler: Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
+        :param handler: handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
-        :param scheduling: Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
+        :param overhead: overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
+        :param scheduling: scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__73e802aeb77adf68ded78bc844e953e29156ea338b23850869f1eb458d0535ba)
@@ -25722,10 +26503,10 @@ class KubeRuntimeClass(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param handler: Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
+        :param handler: handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
-        :param scheduling: Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
+        :param overhead: overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
+        :param scheduling: scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
         '''
         props = KubeRuntimeClassProps(
             handler=handler,
@@ -25770,7 +26551,7 @@ class KubeRuntimeClassList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -25793,7 +26574,7 @@ class KubeRuntimeClassList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeRuntimeClassListProps(items=items, metadata=metadata)
@@ -25826,7 +26607,7 @@ class KubeRuntimeClassListProps:
     ) -> None:
         '''RuntimeClassList is a list of RuntimeClass objects.
 
-        :param items: Items is a list of schema objects.
+        :param items: items is a list of schema objects.
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.node.v1.RuntimeClassList
@@ -25845,7 +26626,7 @@ class KubeRuntimeClassListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeRuntimeClassProps"]:
-        '''Items is a list of schema objects.
+        '''items is a list of schema objects.
 
         :schema: io.k8s.api.node.v1.RuntimeClassList#items
         '''
@@ -25899,10 +26680,10 @@ class KubeRuntimeClassProps:
 
         The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://kubernetes.io/docs/concepts/containers/runtime-class/
 
-        :param handler: Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
+        :param handler: handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
-        :param scheduling: Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
+        :param overhead: overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
+        :param scheduling: scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
 
         :schema: io.k8s.api.node.v1.RuntimeClass
         '''
@@ -25930,7 +26711,7 @@ class KubeRuntimeClassProps:
 
     @builtins.property
     def handler(self) -> builtins.str:
-        '''Handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class.
+        '''handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class.
 
         The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
 
@@ -25951,7 +26732,7 @@ class KubeRuntimeClassProps:
 
     @builtins.property
     def overhead(self) -> typing.Optional["Overhead"]:
-        '''Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.
+        '''overhead represents the resource overhead associated with running a pod for a given RuntimeClass.
 
         For more details, see
         https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
@@ -25963,7 +26744,7 @@ class KubeRuntimeClassProps:
 
     @builtins.property
     def scheduling(self) -> typing.Optional["Scheduling"]:
-        '''Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it.
+        '''scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it.
 
         If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
 
@@ -26007,7 +26788,7 @@ class KubeScale(
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
         :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__9b1969418b2c3135a3004bf63bc8af2d184c22929c1fbbbb43547d0537ad13fc)
@@ -26030,7 +26811,7 @@ class KubeScale(
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
         :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         props = KubeScaleProps(metadata=metadata, spec=spec)
 
@@ -26063,7 +26844,7 @@ class KubeScaleProps:
         '''Scale represents a scaling request for a resource.
 
         :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
-        :param spec: defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param spec: spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
 
         :schema: io.k8s.api.autoscaling.v1.Scale
         '''
@@ -26094,7 +26875,7 @@ class KubeScaleProps:
 
     @builtins.property
     def spec(self) -> typing.Optional["ScaleSpec"]:
-        '''defines the behavior of the scale.
+        '''spec defines the behavior of the scale.
 
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
 
@@ -26594,6 +27375,119 @@ class KubeSelfSubjectAccessReviewProps:
         )
 
 
+class KubeSelfSubjectReview(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeSelfSubjectReview",
+):
+    '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+    When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
+
+    :schema: io.k8s.api.authentication.v1.SelfSubjectReview
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.authentication.v1.SelfSubjectReview" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__31c4a3b5ddc67a67bfaaa585938bc9bc4d75e4cc37be6ddfaa157194f72748b0)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeSelfSubjectReviewProps(metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.authentication.v1.SelfSubjectReview".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        props = KubeSelfSubjectReviewProps(metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.authentication.v1.SelfSubjectReview".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeSelfSubjectReviewProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata"},
+)
+class KubeSelfSubjectReviewProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+        When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1.SelfSubjectReview
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__420703732e4979ebfe1fe36b8345a0798e125cb53250c9f0452b182db5bd70ea)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1.SelfSubjectReview#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeSelfSubjectReviewProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class KubeSelfSubjectReviewV1Alpha1(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -26601,7 +27495,7 @@ class KubeSelfSubjectReviewV1Alpha1(
 ):
     '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
 
-    When using impersonation, users will receive the user info of the user being impersonated.
+    When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
 
     :schema: io.k8s.api.authentication.v1alpha1.SelfSubjectReview
     '''
@@ -26669,7 +27563,7 @@ class KubeSelfSubjectReviewV1Alpha1Props:
     ) -> None:
         '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
 
-        When using impersonation, users will receive the user info of the user being impersonated.
+        When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
 
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
@@ -26703,6 +27597,119 @@ class KubeSelfSubjectReviewV1Alpha1Props:
 
     def __repr__(self) -> str:
         return "KubeSelfSubjectReviewV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeSelfSubjectReviewV1Beta1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeSelfSubjectReviewV1Beta1",
+):
+    '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+    When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
+
+    :schema: io.k8s.api.authentication.v1beta1.SelfSubjectReview
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.authentication.v1beta1.SelfSubjectReview" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4c6325336c49f73bfa6cee21130b577b6ac3d6ebce9852e592b9006651790fbf)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeSelfSubjectReviewV1Beta1Props(metadata=metadata)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.authentication.v1beta1.SelfSubjectReview".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        '''
+        props = KubeSelfSubjectReviewV1Beta1Props(metadata=metadata)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.authentication.v1beta1.SelfSubjectReview".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeSelfSubjectReviewV1Beta1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata"},
+)
+class KubeSelfSubjectReviewV1Beta1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request.
+
+        When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
+
+        :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1beta1.SelfSubjectReview
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1b80e229ada2e7d6c3d377c9f1e90767168bd3316e424b40ec51a9dde3b56467)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object's metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+        :schema: io.k8s.api.authentication.v1beta1.SelfSubjectReview#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeSelfSubjectReviewV1Beta1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -27922,14 +28929,14 @@ class KubeStorageClass(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param provisioner: Provisioner indicates the type of the provisioner.
-        :param allowed_topologies: Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
-        :param allow_volume_expansion: AllowVolumeExpansion shows whether the storage class allow volume expand.
+        :param provisioner: provisioner indicates the type of the provisioner.
+        :param allowed_topologies: allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param allow_volume_expansion: allowVolumeExpansion shows whether the storage class allow volume expand.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param mount_options: Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
-        :param parameters: Parameters holds the parameters for the provisioner that should create volumes of this storage class.
-        :param reclaim_policy: Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete. Default: Delete.
-        :param volume_binding_mode: VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param mount_options: mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        :param parameters: parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        :param reclaim_policy: reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete. Default: Delete.
+        :param volume_binding_mode: volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__047df7981d1ae82b04f2e59adc1e0b713c54c65e95598c90ab39efd0bbcffb11)
@@ -27966,14 +28973,14 @@ class KubeStorageClass(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param provisioner: Provisioner indicates the type of the provisioner.
-        :param allowed_topologies: Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
-        :param allow_volume_expansion: AllowVolumeExpansion shows whether the storage class allow volume expand.
+        :param provisioner: provisioner indicates the type of the provisioner.
+        :param allowed_topologies: allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param allow_volume_expansion: allowVolumeExpansion shows whether the storage class allow volume expand.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param mount_options: Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
-        :param parameters: Parameters holds the parameters for the provisioner that should create volumes of this storage class.
-        :param reclaim_policy: Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete. Default: Delete.
-        :param volume_binding_mode: VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param mount_options: mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        :param parameters: parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        :param reclaim_policy: reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete. Default: Delete.
+        :param volume_binding_mode: volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
         '''
         props = KubeStorageClassProps(
             provisioner=provisioner,
@@ -28022,7 +29029,7 @@ class KubeStorageClassList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of StorageClasses.
+        :param items: items is the list of StorageClasses.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
@@ -28045,7 +29052,7 @@ class KubeStorageClassList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of StorageClasses.
+        :param items: items is the list of StorageClasses.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         props = KubeStorageClassListProps(items=items, metadata=metadata)
@@ -28078,7 +29085,7 @@ class KubeStorageClassListProps:
     ) -> None:
         '''StorageClassList is a collection of storage classes.
 
-        :param items: Items is the list of StorageClasses.
+        :param items: items is the list of StorageClasses.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
 
         :schema: io.k8s.api.storage.v1.StorageClassList
@@ -28097,7 +29104,7 @@ class KubeStorageClassListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeStorageClassProps"]:
-        '''Items is the list of StorageClasses.
+        '''items is the list of StorageClasses.
 
         :schema: io.k8s.api.storage.v1.StorageClassList#items
         '''
@@ -28157,14 +29164,14 @@ class KubeStorageClassProps:
 
         StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.
 
-        :param provisioner: Provisioner indicates the type of the provisioner.
-        :param allowed_topologies: Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
-        :param allow_volume_expansion: AllowVolumeExpansion shows whether the storage class allow volume expand.
+        :param provisioner: provisioner indicates the type of the provisioner.
+        :param allowed_topologies: allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param allow_volume_expansion: allowVolumeExpansion shows whether the storage class allow volume expand.
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param mount_options: Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
-        :param parameters: Parameters holds the parameters for the provisioner that should create volumes of this storage class.
-        :param reclaim_policy: Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete. Default: Delete.
-        :param volume_binding_mode: VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+        :param mount_options: mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        :param parameters: parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        :param reclaim_policy: reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete. Default: Delete.
+        :param volume_binding_mode: volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
 
         :schema: io.k8s.api.storage.v1.StorageClass
         '''
@@ -28200,7 +29207,7 @@ class KubeStorageClassProps:
 
     @builtins.property
     def provisioner(self) -> builtins.str:
-        '''Provisioner indicates the type of the provisioner.
+        '''provisioner indicates the type of the provisioner.
 
         :schema: io.k8s.api.storage.v1.StorageClass#provisioner
         '''
@@ -28212,7 +29219,7 @@ class KubeStorageClassProps:
     def allowed_topologies(
         self,
     ) -> typing.Optional[typing.List["TopologySelectorTerm"]]:
-        '''Restrict the node topologies where volumes can be dynamically provisioned.
+        '''allowedTopologies restrict the node topologies where volumes can be dynamically provisioned.
 
         Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
 
@@ -28223,7 +29230,7 @@ class KubeStorageClassProps:
 
     @builtins.property
     def allow_volume_expansion(self) -> typing.Optional[builtins.bool]:
-        '''AllowVolumeExpansion shows whether the storage class allow volume expand.
+        '''allowVolumeExpansion shows whether the storage class allow volume expand.
 
         :schema: io.k8s.api.storage.v1.StorageClass#allowVolumeExpansion
         '''
@@ -28243,7 +29250,9 @@ class KubeStorageClassProps:
 
     @builtins.property
     def mount_options(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        '''mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class.
+
+        e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
 
         :schema: io.k8s.api.storage.v1.StorageClass#mountOptions
         '''
@@ -28252,7 +29261,7 @@ class KubeStorageClassProps:
 
     @builtins.property
     def parameters(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
-        '''Parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        '''parameters holds the parameters for the provisioner that should create volumes of this storage class.
 
         :schema: io.k8s.api.storage.v1.StorageClass#parameters
         '''
@@ -28261,7 +29270,7 @@ class KubeStorageClassProps:
 
     @builtins.property
     def reclaim_policy(self) -> typing.Optional[builtins.str]:
-        '''Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy.
+        '''reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class.
 
         Defaults to Delete.
 
@@ -28274,7 +29283,7 @@ class KubeStorageClassProps:
 
     @builtins.property
     def volume_binding_mode(self) -> typing.Optional[builtins.str]:
-        '''VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.
+        '''volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.
 
         When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
 
@@ -29078,6 +30087,139 @@ class KubeValidatingAdmissionPolicyBindingListV1Alpha1Props:
         )
 
 
+class KubeValidatingAdmissionPolicyBindingListV1Beta1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingListV1Beta1",
+):
+    '''ValidatingAdmissionPolicyBindingList is a list of ValidatingAdmissionPolicyBinding.
+
+    :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__241337a57b83707520894748a9268890b7a3fe3e4b3f2e9810b47d44c0dfc0bb)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyBindingListV1Beta1Props(
+            items=items, metadata=metadata
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        props = KubeValidatingAdmissionPolicyBindingListV1Beta1Props(
+            items=items, metadata=metadata
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingListV1Beta1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeValidatingAdmissionPolicyBindingListV1Beta1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyBindingV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBindingList is a list of ValidatingAdmissionPolicyBinding.
+
+        :param items: List of PolicyBinding.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e3c08e09551bb3db60215462dd42eb6a0c0933fd1453e92b0761f0c531b4c7b6)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if items is not None:
+            self._values["items"] = items
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(
+        self,
+    ) -> typing.Optional[typing.List["KubeValidatingAdmissionPolicyBindingV1Beta1Props"]]:
+        '''List of PolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList#items
+        '''
+        result = self._values.get("items")
+        return typing.cast(typing.Optional[typing.List["KubeValidatingAdmissionPolicyBindingV1Beta1Props"]], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyBindingListV1Beta1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class KubeValidatingAdmissionPolicyBindingV1Alpha1(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -29086,6 +30228,10 @@ class KubeValidatingAdmissionPolicyBindingV1Alpha1(
     '''ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
 
     ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
+
+    For a given admission request, each binding will cause its policy to be evaluated N times, where N is 1 for policies/bindings that don't use params, otherwise N is the number of parameters selected by the binding.
+
+    The CEL expressions of a policy must have a computed CEL cost below the maximum CEL budget. Each evaluation of the policy is given an independent CEL cost budget. Adding/removing policies, bindings, or params can not affect whether a given (policy, binding, param) combination is within its own CEL budget.
 
     :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBinding
     '''
@@ -29164,6 +30310,10 @@ class KubeValidatingAdmissionPolicyBindingV1Alpha1Props:
 
         ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
 
+        For a given admission request, each binding will cause its policy to be evaluated N times, where N is 1 for policies/bindings that don't use params, otherwise N is the number of parameters selected by the binding.
+
+        The CEL expressions of a policy must have a computed CEL cost below the maximum CEL budget. Each evaluation of the policy is given an independent CEL cost budget. Adding/removing policies, bindings, or params can not affect whether a given (policy, binding, param) combination is within its own CEL budget.
+
         :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
 
@@ -29211,6 +30361,151 @@ class KubeValidatingAdmissionPolicyBindingV1Alpha1Props:
 
     def __repr__(self) -> str:
         return "KubeValidatingAdmissionPolicyBindingV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeValidatingAdmissionPolicyBindingV1Beta1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingV1Beta1",
+):
+    '''ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
+
+    ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
+
+    For a given admission request, each binding will cause its policy to be evaluated N times, where N is 1 for policies/bindings that don't use params, otherwise N is the number of parameters selected by the binding.
+
+    The CEL expressions of a policy must have a computed CEL cost below the maximum CEL budget. Each evaluation of the policy is given an independent CEL cost budget. Adding/removing policies, bindings, or params can not affect whether a given (policy, binding, param) combination is within its own CEL budget.
+
+    :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c09680467550f02565b22d53788829f1c0e8b6479976e0cddfa8d8d63fa291df)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyBindingV1Beta1Props(
+            metadata=metadata, spec=spec
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+        '''
+        props = KubeValidatingAdmissionPolicyBindingV1Beta1Props(
+            metadata=metadata, spec=spec
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyBindingV1Beta1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeValidatingAdmissionPolicyBindingV1Beta1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicyBindingSpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources.
+
+        ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
+
+        For a given admission request, each binding will cause its policy to be evaluated N times, where N is 1 for policies/bindings that don't use params, otherwise N is the number of parameters selected by the binding.
+
+        The CEL expressions of a policy must have a computed CEL cost below the maximum CEL budget. Each evaluation of the policy is given an independent CEL cost budget. Adding/removing policies, bindings, or params can not affect whether a given (policy, binding, param) combination is within its own CEL budget.
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = ValidatingAdmissionPolicyBindingSpecV1Beta1(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c0a990a7b7e27e28e26ece4b536eb1b3d61b218b2631088ea59ff3dbc16c5145)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata;
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["ValidatingAdmissionPolicyBindingSpecV1Beta1"]:
+        '''Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBinding#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["ValidatingAdmissionPolicyBindingSpecV1Beta1"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyBindingV1Beta1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -29348,6 +30643,139 @@ class KubeValidatingAdmissionPolicyListV1Alpha1Props:
         )
 
 
+class KubeValidatingAdmissionPolicyListV1Beta1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyListV1Beta1",
+):
+    '''ValidatingAdmissionPolicyList is a list of ValidatingAdmissionPolicy.
+
+    :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5ccdadbc6c3f7e9fabbe4f7528ba0fa3bbb190730341f9e800357712d8e24951)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyListV1Beta1Props(
+            items=items, metadata=metadata
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        '''
+        props = KubeValidatingAdmissionPolicyListV1Beta1Props(
+            items=items, metadata=metadata
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyListV1Beta1Props",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "metadata": "metadata"},
+)
+class KubeValidatingAdmissionPolicyListV1Beta1Props:
+    def __init__(
+        self,
+        *,
+        items: typing.Optional[typing.Sequence[typing.Union["KubeValidatingAdmissionPolicyV1Beta1Props", typing.Dict[builtins.str, typing.Any]]]] = None,
+        metadata: typing.Optional[typing.Union["ListMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyList is a list of ValidatingAdmissionPolicy.
+
+        :param items: List of ValidatingAdmissionPolicy.
+        :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList
+        '''
+        if isinstance(metadata, dict):
+            metadata = ListMeta(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9ed35b90ddcea8a1d5d1c32fb50cf0259771687eb621661767f1cf19d8b2104e)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if items is not None:
+            self._values["items"] = items
+        if metadata is not None:
+            self._values["metadata"] = metadata
+
+    @builtins.property
+    def items(
+        self,
+    ) -> typing.Optional[typing.List["KubeValidatingAdmissionPolicyV1Beta1Props"]]:
+        '''List of ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList#items
+        '''
+        result = self._values.get("items")
+        return typing.cast(typing.Optional[typing.List["KubeValidatingAdmissionPolicyV1Beta1Props"]], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ListMeta"]:
+        '''Standard list metadata.
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyList#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ListMeta"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyListV1Beta1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class KubeValidatingAdmissionPolicyV1Alpha1(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -29477,6 +30905,135 @@ class KubeValidatingAdmissionPolicyV1Alpha1Props:
 
     def __repr__(self) -> str:
         return "KubeValidatingAdmissionPolicyV1Alpha1Props(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class KubeValidatingAdmissionPolicyV1Beta1(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="k8s.KubeValidatingAdmissionPolicyV1Beta1",
+):
+    '''ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.
+
+    :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__fb338b5c17a743b3b10374c07c82c00dfb90fe0debf4c8f87b4bd1af70983cba)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = KubeValidatingAdmissionPolicyV1Beta1Props(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+        '''
+        props = KubeValidatingAdmissionPolicyV1Beta1Props(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="k8s.KubeValidatingAdmissionPolicyV1Beta1Props",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class KubeValidatingAdmissionPolicyV1Beta1Props:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["ObjectMeta", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["ValidatingAdmissionPolicySpecV1Beta1", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.
+
+        :param metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+        :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy
+        '''
+        if isinstance(metadata, dict):
+            metadata = ObjectMeta(**metadata)
+        if isinstance(spec, dict):
+            spec = ValidatingAdmissionPolicySpecV1Beta1(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__11b115fe94e5632888766af4e7a4fb5bd5b6875c3cbe24b8f6dfdd801c5886b7)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["ObjectMeta"]:
+        '''Standard object metadata;
+
+        More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["ObjectMeta"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["ValidatingAdmissionPolicySpecV1Beta1"]:
+        '''Specification of the desired behavior of the ValidatingAdmissionPolicy.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicy#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["ValidatingAdmissionPolicySpecV1Beta1"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "KubeValidatingAdmissionPolicyV1Beta1Props(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -29768,7 +31325,7 @@ class KubeVolumeAttachment(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param spec: Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
+        :param spec: spec represents specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
@@ -29791,7 +31348,7 @@ class KubeVolumeAttachment(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param spec: Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
+        :param spec: spec represents specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         props = KubeVolumeAttachmentProps(spec=spec, metadata=metadata)
@@ -29832,7 +31389,7 @@ class KubeVolumeAttachmentList(
 
         :param scope: the scope in which to define this object.
         :param id: a scope-local name for the object.
-        :param items: Items is the list of VolumeAttachments.
+        :param items: items is the list of VolumeAttachments.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
@@ -29855,7 +31412,7 @@ class KubeVolumeAttachmentList(
 
         This can be used to inline resource manifests inside other objects (e.g. as templates).
 
-        :param items: Items is the list of VolumeAttachments.
+        :param items: items is the list of VolumeAttachments.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         props = KubeVolumeAttachmentListProps(items=items, metadata=metadata)
@@ -29888,7 +31445,7 @@ class KubeVolumeAttachmentListProps:
     ) -> None:
         '''VolumeAttachmentList is a collection of VolumeAttachment objects.
 
-        :param items: Items is the list of VolumeAttachments.
+        :param items: items is the list of VolumeAttachments.
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentList
@@ -29907,7 +31464,7 @@ class KubeVolumeAttachmentListProps:
 
     @builtins.property
     def items(self) -> typing.List["KubeVolumeAttachmentProps"]:
-        '''Items is the list of VolumeAttachments.
+        '''items is the list of VolumeAttachments.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentList#items
         '''
@@ -29952,7 +31509,7 @@ class KubeVolumeAttachmentProps:
 
         VolumeAttachment objects are non-namespaced.
 
-        :param spec: Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
+        :param spec: spec represents specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
         :schema: io.k8s.api.storage.v1.VolumeAttachment
@@ -29973,7 +31530,7 @@ class KubeVolumeAttachmentProps:
 
     @builtins.property
     def spec(self) -> "VolumeAttachmentSpec":
-        '''Specification of the desired attach/detach volume behavior.
+        '''spec represents specification of the desired attach/detach volume behavior.
 
         Populated by the Kubernetes system.
 
@@ -30181,7 +31738,7 @@ class LeaseSpec:
 
         :param acquire_time: acquireTime is a time when the current lease was acquired.
         :param holder_identity: holderIdentity contains the identity of the holder of a current lease.
-        :param lease_duration_seconds: leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.
+        :param lease_duration_seconds: leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed renewTime.
         :param lease_transitions: leaseTransitions is the number of transitions of a lease between holders.
         :param renew_time: renewTime is a time when the current holder of a lease has last updated the lease.
 
@@ -30228,7 +31785,7 @@ class LeaseSpec:
     def lease_duration_seconds(self) -> typing.Optional[jsii.Number]:
         '''leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it.
 
-        This is measure against time of last observed RenewTime.
+        This is measure against time of last observed renewTime.
 
         :schema: io.k8s.api.coordination.v1.LeaseSpec#leaseDurationSeconds
         '''
@@ -30868,7 +32425,7 @@ class LimitedPriorityLevelConfigurationV1Beta3:
         :param borrowing_limit_percent: ``borrowingLimitPercent``, if present, configures a limit on how many seats this priority level can borrow from other priority levels. The limit is known as this level's BorrowingConcurrencyLimit (BorrowingCL) and is a limit on the total number of seats that this level may borrow at any one time. This field holds the ratio of that limit to the level's nominal concurrency limit. When this field is non-nil, it must hold a non-negative integer and the limit is calculated as follows. BorrowingCL(i) = round( NominalCL(i) * borrowingLimitPercent(i)/100.0 ) The value of this field can be more than 100, implying that this priority level can borrow a number of seats that is greater than its own nominal concurrency limit (NominalCL). When this field is left ``nil``, the limit is effectively infinite.
         :param lendable_percent: ``lendablePercent`` prescribes the fraction of the level's NominalCL that can be borrowed by other priority levels. The value of this field must be between 0 and 100, inclusive, and it defaults to 0. The number of seats that other levels can borrow from this level, known as this level's LendableConcurrencyLimit (LendableCL), is defined as follows. LendableCL(i) = round( NominalCL(i) * lendablePercent(i)/100.0 )
         :param limit_response: ``limitResponse`` indicates what to do with requests that can not be executed right now.
-        :param nominal_concurrency_shares: ``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level. This is the number of execution seats available at this priority level. This is used both for requests dispatched from this priority level as well as requests dispatched from other priority levels borrowing seats from this level. The server's concurrency limit (ServerCL) is divided among the Limited priority levels in proportion to their NCS values: NominalCL(i) = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[limited priority level k] NCS(k) Bigger numbers mean a larger nominal concurrency limit, at the expense of every other Limited priority level. This field has a default value of 30.
+        :param nominal_concurrency_shares: ``nominalConcurrencyShares`` (NCS) contributes to the computation of the NominalConcurrencyLimit (NominalCL) of this level. This is the number of execution seats available at this priority level. This is used both for requests dispatched from this priority level as well as requests dispatched from other priority levels borrowing seats from this level. The server's concurrency limit (ServerCL) is divided among the Limited priority levels in proportion to their NCS values: NominalCL(i) = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k) Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of 30.
 
         :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration
         '''
@@ -30933,9 +32490,9 @@ class LimitedPriorityLevelConfigurationV1Beta3:
 
         This is the number of execution seats available at this priority level. This is used both for requests dispatched from this priority level as well as requests dispatched from other priority levels borrowing seats from this level. The server's concurrency limit (ServerCL) is divided among the Limited priority levels in proportion to their NCS values:
 
-        NominalCL(i)  = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[limited priority level k] NCS(k)
+        NominalCL(i)  = ceil( ServerCL * NCS(i) / sum_ncs ) sum_ncs = sum[priority level k] NCS(k)
 
-        Bigger numbers mean a larger nominal concurrency limit, at the expense of every other Limited priority level. This field has a default value of 30.
+        Bigger numbers mean a larger nominal concurrency limit, at the expense of every other priority level. This field has a default value of 30.
 
         :schema: io.k8s.api.flowcontrol.v1beta3.LimitedPriorityLevelConfiguration#nominalConcurrencyShares
         '''
@@ -31309,6 +32866,212 @@ class ManagedFieldsEntry:
 
 
 @jsii.data_type(
+    jsii_type="k8s.MatchCondition",
+    jsii_struct_bases=[],
+    name_mapping={"expression": "expression", "name": "name"},
+)
+class MatchCondition:
+    def __init__(self, *, expression: builtins.str, name: builtins.str) -> None:
+        '''MatchCondition represents a condition which must by fulfilled for a request to be sent to a webhook.
+
+        :param expression: Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables: 'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/ Required.
+        :param name: Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName', or 'my.name', or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName') Required.
+
+        :schema: io.k8s.api.admissionregistration.v1.MatchCondition
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3800f669ab21a26d536ae83c136f2866c0e93717ab35288364734887c0897ff3)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+            "name": name,
+        }
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression represents the expression which will be evaluated by CEL.
+
+        Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:
+
+        'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.
+        See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz
+        'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the
+        request resource.
+        Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1.MatchCondition#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes.
+
+        A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1.MatchCondition#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "MatchCondition(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.MatchConditionV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"expression": "expression", "name": "name"},
+)
+class MatchConditionV1Alpha1:
+    def __init__(self, *, expression: builtins.str, name: builtins.str) -> None:
+        '''
+        :param expression: Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables: 'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/ Required.
+        :param name: Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName', or 'my.name', or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName') Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchCondition
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__beea8e57725f27cd5055bfc69b7285a280467452baf7822cf280461af2cac429)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+            "name": name,
+        }
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression represents the expression which will be evaluated by CEL.
+
+        Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:
+
+        'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.
+        See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz
+        'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the
+        request resource.
+        Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchCondition#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes.
+
+        A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.MatchCondition#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "MatchConditionV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.MatchConditionV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={"expression": "expression", "name": "name"},
+)
+class MatchConditionV1Beta1:
+    def __init__(self, *, expression: builtins.str, name: builtins.str) -> None:
+        '''MatchCondition represents a condition which must be fulfilled for a request to be sent to a webhook.
+
+        :param expression: Expression represents the expression which will be evaluated by CEL. Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables: 'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/ Required.
+        :param name: Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes. A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName', or 'my.name', or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName') Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchCondition
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9e49bf637f21e88073f98fa1103cd81916ae6d3820ed7367d000d2ae75800fb7)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+            "name": name,
+        }
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression represents the expression which will be evaluated by CEL.
+
+        Must evaluate to bool. CEL expressions have access to the contents of the AdmissionRequest and Authorizer, organized into CEL variables:
+
+        'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(/pkg/apis/admission/types.go#AdmissionRequest). 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.
+        See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz
+        'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the
+        request resource.
+        Documentation on CEL: https://kubernetes.io/docs/reference/using-api/cel/
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchCondition#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is an identifier for this match condition, used for strategic merging of MatchConditions, as well as providing an identifier for logging purposes.
+
+        A good name should be descriptive of the associated expression. Name must be a qualified name consisting of alphanumeric characters, '-', '*' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9*.]*)?[A-Za-z0-9]') with an optional DNS subdomain prefix and '/' (e.g. 'example.com/MyName')
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchCondition#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "MatchConditionV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.MatchResourcesV1Alpha1",
     jsii_struct_bases=[],
     name_mapping={
@@ -31470,6 +33233,172 @@ class MatchResourcesV1Alpha1:
 
     def __repr__(self) -> str:
         return "MatchResourcesV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.MatchResourcesV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "exclude_resource_rules": "excludeResourceRules",
+        "match_policy": "matchPolicy",
+        "namespace_selector": "namespaceSelector",
+        "object_selector": "objectSelector",
+        "resource_rules": "resourceRules",
+    },
+)
+class MatchResourcesV1Beta1:
+    def __init__(
+        self,
+        *,
+        exclude_resource_rules: typing.Optional[typing.Sequence[typing.Union["NamedRuleWithOperationsV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
+        match_policy: typing.Optional[builtins.str] = None,
+        namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+        object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+        resource_rules: typing.Optional[typing.Sequence[typing.Union["NamedRuleWithOperationsV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
+    ) -> None:
+        '''MatchResources decides whether to run the admission control policy on an object based on whether it meets the match criteria.
+
+        The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+
+        :param exclude_resource_rules: ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about. The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+        :param match_policy: matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy. Defaults to "Equivalent" Default: Equivalent"
+        :param namespace_selector: NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "runlevel", "operator": "NotIn", "values": [ "0", "1" ] } ] } If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "environment", "operator": "In", "values": [ "prod", "staging" ] } ] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
+        :param object_selector: ObjectSelector decides whether to run the validation based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
+        :param resource_rules: ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches. The policy cares about an operation if it matches *any* Rule.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources
+        '''
+        if isinstance(namespace_selector, dict):
+            namespace_selector = LabelSelector(**namespace_selector)
+        if isinstance(object_selector, dict):
+            object_selector = LabelSelector(**object_selector)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1f544a901497696fa76856946cbb824eaf95d5b9cd4538d6f138fb971999df08)
+            check_type(argname="argument exclude_resource_rules", value=exclude_resource_rules, expected_type=type_hints["exclude_resource_rules"])
+            check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
+            check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
+            check_type(argname="argument object_selector", value=object_selector, expected_type=type_hints["object_selector"])
+            check_type(argname="argument resource_rules", value=resource_rules, expected_type=type_hints["resource_rules"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if exclude_resource_rules is not None:
+            self._values["exclude_resource_rules"] = exclude_resource_rules
+        if match_policy is not None:
+            self._values["match_policy"] = match_policy
+        if namespace_selector is not None:
+            self._values["namespace_selector"] = namespace_selector
+        if object_selector is not None:
+            self._values["object_selector"] = object_selector
+        if resource_rules is not None:
+            self._values["resource_rules"] = resource_rules
+
+    @builtins.property
+    def exclude_resource_rules(
+        self,
+    ) -> typing.Optional[typing.List["NamedRuleWithOperationsV1Beta1"]]:
+        '''ExcludeResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy should not care about.
+
+        The exclude rules take precedence over include rules (if a resource matches both, it is excluded)
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources#excludeResourceRules
+        '''
+        result = self._values.get("exclude_resource_rules")
+        return typing.cast(typing.Optional[typing.List["NamedRuleWithOperationsV1Beta1"]], result)
+
+    @builtins.property
+    def match_policy(self) -> typing.Optional[builtins.str]:
+        '''matchPolicy defines how the "MatchResources" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent".
+
+        - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the ValidatingAdmissionPolicy.
+        - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the ValidatingAdmissionPolicy.
+
+        Defaults to "Equivalent"
+
+        :default: Equivalent"
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources#matchPolicy
+        '''
+        result = self._values.get("match_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace_selector(self) -> typing.Optional[LabelSelector]:
+        '''NamespaceSelector decides whether to run the admission control policy on an object based on whether the namespace for that object matches the selector.
+
+        If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the policy.
+
+        For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1";  you will set the selector as follows: "namespaceSelector": {
+        "matchExpressions": [
+        {
+        "key": "runlevel",
+        "operator": "NotIn",
+        "values": [
+        "0",
+        "1"
+        ]
+        }
+        ]
+        }
+
+        If instead you want to only run the policy on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": {
+        "matchExpressions": [
+        {
+        "key": "environment",
+        "operator": "In",
+        "values": [
+        "prod",
+        "staging"
+        ]
+        }
+        ]
+        }
+
+        See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors.
+
+        Default to the empty LabelSelector, which matches everything.
+
+        :default: the empty LabelSelector, which matches everything.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources#namespaceSelector
+        '''
+        result = self._values.get("namespace_selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    @builtins.property
+    def object_selector(self) -> typing.Optional[LabelSelector]:
+        '''ObjectSelector decides whether to run the validation based on if the object has matching labels.
+
+        objectSelector is evaluated against both the oldObject and newObject that would be sent to the cel validation, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
+
+        :default: the empty LabelSelector, which matches everything.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources#objectSelector
+        '''
+        result = self._values.get("object_selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    @builtins.property
+    def resource_rules(
+        self,
+    ) -> typing.Optional[typing.List["NamedRuleWithOperationsV1Beta1"]]:
+        '''ResourceRules describes what operations on what resources/subresources the ValidatingAdmissionPolicy matches.
+
+        The policy cares about an operation if it matches *any* Rule.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.MatchResources#resourceRules
+        '''
+        result = self._values.get("resource_rules")
+        return typing.cast(typing.Optional[typing.List["NamedRuleWithOperationsV1Beta1"]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "MatchResourcesV1Beta1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -31781,6 +33710,7 @@ class MetricTargetV2:
         "name": "name",
         "side_effects": "sideEffects",
         "failure_policy": "failurePolicy",
+        "match_conditions": "matchConditions",
         "match_policy": "matchPolicy",
         "namespace_selector": "namespaceSelector",
         "object_selector": "objectSelector",
@@ -31798,6 +33728,7 @@ class MutatingWebhook:
         name: builtins.str,
         side_effects: builtins.str,
         failure_policy: typing.Optional[builtins.str] = None,
+        match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchCondition, typing.Dict[builtins.str, typing.Any]]]] = None,
         match_policy: typing.Optional[builtins.str] = None,
         namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
         object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -31812,6 +33743,7 @@ class MutatingWebhook:
         :param name: The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         :param side_effects: SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission chain and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         :param failure_policy: FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param match_conditions: MatchConditions is a list of conditions that must be met for a request to be sent to this webhook. Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed. The exact matching logic is (in order): 1. If ANY matchCondition evaluates to FALSE, the webhook is skipped. 2. If ALL matchConditions evaluate to TRUE, the webhook is called. 3. If any matchCondition evaluates to an error (but none are FALSE): - If failurePolicy=Fail, reject the request - If failurePolicy=Ignore, the error is ignored and the webhook is skipped This is a beta feature and managed by the AdmissionWebhookMatchConditions feature gate.
         :param match_policy: matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook. Defaults to "Equivalent" Default: Equivalent"
         :param namespace_selector: NamespaceSelector decides whether to run the webhook on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the webhook. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "runlevel", "operator": "NotIn", "values": [ "0", "1" ] } ] } If instead you want to only run the webhook on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "environment", "operator": "In", "values": [ "prod", "staging" ] } ] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more examples of label selectors. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
         :param object_selector: ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
@@ -31834,6 +33766,7 @@ class MutatingWebhook:
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument side_effects", value=side_effects, expected_type=type_hints["side_effects"])
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
+            check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
             check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument object_selector", value=object_selector, expected_type=type_hints["object_selector"])
@@ -31848,6 +33781,8 @@ class MutatingWebhook:
         }
         if failure_policy is not None:
             self._values["failure_policy"] = failure_policy
+        if match_conditions is not None:
+            self._values["match_conditions"] = match_conditions
         if match_policy is not None:
             self._values["match_policy"] = match_policy
         if namespace_selector is not None:
@@ -31921,6 +33856,28 @@ class MutatingWebhook:
         '''
         result = self._values.get("failure_policy")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def match_conditions(self) -> typing.Optional[typing.List[MatchCondition]]:
+        '''MatchConditions is a list of conditions that must be met for a request to be sent to this webhook.
+
+        Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed.
+
+        The exact matching logic is (in order):
+
+        1. If ANY matchCondition evaluates to FALSE, the webhook is skipped.
+        2. If ALL matchConditions evaluate to TRUE, the webhook is called.
+        3. If any matchCondition evaluates to an error (but none are FALSE):
+
+        - If failurePolicy=Fail, reject the request
+        - If failurePolicy=Ignore, the error is ignored and the webhook is skipped
+
+        This is a beta feature and managed by the AdmissionWebhookMatchConditions feature gate.
+
+        :schema: io.k8s.api.admissionregistration.v1.MutatingWebhook#matchConditions
+        '''
+        result = self._values.get("match_conditions")
+        return typing.cast(typing.Optional[typing.List[MatchCondition]], result)
 
     @builtins.property
     def match_policy(self) -> typing.Optional[builtins.str]:
@@ -32190,6 +34147,146 @@ class NamedRuleWithOperationsV1Alpha1:
 
 
 @jsii.data_type(
+    jsii_type="k8s.NamedRuleWithOperationsV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "api_groups": "apiGroups",
+        "api_versions": "apiVersions",
+        "operations": "operations",
+        "resource_names": "resourceNames",
+        "resources": "resources",
+        "scope": "scope",
+    },
+)
+class NamedRuleWithOperationsV1Beta1:
+    def __init__(
+        self,
+        *,
+        api_groups: typing.Optional[typing.Sequence[builtins.str]] = None,
+        api_versions: typing.Optional[typing.Sequence[builtins.str]] = None,
+        operations: typing.Optional[typing.Sequence[builtins.str]] = None,
+        resource_names: typing.Optional[typing.Sequence[builtins.str]] = None,
+        resources: typing.Optional[typing.Sequence[builtins.str]] = None,
+        scope: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''NamedRuleWithOperations is a tuple of Operations and Resources with ResourceNames.
+
+        :param api_groups: APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
+        :param api_versions: APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
+        :param operations: Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. If '*' is present, the length of the slice must be one. Required.
+        :param resource_names: ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.
+        :param resources: Resources is a list of resources this rule applies to. For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/*' means all subresources of pods. '*/scale' means all scale subresources. '*/*' means all resources and their subresources. If wildcard is present, the validation rule will ensure resources do not overlap with each other. Depending on the enclosing object, subresources might not be allowed. Required.
+        :param scope: scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*". Default: .
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5752bf5c1318bb48fb98d55c7d64c8f6c4c0d21ee0ed3f837e48926229f41644)
+            check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
+            check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
+            check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
+            check_type(argname="argument resource_names", value=resource_names, expected_type=type_hints["resource_names"])
+            check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if api_groups is not None:
+            self._values["api_groups"] = api_groups
+        if api_versions is not None:
+            self._values["api_versions"] = api_versions
+        if operations is not None:
+            self._values["operations"] = operations
+        if resource_names is not None:
+            self._values["resource_names"] = resource_names
+        if resources is not None:
+            self._values["resources"] = resources
+        if scope is not None:
+            self._values["scope"] = scope
+
+    @builtins.property
+    def api_groups(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''APIGroups is the API groups the resources belong to.
+
+        '*' is all groups. If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#apiGroups
+        '''
+        result = self._values.get("api_groups")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def api_versions(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''APIVersions is the API versions the resources belong to.
+
+        '*' is all versions. If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#apiVersions
+        '''
+        result = self._values.get("api_versions")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def operations(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added.
+
+        If '*' is present, the length of the slice must be one. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#operations
+        '''
+        result = self._values.get("operations")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def resource_names(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''ResourceNames is an optional white list of names that the rule applies to.
+
+        An empty set means that everything is allowed.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#resourceNames
+        '''
+        result = self._values.get("resource_names")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def resources(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Resources is a list of resources this rule applies to.
+
+        For example: 'pods' means pods. 'pods/log' means the log subresource of pods. '*' means all resources, but not subresources. 'pods/*' means all subresources of pods. '*/scale' means all scale subresources. '*/*' means all resources and their subresources.
+
+        If wildcard is present, the validation rule will ensure resources do not overlap with each other.
+
+        Depending on the enclosing object, subresources might not be allowed. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#resources
+        '''
+        result = self._values.get("resources")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def scope(self) -> typing.Optional[builtins.str]:
+        '''scope specifies the scope of this rule.
+
+        Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
+
+        :default: .
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations#scope
+        '''
+        result = self._values.get("scope")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "NamedRuleWithOperationsV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.NamespaceSpec",
     jsii_struct_bases=[],
     name_mapping={"finalizers": "finalizers"},
@@ -32252,8 +34349,8 @@ class NetworkPolicyEgressRule:
 
         The traffic must match both ports and to. This type is beta-level in 1.8
 
-        :param ports: List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
-        :param to: List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
+        :param ports: ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        :param to: to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyEgressRule
         '''
@@ -32269,7 +34366,7 @@ class NetworkPolicyEgressRule:
 
     @builtins.property
     def ports(self) -> typing.Optional[typing.List["NetworkPolicyPort"]]:
-        '''List of destination ports for outgoing traffic.
+        '''ports is a list of destination ports for outgoing traffic.
 
         Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
 
@@ -32280,7 +34377,7 @@ class NetworkPolicyEgressRule:
 
     @builtins.property
     def to(self) -> typing.Optional[typing.List["NetworkPolicyPeer"]]:
-        '''List of destinations for outgoing traffic of pods selected for this rule.
+        '''to is a list of destinations for outgoing traffic of pods selected for this rule.
 
         Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
 
@@ -32317,8 +34414,8 @@ class NetworkPolicyIngressRule:
 
         The traffic must match both ports and from.
 
-        :param from_: List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
-        :param ports: List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        :param from_: from is a list of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
+        :param ports: ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyIngressRule
         '''
@@ -32334,7 +34431,7 @@ class NetworkPolicyIngressRule:
 
     @builtins.property
     def from_(self) -> typing.Optional[typing.List["NetworkPolicyPeer"]]:
-        '''List of sources which should be able to access the pods selected for this rule.
+        '''from is a list of sources which should be able to access the pods selected for this rule.
 
         Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
 
@@ -32345,7 +34442,7 @@ class NetworkPolicyIngressRule:
 
     @builtins.property
     def ports(self) -> typing.Optional[typing.List["NetworkPolicyPort"]]:
-        '''List of ports which should be made accessible on the pods selected for this rule.
+        '''ports is a list of ports which should be made accessible on the pods selected for this rule.
 
         Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
 
@@ -32387,9 +34484,9 @@ class NetworkPolicyPeer:
 
         Only certain combinations of fields are allowed
 
-        :param ip_block: IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
-        :param namespace_selector: Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
-        :param pod_selector: This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
+        :param ip_block: ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
+        :param namespace_selector: namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.
+        :param pod_selector: podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyPeer
         '''
@@ -32414,7 +34511,7 @@ class NetworkPolicyPeer:
 
     @builtins.property
     def ip_block(self) -> typing.Optional[IpBlock]:
-        '''IPBlock defines policy on a particular IPBlock.
+        '''ipBlock defines policy on a particular IPBlock.
 
         If this field is set then neither of the other fields can be.
 
@@ -32425,11 +34522,11 @@ class NetworkPolicyPeer:
 
     @builtins.property
     def namespace_selector(self) -> typing.Optional[LabelSelector]:
-        '''Selects Namespaces using cluster-scoped labels.
+        '''namespaceSelector selects namespaces using cluster-scoped labels.
 
         This field follows standard label selector semantics; if present but empty, it selects all namespaces.
 
-        If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
+        If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyPeer#namespaceSelector
         '''
@@ -32438,11 +34535,11 @@ class NetworkPolicyPeer:
 
     @builtins.property
     def pod_selector(self) -> typing.Optional[LabelSelector]:
-        '''This is a label selector which selects Pods.
+        '''podSelector is a label selector which selects pods.
 
         This field follows standard label selector semantics; if present but empty, it selects all pods.
 
-        If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
+        If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyPeer#podSelector
         '''
@@ -32476,9 +34573,9 @@ class NetworkPolicyPort:
     ) -> None:
         '''NetworkPolicyPort describes a port to allow traffic on.
 
-        :param end_port: If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
-        :param port: The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
-        :param protocol: The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
+        :param end_port: endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
+        :param port: port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
+        :param protocol: protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
 
         :schema: io.k8s.api.networking.v1.NetworkPolicyPort
         '''
@@ -32497,7 +34594,7 @@ class NetworkPolicyPort:
 
     @builtins.property
     def end_port(self) -> typing.Optional[jsii.Number]:
-        '''If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy.
+        '''endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy.
 
         This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
 
@@ -32508,7 +34605,7 @@ class NetworkPolicyPort:
 
     @builtins.property
     def port(self) -> typing.Optional[IntOrString]:
-        '''The port on the given protocol.
+        '''port represents the port on the given protocol.
 
         This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
 
@@ -32519,7 +34616,7 @@ class NetworkPolicyPort:
 
     @builtins.property
     def protocol(self) -> typing.Optional[builtins.str]:
-        '''The protocol (TCP, UDP, or SCTP) which traffic must match.
+        '''protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.
 
         If not specified, this field defaults to TCP.
 
@@ -32561,10 +34658,10 @@ class NetworkPolicySpec:
     ) -> None:
         '''NetworkPolicySpec provides the specification of a NetworkPolicy.
 
-        :param pod_selector: Selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
-        :param egress: List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
-        :param ingress: List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
-        :param policy_types: List of rule types that the NetworkPolicy relates to. Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
+        :param pod_selector: podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
+        :param egress: egress is a list of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
+        :param ingress: ingress is a list of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
+        :param policy_types: policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
 
         :schema: io.k8s.api.networking.v1.NetworkPolicySpec
         '''
@@ -32588,7 +34685,7 @@ class NetworkPolicySpec:
 
     @builtins.property
     def pod_selector(self) -> LabelSelector:
-        '''Selects the pods to which this NetworkPolicy object applies.
+        '''podSelector selects the pods to which this NetworkPolicy object applies.
 
         The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
 
@@ -32600,7 +34697,7 @@ class NetworkPolicySpec:
 
     @builtins.property
     def egress(self) -> typing.Optional[typing.List[NetworkPolicyEgressRule]]:
-        '''List of egress rules to be applied to the selected pods.
+        '''egress is a list of egress rules to be applied to the selected pods.
 
         Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
 
@@ -32611,7 +34708,7 @@ class NetworkPolicySpec:
 
     @builtins.property
     def ingress(self) -> typing.Optional[typing.List[NetworkPolicyIngressRule]]:
-        '''List of ingress rules to be applied to the selected pods.
+        '''ingress is a list of ingress rules to be applied to the selected pods.
 
         Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
 
@@ -32622,9 +34719,9 @@ class NetworkPolicySpec:
 
     @builtins.property
     def policy_types(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''List of rule types that the NetworkPolicy relates to.
+        '''policyTypes is a list of rule types that the NetworkPolicy relates to.
 
-        Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
+        Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
 
         :schema: io.k8s.api.networking.v1.NetworkPolicySpec#policyTypes
         '''
@@ -33497,21 +35594,21 @@ class ObjectMeta:
     ) -> None:
         '''ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
 
-        :param annotations: Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+        :param annotations: Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
         :param creation_timestamp: CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC. Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param deletion_grace_period_seconds: Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.
         :param deletion_timestamp: DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested. Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param finalizers: Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order. Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.
         :param generate_name: GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will return a 409. Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency
         :param generation: A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.
-        :param labels: Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+        :param labels: Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
         :param managed_fields: ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
-        :param name: Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
-        :param namespace: Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+        :param name: Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+        :param namespace: Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces
         :param owner_references: List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.
         :param resource_version: An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources. Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
         :param self_link: Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
-        :param uid: UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations. Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        :param uid: UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations. Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
         '''
@@ -33570,7 +35667,7 @@ class ObjectMeta:
     ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.
 
-        They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+        They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta#annotations
         '''
@@ -33655,7 +35752,7 @@ class ObjectMeta:
     def labels(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''Map of string keys and values that can be used to organize and categorize (scope and select) objects.
 
-        May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+        May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta#labels
         '''
@@ -33677,7 +35774,7 @@ class ObjectMeta:
     def name(self) -> typing.Optional[builtins.str]:
         '''Name must be unique within a namespace.
 
-        Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta#name
         '''
@@ -33690,7 +35787,7 @@ class ObjectMeta:
 
         An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.
 
-        Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
+        Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta#namespace
         '''
@@ -33736,7 +35833,7 @@ class ObjectMeta:
 
         It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.
 
-        Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta#uid
         '''
@@ -33999,7 +36096,7 @@ class Overhead:
     ) -> None:
         '''Overhead structure represents the resource overhead associated with running a pod.
 
-        :param pod_fixed: PodFixed represents the fixed resource overhead associated with running a pod.
+        :param pod_fixed: podFixed represents the fixed resource overhead associated with running a pod.
 
         :schema: io.k8s.api.node.v1.Overhead
         '''
@@ -34012,7 +36109,7 @@ class Overhead:
 
     @builtins.property
     def pod_fixed(self) -> typing.Optional[typing.Mapping[builtins.str, "Quantity"]]:
-        '''PodFixed represents the fixed resource overhead associated with running a pod.
+        '''podFixed represents the fixed resource overhead associated with running a pod.
 
         :schema: io.k8s.api.node.v1.Overhead#podFixed
         '''
@@ -34060,8 +36157,8 @@ class OwnerReference:
 
         :param api_version: API version of the referent.
         :param kind: Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param name: Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
-        :param uid: UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        :param name: Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+        :param uid: UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
         :param block_owner_deletion: If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. Default: false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
         :param controller: If true, this reference points to the managing controller.
 
@@ -34112,7 +36209,7 @@ class OwnerReference:
     def name(self) -> builtins.str:
         '''Name of the referent.
 
-        More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.OwnerReference#name
         '''
@@ -34124,7 +36221,7 @@ class OwnerReference:
     def uid(self) -> builtins.str:
         '''UID of the referent.
 
-        More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.OwnerReference#uid
         '''
@@ -34230,52 +36327,54 @@ class ParamKindV1Alpha1:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ParamRefV1Alpha1",
+    jsii_type="k8s.ParamKindV1Beta1",
     jsii_struct_bases=[],
-    name_mapping={"name": "name", "namespace": "namespace"},
+    name_mapping={"api_version": "apiVersion", "kind": "kind"},
 )
-class ParamRefV1Alpha1:
+class ParamKindV1Beta1:
     def __init__(
         self,
         *,
-        name: typing.Optional[builtins.str] = None,
-        namespace: typing.Optional[builtins.str] = None,
+        api_version: typing.Optional[builtins.str] = None,
+        kind: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''ParamRef references a parameter resource.
+        '''ParamKind is a tuple of Group Kind and Version.
 
-        :param name: Name of the resource being referenced.
-        :param namespace: Namespace of the referenced resource. Should be empty for the cluster-scoped resources
+        :param api_version: APIVersion is the API group version the resources belong to. In format of "group/version". Required.
+        :param kind: Kind is the API kind the resources belong to. Required.
 
-        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamKind
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e)
-            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
-            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+            type_hints = typing.get_type_hints(_typecheckingstub__5902630c6b9959b6d8033dbff5bbb00a7dabcb3ab582f1fe6cbd68814a0784d1)
+            check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
+            check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if name is not None:
-            self._values["name"] = name
-        if namespace is not None:
-            self._values["namespace"] = namespace
+        if api_version is not None:
+            self._values["api_version"] = api_version
+        if kind is not None:
+            self._values["kind"] = kind
 
     @builtins.property
-    def name(self) -> typing.Optional[builtins.str]:
-        '''Name of the resource being referenced.
+    def api_version(self) -> typing.Optional[builtins.str]:
+        '''APIVersion is the API group version the resources belong to.
 
-        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#name
+        In format of "group/version". Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamKind#apiVersion
         '''
-        result = self._values.get("name")
+        result = self._values.get("api_version")
         return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
-    def namespace(self) -> typing.Optional[builtins.str]:
-        '''Namespace of the referenced resource.
+    def kind(self) -> typing.Optional[builtins.str]:
+        '''Kind is the API kind the resources belong to.
 
-        Should be empty for the cluster-scoped resources
+        Required.
 
-        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#namespace
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamKind#kind
         '''
-        result = self._values.get("namespace")
+        result = self._values.get("kind")
         return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
@@ -34285,7 +36384,346 @@ class ParamRefV1Alpha1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
+        return "ParamKindV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ParamRefV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "namespace": "namespace",
+        "parameter_not_found_action": "parameterNotFoundAction",
+        "selector": "selector",
+    },
+)
+class ParamRefV1Alpha1:
+    def __init__(
+        self,
+        *,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+        parameter_not_found_action: typing.Optional[builtins.str] = None,
+        selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ParamRef describes how to locate the params to be used as input to expressions of rules applied by a policy binding.
+
+        :param name: ``name`` is the name of the resource being referenced. ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+        :param namespace: namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both ``name`` and ``selector`` fields. A per-namespace parameter may be used by specifying a namespace-scoped ``paramKind`` in the policy and leaving this field empty. - If ``paramKind`` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error. - If ``paramKind`` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.
+        :param parameter_not_found_action: ``parameterNotFoundAction`` controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to ``Allow``, then no matched parameters will be treated as successful validation by the binding. If set to ``Deny``, then no matched parameters will be subject to the ``failurePolicy`` of the policy. Allowed values are ``Allow`` or ``Deny`` Default to ``Deny`` Default: Deny`
+        :param selector: selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind. If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together. One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef
+        '''
+        if isinstance(selector, dict):
+            selector = LabelSelector(**selector)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+            check_type(argname="argument parameter_not_found_action", value=parameter_not_found_action, expected_type=type_hints["parameter_not_found_action"])
+            check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+        if parameter_not_found_action is not None:
+            self._values["parameter_not_found_action"] = parameter_not_found_action
+        if selector is not None:
+            self._values["selector"] = selector
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''``name`` is the name of the resource being referenced.
+
+        ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''namespace is the namespace of the referenced resource.
+
+        Allows limiting the search for params to a specific namespace. Applies to both ``name`` and ``selector`` fields.
+
+        A per-namespace parameter may be used by specifying a namespace-scoped ``paramKind`` in the policy and leaving this field empty.
+
+        - If ``paramKind`` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error.
+        - If ``paramKind`` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def parameter_not_found_action(self) -> typing.Optional[builtins.str]:
+        '''``parameterNotFoundAction`` controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding.
+
+        If the value is set to ``Allow``, then no matched parameters will be treated as successful validation by the binding. If set to ``Deny``, then no matched parameters will be subject to the ``failurePolicy`` of the policy.
+
+        Allowed values are ``Allow`` or ``Deny`` Default to ``Deny``
+
+        :default: Deny`
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#parameterNotFoundAction
+        '''
+        result = self._values.get("parameter_not_found_action")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def selector(self) -> typing.Optional[LabelSelector]:
+        '''selector can be used to match multiple param objects based on their labels.
+
+        Supply selector: {} to match all resources of the ParamKind.
+
+        If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.
+
+        One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ParamRef#selector
+        '''
+        result = self._values.get("selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
         return "ParamRefV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ParamRefV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "namespace": "namespace",
+        "parameter_not_found_action": "parameterNotFoundAction",
+        "selector": "selector",
+    },
+)
+class ParamRefV1Beta1:
+    def __init__(
+        self,
+        *,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+        parameter_not_found_action: typing.Optional[builtins.str] = None,
+        selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''ParamRef describes how to locate the params to be used as input to expressions of rules applied by a policy binding.
+
+        :param name: name is the name of the resource being referenced. One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset. A single parameter used for all admission requests can be configured by setting the ``name`` field, leaving ``selector`` blank, and setting namespace if ``paramKind`` is namespace-scoped.
+        :param namespace: namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both ``name`` and ``selector`` fields. A per-namespace parameter may be used by specifying a namespace-scoped ``paramKind`` in the policy and leaving this field empty. - If ``paramKind`` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error. - If ``paramKind`` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.
+        :param parameter_not_found_action: ``parameterNotFoundAction`` controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to ``Allow``, then no matched parameters will be treated as successful validation by the binding. If set to ``Deny``, then no matched parameters will be subject to the ``failurePolicy`` of the policy. Allowed values are ``Allow`` or ``Deny`` Required
+        :param selector: selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind. If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together. One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamRef
+        '''
+        if isinstance(selector, dict):
+            selector = LabelSelector(**selector)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__32c75a5e4f7852a9f3e5b9936993133a9c47453af8828503a27ae7e776b8d0f7)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+            check_type(argname="argument parameter_not_found_action", value=parameter_not_found_action, expected_type=type_hints["parameter_not_found_action"])
+            check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+        if parameter_not_found_action is not None:
+            self._values["parameter_not_found_action"] = parameter_not_found_action
+        if selector is not None:
+            self._values["selector"] = selector
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''name is the name of the resource being referenced.
+
+        One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        A single parameter used for all admission requests can be configured by setting the ``name`` field, leaving ``selector`` blank, and setting namespace if ``paramKind`` is namespace-scoped.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''namespace is the namespace of the referenced resource.
+
+        Allows limiting the search for params to a specific namespace. Applies to both ``name`` and ``selector`` fields.
+
+        A per-namespace parameter may be used by specifying a namespace-scoped ``paramKind`` in the policy and leaving this field empty.
+
+        - If ``paramKind`` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error.
+        - If ``paramKind`` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def parameter_not_found_action(self) -> typing.Optional[builtins.str]:
+        '''``parameterNotFoundAction`` controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding.
+
+        If the value is set to ``Allow``, then no matched parameters will be treated as successful validation by the binding. If set to ``Deny``, then no matched parameters will be subject to the ``failurePolicy`` of the policy.
+
+        Allowed values are ``Allow`` or ``Deny``
+
+        Required
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamRef#parameterNotFoundAction
+        '''
+        result = self._values.get("parameter_not_found_action")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def selector(self) -> typing.Optional[LabelSelector]:
+        '''selector can be used to match multiple param objects based on their labels.
+
+        Supply selector: {} to match all resources of the ParamKind.
+
+        If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together.
+
+        One of ``name`` or ``selector`` must be set, but ``name`` and ``selector`` are mutually exclusive properties. If one is set, the other must be unset.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ParamRef#selector
+        '''
+        result = self._values.get("selector")
+        return typing.cast(typing.Optional[LabelSelector], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ParamRefV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ParentReferenceV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "group": "group",
+        "name": "name",
+        "namespace": "namespace",
+        "resource": "resource",
+        "uid": "uid",
+    },
+)
+class ParentReferenceV1Alpha1:
+    def __init__(
+        self,
+        *,
+        group: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+        resource: typing.Optional[builtins.str] = None,
+        uid: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ParentReference describes a reference to a parent object.
+
+        :param group: Group is the group of the object being referenced.
+        :param name: Name is the name of the object being referenced.
+        :param namespace: Namespace is the namespace of the object being referenced.
+        :param resource: Resource is the resource of the object being referenced.
+        :param uid: UID is the uid of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3bb68f59c68fa379d302e476dc25c7bc8923c4621290d99169d0f118176efa74)
+            check_type(argname="argument group", value=group, expected_type=type_hints["group"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+            check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
+            check_type(argname="argument uid", value=uid, expected_type=type_hints["uid"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if group is not None:
+            self._values["group"] = group
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+        if resource is not None:
+            self._values["resource"] = resource
+        if uid is not None:
+            self._values["uid"] = uid
+
+    @builtins.property
+    def group(self) -> typing.Optional[builtins.str]:
+        '''Group is the group of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference#group
+        '''
+        result = self._values.get("group")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''Name is the name of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace is the namespace of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def resource(self) -> typing.Optional[builtins.str]:
+        '''Resource is the resource of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference#resource
+        '''
+        result = self._values.get("resource")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def uid(self) -> typing.Optional[builtins.str]:
+        '''UID is the uid of the object being referenced.
+
+        :schema: io.k8s.api.networking.v1alpha1.ParentReference#uid
+        '''
+        result = self._values.get("uid")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ParentReferenceV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -35497,7 +37935,7 @@ class PodDisruptionBudgetSpec:
         :param max_unavailable: An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
         :param min_available: An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%".
         :param selector: Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace.
-        :param unhealthy_pod_eviction_policy: UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. This field is alpha-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (disabled by default).
+        :param unhealthy_pod_eviction_policy: UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. This field is beta-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).
 
         :schema: io.k8s.api.policy.v1.PodDisruptionBudgetSpec
         '''
@@ -35562,7 +38000,7 @@ class PodDisruptionBudgetSpec:
 
         Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.
 
-        This field is alpha-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (disabled by default).
+        This field is beta-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).
 
         :schema: io.k8s.api.policy.v1.PodDisruptionBudgetSpec#unhealthyPodEvictionPolicy
         '''
@@ -35813,10 +38251,11 @@ class PodFailurePolicyOnExitCodesRequirement:
     def operator(self) -> builtins.str:
         '''Represents the relationship between the container exit code(s) and the specified values.
 
-        Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are: - In: the requirement is satisfied if at least one container exit code
-        (might be multiple if there are multiple containers not restricted
-        by the 'containerName' field) is in the set of specified values.
+        Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are:
 
+        - In: the requirement is satisfied if at least one container exit code
+          (might be multiple if there are multiple containers not restricted
+          by the 'containerName' field) is in the set of specified values.
         - NotIn: the requirement is satisfied if at least one container exit code
           (might be multiple if there are multiple containers not restricted
           by the 'containerName' field) is not in the set of specified values.
@@ -35943,9 +38382,9 @@ class PodFailurePolicyRule:
     ) -> None:
         '''PodFailurePolicyRule describes how a pod failure is handled when the requirements are met.
 
-        One of OnExitCodes and onPodConditions, but not both, can be used in each rule.
+        One of onExitCodes and onPodConditions, but not both, can be used in each rule.
 
-        :param action: Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.
+        :param action: Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:. - FailJob: indicates that the pod's job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod's index is marked as Failed and will not be restarted. This value is alpha-level. It can be used when the ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default). - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.
         :param on_pod_conditions: Represents the requirement on the pod conditions. The requirement is represented as a list of pod condition patterns. The requirement is satisfied if at least one pattern matches an actual pod condition. At most 20 elements are allowed.
         :param on_exit_codes: Represents the requirement on the container exit codes.
 
@@ -35967,11 +38406,14 @@ class PodFailurePolicyRule:
 
     @builtins.property
     def action(self) -> builtins.str:
-        '''Specifies the action taken on a pod failure when the requirements are satisfied.
+        '''Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:.
 
-        Possible values are: - FailJob: indicates that the pod's job is marked as Failed and all
-        running pods are terminated.
-
+        - FailJob: indicates that the pod's job is marked as Failed and all
+          running pods are terminated.
+        - FailIndex: indicates that the pod's index is marked as Failed and will
+          not be restarted.
+          This value is alpha-level. It can be used when the
+          ``JobBackoffLimitPerIndex`` feature gate is enabled (disabled by default).
         - Ignore: indicates that the counter towards the .backoffLimit is not
           incremented and a replacement pod is created.
         - Count: indicates that the pod is handled in the default way - the
@@ -36170,6 +38612,70 @@ class PodResourceClaim:
 
 
 @jsii.data_type(
+    jsii_type="k8s.PodSchedulingContextSpecV1Alpha2",
+    jsii_struct_bases=[],
+    name_mapping={
+        "potential_nodes": "potentialNodes",
+        "selected_node": "selectedNode",
+    },
+)
+class PodSchedulingContextSpecV1Alpha2:
+    def __init__(
+        self,
+        *,
+        potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
+        selected_node: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''PodSchedulingContextSpec describes where resources for the Pod are needed.
+
+        :param potential_nodes: PotentialNodes lists nodes where the Pod might be able to run. The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
+        :param selected_node: SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
+
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextSpec
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1fb1c235720a4a513f0a500312767242f176958372961245d9d96422be5f34f1)
+            check_type(argname="argument potential_nodes", value=potential_nodes, expected_type=type_hints["potential_nodes"])
+            check_type(argname="argument selected_node", value=selected_node, expected_type=type_hints["selected_node"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if potential_nodes is not None:
+            self._values["potential_nodes"] = potential_nodes
+        if selected_node is not None:
+            self._values["selected_node"] = selected_node
+
+    @builtins.property
+    def potential_nodes(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''PotentialNodes lists nodes where the Pod might be able to run.
+
+        The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
+
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextSpec#potentialNodes
+        '''
+        result = self._values.get("potential_nodes")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def selected_node(self) -> typing.Optional[builtins.str]:
+        '''SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
+
+        :schema: io.k8s.api.resource.v1alpha2.PodSchedulingContextSpec#selectedNode
+        '''
+        result = self._values.get("selected_node")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PodSchedulingContextSpecV1Alpha2(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.PodSchedulingGate",
     jsii_struct_bases=[],
     name_mapping={"name": "name"},
@@ -36209,70 +38715,6 @@ class PodSchedulingGate:
 
     def __repr__(self) -> str:
         return "PodSchedulingGate(%s)" % ", ".join(
-            k + "=" + repr(v) for k, v in self._values.items()
-        )
-
-
-@jsii.data_type(
-    jsii_type="k8s.PodSchedulingSpecV1Alpha1",
-    jsii_struct_bases=[],
-    name_mapping={
-        "potential_nodes": "potentialNodes",
-        "selected_node": "selectedNode",
-    },
-)
-class PodSchedulingSpecV1Alpha1:
-    def __init__(
-        self,
-        *,
-        potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
-        selected_node: typing.Optional[builtins.str] = None,
-    ) -> None:
-        '''PodSchedulingSpec describes where resources for the Pod are needed.
-
-        :param potential_nodes: PotentialNodes lists nodes where the Pod might be able to run. The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
-        :param selected_node: SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
-
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec
-        '''
-        if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cbaa152d2aa3b0f9ec0ecda0ddb7625c4422ee7ea4ee6a8b3c47fc6deee35d21)
-            check_type(argname="argument potential_nodes", value=potential_nodes, expected_type=type_hints["potential_nodes"])
-            check_type(argname="argument selected_node", value=selected_node, expected_type=type_hints["selected_node"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {}
-        if potential_nodes is not None:
-            self._values["potential_nodes"] = potential_nodes
-        if selected_node is not None:
-            self._values["selected_node"] = selected_node
-
-    @builtins.property
-    def potential_nodes(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''PotentialNodes lists nodes where the Pod might be able to run.
-
-        The size of this field is limited to 128. This is large enough for many clusters. Larger clusters may need more attempts to find a node that suits all pending resources. This may get increased in the future, but not reduced.
-
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec#potentialNodes
-        '''
-        result = self._values.get("potential_nodes")
-        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
-
-    @builtins.property
-    def selected_node(self) -> typing.Optional[builtins.str]:
-        '''SelectedNode is the node for which allocation of ResourceClaims that are referenced by the Pod and that use "WaitForFirstConsumer" allocation is to be attempted.
-
-        :schema: io.k8s.api.resource.v1alpha1.PodSchedulingSpec#selectedNode
-        '''
-        result = self._values.get("selected_node")
-        return typing.cast(typing.Optional[builtins.str], result)
-
-    def __eq__(self, rhs: typing.Any) -> builtins.bool:
-        return isinstance(rhs, self.__class__) and rhs._values == self._values
-
-    def __ne__(self, rhs: typing.Any) -> builtins.bool:
-        return not (rhs == self)
-
-    def __repr__(self) -> str:
-        return "PodSchedulingSpecV1Alpha1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -36609,10 +39051,10 @@ class PodSpec:
         :param priority_class_name: If specified, indicates the pod's priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
         :param readiness_gates: If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True" More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates
         :param resource_claims: ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.
-        :param restart_policy: Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy Default: Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+        :param restart_policy: Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy Default: Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
         :param runtime_class_name: RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod. If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class.
         :param scheduler_name: If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
-        :param scheduling_gates: SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info: https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness. This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.
+        :param scheduling_gates: SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod. SchedulingGates can only be set at pod creation time, and be removed only afterwards. This is a beta feature enabled by the PodSchedulingReadiness feature gate.
         :param security_context: SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field. Default: empty. See type description for default values of each field.
         :param service_account: DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
         :param service_account_name: ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
@@ -37053,7 +39495,7 @@ class PodSpec:
     def restart_policy(self) -> typing.Optional[builtins.str]:
         '''Restart policy for all containers within the pod.
 
-        One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+        One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 
         :default: Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 
@@ -37084,9 +39526,13 @@ class PodSpec:
 
     @builtins.property
     def scheduling_gates(self) -> typing.Optional[typing.List[PodSchedulingGate]]:
-        '''SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.
+        '''SchedulingGates is an opaque list of values that if specified will block scheduling the pod.
 
-        This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.
+        If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.
+
+        SchedulingGates can only be set at pod creation time, and be removed only afterwards.
+
+        This is a beta feature enabled by the PodSchedulingReadiness feature gate.
 
         :schema: io.k8s.api.core.v1.PodSpec#schedulingGates
         '''
@@ -37938,31 +40384,38 @@ class PriorityLevelConfigurationReferenceV1Beta3:
 @jsii.data_type(
     jsii_type="k8s.PriorityLevelConfigurationSpecV1Beta2",
     jsii_struct_bases=[],
-    name_mapping={"type": "type", "limited": "limited"},
+    name_mapping={"type": "type", "exempt": "exempt", "limited": "limited"},
 )
 class PriorityLevelConfigurationSpecV1Beta2:
     def __init__(
         self,
         *,
         type: builtins.str,
+        exempt: typing.Optional[typing.Union[ExemptPriorityLevelConfigurationV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
         limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''PriorityLevelConfigurationSpec specifies the configuration of a priority level.
 
         :param type: ``type`` indicates whether this priority level is subject to limitation on request execution. A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels. A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+        :param exempt: ``exempt`` specifies how requests are handled for an exempt priority level. This field MUST be empty if ``type`` is ``"Limited"``. This field MAY be non-empty if ``type`` is ``"Exempt"``. If empty and ``type`` is ``"Exempt"`` then the default values for ``ExemptPriorityLevelConfiguration`` apply.
         :param limited: ``limited`` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if ``type`` is ``"Limited"``.
 
         :schema: io.k8s.api.flowcontrol.v1beta2.PriorityLevelConfigurationSpec
         '''
+        if isinstance(exempt, dict):
+            exempt = ExemptPriorityLevelConfigurationV1Beta2(**exempt)
         if isinstance(limited, dict):
             limited = LimitedPriorityLevelConfigurationV1Beta2(**limited)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__94bca280ba8f7fad3c10c340b8cf6039d7a0f6cbd700ea283a8eeb4f1a9bdaad)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument exempt", value=exempt, expected_type=type_hints["exempt"])
             check_type(argname="argument limited", value=limited, expected_type=type_hints["limited"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "type": type,
         }
+        if exempt is not None:
+            self._values["exempt"] = exempt
         if limited is not None:
             self._values["limited"] = limited
 
@@ -37977,6 +40430,17 @@ class PriorityLevelConfigurationSpecV1Beta2:
         result = self._values.get("type")
         assert result is not None, "Required property 'type' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def exempt(self) -> typing.Optional[ExemptPriorityLevelConfigurationV1Beta2]:
+        '''``exempt`` specifies how requests are handled for an exempt priority level.
+
+        This field MUST be empty if ``type`` is ``"Limited"``. This field MAY be non-empty if ``type`` is ``"Exempt"``. If empty and ``type`` is ``"Exempt"`` then the default values for ``ExemptPriorityLevelConfiguration`` apply.
+
+        :schema: io.k8s.api.flowcontrol.v1beta2.PriorityLevelConfigurationSpec#exempt
+        '''
+        result = self._values.get("exempt")
+        return typing.cast(typing.Optional[ExemptPriorityLevelConfigurationV1Beta2], result)
 
     @builtins.property
     def limited(self) -> typing.Optional[LimitedPriorityLevelConfigurationV1Beta2]:
@@ -38004,31 +40468,38 @@ class PriorityLevelConfigurationSpecV1Beta2:
 @jsii.data_type(
     jsii_type="k8s.PriorityLevelConfigurationSpecV1Beta3",
     jsii_struct_bases=[],
-    name_mapping={"type": "type", "limited": "limited"},
+    name_mapping={"type": "type", "exempt": "exempt", "limited": "limited"},
 )
 class PriorityLevelConfigurationSpecV1Beta3:
     def __init__(
         self,
         *,
         type: builtins.str,
+        exempt: typing.Optional[typing.Union[ExemptPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
         limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''PriorityLevelConfigurationSpec specifies the configuration of a priority level.
 
         :param type: ``type`` indicates whether this priority level is subject to limitation on request execution. A value of ``"Exempt"`` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels. A value of ``"Limited"`` means that (a) requests of this priority level *are* subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+        :param exempt: ``exempt`` specifies how requests are handled for an exempt priority level. This field MUST be empty if ``type`` is ``"Limited"``. This field MAY be non-empty if ``type`` is ``"Exempt"``. If empty and ``type`` is ``"Exempt"`` then the default values for ``ExemptPriorityLevelConfiguration`` apply.
         :param limited: ``limited`` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if ``type`` is ``"Limited"``.
 
         :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec
         '''
+        if isinstance(exempt, dict):
+            exempt = ExemptPriorityLevelConfigurationV1Beta3(**exempt)
         if isinstance(limited, dict):
             limited = LimitedPriorityLevelConfigurationV1Beta3(**limited)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__c30b61d9bf19716fdc32867c5d90748be48b5c7c3c858ba8b5c867223594eb77)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument exempt", value=exempt, expected_type=type_hints["exempt"])
             check_type(argname="argument limited", value=limited, expected_type=type_hints["limited"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "type": type,
         }
+        if exempt is not None:
+            self._values["exempt"] = exempt
         if limited is not None:
             self._values["limited"] = limited
 
@@ -38043,6 +40514,17 @@ class PriorityLevelConfigurationSpecV1Beta3:
         result = self._values.get("type")
         assert result is not None, "Required property 'type' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def exempt(self) -> typing.Optional[ExemptPriorityLevelConfigurationV1Beta3]:
+        '''``exempt`` specifies how requests are handled for an exempt priority level.
+
+        This field MUST be empty if ``type`` is ``"Limited"``. This field MAY be non-empty if ``type`` is ``"Exempt"``. If empty and ``type`` is ``"Exempt"`` then the default values for ``ExemptPriorityLevelConfiguration`` apply.
+
+        :schema: io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfigurationSpec#exempt
+        '''
+        result = self._values.get("exempt")
+        return typing.cast(typing.Optional[ExemptPriorityLevelConfigurationV1Beta3], result)
 
     @builtins.property
     def limited(self) -> typing.Optional[LimitedPriorityLevelConfigurationV1Beta3]:
@@ -38102,7 +40584,7 @@ class Probe:
 
         :param exec: Exec specifies the action to take.
         :param failure_threshold: Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. Default: 3. Minimum value is 1.
-        :param grpc: GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.
+        :param grpc: GRPC specifies an action involving a GRPC port.
         :param http_get: HTTPGet specifies the http request to perform.
         :param initial_delay_seconds: Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         :param period_seconds: How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Default: 10 seconds. Minimum value is 1.
@@ -38180,8 +40662,6 @@ class Probe:
     @builtins.property
     def grpc(self) -> typing.Optional[GrpcAction]:
         '''GRPC specifies an action involving a GRPC port.
-
-        This is a beta field and requires enabling GRPCContainerProbe feature gate.
 
         :schema: io.k8s.api.core.v1.Probe#grpc
         '''
@@ -39171,7 +41651,7 @@ class ReplicationControllerSpec:
         :param min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) Default: 0 (pod will be considered available as soon as it is ready)
         :param replicas: Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller Default: 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
         :param selector: Selector is a label query over pods that should match the Replicas count. If Selector is empty, it is defaulted to the labels present on the Pod template. Label keys and values that must match in order to be controlled by this replication controller, if empty defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-        :param template: Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
+        :param template: Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
 
         :schema: io.k8s.api.core.v1.ReplicationControllerSpec
         '''
@@ -39234,7 +41714,7 @@ class ReplicationControllerSpec:
     def template(self) -> typing.Optional[PodTemplateSpec]:
         '''Template is the object that describes the pod that will be created if insufficient replicas are detected.
 
-        This takes precedence over a TemplateRef. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
+        This takes precedence over a TemplateRef. The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
 
         :schema: io.k8s.api.core.v1.ReplicationControllerSpec#template
         '''
@@ -39447,11 +41927,11 @@ class ResourceClaim:
 
 
 @jsii.data_type(
-    jsii_type="k8s.ResourceClaimParametersReferenceV1Alpha1",
+    jsii_type="k8s.ResourceClaimParametersReferenceV1Alpha2",
     jsii_struct_bases=[],
     name_mapping={"kind": "kind", "name": "name", "api_group": "apiGroup"},
 )
-class ResourceClaimParametersReferenceV1Alpha1:
+class ResourceClaimParametersReferenceV1Alpha2:
     def __init__(
         self,
         *,
@@ -39467,10 +41947,10 @@ class ResourceClaimParametersReferenceV1Alpha1:
         :param name: Name is the name of resource being referenced.
         :param api_group: APIGroup is the group for the resource being referenced. It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimParametersReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3577080f3432d03b6855e16ee80a2c353219d63b419c899aeaa67829a6e5c1fd)
+            type_hints = typing.get_type_hints(_typecheckingstub__7119366ebae525d75ed8b40964eda6739ae3b1236d3ead26240c4dba815998cc)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -39487,7 +41967,7 @@ class ResourceClaimParametersReferenceV1Alpha1:
 
         This is the same value as in the parameter object's metadata, for example "ConfigMap".
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#kind
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimParametersReference#kind
         '''
         result = self._values.get("kind")
         assert result is not None, "Required property 'kind' is missing"
@@ -39497,7 +41977,7 @@ class ResourceClaimParametersReferenceV1Alpha1:
     def name(self) -> builtins.str:
         '''Name is the name of resource being referenced.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#name
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimParametersReference#name
         '''
         result = self._values.get("name")
         assert result is not None, "Required property 'name' is missing"
@@ -39509,7 +41989,7 @@ class ResourceClaimParametersReferenceV1Alpha1:
 
         It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimParametersReference#apiGroup
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimParametersReference#apiGroup
         '''
         result = self._values.get("api_group")
         return typing.cast(typing.Optional[builtins.str], result)
@@ -39521,13 +42001,13 @@ class ResourceClaimParametersReferenceV1Alpha1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "ResourceClaimParametersReferenceV1Alpha1(%s)" % ", ".join(
+        return "ResourceClaimParametersReferenceV1Alpha2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
 @jsii.data_type(
-    jsii_type="k8s.ResourceClaimSpecV1Alpha1",
+    jsii_type="k8s.ResourceClaimSpecV1Alpha2",
     jsii_struct_bases=[],
     name_mapping={
         "resource_class_name": "resourceClassName",
@@ -39535,13 +42015,13 @@ class ResourceClaimParametersReferenceV1Alpha1:
         "parameters_ref": "parametersRef",
     },
 )
-class ResourceClaimSpecV1Alpha1:
+class ResourceClaimSpecV1Alpha2:
     def __init__(
         self,
         *,
         resource_class_name: builtins.str,
         allocation_mode: typing.Optional[builtins.str] = None,
-        parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+        parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha2, typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaimSpec defines how a resource is to be allocated.
 
@@ -39549,12 +42029,12 @@ class ResourceClaimSpecV1Alpha1:
         :param allocation_mode: Allocation can start immediately or when a Pod wants to use the resource. "WaitForFirstConsumer" is the default.
         :param parameters_ref: ParametersRef references a separate object with arbitrary parameters that will be used by the driver when allocating a resource for the claim. The object must be in the same namespace as the ResourceClaim.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimSpec
         '''
         if isinstance(parameters_ref, dict):
-            parameters_ref = ResourceClaimParametersReferenceV1Alpha1(**parameters_ref)
+            parameters_ref = ResourceClaimParametersReferenceV1Alpha2(**parameters_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__222e0cbad16de6e748d8f212a7f2442c819c2ab8c5a44ca7bae369ddd8d4b534)
+            type_hints = typing.get_type_hints(_typecheckingstub__77b38747f8ce0b8d52bb5dd6bfef476d18d1895505e419bb49b17777620c0d76)
             check_type(argname="argument resource_class_name", value=resource_class_name, expected_type=type_hints["resource_class_name"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
             check_type(argname="argument parameters_ref", value=parameters_ref, expected_type=type_hints["parameters_ref"])
@@ -39570,7 +42050,7 @@ class ResourceClaimSpecV1Alpha1:
     def resource_class_name(self) -> builtins.str:
         '''ResourceClassName references the driver and additional parameters via the name of a ResourceClass that was created as part of the driver deployment.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#resourceClassName
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimSpec#resourceClassName
         '''
         result = self._values.get("resource_class_name")
         assert result is not None, "Required property 'resource_class_name' is missing"
@@ -39582,7 +42062,7 @@ class ResourceClaimSpecV1Alpha1:
 
         "WaitForFirstConsumer" is the default.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#allocationMode
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimSpec#allocationMode
         '''
         result = self._values.get("allocation_mode")
         return typing.cast(typing.Optional[builtins.str], result)
@@ -39590,15 +42070,15 @@ class ResourceClaimSpecV1Alpha1:
     @builtins.property
     def parameters_ref(
         self,
-    ) -> typing.Optional[ResourceClaimParametersReferenceV1Alpha1]:
+    ) -> typing.Optional[ResourceClaimParametersReferenceV1Alpha2]:
         '''ParametersRef references a separate object with arbitrary parameters that will be used by the driver when allocating a resource for the claim.
 
         The object must be in the same namespace as the ResourceClaim.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimSpec#parametersRef
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimSpec#parametersRef
         '''
         result = self._values.get("parameters_ref")
-        return typing.cast(typing.Optional[ResourceClaimParametersReferenceV1Alpha1], result)
+        return typing.cast(typing.Optional[ResourceClaimParametersReferenceV1Alpha2], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -39607,21 +42087,21 @@ class ResourceClaimSpecV1Alpha1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "ResourceClaimSpecV1Alpha1(%s)" % ", ".join(
+        return "ResourceClaimSpecV1Alpha2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
 @jsii.data_type(
-    jsii_type="k8s.ResourceClaimTemplateSpecV1Alpha1",
+    jsii_type="k8s.ResourceClaimTemplateSpecV1Alpha2",
     jsii_struct_bases=[],
     name_mapping={"spec": "spec", "metadata": "metadata"},
 )
-class ResourceClaimTemplateSpecV1Alpha1:
+class ResourceClaimTemplateSpecV1Alpha2:
     def __init__(
         self,
         *,
-        spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+        spec: typing.Union[ResourceClaimSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
         metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim.
@@ -39629,14 +42109,14 @@ class ResourceClaimTemplateSpecV1Alpha1:
         :param spec: Spec for the ResourceClaim. The entire content is copied unchanged into the ResourceClaim that gets created from this template. The same fields as in a ResourceClaim are also valid here.
         :param metadata: ObjectMeta may contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateSpec
         '''
         if isinstance(spec, dict):
-            spec = ResourceClaimSpecV1Alpha1(**spec)
+            spec = ResourceClaimSpecV1Alpha2(**spec)
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e997f36b60700a40ef5d273c773afd5de1bd6dd5b1729cba9b1011cf89235456)
+            type_hints = typing.get_type_hints(_typecheckingstub__52b998a5f6f87553709864b882409a8072ebb67f9efa6d2635a5d6fab65571fe)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -39646,16 +42126,16 @@ class ResourceClaimTemplateSpecV1Alpha1:
             self._values["metadata"] = metadata
 
     @builtins.property
-    def spec(self) -> ResourceClaimSpecV1Alpha1:
+    def spec(self) -> ResourceClaimSpecV1Alpha2:
         '''Spec for the ResourceClaim.
 
         The entire content is copied unchanged into the ResourceClaim that gets created from this template. The same fields as in a ResourceClaim are also valid here.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec#spec
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateSpec#spec
         '''
         result = self._values.get("spec")
         assert result is not None, "Required property 'spec' is missing"
-        return typing.cast(ResourceClaimSpecV1Alpha1, result)
+        return typing.cast(ResourceClaimSpecV1Alpha2, result)
 
     @builtins.property
     def metadata(self) -> typing.Optional[ObjectMeta]:
@@ -39663,7 +42143,7 @@ class ResourceClaimTemplateSpecV1Alpha1:
 
         No other fields are allowed and will be rejected during validation.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClaimTemplateSpec#metadata
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClaimTemplateSpec#metadata
         '''
         result = self._values.get("metadata")
         return typing.cast(typing.Optional[ObjectMeta], result)
@@ -39675,13 +42155,13 @@ class ResourceClaimTemplateSpecV1Alpha1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "ResourceClaimTemplateSpecV1Alpha1(%s)" % ", ".join(
+        return "ResourceClaimTemplateSpecV1Alpha2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
 
 @jsii.data_type(
-    jsii_type="k8s.ResourceClassParametersReferenceV1Alpha1",
+    jsii_type="k8s.ResourceClassParametersReferenceV1Alpha2",
     jsii_struct_bases=[],
     name_mapping={
         "kind": "kind",
@@ -39690,7 +42170,7 @@ class ResourceClaimTemplateSpecV1Alpha1:
         "namespace": "namespace",
     },
 )
-class ResourceClassParametersReferenceV1Alpha1:
+class ResourceClassParametersReferenceV1Alpha2:
     def __init__(
         self,
         *,
@@ -39706,10 +42186,10 @@ class ResourceClassParametersReferenceV1Alpha1:
         :param api_group: APIGroup is the group for the resource being referenced. It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
         :param namespace: Namespace that contains the referenced resource. Must be empty for cluster-scoped resources and non-empty for namespaced resources.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassParametersReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5afcc6783d7cbb47b83e346e5c573888b38fd04b8cfd4d6ca64f7b0a4392f11c)
+            type_hints = typing.get_type_hints(_typecheckingstub__e3a558bc6627635cd7f373b5425bcaaa021a5750f0606468f35bd1eeec366fed)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -39729,7 +42209,7 @@ class ResourceClassParametersReferenceV1Alpha1:
 
         This is the same value as in the parameter object's metadata.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#kind
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassParametersReference#kind
         '''
         result = self._values.get("kind")
         assert result is not None, "Required property 'kind' is missing"
@@ -39739,7 +42219,7 @@ class ResourceClassParametersReferenceV1Alpha1:
     def name(self) -> builtins.str:
         '''Name is the name of resource being referenced.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#name
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassParametersReference#name
         '''
         result = self._values.get("name")
         assert result is not None, "Required property 'name' is missing"
@@ -39751,7 +42231,7 @@ class ResourceClassParametersReferenceV1Alpha1:
 
         It is empty for the core API. This matches the group in the APIVersion that is used when creating the resources.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#apiGroup
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassParametersReference#apiGroup
         '''
         result = self._values.get("api_group")
         return typing.cast(typing.Optional[builtins.str], result)
@@ -39762,7 +42242,7 @@ class ResourceClassParametersReferenceV1Alpha1:
 
         Must be empty for cluster-scoped resources and non-empty for namespaced resources.
 
-        :schema: io.k8s.api.resource.v1alpha1.ResourceClassParametersReference#namespace
+        :schema: io.k8s.api.resource.v1alpha2.ResourceClassParametersReference#namespace
         '''
         result = self._values.get("namespace")
         return typing.cast(typing.Optional[builtins.str], result)
@@ -39774,7 +42254,7 @@ class ResourceClassParametersReferenceV1Alpha1:
         return not (rhs == self)
 
     def __repr__(self) -> str:
-        return "ResourceClassParametersReferenceV1Alpha1(%s)" % ", ".join(
+        return "ResourceClassParametersReferenceV1Alpha2(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -40255,9 +42735,9 @@ class ResourceRequirements:
     ) -> None:
         '''ResourceRequirements describes the compute resource requirements.
 
-        :param claims: Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable.
+        :param claims: Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.
         :param limits: Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-        :param requests: Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        :param requests: Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
         :schema: io.k8s.api.core.v1.ResourceRequirements
         '''
@@ -40280,7 +42760,7 @@ class ResourceRequirements:
 
         This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.
 
-        This field is immutable.
+        This field is immutable. It can only be set for containers.
 
         :schema: io.k8s.api.core.v1.ResourceRequirements#claims
         '''
@@ -40302,7 +42782,7 @@ class ResourceRequirements:
     def requests(self) -> typing.Optional[typing.Mapping[builtins.str, Quantity]]:
         '''Requests describes the minimum amount of compute resources required.
 
-        If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+        If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
         :schema: io.k8s.api.core.v1.ResourceRequirements#requests
         '''
@@ -41120,7 +43600,7 @@ class ScaleSpec:
     def __init__(self, *, replicas: typing.Optional[jsii.Number] = None) -> None:
         '''ScaleSpec describes the attributes of a scale subresource.
 
-        :param replicas: desired number of instances for the scaled object.
+        :param replicas: replicas is the desired number of instances for the scaled object.
 
         :schema: io.k8s.api.autoscaling.v1.ScaleSpec
         '''
@@ -41133,7 +43613,7 @@ class ScaleSpec:
 
     @builtins.property
     def replicas(self) -> typing.Optional[jsii.Number]:
-        '''desired number of instances for the scaled object.
+        '''replicas is the desired number of instances for the scaled object.
 
         :schema: io.k8s.api.autoscaling.v1.ScaleSpec#replicas
         '''
@@ -41448,7 +43928,7 @@ class SeccompProfile:
         Only one profile source may be set.
 
         :param type: type indicates which kind of seccomp profile will be applied. Valid options are:. Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
-        :param localhost_profile: localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost".
+        :param localhost_profile: localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
 
         :schema: io.k8s.api.core.v1.SeccompProfile
         '''
@@ -41478,7 +43958,7 @@ class SeccompProfile:
     def localhost_profile(self) -> typing.Optional[builtins.str]:
         '''localhostProfile indicates a profile defined in a file on the node should be used.
 
-        The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost".
+        The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type.
 
         :schema: io.k8s.api.core.v1.SeccompProfile#localhostProfile
         '''
@@ -42446,8 +44926,8 @@ class ServiceBackendPort:
     ) -> None:
         '''ServiceBackendPort is the service port being referenced.
 
-        :param name: Name is the name of the port on the Service. This is a mutually exclusive setting with "Number".
-        :param number: Number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with "Name".
+        :param name: name is the name of the port on the Service. This is a mutually exclusive setting with "Number".
+        :param number: number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with "Name".
 
         :schema: io.k8s.api.networking.v1.ServiceBackendPort
         '''
@@ -42463,7 +44943,7 @@ class ServiceBackendPort:
 
     @builtins.property
     def name(self) -> typing.Optional[builtins.str]:
-        '''Name is the name of the port on the Service.
+        '''name is the name of the port on the Service.
 
         This is a mutually exclusive setting with "Number".
 
@@ -42474,7 +44954,7 @@ class ServiceBackendPort:
 
     @builtins.property
     def number(self) -> typing.Optional[jsii.Number]:
-        '''Number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with "Name".
+        '''number is the numerical port number (e.g. 80) on the Service. This is a mutually exclusive setting with "Name".
 
         :schema: io.k8s.api.networking.v1.ServiceBackendPort#number
         '''
@@ -42519,7 +44999,7 @@ class ServicePort:
         '''ServicePort contains information on service's port.
 
         :param port: The port that will be exposed by this service.
-        :param app_protocol: The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+        :param app_protocol: The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: - Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). - Kubernetes-defined prefixed names: - 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540 - 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 - 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 - Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.
         :param name: The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
         :param node_port: The port on each node on which this service is exposed when type is NodePort or LoadBalancer. Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail. If not specified, a port will be allocated if this Service requires one. If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
         :param protocol: The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP. Default: TCP.
@@ -42563,7 +45043,14 @@ class ServicePort:
     def app_protocol(self) -> typing.Optional[builtins.str]:
         '''The application protocol for this port.
 
-        This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+        This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:
+
+        - Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).
+        - Kubernetes-defined prefixed names:
+        - 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540
+        - 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455
+        - 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455
+        - Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.
 
         :schema: io.k8s.api.core.v1.ServicePort#appProtocol
         '''
@@ -42791,7 +45278,7 @@ class ServiceSpec:
         :param ip_families: IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are "IPv4" and "IPv6". This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to "headless" services. This field will be wiped when updating a Service to type ExternalName. This field may hold a maximum of two entries (dual-stack families, in either order). These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
         :param ip_family_policy: IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be "SingleStack" (a single IP family), "PreferDualStack" (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or "RequireDualStack" (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
         :param load_balancer_class: loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. "internal-vip" or "example.com/internal-vip". Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
-        :param load_balancer_ip: Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
+        :param load_balancer_ip: Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.
         :param load_balancer_source_ranges: If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature." More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
         :param ports: The list of ports that are exposed by this service. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
         :param publish_not_ready_addresses: publishNotReadyAddresses indicates that any agent which deals with endpoints for this Service should disregard any indications of ready/not-ready. The primary use case for setting this field is for a StatefulSet's Headless Service to propagate SRV DNS records for its Pods for the purpose of peer discovery. The Kubernetes controllers that generate Endpoints and EndpointSlice resources for Services interpret this to mean that all endpoints are considered "ready" even if the Pods themselves are not. Agents which consume only Kubernetes generated endpoints through the Endpoints or EndpointSlice resources can safely assume this behavior.
@@ -42992,7 +45479,7 @@ class ServiceSpec:
     def load_balancer_ip(self) -> typing.Optional[builtins.str]:
         '''Only applies to Service Type: LoadBalancer.
 
-        This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
+        This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations. Using it is non-portable and it may not support dual-stack. Users are encouraged to use implementation-specific annotations when available.
 
         :schema: io.k8s.api.core.v1.ServiceSpec#loadBalancerIP
         '''
@@ -43283,9 +45770,9 @@ class StatefulSetSpec:
 
         :param selector: selector is a label query over pods that should match the replica count. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         :param service_name: serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where "pod-specific-string" is managed by the StatefulSet controller.
-        :param template: template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3".
+        :param template: template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always".
         :param min_ready_seconds: Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) Default: 0 (pod will be considered available as soon as it is ready)
-        :param ordinals: ordinals controls the numbering of replica indices in a StatefulSet. The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is alpha.
+        :param ordinals: ordinals controls the numbering of replica indices in a StatefulSet. The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is beta.
         :param persistent_volume_claim_retention_policy: persistentVolumeClaimRetentionPolicy describes the lifecycle of persistent volume claims created from volumeClaimTemplates. By default, all persistent volume claims are created as needed and retained until manually deleted. This policy allows the lifecycle to be altered, for example by deleting persistent volume claims when their stateful set is deleted, or when their pod is scaled down. This requires the StatefulSetAutoDeletePVC feature gate to be enabled, which is alpha. +optional
         :param pod_management_policy: podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is ``OrderedReady``, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is ``Parallel`` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
         :param replicas: replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
@@ -43368,7 +45855,7 @@ class StatefulSetSpec:
     def template(self) -> PodTemplateSpec:
         '''template is the object that describes the pod that will be created if insufficient replicas are detected.
 
-        Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3".
+        Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format -. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always".
 
         :schema: io.k8s.api.apps.v1.StatefulSetSpec#template
         '''
@@ -43393,7 +45880,7 @@ class StatefulSetSpec:
     def ordinals(self) -> typing.Optional[StatefulSetOrdinals]:
         '''ordinals controls the numbering of replica indices in a StatefulSet.
 
-        The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is alpha.
+        The default ordinals behavior assigns a "0" index to the first replica and increments the index by one for each additional replica requested. Using the ordinals field requires the StatefulSetStartOrdinal feature gate to be enabled, which is beta.
 
         :schema: io.k8s.api.apps.v1.StatefulSetSpec#ordinals
         '''
@@ -43662,7 +46149,7 @@ class StatusDetails:
         :param kind: The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param name: The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).
         :param retry_after_seconds: If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.
-        :param uid: UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        :param uid: UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.StatusDetails
         '''
@@ -43743,7 +46230,7 @@ class StatusDetails:
     def uid(self) -> typing.Optional[builtins.str]:
         '''UID of the resource.
 
-        (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.StatusDetails#uid
         '''
@@ -44671,8 +47158,8 @@ class TokenRequest:
     ) -> None:
         '''TokenRequest contains parameters of a service account token.
 
-        :param audience: Audience is the intended audience of the token in "TokenRequestSpec". It will default to the audiences of kube apiserver.
-        :param expiration_seconds: ExpirationSeconds is the duration of validity of the token in "TokenRequestSpec". It has the same default value of "ExpirationSeconds" in "TokenRequestSpec".
+        :param audience: audience is the intended audience of the token in "TokenRequestSpec". It will default to the audiences of kube apiserver.
+        :param expiration_seconds: expirationSeconds is the duration of validity of the token in "TokenRequestSpec". It has the same default value of "ExpirationSeconds" in "TokenRequestSpec".
 
         :schema: io.k8s.api.storage.v1.TokenRequest
         '''
@@ -44688,7 +47175,7 @@ class TokenRequest:
 
     @builtins.property
     def audience(self) -> builtins.str:
-        '''Audience is the intended audience of the token in "TokenRequestSpec".
+        '''audience is the intended audience of the token in "TokenRequestSpec".
 
         It will default to the audiences of kube apiserver.
 
@@ -44700,7 +47187,7 @@ class TokenRequest:
 
     @builtins.property
     def expiration_seconds(self) -> typing.Optional[jsii.Number]:
-        '''ExpirationSeconds is the duration of validity of the token in "TokenRequestSpec".
+        '''expirationSeconds is the duration of validity of the token in "TokenRequestSpec".
 
         It has the same default value of "ExpirationSeconds" in "TokenRequestSpec".
 
@@ -45133,7 +47620,7 @@ class TopologySpreadConstraint:
         :param topology_key: TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
         :param when_unsatisfiable: WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P | P | P | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
         :param label_selector: LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
-        :param match_label_keys: MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
+        :param match_label_keys: MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
         :param min_domains: MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
         :param node_affinity_policy: NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
         :param node_taints_policy: NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
@@ -45222,7 +47709,9 @@ class TopologySpreadConstraint:
     def match_label_keys(self) -> typing.Optional[typing.List[builtins.str]]:
         '''MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated.
 
-        The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
+        The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
+
+        This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
 
         :schema: io.k8s.api.core.v1.TopologySpreadConstraint#matchLabelKeys
         '''
@@ -45547,6 +48036,7 @@ class UserSubjectV1Beta3:
         "match_resources": "matchResources",
         "param_ref": "paramRef",
         "policy_name": "policyName",
+        "validation_actions": "validationActions",
     },
 )
 class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
@@ -45556,12 +48046,14 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
         match_resources: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
         param_ref: typing.Optional[typing.Union[ParamRefV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
         policy_name: typing.Optional[builtins.str] = None,
+        validation_actions: typing.Optional[typing.Sequence[builtins.str]] = None,
     ) -> None:
         '''ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.
 
         :param match_resources: MatchResources declares what resources match this binding and will be validated by it. Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required.
-        :param param_ref: ParamRef specifies the parameter resource used to configure the admission control policy. It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied.
+        :param param_ref: paramRef specifies the parameter resource used to configure the admission control policy. It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied. If the policy does not specify a ParamKind then this field is ignored, and the rules are evaluated without a param.
         :param policy_name: PolicyName references a ValidatingAdmissionPolicy name which the ValidatingAdmissionPolicyBinding binds to. If the referenced resource does not exist, this binding is considered invalid and will be ignored Required.
+        :param validation_actions: validationActions declares how Validations of the referenced ValidatingAdmissionPolicy are enforced. If a validation evaluates to false it is always enforced according to these actions. Failures defined by the ValidatingAdmissionPolicy's FailurePolicy are enforced according to these actions only if the FailurePolicy is set to Fail, otherwise the failures are ignored. This includes compilation errors, runtime errors and misconfigurations of the policy. validationActions is declared as a set of action values. Order does not matter. validationActions may not contain duplicates of the same action. The supported actions values are: "Deny" specifies that a validation failure results in a denied request. "Warn" specifies that a validation failure is reported to the request client in HTTP Warning headers, with a warning code of 299. Warnings can be sent both for allowed or denied admission responses. "Audit" specifies that a validation failure is included in the published audit event for the request. The audit event will contain a ``validation.policy.admission.k8s.io/validation_failure`` audit annotation with a value containing the details of the validation failures, formatted as a JSON list of objects, each with the following fields: - message: The validation failure message string - policy: The resource name of the ValidatingAdmissionPolicy - binding: The resource name of the ValidatingAdmissionPolicyBinding - expressionIndex: The index of the failed validations in the ValidatingAdmissionPolicy - validationActions: The enforcement actions enacted for the validation failure Example audit annotation: ``"validation.policy.admission.k8s.io/validation_failure": "[{"message": "Invalid value", {"policy": "policy.example.com", {"binding": "policybinding.example.com", {"expressionIndex": "1", {"validationActions": ["Audit"]}]"`` Clients should expect to handle additional values by ignoring any values not recognized. "Deny" and "Warn" may not be used together since this combination needlessly duplicates the validation failure both in the API response body and the HTTP warning headers. Required.
 
         :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec
         '''
@@ -45574,6 +48066,7 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
             check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
             check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
             check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
+            check_type(argname="argument validation_actions", value=validation_actions, expected_type=type_hints["validation_actions"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_resources is not None:
             self._values["match_resources"] = match_resources
@@ -45581,6 +48074,8 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
             self._values["param_ref"] = param_ref
         if policy_name is not None:
             self._values["policy_name"] = policy_name
+        if validation_actions is not None:
+            self._values["validation_actions"] = validation_actions
 
     @builtins.property
     def match_resources(self) -> typing.Optional[MatchResourcesV1Alpha1]:
@@ -45595,9 +48090,9 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
 
     @builtins.property
     def param_ref(self) -> typing.Optional[ParamRefV1Alpha1]:
-        '''ParamRef specifies the parameter resource used to configure the admission control policy.
+        '''paramRef specifies the parameter resource used to configure the admission control policy.
 
-        It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied.
+        It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied. If the policy does not specify a ParamKind then this field is ignored, and the rules are evaluated without a param.
 
         :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec#paramRef
         '''
@@ -45615,6 +48110,35 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
         result = self._values.get("policy_name")
         return typing.cast(typing.Optional[builtins.str], result)
 
+    @builtins.property
+    def validation_actions(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''validationActions declares how Validations of the referenced ValidatingAdmissionPolicy are enforced.
+
+        If a validation evaluates to false it is always enforced according to these actions.
+
+        Failures defined by the ValidatingAdmissionPolicy's FailurePolicy are enforced according to these actions only if the FailurePolicy is set to Fail, otherwise the failures are ignored. This includes compilation errors, runtime errors and misconfigurations of the policy.
+
+        validationActions is declared as a set of action values. Order does not matter. validationActions may not contain duplicates of the same action.
+
+        The supported actions values are:
+
+        "Deny" specifies that a validation failure results in a denied request.
+
+        "Warn" specifies that a validation failure is reported to the request client in HTTP Warning headers, with a warning code of 299. Warnings can be sent both for allowed or denied admission responses.
+
+        "Audit" specifies that a validation failure is included in the published audit event for the request. The audit event will contain a ``validation.policy.admission.k8s.io/validation_failure`` audit annotation with a value containing the details of the validation failures, formatted as a JSON list of objects, each with the following fields: - message: The validation failure message string - policy: The resource name of the ValidatingAdmissionPolicy - binding: The resource name of the ValidatingAdmissionPolicyBinding - expressionIndex: The index of the failed validations in the ValidatingAdmissionPolicy - validationActions: The enforcement actions enacted for the validation failure Example audit annotation: ``"validation.policy.admission.k8s.io/validation_failure": "[{"message": "Invalid value", {"policy": "policy.example.com", {"binding": "policybinding.example.com", {"expressionIndex": "1", {"validationActions": ["Audit"]}]"``
+
+        Clients should expect to handle additional values by ignoring any values not recognized.
+
+        "Deny" and "Warn" may not be used together since this combination needlessly duplicates the validation failure both in the API response body and the HTTP warning headers.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicyBindingSpec#validationActions
+        '''
+        result = self._values.get("validation_actions")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -45628,30 +48152,161 @@ class ValidatingAdmissionPolicyBindingSpecV1Alpha1:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ValidatingAdmissionPolicyBindingSpecV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "match_resources": "matchResources",
+        "param_ref": "paramRef",
+        "policy_name": "policyName",
+        "validation_actions": "validationActions",
+    },
+)
+class ValidatingAdmissionPolicyBindingSpecV1Beta1:
+    def __init__(
+        self,
+        *,
+        match_resources: typing.Optional[typing.Union[MatchResourcesV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        param_ref: typing.Optional[typing.Union[ParamRefV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        policy_name: typing.Optional[builtins.str] = None,
+        validation_actions: typing.Optional[typing.Sequence[builtins.str]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.
+
+        :param match_resources: MatchResources declares what resources match this binding and will be validated by it. Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required.
+        :param param_ref: paramRef specifies the parameter resource used to configure the admission control policy. It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied. If the policy does not specify a ParamKind then this field is ignored, and the rules are evaluated without a param.
+        :param policy_name: PolicyName references a ValidatingAdmissionPolicy name which the ValidatingAdmissionPolicyBinding binds to. If the referenced resource does not exist, this binding is considered invalid and will be ignored Required.
+        :param validation_actions: validationActions declares how Validations of the referenced ValidatingAdmissionPolicy are enforced. If a validation evaluates to false it is always enforced according to these actions. Failures defined by the ValidatingAdmissionPolicy's FailurePolicy are enforced according to these actions only if the FailurePolicy is set to Fail, otherwise the failures are ignored. This includes compilation errors, runtime errors and misconfigurations of the policy. validationActions is declared as a set of action values. Order does not matter. validationActions may not contain duplicates of the same action. The supported actions values are: "Deny" specifies that a validation failure results in a denied request. "Warn" specifies that a validation failure is reported to the request client in HTTP Warning headers, with a warning code of 299. Warnings can be sent both for allowed or denied admission responses. "Audit" specifies that a validation failure is included in the published audit event for the request. The audit event will contain a ``validation.policy.admission.k8s.io/validation_failure`` audit annotation with a value containing the details of the validation failures, formatted as a JSON list of objects, each with the following fields: - message: The validation failure message string - policy: The resource name of the ValidatingAdmissionPolicy - binding: The resource name of the ValidatingAdmissionPolicyBinding - expressionIndex: The index of the failed validations in the ValidatingAdmissionPolicy - validationActions: The enforcement actions enacted for the validation failure Example audit annotation: ``"validation.policy.admission.k8s.io/validation_failure": "[{"message": "Invalid value", {"policy": "policy.example.com", {"binding": "policybinding.example.com", {"expressionIndex": "1", {"validationActions": ["Audit"]}]"`` Clients should expect to handle additional values by ignoring any values not recognized. "Deny" and "Warn" may not be used together since this combination needlessly duplicates the validation failure both in the API response body and the HTTP warning headers. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec
+        '''
+        if isinstance(match_resources, dict):
+            match_resources = MatchResourcesV1Beta1(**match_resources)
+        if isinstance(param_ref, dict):
+            param_ref = ParamRefV1Beta1(**param_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__dcf12c0039ea975b12243a717793166c465140d7129635f3245afd00381e4a28)
+            check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
+            check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
+            check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
+            check_type(argname="argument validation_actions", value=validation_actions, expected_type=type_hints["validation_actions"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if match_resources is not None:
+            self._values["match_resources"] = match_resources
+        if param_ref is not None:
+            self._values["param_ref"] = param_ref
+        if policy_name is not None:
+            self._values["policy_name"] = policy_name
+        if validation_actions is not None:
+            self._values["validation_actions"] = validation_actions
+
+    @builtins.property
+    def match_resources(self) -> typing.Optional[MatchResourcesV1Beta1]:
+        '''MatchResources declares what resources match this binding and will be validated by it.
+
+        Note that this is intersected with the policy's matchConstraints, so only requests that are matched by the policy can be selected by this. If this is unset, all resources matched by the policy are validated by this binding When resourceRules is unset, it does not constrain resource matching. If a resource is matched by the other fields of this object, it will be validated. Note that this is differs from ValidatingAdmissionPolicy matchConstraints, where resourceRules are required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec#matchResources
+        '''
+        result = self._values.get("match_resources")
+        return typing.cast(typing.Optional[MatchResourcesV1Beta1], result)
+
+    @builtins.property
+    def param_ref(self) -> typing.Optional[ParamRefV1Beta1]:
+        '''paramRef specifies the parameter resource used to configure the admission control policy.
+
+        It should point to a resource of the type specified in ParamKind of the bound ValidatingAdmissionPolicy. If the policy specifies a ParamKind and the resource referred to by ParamRef does not exist, this binding is considered mis-configured and the FailurePolicy of the ValidatingAdmissionPolicy applied. If the policy does not specify a ParamKind then this field is ignored, and the rules are evaluated without a param.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec#paramRef
+        '''
+        result = self._values.get("param_ref")
+        return typing.cast(typing.Optional[ParamRefV1Beta1], result)
+
+    @builtins.property
+    def policy_name(self) -> typing.Optional[builtins.str]:
+        '''PolicyName references a ValidatingAdmissionPolicy name which the ValidatingAdmissionPolicyBinding binds to.
+
+        If the referenced resource does not exist, this binding is considered invalid and will be ignored Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec#policyName
+        '''
+        result = self._values.get("policy_name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def validation_actions(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''validationActions declares how Validations of the referenced ValidatingAdmissionPolicy are enforced.
+
+        If a validation evaluates to false it is always enforced according to these actions.
+
+        Failures defined by the ValidatingAdmissionPolicy's FailurePolicy are enforced according to these actions only if the FailurePolicy is set to Fail, otherwise the failures are ignored. This includes compilation errors, runtime errors and misconfigurations of the policy.
+
+        validationActions is declared as a set of action values. Order does not matter. validationActions may not contain duplicates of the same action.
+
+        The supported actions values are:
+
+        "Deny" specifies that a validation failure results in a denied request.
+
+        "Warn" specifies that a validation failure is reported to the request client in HTTP Warning headers, with a warning code of 299. Warnings can be sent both for allowed or denied admission responses.
+
+        "Audit" specifies that a validation failure is included in the published audit event for the request. The audit event will contain a ``validation.policy.admission.k8s.io/validation_failure`` audit annotation with a value containing the details of the validation failures, formatted as a JSON list of objects, each with the following fields: - message: The validation failure message string - policy: The resource name of the ValidatingAdmissionPolicy - binding: The resource name of the ValidatingAdmissionPolicyBinding - expressionIndex: The index of the failed validations in the ValidatingAdmissionPolicy - validationActions: The enforcement actions enacted for the validation failure Example audit annotation: ``"validation.policy.admission.k8s.io/validation_failure": "[{"message": "Invalid value", {"policy": "policy.example.com", {"binding": "policybinding.example.com", {"expressionIndex": "1", {"validationActions": ["Audit"]}]"``
+
+        Clients should expect to handle additional values by ignoring any values not recognized.
+
+        "Deny" and "Warn" may not be used together since this combination needlessly duplicates the validation failure both in the API response body and the HTTP warning headers.
+
+        Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicyBindingSpec#validationActions
+        '''
+        result = self._values.get("validation_actions")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidatingAdmissionPolicyBindingSpecV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ValidatingAdmissionPolicySpecV1Alpha1",
     jsii_struct_bases=[],
     name_mapping={
-        "validations": "validations",
+        "audit_annotations": "auditAnnotations",
         "failure_policy": "failurePolicy",
+        "match_conditions": "matchConditions",
         "match_constraints": "matchConstraints",
         "param_kind": "paramKind",
+        "validations": "validations",
+        "variables": "variables",
     },
 )
 class ValidatingAdmissionPolicySpecV1Alpha1:
     def __init__(
         self,
         *,
-        validations: typing.Sequence[typing.Union["ValidationV1Alpha1", typing.Dict[builtins.str, typing.Any]]],
+        audit_annotations: typing.Optional[typing.Sequence[typing.Union[AuditAnnotationV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
         failure_policy: typing.Optional[builtins.str] = None,
+        match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchConditionV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
         match_constraints: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
         param_kind: typing.Optional[typing.Union[ParamKindV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+        validations: typing.Optional[typing.Sequence[typing.Union["ValidationV1Alpha1", typing.Dict[builtins.str, typing.Any]]]] = None,
+        variables: typing.Optional[typing.Sequence[typing.Union["VariableV1Alpha1", typing.Dict[builtins.str, typing.Any]]]] = None,
     ) -> None:
         '''ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.
 
-        :param validations: Validations contain CEL expressions which is used to apply the validation. A minimum of one validation is required for a policy definition. Required.
-        :param failure_policy: FailurePolicy defines how to handle failures for the admission policy. Failures can occur from invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. Allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param audit_annotations: auditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request. validations and auditAnnotations may not both be empty; a least one of validations or auditAnnotations is required.
+        :param failure_policy: failurePolicy defines how to handle failures for the admission policy. Failures can occur from CEL expression parse errors, type check errors, runtime errors and invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. failurePolicy does not define how validations that evaluate to false are handled. When failurePolicy is set to Fail, ValidatingAdmissionPolicyBinding validationActions define how failures are enforced. Allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param match_conditions: MatchConditions is a list of conditions that must be met for a request to be validated. Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed. If a parameter object is provided, it can be accessed via the ``params`` handle in the same manner as validation expressions. The exact matching logic is (in order): 1. If ANY matchCondition evaluates to FALSE, the policy is skipped. 2. If ALL matchConditions evaluate to TRUE, the policy is evaluated. 3. If any matchCondition evaluates to an error (but none are FALSE): - If failurePolicy=Fail, reject the request - If failurePolicy=Ignore, the policy is skipped
         :param match_constraints: MatchConstraints specifies what resources this policy is designed to validate. The AdmissionPolicy cares about a request if it matches *all* Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required.
         :param param_kind: ParamKind specifies the kind of resources used to parameterize this policy. If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null.
+        :param validations: Validations contain CEL expressions which is used to apply the validation. Validations and AuditAnnotations may not both be empty; a minimum of one Validations or AuditAnnotations is required.
+        :param variables: Variables contain definitions of variables that can be used in composition of other expressions. Each variable is defined as a named CEL expression. The variables defined here will be available under ``variables`` in other expressions of the policy except MatchConditions because MatchConditions are evaluated before the rest of the policy. The expression of a variable can refer to other variables defined earlier in the list but not those after. Thus, Variables must be sorted by the order of first appearance and acyclic.
 
         :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec
         '''
@@ -45661,37 +48316,55 @@ class ValidatingAdmissionPolicySpecV1Alpha1:
             param_kind = ParamKindV1Alpha1(**param_kind)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__0419a6826a131473eb218fd7b964c8f1501e74582c4575a39889f77a48866837)
-            check_type(argname="argument validations", value=validations, expected_type=type_hints["validations"])
+            check_type(argname="argument audit_annotations", value=audit_annotations, expected_type=type_hints["audit_annotations"])
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
+            check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
             check_type(argname="argument match_constraints", value=match_constraints, expected_type=type_hints["match_constraints"])
             check_type(argname="argument param_kind", value=param_kind, expected_type=type_hints["param_kind"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "validations": validations,
-        }
+            check_type(argname="argument validations", value=validations, expected_type=type_hints["validations"])
+            check_type(argname="argument variables", value=variables, expected_type=type_hints["variables"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if audit_annotations is not None:
+            self._values["audit_annotations"] = audit_annotations
         if failure_policy is not None:
             self._values["failure_policy"] = failure_policy
+        if match_conditions is not None:
+            self._values["match_conditions"] = match_conditions
         if match_constraints is not None:
             self._values["match_constraints"] = match_constraints
         if param_kind is not None:
             self._values["param_kind"] = param_kind
+        if validations is not None:
+            self._values["validations"] = validations
+        if variables is not None:
+            self._values["variables"] = variables
 
     @builtins.property
-    def validations(self) -> typing.List["ValidationV1Alpha1"]:
-        '''Validations contain CEL expressions which is used to apply the validation.
+    def audit_annotations(
+        self,
+    ) -> typing.Optional[typing.List[AuditAnnotationV1Alpha1]]:
+        '''auditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request.
 
-        A minimum of one validation is required for a policy definition. Required.
+        validations and auditAnnotations may not both be empty; a least one of validations or auditAnnotations is required.
 
-        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#validations
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#auditAnnotations
         '''
-        result = self._values.get("validations")
-        assert result is not None, "Required property 'validations' is missing"
-        return typing.cast(typing.List["ValidationV1Alpha1"], result)
+        result = self._values.get("audit_annotations")
+        return typing.cast(typing.Optional[typing.List[AuditAnnotationV1Alpha1]], result)
 
     @builtins.property
     def failure_policy(self) -> typing.Optional[builtins.str]:
-        '''FailurePolicy defines how to handle failures for the admission policy.
+        '''failurePolicy defines how to handle failures for the admission policy.
 
-        Failures can occur from invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. Allowed values are Ignore or Fail. Defaults to Fail.
+        Failures can occur from CEL expression parse errors, type check errors, runtime errors and invalid or mis-configured policy definitions or bindings.
+
+        A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource.
+
+        failurePolicy does not define how validations that evaluate to false are handled.
+
+        When failurePolicy is set to Fail, ValidatingAdmissionPolicyBinding validationActions define how failures are enforced.
+
+        Allowed values are Ignore or Fail. Defaults to Fail.
 
         :default: Fail.
 
@@ -45699,6 +48372,28 @@ class ValidatingAdmissionPolicySpecV1Alpha1:
         '''
         result = self._values.get("failure_policy")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def match_conditions(self) -> typing.Optional[typing.List[MatchConditionV1Alpha1]]:
+        '''MatchConditions is a list of conditions that must be met for a request to be validated.
+
+        Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed.
+
+        If a parameter object is provided, it can be accessed via the ``params`` handle in the same manner as validation expressions.
+
+        The exact matching logic is (in order):
+
+        1. If ANY matchCondition evaluates to FALSE, the policy is skipped.
+        2. If ALL matchConditions evaluate to TRUE, the policy is evaluated.
+        3. If any matchCondition evaluates to an error (but none are FALSE):
+
+        - If failurePolicy=Fail, reject the request
+        - If failurePolicy=Ignore, the policy is skipped
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#matchConditions
+        '''
+        result = self._values.get("match_conditions")
+        return typing.cast(typing.Optional[typing.List[MatchConditionV1Alpha1]], result)
 
     @builtins.property
     def match_constraints(self) -> typing.Optional[MatchResourcesV1Alpha1]:
@@ -45722,6 +48417,30 @@ class ValidatingAdmissionPolicySpecV1Alpha1:
         result = self._values.get("param_kind")
         return typing.cast(typing.Optional[ParamKindV1Alpha1], result)
 
+    @builtins.property
+    def validations(self) -> typing.Optional[typing.List["ValidationV1Alpha1"]]:
+        '''Validations contain CEL expressions which is used to apply the validation.
+
+        Validations and AuditAnnotations may not both be empty; a minimum of one Validations or AuditAnnotations is required.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#validations
+        '''
+        result = self._values.get("validations")
+        return typing.cast(typing.Optional[typing.List["ValidationV1Alpha1"]], result)
+
+    @builtins.property
+    def variables(self) -> typing.Optional[typing.List["VariableV1Alpha1"]]:
+        '''Variables contain definitions of variables that can be used in composition of other expressions.
+
+        Each variable is defined as a named CEL expression. The variables defined here will be available under ``variables`` in other expressions of the policy except MatchConditions because MatchConditions are evaluated before the rest of the policy.
+
+        The expression of a variable can refer to other variables defined earlier in the list but not those after. Thus, Variables must be sorted by the order of first appearance and acyclic.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.ValidatingAdmissionPolicySpec#variables
+        '''
+        result = self._values.get("variables")
+        return typing.cast(typing.Optional[typing.List["VariableV1Alpha1"]], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -45735,6 +48454,184 @@ class ValidatingAdmissionPolicySpecV1Alpha1:
 
 
 @jsii.data_type(
+    jsii_type="k8s.ValidatingAdmissionPolicySpecV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "audit_annotations": "auditAnnotations",
+        "failure_policy": "failurePolicy",
+        "match_conditions": "matchConditions",
+        "match_constraints": "matchConstraints",
+        "param_kind": "paramKind",
+        "validations": "validations",
+        "variables": "variables",
+    },
+)
+class ValidatingAdmissionPolicySpecV1Beta1:
+    def __init__(
+        self,
+        *,
+        audit_annotations: typing.Optional[typing.Sequence[typing.Union[AuditAnnotationV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+        failure_policy: typing.Optional[builtins.str] = None,
+        match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchConditionV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+        match_constraints: typing.Optional[typing.Union[MatchResourcesV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        param_kind: typing.Optional[typing.Union[ParamKindV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+        validations: typing.Optional[typing.Sequence[typing.Union["ValidationV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
+        variables: typing.Optional[typing.Sequence[typing.Union["VariableV1Beta1", typing.Dict[builtins.str, typing.Any]]]] = None,
+    ) -> None:
+        '''ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.
+
+        :param audit_annotations: auditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request. validations and auditAnnotations may not both be empty; a least one of validations or auditAnnotations is required.
+        :param failure_policy: failurePolicy defines how to handle failures for the admission policy. Failures can occur from CEL expression parse errors, type check errors, runtime errors and invalid or mis-configured policy definitions or bindings. A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource. failurePolicy does not define how validations that evaluate to false are handled. When failurePolicy is set to Fail, ValidatingAdmissionPolicyBinding validationActions define how failures are enforced. Allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param match_conditions: MatchConditions is a list of conditions that must be met for a request to be validated. Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed. If a parameter object is provided, it can be accessed via the ``params`` handle in the same manner as validation expressions. The exact matching logic is (in order): 1. If ANY matchCondition evaluates to FALSE, the policy is skipped. 2. If ALL matchConditions evaluate to TRUE, the policy is evaluated. 3. If any matchCondition evaluates to an error (but none are FALSE): - If failurePolicy=Fail, reject the request - If failurePolicy=Ignore, the policy is skipped
+        :param match_constraints: MatchConstraints specifies what resources this policy is designed to validate. The AdmissionPolicy cares about a request if it matches *all* Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required.
+        :param param_kind: ParamKind specifies the kind of resources used to parameterize this policy. If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null.
+        :param validations: Validations contain CEL expressions which is used to apply the validation. Validations and AuditAnnotations may not both be empty; a minimum of one Validations or AuditAnnotations is required.
+        :param variables: Variables contain definitions of variables that can be used in composition of other expressions. Each variable is defined as a named CEL expression. The variables defined here will be available under ``variables`` in other expressions of the policy except MatchConditions because MatchConditions are evaluated before the rest of the policy. The expression of a variable can refer to other variables defined earlier in the list but not those after. Thus, Variables must be sorted by the order of first appearance and acyclic.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec
+        '''
+        if isinstance(match_constraints, dict):
+            match_constraints = MatchResourcesV1Beta1(**match_constraints)
+        if isinstance(param_kind, dict):
+            param_kind = ParamKindV1Beta1(**param_kind)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__7f6b12d6cbc887c29fca0d4b39f66f3d0ec8eeb6ba7e0bd122e04b97c3646416)
+            check_type(argname="argument audit_annotations", value=audit_annotations, expected_type=type_hints["audit_annotations"])
+            check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
+            check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
+            check_type(argname="argument match_constraints", value=match_constraints, expected_type=type_hints["match_constraints"])
+            check_type(argname="argument param_kind", value=param_kind, expected_type=type_hints["param_kind"])
+            check_type(argname="argument validations", value=validations, expected_type=type_hints["validations"])
+            check_type(argname="argument variables", value=variables, expected_type=type_hints["variables"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if audit_annotations is not None:
+            self._values["audit_annotations"] = audit_annotations
+        if failure_policy is not None:
+            self._values["failure_policy"] = failure_policy
+        if match_conditions is not None:
+            self._values["match_conditions"] = match_conditions
+        if match_constraints is not None:
+            self._values["match_constraints"] = match_constraints
+        if param_kind is not None:
+            self._values["param_kind"] = param_kind
+        if validations is not None:
+            self._values["validations"] = validations
+        if variables is not None:
+            self._values["variables"] = variables
+
+    @builtins.property
+    def audit_annotations(self) -> typing.Optional[typing.List[AuditAnnotationV1Beta1]]:
+        '''auditAnnotations contains CEL expressions which are used to produce audit annotations for the audit event of the API request.
+
+        validations and auditAnnotations may not both be empty; a least one of validations or auditAnnotations is required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#auditAnnotations
+        '''
+        result = self._values.get("audit_annotations")
+        return typing.cast(typing.Optional[typing.List[AuditAnnotationV1Beta1]], result)
+
+    @builtins.property
+    def failure_policy(self) -> typing.Optional[builtins.str]:
+        '''failurePolicy defines how to handle failures for the admission policy.
+
+        Failures can occur from CEL expression parse errors, type check errors, runtime errors and invalid or mis-configured policy definitions or bindings.
+
+        A policy is invalid if spec.paramKind refers to a non-existent Kind. A binding is invalid if spec.paramRef.name refers to a non-existent resource.
+
+        failurePolicy does not define how validations that evaluate to false are handled.
+
+        When failurePolicy is set to Fail, ValidatingAdmissionPolicyBinding validationActions define how failures are enforced.
+
+        Allowed values are Ignore or Fail. Defaults to Fail.
+
+        :default: Fail.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#failurePolicy
+        '''
+        result = self._values.get("failure_policy")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def match_conditions(self) -> typing.Optional[typing.List[MatchConditionV1Beta1]]:
+        '''MatchConditions is a list of conditions that must be met for a request to be validated.
+
+        Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed.
+
+        If a parameter object is provided, it can be accessed via the ``params`` handle in the same manner as validation expressions.
+
+        The exact matching logic is (in order):
+
+        1. If ANY matchCondition evaluates to FALSE, the policy is skipped.
+        2. If ALL matchConditions evaluate to TRUE, the policy is evaluated.
+        3. If any matchCondition evaluates to an error (but none are FALSE):
+
+        - If failurePolicy=Fail, reject the request
+        - If failurePolicy=Ignore, the policy is skipped
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#matchConditions
+        '''
+        result = self._values.get("match_conditions")
+        return typing.cast(typing.Optional[typing.List[MatchConditionV1Beta1]], result)
+
+    @builtins.property
+    def match_constraints(self) -> typing.Optional[MatchResourcesV1Beta1]:
+        '''MatchConstraints specifies what resources this policy is designed to validate.
+
+        The AdmissionPolicy cares about a request if it matches *all* Constraints. However, in order to prevent clusters from being put into an unstable state that cannot be recovered from via the API ValidatingAdmissionPolicy cannot match ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding. Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#matchConstraints
+        '''
+        result = self._values.get("match_constraints")
+        return typing.cast(typing.Optional[MatchResourcesV1Beta1], result)
+
+    @builtins.property
+    def param_kind(self) -> typing.Optional[ParamKindV1Beta1]:
+        '''ParamKind specifies the kind of resources used to parameterize this policy.
+
+        If absent, there are no parameters for this policy and the param CEL variable will not be provided to validation expressions. If ParamKind refers to a non-existent kind, this policy definition is mis-configured and the FailurePolicy is applied. If paramKind is specified but paramRef is unset in ValidatingAdmissionPolicyBinding, the params variable will be null.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#paramKind
+        '''
+        result = self._values.get("param_kind")
+        return typing.cast(typing.Optional[ParamKindV1Beta1], result)
+
+    @builtins.property
+    def validations(self) -> typing.Optional[typing.List["ValidationV1Beta1"]]:
+        '''Validations contain CEL expressions which is used to apply the validation.
+
+        Validations and AuditAnnotations may not both be empty; a minimum of one Validations or AuditAnnotations is required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#validations
+        '''
+        result = self._values.get("validations")
+        return typing.cast(typing.Optional[typing.List["ValidationV1Beta1"]], result)
+
+    @builtins.property
+    def variables(self) -> typing.Optional[typing.List["VariableV1Beta1"]]:
+        '''Variables contain definitions of variables that can be used in composition of other expressions.
+
+        Each variable is defined as a named CEL expression. The variables defined here will be available under ``variables`` in other expressions of the policy except MatchConditions because MatchConditions are evaluated before the rest of the policy.
+
+        The expression of a variable can refer to other variables defined earlier in the list but not those after. Thus, Variables must be sorted by the order of first appearance and acyclic.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.ValidatingAdmissionPolicySpec#variables
+        '''
+        result = self._values.get("variables")
+        return typing.cast(typing.Optional[typing.List["VariableV1Beta1"]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidatingAdmissionPolicySpecV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="k8s.ValidatingWebhook",
     jsii_struct_bases=[],
     name_mapping={
@@ -45743,6 +48640,7 @@ class ValidatingAdmissionPolicySpecV1Alpha1:
         "name": "name",
         "side_effects": "sideEffects",
         "failure_policy": "failurePolicy",
+        "match_conditions": "matchConditions",
         "match_policy": "matchPolicy",
         "namespace_selector": "namespaceSelector",
         "object_selector": "objectSelector",
@@ -45759,6 +48657,7 @@ class ValidatingWebhook:
         name: builtins.str,
         side_effects: builtins.str,
         failure_policy: typing.Optional[builtins.str] = None,
+        match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchCondition, typing.Dict[builtins.str, typing.Any]]]] = None,
         match_policy: typing.Optional[builtins.str] = None,
         namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
         object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -45772,6 +48671,7 @@ class ValidatingWebhook:
         :param name: The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         :param side_effects: SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission chain and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         :param failure_policy: FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail. Default: Fail.
+        :param match_conditions: MatchConditions is a list of conditions that must be met for a request to be sent to this webhook. Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed. The exact matching logic is (in order): 1. If ANY matchCondition evaluates to FALSE, the webhook is skipped. 2. If ALL matchConditions evaluate to TRUE, the webhook is called. 3. If any matchCondition evaluates to an error (but none are FALSE): - If failurePolicy=Fail, reject the request - If failurePolicy=Ignore, the error is ignored and the webhook is skipped This is a beta feature and managed by the AdmissionWebhookMatchConditions feature gate.
         :param match_policy: matchPolicy defines how the "rules" list is used to match incoming requests. Allowed values are "Exact" or "Equivalent". - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook. - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and "rules" only included ``apiGroups:["apps"], apiVersions:["v1"], resources: ["deployments"]``, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook. Defaults to "Equivalent" Default: Equivalent"
         :param namespace_selector: NamespaceSelector decides whether to run the webhook on an object based on whether the namespace for that object matches the selector. If the object itself is a namespace, the matching is performed on object.metadata.labels. If the object is another cluster scoped resource, it never skips the webhook. For example, to run the webhook on any objects whose namespace is not associated with "runlevel" of "0" or "1"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "runlevel", "operator": "NotIn", "values": [ "0", "1" ] } ] } If instead you want to only run the webhook on any objects whose namespace is associated with the "environment" of "prod" or "staging"; you will set the selector as follows: "namespaceSelector": { "matchExpressions": [ { "key": "environment", "operator": "In", "values": [ "prod", "staging" ] } ] } See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels for more examples of label selectors. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
         :param object_selector: ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything. Default: the empty LabelSelector, which matches everything.
@@ -45793,6 +48693,7 @@ class ValidatingWebhook:
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument side_effects", value=side_effects, expected_type=type_hints["side_effects"])
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
+            check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
             check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument object_selector", value=object_selector, expected_type=type_hints["object_selector"])
@@ -45806,6 +48707,8 @@ class ValidatingWebhook:
         }
         if failure_policy is not None:
             self._values["failure_policy"] = failure_policy
+        if match_conditions is not None:
+            self._values["match_conditions"] = match_conditions
         if match_policy is not None:
             self._values["match_policy"] = match_policy
         if namespace_selector is not None:
@@ -45877,6 +48780,28 @@ class ValidatingWebhook:
         '''
         result = self._values.get("failure_policy")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def match_conditions(self) -> typing.Optional[typing.List[MatchCondition]]:
+        '''MatchConditions is a list of conditions that must be met for a request to be sent to this webhook.
+
+        Match conditions filter requests that have already been matched by the rules, namespaceSelector, and objectSelector. An empty list of matchConditions matches all requests. There are a maximum of 64 match conditions allowed.
+
+        The exact matching logic is (in order):
+
+        1. If ANY matchCondition evaluates to FALSE, the webhook is skipped.
+        2. If ALL matchConditions evaluate to TRUE, the webhook is called.
+        3. If any matchCondition evaluates to an error (but none are FALSE):
+
+        - If failurePolicy=Fail, reject the request
+        - If failurePolicy=Ignore, the error is ignored and the webhook is skipped
+
+        This is a beta feature and managed by the AdmissionWebhookMatchConditions feature gate.
+
+        :schema: io.k8s.api.admissionregistration.v1.ValidatingWebhook#matchConditions
+        '''
+        result = self._values.get("match_conditions")
+        return typing.cast(typing.Optional[typing.List[MatchCondition]], result)
 
     @builtins.property
     def match_policy(self) -> typing.Optional[builtins.str]:
@@ -45989,31 +48914,52 @@ class ValidatingWebhook:
 @jsii.data_type(
     jsii_type="k8s.ValidationRule",
     jsii_struct_bases=[],
-    name_mapping={"rule": "rule", "message": "message"},
+    name_mapping={
+        "rule": "rule",
+        "field_path": "fieldPath",
+        "message": "message",
+        "message_expression": "messageExpression",
+        "reason": "reason",
+    },
 )
 class ValidationRule:
     def __init__(
         self,
         *,
         rule: builtins.str,
+        field_path: typing.Optional[builtins.str] = None,
         message: typing.Optional[builtins.str] = None,
+        message_expression: typing.Optional[builtins.str] = None,
+        reason: typing.Optional[builtins.str] = None,
     ) -> None:
         '''ValidationRule describes a validation rule written in the CEL expression language.
 
         :param rule: Rule represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec The Rule is scoped to the location of the x-kubernetes-validations extension in the schema. The ``self`` variable in the CEL expression is bound to the scoped value. Example: - Rule scoped to the root of a resource with a status subresource: {"rule": "self.status.actual <= self.spec.maxDesired"} If the Rule is scoped to an object with properties, the accessible properties of the object are field selectable via ``self.field`` and field presence can be checked via ``has(self.field)``. Null valued fields are treated as absent fields in CEL expressions. If the Rule is scoped to an object with additionalProperties (i.e. a map) the value of the map are accessible via ``self[mapKey]``, map containment can be checked via ``mapKey in self`` and all entries of the map are accessible via CEL macros and functions such as ``self.all(...)``. If the Rule is scoped to an array, the elements of the array are accessible via ``self[i]`` and also by macros and functions. If the Rule is scoped to a scalar, ``self`` is bound to the scalar value. Examples: - Rule scoped to a map of objects: {"rule": "self.components['Widget'].priority < 10"} - Rule scoped to a list of integers: {"rule": "self.values.all(value, value >= 0 && value < 100)"} - Rule scoped to a string value: {"rule": "self.startsWith('kube')"} The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object and from any x-kubernetes-embedded-resource annotated objects. No other metadata properties are accessible. Unknown data preserved in custom resources via x-kubernetes-preserve-unknown-fields is not accessible in CEL expressions. This includes: - Unknown field values that are preserved by object schemas with x-kubernetes-preserve-unknown-fields. - Object properties where the property schema is of an "unknown type". An "unknown type" is recursively defined as: - A schema with no type and x-kubernetes-preserve-unknown-fields set to true - An array where the items schema is of an "unknown type" - An object where the additionalProperties schema is of an "unknown type" Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are: "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", "import", "let", "loop", "package", "namespace", "return". Examples: - Rule accessing a property named "namespace": {"rule": "self.**namespace** > 0"} - Rule accessing a property named "x-prop": {"rule": "self.x__dash__prop > 0"} - Rule accessing a property named "redact__d": {"rule": "self.redact__underscores__d > 0"} Equality on arrays with x-kubernetes-list-type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and non-intersecting elements in ``Y`` are appended, retaining their partial order. - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with non-intersecting keys are appended, retaining their partial order.
+        :param field_path: fieldPath represents the field path returned when the validation fails. It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute ``foo`` under a map ``testMap``, the fieldPath could be set to ``.testMap.foo`` If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. ``.testList`` It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to `JSONPath support in Kubernetes <https://kubernetes.io/docs/reference/kubectl/jsonpath/>`_ for more info. Numeric index of array is not supported. For field name which contains special characters, use ``['specialName']`` to refer the field name. e.g. for attribute ``foo.34$`` appears in a list ``testList``, the fieldPath could be set to ``.testList['foo.34$']``
         :param message: Message represents the message displayed when validation fails. The message is required if the Rule contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host"
+        :param message_expression: MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: "x must be less than max ("+string(self.max)+")"
+        :param reason: reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule. The HTTP status code returned to the caller will match the reason of the reason of the first failed validation rule. The currently supported reasons are: "FieldValueInvalid", "FieldValueForbidden", "FieldValueRequired", "FieldValueDuplicate". If not set, default to use "FieldValueInvalid". All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.
 
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule
         '''
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__8500698ff415569f959cc71557c593435adb8418cbc4abf4ced8324f4f0da96d)
             check_type(argname="argument rule", value=rule, expected_type=type_hints["rule"])
+            check_type(argname="argument field_path", value=field_path, expected_type=type_hints["field_path"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
+            check_type(argname="argument message_expression", value=message_expression, expected_type=type_hints["message_expression"])
+            check_type(argname="argument reason", value=reason, expected_type=type_hints["reason"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "rule": rule,
         }
+        if field_path is not None:
+            self._values["field_path"] = field_path
         if message is not None:
             self._values["message"] = message
+        if message_expression is not None:
+            self._values["message_expression"] = message_expression
+        if reason is not None:
+            self._values["reason"] = reason
 
     @builtins.property
     def rule(self) -> builtins.str:
@@ -46055,6 +49001,17 @@ class ValidationRule:
         return typing.cast(builtins.str, result)
 
     @builtins.property
+    def field_path(self) -> typing.Optional[builtins.str]:
+        '''fieldPath represents the field path returned when the validation fails.
+
+        It must be a relative JSON path (i.e. with array notation) scoped to the location of this x-kubernetes-validations extension in the schema and refer to an existing field. e.g. when validation checks if a specific attribute ``foo`` under a map ``testMap``, the fieldPath could be set to ``.testMap.foo`` If the validation checks two lists must have unique attributes, the fieldPath could be set to either of the list: e.g. ``.testList`` It does not support list numeric index. It supports child operation to refer to an existing field currently. Refer to `JSONPath support in Kubernetes <https://kubernetes.io/docs/reference/kubectl/jsonpath/>`_ for more info. Numeric index of array is not supported. For field name which contains special characters, use ``['specialName']`` to refer the field name. e.g. for attribute ``foo.34$`` appears in a list ``testList``, the fieldPath could be set to ``.testList['foo.34$']``
+
+        :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule#fieldPath
+        '''
+        result = self._values.get("field_path")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def message(self) -> typing.Optional[builtins.str]:
         '''Message represents the message displayed when validation fails.
 
@@ -46063,6 +49020,28 @@ class ValidationRule:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule#message
         '''
         result = self._values.get("message")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def message_expression(self) -> typing.Optional[builtins.str]:
+        '''MessageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.
+
+        Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a rule, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the rule; the only difference is the return type. Example: "x must be less than max ("+string(self.max)+")"
+
+        :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule#messageExpression
+        '''
+        result = self._values.get("message_expression")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def reason(self) -> typing.Optional[builtins.str]:
+        '''reason provides a machine-readable validation failure reason that is returned to the caller when a request fails this validation rule.
+
+        The HTTP status code returned to the caller will match the reason of the reason of the first failed validation rule. The currently supported reasons are: "FieldValueInvalid", "FieldValueForbidden", "FieldValueRequired", "FieldValueDuplicate". If not set, default to use "FieldValueInvalid". All future added reasons must be accepted by clients when reading this value and unknown reasons should be treated as FieldValueInvalid.
+
+        :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule#reason
+        '''
+        result = self._values.get("reason")
         return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
@@ -46083,6 +49062,7 @@ class ValidationRule:
     name_mapping={
         "expression": "expression",
         "message": "message",
+        "message_expression": "messageExpression",
         "reason": "reason",
     },
 )
@@ -46092,12 +49072,14 @@ class ValidationV1Alpha1:
         *,
         expression: builtins.str,
         message: typing.Optional[builtins.str] = None,
+        message_expression: typing.Optional[builtins.str] = None,
         reason: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Validation specifies the CEL expression which is used to apply the validation.
 
-        :param expression: Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the Admission request/response, organized into CEL variables as well as some other useful variables: 'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are: "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", "import", "let", "loop", "package", "namespace", "return". Examples: - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"} - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"} - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and non-intersecting elements in ``Y`` are appended, retaining their partial order. - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with non-intersecting keys are appended, retaining their partial order. Required.
+        :param expression: Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables: - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value. For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are: "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", "import", "let", "loop", "package", "namespace", "return". Examples: - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"} - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"} - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and non-intersecting elements in ``Y`` are appended, retaining their partial order. - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with non-intersecting keys are appended, retaining their partial order. Required.
         :param message: Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {Expression}".
+        :param message_expression: messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the ``expression`` except for 'authorizer' and 'authorizer.requestResource'. Example: "object.x must be less than max ("+string(params.max)+")"
         :param reason: Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client.
 
         :schema: io.k8s.api.admissionregistration.v1alpha1.Validation
@@ -46106,12 +49088,15 @@ class ValidationV1Alpha1:
             type_hints = typing.get_type_hints(_typecheckingstub__2e42e86e2cf6a0b9c2247c2d420d94cd03debba0ad4391ae8e0001bde4c15b3f)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
+            check_type(argname="argument message_expression", value=message_expression, expected_type=type_hints["message_expression"])
             check_type(argname="argument reason", value=reason, expected_type=type_hints["reason"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "expression": expression,
         }
         if message is not None:
             self._values["message"] = message
+        if message_expression is not None:
+            self._values["message_expression"] = message_expression
         if reason is not None:
             self._values["reason"] = reason
 
@@ -46119,9 +49104,14 @@ class ValidationV1Alpha1:
     def expression(self) -> builtins.str:
         '''Expression represents the expression which will be evaluated by CEL.
 
-        ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the Admission request/response, organized into CEL variables as well as some other useful variables:
+        ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:
 
-        'object' - The object from the incoming request. The value is null for DELETE requests. 'oldObject' - The existing object. The value is null for CREATE requests. 'request' - Attributes of the admission request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind.
+        - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value.
+          For example, a variable named 'foo' can be accessed as 'variables.foo'.
+        - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.
+          See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz
+        - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the
+          request resource.
 
         The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible.
 
@@ -46161,6 +49151,17 @@ class ValidationV1Alpha1:
         return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
+    def message_expression(self) -> typing.Optional[builtins.str]:
+        '''messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.
+
+        Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the ``expression`` except for 'authorizer' and 'authorizer.requestResource'. Example: "object.x must be less than max ("+string(params.max)+")"
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Validation#messageExpression
+        '''
+        result = self._values.get("message_expression")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def reason(self) -> typing.Optional[builtins.str]:
         '''Reason represents a machine-readable description of why this validation failed.
 
@@ -46179,6 +49180,254 @@ class ValidationV1Alpha1:
 
     def __repr__(self) -> str:
         return "ValidationV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.ValidationV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={
+        "expression": "expression",
+        "message": "message",
+        "message_expression": "messageExpression",
+        "reason": "reason",
+    },
+)
+class ValidationV1Beta1:
+    def __init__(
+        self,
+        *,
+        expression: builtins.str,
+        message: typing.Optional[builtins.str] = None,
+        message_expression: typing.Optional[builtins.str] = None,
+        reason: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Validation specifies the CEL expression which is used to apply the validation.
+
+        :param expression: Expression represents the expression which will be evaluated by CEL. ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables: - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value. For example, a variable named 'foo' can be accessed as 'variables.foo'. - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request. See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the request resource. The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible. Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are: "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if", "import", "let", "loop", "package", "namespace", "return". Examples: - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"} - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"} - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"} Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type: - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and non-intersecting elements in ``Y`` are appended, retaining their partial order. - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with non-intersecting keys are appended, retaining their partial order. Required.
+        :param message: Message represents the message displayed when validation fails. The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {Expression}".
+        :param message_expression: messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails. Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the ``expression`` except for 'authorizer' and 'authorizer.requestResource'. Example: "object.x must be less than max ("+string(params.max)+")"
+        :param reason: Reason represents a machine-readable description of why this validation failed. If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Validation
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0385573440d3d5f0cd20fdefef6dce91a16ce8e66a1fc20859e6ce2c42c38c3d)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument message", value=message, expected_type=type_hints["message"])
+            check_type(argname="argument message_expression", value=message_expression, expected_type=type_hints["message_expression"])
+            check_type(argname="argument reason", value=reason, expected_type=type_hints["reason"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+        }
+        if message is not None:
+            self._values["message"] = message
+        if message_expression is not None:
+            self._values["message_expression"] = message_expression
+        if reason is not None:
+            self._values["reason"] = reason
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression represents the expression which will be evaluated by CEL.
+
+        ref: https://github.com/google/cel-spec CEL expressions have access to the contents of the API request/response, organized into CEL variables as well as some other useful variables:
+
+        - 'object' - The object from the incoming request. The value is null for DELETE requests. - 'oldObject' - The existing object. The value is null for CREATE requests. - 'request' - Attributes of the API request(`ref </pkg/apis/admission/types.go#AdmissionRequest>`_). - 'params' - Parameter resource referred to by the policy binding being evaluated. Only populated if the policy has a ParamKind. - 'namespaceObject' - The namespace object that the incoming object belongs to. The value is null for cluster-scoped resources. - 'variables' - Map of composited variables, from its name to its lazily evaluated value.
+          For example, a variable named 'foo' can be accessed as 'variables.foo'.
+        - 'authorizer' - A CEL Authorizer. May be used to perform authorization checks for the principal (user or service account) of the request.
+          See https://pkg.go.dev/k8s.io/apiserver/pkg/cel/library#Authz
+        - 'authorizer.requestResource' - A CEL ResourceCheck constructed from the 'authorizer' and configured with the
+          request resource.
+
+        The ``apiVersion``, ``kind``, ``metadata.name`` and ``metadata.generateName`` are always accessible from the root of the object. No other metadata properties are accessible.
+
+        Only property names of the form ``[a-zA-Z_.-/][a-zA-Z0-9_.-/]*`` are accessible. Accessible property names are escaped according to the following rules when accessed in the expression: - '**' escapes to '**underscores**' - '.' escapes to '**dot**' - '-' escapes to '**dash**' - '/' escapes to '**slash**' - Property names that exactly match a CEL RESERVED keyword escape to '**{keyword}__'. The keywords are:
+        "true", "false", "null", "in", "as", "break", "const", "continue", "else", "for", "function", "if",
+        "import", "let", "loop", "package", "namespace", "return".
+        Examples:
+
+        - Expression accessing a property named "namespace": {"Expression": "object.**namespace** > 0"}
+        - Expression accessing a property named "x-prop": {"Expression": "object.x__dash__prop > 0"}
+        - Expression accessing a property named "redact__d": {"Expression": "object.redact__underscores__d > 0"}
+
+        Equality on arrays with list type of 'set' or 'map' ignores element order, i.e. [1, 2] == [2, 1]. Concatenation on arrays with x-kubernetes-list-type use the semantics of the list type:
+
+        - 'set': ``X + Y`` performs a union where the array positions of all elements in ``X`` are preserved and
+          non-intersecting elements in ``Y`` are appended, retaining their partial order.
+        - 'map': ``X + Y`` performs a merge where the array positions of all keys in ``X`` are preserved but the values
+          are overwritten by values in ``Y`` when the key sets of ``X`` and ``Y`` intersect. Elements in ``Y`` with
+          non-intersecting keys are appended, retaining their partial order.
+          Required.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Validation#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def message(self) -> typing.Optional[builtins.str]:
+        '''Message represents the message displayed when validation fails.
+
+        The message is required if the Expression contains line breaks. The message must not contain line breaks. If unset, the message is "failed rule: {Rule}". e.g. "must be a URL with the host matching spec.host" If the Expression contains line breaks. Message is required. The message must not contain line breaks. If unset, the message is "failed Expression: {Expression}".
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Validation#message
+        '''
+        result = self._values.get("message")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def message_expression(self) -> typing.Optional[builtins.str]:
+        '''messageExpression declares a CEL expression that evaluates to the validation failure message that is returned when this rule fails.
+
+        Since messageExpression is used as a failure message, it must evaluate to a string. If both message and messageExpression are present on a validation, then messageExpression will be used if validation fails. If messageExpression results in a runtime error, the runtime error is logged, and the validation failure message is produced as if the messageExpression field were unset. If messageExpression evaluates to an empty string, a string with only spaces, or a string that contains line breaks, then the validation failure message will also be produced as if the messageExpression field were unset, and the fact that messageExpression produced an empty string/string with only spaces/string with line breaks will be logged. messageExpression has access to all the same variables as the ``expression`` except for 'authorizer' and 'authorizer.requestResource'. Example: "object.x must be less than max ("+string(params.max)+")"
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Validation#messageExpression
+        '''
+        result = self._values.get("message_expression")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def reason(self) -> typing.Optional[builtins.str]:
+        '''Reason represents a machine-readable description of why this validation failed.
+
+        If this is the first validation in the list to fail, this reason, as well as the corresponding HTTP response code, are used in the HTTP response to the client. The currently supported reasons are: "Unauthorized", "Forbidden", "Invalid", "RequestEntityTooLarge". If not set, StatusReasonInvalid is used in the response to the client.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Validation#reason
+        '''
+        result = self._values.get("reason")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ValidationV1Beta1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.VariableV1Alpha1",
+    jsii_struct_bases=[],
+    name_mapping={"expression": "expression", "name": "name"},
+)
+class VariableV1Alpha1:
+    def __init__(self, *, expression: builtins.str, name: builtins.str) -> None:
+        '''Variable is the definition of a variable that is used for composition.
+
+        :param expression: Expression is the expression that will be evaluated as the value of the variable. The CEL expression has access to the same identifiers as the CEL expressions in Validation.
+        :param name: Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through ``variables`` For example, if name is "foo", the variable will be available as ``variables.foo``
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Variable
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f19d1febb72f16cf0b81e45d01cb337069d10c5c7455d63bc5a1bd00c24a2fd8)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+            "name": name,
+        }
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression is the expression that will be evaluated as the value of the variable.
+
+        The CEL expression has access to the same identifiers as the CEL expressions in Validation.
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Variable#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of the variable.
+
+        The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through ``variables`` For example, if name is "foo", the variable will be available as ``variables.foo``
+
+        :schema: io.k8s.api.admissionregistration.v1alpha1.Variable#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VariableV1Alpha1(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="k8s.VariableV1Beta1",
+    jsii_struct_bases=[],
+    name_mapping={"expression": "expression", "name": "name"},
+)
+class VariableV1Beta1:
+    def __init__(self, *, expression: builtins.str, name: builtins.str) -> None:
+        '''Variable is the definition of a variable that is used for composition.
+
+        A variable is defined as a named expression.
+
+        :param expression: Expression is the expression that will be evaluated as the value of the variable. The CEL expression has access to the same identifiers as the CEL expressions in Validation.
+        :param name: Name is the name of the variable. The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through ``variables`` For example, if name is "foo", the variable will be available as ``variables.foo``
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Variable
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2af0b7fd85d855b63a1a2ee4eaf2d639ff2c1ebe50db8b7c6b9c72ed68f5c877)
+            check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "expression": expression,
+            "name": name,
+        }
+
+    @builtins.property
+    def expression(self) -> builtins.str:
+        '''Expression is the expression that will be evaluated as the value of the variable.
+
+        The CEL expression has access to the same identifiers as the CEL expressions in Validation.
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Variable#expression
+        '''
+        result = self._values.get("expression")
+        assert result is not None, "Required property 'expression' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of the variable.
+
+        The name must be a valid CEL identifier and unique among all variables. The variable can be accessed in other expressions through ``variables`` For example, if name is "foo", the variable will be available as ``variables.foo``
+
+        :schema: io.k8s.api.admissionregistration.v1beta1.Variable#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VariableV1Beta1(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -46791,7 +50040,7 @@ class VolumeAttachmentSource:
         Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set.
 
         :param inline_volume_spec: inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is beta-level and is only honored by servers that enabled the CSIMigration feature.
-        :param persistent_volume_name: Name of the persistent volume to attach.
+        :param persistent_volume_name: persistentVolumeName represents the name of the persistent volume to attach.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentSource
         '''
@@ -46820,7 +50069,7 @@ class VolumeAttachmentSource:
 
     @builtins.property
     def persistent_volume_name(self) -> typing.Optional[builtins.str]:
-        '''Name of the persistent volume to attach.
+        '''persistentVolumeName represents the name of the persistent volume to attach.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentSource#persistentVolumeName
         '''
@@ -46854,9 +50103,9 @@ class VolumeAttachmentSpec:
     ) -> None:
         '''VolumeAttachmentSpec is the specification of a VolumeAttachment request.
 
-        :param attacher: Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().
-        :param node_name: The node that the volume should be attached to.
-        :param source: Source represents the volume that should be attached.
+        :param attacher: attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().
+        :param node_name: nodeName represents the node that the volume should be attached to.
+        :param source: source represents the volume that should be attached.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentSpec
         '''
@@ -46875,7 +50124,7 @@ class VolumeAttachmentSpec:
 
     @builtins.property
     def attacher(self) -> builtins.str:
-        '''Attacher indicates the name of the volume driver that MUST handle this request.
+        '''attacher indicates the name of the volume driver that MUST handle this request.
 
         This is the name returned by GetPluginName().
 
@@ -46887,7 +50136,7 @@ class VolumeAttachmentSpec:
 
     @builtins.property
     def node_name(self) -> builtins.str:
-        '''The node that the volume should be attached to.
+        '''nodeName represents the node that the volume should be attached to.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentSpec#nodeName
         '''
@@ -46897,7 +50146,7 @@ class VolumeAttachmentSpec:
 
     @builtins.property
     def source(self) -> VolumeAttachmentSource:
-        '''Source represents the volume that should be attached.
+        '''source represents the volume that should be attached.
 
         :schema: io.k8s.api.storage.v1.VolumeAttachmentSpec#source
         '''
@@ -47167,7 +50416,7 @@ class VolumeNodeResources:
     def __init__(self, *, count: typing.Optional[jsii.Number] = None) -> None:
         '''VolumeNodeResources is a set of resource limits for scheduling of volumes.
 
-        :param count: Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.
+        :param count: count indicates the maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.
 
         :schema: io.k8s.api.storage.v1.VolumeNodeResources
         '''
@@ -47180,7 +50429,7 @@ class VolumeNodeResources:
 
     @builtins.property
     def count(self) -> typing.Optional[jsii.Number]:
-        '''Maximum number of unique volumes managed by the CSI driver that can be used on a node.
+        '''count indicates the maximum number of unique volumes managed by the CSI driver that can be used on a node.
 
         A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.
 
@@ -47641,7 +50890,7 @@ class WindowsSecurityContextOptions:
 
         :param gmsa_credential_spec: GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
         :param gmsa_credential_spec_name: GMSACredentialSpecName is the name of the GMSA credential spec to use.
-        :param host_process: HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+        :param host_process: HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
         :param run_as_user_name: The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Default: the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
         :schema: io.k8s.api.core.v1.WindowsSecurityContextOptions
@@ -47684,7 +50933,7 @@ class WindowsSecurityContextOptions:
     def host_process(self) -> typing.Optional[builtins.bool]:
         '''HostProcess determines if a container should be run as a 'Host Process' container.
 
-        This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+        All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 
         :schema: io.k8s.api.core.v1.WindowsSecurityContextOptions#hostProcess
         '''
@@ -47720,6 +50969,8 @@ __all__ = [
     "Affinity",
     "AggregationRule",
     "ApiServiceSpec",
+    "AuditAnnotationV1Alpha1",
+    "AuditAnnotationV1Beta1",
     "AwsElasticBlockStoreVolumeSource",
     "AzureDiskVolumeSource",
     "AzureFilePersistentVolumeSource",
@@ -47734,6 +50985,7 @@ __all__ = [
     "ClaimSource",
     "ClientIpConfig",
     "ClusterCidrSpecV1Alpha1",
+    "ClusterTrustBundleSpecV1Alpha1",
     "ComponentCondition",
     "ConfigMapEnvSource",
     "ConfigMapKeySelector",
@@ -47742,6 +50994,7 @@ __all__ = [
     "ConfigMapVolumeSource",
     "Container",
     "ContainerPort",
+    "ContainerResizePolicy",
     "ContainerResourceMetricSourceV2",
     "CronJobSpec",
     "CrossVersionObjectReference",
@@ -47782,6 +51035,8 @@ __all__ = [
     "EventSeries",
     "EventSource",
     "ExecAction",
+    "ExemptPriorityLevelConfigurationV1Beta2",
+    "ExemptPriorityLevelConfigurationV1Beta3",
     "ExternalDocumentation",
     "ExternalMetricSourceV2",
     "FcVolumeSource",
@@ -47820,6 +51075,7 @@ __all__ = [
     "IngressTls",
     "IntOrString",
     "IoK8SApimachineryPkgApisMetaV1DeleteOptionsKind",
+    "IpAddressSpecV1Alpha1",
     "IpBlock",
     "IscsiPersistentVolumeSource",
     "IscsiVolumeSource",
@@ -47849,6 +51105,10 @@ __all__ = [
     "KubeClusterRoleList",
     "KubeClusterRoleListProps",
     "KubeClusterRoleProps",
+    "KubeClusterTrustBundleListV1Alpha1",
+    "KubeClusterTrustBundleListV1Alpha1Props",
+    "KubeClusterTrustBundleV1Alpha1",
+    "KubeClusterTrustBundleV1Alpha1Props",
     "KubeComponentStatus",
     "KubeComponentStatusList",
     "KubeComponentStatusListProps",
@@ -47876,11 +51136,7 @@ __all__ = [
     "KubeCsiStorageCapacity",
     "KubeCsiStorageCapacityList",
     "KubeCsiStorageCapacityListProps",
-    "KubeCsiStorageCapacityListV1Beta1",
-    "KubeCsiStorageCapacityListV1Beta1Props",
     "KubeCsiStorageCapacityProps",
-    "KubeCsiStorageCapacityV1Beta1",
-    "KubeCsiStorageCapacityV1Beta1Props",
     "KubeCustomResourceDefinition",
     "KubeCustomResourceDefinitionList",
     "KubeCustomResourceDefinitionListProps",
@@ -47931,6 +51187,10 @@ __all__ = [
     "KubeIngressList",
     "KubeIngressListProps",
     "KubeIngressProps",
+    "KubeIpAddressListV1Alpha1",
+    "KubeIpAddressListV1Alpha1Props",
+    "KubeIpAddressV1Alpha1",
+    "KubeIpAddressV1Alpha1Props",
     "KubeJob",
     "KubeJobList",
     "KubeJobListProps",
@@ -47977,10 +51237,10 @@ __all__ = [
     "KubePodList",
     "KubePodListProps",
     "KubePodProps",
-    "KubePodSchedulingListV1Alpha1",
-    "KubePodSchedulingListV1Alpha1Props",
-    "KubePodSchedulingV1Alpha1",
-    "KubePodSchedulingV1Alpha1Props",
+    "KubePodSchedulingContextListV1Alpha2",
+    "KubePodSchedulingContextListV1Alpha2Props",
+    "KubePodSchedulingContextV1Alpha2",
+    "KubePodSchedulingContextV1Alpha2Props",
     "KubePodTemplate",
     "KubePodTemplateList",
     "KubePodTemplateListProps",
@@ -48005,18 +51265,18 @@ __all__ = [
     "KubeReplicationControllerList",
     "KubeReplicationControllerListProps",
     "KubeReplicationControllerProps",
-    "KubeResourceClaimListV1Alpha1",
-    "KubeResourceClaimListV1Alpha1Props",
-    "KubeResourceClaimTemplateListV1Alpha1",
-    "KubeResourceClaimTemplateListV1Alpha1Props",
-    "KubeResourceClaimTemplateV1Alpha1",
-    "KubeResourceClaimTemplateV1Alpha1Props",
-    "KubeResourceClaimV1Alpha1",
-    "KubeResourceClaimV1Alpha1Props",
-    "KubeResourceClassListV1Alpha1",
-    "KubeResourceClassListV1Alpha1Props",
-    "KubeResourceClassV1Alpha1",
-    "KubeResourceClassV1Alpha1Props",
+    "KubeResourceClaimListV1Alpha2",
+    "KubeResourceClaimListV1Alpha2Props",
+    "KubeResourceClaimTemplateListV1Alpha2",
+    "KubeResourceClaimTemplateListV1Alpha2Props",
+    "KubeResourceClaimTemplateV1Alpha2",
+    "KubeResourceClaimTemplateV1Alpha2Props",
+    "KubeResourceClaimV1Alpha2",
+    "KubeResourceClaimV1Alpha2Props",
+    "KubeResourceClassListV1Alpha2",
+    "KubeResourceClassListV1Alpha2Props",
+    "KubeResourceClassV1Alpha2",
+    "KubeResourceClassV1Alpha2Props",
     "KubeResourceQuota",
     "KubeResourceQuotaList",
     "KubeResourceQuotaListProps",
@@ -48041,8 +51301,12 @@ __all__ = [
     "KubeSecretProps",
     "KubeSelfSubjectAccessReview",
     "KubeSelfSubjectAccessReviewProps",
+    "KubeSelfSubjectReview",
+    "KubeSelfSubjectReviewProps",
     "KubeSelfSubjectReviewV1Alpha1",
     "KubeSelfSubjectReviewV1Alpha1Props",
+    "KubeSelfSubjectReviewV1Beta1",
+    "KubeSelfSubjectReviewV1Beta1Props",
     "KubeSelfSubjectRulesReview",
     "KubeSelfSubjectRulesReviewProps",
     "KubeService",
@@ -48075,12 +51339,20 @@ __all__ = [
     "KubeTokenReviewProps",
     "KubeValidatingAdmissionPolicyBindingListV1Alpha1",
     "KubeValidatingAdmissionPolicyBindingListV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyBindingListV1Beta1",
+    "KubeValidatingAdmissionPolicyBindingListV1Beta1Props",
     "KubeValidatingAdmissionPolicyBindingV1Alpha1",
     "KubeValidatingAdmissionPolicyBindingV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyBindingV1Beta1",
+    "KubeValidatingAdmissionPolicyBindingV1Beta1Props",
     "KubeValidatingAdmissionPolicyListV1Alpha1",
     "KubeValidatingAdmissionPolicyListV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyListV1Beta1",
+    "KubeValidatingAdmissionPolicyListV1Beta1Props",
     "KubeValidatingAdmissionPolicyV1Alpha1",
     "KubeValidatingAdmissionPolicyV1Alpha1Props",
+    "KubeValidatingAdmissionPolicyV1Beta1",
+    "KubeValidatingAdmissionPolicyV1Beta1Props",
     "KubeValidatingWebhookConfiguration",
     "KubeValidatingWebhookConfigurationList",
     "KubeValidatingWebhookConfigurationListProps",
@@ -48104,12 +51376,17 @@ __all__ = [
     "LocalObjectReference",
     "LocalVolumeSource",
     "ManagedFieldsEntry",
+    "MatchCondition",
+    "MatchConditionV1Alpha1",
+    "MatchConditionV1Beta1",
     "MatchResourcesV1Alpha1",
+    "MatchResourcesV1Beta1",
     "MetricIdentifierV2",
     "MetricSpecV2",
     "MetricTargetV2",
     "MutatingWebhook",
     "NamedRuleWithOperationsV1Alpha1",
+    "NamedRuleWithOperationsV1Beta1",
     "NamespaceSpec",
     "NetworkPolicyEgressRule",
     "NetworkPolicyIngressRule",
@@ -48133,7 +51410,10 @@ __all__ = [
     "Overhead",
     "OwnerReference",
     "ParamKindV1Alpha1",
+    "ParamKindV1Beta1",
     "ParamRefV1Alpha1",
+    "ParamRefV1Beta1",
+    "ParentReferenceV1Alpha1",
     "PersistentVolumeClaimSpec",
     "PersistentVolumeClaimTemplate",
     "PersistentVolumeClaimVolumeSource",
@@ -48152,8 +51432,8 @@ __all__ = [
     "PodOs",
     "PodReadinessGate",
     "PodResourceClaim",
+    "PodSchedulingContextSpecV1Alpha2",
     "PodSchedulingGate",
-    "PodSchedulingSpecV1Alpha1",
     "PodSecurityContext",
     "PodSpec",
     "PodTemplateSpec",
@@ -48180,10 +51460,10 @@ __all__ = [
     "ReplicationControllerSpec",
     "ResourceAttributes",
     "ResourceClaim",
-    "ResourceClaimParametersReferenceV1Alpha1",
-    "ResourceClaimSpecV1Alpha1",
-    "ResourceClaimTemplateSpecV1Alpha1",
-    "ResourceClassParametersReferenceV1Alpha1",
+    "ResourceClaimParametersReferenceV1Alpha2",
+    "ResourceClaimSpecV1Alpha2",
+    "ResourceClaimTemplateSpecV1Alpha2",
+    "ResourceClassParametersReferenceV1Alpha2",
     "ResourceFieldSelector",
     "ResourceMetricSourceV2",
     "ResourcePolicyRuleV1Beta2",
@@ -48246,10 +51526,15 @@ __all__ = [
     "UserSubjectV1Beta2",
     "UserSubjectV1Beta3",
     "ValidatingAdmissionPolicyBindingSpecV1Alpha1",
+    "ValidatingAdmissionPolicyBindingSpecV1Beta1",
     "ValidatingAdmissionPolicySpecV1Alpha1",
+    "ValidatingAdmissionPolicySpecV1Beta1",
     "ValidatingWebhook",
     "ValidationRule",
     "ValidationV1Alpha1",
+    "ValidationV1Beta1",
+    "VariableV1Alpha1",
+    "VariableV1Beta1",
     "Volume",
     "VolumeAttachmentSource",
     "VolumeAttachmentSpec",
@@ -48292,6 +51577,22 @@ def _typecheckingstub__f218ab0fc666c93118e68a7a785bfe54888e33ebd68f9d3998ddac4e9
     insecure_skip_tls_verify: typing.Optional[builtins.bool] = None,
     service: typing.Optional[typing.Union[ServiceReference, typing.Dict[builtins.str, typing.Any]]] = None,
     version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__06e3d0e3bbf4c4e620f434b6daa397dd0074dc42c25d1068072ec406d734bb9d(
+    *,
+    key: builtins.str,
+    value_expression: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__548eadcd270008f2227b095d2dba595b8db90696605ff11f2c0b702853ecc837(
+    *,
+    key: builtins.str,
+    value_expression: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48438,6 +51739,14 @@ def _typecheckingstub__fe618ea608b9075a33b355598f43687c5206288062267eb0d99d0a9ca
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__6a9bef18641cae2e8ea743ffce231b3a70e8274b3f75e68f15b194722bd3ae46(
+    *,
+    trust_bundle: builtins.str,
+    signer_name: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__e5c6f493a36d20a0f5c15799a425473df0ef3509854c45bf00c9f2d1df43078b(
     *,
     status: builtins.str,
@@ -48508,7 +51817,9 @@ def _typecheckingstub__1b3b3fe219125d2e54fdddd91ecda52e6a495f38680a3a53b33f1b02c
     liveness_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
     ports: typing.Optional[typing.Sequence[typing.Union[ContainerPort, typing.Dict[builtins.str, typing.Any]]]] = None,
     readiness_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
+    resize_policy: typing.Optional[typing.Sequence[typing.Union[ContainerResizePolicy, typing.Dict[builtins.str, typing.Any]]]] = None,
     resources: typing.Optional[typing.Union[ResourceRequirements, typing.Dict[builtins.str, typing.Any]]] = None,
+    restart_policy: typing.Optional[builtins.str] = None,
     security_context: typing.Optional[typing.Union[SecurityContext, typing.Dict[builtins.str, typing.Any]]] = None,
     startup_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
     stdin: typing.Optional[builtins.bool] = None,
@@ -48530,6 +51841,14 @@ def _typecheckingstub__ea50a33f53045ef963173d2b69fe4fa77a8142b8ae58ea83960e69f48
     host_port: typing.Optional[jsii.Number] = None,
     name: typing.Optional[builtins.str] = None,
     protocol: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e67f6595895fd5a9a7fe0c13ca80d8c3fa406cb081f8f5aff47e39181112e7d9(
+    *,
+    resource_name: builtins.str,
+    restart_policy: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48902,7 +52221,9 @@ def _typecheckingstub__3e01c0b51ea0b6a8c67c37763e480129a2534ef49ece7c443d6c8063f
     liveness_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
     ports: typing.Optional[typing.Sequence[typing.Union[ContainerPort, typing.Dict[builtins.str, typing.Any]]]] = None,
     readiness_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
+    resize_policy: typing.Optional[typing.Sequence[typing.Union[ContainerResizePolicy, typing.Dict[builtins.str, typing.Any]]]] = None,
     resources: typing.Optional[typing.Union[ResourceRequirements, typing.Dict[builtins.str, typing.Any]]] = None,
+    restart_policy: typing.Optional[builtins.str] = None,
     security_context: typing.Optional[typing.Union[SecurityContext, typing.Dict[builtins.str, typing.Any]]] = None,
     startup_probe: typing.Optional[typing.Union[Probe, typing.Dict[builtins.str, typing.Any]]] = None,
     stdin: typing.Optional[builtins.bool] = None,
@@ -48944,6 +52265,22 @@ def _typecheckingstub__4a9e80d349ff66b0083f1d53dad15acd2eb7b7353b7849460bd62f8e2
 def _typecheckingstub__39b0da0ddb8fa067bbecf85dd3d7748f68c3c1d726d1f55f6612b8bd92883a73(
     *,
     command: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9122228acb7453c780a0d83288ba779d6e0adbe011be63493bc83fea4ccfc45a(
+    *,
+    lendable_percent: typing.Optional[jsii.Number] = None,
+    nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c7dd41ac5f22bba1faaae4f1d7e26e1e81a74e532182f239a3d325536bc9dd0(
+    *,
+    lendable_percent: typing.Optional[jsii.Number] = None,
+    nominal_concurrency_shares: typing.Optional[jsii.Number] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49277,6 +52614,13 @@ def _typecheckingstub__c0d8454a87ccd93d2d171f9e20405b3c5d7964bd41fa7e35f0ca4da48
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__508fc7610428ce7741a3a96af183f6afdf5d8e6b7952c600590f0d51058c7486(
+    *,
+    parent_ref: typing.Optional[typing.Union[ParentReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__06c394466495c1b06784a9836bf93d9ce9aec1a818eac2478c2db2ccb377d374(
     *,
     cidr: builtins.str,
@@ -49324,11 +52668,14 @@ def _typecheckingstub__292598de0c2d5d5c366c954213d0653c155500e82fa84af63083a2187
     template: typing.Union[PodTemplateSpec, typing.Dict[builtins.str, typing.Any]],
     active_deadline_seconds: typing.Optional[jsii.Number] = None,
     backoff_limit: typing.Optional[jsii.Number] = None,
+    backoff_limit_per_index: typing.Optional[jsii.Number] = None,
     completion_mode: typing.Optional[builtins.str] = None,
     completions: typing.Optional[jsii.Number] = None,
     manual_selector: typing.Optional[builtins.bool] = None,
+    max_failed_indexes: typing.Optional[jsii.Number] = None,
     parallelism: typing.Optional[jsii.Number] = None,
     pod_failure_policy: typing.Optional[typing.Union[PodFailurePolicy, typing.Dict[builtins.str, typing.Any]]] = None,
+    pod_replacement_policy: typing.Optional[builtins.str] = None,
     selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     suspend: typing.Optional[builtins.bool] = None,
     ttl_seconds_after_finished: typing.Optional[jsii.Number] = None,
@@ -49605,6 +52952,42 @@ def _typecheckingstub__6faf558e694a82d5282c1ee1c2544179d7e40c708128f00e73fbc361b
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__f93fc4d82dfde6a6fc160e1494922e8fd6164f65d1a44c956d746ca3f3f072ec(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubeClusterTrustBundleV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2a1744260f576ca046c6a966a4564d3d3422d0d87cef3cc630a777a4344c4c6f(
+    *,
+    items: typing.Sequence[typing.Union[KubeClusterTrustBundleV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__30285f82fa8bc6746329e40f965ecc6be9f1035835a23fb7c6b2c34d159abfcc(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    spec: typing.Union[ClusterTrustBundleSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9539a89df5b132edfa3c817a6357b431b64b4db27fadd919e70b3004d3f2fef5(
+    *,
+    spec: typing.Union[ClusterTrustBundleSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__d8eff1e5ed3dcdcfd0064a2af74f4bb031286a15e4ced98c55de4d26be394984(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -49858,49 +53241,7 @@ def _typecheckingstub__65f4b3047ee5f0d908b2716319143dd4ccd26083f8d0735e0801a078f
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__661ec608be88da1c7692b081e6f7c74ef61ce4e8d4a37bd7ec5da8d2611cf0a8(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    items: typing.Sequence[typing.Union[KubeCsiStorageCapacityV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__400eae37cc38d2ad1a0f22a496ee8496cb5d543295c2d8fb25d899afe6986998(
-    *,
-    items: typing.Sequence[typing.Union[KubeCsiStorageCapacityV1Beta1Props, typing.Dict[builtins.str, typing.Any]]],
-    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
 def _typecheckingstub__fdfcf2ccfe14adfd27a6bbb6dc09e54facd4c0be62f6bb48afb0ce7b0e5f31bd(
-    *,
-    storage_class_name: builtins.str,
-    capacity: typing.Optional[Quantity] = None,
-    maximum_volume_size: typing.Optional[Quantity] = None,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    node_topology: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__cce715b0cafab1814f8745ad981ca208df4018c7a12f6d649842f804831cf83e(
-    scope: _constructs_77d1e7e8.Construct,
-    id: builtins.str,
-    *,
-    storage_class_name: builtins.str,
-    capacity: typing.Optional[Quantity] = None,
-    maximum_volume_size: typing.Optional[Quantity] = None,
-    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    node_topology: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
-) -> None:
-    """Type checking stubs"""
-    pass
-
-def _typecheckingstub__8418b166e025fb1853c1ac02bf35c29f522036d884cff7a2ce4f670249d87d99(
     *,
     storage_class_name: builtins.str,
     capacity: typing.Optional[Quantity] = None,
@@ -50391,6 +53732,42 @@ def _typecheckingstub__c6fb53470ef0dd80ea7bd4fef27d3ddf64cb7f36e5eea57e17b603eea
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__bcf11abb8b9443f87e23bfdfb6dc3b915facd380cc6fc7a457bdc486d302ed8e(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Sequence[typing.Union[KubeIpAddressV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__da522343584f9d62148ebf8e4faef99731e6c5001445d9d127ff492dce2783b3(
+    *,
+    items: typing.Sequence[typing.Union[KubeIpAddressV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5e8dae727b235c6474d14285a84cfcae9fba91354f4c46921b53ad02a3902ec3(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[IpAddressSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__10f6e17701a7ffb1a0ad6e04fa6e0be8bad8b0c14a71ab5ff1477d076fab249e(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[IpAddressSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__fff358859e9af9ea8332041ebc8c62133b4e15d6bae01f757722777868bbf975(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -50805,37 +54182,37 @@ def _typecheckingstub__a49e5de6a1c7d64f87b3fd99f6f3a7f9173827eb846d6b3423f251cc8
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ca5c307c4cf8c1a6abfe2594c184c4510f1f094dbb431db9ed4c05139b0636a3(
+def _typecheckingstub__0e769858501b1199df66439c6b95697a00f19085c9eeca4f68c18433b11355f8(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    items: typing.Sequence[typing.Union[KubePodSchedulingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubePodSchedulingContextV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__7a3f9f9a13fab7ad4309606460387114d09f26fe708e57d0ade367760eba22d4(
+def _typecheckingstub__fcf15b32818c8985186b2881ec2a6320b146240c0592811797b146fe466c2666(
     *,
-    items: typing.Sequence[typing.Union[KubePodSchedulingV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubePodSchedulingContextV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__3f4856868eca18e4ac926608e85a1bc5de5344771a17d102cda0ca44b4a61ee2(
+def _typecheckingstub__83608ce8cd267369c7a063156097c1701114f7ebb8921ec16d59a65e1548526b(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    spec: typing.Union[PodSchedulingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[PodSchedulingContextSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__b8378dcaf5913bb1f58986bd024042b8cd1b3448b4c03b331937a17870ffaac0(
+def _typecheckingstub__d693ea691123239a8330860b15758058ccb136fa2359a74282f94861727f677b(
     *,
-    spec: typing.Union[PodSchedulingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[PodSchedulingContextSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -51063,113 +54440,113 @@ def _typecheckingstub__d1907ebb731e0f56418eaea7fe01ae75a6a0f7a66fe54291e68654e73
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__e200cdf7bdfd425880660ef6ebcb90da88783cb7874f700af41261d226802408(
+def _typecheckingstub__1a725bfe3a37b80cc81a28a99fbe22f0a3c585e5a3f0a8786f41a3abd6b3263c(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__de1fd43faf0ba317c36809119ca61ff37dc7311bff784a153466481f3c1f7aac(
+def _typecheckingstub__97c69be384e7db5e08b03dc4530748e0c5653a56dba1ffee1030be1140eae63c(
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClaimV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__6fbb34cbc640559672bb256ab485dc10d838f47767a362a9647924f5939ec9b7(
+def _typecheckingstub__009932b8547bced8adca4b2114556aaf3f6154cbf42c71be48f2401290f1d5dd(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__28698822e45bda3d63db1ad3983a08b594ae8089817211a639d0d2b2212c5c0e(
+def _typecheckingstub__d7dda3de94ea8f0e7b464cab642b0160245ee6dd28416fdb9c33e33aba0b81ca(
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClaimTemplateV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__19b55a664e022e7cf75a2e7db6a0c16e6791ff0f493db7b0ac8902687bdfc771(
+def _typecheckingstub__d37c61e97861ec4b0cd7abf3f229620788ebb89501c52698c12b776ce6d684d2(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__895c0745ae5288dd68b676af5ebba5862e4ff365a8b6cb7256b72cebb64ed32f(
+def _typecheckingstub__bf0cae014b877038f30b7503c9f70abb49f03efcd08b2eb2e02f0da857d1a470(
     *,
-    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[ResourceClaimTemplateSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__a1f97fddc933efea2a1616dae66764060c73225f24ca19f70ab4da1cff53e88f(
+def _typecheckingstub__e38ffd78c09b98ed593176ad75b835361bf2225de5e8a719c16caf30e2533d75(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[ResourceClaimSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__881875cd1d5513534efa2e6323236285dc2d6c692541f339978f5f88cbd7191d(
+def _typecheckingstub__4a7a83b200fd148f42334ca72d033906132f0f15e48ac3ec1f1e2fb03578a26d(
     *,
-    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[ResourceClaimSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__e1695fa3fd0da9c0899fd14ab89c516ae780955a7fabddea610d77da29a44ed4(
+def _typecheckingstub__dda9ddbe117e7ea17b435661001ef85b5656b51c9200ab12be9ab56f19b27a24(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ac68af0f54677d6e7e28921a84e980663e5bbd36841ef1ddab313b91449b124a(
+def _typecheckingstub__2631ccc8a78c7984a6aa072a2b1daca446e10cfd9f6dd9cac19b31fb7604ef71(
     *,
-    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha1Props, typing.Dict[builtins.str, typing.Any]]],
+    items: typing.Sequence[typing.Union[KubeResourceClassV1Alpha2Props, typing.Dict[builtins.str, typing.Any]]],
     metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__73e955754ed6b0a944de335f682e555ee872f783b244a6172a6174b18e2953f2(
+def _typecheckingstub__0f50b812a66b98ca18e00f2fcf254f016015262864e7841f2de4335164b5bb0f(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
     *,
     driver_name: builtins.str,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha2, typing.Dict[builtins.str, typing.Any]]] = None,
     suitable_nodes: typing.Optional[typing.Union[NodeSelector, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__4dcda1419c55ac01a43092063ef99623f9153c117048d8a4d4a0ebd85bae5430(
+def _typecheckingstub__4d0ab5927817ed3395257f52a52ae9de85a0db99829265383dba600b6fbccbe6(
     *,
     driver_name: builtins.str,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
-    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClassParametersReferenceV1Alpha2, typing.Dict[builtins.str, typing.Any]]] = None,
     suitable_nodes: typing.Optional[typing.Union[NodeSelector, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -51403,6 +54780,22 @@ def _typecheckingstub__eb99da3761969040fbad9ae0f21de6f39fd7f9db7330ac8a2e14fd12d
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__31c4a3b5ddc67a67bfaaa585938bc9bc4d75e4cc37be6ddfaa157194f72748b0(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__420703732e4979ebfe1fe36b8345a0798e125cb53250c9f0452b182db5bd70ea(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__dc60febb32a5f5f830b0cbfeae492a65d79ebf66796edf824b494c89482a7e3f(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -51413,6 +54806,22 @@ def _typecheckingstub__dc60febb32a5f5f830b0cbfeae492a65d79ebf66796edf824b494c894
     pass
 
 def _typecheckingstub__740c60c3b930f3570c75be79b9daab533abd7ec5f3e5998f46de9d7e22d8dd90(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4c6325336c49f73bfa6cee21130b577b6ac3d6ebce9852e592b9006651790fbf(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1b80e229ada2e7d6c3d377c9f1e90767168bd3316e424b40ec51a9dde3b56467(
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -51729,6 +55138,24 @@ def _typecheckingstub__58df6ed691a95aca20efd7ea05e0fc7ba9fc3d6f3743649a0799ed2ed
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__241337a57b83707520894748a9268890b7a3fe3e4b3f2e9810b47d44c0dfc0bb(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyBindingV1Beta1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e3c08e09551bb3db60215462dd42eb6a0c0933fd1453e92b0761f0c531b4c7b6(
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyBindingV1Beta1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__56be5cfcf392871de51369cb7627d15581b617ac5c85c34c2825c7dc7b3feaf2(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -51743,6 +55170,24 @@ def _typecheckingstub__02dcc69943131299a07758a92f8e2cda2225cdddcbbf84f8acd3bb912
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[ValidatingAdmissionPolicyBindingSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c09680467550f02565b22d53788829f1c0e8b6479976e0cddfa8d8d63fa291df(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicyBindingSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c0a990a7b7e27e28e26ece4b536eb1b3d61b218b2631088ea59ff3dbc16c5145(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicyBindingSpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51765,6 +55210,24 @@ def _typecheckingstub__27f6c645b042b326a7c234f10c50683e94fe2b281a2747e856507e896
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__5ccdadbc6c3f7e9fabbe4f7528ba0fa3bbb190730341f9e800357712d8e24951(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyV1Beta1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9ed35b90ddcea8a1d5d1c32fb50cf0259771687eb621661767f1cf19d8b2104e(
+    *,
+    items: typing.Optional[typing.Sequence[typing.Union[KubeValidatingAdmissionPolicyV1Beta1Props, typing.Dict[builtins.str, typing.Any]]]] = None,
+    metadata: typing.Optional[typing.Union[ListMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__40d71fe31ba527f1708a40aa586fc9c2850b09853dfc30d5893fce5bd4e83459(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -51779,6 +55242,24 @@ def _typecheckingstub__040f3513e9b89931f8fae1a4242c8701b631d9855f134d09d77119b9a
     *,
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
     spec: typing.Optional[typing.Union[ValidatingAdmissionPolicySpecV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fb338b5c17a743b3b10374c07c82c00dfb90fe0debf4c8f87b4bd1af70983cba(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicySpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__11b115fe94e5632888766af4e7a4fb5bd5b6875c3cbe24b8f6dfdd801c5886b7(
+    *,
+    metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[ValidatingAdmissionPolicySpecV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51993,6 +55474,30 @@ def _typecheckingstub__7d4739bc7dc7000dc6e5fca030c204929e2fd79081deaecd9bb2d31a8
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__3800f669ab21a26d536ae83c136f2866c0e93717ab35288364734887c0897ff3(
+    *,
+    expression: builtins.str,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__beea8e57725f27cd5055bfc69b7285a280467452baf7822cf280461af2cac429(
+    *,
+    expression: builtins.str,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9e49bf637f21e88073f98fa1103cd81916ae6d3820ed7367d000d2ae75800fb7(
+    *,
+    expression: builtins.str,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008c59202f(
     *,
     exclude_resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
@@ -52000,6 +55505,17 @@ def _typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008
     namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1f544a901497696fa76856946cbb824eaf95d5b9cd4538d6f138fb971999df08(
+    *,
+    exclude_resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_policy: typing.Optional[builtins.str] = None,
+    namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    resource_rules: typing.Optional[typing.Sequence[typing.Union[NamedRuleWithOperationsV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -52041,6 +55557,7 @@ def _typecheckingstub__3b2b9fcd912bddbb67354eb50436e2e46cb9c69e54efee129d032491e
     name: builtins.str,
     side_effects: builtins.str,
     failure_policy: typing.Optional[builtins.str] = None,
+    match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchCondition, typing.Dict[builtins.str, typing.Any]]]] = None,
     match_policy: typing.Optional[builtins.str] = None,
     namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -52052,6 +55569,18 @@ def _typecheckingstub__3b2b9fcd912bddbb67354eb50436e2e46cb9c69e54efee129d032491e
     pass
 
 def _typecheckingstub__86254bd3c48c4175d2d8989d74b51ebf1d5e08f635d6ca938cbe71ad127a3055(
+    *,
+    api_groups: typing.Optional[typing.Sequence[builtins.str]] = None,
+    api_versions: typing.Optional[typing.Sequence[builtins.str]] = None,
+    operations: typing.Optional[typing.Sequence[builtins.str]] = None,
+    resource_names: typing.Optional[typing.Sequence[builtins.str]] = None,
+    resources: typing.Optional[typing.Sequence[builtins.str]] = None,
+    scope: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5752bf5c1318bb48fb98d55c7d64c8f6c4c0d21ee0ed3f837e48926229f41644(
     *,
     api_groups: typing.Optional[typing.Sequence[builtins.str]] = None,
     api_versions: typing.Optional[typing.Sequence[builtins.str]] = None,
@@ -52277,10 +55806,41 @@ def _typecheckingstub__ca366a1a5a55375a1aef0df1d3a5ee87b07269561ad4145843c552a10
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__5902630c6b9959b6d8033dbff5bbb00a7dabcb3ab582f1fe6cbd68814a0784d1(
+    *,
+    api_version: typing.Optional[builtins.str] = None,
+    kind: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e(
     *,
     name: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
+    parameter_not_found_action: typing.Optional[builtins.str] = None,
+    selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__32c75a5e4f7852a9f3e5b9936993133a9c47453af8828503a27ae7e776b8d0f7(
+    *,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    parameter_not_found_action: typing.Optional[builtins.str] = None,
+    selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3bb68f59c68fa379d302e476dc25c7bc8923c4621290d99169d0f118176efa74(
+    *,
+    group: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+    resource: typing.Optional[builtins.str] = None,
+    uid: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -52467,17 +56027,17 @@ def _typecheckingstub__593eecd9b8e25f27db87859570a28b2ffda74b52af7ef080a6bc114f4
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc(
+def _typecheckingstub__1fb1c235720a4a513f0a500312767242f176958372961245d9d96422be5f34f1(
     *,
-    name: builtins.str,
+    potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
+    selected_node: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__cbaa152d2aa3b0f9ec0ecda0ddb7625c4422ee7ea4ee6a8b3c47fc6deee35d21(
+def _typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc(
     *,
-    potential_nodes: typing.Optional[typing.Sequence[builtins.str]] = None,
-    selected_node: typing.Optional[builtins.str] = None,
+    name: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -52630,6 +56190,7 @@ def _typecheckingstub__9a0146b969cc8a7d1c0ff18cf7d2f32e995d6c975b94478b11b395aca
 def _typecheckingstub__94bca280ba8f7fad3c10c340b8cf6039d7a0f6cbd700ea283a8eeb4f1a9bdaad(
     *,
     type: builtins.str,
+    exempt: typing.Optional[typing.Union[ExemptPriorityLevelConfigurationV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
     limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta2, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -52638,6 +56199,7 @@ def _typecheckingstub__94bca280ba8f7fad3c10c340b8cf6039d7a0f6cbd700ea283a8eeb4f1
 def _typecheckingstub__c30b61d9bf19716fdc32867c5d90748be48b5c7c3c858ba8b5c867223594eb77(
     *,
     type: builtins.str,
+    exempt: typing.Optional[typing.Union[ExemptPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
     limited: typing.Optional[typing.Union[LimitedPriorityLevelConfigurationV1Beta3, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -52777,7 +56339,7 @@ def _typecheckingstub__91cfdd0118d393ecd84db840ef420f5ffe5190ebbd91733137901a1ac
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__3577080f3432d03b6855e16ee80a2c353219d63b419c899aeaa67829a6e5c1fd(
+def _typecheckingstub__7119366ebae525d75ed8b40964eda6739ae3b1236d3ead26240c4dba815998cc(
     *,
     kind: builtins.str,
     name: builtins.str,
@@ -52786,24 +56348,24 @@ def _typecheckingstub__3577080f3432d03b6855e16ee80a2c353219d63b419c899aeaa67829a
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__222e0cbad16de6e748d8f212a7f2442c819c2ab8c5a44ca7bae369ddd8d4b534(
+def _typecheckingstub__77b38747f8ce0b8d52bb5dd6bfef476d18d1895505e419bb49b17777620c0d76(
     *,
     resource_class_name: builtins.str,
     allocation_mode: typing.Optional[builtins.str] = None,
-    parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    parameters_ref: typing.Optional[typing.Union[ResourceClaimParametersReferenceV1Alpha2, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__e997f36b60700a40ef5d273c773afd5de1bd6dd5b1729cba9b1011cf89235456(
+def _typecheckingstub__52b998a5f6f87553709864b882409a8072ebb67f9efa6d2635a5d6fab65571fe(
     *,
-    spec: typing.Union[ResourceClaimSpecV1Alpha1, typing.Dict[builtins.str, typing.Any]],
+    spec: typing.Union[ResourceClaimSpecV1Alpha2, typing.Dict[builtins.str, typing.Any]],
     metadata: typing.Optional[typing.Union[ObjectMeta, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
-def _typecheckingstub__5afcc6783d7cbb47b83e346e5c573888b38fd04b8cfd4d6ca64f7b0a4392f11c(
+def _typecheckingstub__e3a558bc6627635cd7f373b5425bcaaa021a5750f0606468f35bd1eeec366fed(
     *,
     kind: builtins.str,
     name: builtins.str,
@@ -53412,16 +56974,43 @@ def _typecheckingstub__0d38c442b8405ac15b84cec7d96ee561544c67c7960c701be6a4e8938
     match_resources: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
     param_ref: typing.Optional[typing.Union[ParamRefV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
     policy_name: typing.Optional[builtins.str] = None,
+    validation_actions: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__dcf12c0039ea975b12243a717793166c465140d7129635f3245afd00381e4a28(
+    *,
+    match_resources: typing.Optional[typing.Union[MatchResourcesV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    param_ref: typing.Optional[typing.Union[ParamRefV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    policy_name: typing.Optional[builtins.str] = None,
+    validation_actions: typing.Optional[typing.Sequence[builtins.str]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
 def _typecheckingstub__0419a6826a131473eb218fd7b964c8f1501e74582c4575a39889f77a48866837(
     *,
-    validations: typing.Sequence[typing.Union[ValidationV1Alpha1, typing.Dict[builtins.str, typing.Any]]],
+    audit_annotations: typing.Optional[typing.Sequence[typing.Union[AuditAnnotationV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
     failure_policy: typing.Optional[builtins.str] = None,
+    match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchConditionV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
     match_constraints: typing.Optional[typing.Union[MatchResourcesV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
     param_kind: typing.Optional[typing.Union[ParamKindV1Alpha1, typing.Dict[builtins.str, typing.Any]]] = None,
+    validations: typing.Optional[typing.Sequence[typing.Union[ValidationV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    variables: typing.Optional[typing.Sequence[typing.Union[VariableV1Alpha1, typing.Dict[builtins.str, typing.Any]]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7f6b12d6cbc887c29fca0d4b39f66f3d0ec8eeb6ba7e0bd122e04b97c3646416(
+    *,
+    audit_annotations: typing.Optional[typing.Sequence[typing.Union[AuditAnnotationV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    failure_policy: typing.Optional[builtins.str] = None,
+    match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchConditionV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_constraints: typing.Optional[typing.Union[MatchResourcesV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    param_kind: typing.Optional[typing.Union[ParamKindV1Beta1, typing.Dict[builtins.str, typing.Any]]] = None,
+    validations: typing.Optional[typing.Sequence[typing.Union[ValidationV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
+    variables: typing.Optional[typing.Sequence[typing.Union[VariableV1Beta1, typing.Dict[builtins.str, typing.Any]]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -53433,6 +57022,7 @@ def _typecheckingstub__ac0bdffd3ae40593dcc946344a4b810ff63dcf95c9d059bc98c087652
     name: builtins.str,
     side_effects: builtins.str,
     failure_policy: typing.Optional[builtins.str] = None,
+    match_conditions: typing.Optional[typing.Sequence[typing.Union[MatchCondition, typing.Dict[builtins.str, typing.Any]]]] = None,
     match_policy: typing.Optional[builtins.str] = None,
     namespace_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     object_selector: typing.Optional[typing.Union[LabelSelector, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -53445,7 +57035,10 @@ def _typecheckingstub__ac0bdffd3ae40593dcc946344a4b810ff63dcf95c9d059bc98c087652
 def _typecheckingstub__8500698ff415569f959cc71557c593435adb8418cbc4abf4ced8324f4f0da96d(
     *,
     rule: builtins.str,
+    field_path: typing.Optional[builtins.str] = None,
     message: typing.Optional[builtins.str] = None,
+    message_expression: typing.Optional[builtins.str] = None,
+    reason: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -53454,7 +57047,34 @@ def _typecheckingstub__2e42e86e2cf6a0b9c2247c2d420d94cd03debba0ad4391ae8e0001bde
     *,
     expression: builtins.str,
     message: typing.Optional[builtins.str] = None,
+    message_expression: typing.Optional[builtins.str] = None,
     reason: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0385573440d3d5f0cd20fdefef6dce91a16ce8e66a1fc20859e6ce2c42c38c3d(
+    *,
+    expression: builtins.str,
+    message: typing.Optional[builtins.str] = None,
+    message_expression: typing.Optional[builtins.str] = None,
+    reason: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f19d1febb72f16cf0b81e45d01cb337069d10c5c7455d63bc5a1bd00c24a2fd8(
+    *,
+    expression: builtins.str,
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2af0b7fd85d855b63a1a2ee4eaf2d639ff2c1ebe50db8b7c6b9c72ed68f5c877(
+    *,
+    expression: builtins.str,
+    name: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
