@@ -19,4 +19,4 @@ jobs:
           python_version: ${{ matrix.python_version }}
 
       - name: Run tests
-        run: poetry run pytest
+        run: poetry run pytest -vv
