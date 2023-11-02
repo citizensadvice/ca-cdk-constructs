@@ -20,17 +20,17 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 
 [[package]]
 name = "aws-cdk-asset-awscli-v1"
-version = "2.2.200"
+version = "2.2.201"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk.asset-awscli-v1-2.2.200.tar.gz", hash = "sha256:af4d67ef7aa4183073e63be5f88d1ce1912b24d2ebac35148e84678d674bdfcd"},
-    {file = "aws_cdk.asset_awscli_v1-2.2.200-py3-none-any.whl", hash = "sha256:ed1b881402b255daec151e386581a627ce13f4d5cb94b7184e6efc38d27584b0"},
+    {file = "aws-cdk.asset-awscli-v1-2.2.201.tar.gz", hash = "sha256:88d1c269fd5cf8c9f6e0464ed22e2d4f269dfd5b36b8c4d37687bdba9c269839"},
+    {file = "aws_cdk.asset_awscli_v1-2.2.201-py3-none-any.whl", hash = "sha256:56fe2ef91d3c8d33559aa32d2130e5f35f23af1fb82f06648ebbc82ffe0a5879"},
 ]
 
 [package.dependencies]
-jsii = ">=1.84.0,<2.0.0"
+jsii = ">=1.91.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -86,13 +86,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.103.1"
+version = "2.104.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk-lib-2.103.1.tar.gz", hash = "sha256:798d5acdb4603d9f49466216781686a1e2dcf7d9bd2ffdc05a002730739e92a3"},
-    {file = "aws_cdk_lib-2.103.1-py3-none-any.whl", hash = "sha256:e558c5ae5ee7a5fe0560368cee65d1ace28a203078fa98ce99007c539085e083"},
+    {file = "aws-cdk-lib-2.104.0.tar.gz", hash = "sha256:3a180b45eaeefcce1400c49e162da639ac0e2a00d686e65f03ab823cd2c7ce9b"},
+    {file = "aws_cdk_lib-2.104.0-py3-none-any.whl", hash = "sha256:3130d4fd3d5ea68f566f8872dc44c1d0d93979127699610decd27d6dbeac766d"},
 ]
 
 [package.dependencies]
@@ -106,33 +106,29 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "black"
-version = "23.9.1"
+version = "23.10.1"
 description = "The uncompromising code formatter."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "black-23.9.1-cp310-cp310-macosx_10_16_arm64.whl", hash = "sha256:d6bc09188020c9ac2555a498949401ab35bb6bf76d4e0f8ee251694664df6301"},
-    {file = "black-23.9.1-cp310-cp310-macosx_10_16_universal2.whl", hash = "sha256:13ef033794029b85dfea8032c9d3b92b42b526f1ff4bf13b2182ce4e917f5100"},
-    {file = "black-23.9.1-cp310-cp310-macosx_10_16_x86_64.whl", hash = "sha256:75a2dc41b183d4872d3a500d2b9c9016e67ed95738a3624f4751a0cb4818fe71"},
-    {file = "black-23.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:13a2e4a93bb8ca74a749b6974925c27219bb3df4d42fc45e948a5d9feb5122b7"},
-    {file = "black-23.9.1-cp310-cp310-win_amd64.whl", hash = "sha256:adc3e4442eef57f99b5590b245a328aad19c99552e0bdc7f0b04db6656debd80"},
-    {file = "black-23.9.1-cp311-cp311-macosx_10_16_arm64.whl", hash = "sha256:8431445bf62d2a914b541da7ab3e2b4f3bc052d2ccbf157ebad18ea126efb91f"},
-    {file = "black-23.9.1-cp311-cp311-macosx_10_16_universal2.whl", hash = "sha256:8fc1ddcf83f996247505db6b715294eba56ea9372e107fd54963c7553f2b6dfe"},
-    {file = "black-23.9.1-cp311-cp311-macosx_10_16_x86_64.whl", hash = "sha256:7d30ec46de88091e4316b17ae58bbbfc12b2de05e069030f6b747dfc649ad186"},
-    {file = "black-23.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:031e8c69f3d3b09e1aa471a926a1eeb0b9071f80b17689a655f7885ac9325a6f"},
-    {file = "black-23.9.1-cp311-cp311-win_amd64.whl", hash = "sha256:538efb451cd50f43aba394e9ec7ad55a37598faae3348d723b59ea8e91616300"},
-    {file = "black-23.9.1-cp38-cp38-macosx_10_16_arm64.whl", hash = "sha256:638619a559280de0c2aa4d76f504891c9860bb8fa214267358f0a20f27c12948"},
-    {file = "black-23.9.1-cp38-cp38-macosx_10_16_universal2.whl", hash = "sha256:a732b82747235e0542c03bf352c126052c0fbc458d8a239a94701175b17d4855"},
-    {file = "black-23.9.1-cp38-cp38-macosx_10_16_x86_64.whl", hash = "sha256:cf3a4d00e4cdb6734b64bf23cd4341421e8953615cba6b3670453737a72ec204"},
-    {file = "black-23.9.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cf99f3de8b3273a8317681d8194ea222f10e0133a24a7548c73ce44ea1679377"},
-    {file = "black-23.9.1-cp38-cp38-win_amd64.whl", hash = "sha256:14f04c990259576acd093871e7e9b14918eb28f1866f91968ff5524293f9c573"},
-    {file = "black-23.9.1-cp39-cp39-macosx_10_16_arm64.whl", hash = "sha256:c619f063c2d68f19b2d7270f4cf3192cb81c9ec5bc5ba02df91471d0b88c4c5c"},
-    {file = "black-23.9.1-cp39-cp39-macosx_10_16_universal2.whl", hash = "sha256:6a3b50e4b93f43b34a9d3ef00d9b6728b4a722c997c99ab09102fd5efdb88325"},
-    {file = "black-23.9.1-cp39-cp39-macosx_10_16_x86_64.whl", hash = "sha256:c46767e8df1b7beefb0899c4a95fb43058fa8500b6db144f4ff3ca38eb2f6393"},
-    {file = "black-23.9.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:50254ebfa56aa46a9fdd5d651f9637485068a1adf42270148cd101cdf56e0ad9"},
-    {file = "black-23.9.1-cp39-cp39-win_amd64.whl", hash = "sha256:403397c033adbc45c2bd41747da1f7fc7eaa44efbee256b53842470d4ac5a70f"},
-    {file = "black-23.9.1-py3-none-any.whl", hash = "sha256:6ccd59584cc834b6d127628713e4b6b968e5f79572da66284532525a042549f9"},
-    {file = "black-23.9.1.tar.gz", hash = "sha256:24b6b3ff5c6d9ea08a8888f6977eae858e1f340d7260cf56d70a49823236b62d"},
+    {file = "black-23.10.1-cp310-cp310-macosx_10_16_arm64.whl", hash = "sha256:ec3f8e6234c4e46ff9e16d9ae96f4ef69fa328bb4ad08198c8cee45bb1f08c69"},
+    {file = "black-23.10.1-cp310-cp310-macosx_10_16_x86_64.whl", hash = "sha256:1b917a2aa020ca600483a7b340c165970b26e9029067f019e3755b56e8dd5916"},
+    {file = "black-23.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9c74de4c77b849e6359c6f01987e94873c707098322b91490d24296f66d067dc"},
+    {file = "black-23.10.1-cp310-cp310-win_amd64.whl", hash = "sha256:7b4d10b0f016616a0d93d24a448100adf1699712fb7a4efd0e2c32bbb219b173"},
+    {file = "black-23.10.1-cp311-cp311-macosx_10_16_arm64.whl", hash = "sha256:b15b75fc53a2fbcac8a87d3e20f69874d161beef13954747e053bca7a1ce53a0"},
+    {file = "black-23.10.1-cp311-cp311-macosx_10_16_x86_64.whl", hash = "sha256:e293e4c2f4a992b980032bbd62df07c1bcff82d6964d6c9496f2cd726e246ace"},
+    {file = "black-23.10.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7d56124b7a61d092cb52cce34182a5280e160e6aff3137172a68c2c2c4b76bcb"},
+    {file = "black-23.10.1-cp311-cp311-win_amd64.whl", hash = "sha256:3f157a8945a7b2d424da3335f7ace89c14a3b0625e6593d21139c2d8214d55ce"},
+    {file = "black-23.10.1-cp38-cp38-macosx_10_16_arm64.whl", hash = "sha256:cfcce6f0a384d0da692119f2d72d79ed07c7159879d0bb1bb32d2e443382bf3a"},
+    {file = "black-23.10.1-cp38-cp38-macosx_10_16_x86_64.whl", hash = "sha256:33d40f5b06be80c1bbce17b173cda17994fbad096ce60eb22054da021bf933d1"},
+    {file = "black-23.10.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:840015166dbdfbc47992871325799fd2dc0dcf9395e401ada6d88fe11498abad"},
+    {file = "black-23.10.1-cp38-cp38-win_amd64.whl", hash = "sha256:037e9b4664cafda5f025a1728c50a9e9aedb99a759c89f760bd83730e76ba884"},
+    {file = "black-23.10.1-cp39-cp39-macosx_10_16_arm64.whl", hash = "sha256:7cb5936e686e782fddb1c73f8aa6f459e1ad38a6a7b0e54b403f1f05a1507ee9"},
+    {file = "black-23.10.1-cp39-cp39-macosx_10_16_x86_64.whl", hash = "sha256:7670242e90dc129c539e9ca17665e39a146a761e681805c54fbd86015c7c84f7"},
+    {file = "black-23.10.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5ed45ac9a613fb52dad3b61c8dea2ec9510bf3108d4db88422bacc7d1ba1243d"},
+    {file = "black-23.10.1-cp39-cp39-win_amd64.whl", hash = "sha256:6d23d7822140e3fef190734216cefb262521789367fbdc0b3f22af6744058982"},
+    {file = "black-23.10.1-py3-none-any.whl", hash = "sha256:d431e6739f727bb2e0495df64a6c7a5310758e87505f5f8cde9ff6c0f2d7e4fe"},
+    {file = "black-23.10.1.tar.gz", hash = "sha256:1f8ce316753428ff68749c65a5f7844631aa18c8679dfd3ca9dc1a289979c258"},
 ]
 
 [package.dependencies]
@@ -530,17 +526,20 @@ xray = ["mypy-boto3-xray (>=1.28.0,<1.29.0)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.31.62"
+version = "1.31.76"
 description = "Type annotations and code completion for botocore"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "botocore_stubs-1.31.62-py3-none-any.whl", hash = "sha256:d30217d8f6a0888616a44c83150490c5fbc899550ffe1896a2cd15a2205fd648"},
-    {file = "botocore_stubs-1.31.62.tar.gz", hash = "sha256:2ce555e5dff2e91fc22bd67106534bf3e0593b838d87f8a49d3b8e87fa83a440"},
+    {file = "botocore_stubs-1.31.76-py3-none-any.whl", hash = "sha256:9fd9447a28642efa35a1c5590fc35132cf0173cd12055ba9044511cb6b24dd6f"},
+    {file = "botocore_stubs-1.31.76.tar.gz", hash = "sha256:778c6e014ae1103d546d59dffb000b0a659c9b9bbfa11050ff4a62c5adeec3a4"},
 ]
 
 [package.dependencies]
 types-awscrt = "*"
+
+[package.extras]
+botocore = ["botocore (==1.31.76)"]
 
 [[package]]
 name = "cattrs"
@@ -569,13 +568,13 @@ ujson = ["ujson (>=5.4.0,<6.0.0)"]
 
 [[package]]
 name = "cdk-remote-stack"
-version = "2.0.93"
+version = "2.0.101"
 description = "Get outputs and AWS SSM parameters from cross-region AWS CloudFormation stacks"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk-remote-stack-2.0.93.tar.gz", hash = "sha256:57202d80bcba3f88ad6dd1f2b32f0aeea62218fd190e9275f2d529f7dcf36ad5"},
-    {file = "cdk_remote_stack-2.0.93-py3-none-any.whl", hash = "sha256:2fc0eabf7e82ac9e50808d9587e9aff05d9eadaed80c09d3ca57e89a3f93dfa5"},
+    {file = "cdk-remote-stack-2.0.101.tar.gz", hash = "sha256:0a43ec97e02bd2a021993fd8c9c48b2f29dfbe26e214649d099455cde0e38c89"},
+    {file = "cdk_remote_stack-2.0.101-py3-none-any.whl", hash = "sha256:5577af4f854a628a57e448b1b77c1eac55de55bc5e8d1c135a8781046bddd5ab"},
 ]
 
 [package.dependencies]
@@ -587,13 +586,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.67.5"
+version = "2.67.6"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-2.67.5-py3-none-any.whl", hash = "sha256:7d47100c8a746c53ba48cb457741e3a4916a965ae66f1990180223e73ddc2db2"},
-    {file = "cdk8s-2.67.5.tar.gz", hash = "sha256:cb779b838d9e0f14304214247b38f9228cbbde7236e90b94e2ce581ce0543b62"},
+    {file = "cdk8s-2.67.6-py3-none-any.whl", hash = "sha256:7d262f7d8e068c49f56963edac7b35a0742455dd6668ca70cdc3d7a19fec1704"},
+    {file = "cdk8s-2.67.6.tar.gz", hash = "sha256:38aa8e9509f8939ea36412dacbcfa039c8c4183c43a0ffe8fb52ca3b37d18d5c"},
 ]
 
 [package.dependencies]
@@ -603,18 +602,18 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
-name = "cdk8s-plus-26"
-version = "2.18.51"
-description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-26 synthesizes Kubernetes manifests for Kubernetes 1.26.0"
+name = "cdk8s-plus-27"
+version = "2.7.51"
+description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-27 synthesizes Kubernetes manifests for Kubernetes 1.27.0"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "cdk8s-plus-26-2.18.51.tar.gz", hash = "sha256:25223e86c8fdb522a1a7e6c29f5014432d53dae78eebe4ca5b3bffade21b59f8"},
-    {file = "cdk8s_plus_26-2.18.51-py3-none-any.whl", hash = "sha256:ea713ec02c319626e4367822b9a5ec8bc72c7e94b530f1bbc5af18901fd8bc08"},
+    {file = "cdk8s-plus-27-2.7.51.tar.gz", hash = "sha256:7e210812816afb569fd5d9729d04e5f532223b5d1ad136246d30b76cc56da4fb"},
+    {file = "cdk8s_plus_27-2.7.51-py3-none-any.whl", hash = "sha256:a8a3076d0ad393fb62b2c5054d046fd86d9a65b712763db7b4f2fe38d0ce9c25"},
 ]
 
 [package.dependencies]
-cdk8s = ">=2.67.4,<3.0.0"
+cdk8s = ">=2.67.6,<3.0.0"
 constructs = ">=10.3.0,<11.0.0"
 jsii = ">=1.91.0,<2.0.0"
 publication = ">=0.0.3"
@@ -733,13 +732,13 @@ typing-extensions = ">=3.7,<5.0"
 
 [[package]]
 name = "mypy-boto3-rds"
-version = "1.28.61"
-description = "Type annotations for boto3.RDS 1.28.61 service generated with mypy-boto3-builder 7.19.0"
+version = "1.28.76"
+description = "Type annotations for boto3.RDS 1.28.76 service generated with mypy-boto3-builder 7.19.1"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-rds-1.28.61.tar.gz", hash = "sha256:09085c7648ae66ee7b2d7ffec00727e841bc717a10d684f074f6837589430c85"},
-    {file = "mypy_boto3_rds-1.28.61-py3-none-any.whl", hash = "sha256:a50c4232a5f2c62539fb0fe6638c4a440788dcacc186cf56eafdb0dedce71732"},
+    {file = "mypy-boto3-rds-1.28.76.tar.gz", hash = "sha256:3f70f180aa10f95d4cdd2a63e358f8e350d4971263f17e02d44c22e4f100b7d4"},
+    {file = "mypy_boto3_rds-1.28.76-py3-none-any.whl", hash = "sha256:0dce50506ea71fc03fbd76765ca34803ae73855b6ba665a76fb67b655b8512b8"},
 ]
 
 [package.dependencies]
@@ -747,13 +746,13 @@ typing-extensions = {version = ">=4.1.0", markers = "python_version < \"3.12\""}
 
 [[package]]
 name = "mypy-boto3-secretsmanager"
-version = "1.28.36"
-description = "Type annotations for boto3.SecretsManager 1.28.36 service generated with mypy-boto3-builder 7.18.0"
+version = "1.28.67"
+description = "Type annotations for boto3.SecretsManager 1.28.67 service generated with mypy-boto3-builder 7.19.0"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-secretsmanager-1.28.36.tar.gz", hash = "sha256:7e390887d35bd3708d8c0ce9409525dad08053ea8da5fd047f72ec7bcf093fd3"},
-    {file = "mypy_boto3_secretsmanager-1.28.36-py3-none-any.whl", hash = "sha256:0b3706a36bea1889fe70f93e7aed68ea5d39e0c727643ab8282ac03391e17a00"},
+    {file = "mypy-boto3-secretsmanager-1.28.67.tar.gz", hash = "sha256:37d34d2e038164bda8beb605bcc7133ef49f058e08102f5699f8d20790ead3f0"},
+    {file = "mypy_boto3_secretsmanager-1.28.67-py3-none-any.whl", hash = "sha256:d2424597eb357ef73f5cc798aa8a130fc9ae78f5eadabf206c183085d6bb57f5"},
 ]
 
 [package.dependencies]
@@ -835,13 +834,13 @@ files = [
 
 [[package]]
 name = "pytest"
-version = "7.4.2"
+version = "7.4.3"
 description = "pytest: simple powerful testing with Python"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pytest-7.4.2-py3-none-any.whl", hash = "sha256:1d881c6124e08ff0a1bb75ba3ec0bfd8b5354a01c194ddd5a0a870a48d99b002"},
-    {file = "pytest-7.4.2.tar.gz", hash = "sha256:a766259cfab564a2ad52cb1aae1b881a75c3eb7e34ca3779697c23ed47c47069"},
+    {file = "pytest-7.4.3-py3-none-any.whl", hash = "sha256:0d009c083ea859a71b76adf7c1d502e4bc170b80a8ef002da5806527b9591fac"},
+    {file = "pytest-7.4.3.tar.gz", hash = "sha256:d989d136982de4e3b29dabcc838ad581c64e8ed52c11fbe86ddebd9da0818cd5"},
 ]
 
 [package.dependencies]
@@ -923,13 +922,13 @@ test = ["mypy", "pytest", "typing-extensions"]
 
 [[package]]
 name = "types-awscrt"
-version = "0.19.2"
+version = "0.19.8"
 description = "Type annotations and code completion for awscrt"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "types_awscrt-0.19.2-py3-none-any.whl", hash = "sha256:477a14565909312fe1de70d0b301548e83c038f436b8a1d7c83729e87cdd0b85"},
-    {file = "types_awscrt-0.19.2.tar.gz", hash = "sha256:d8c379420ba75b1e43687d12b0b772a5bb17f352859a2bef6aa8f0abde123f55"},
+    {file = "types_awscrt-0.19.8-py3-none-any.whl", hash = "sha256:4eb4f3bd0c41a2710cacda13098374da9faa76c5a0fb901aa5659e0fd48ceda1"},
+    {file = "types_awscrt-0.19.8.tar.gz", hash = "sha256:a2d534b7017c3476ee69a44bd8aeaf3b588c42baa8322473d100a45ee67510d7"},
 ]
 
 [[package]]
@@ -957,4 +956,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.11"
-content-hash = "2addfd77cbce98f52c776569d229d680613850c9c21d7a91a8b00f3f1ba61e38"
+content-hash = "ec6d96cd64bc36127fc584f03caac24b988ad16184152290f46082793847adfa"
