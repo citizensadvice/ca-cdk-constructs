@@ -3,7 +3,7 @@ name: test
 on: pull_request
 
 jobs:
-  test:
+  tests:
     name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
 
@@ -21,3 +21,32 @@ jobs:
 
       - name: Run tests
         run: poetry run pytest -vv
+
+  after-tests:
+    needs: tests # run after shards
+    runs-on: ubuntu-latest
+    if: success() # only run when all shards have passed
+    # store success output flag for ci job
+    outputs:
+      success: ${{ steps.setoutput.outputs.success }}
+    steps:
+      - id: setoutput
+        run: echo "::set-output name=success::true"
+
+  test:
+    runs-on: ubuntu-latest
+    if: always() # always run, so we never skip the check
+    needs: [tests, after-tests]
+    steps:
+      # pass step only when output of previous after-shards job is set
+      # in case at least one of the shard fails, after-shards is skipped
+      # and the output will not be set, which will then cause the ci job to fail
+      - run: |
+          passed="${{ needs.after-tests.outputs.success }}"
+          if [[ $passed == "true" ]]; then
+            echo "Shards passed"
+            exit 0
+          else
+            echo "Shards failed"
+            exit 1
+          fi
