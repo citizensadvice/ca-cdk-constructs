@@ -3,12 +3,30 @@ name: test
 on: pull_request
 
 jobs:
-  test:
+  tests:
+    name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python_version: ['3.10', '3.11', '3.12']
+
     steps:
       - uses: actions/checkout@v2
 
       - uses: citizensadvice/python-poetry-setup-action@v1
+        with:
+          python_version: ${{ matrix.python_version }}
 
       - name: Run tests
-        run: poetry run pytest
+        run: poetry run pytest -vv
+
+  test:
+    # Single job for github to expect. Any merge-blocking checks should be added to the needs array
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: [tests]
+    steps:
+      - run: exit 1
+        if: ${{contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')}}
