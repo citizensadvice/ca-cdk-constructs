@@ -646,16 +646,6 @@ files = [
 ]
 
 [[package]]
-name = "colored"
-version = "1.4.4"
-description = "Simple library for color and formatting to terminal"
-optional = false
-python-versions = "*"
-files = [
-    {file = "colored-1.4.4.tar.gz", hash = "sha256:04ff4d4dd514274fe3b99a21bb52fb96f2688c01e93fba7bef37221e7cb56ce0"},
-]
-
-[[package]]
 name = "constructs"
 version = "10.3.0"
 description = "A programming model for software-defined state"
@@ -882,18 +872,17 @@ files = [
 
 [[package]]
 name = "syrupy"
-version = "3.0.6"
+version = "4.6.0"
 description = "Pytest Snapshot Test Utility"
 optional = false
-python-versions = ">=3.7,<4"
+python-versions = ">=3.8.1,<4"
 files = [
-    {file = "syrupy-3.0.6-py3-none-any.whl", hash = "sha256:9c18e22264026b34239bcc87ab7cc8d893eb17236ea7dae634217ea4f22a848d"},
-    {file = "syrupy-3.0.6.tar.gz", hash = "sha256:583aa5ca691305c27902c3e29a1ce9da50ff9ab5f184c54b1dc124a16e4a6cf4"},
+    {file = "syrupy-4.6.0-py3-none-any.whl", hash = "sha256:747aae1bcf3cb3249e33b1e6d81097874d23615982d5686ebe637875b0775a1b"},
+    {file = "syrupy-4.6.0.tar.gz", hash = "sha256:231b1f5d00f1f85048ba81676c79448076189c4aef4d33f21ae32f3b4c565a54"},
 ]
 
 [package.dependencies]
-colored = ">=1.3.92,<2.0.0"
-pytest = ">=5.1.0,<8.0.0"
+pytest = ">=7.0.0,<8.0.0"
 
 [[package]]
 name = "tomli"
@@ -956,5 +945,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.10, <3.11"
-content-hash = "2addfd77cbce98f52c776569d229d680613850c9c21d7a91a8b00f3f1ba61e38"
+python-versions = ">=3.10, <=3.12"
+content-hash = "9eb44bc77fac53e15fad18e3eb5ec9feed57bd30dcd43bee3dd40ac335aa4a99"
