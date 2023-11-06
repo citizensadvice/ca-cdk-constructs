@@ -4,6 +4,7 @@ from typing import Optional
 from ca_cdk_constructs.edge_services.waf_rule_templates import (
     managed_rule_group_property,
     ip_rule_property,
+    restricted_uri_string_property,
 )
 
 
@@ -22,6 +23,7 @@ class WafV2Builder:
     add_custom_rule: Adds a custom rule to the WAFv2 WebACL.
     add_managed_rule: Adds a managed rule to the WAFv2 WebACL.
     add_ip_rule: Adds an IP rule to the WAFv2 WebACL.
+    add_restricted_uri_string_rule: Adds a rule to the WAFv2 WebACL that restricts access to specific URIs to specific IP addresses
     get_rules: Returns the list of rules added to the WAFv2 WebACL.
     build: Builds the WAFv2 WebACL.
 
@@ -147,6 +149,37 @@ class WafV2Builder:
                 priority,
                 addresses,
                 allow,
+                count_only,
+                cloud_watch_metrics_enabled,
+            )
+        )
+
+    def add_restricted_uri_string_rule(
+        self,
+        name: str,
+        priority: int,
+        restricted_uri_string: str,
+        allowed_addresses: dict[str, list[str]] = {},
+        count_only: Optional[bool] = False,
+        cloud_watch_metrics_enabled: Optional[bool] = False,
+    ) -> None:
+        """
+        Adds an IP rule to the WAFv2 WebACL.
+
+        :param name: The name of the rule.
+        :param priority: The priority of the rule.
+        :param restricted_uri_string: Any URI containing this string will be blocked except to allowed_addresses
+        :param allowed_addresses: The addresses to use. A dictionary of address types to addresses.
+        :param count_only: Whether to only count the requests. Defaults to False
+        :param cloud_watch_metrics_enabled: Whether to enable CloudWatch metrics. Defaults to False.
+        """
+        self.rules.append(
+            restricted_uri_string_property(
+                self.scope,
+                name,
+                priority,
+                restricted_uri_string,
+                allowed_addresses,
                 count_only,
                 cloud_watch_metrics_enabled,
             )
