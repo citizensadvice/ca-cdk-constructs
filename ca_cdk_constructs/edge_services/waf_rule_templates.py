@@ -131,7 +131,7 @@ def ip_rule_property(
 
     # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
     # check is by using set differences
-    if set(addresses.keys()) - set(list(["IPV4", "IPV6"])) != set(list([])):
+    if set(addresses.keys()) - {"IPV4", "IPV6"} != set():
         raise AttributeError("keys for addresses dict must only be 'IPV4' or 'IPV6'!")
 
     # Need IPv4 and IPv6 IP sets
@@ -180,6 +180,7 @@ def ip_rule_property(
         ),
     )
 
+
 def restricted_uri_string_property(
     scope,
     name: str,
@@ -225,7 +226,7 @@ def restricted_uri_string_property(
 
     # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
     # check is by using set differences
-    if set(allowed_addresses.keys()) - set(list(["IPV4", "IPV6"])) != set(list([])):
+    if set(allowed_addresses.keys()) - {"IPV4", "IPV6"} != set():
         raise AttributeError("keys for addresses dict must only be 'IPV4' or 'IPV6'!")
 
     # Need IPv4 and IPv6 IP sets
@@ -262,9 +263,7 @@ def restricted_uri_string_property(
                 statements=[
                     waf.CfnWebACL.StatementProperty(
                         byte_match_statement=waf.CfnWebACL.ByteMatchStatementProperty(
-                            field_to_match=waf.CfnWebACL.FieldToMatchProperty(
-                                uri_path={}
-                            ),
+                            field_to_match=waf.CfnWebACL.FieldToMatchProperty(uri_path={}),
                             positional_constraint="CONTAINS",
                             text_transformations=[
                                 waf.CfnWebACL.TextTransformationProperty(
@@ -293,8 +292,8 @@ def restricted_uri_string_property(
                                 )
                             )
                         )
-                    )
+                    ),
                 ]
             )
-        )
+        ),
     )

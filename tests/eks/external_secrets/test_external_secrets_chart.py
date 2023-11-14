@@ -6,7 +6,9 @@ from ca_cdk_constructs.eks.external_secrets import (
 from ca_cdk_constructs.eks.external_secrets.external_aws_secrets_chart import (
     ExternalAwsSecretsChart,
 )
-from ca_cdk_constructs.eks.imports.io.external_secrets import SecretStoreV1Beta1SpecProviderAwsService as SecretStoreSpecProviderAwsService
+from ca_cdk_constructs.eks.imports.io.external_secrets import (
+    SecretStoreV1Beta1SpecProviderAwsService as SecretStoreSpecProviderAwsService,
+)
 
 
 # to update the snapshot, run:
@@ -17,7 +19,7 @@ def test_external_secret_chart(snapshot):
     source = ExternalSecretSource(
         source_secret="db-secret",
         secret_mappings={"username": "DB_USER"},
-        k8s_secret_name="db-secret"
+        k8s_secret_name="db-secret",
     )
 
     ExternalAwsSecretsChart(

@@ -1,5 +1,5 @@
 from constructs import Construct
-from aws_cdk import aws_wafv2 as waf, aws_logs as cf_logs, Tags
+from aws_cdk import aws_wafv2 as waf, aws_logs as cf_logs
 from typing import Optional
 from ca_cdk_constructs.edge_services.waf_rule_templates import (
     managed_rule_group_property,
@@ -57,7 +57,7 @@ class WafV2Builder:
         log_group: Optional[cf_logs.LogGroup] = None,
         default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
     ) -> None:
-        self.rules = list()
+        self.rules = []
         self.scope = scope
         self.name = name
         self.waf_scope = waf_scope
