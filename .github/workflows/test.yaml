@@ -3,22 +3,36 @@ name: test
 on: pull_request
 
 jobs:
+  ruff:
+    name: Ruff ${{ matrix.action.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        action:
+          - name: check
+            cmd: check
+          - name: format
+            cmd: format --check
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Ruff
+        run: pip3 install ruff
+      - name: Ruff ${{ matrix.action.name }}
+        run: ruff ${{ matrix.action.cmd }} .
+
   tests:
     name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
-
+    needs: ruff
     strategy:
       fail-fast: false
       matrix:
         python_version: ['3.10', '3.11', '3.12']
-
     steps:
       - uses: actions/checkout@v2
-
       - uses: citizensadvice/python-poetry-setup-action@v1
         with:
           python_version: ${{ matrix.python_version }}
-
       - name: Run tests
         run: poetry run pytest -vv
 
