@@ -28,7 +28,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 target-version = 'py310'
-select = ['E', 'W', 'F', 'C']
+select = ['E', 'W', 'F', 'C', 'N']
 ignore = ['E501']
 line-length = 95
 exclude = ["ca_cdk_constructs/eks/imports"]
