@@ -1,0 +1,157 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+
+    //Language Extensions
+      // Python
+        "ms-python.python", // Python language support
+        "donjayamanne.python-environment-manager", // venv support
+        "ms-python.vscode-pylance", // Python language server and intellisense
+        "ms-python.black-formatter", // Python code formatter
+        "ms-python.isort", // Import organiser quick fix
+        //"ms-python.flake8", // Older python linter, use ruff instead
+        "ms-python.mypy-type-checker", // Type check linting support
+        "the-compiler.python-tox", // Tox support 
+        // "Boto3typed.boto3-ide", // Intellisense for boto3 in python
+        "charliermarsh.ruff", // Python linter
+        // "magicstack.MagicPython", // Syntax highlighter for cutting edge syntax (do we need this?)
+      // Markdown
+        // "bierner.markdown-mermaid", // Graphing language for MD
+        // "DavidAnson.vscode-markdownlint", // Linter
+      // sh
+        "foxundermoon.shell-format", // Document formatter
+        "timonwong.shellcheck", // Shell linter
+        // "mads-hartmann.bash-ide-vscode", // Language server
+        // "shakram02.bash-beautify",
+      // Ruby
+        // "castwide.solargraph", // Ruby Language server
+        // "KoichiSasada.vscode-rdbg", // Debugger
+        // shopify.ruby-lsp // Alternative language server
+      // Go
+        // "golang.go", // Go language server
+        // "casualjim.gotemplate", // Go template highlighting
+      // YAML
+        // "daiwata.yaml-preview",
+        "redhat.vscode-yaml",
+      // JSON
+        // "nickdemayo.vscode-json-editor",
+        // "ZainChen.json",
+      // INI format
+        "DavidWang.ini-for-vscode",
+      // Parquet
+        // "dvirtz.parquet-viewer",
+      // Groovy
+        // "ekeel.groovy-beautify",
+        // "marlon407.code-groovy",
+        // "MellowMarshmallow.groovy",
+        // "NicolasVuillamy.vscode-groovy-lint",
+      // PlantUML
+        // "jebbs.plantuml",
+      // ignore files
+        "ldez.ignore-files",
+      // Kubernetes resources
+        // "lunuan.kubernetes-templates",
+      // Jupyter
+        // "ms-toolsai.jupyter",
+        // "ms-toolsai.jupyter-keymap",
+        // "ms-toolsai.jupyter-renderers",
+        // "ms-toolsai.vscode-jupyter-cell-tags",
+        // "ms-toolsai.vscode-jupyter-slideshow",
+      // fluentd
+        // "msysyamamoto.vscode-fluentd",
+      // Tiltfile
+        // "tilt-dev.tiltfile",
+      // TOML
+        "tamasfe.even-better-toml",
+      // Jenkinsfile
+        // "secanis.jenkinsfile-support",
+
+    // VS Code interface to used tools
+      // Github
+      "github.vscode-github-actions",
+      "me-dutour-mathieu.vscode-github-actions",
+      // "GitHub.vscode-pull-request-github",
+      // AWS
+        // "amazonwebservices.aws-toolkit-vscode",
+        // "paulshestakov.aws-step-functions-constructor",
+      // Atlassian
+        // "atlassian.atlascode",
+        // "t-nano.markdown-to-confluence-vscode",
+      // kubernetes
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        // "MetalBear.mirrord", // Run process in cloud context
+        // "mindaro.mindaro", // Run local service with access to cloud context
+        // "Tim-Koehler.helm-intellisense",
+      // docker
+        // "ms-azuretools.vscode-docker",
+
+    // Make VS Code better for user
+      // General
+        "flyfly6.terminal-in-status-bar", // Quick terminal access button
+        "micnil.vscode-checkpoints",
+        "ms-vscode-remote.remote-containers",
+        "ms-vsliveshare.vsliveshare", // Pair programming support
+        "nick-rudenko.back-n-forth",
+        "xyz.local-history",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-british-english",
+        // "kevinkyang.auto-comment-blocks", // Preserve comment indentation... flaky in python
+        // "aaron-bond.better-comments",
+        // "aliariff.auto-add-brackets",
+        // "bierner.docs-view",
+        // "buenon.scratchpads",
+        // "christian-kohler.path-intellisense",
+        // "EditorConfig.EditorConfig",
+        // "foam.foam-vscode", // Obsidian replacement inside VSCode
+        // "formulahendry.code-runner",
+        // "hbenl.vscode-test-explorer", // Deprecated, functionality is now native
+        // "jasonnutter.vscode-codeowners",
+        // "mindaro-dev.file-downloader",
+        // "wmaurer.change-case",
+        // "VisualStudioExptTeam.vscodeintellicode-completions",
+        // "ryuta46.multi-command",
+        // "redhat.vscode-commons", // Only needed if other RedHat packages are installed
+      // Joplin integration
+        // "rxliuli.joplin-vscode-plugin",
+      // Git
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        // "chrisbibby.hide-git-ignored",
+        // "chdsbd.github-code-owners",
+        // "codezombiech.gitignore",
+      // Python
+        "KevinRose.vsc-python-indent",
+        "mgesbert.python-path", // Copy module paths in correct form
+        "njpwerner.autodocstring",
+        // "almenon.arepl",
+        // "garytyler.darcula-pycharm", // Syntax highlighter
+        "littlefoxteam.vscode-python-test-adapter", // Python support for a deprecated UI test element
+        "ms-vscode.test-adapter-converter", // Works with the above to provide native ui support
+      // VS Code Theming/Customization
+        // "Equinusocio.vsc-community-material-theme",
+        // "evan-buss.font-switcher",
+        // "zhuangtongfa.material-theme",
+        // "muuvmuuv.vscode-sundial",
+        // "vscode-icons-team.vscode-icons",
+        // "PKief.material-icon-theme",
+      // YAML
+        // "hilleer.yaml-plus-json",
+        // "jtcontreras90.yaml-path-extractor",
+      // CSV
+        // "mechatroner.rainbow-csv",
+      // Markdown
+        // "yzhang.markdown-all-in-one",
+        // "shd101wyy.markdown-preview-enhanced",
+      // JSON
+        // "nidu.copy-json-path",
+      // "wingrunr21.vscode-ruby" Deprecated, use shopify.ruby-lsp instead  
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": [
+    
+  ],
+  
+}
