@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.5
+    rev: v0.1.5 # Must match version pinned in the CI workflow
     hooks:
       # Run the linter.
       - id: ruff

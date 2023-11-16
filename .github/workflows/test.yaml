@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Ruff
-        run: pip3 install ruff==0.1.5
+        run: pip3 install ruff==0.1.5 # Must match version pinned in .pre-commit.yaml
       - name: Ruff ${{ matrix.action.name }}
         run: ruff ${{ matrix.action.cmd }} .
 
