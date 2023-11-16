@@ -19,8 +19,6 @@ boto3-stubs = {version = "1.28.47", extras = ["rds", "secretsmanager"]}
 pytest = "~=7.4"
 black = "~=23.9"
 syrupy = "~=4.0"
-ruff = "^0.1.5"
-pre-commit = "^3.5.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "setuptools>=45", "setuptools_scm[toml]>=6.2"]
