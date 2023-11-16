@@ -89,7 +89,7 @@ class EksClusterIntegration(Construct):
             "cluster.resourcesVpcConfig.clusterSecurityGroupId"
         )
 
-        private_subnets = list(map(lambda s: s.subnet_id, vpc.private_subnets))
+        private_subnets = [s.subnet_id for s in vpc.private_subnets]
         oidc_provider = OpenIdConnectProvider.from_open_id_connect_provider_arn(
             self, "ClusterOIDCProvider", open_id_connect_provider_arn=oidc_provider_arn
         )
