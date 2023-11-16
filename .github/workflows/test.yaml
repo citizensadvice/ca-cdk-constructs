@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Ruff
-        run: pip3 install ruff
+        run: pip3 install ruff==0.1.5
       - name: Ruff ${{ matrix.action.name }}
         run: ruff ${{ matrix.action.cmd }} .
 
@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python_version: ['3.10', '3.11', '3.12']
+        python_version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v2
       - uses: citizensadvice/python-poetry-setup-action@v1
