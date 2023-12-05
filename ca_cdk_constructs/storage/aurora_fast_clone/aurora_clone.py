@@ -1,7 +1,4 @@
-import json
-from sys import stderr
 import boto3
-import time
 
 client = boto3.client("rds")
 

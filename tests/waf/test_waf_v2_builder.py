@@ -55,7 +55,7 @@ def test_waf_v2_ip_rule_error(waf_builder):
             count_only=False,
             cloud_watch_metrics_enabled=False,
         )
-        waf = waf_builder.build()
+        waf_builder.build()
 
 
 def test_waf_v2_empty_ip_rule(waf_builder):
@@ -87,7 +87,7 @@ def test_waf_v2_managed_rule(waf_builder):
 
 def test_waf_v2_logging_disabled(waf_builder):
     waf = waf_builder.build()
-    assert waf.visibility_config.cloud_watch_metrics_enabled == False
+    assert waf.visibility_config.cloud_watch_metrics_enabled is False
 
 
 def test_waf_v2_logging_enabled():
@@ -102,7 +102,7 @@ def test_waf_v2_logging_enabled():
         log_group=test_log_group,
     )
     waf = waf_builder.build()
-    assert waf.visibility_config.cloud_watch_metrics_enabled == True
+    assert waf.visibility_config.cloud_watch_metrics_enabled is True
 
 
 def test_waf_v2_get_rules(waf_builder):
@@ -116,3 +116,38 @@ def test_waf_v2_get_rules(waf_builder):
     rules = waf_builder.get_rules()
     assert len(rules) == 1
     assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+
+
+def test_waf_v2_restricted_uri_string_rule(waf_builder):
+    waf_builder.add_restricted_uri_string_rule(
+        name="RestrictAccessToURIFoo",
+        priority=0,
+        restricted_uri_string="Foo",
+        allowed_addresses={"IPV4": ["1.1.1.1/32"], "IPV6": []},
+    )
+    waf_builder.build()
+    rules = waf_builder.get_rules()
+    # basically testing that we block with AND (check for path, NOT ( OR ( in allowed ipv4 or allowed ipv6 sets)))
+    assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+    assert (
+        type(rules[0].statement.and_statement.statements[0].byte_match_statement)
+        == aws_wafv2.CfnWebACL.ByteMatchStatementProperty
+    )
+    assert (
+        type(
+            rules[0]
+            .statement.and_statement.statements[1]
+            .not_statement.statement.or_statement.statements[0]
+            .ip_set_reference_statement
+        )
+        == aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
+    )
+    assert (
+        type(
+            rules[0]
+            .statement.and_statement.statements[1]
+            .not_statement.statement.or_statement.statements[1]
+            .ip_set_reference_statement
+        )
+        == aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
+    )

@@ -1,4 +1,4 @@
-from attr import Factory, define, ib
+from attr import define
 
 from typing import Union, Any
 from cdk8s import ApiObjectMetadata

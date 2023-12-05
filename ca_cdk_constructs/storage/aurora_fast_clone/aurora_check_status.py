@@ -4,7 +4,6 @@ client = boto3.client("rds")
 
 
 def lambda_handler(event, context):
-
     target_db_cluster_identifier = event["TargetDBClusterIdentifier"]
 
     payload = event.copy()
@@ -21,6 +20,8 @@ def lambda_handler(event, context):
         print(e)
 
         payload["status"] = "not-found"
-        payload["message"] = f"ERROR: Aurora cluster {target_db_cluster_identifier} cannot be found"
+        payload[
+            "message"
+        ] = f"ERROR: Aurora cluster {target_db_cluster_identifier} cannot be found"
 
         return payload
