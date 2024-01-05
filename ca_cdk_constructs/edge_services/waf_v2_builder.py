@@ -60,7 +60,7 @@ class WafV2Builder:
         self.rules = []
         self.scope = scope
         self.name = name
-        self.waf_scope = waf_scope
+        self.waf_scope = waf_scope or "CLOUDFRONT"
         self.description = description
         self.log_group = log_group
 
@@ -117,9 +117,9 @@ class WafV2Builder:
                 priority,
                 managed_rule_name,
                 managed_rule_vendor,
-                count_only,
-                rules_to_exclude,
-                cloud_watch_metrics_enabled,
+                count_only or False,
+                rules_to_exclude or [],
+                cloud_watch_metrics_enabled or False,
             )
         )
 
@@ -148,9 +148,9 @@ class WafV2Builder:
                 name,
                 priority,
                 addresses,
-                allow,
-                count_only,
-                cloud_watch_metrics_enabled,
+                allow or False,
+                count_only or False,
+                cloud_watch_metrics_enabled or False,
             )
         )
 
@@ -180,8 +180,8 @@ class WafV2Builder:
                 priority,
                 restricted_uri_string,
                 allowed_addresses,
-                count_only,
-                cloud_watch_metrics_enabled,
+                count_only or False,
+                cloud_watch_metrics_enabled or False,
             )
         )
 
