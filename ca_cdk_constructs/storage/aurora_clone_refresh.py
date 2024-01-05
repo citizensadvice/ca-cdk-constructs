@@ -54,7 +54,7 @@ class AuroraCloneRefresh(Construct):
         source_cluster_master_username: str,
         clone_cluster_parameter_group: CfnDBClusterParameterGroup,
         clone_instance_parameter_group: CfnDBParameterGroup,
-        clone_tags: dict = None,
+        clone_tags: Optional[dict] = None,
         clone_schedule: Schedule = Schedule.cron(minute="0", hour="8"),
         notifications_topic: Optional[ITopic] = None,
     ) -> None:

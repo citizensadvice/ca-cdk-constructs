@@ -7,6 +7,8 @@ from ca_cdk_constructs.edge_services.waf_rule_templates import (
     restricted_uri_string_property,
 )
 
+import typing
+
 
 class WafV2Builder:
     """
@@ -57,7 +59,7 @@ class WafV2Builder:
         log_group: Optional[cf_logs.LogGroup] = None,
         default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
     ) -> None:
-        self.rules = []
+        self.rules: typing.List[waf.CfnWebACL.RuleProperty] = []
         self.scope = scope
         self.name = name
         self.waf_scope = waf_scope or "CLOUDFRONT"
