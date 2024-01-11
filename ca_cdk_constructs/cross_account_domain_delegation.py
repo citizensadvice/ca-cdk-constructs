@@ -90,5 +90,5 @@ class CrossAccountDomainDelegation(Construct):
         CfnOutput(
             self,
             "NameServers",
-            value=Fn.join(",", hosted_zone.hosted_zone_name_servers),
+            value=Fn.join(",", hosted_zone.hosted_zone_name_servers or []),
         )

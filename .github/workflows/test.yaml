@@ -20,6 +20,18 @@ jobs:
       - name: Ruff ${{ matrix.action.name }}
         run: ruff ${{ matrix.action.cmd }} .
 
+  typecheck:
+    name: Running type check
+    continue-on-error: true # Run as a warning rather than an error at this stage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: citizensadvice/python-poetry-setup-action@v1
+        with:
+          python_version: 3.12
+      - name: Run type check
+        run: poetry run mypy . 
+
   tests:
     name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
@@ -35,6 +47,7 @@ jobs:
           python_version: ${{ matrix.python_version }}
       - name: Run tests
         run: poetry run pytest -vv
+
 
   test:
     # Single job for github to expect. Any merge-blocking checks should be added to the needs array

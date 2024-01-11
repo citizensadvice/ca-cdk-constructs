@@ -7,6 +7,8 @@ from ca_cdk_constructs.edge_services.waf_rule_templates import (
     restricted_uri_string_property,
 )
 
+import typing
+
 
 class WafV2Builder:
     """
@@ -57,10 +59,10 @@ class WafV2Builder:
         log_group: Optional[cf_logs.LogGroup] = None,
         default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
     ) -> None:
-        self.rules = []
+        self.rules: typing.List[waf.CfnWebACL.RuleProperty] = []
         self.scope = scope
         self.name = name
-        self.waf_scope = waf_scope
+        self.waf_scope = waf_scope or "CLOUDFRONT"
         self.description = description
         self.log_group = log_group
 
@@ -117,9 +119,9 @@ class WafV2Builder:
                 priority,
                 managed_rule_name,
                 managed_rule_vendor,
-                count_only,
-                rules_to_exclude,
-                cloud_watch_metrics_enabled,
+                count_only or False,
+                rules_to_exclude or [],
+                cloud_watch_metrics_enabled or False,
             )
         )
 
@@ -148,9 +150,9 @@ class WafV2Builder:
                 name,
                 priority,
                 addresses,
-                allow,
-                count_only,
-                cloud_watch_metrics_enabled,
+                allow or False,
+                count_only or False,
+                cloud_watch_metrics_enabled or False,
             )
         )
 
@@ -180,8 +182,8 @@ class WafV2Builder:
                 priority,
                 restricted_uri_string,
                 allowed_addresses,
-                count_only,
-                cloud_watch_metrics_enabled,
+                count_only or False,
+                cloud_watch_metrics_enabled or False,
             )
         )
 

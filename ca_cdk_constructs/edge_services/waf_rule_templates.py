@@ -1,4 +1,5 @@
 from aws_cdk import aws_wafv2 as waf
+import typing
 
 ###################################################################
 # A COLLECTION OF HELPER FUNCTIONS FOR GENERATING AWS WAFV2 RULES #
@@ -114,19 +115,21 @@ def ip_rule_property(
     )
     """
 
+    count_property: typing.Optional[dict[typing.Any, typing.Any]] = None
+
     # Count must be set to {} or None.
     if count_only:
-        count_only = {}
+        count_property = {}
     else:
-        count_only = None
+        count_property = None
 
     if allow:
         action = waf.CfnWebACL.RuleActionProperty(
-            count=count_only, allow=waf.CfnWebACL.AllowActionProperty()
+            count=count_property, allow=waf.CfnWebACL.AllowActionProperty()
         )
     else:
         action = waf.CfnWebACL.RuleActionProperty(
-            count=count_only, block=waf.CfnWebACL.BlockActionProperty()
+            count=count_property, block=waf.CfnWebACL.BlockActionProperty()
         )
 
     # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
@@ -213,15 +216,17 @@ def restricted_uri_string_property(
     )
     """
 
+    count_property: typing.Optional[dict[typing.Any, typing.Any]] = None
+
     # Count must be set to {} or None.
     if count_only:
-        count_only = {}
+        count_property = {}
     else:
-        count_only = None
+        count_property = None
 
     # block unless counting
     action = waf.CfnWebACL.RuleActionProperty(
-        count=count_only, block=waf.CfnWebACL.BlockActionProperty()
+        count=count_property, block=waf.CfnWebACL.BlockActionProperty()
     )
 
     # keys of addresses dict can only be "IPV4" or "IPV6" - easiest way to
