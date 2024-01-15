@@ -8,7 +8,7 @@ homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 [tool.poetry.dependencies]
 # When this range changes, make sure that the versions in .github/workflows/test.yaml matches this
 python = ">=3.10, <3.13"
-aws-cdk-lib = "~=2.118"
+aws-cdk-lib = "~=2.121"
 cdk8s-plus-26 = "~=2.18"
 constructs = "~=10.1"
 cdk_remote_stack = "~=2.0"
