@@ -18,7 +18,7 @@ aws-cdk-lambda-layer-kubectl-v28 = "^2.0.0"
 boto3-stubs = {version = "1.34.34", extras = ["rds", "secretsmanager"]}
 pytest = "~=7.4"
 syrupy = "~=4.0"
-ruff = "^0.1.14"
+ruff = "^0.2.1"
 mypy = "^1.8.0"
 
 [build-system]
@@ -27,12 +27,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 target-version = 'py312'
-# Documentation on Linting and formatting for Python projects
-# https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/3991601167/Linting+and+formatting+for+Python+projects#Rulesets
-select = ['E', 'W', 'F', 'C', 'N', 'INP001']
-ignore = ['E501']
 line-length = 95
 exclude = ["ca_cdk_constructs/eks/imports"]
+
+[tool.ruff.lint]
+# Documentation on Linting and formatting for Python projects
+# https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/3991601167/Linting+and+formatting+for+Python+projects#Rulesets
+ignore = ['E501']
+select = ['E', 'W', 'F', 'C', 'N', 'INP001']
 
 [[tool.mypy.overrides]]
 module = [
