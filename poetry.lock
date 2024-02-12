@@ -20,17 +20,17 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 
 [[package]]
 name = "aws-cdk-asset-awscli-v1"
-version = "2.2.201"
+version = "2.2.202"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 optional = false
-python-versions = "~=3.7"
+python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk.asset-awscli-v1-2.2.201.tar.gz", hash = "sha256:88d1c269fd5cf8c9f6e0464ed22e2d4f269dfd5b36b8c4d37687bdba9c269839"},
-    {file = "aws_cdk.asset_awscli_v1-2.2.201-py3-none-any.whl", hash = "sha256:56fe2ef91d3c8d33559aa32d2130e5f35f23af1fb82f06648ebbc82ffe0a5879"},
+    {file = "aws-cdk.asset-awscli-v1-2.2.202.tar.gz", hash = "sha256:3ef87d6530736b3a7b0f777fe3b4297994dd40c3ce9306d95f80f48fb18036e8"},
+    {file = "aws_cdk.asset_awscli_v1-2.2.202-py3-none-any.whl", hash = "sha256:96205ea2e5e132ec52fabfff37ea25b9b859498f167d05b32564c949822cd331"},
 ]
 
 [package.dependencies]
-jsii = ">=1.91.0,<2.0.0"
+jsii = ">=1.93.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -86,17 +86,17 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.122.0"
+version = "2.127.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk-lib-2.122.0.tar.gz", hash = "sha256:562eb5cb0f2a5111a71a4a3b727d5d077c0eaaa55dc1748922ccdb3f25ef49cd"},
-    {file = "aws_cdk_lib-2.122.0-py3-none-any.whl", hash = "sha256:322a230864076738da8d138b0dbf2050a31c0caa7f27d8da128d8174150aaebe"},
+    {file = "aws-cdk-lib-2.127.0.tar.gz", hash = "sha256:ed4ace6dc0ed42cb980b2ff833c685f6fe64b3bfad94676b6ea2ee3dfa161dc8"},
+    {file = "aws_cdk_lib-2.127.0-py3-none-any.whl", hash = "sha256:abbb50bd9100cdbcc789d098457f60c842efe0f56f8571345f3603be5cc52b38"},
 ]
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = ">=2.2.201,<3.0.0"
+"aws-cdk.asset-awscli-v1" = ">=2.2.202,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.0.1,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
@@ -958,4 +958,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.13"
-content-hash = "e1ed85ee0fdc81ab7fe993dc846366a95a74b1276eb4a9293ed45ae331071aa2"
+content-hash = "6a15847005d88e4455b073a82135e8fbad528f176d04cf961e62cd75afd4f1c0"
