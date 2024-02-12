@@ -68,19 +68,19 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lambda-layer-kubectl-v28"
-version = "2.1.0"
+version = "2.2.0"
 description = "A Lambda Layer that contains kubectl v1.28"
 optional = false
-python-versions = "~=3.7"
+python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk.lambda-layer-kubectl-v28-2.1.0.tar.gz", hash = "sha256:dc5c4d2c0f547561e7cb2352a4cbee79871b2635d784d6c5d905914ef2dbcf86"},
-    {file = "aws_cdk.lambda_layer_kubectl_v28-2.1.0-py3-none-any.whl", hash = "sha256:93961e17912ddc746bbe20222d57a81c90224088843a426ccbcde3bda539742e"},
+    {file = "aws-cdk.lambda-layer-kubectl-v28-2.2.0.tar.gz", hash = "sha256:514f5f315cb7f1b8a8435d1402f1ed607dfae3460e715ace6e63db9f9e30436c"},
+    {file = "aws_cdk.lambda_layer_kubectl_v28-2.2.0-py3-none-any.whl", hash = "sha256:5f55da697f1f5c1e5a54e7234e38ba94c623812fa10c299a7c36f6d30ac53371"},
 ]
 
 [package.dependencies]
 aws-cdk-lib = ">=2.28.0,<3.0.0"
 constructs = ">=10.0.5,<11.0.0"
-jsii = ">=1.84.0,<2.0.0"
+jsii = ">=1.94.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -958,4 +958,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.13"
-content-hash = "e1ed85ee0fdc81ab7fe993dc846366a95a74b1276eb4a9293ed45ae331071aa2"
+content-hash = "3e9919b977c8a94e251307b8cb18dacf061bc7a4688f30951bee9b288db016e3"
