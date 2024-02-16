@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ca_cdk_constructs"
-version = "0.8.0"
+version = "0.9.0"
 description = "Shared CDK constructs"
 authors = ["CA"]
 homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
