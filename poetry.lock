@@ -584,13 +584,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s-plus-26"
-version = "2.18.79"
+version = "2.18.82"
 description = "cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-26 synthesizes Kubernetes manifests for Kubernetes 1.26.0"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "cdk8s-plus-26-2.18.79.tar.gz", hash = "sha256:c39abebfaa528c990afea6003eba3259f3108f7d357077c795d6c2969cae5e40"},
-    {file = "cdk8s_plus_26-2.18.79-py3-none-any.whl", hash = "sha256:48b9af1e441bec45aff11545ffaf648e62a8a29d1bef4c4ecee4e7e3a4832915"},
+    {file = "cdk8s-plus-26-2.18.82.tar.gz", hash = "sha256:754e925a2cce2f718a6cae9c8aa28e11348ede2bb682c2defd911c725b65e820"},
+    {file = "cdk8s_plus_26-2.18.82-py3-none-any.whl", hash = "sha256:d4b0b73155a159f122cea95aef67edcd4e28e8798fddfa9e3af2648d5ff1a8e2"},
 ]
 
 [package.dependencies]
