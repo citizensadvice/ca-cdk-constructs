@@ -2652,7 +2652,7 @@ class VaultDynamicSecretSpec:
         controller: typing.Optional[builtins.str] = None,
         method: typing.Optional[builtins.str] = None,
         parameters: typing.Any = None,
-        result_type: typing.Optional[builtins.str] = None,
+        result_type: typing.Optional["VaultDynamicSecretSpecResultType"] = None,
     ) -> None:
         '''
         :param path: Vault path to obtain the dynamic secret from.
@@ -2735,7 +2735,7 @@ class VaultDynamicSecretSpec:
         return typing.cast(typing.Any, result)
 
     @builtins.property
-    def result_type(self) -> typing.Optional[builtins.str]:
+    def result_type(self) -> typing.Optional["VaultDynamicSecretSpecResultType"]:
         '''Result type defines which data is returned from the generator.
 
         By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
@@ -2743,7 +2743,7 @@ class VaultDynamicSecretSpec:
         :schema: VaultDynamicSecretSpec#resultType
         '''
         result = self._values.get("result_type")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecResultType"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -2952,6 +2952,7 @@ class VaultDynamicSecretSpecProvider:
         "kubernetes": "kubernetes",
         "ldap": "ldap",
         "token_secret_ref": "tokenSecretRef",
+        "user_pass": "userPass",
     },
 )
 class VaultDynamicSecretSpecProviderAuth:
@@ -2965,6 +2966,7 @@ class VaultDynamicSecretSpecProviderAuth:
         kubernetes: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
         token_secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        user_pass: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -2975,6 +2977,7 @@ class VaultDynamicSecretSpecProviderAuth:
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
+        :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
         :schema: VaultDynamicSecretSpecProviderAuth
         '''
@@ -2992,6 +2995,8 @@ class VaultDynamicSecretSpecProviderAuth:
             ldap = VaultDynamicSecretSpecProviderAuthLdap(**ldap)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = VaultDynamicSecretSpecProviderAuthTokenSecretRef(**token_secret_ref)
+        if isinstance(user_pass, dict):
+            user_pass = VaultDynamicSecretSpecProviderAuthUserPass(**user_pass)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__f1db161975aac815c821c159e465d76a46225986d5820ef576591b42b9f95fc1)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
@@ -3001,6 +3006,7 @@ class VaultDynamicSecretSpecProviderAuth:
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
+            check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
@@ -3016,6 +3022,8 @@ class VaultDynamicSecretSpecProviderAuth:
             self._values["ldap"] = ldap
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
+        if user_pass is not None:
+            self._values["user_pass"] = user_pass
 
     @builtins.property
     def app_role(self) -> typing.Optional["VaultDynamicSecretSpecProviderAuthAppRole"]:
@@ -3083,6 +3091,17 @@ class VaultDynamicSecretSpecProviderAuth:
         '''
         result = self._values.get("token_secret_ref")
         return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuthTokenSecretRef"], result)
+
+    @builtins.property
+    def user_pass(
+        self,
+    ) -> typing.Optional["VaultDynamicSecretSpecProviderAuthUserPass"]:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :schema: VaultDynamicSecretSpecProviderAuth#userPass
+        '''
+        result = self._values.get("user_pass")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuthUserPass"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -5027,6 +5046,161 @@ class VaultDynamicSecretSpecProviderAuthTokenSecretRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderAuthUserPass",
+    jsii_struct_bases=[],
+    name_mapping={"path": "path", "username": "username", "secret_ref": "secretRef"},
+)
+class VaultDynamicSecretSpecProviderAuthUserPass:
+    def __init__(
+        self,
+        *,
+        path: builtins.str,
+        username: builtins.str,
+        secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthUserPassSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+        :param username: Username is a user name used to authenticate using the UserPass Vault authentication method.
+        :param secret_ref: SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPass
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = VaultDynamicSecretSpecProviderAuthUserPassSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__958d4e7ec13747646d6801333810ae326b34bfd2eb12c19bf05f0c3bf7d89697)
+            check_type(argname="argument path", value=path, expected_type=type_hints["path"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "path": path,
+            "username": username,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def path(self) -> builtins.str:
+        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPass#path
+        '''
+        result = self._values.get("path")
+        assert result is not None, "Required property 'path' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''Username is a user name used to authenticate using the UserPass Vault authentication method.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPass#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["VaultDynamicSecretSpecProviderAuthUserPassSecretRef"]:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPass#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuthUserPassSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VaultDynamicSecretSpecProviderAuthUserPass(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderAuthUserPassSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class VaultDynamicSecretSpecProviderAuthUserPassSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__216849c3808d37d2df1e879ee71aff23ac155adf219272b406f534e7b6943b73)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VaultDynamicSecretSpecProviderAuthUserPassSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderCaProvider",
     jsii_struct_bases=[],
     name_mapping={
@@ -5153,6 +5327,21 @@ class VaultDynamicSecretSpecProviderVersion(enum.Enum):
     '''v2.'''
 
 
+@jsii.enum(jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecResultType")
+class VaultDynamicSecretSpecResultType(enum.Enum):
+    '''Result type defines which data is returned from the generator.
+
+    By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
+
+    :schema: VaultDynamicSecretSpecResultType
+    '''
+
+    DATA = "DATA"
+    '''Data.'''
+    AUTH = "AUTH"
+    '''Auth.'''
+
+
 __all__ = [
     "AcrAccessToken",
     "AcrAccessTokenProps",
@@ -5218,9 +5407,12 @@ __all__ = [
     "VaultDynamicSecretSpecProviderAuthLdap",
     "VaultDynamicSecretSpecProviderAuthLdapSecretRef",
     "VaultDynamicSecretSpecProviderAuthTokenSecretRef",
+    "VaultDynamicSecretSpecProviderAuthUserPass",
+    "VaultDynamicSecretSpecProviderAuthUserPassSecretRef",
     "VaultDynamicSecretSpecProviderCaProvider",
     "VaultDynamicSecretSpecProviderCaProviderType",
     "VaultDynamicSecretSpecProviderVersion",
+    "VaultDynamicSecretSpecResultType",
 ]
 
 publication.publish()
@@ -5556,7 +5748,7 @@ def _typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f39826
     controller: typing.Optional[builtins.str] = None,
     method: typing.Optional[builtins.str] = None,
     parameters: typing.Any = None,
-    result_type: typing.Optional[builtins.str] = None,
+    result_type: typing.Optional[VaultDynamicSecretSpecResultType] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -5585,6 +5777,7 @@ def _typecheckingstub__f1db161975aac815c821c159e465d76a46225986d5820ef576591b42b
     kubernetes: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
     token_secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    user_pass: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -5793,6 +5986,24 @@ def _typecheckingstub__60bc931306020a61804834bcc79bbcf49973e8f53d58f4ea39b0ae175
     pass
 
 def _typecheckingstub__ed41facd1379b3f85556543534fb044320dbd0b59942324205b3985c4248bd36(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__958d4e7ec13747646d6801333810ae326b34bfd2eb12c19bf05f0c3bf7d89697(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthUserPassSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__216849c3808d37d2df1e879ee71aff23ac155adf219272b406f534e7b6943b73(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
