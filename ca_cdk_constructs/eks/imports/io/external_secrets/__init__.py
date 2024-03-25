@@ -147,9 +147,10 @@ class ClusterExternalSecretProps:
     jsii_struct_bases=[],
     name_mapping={
         "external_secret_spec": "externalSecretSpec",
-        "namespace_selector": "namespaceSelector",
         "external_secret_metadata": "externalSecretMetadata",
         "external_secret_name": "externalSecretName",
+        "namespaces": "namespaces",
+        "namespace_selector": "namespaceSelector",
         "refresh_time": "refreshTime",
     },
 )
@@ -158,42 +159,48 @@ class ClusterExternalSecretSpec:
         self,
         *,
         external_secret_spec: typing.Union["ClusterExternalSecretSpecExternalSecretSpec", typing.Dict[builtins.str, typing.Any]],
-        namespace_selector: typing.Union["ClusterExternalSecretSpecNamespaceSelector", typing.Dict[builtins.str, typing.Any]],
         external_secret_metadata: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
         external_secret_name: typing.Optional[builtins.str] = None,
+        namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace_selector: typing.Optional[typing.Union["ClusterExternalSecretSpecNamespaceSelector", typing.Dict[builtins.str, typing.Any]]] = None,
         refresh_time: typing.Optional[builtins.str] = None,
     ) -> None:
         '''ClusterExternalSecretSpec defines the desired state of ClusterExternalSecret.
 
         :param external_secret_spec: The spec for the ExternalSecrets to be created.
-        :param namespace_selector: The labels to select by to find the Namespaces to create the ExternalSecrets in.
         :param external_secret_metadata: The metadata of the external secrets to be created.
         :param external_secret_name: The name of the external secrets to be created defaults to the name of the ClusterExternalSecret.
-        :param refresh_time: The time in which the controller should reconcile it's objects and recheck namespaces for labels.
+        :param namespaces: Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.
+        :param namespace_selector: The labels to select by to find the Namespaces to create the ExternalSecrets in.
+        :param refresh_time: The time in which the controller should reconcile its objects and recheck namespaces for labels.
 
         :schema: ClusterExternalSecretSpec
         '''
         if isinstance(external_secret_spec, dict):
             external_secret_spec = ClusterExternalSecretSpecExternalSecretSpec(**external_secret_spec)
-        if isinstance(namespace_selector, dict):
-            namespace_selector = ClusterExternalSecretSpecNamespaceSelector(**namespace_selector)
         if isinstance(external_secret_metadata, dict):
             external_secret_metadata = ClusterExternalSecretSpecExternalSecretMetadata(**external_secret_metadata)
+        if isinstance(namespace_selector, dict):
+            namespace_selector = ClusterExternalSecretSpecNamespaceSelector(**namespace_selector)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__8ef14ba98eb89c9ca89bac0d3d6a848b1d08606ee897d4645723837a3a0c8363)
             check_type(argname="argument external_secret_spec", value=external_secret_spec, expected_type=type_hints["external_secret_spec"])
-            check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument external_secret_metadata", value=external_secret_metadata, expected_type=type_hints["external_secret_metadata"])
             check_type(argname="argument external_secret_name", value=external_secret_name, expected_type=type_hints["external_secret_name"])
+            check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
+            check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument refresh_time", value=refresh_time, expected_type=type_hints["refresh_time"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "external_secret_spec": external_secret_spec,
-            "namespace_selector": namespace_selector,
         }
         if external_secret_metadata is not None:
             self._values["external_secret_metadata"] = external_secret_metadata
         if external_secret_name is not None:
             self._values["external_secret_name"] = external_secret_name
+        if namespaces is not None:
+            self._values["namespaces"] = namespaces
+        if namespace_selector is not None:
+            self._values["namespace_selector"] = namespace_selector
         if refresh_time is not None:
             self._values["refresh_time"] = refresh_time
 
@@ -206,16 +213,6 @@ class ClusterExternalSecretSpec:
         result = self._values.get("external_secret_spec")
         assert result is not None, "Required property 'external_secret_spec' is missing"
         return typing.cast("ClusterExternalSecretSpecExternalSecretSpec", result)
-
-    @builtins.property
-    def namespace_selector(self) -> "ClusterExternalSecretSpecNamespaceSelector":
-        '''The labels to select by to find the Namespaces to create the ExternalSecrets in.
-
-        :schema: ClusterExternalSecretSpec#namespaceSelector
-        '''
-        result = self._values.get("namespace_selector")
-        assert result is not None, "Required property 'namespace_selector' is missing"
-        return typing.cast("ClusterExternalSecretSpecNamespaceSelector", result)
 
     @builtins.property
     def external_secret_metadata(
@@ -238,8 +235,30 @@ class ClusterExternalSecretSpec:
         return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
+    def namespaces(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Choose namespaces by name.
+
+        This field is ORed with anything that NamespaceSelector ends up choosing.
+
+        :schema: ClusterExternalSecretSpec#namespaces
+        '''
+        result = self._values.get("namespaces")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace_selector(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecNamespaceSelector"]:
+        '''The labels to select by to find the Namespaces to create the ExternalSecrets in.
+
+        :schema: ClusterExternalSecretSpec#namespaceSelector
+        '''
+        result = self._values.get("namespace_selector")
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecNamespaceSelector"], result)
+
+    @builtins.property
     def refresh_time(self) -> typing.Optional[builtins.str]:
-        '''The time in which the controller should reconcile it's objects and recheck namespaces for labels.
+        '''The time in which the controller should reconcile its objects and recheck namespaces for labels.
 
         :schema: ClusterExternalSecretSpec#refreshTime
         '''
@@ -652,9 +671,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
-        metadata_policy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy"] = None,
+        metadata_policy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -702,25 +721,31 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy"], result)
 
     @builtins.property
-    def metadata_policy(self) -> typing.Optional[builtins.str]:
+    def metadata_policy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy"]:
         '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
 
         Defaults to None
@@ -730,7 +755,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract#metadataPolicy
         '''
         result = self._values.get("metadata_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -762,6 +787,65 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         )
 
 
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy(
+    enum.Enum,
+):
+    '''Used to define a conversion Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy(
+    enum.Enum,
+):
+    '''Used to define a decoding Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy(
+    enum.Enum,
+):
+    '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
+
+    Defaults to None
+
+    :default: None
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy
+    '''
+
+    NONE = "NONE"
+    '''None.'''
+    FETCH = "FETCH"
+    '''Fetch.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromFind",
     jsii_struct_bases=[],
@@ -777,8 +861,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
     def __init__(
         self,
         *,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy"] = None,
         name: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromFindName", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
@@ -815,22 +899,26 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
             self._values["tags"] = tags
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFind#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFind#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy"], result)
 
     @builtins.property
     def name(
@@ -871,6 +959,44 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
         return "ClusterExternalSecretSpecExternalSecretSpecDataFromFind(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy(
+    enum.Enum,
+):
+    '''Used to define a conversion Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy(
+    enum.Enum,
+):
+    '''Used to define a decoding Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
 
 
 @jsii.data_type(
@@ -917,27 +1043,34 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFindName:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite",
     jsii_struct_bases=[],
-    name_mapping={"regexp": "regexp"},
+    name_mapping={"regexp": "regexp", "transform": "transform"},
 )
 class ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite:
     def __init__(
         self,
         *,
         regexp: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp", typing.Dict[builtins.str, typing.Any]]] = None,
+        transform: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param regexp: Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.
+        :param transform: Used to apply string transformation on the secrets. The resulting key will be the output of the template applied by the operation.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite
         '''
         if isinstance(regexp, dict):
             regexp = ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp(**regexp)
+        if isinstance(transform, dict):
+            transform = ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform(**transform)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__f601bc7c910f4395527a2edbe9ff719509d7d8808af893ad08740c049a2c5b76)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
+            check_type(argname="argument transform", value=transform, expected_type=type_hints["transform"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
+        if transform is not None:
+            self._values["transform"] = transform
 
     @builtins.property
     def regexp(
@@ -951,6 +1084,19 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite:
         '''
         result = self._values.get("regexp")
         return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp"], result)
+
+    @builtins.property
+    def transform(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform"]:
+        '''Used to apply string transformation on the secrets.
+
+        The resulting key will be the output of the template applied by the operation.
+
+        :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite#transform
+        '''
+        result = self._values.get("transform")
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -1022,6 +1168,52 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform",
+    jsii_struct_bases=[],
+    name_mapping={"template": "template"},
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform:
+    def __init__(self, *, template: builtins.str) -> None:
+        '''Used to apply string transformation on the secrets.
+
+        The resulting key will be the output of the template applied by the operation.
+
+        :param template: Used to define the template to apply on the secret name. ``.value `` will specify the secret name in the template.
+
+        :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__593d67339e08298e9ffe3df7a50137c1841d53b5c13926c5f369a4f3172e807f)
+            check_type(argname="argument template", value=template, expected_type=type_hints["template"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "template": template,
+        }
+
+    @builtins.property
+    def template(self) -> builtins.str:
+        '''Used to define the template to apply on the secret name.
+
+        ``.value `` will specify the secret name in the template.
+
+        :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform#template
+        '''
+        result = self._values.get("template")
+        assert result is not None, "Required property 'template' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef",
     jsii_struct_bases=[],
     name_mapping={"generator_ref": "generatorRef", "store_ref": "storeRef"},
@@ -1037,7 +1229,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef:
 
         Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
 
-        :param generator_ref: GeneratorRef points to a generator custom resource in.
+        :param generator_ref: GeneratorRef points to a generator custom resource.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef
@@ -1060,7 +1252,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef:
     def generator_ref(
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefGeneratorRef"]:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef#generatorRef
         '''
@@ -1103,7 +1295,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefGeneratorRef:
         name: builtins.str,
         api_version: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -1243,9 +1435,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
-        metadata_policy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy"] = None,
+        metadata_policy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -1293,25 +1485,31 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy"], result)
 
     @builtins.property
-    def metadata_policy(self) -> typing.Optional[builtins.str]:
+    def metadata_policy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy"]:
         '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
 
         Defaults to None
@@ -1321,7 +1519,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef#metadataPolicy
         '''
         result = self._values.get("metadata_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -1353,6 +1551,63 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         )
 
 
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy(
+    enum.Enum,
+):
+    '''Used to define a conversion Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy(
+    enum.Enum,
+):
+    '''Used to define a decoding Strategy.
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy(enum.Enum):
+    '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
+
+    Defaults to None
+
+    :default: None
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy
+    '''
+
+    NONE = "NONE"
+    '''None.'''
+    FETCH = "FETCH"
+    '''Fetch.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecDataSourceRef",
     jsii_struct_bases=[],
@@ -1367,7 +1622,7 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRef:
     ) -> None:
         '''SourceRef allows you to override the source from which the value will pulled from.
 
-        :param generator_ref: GeneratorRef points to a generator custom resource in.
+        :param generator_ref: GeneratorRef points to a generator custom resource. Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataSourceRef
@@ -1390,7 +1645,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRef:
     def generator_ref(
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRef"]:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
+
+        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataSourceRef#generatorRef
         '''
@@ -1433,7 +1690,9 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRef:
         name: builtins.str,
         api_version: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
+
+        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -1796,8 +2055,8 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         self,
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-        engine_version: typing.Optional[builtins.str] = None,
-        merge_policy: typing.Optional[builtins.str] = None,
+        engine_version: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion"] = None,
+        merge_policy: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy"] = None,
         metadata: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
         template_from: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
@@ -1805,7 +2064,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         '''Template defines a blueprint for the created Secret resource.
 
         :param data: 
-        :param engine_version: 
+        :param engine_version: EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
         :param merge_policy: 
         :param metadata: ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.
         :param template_from: 
@@ -1846,20 +2105,25 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
 
     @builtins.property
-    def engine_version(self) -> typing.Optional[builtins.str]:
-        '''
+    def engine_version(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion"]:
+        '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplate#engineVersion
         '''
         result = self._values.get("engine_version")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion"], result)
 
     @builtins.property
-    def merge_policy(self) -> typing.Optional[builtins.str]:
+    def merge_policy(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy"]:
         '''
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplate#mergePolicy
         '''
         result = self._values.get("merge_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy"], result)
 
     @builtins.property
     def metadata(
@@ -1900,6 +2164,35 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplate:
         return "ClusterExternalSecretSpecExternalSecretSpecTargetTemplate(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion"
+)
+class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion(enum.Enum):
+    '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
+    :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion
+    '''
+
+    V1 = "V1"
+    '''v1.'''
+    V2 = "V2"
+    '''v2.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy"
+)
+class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy(enum.Enum):
+    '''
+    :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy
+    '''
+
+    REPLACE = "REPLACE"
+    '''Replace.'''
+    MERGE = "MERGE"
+    '''Merge.'''
 
 
 @jsii.data_type(
@@ -1978,7 +2271,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
         config_map: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
         literal: typing.Optional[builtins.str] = None,
         secret: typing.Optional[typing.Union["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
-        target: typing.Optional[builtins.str] = None,
+        target: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget"] = None,
     ) -> None:
         '''
         :param config_map: 
@@ -2037,12 +2330,14 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
         return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret"], result)
 
     @builtins.property
-    def target(self) -> typing.Optional[builtins.str]:
+    def target(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget"]:
         '''
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom#target
         '''
         result = self._values.get("target")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -2125,7 +2420,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
         self,
         *,
         key: builtins.str,
-        template_as: typing.Optional[builtins.str] = None,
+        template_as: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"] = None,
     ) -> None:
         '''
         :param key: 
@@ -2153,12 +2448,14 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def template_as(self) -> typing.Optional[builtins.str]:
+    def template_as(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"]:
         '''
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems#templateAs
         '''
         result = self._values.get("template_as")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -2170,6 +2467,22 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfi
         return "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"
+)
+class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs(
+    enum.Enum,
+):
+    '''
+    :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
 
 
 @jsii.data_type(
@@ -2241,7 +2554,7 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
         self,
         *,
         key: builtins.str,
-        template_as: typing.Optional[builtins.str] = None,
+        template_as: typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs"] = None,
     ) -> None:
         '''
         :param key: 
@@ -2269,12 +2582,14 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def template_as(self) -> typing.Optional[builtins.str]:
+    def template_as(
+        self,
+    ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs"]:
         '''
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems#templateAs
         '''
         result = self._values.get("template_as")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -2286,6 +2601,40 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecre
         return "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs"
+)
+class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs(
+    enum.Enum,
+):
+    '''
+    :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget"
+)
+class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget(
+    enum.Enum,
+):
+    '''
+    :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget
+    '''
+
+    DATA = "DATA"
+    '''Data.'''
+    ANNOTATIONS = "ANNOTATIONS"
+    '''Annotations.'''
+    LABELS = "LABELS"
+    '''Labels.'''
 
 
 @jsii.data_type(
@@ -7053,7 +7402,15 @@ class ClusterSecretStoreSpecProviderKubernetesServerCaProviderType(enum.Enum):
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOracle",
     jsii_struct_bases=[],
-    name_mapping={"region": "region", "vault": "vault", "auth": "auth"},
+    name_mapping={
+        "region": "region",
+        "vault": "vault",
+        "auth": "auth",
+        "compartment": "compartment",
+        "encryption_key": "encryptionKey",
+        "principal_type": "principalType",
+        "service_account_ref": "serviceAccountRef",
+    },
 )
 class ClusterSecretStoreSpecProviderOracle:
     def __init__(
@@ -7062,28 +7419,50 @@ class ClusterSecretStoreSpecProviderOracle:
         region: builtins.str,
         vault: builtins.str,
         auth: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        compartment: typing.Optional[builtins.str] = None,
+        encryption_key: typing.Optional[builtins.str] = None,
+        principal_type: typing.Optional["ClusterSecretStoreSpecProviderOraclePrincipalType"] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracleServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
         :param region: Region is the region where vault is located.
         :param vault: Vault is the vault's OCID of the specific vault where secret is located.
-        :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        :param compartment: Compartment is the vault compartment OCID. Required for PushSecret
+        :param encryption_key: EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret
+        :param principal_type: The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :schema: ClusterSecretStoreSpecProviderOracle
         '''
         if isinstance(auth, dict):
             auth = ClusterSecretStoreSpecProviderOracleAuth(**auth)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreSpecProviderOracleServiceAccountRef(**service_account_ref)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__d51df236a603c6f74a911105acff1a4f51f5d893faa22fc50dae2e587588ebc8)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument compartment", value=compartment, expected_type=type_hints["compartment"])
+            check_type(argname="argument encryption_key", value=encryption_key, expected_type=type_hints["encryption_key"])
+            check_type(argname="argument principal_type", value=principal_type, expected_type=type_hints["principal_type"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
         if auth is not None:
             self._values["auth"] = auth
+        if compartment is not None:
+            self._values["compartment"] = compartment
+        if encryption_key is not None:
+            self._values["encryption_key"] = encryption_key
+        if principal_type is not None:
+            self._values["principal_type"] = principal_type
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
 
     @builtins.property
     def region(self) -> builtins.str:
@@ -7109,12 +7488,58 @@ class ClusterSecretStoreSpecProviderOracle:
     def auth(self) -> typing.Optional["ClusterSecretStoreSpecProviderOracleAuth"]:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
 
         :schema: ClusterSecretStoreSpecProviderOracle#auth
         '''
         result = self._values.get("auth")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOracleAuth"], result)
+
+    @builtins.property
+    def compartment(self) -> typing.Optional[builtins.str]:
+        '''Compartment is the vault compartment OCID.
+
+        Required for PushSecret
+
+        :schema: ClusterSecretStoreSpecProviderOracle#compartment
+        '''
+        result = self._values.get("compartment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def encryption_key(self) -> typing.Optional[builtins.str]:
+        '''EncryptionKey is the OCID of the encryption key within the vault.
+
+        Required for PushSecret
+
+        :schema: ClusterSecretStoreSpecProviderOracle#encryptionKey
+        '''
+        result = self._values.get("encryption_key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def principal_type(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderOraclePrincipalType"]:
+        '''The type of principal to use for authentication.
+
+        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+        :schema: ClusterSecretStoreSpecProviderOracle#principalType
+        '''
+        result = self._values.get("principal_type")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOraclePrincipalType"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderOracleServiceAccountRef"]:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :schema: ClusterSecretStoreSpecProviderOracle#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOracleServiceAccountRef"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -7143,7 +7568,7 @@ class ClusterSecretStoreSpecProviderOracleAuth:
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
 
         :param secret_ref: SecretRef to pass through sensitive information.
         :param tenancy: Tenancy is the tenancy OCID where user is located.
@@ -7424,6 +7849,101 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOraclePrincipalType"
+)
+class ClusterSecretStoreSpecProviderOraclePrincipalType(enum.Enum):
+    '''The type of principal to use for authentication.
+
+    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+    :schema: ClusterSecretStoreSpecProviderOraclePrincipalType
+    '''
+
+    USER_PRINCIPAL = "USER_PRINCIPAL"
+    '''UserPrincipal.'''
+    INSTANCE_PRINCIPAL = "INSTANCE_PRINCIPAL"
+    '''InstancePrincipal.'''
+    WORKLOAD = "WORKLOAD"
+    '''Workload.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOracleServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderOracleServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b2c2b61ca17414c8f7ada351a498ac1a2d985e403dcc1fe15eef63e22d74207a)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderOracleServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -12145,6 +12665,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSe
         "auth": "auth",
         "external_id": "externalId",
         "role": "role",
+        "secrets_manager": "secretsManager",
         "session_tags": "sessionTags",
         "transitive_tag_keys": "transitiveTagKeys",
     },
@@ -12159,6 +12680,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
         auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         external_id: typing.Optional[builtins.str] = None,
         role: typing.Optional[builtins.str] = None,
+        secrets_manager: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager", typing.Dict[builtins.str, typing.Any]]] = None,
         session_tags: typing.Optional[typing.Sequence[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAwsSessionTags", typing.Dict[builtins.str, typing.Any]]]] = None,
         transitive_tag_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
     ) -> None:
@@ -12166,17 +12688,20 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
 
         :param region: AWS Region to be used for the provider.
         :param service: Service defines which service should be used to fetch the secrets.
-        :param additional_roles: AdditionalRoles is a chained list of Role ARNs which the SecretManager provider will sequentially assume before assuming Role.
+        :param additional_roles: AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role.
         :param auth: Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
         :param external_id: AWS External ID set on assumed IAM roles.
-        :param role: Role is a Role ARN which the SecretManager provider will assume.
+        :param role: Role is a Role ARN which the provider will assume.
+        :param secrets_manager: SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
         :param session_tags: AWS STS assume role session tags.
-        :param transitive_tag_keys: AWS STS assume role transitive session tags. Required when multiple rules are used with SecretStore
+        :param transitive_tag_keys: AWS STS assume role transitive session tags. Required when multiple rules are used with the provider
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAws
         '''
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderAwsAuth(**auth)
+        if isinstance(secrets_manager, dict):
+            secrets_manager = ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager(**secrets_manager)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__6627988073d9ff383a854cf295ddb2aa2cfe69af584935d6041de0fd6369c2f2)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
@@ -12185,6 +12710,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument external_id", value=external_id, expected_type=type_hints["external_id"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument secrets_manager", value=secrets_manager, expected_type=type_hints["secrets_manager"])
             check_type(argname="argument session_tags", value=session_tags, expected_type=type_hints["session_tags"])
             check_type(argname="argument transitive_tag_keys", value=transitive_tag_keys, expected_type=type_hints["transitive_tag_keys"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -12199,6 +12725,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
             self._values["external_id"] = external_id
         if role is not None:
             self._values["role"] = role
+        if secrets_manager is not None:
+            self._values["secrets_manager"] = secrets_manager
         if session_tags is not None:
             self._values["session_tags"] = session_tags
         if transitive_tag_keys is not None:
@@ -12226,7 +12754,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
 
     @builtins.property
     def additional_roles(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''AdditionalRoles is a chained list of Role ARNs which the SecretManager provider will sequentially assume before assuming Role.
+        '''AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAws#additionalRoles
         '''
@@ -12253,12 +12781,23 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
 
     @builtins.property
     def role(self) -> typing.Optional[builtins.str]:
-        '''Role is a Role ARN which the SecretManager provider will assume.
+        '''Role is a Role ARN which the provider will assume.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAws#role
         '''
         result = self._values.get("role")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secrets_manager(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager"]:
+        '''SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAws#secretsManager
+        '''
+        result = self._values.get("secrets_manager")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager"], result)
 
     @builtins.property
     def session_tags(
@@ -12275,7 +12814,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAws:
     def transitive_tag_keys(self) -> typing.Optional[typing.List[builtins.str]]:
         '''AWS STS assume role transitive session tags.
 
-        Required when multiple rules are used with SecretStore
+        Required when multiple rules are used with the provider
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAws#transitiveTagKeys
         '''
@@ -12800,6 +13339,72 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager",
+    jsii_struct_bases=[],
+    name_mapping={
+        "force_delete_without_recovery": "forceDeleteWithoutRecovery",
+        "recovery_window_in_days": "recoveryWindowInDays",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager:
+    def __init__(
+        self,
+        *,
+        force_delete_without_recovery: typing.Optional[builtins.bool] = None,
+        recovery_window_in_days: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
+
+        :param force_delete_without_recovery: Specifies whether to delete the secret without any recovery window. You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+        :param recovery_window_in_days: The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret. You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__48c5a27c67d8d807c1dae77d0c9163e10b98d1c6749b78b57aafbce00783830e)
+            check_type(argname="argument force_delete_without_recovery", value=force_delete_without_recovery, expected_type=type_hints["force_delete_without_recovery"])
+            check_type(argname="argument recovery_window_in_days", value=recovery_window_in_days, expected_type=type_hints["recovery_window_in_days"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if force_delete_without_recovery is not None:
+            self._values["force_delete_without_recovery"] = force_delete_without_recovery
+        if recovery_window_in_days is not None:
+            self._values["recovery_window_in_days"] = recovery_window_in_days
+
+    @builtins.property
+    def force_delete_without_recovery(self) -> typing.Optional[builtins.bool]:
+        '''Specifies whether to delete the secret without any recovery window.
+
+        You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager#forceDeleteWithoutRecovery
+        '''
+        result = self._values.get("force_delete_without_recovery")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
+    def recovery_window_in_days(self) -> typing.Optional[jsii.Number]:
+        '''The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret.
+
+        You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager#recoveryWindowInDays
+        '''
+        result = self._values.get("recovery_window_in_days")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -13371,7 +13976,12 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjur",
     jsii_struct_bases=[],
-    name_mapping={"auth": "auth", "url": "url", "ca_bundle": "caBundle"},
+    name_mapping={
+        "auth": "auth",
+        "url": "url",
+        "ca_bundle": "caBundle",
+        "ca_provider": "caProvider",
+    },
 )
 class ClusterSecretStoreV1Beta1SpecProviderConjur:
     def __init__(
@@ -13380,28 +13990,35 @@ class ClusterSecretStoreV1Beta1SpecProviderConjur:
         auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuth", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Conjur configures this store to sync secrets using conjur provider.
 
         :param auth: 
         :param url: 
         :param ca_bundle: 
+        :param ca_provider: Used to provide custom certificate authority (CA) certificates for a secret store. The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjur
         '''
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderConjurAuth(**auth)
+        if isinstance(ca_provider, dict):
+            ca_provider = ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider(**ca_provider)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__bd13f006bb522b34918dd83f7d4520b4c3e8918fa9caea1a889a5fcb2c0b858a)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
+            check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "url": url,
         }
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
+        if ca_provider is not None:
+            self._values["ca_provider"] = ca_provider
 
     @builtins.property
     def auth(self) -> "ClusterSecretStoreV1Beta1SpecProviderConjurAuth":
@@ -13429,6 +14046,19 @@ class ClusterSecretStoreV1Beta1SpecProviderConjur:
         result = self._values.get("ca_bundle")
         return typing.cast(typing.Optional[builtins.str], result)
 
+    @builtins.property
+    def ca_provider(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider"]:
+        '''Used to provide custom certificate authority (CA) certificates for a secret store.
+
+        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjur#caProvider
+        '''
+        result = self._values.get("ca_provider")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider"], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -13444,36 +14074,54 @@ class ClusterSecretStoreV1Beta1SpecProviderConjur:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurAuth",
     jsii_struct_bases=[],
-    name_mapping={"apikey": "apikey"},
+    name_mapping={"apikey": "apikey", "jwt": "jwt"},
 )
 class ClusterSecretStoreV1Beta1SpecProviderConjurAuth:
     def __init__(
         self,
         *,
-        apikey: typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]],
+        apikey: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param apikey: 
+        :param jwt: 
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuth
         '''
         if isinstance(apikey, dict):
             apikey = ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey(**apikey)
+        if isinstance(jwt, dict):
+            jwt = ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt(**jwt)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__4d3a7eca64b061adc53eed42df575bd0efc70846535a2435a0368c7b48c0eff1)
             check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "apikey": apikey,
-        }
+            check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if apikey is not None:
+            self._values["apikey"] = apikey
+        if jwt is not None:
+            self._values["jwt"] = jwt
 
     @builtins.property
-    def apikey(self) -> "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey":
+    def apikey(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey"]:
         '''
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuth#apikey
         '''
         result = self._values.get("apikey")
-        assert result is not None, "Required property 'apikey' is missing"
-        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey", result)
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey"], result)
+
+    @builtins.property
+    def jwt(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt"]:
+        '''
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuth#jwt
+        '''
+        result = self._values.get("jwt")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -13723,6 +14371,370 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
         return "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "service_id": "serviceId",
+        "secret_ref": "secretRef",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        service_id: builtins.str,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param account: 
+        :param service_id: The conjur authn jwt webservice id.
+        :param secret_ref: Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+        :param service_account_ref: Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef(**secret_ref)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__52b0f350eacc0c9b57a1b6713a56af5acafeba5eba98459f04a1fe98b1f41edb)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "service_id": service_id,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''The conjur authn jwt webservice id.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef"]:
+        '''Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef"]:
+        '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2477a088fdf273a37514328ebdad8069af4b5f06af6d86c3cb8020519cd3c403)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__da5e48d7b0634d1d4a4d79c54da3733a03b4bef7c946793c4591d0a9a5b6ee8d)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "type": "type",
+        "key": "key",
+        "namespace": "namespace",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        type: "ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType",
+        key: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Used to provide custom certificate authority (CA) certificates for a secret store.
+
+        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+
+        :param name: The name of the object located at the provider type.
+        :param type: The type of provider to use such as "Secret", or "ConfigMap".
+        :param key: The key where the CA certificate can be found in the Secret or ConfigMap.
+        :param namespace: The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1347e7dc64bf4b13a7b4244986cd88a94b1dc46cc1f507df56bb3d0e3a2e2ce1)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "type": type,
+        }
+        if key is not None:
+            self._values["key"] = key
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the object located at the provider type.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def type(self) -> "ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType":
+        '''The type of provider to use such as "Secret", or "ConfigMap".
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType", result)
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the CA certificate can be found in the Secret or ConfigMap.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace the Provider type is in.
+
+        Can only be defined when used in a ClusterSecretStore.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType"
+)
+class ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType(enum.Enum):
+    '''The type of provider to use such as "Secret", or "ConfigMap".
+
+    :schema: ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType
+    '''
+
+    SECRET = "SECRET"
+    '''Secret.'''
+    CONFIG_MAP = "CONFIG_MAP"
+    '''ConfigMap.'''
 
 
 @jsii.data_type(
@@ -14423,7 +15435,7 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerFormat(enum.Enum):
 
     JSON = "JSON"
     '''json.'''
-    DOTNET_JSON = "DOTNET_JSON"
+    DOTNET_HYPHEN_JSON = "DOTNET_HYPHEN_JSON"
     '''dotnet-json.'''
     ENV = "ENV"
     '''env.'''
@@ -14442,17 +15454,17 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer(enum.Enum):
     :schema: ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer
     '''
 
-    UPPER_CAMEL = "UPPER_CAMEL"
+    UPPER_HYPHEN_CAMEL = "UPPER_HYPHEN_CAMEL"
     '''upper-camel.'''
     CAMEL = "CAMEL"
     '''camel.'''
-    LOWER_SNAKE = "LOWER_SNAKE"
+    LOWER_HYPHEN_SNAKE = "LOWER_HYPHEN_SNAKE"
     '''lower-snake.'''
-    TF_VAR = "TF_VAR"
+    TF_HYPHEN_VAR = "TF_HYPHEN_VAR"
     '''tf-var.'''
-    DOTNET_ENV = "DOTNET_ENV"
+    DOTNET_HYPHEN_ENV = "DOTNET_HYPHEN_ENV"
     '''dotnet-env.'''
-    LOWER_KEBAB = "LOWER_KEBAB"
+    LOWER_HYPHEN_KEBAB = "LOWER_HYPHEN_KEBAB"
     '''lower-kebab.'''
 
 
@@ -14523,7 +15535,7 @@ class ClusterSecretStoreV1Beta1SpecProviderFakeData:
         '''
         :param key: 
         :param value: 
-        :param value_map: 
+        :param value_map: Deprecated: ValueMap is deprecated and is intended to be removed in the future, use the ``value`` field instead.
         :param version: 
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderFakeData
@@ -14563,7 +15575,8 @@ class ClusterSecretStoreV1Beta1SpecProviderFakeData:
 
     @builtins.property
     def value_map(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
-        '''
+        '''Deprecated: ValueMap is deprecated and is intended to be removed in the future, use the ``value`` field instead.
+
         :schema: ClusterSecretStoreV1Beta1SpecProviderFakeData#valueMap
         '''
         result = self._values.get("value_map")
@@ -16821,7 +17834,15 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenS
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOracle",
     jsii_struct_bases=[],
-    name_mapping={"region": "region", "vault": "vault", "auth": "auth"},
+    name_mapping={
+        "region": "region",
+        "vault": "vault",
+        "auth": "auth",
+        "compartment": "compartment",
+        "encryption_key": "encryptionKey",
+        "principal_type": "principalType",
+        "service_account_ref": "serviceAccountRef",
+    },
 )
 class ClusterSecretStoreV1Beta1SpecProviderOracle:
     def __init__(
@@ -16830,28 +17851,50 @@ class ClusterSecretStoreV1Beta1SpecProviderOracle:
         region: builtins.str,
         vault: builtins.str,
         auth: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        compartment: typing.Optional[builtins.str] = None,
+        encryption_key: typing.Optional[builtins.str] = None,
+        principal_type: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType"] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
         :param region: Region is the region where vault is located.
         :param vault: Vault is the vault's OCID of the specific vault where secret is located.
         :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        :param compartment: Compartment is the vault compartment OCID. Required for PushSecret
+        :param encryption_key: EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret
+        :param principal_type: The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracle
         '''
         if isinstance(auth, dict):
             auth = ClusterSecretStoreV1Beta1SpecProviderOracleAuth(**auth)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef(**service_account_ref)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__8799a207c6f9af8f59bb32f362d3937320020eec54a1cc499d831392110f8a7a)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument compartment", value=compartment, expected_type=type_hints["compartment"])
+            check_type(argname="argument encryption_key", value=encryption_key, expected_type=type_hints["encryption_key"])
+            check_type(argname="argument principal_type", value=principal_type, expected_type=type_hints["principal_type"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
         if auth is not None:
             self._values["auth"] = auth
+        if compartment is not None:
+            self._values["compartment"] = compartment
+        if encryption_key is not None:
+            self._values["encryption_key"] = encryption_key
+        if principal_type is not None:
+            self._values["principal_type"] = principal_type
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
 
     @builtins.property
     def region(self) -> builtins.str:
@@ -16885,6 +17928,52 @@ class ClusterSecretStoreV1Beta1SpecProviderOracle:
         '''
         result = self._values.get("auth")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOracleAuth"], result)
+
+    @builtins.property
+    def compartment(self) -> typing.Optional[builtins.str]:
+        '''Compartment is the vault compartment OCID.
+
+        Required for PushSecret
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracle#compartment
+        '''
+        result = self._values.get("compartment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def encryption_key(self) -> typing.Optional[builtins.str]:
+        '''EncryptionKey is the OCID of the encryption key within the vault.
+
+        Required for PushSecret
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracle#encryptionKey
+        '''
+        result = self._values.get("encryption_key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def principal_type(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType"]:
+        '''The type of principal to use for authentication.
+
+        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracle#principalType
+        '''
+        result = self._values.get("principal_type")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef"]:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracle#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -17194,6 +18283,101 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType"
+)
+class ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType(enum.Enum):
+    '''The type of principal to use for authentication.
+
+    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+    :schema: ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType
+    '''
+
+    USER_PRINCIPAL = "USER_PRINCIPAL"
+    '''UserPrincipal.'''
+    INSTANCE_PRINCIPAL = "INSTANCE_PRINCIPAL"
+    '''InstancePrincipal.'''
+    WORKLOAD = "WORKLOAD"
+    '''Workload.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__bdc362d2dc657faa25b2dd71b2ac7510e47044f7a095df7486825735173be01e)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -18029,6 +19213,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         "kubernetes": "kubernetes",
         "ldap": "ldap",
         "token_secret_ref": "tokenSecretRef",
+        "user_pass": "userPass",
     },
 )
 class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
@@ -18042,6 +19227,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
         token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        user_pass: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -18052,6 +19238,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
+        :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuth
         '''
@@ -18069,6 +19256,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
             ldap = ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap(**ldap)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
+        if isinstance(user_pass, dict):
+            user_pass = ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass(**user_pass)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__fa1611c7ca8d9fedadb92afb290e6c41419ad09bd43146b4bdf9c1d75b8a578a)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
@@ -18078,6 +19267,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
+            check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
@@ -18093,6 +19283,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
             self._values["ldap"] = ldap
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
+        if user_pass is not None:
+            self._values["user_pass"] = user_pass
 
     @builtins.property
     def app_role(
@@ -18170,6 +19362,17 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         '''
         result = self._values.get("token_secret_ref")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef"], result)
+
+    @builtins.property
+    def user_pass(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass"]:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuth#userPass
+        '''
+        result = self._values.get("user_pass")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -20118,6 +21321,161 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass",
+    jsii_struct_bases=[],
+    name_mapping={"path": "path", "username": "username", "secret_ref": "secretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass:
+    def __init__(
+        self,
+        *,
+        path: builtins.str,
+        username: builtins.str,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+        :param username: Username is a user name used to authenticate using the UserPass Vault authentication method.
+        :param secret_ref: SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4c0b94cc77dbc9bf5d277f712c6c780f02d800403f0170161b6ce6b1c7f0fb83)
+            check_type(argname="argument path", value=path, expected_type=type_hints["path"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "path": path,
+            "username": username,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def path(self) -> builtins.str:
+        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass#path
+        '''
+        result = self._values.get("path")
+        assert result is not None, "Required property 'path' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''Username is a user name used to authenticate using the UserPass Vault authentication method.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef"]:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e305806b5153df3a1a44c0688c27cfc4e9ac43a5df5c628abb8767da22caba6d)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider",
     jsii_struct_bases=[],
     name_mapping={
@@ -21760,7 +23118,7 @@ class ExternalSecretSpecDataFrom:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ExternalSecretSpecDataFromConversionStrategy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -21800,13 +23158,15 @@ class ExternalSecretSpecDataFrom:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretSpecDataFromConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ExternalSecretSpecDataFrom#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretSpecDataFromConversionStrategy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -21838,6 +23198,19 @@ class ExternalSecretSpecDataFrom:
         )
 
 
+@jsii.enum(jsii_type="ioexternal-secrets.ExternalSecretSpecDataFromConversionStrategy")
+class ExternalSecretSpecDataFromConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy.
+
+    :schema: ExternalSecretSpecDataFromConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretSpecDataRemoteRef",
     jsii_struct_bases=[],
@@ -21853,7 +23226,7 @@ class ExternalSecretSpecDataRemoteRef:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ExternalSecretSpecDataRemoteRefConversionStrategy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -21893,13 +23266,15 @@ class ExternalSecretSpecDataRemoteRef:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretSpecDataRemoteRefConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ExternalSecretSpecDataRemoteRef#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretSpecDataRemoteRefConversionStrategy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -21929,6 +23304,21 @@ class ExternalSecretSpecDataRemoteRef:
         return "ExternalSecretSpecDataRemoteRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretSpecDataRemoteRefConversionStrategy"
+)
+class ExternalSecretSpecDataRemoteRefConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy.
+
+    :schema: ExternalSecretSpecDataRemoteRefConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
 
 
 @jsii.data_type(
@@ -22007,7 +23397,7 @@ class ExternalSecretSpecTarget:
     def __init__(
         self,
         *,
-        creation_policy: typing.Optional[builtins.str] = None,
+        creation_policy: typing.Optional["ExternalSecretSpecTargetCreationPolicy"] = None,
         immutable: typing.Optional[builtins.bool] = None,
         name: typing.Optional[builtins.str] = None,
         template: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -22040,7 +23430,9 @@ class ExternalSecretSpecTarget:
             self._values["template"] = template
 
     @builtins.property
-    def creation_policy(self) -> typing.Optional[builtins.str]:
+    def creation_policy(
+        self,
+    ) -> typing.Optional["ExternalSecretSpecTargetCreationPolicy"]:
         '''CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'.
 
         :default: Owner'
@@ -22048,7 +23440,7 @@ class ExternalSecretSpecTarget:
         :schema: ExternalSecretSpecTarget#creationPolicy
         '''
         result = self._values.get("creation_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretSpecTargetCreationPolicy"], result)
 
     @builtins.property
     def immutable(self) -> typing.Optional[builtins.bool]:
@@ -22091,6 +23483,23 @@ class ExternalSecretSpecTarget:
         )
 
 
+@jsii.enum(jsii_type="ioexternal-secrets.ExternalSecretSpecTargetCreationPolicy")
+class ExternalSecretSpecTargetCreationPolicy(enum.Enum):
+    '''CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'.
+
+    :default: Owner'
+
+    :schema: ExternalSecretSpecTargetCreationPolicy
+    '''
+
+    OWNER = "OWNER"
+    '''Owner.'''
+    MERGE = "MERGE"
+    '''Merge.'''
+    NONE = "NONE"
+    '''None.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretSpecTargetTemplate",
     jsii_struct_bases=[],
@@ -22107,7 +23516,7 @@ class ExternalSecretSpecTargetTemplate:
         self,
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-        engine_version: typing.Optional[builtins.str] = None,
+        engine_version: typing.Optional["ExternalSecretSpecTargetTemplateEngineVersion"] = None,
         metadata: typing.Optional[typing.Union["ExternalSecretSpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
         template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretSpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
@@ -22152,13 +23561,15 @@ class ExternalSecretSpecTargetTemplate:
         return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
 
     @builtins.property
-    def engine_version(self) -> typing.Optional[builtins.str]:
+    def engine_version(
+        self,
+    ) -> typing.Optional["ExternalSecretSpecTargetTemplateEngineVersion"]:
         '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
 
         :schema: ExternalSecretSpecTargetTemplate#engineVersion
         '''
         result = self._values.get("engine_version")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretSpecTargetTemplateEngineVersion"], result)
 
     @builtins.property
     def metadata(self) -> typing.Optional["ExternalSecretSpecTargetTemplateMetadata"]:
@@ -22197,6 +23608,21 @@ class ExternalSecretSpecTargetTemplate:
         return "ExternalSecretSpecTargetTemplate(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretSpecTargetTemplateEngineVersion"
+)
+class ExternalSecretSpecTargetTemplateEngineVersion(enum.Enum):
+    '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
+    :schema: ExternalSecretSpecTargetTemplateEngineVersion
+    '''
+
+    V1 = "V1"
+    '''v1.'''
+    V2 = "V2"
+    '''v2.'''
 
 
 @jsii.data_type(
@@ -22971,9 +24397,9 @@ class ExternalSecretV1Beta1SpecDataFromExtract:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
-        metadata_policy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy"] = None,
+        metadata_policy: typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -23021,25 +24447,31 @@ class ExternalSecretV1Beta1SpecDataFromExtract:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataFromExtract#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataFromExtract#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy"], result)
 
     @builtins.property
-    def metadata_policy(self) -> typing.Optional[builtins.str]:
+    def metadata_policy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy"]:
         '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
 
         Defaults to None
@@ -23049,7 +24481,7 @@ class ExternalSecretV1Beta1SpecDataFromExtract:
         :schema: ExternalSecretV1Beta1SpecDataFromExtract#metadataPolicy
         '''
         result = self._values.get("metadata_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -23081,6 +24513,59 @@ class ExternalSecretV1Beta1SpecDataFromExtract:
         )
 
 
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy"
+)
+class ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy"
+)
+class ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy(enum.Enum):
+    '''Used to define a decoding Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy"
+)
+class ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy(enum.Enum):
+    '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
+
+    Defaults to None
+
+    :default: None
+
+    :schema: ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy
+    '''
+
+    NONE = "NONE"
+    '''None.'''
+    FETCH = "FETCH"
+    '''Fetch.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromFind",
     jsii_struct_bases=[],
@@ -23096,8 +24581,8 @@ class ExternalSecretV1Beta1SpecDataFromFind:
     def __init__(
         self,
         *,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataFromFindConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy"] = None,
         name: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromFindName", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
@@ -23134,22 +24619,26 @@ class ExternalSecretV1Beta1SpecDataFromFind:
             self._values["tags"] = tags
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromFindConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataFromFind#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromFindConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataFromFind#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy"], result)
 
     @builtins.property
     def name(self) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromFindName"]:
@@ -23188,6 +24677,40 @@ class ExternalSecretV1Beta1SpecDataFromFind:
         return "ExternalSecretV1Beta1SpecDataFromFind(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromFindConversionStrategy"
+)
+class ExternalSecretV1Beta1SpecDataFromFindConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataFromFindConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy"
+)
+class ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy(enum.Enum):
+    '''Used to define a decoding Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
 
 
 @jsii.data_type(
@@ -23234,27 +24757,34 @@ class ExternalSecretV1Beta1SpecDataFromFindName:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromRewrite",
     jsii_struct_bases=[],
-    name_mapping={"regexp": "regexp"},
+    name_mapping={"regexp": "regexp", "transform": "transform"},
 )
 class ExternalSecretV1Beta1SpecDataFromRewrite:
     def __init__(
         self,
         *,
         regexp: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromRewriteRegexp", typing.Dict[builtins.str, typing.Any]]] = None,
+        transform: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecDataFromRewriteTransform", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param regexp: Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.
+        :param transform: Used to apply string transformation on the secrets. The resulting key will be the output of the template applied by the operation.
 
         :schema: ExternalSecretV1Beta1SpecDataFromRewrite
         '''
         if isinstance(regexp, dict):
             regexp = ExternalSecretV1Beta1SpecDataFromRewriteRegexp(**regexp)
+        if isinstance(transform, dict):
+            transform = ExternalSecretV1Beta1SpecDataFromRewriteTransform(**transform)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__454681f1cc3a392e81ef5c92bfa786dde1e38e7aaa5f2a3ed665e0b4cb009c13)
             check_type(argname="argument regexp", value=regexp, expected_type=type_hints["regexp"])
+            check_type(argname="argument transform", value=transform, expected_type=type_hints["transform"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if regexp is not None:
             self._values["regexp"] = regexp
+        if transform is not None:
+            self._values["transform"] = transform
 
     @builtins.property
     def regexp(
@@ -23268,6 +24798,19 @@ class ExternalSecretV1Beta1SpecDataFromRewrite:
         '''
         result = self._values.get("regexp")
         return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromRewriteRegexp"], result)
+
+    @builtins.property
+    def transform(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromRewriteTransform"]:
+        '''Used to apply string transformation on the secrets.
+
+        The resulting key will be the output of the template applied by the operation.
+
+        :schema: ExternalSecretV1Beta1SpecDataFromRewrite#transform
+        '''
+        result = self._values.get("transform")
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataFromRewriteTransform"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -23339,6 +24882,52 @@ class ExternalSecretV1Beta1SpecDataFromRewriteRegexp:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromRewriteTransform",
+    jsii_struct_bases=[],
+    name_mapping={"template": "template"},
+)
+class ExternalSecretV1Beta1SpecDataFromRewriteTransform:
+    def __init__(self, *, template: builtins.str) -> None:
+        '''Used to apply string transformation on the secrets.
+
+        The resulting key will be the output of the template applied by the operation.
+
+        :param template: Used to define the template to apply on the secret name. ``.value `` will specify the secret name in the template.
+
+        :schema: ExternalSecretV1Beta1SpecDataFromRewriteTransform
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d47b0f8c8a5dc70763b8dc023f9180f55c381aaf0b4f19237eb10dcd1ac06128)
+            check_type(argname="argument template", value=template, expected_type=type_hints["template"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "template": template,
+        }
+
+    @builtins.property
+    def template(self) -> builtins.str:
+        '''Used to define the template to apply on the secret name.
+
+        ``.value `` will specify the secret name in the template.
+
+        :schema: ExternalSecretV1Beta1SpecDataFromRewriteTransform#template
+        '''
+        result = self._values.get("template")
+        assert result is not None, "Required property 'template' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ExternalSecretV1Beta1SpecDataFromRewriteTransform(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataFromSourceRef",
     jsii_struct_bases=[],
     name_mapping={"generator_ref": "generatorRef", "store_ref": "storeRef"},
@@ -23354,7 +24943,7 @@ class ExternalSecretV1Beta1SpecDataFromSourceRef:
 
         Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
 
-        :param generator_ref: GeneratorRef points to a generator custom resource in.
+        :param generator_ref: GeneratorRef points to a generator custom resource.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
 
         :schema: ExternalSecretV1Beta1SpecDataFromSourceRef
@@ -23377,7 +24966,7 @@ class ExternalSecretV1Beta1SpecDataFromSourceRef:
     def generator_ref(
         self,
     ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromSourceRefGeneratorRef"]:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
 
         :schema: ExternalSecretV1Beta1SpecDataFromSourceRef#generatorRef
         '''
@@ -23420,7 +25009,7 @@ class ExternalSecretV1Beta1SpecDataFromSourceRefGeneratorRef:
         name: builtins.str,
         api_version: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -23560,9 +25149,9 @@ class ExternalSecretV1Beta1SpecDataRemoteRef:
         self,
         *,
         key: builtins.str,
-        conversion_strategy: typing.Optional[builtins.str] = None,
-        decoding_strategy: typing.Optional[builtins.str] = None,
-        metadata_policy: typing.Optional[builtins.str] = None,
+        conversion_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy"] = None,
+        decoding_strategy: typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy"] = None,
+        metadata_policy: typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy"] = None,
         property: typing.Optional[builtins.str] = None,
         version: typing.Optional[builtins.str] = None,
     ) -> None:
@@ -23610,25 +25199,31 @@ class ExternalSecretV1Beta1SpecDataRemoteRef:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def conversion_strategy(self) -> typing.Optional[builtins.str]:
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataRemoteRef#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy"], result)
 
     @builtins.property
-    def decoding_strategy(self) -> typing.Optional[builtins.str]:
+    def decoding_strategy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy"]:
         '''Used to define a decoding Strategy.
 
         :schema: ExternalSecretV1Beta1SpecDataRemoteRef#decodingStrategy
         '''
         result = self._values.get("decoding_strategy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy"], result)
 
     @builtins.property
-    def metadata_policy(self) -> typing.Optional[builtins.str]:
+    def metadata_policy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy"]:
         '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
 
         Defaults to None
@@ -23638,7 +25233,7 @@ class ExternalSecretV1Beta1SpecDataRemoteRef:
         :schema: ExternalSecretV1Beta1SpecDataRemoteRef#metadataPolicy
         '''
         result = self._values.get("metadata_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy"], result)
 
     @builtins.property
     def property(self) -> typing.Optional[builtins.str]:
@@ -23670,6 +25265,59 @@ class ExternalSecretV1Beta1SpecDataRemoteRef:
         )
 
 
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy"
+)
+class ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy
+    '''
+
+    DEFAULT = "DEFAULT"
+    '''Default.'''
+    UNICODE = "UNICODE"
+    '''Unicode.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy"
+)
+class ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy(enum.Enum):
+    '''Used to define a decoding Strategy.
+
+    :schema: ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy
+    '''
+
+    AUTO = "AUTO"
+    '''Auto.'''
+    BASE64 = "BASE64"
+    '''Base64.'''
+    BASE64_URL = "BASE64_URL"
+    '''Base64URL.'''
+    NONE = "NONE"
+    '''None.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy"
+)
+class ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy(enum.Enum):
+    '''Policy for fetching tags/labels from provider secrets, possible options are Fetch, None.
+
+    Defaults to None
+
+    :default: None
+
+    :schema: ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy
+    '''
+
+    NONE = "NONE"
+    '''None.'''
+    FETCH = "FETCH"
+    '''Fetch.'''
+
+
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecDataSourceRef",
     jsii_struct_bases=[],
@@ -23684,7 +25332,7 @@ class ExternalSecretV1Beta1SpecDataSourceRef:
     ) -> None:
         '''SourceRef allows you to override the source from which the value will pulled from.
 
-        :param generator_ref: GeneratorRef points to a generator custom resource in.
+        :param generator_ref: GeneratorRef points to a generator custom resource. Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
 
         :schema: ExternalSecretV1Beta1SpecDataSourceRef
@@ -23707,7 +25355,9 @@ class ExternalSecretV1Beta1SpecDataSourceRef:
     def generator_ref(
         self,
     ) -> typing.Optional["ExternalSecretV1Beta1SpecDataSourceRefGeneratorRef"]:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
+
+        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
 
         :schema: ExternalSecretV1Beta1SpecDataSourceRef#generatorRef
         '''
@@ -23750,7 +25400,9 @@ class ExternalSecretV1Beta1SpecDataSourceRefGeneratorRef:
         name: builtins.str,
         api_version: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''GeneratorRef points to a generator custom resource in.
+        '''GeneratorRef points to a generator custom resource.
+
+        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -24111,8 +25763,8 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         self,
         *,
         data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-        engine_version: typing.Optional[builtins.str] = None,
-        merge_policy: typing.Optional[builtins.str] = None,
+        engine_version: typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateEngineVersion"] = None,
+        merge_policy: typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateMergePolicy"] = None,
         metadata: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
         template_from: typing.Optional[typing.Sequence[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
         type: typing.Optional[builtins.str] = None,
@@ -24120,7 +25772,7 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         '''Template defines a blueprint for the created Secret resource.
 
         :param data: 
-        :param engine_version: 
+        :param engine_version: EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
         :param merge_policy: 
         :param metadata: ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.
         :param template_from: 
@@ -24161,20 +25813,25 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
 
     @builtins.property
-    def engine_version(self) -> typing.Optional[builtins.str]:
-        '''
+    def engine_version(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateEngineVersion"]:
+        '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
         :schema: ExternalSecretV1Beta1SpecTargetTemplate#engineVersion
         '''
         result = self._values.get("engine_version")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateEngineVersion"], result)
 
     @builtins.property
-    def merge_policy(self) -> typing.Optional[builtins.str]:
+    def merge_policy(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateMergePolicy"]:
         '''
         :schema: ExternalSecretV1Beta1SpecTargetTemplate#mergePolicy
         '''
         result = self._values.get("merge_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateMergePolicy"], result)
 
     @builtins.property
     def metadata(
@@ -24215,6 +25872,35 @@ class ExternalSecretV1Beta1SpecTargetTemplate:
         return "ExternalSecretV1Beta1SpecTargetTemplate(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecTargetTemplateEngineVersion"
+)
+class ExternalSecretV1Beta1SpecTargetTemplateEngineVersion(enum.Enum):
+    '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
+    :schema: ExternalSecretV1Beta1SpecTargetTemplateEngineVersion
+    '''
+
+    V1 = "V1"
+    '''v1.'''
+    V2 = "V2"
+    '''v2.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecTargetTemplateMergePolicy"
+)
+class ExternalSecretV1Beta1SpecTargetTemplateMergePolicy(enum.Enum):
+    '''
+    :schema: ExternalSecretV1Beta1SpecTargetTemplateMergePolicy
+    '''
+
+    REPLACE = "REPLACE"
+    '''Replace.'''
+    MERGE = "MERGE"
+    '''Merge.'''
 
 
 @jsii.data_type(
@@ -24293,7 +25979,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom:
         config_map: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
         literal: typing.Optional[builtins.str] = None,
         secret: typing.Optional[typing.Union["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
-        target: typing.Optional[builtins.str] = None,
+        target: typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget"] = None,
     ) -> None:
         '''
         :param config_map: 
@@ -24352,12 +26038,14 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom:
         return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret"], result)
 
     @builtins.property
-    def target(self) -> typing.Optional[builtins.str]:
+    def target(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget"]:
         '''
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom#target
         '''
         result = self._values.get("target")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -24440,7 +26128,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems:
         self,
         *,
         key: builtins.str,
-        template_as: typing.Optional[builtins.str] = None,
+        template_as: typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"] = None,
     ) -> None:
         '''
         :param key: 
@@ -24468,12 +26156,14 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def template_as(self) -> typing.Optional[builtins.str]:
+    def template_as(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"]:
         '''
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems#templateAs
         '''
         result = self._values.get("template_as")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -24485,6 +26175,22 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems:
         return "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs"
+)
+class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs(
+    enum.Enum,
+):
+    '''
+    :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
 
 
 @jsii.data_type(
@@ -24556,7 +26262,7 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems:
         self,
         *,
         key: builtins.str,
-        template_as: typing.Optional[builtins.str] = None,
+        template_as: typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs"] = None,
     ) -> None:
         '''
         :param key: 
@@ -24584,12 +26290,14 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems:
         return typing.cast(builtins.str, result)
 
     @builtins.property
-    def template_as(self) -> typing.Optional[builtins.str]:
+    def template_as(
+        self,
+    ) -> typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs"]:
         '''
         :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems#templateAs
         '''
         result = self._values.get("template_as")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -24601,6 +26309,38 @@ class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems:
         return "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs"
+)
+class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs(
+    enum.Enum,
+):
+    '''
+    :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget"
+)
+class ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget(enum.Enum):
+    '''
+    :schema: ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget
+    '''
+
+    DATA = "DATA"
+    '''Data.'''
+    ANNOTATIONS = "ANNOTATIONS"
+    '''Annotations.'''
+    LABELS = "LABELS"
+    '''Labels.'''
 
 
 class PushSecret(
@@ -24736,6 +26476,7 @@ class PushSecretProps:
         "data": "data",
         "deletion_policy": "deletionPolicy",
         "refresh_interval": "refreshInterval",
+        "template": "template",
     },
 )
 class PushSecretSpec:
@@ -24745,8 +26486,9 @@ class PushSecretSpec:
         secret_store_refs: typing.Sequence[typing.Union["PushSecretSpecSecretStoreRefs", typing.Dict[builtins.str, typing.Any]]],
         selector: typing.Union["PushSecretSpecSelector", typing.Dict[builtins.str, typing.Any]],
         data: typing.Optional[typing.Sequence[typing.Union["PushSecretSpecData", typing.Dict[builtins.str, typing.Any]]]] = None,
-        deletion_policy: typing.Optional[builtins.str] = None,
+        deletion_policy: typing.Optional["PushSecretSpecDeletionPolicy"] = None,
         refresh_interval: typing.Optional[builtins.str] = None,
+        template: typing.Optional[typing.Union["PushSecretSpecTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''PushSecretSpec configures the behavior of the PushSecret.
 
@@ -24755,11 +26497,14 @@ class PushSecretSpec:
         :param data: Secret Data that should be pushed to providers.
         :param deletion_policy: Deletion Policy to handle Secrets in the provider. Possible Values: "Delete/None". Defaults to "None". Default: None".
         :param refresh_interval: The Interval to which External Secrets will try to push a secret definition.
+        :param template: Template defines a blueprint for the created Secret resource.
 
         :schema: PushSecretSpec
         '''
         if isinstance(selector, dict):
             selector = PushSecretSpecSelector(**selector)
+        if isinstance(template, dict):
+            template = PushSecretSpecTemplate(**template)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__01e12d461460e19379d69e28b07562f8ff407ec647ae133368d5aebd3e1bad6b)
             check_type(argname="argument secret_store_refs", value=secret_store_refs, expected_type=type_hints["secret_store_refs"])
@@ -24767,6 +26512,7 @@ class PushSecretSpec:
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument deletion_policy", value=deletion_policy, expected_type=type_hints["deletion_policy"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
+            check_type(argname="argument template", value=template, expected_type=type_hints["template"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_store_refs": secret_store_refs,
             "selector": selector,
@@ -24777,6 +26523,8 @@ class PushSecretSpec:
             self._values["deletion_policy"] = deletion_policy
         if refresh_interval is not None:
             self._values["refresh_interval"] = refresh_interval
+        if template is not None:
+            self._values["template"] = template
 
     @builtins.property
     def secret_store_refs(self) -> typing.List["PushSecretSpecSecretStoreRefs"]:
@@ -24807,7 +26555,7 @@ class PushSecretSpec:
         return typing.cast(typing.Optional[typing.List["PushSecretSpecData"]], result)
 
     @builtins.property
-    def deletion_policy(self) -> typing.Optional[builtins.str]:
+    def deletion_policy(self) -> typing.Optional["PushSecretSpecDeletionPolicy"]:
         '''Deletion Policy to handle Secrets in the provider.
 
         Possible Values: "Delete/None". Defaults to "None".
@@ -24817,7 +26565,7 @@ class PushSecretSpec:
         :schema: PushSecretSpec#deletionPolicy
         '''
         result = self._values.get("deletion_policy")
-        return typing.cast(typing.Optional[builtins.str], result)
+        return typing.cast(typing.Optional["PushSecretSpecDeletionPolicy"], result)
 
     @builtins.property
     def refresh_interval(self) -> typing.Optional[builtins.str]:
@@ -24827,6 +26575,15 @@ class PushSecretSpec:
         '''
         result = self._values.get("refresh_interval")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def template(self) -> typing.Optional["PushSecretSpecTemplate"]:
+        '''Template defines a blueprint for the created Secret resource.
+
+        :schema: PushSecretSpec#template
+        '''
+        result = self._values.get("template")
+        return typing.cast(typing.Optional["PushSecretSpecTemplate"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -24843,16 +26600,18 @@ class PushSecretSpec:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.PushSecretSpecData",
     jsii_struct_bases=[],
-    name_mapping={"match": "match"},
+    name_mapping={"match": "match", "metadata": "metadata"},
 )
 class PushSecretSpecData:
     def __init__(
         self,
         *,
         match: typing.Union["PushSecretSpecDataMatch", typing.Dict[builtins.str, typing.Any]],
+        metadata: typing.Any = None,
     ) -> None:
         '''
         :param match: Match a given Secret Key to be pushed to the provider.
+        :param metadata: Metadata is metadata attached to the secret. The structure of metadata is provider specific, please look it up in the provider documentation.
 
         :schema: PushSecretSpecData
         '''
@@ -24861,9 +26620,12 @@ class PushSecretSpecData:
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__2e69051c5188259a4dc4335438fe6e7bbda39d93381fe4f0033cda0f3f3bfcf8)
             check_type(argname="argument match", value=match, expected_type=type_hints["match"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "match": match,
         }
+        if metadata is not None:
+            self._values["metadata"] = metadata
 
     @builtins.property
     def match(self) -> "PushSecretSpecDataMatch":
@@ -24874,6 +26636,17 @@ class PushSecretSpecData:
         result = self._values.get("match")
         assert result is not None, "Required property 'match' is missing"
         return typing.cast("PushSecretSpecDataMatch", result)
+
+    @builtins.property
+    def metadata(self) -> typing.Any:
+        '''Metadata is metadata attached to the secret.
+
+        The structure of metadata is provider specific, please look it up in the provider documentation.
+
+        :schema: PushSecretSpecData#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Any, result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -24897,7 +26670,7 @@ class PushSecretSpecDataMatch:
         self,
         *,
         remote_ref: typing.Union["PushSecretSpecDataMatchRemoteRef", typing.Dict[builtins.str, typing.Any]],
-        secret_key: builtins.str,
+        secret_key: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Match a given Secret Key to be pushed to the provider.
 
@@ -24914,8 +26687,9 @@ class PushSecretSpecDataMatch:
             check_type(argname="argument secret_key", value=secret_key, expected_type=type_hints["secret_key"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "remote_ref": remote_ref,
-            "secret_key": secret_key,
         }
+        if secret_key is not None:
+            self._values["secret_key"] = secret_key
 
     @builtins.property
     def remote_ref(self) -> "PushSecretSpecDataMatchRemoteRef":
@@ -24928,14 +26702,13 @@ class PushSecretSpecDataMatch:
         return typing.cast("PushSecretSpecDataMatchRemoteRef", result)
 
     @builtins.property
-    def secret_key(self) -> builtins.str:
+    def secret_key(self) -> typing.Optional[builtins.str]:
         '''Secret Key to be pushed.
 
         :schema: PushSecretSpecDataMatch#secretKey
         '''
         result = self._values.get("secret_key")
-        assert result is not None, "Required property 'secret_key' is missing"
-        return typing.cast(builtins.str, result)
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -25007,6 +26780,23 @@ class PushSecretSpecDataMatchRemoteRef:
         return "PushSecretSpecDataMatchRemoteRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecDeletionPolicy")
+class PushSecretSpecDeletionPolicy(enum.Enum):
+    '''Deletion Policy to handle Secrets in the provider.
+
+    Possible Values: "Delete/None". Defaults to "None".
+
+    :default: None".
+
+    :schema: PushSecretSpecDeletionPolicy
+    '''
+
+    DELETE = "DELETE"
+    '''Delete.'''
+    NONE = "NONE"
+    '''None.'''
 
 
 @jsii.data_type(
@@ -25325,6 +27115,579 @@ class PushSecretSpecSelectorSecret:
         return "PushSecretSpecSelectorSecret(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplate",
+    jsii_struct_bases=[],
+    name_mapping={
+        "data": "data",
+        "engine_version": "engineVersion",
+        "merge_policy": "mergePolicy",
+        "metadata": "metadata",
+        "template_from": "templateFrom",
+        "type": "type",
+    },
+)
+class PushSecretSpecTemplate:
+    def __init__(
+        self,
+        *,
+        data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+        engine_version: typing.Optional["PushSecretSpecTemplateEngineVersion"] = None,
+        merge_policy: typing.Optional["PushSecretSpecTemplateMergePolicy"] = None,
+        metadata: typing.Optional[typing.Union["PushSecretSpecTemplateMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        template_from: typing.Optional[typing.Sequence[typing.Union["PushSecretSpecTemplateTemplateFrom", typing.Dict[builtins.str, typing.Any]]]] = None,
+        type: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Template defines a blueprint for the created Secret resource.
+
+        :param data: 
+        :param engine_version: EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+        :param merge_policy: 
+        :param metadata: ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.
+        :param template_from: 
+        :param type: 
+
+        :schema: PushSecretSpecTemplate
+        '''
+        if isinstance(metadata, dict):
+            metadata = PushSecretSpecTemplateMetadata(**metadata)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__043efa311dbe27603a426dd211a811e5149303d0034c83846ba775fa2e9085f5)
+            check_type(argname="argument data", value=data, expected_type=type_hints["data"])
+            check_type(argname="argument engine_version", value=engine_version, expected_type=type_hints["engine_version"])
+            check_type(argname="argument merge_policy", value=merge_policy, expected_type=type_hints["merge_policy"])
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument template_from", value=template_from, expected_type=type_hints["template_from"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if data is not None:
+            self._values["data"] = data
+        if engine_version is not None:
+            self._values["engine_version"] = engine_version
+        if merge_policy is not None:
+            self._values["merge_policy"] = merge_policy
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if template_from is not None:
+            self._values["template_from"] = template_from
+        if type is not None:
+            self._values["type"] = type
+
+    @builtins.property
+    def data(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
+        '''
+        :schema: PushSecretSpecTemplate#data
+        '''
+        result = self._values.get("data")
+        return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
+
+    @builtins.property
+    def engine_version(self) -> typing.Optional["PushSecretSpecTemplateEngineVersion"]:
+        '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
+        :schema: PushSecretSpecTemplate#engineVersion
+        '''
+        result = self._values.get("engine_version")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateEngineVersion"], result)
+
+    @builtins.property
+    def merge_policy(self) -> typing.Optional["PushSecretSpecTemplateMergePolicy"]:
+        '''
+        :schema: PushSecretSpecTemplate#mergePolicy
+        '''
+        result = self._values.get("merge_policy")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateMergePolicy"], result)
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["PushSecretSpecTemplateMetadata"]:
+        '''ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.
+
+        :schema: PushSecretSpecTemplate#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateMetadata"], result)
+
+    @builtins.property
+    def template_from(
+        self,
+    ) -> typing.Optional[typing.List["PushSecretSpecTemplateTemplateFrom"]]:
+        '''
+        :schema: PushSecretSpecTemplate#templateFrom
+        '''
+        result = self._values.get("template_from")
+        return typing.cast(typing.Optional[typing.List["PushSecretSpecTemplateTemplateFrom"]], result)
+
+    @builtins.property
+    def type(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: PushSecretSpecTemplate#type
+        '''
+        result = self._values.get("type")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplate(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecTemplateEngineVersion")
+class PushSecretSpecTemplateEngineVersion(enum.Enum):
+    '''EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+
+    :schema: PushSecretSpecTemplateEngineVersion
+    '''
+
+    V1 = "V1"
+    '''v1.'''
+    V2 = "V2"
+    '''v2.'''
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecTemplateMergePolicy")
+class PushSecretSpecTemplateMergePolicy(enum.Enum):
+    '''
+    :schema: PushSecretSpecTemplateMergePolicy
+    '''
+
+    REPLACE = "REPLACE"
+    '''Replace.'''
+    MERGE = "MERGE"
+    '''Merge.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateMetadata",
+    jsii_struct_bases=[],
+    name_mapping={"annotations": "annotations", "labels": "labels"},
+)
+class PushSecretSpecTemplateMetadata:
+    def __init__(
+        self,
+        *,
+        annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+        labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    ) -> None:
+        '''ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.
+
+        :param annotations: 
+        :param labels: 
+
+        :schema: PushSecretSpecTemplateMetadata
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5d52589b70a620d8ac512086f76140bbf322ad60786b3dec8258b5b52f568600)
+            check_type(argname="argument annotations", value=annotations, expected_type=type_hints["annotations"])
+            check_type(argname="argument labels", value=labels, expected_type=type_hints["labels"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if annotations is not None:
+            self._values["annotations"] = annotations
+        if labels is not None:
+            self._values["labels"] = labels
+
+    @builtins.property
+    def annotations(
+        self,
+    ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
+        '''
+        :schema: PushSecretSpecTemplateMetadata#annotations
+        '''
+        result = self._values.get("annotations")
+        return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
+
+    @builtins.property
+    def labels(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
+        '''
+        :schema: PushSecretSpecTemplateMetadata#labels
+        '''
+        result = self._values.get("labels")
+        return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateMetadata(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFrom",
+    jsii_struct_bases=[],
+    name_mapping={
+        "config_map": "configMap",
+        "literal": "literal",
+        "secret": "secret",
+        "target": "target",
+    },
+)
+class PushSecretSpecTemplateTemplateFrom:
+    def __init__(
+        self,
+        *,
+        config_map: typing.Optional[typing.Union["PushSecretSpecTemplateTemplateFromConfigMap", typing.Dict[builtins.str, typing.Any]]] = None,
+        literal: typing.Optional[builtins.str] = None,
+        secret: typing.Optional[typing.Union["PushSecretSpecTemplateTemplateFromSecret", typing.Dict[builtins.str, typing.Any]]] = None,
+        target: typing.Optional["PushSecretSpecTemplateTemplateFromTarget"] = None,
+    ) -> None:
+        '''
+        :param config_map: 
+        :param literal: 
+        :param secret: 
+        :param target: 
+
+        :schema: PushSecretSpecTemplateTemplateFrom
+        '''
+        if isinstance(config_map, dict):
+            config_map = PushSecretSpecTemplateTemplateFromConfigMap(**config_map)
+        if isinstance(secret, dict):
+            secret = PushSecretSpecTemplateTemplateFromSecret(**secret)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f4a614224c0c7c641288cae1b707047dac305041493dfd9c87bbabace35f1620)
+            check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
+            check_type(argname="argument literal", value=literal, expected_type=type_hints["literal"])
+            check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
+            check_type(argname="argument target", value=target, expected_type=type_hints["target"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if config_map is not None:
+            self._values["config_map"] = config_map
+        if literal is not None:
+            self._values["literal"] = literal
+        if secret is not None:
+            self._values["secret"] = secret
+        if target is not None:
+            self._values["target"] = target
+
+    @builtins.property
+    def config_map(
+        self,
+    ) -> typing.Optional["PushSecretSpecTemplateTemplateFromConfigMap"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFrom#configMap
+        '''
+        result = self._values.get("config_map")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateTemplateFromConfigMap"], result)
+
+    @builtins.property
+    def literal(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFrom#literal
+        '''
+        result = self._values.get("literal")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secret(self) -> typing.Optional["PushSecretSpecTemplateTemplateFromSecret"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFrom#secret
+        '''
+        result = self._values.get("secret")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateTemplateFromSecret"], result)
+
+    @builtins.property
+    def target(self) -> typing.Optional["PushSecretSpecTemplateTemplateFromTarget"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFrom#target
+        '''
+        result = self._values.get("target")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateTemplateFromTarget"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateTemplateFrom(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromConfigMap",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "name": "name"},
+)
+class PushSecretSpecTemplateTemplateFromConfigMap:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["PushSecretSpecTemplateTemplateFromConfigMapItems", typing.Dict[builtins.str, typing.Any]]],
+        name: builtins.str,
+    ) -> None:
+        '''
+        :param items: 
+        :param name: 
+
+        :schema: PushSecretSpecTemplateTemplateFromConfigMap
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ab8fa0fe2413fb0ecd9497afcfe96a9033efa9c944df15e078cf2dbb321fdd8c)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+            "name": name,
+        }
+
+    @builtins.property
+    def items(self) -> typing.List["PushSecretSpecTemplateTemplateFromConfigMapItems"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromConfigMap#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["PushSecretSpecTemplateTemplateFromConfigMapItems"], result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromConfigMap#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateTemplateFromConfigMap(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromConfigMapItems",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "template_as": "templateAs"},
+)
+class PushSecretSpecTemplateTemplateFromConfigMapItems:
+    def __init__(
+        self,
+        *,
+        key: builtins.str,
+        template_as: typing.Optional["PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs"] = None,
+    ) -> None:
+        '''
+        :param key: 
+        :param template_as: 
+
+        :schema: PushSecretSpecTemplateTemplateFromConfigMapItems
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e6db7a84c42a39b4216b7fad6296c30fafe517dddacb69bc4a4cec9f07552b2a)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument template_as", value=template_as, expected_type=type_hints["template_as"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "key": key,
+        }
+        if template_as is not None:
+            self._values["template_as"] = template_as
+
+    @builtins.property
+    def key(self) -> builtins.str:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromConfigMapItems#key
+        '''
+        result = self._values.get("key")
+        assert result is not None, "Required property 'key' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def template_as(
+        self,
+    ) -> typing.Optional["PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromConfigMapItems#templateAs
+        '''
+        result = self._values.get("template_as")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateTemplateFromConfigMapItems(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs"
+)
+class PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs(enum.Enum):
+    '''
+    :schema: PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromSecret",
+    jsii_struct_bases=[],
+    name_mapping={"items": "items", "name": "name"},
+)
+class PushSecretSpecTemplateTemplateFromSecret:
+    def __init__(
+        self,
+        *,
+        items: typing.Sequence[typing.Union["PushSecretSpecTemplateTemplateFromSecretItems", typing.Dict[builtins.str, typing.Any]]],
+        name: builtins.str,
+    ) -> None:
+        '''
+        :param items: 
+        :param name: 
+
+        :schema: PushSecretSpecTemplateTemplateFromSecret
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__cc8257e94fa508bc1d240a1c74aee6b95681f4425961467f7052144b089177af)
+            check_type(argname="argument items", value=items, expected_type=type_hints["items"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "items": items,
+            "name": name,
+        }
+
+    @builtins.property
+    def items(self) -> typing.List["PushSecretSpecTemplateTemplateFromSecretItems"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromSecret#items
+        '''
+        result = self._values.get("items")
+        assert result is not None, "Required property 'items' is missing"
+        return typing.cast(typing.List["PushSecretSpecTemplateTemplateFromSecretItems"], result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromSecret#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateTemplateFromSecret(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromSecretItems",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "template_as": "templateAs"},
+)
+class PushSecretSpecTemplateTemplateFromSecretItems:
+    def __init__(
+        self,
+        *,
+        key: builtins.str,
+        template_as: typing.Optional["PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs"] = None,
+    ) -> None:
+        '''
+        :param key: 
+        :param template_as: 
+
+        :schema: PushSecretSpecTemplateTemplateFromSecretItems
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9339fc9558b78011b1c6592c9f29be59728aad524684c223264d0508baaf19cd)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument template_as", value=template_as, expected_type=type_hints["template_as"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "key": key,
+        }
+        if template_as is not None:
+            self._values["template_as"] = template_as
+
+    @builtins.property
+    def key(self) -> builtins.str:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromSecretItems#key
+        '''
+        result = self._values.get("key")
+        assert result is not None, "Required property 'key' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def template_as(
+        self,
+    ) -> typing.Optional["PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs"]:
+        '''
+        :schema: PushSecretSpecTemplateTemplateFromSecretItems#templateAs
+        '''
+        result = self._values.get("template_as")
+        return typing.cast(typing.Optional["PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "PushSecretSpecTemplateTemplateFromSecretItems(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs"
+)
+class PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs(enum.Enum):
+    '''
+    :schema: PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs
+    '''
+
+    VALUES = "VALUES"
+    '''Values.'''
+    KEYS_AND_VALUES = "KEYS_AND_VALUES"
+    '''KeysAndValues.'''
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecTemplateTemplateFromTarget")
+class PushSecretSpecTemplateTemplateFromTarget(enum.Enum):
+    '''
+    :schema: PushSecretSpecTemplateTemplateFromTarget
+    '''
+
+    DATA = "DATA"
+    '''Data.'''
+    ANNOTATIONS = "ANNOTATIONS"
+    '''Annotations.'''
+    LABELS = "LABELS"
+    '''Labels.'''
 
 
 class SecretStore(
@@ -29930,7 +32293,15 @@ class SecretStoreSpecProviderKubernetesServerCaProviderType(enum.Enum):
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreSpecProviderOracle",
     jsii_struct_bases=[],
-    name_mapping={"region": "region", "vault": "vault", "auth": "auth"},
+    name_mapping={
+        "region": "region",
+        "vault": "vault",
+        "auth": "auth",
+        "compartment": "compartment",
+        "encryption_key": "encryptionKey",
+        "principal_type": "principalType",
+        "service_account_ref": "serviceAccountRef",
+    },
 )
 class SecretStoreSpecProviderOracle:
     def __init__(
@@ -29939,28 +32310,50 @@ class SecretStoreSpecProviderOracle:
         region: builtins.str,
         vault: builtins.str,
         auth: typing.Optional[typing.Union["SecretStoreSpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        compartment: typing.Optional[builtins.str] = None,
+        encryption_key: typing.Optional[builtins.str] = None,
+        principal_type: typing.Optional["SecretStoreSpecProviderOraclePrincipalType"] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderOracleServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
         :param region: Region is the region where vault is located.
         :param vault: Vault is the vault's OCID of the specific vault where secret is located.
-        :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        :param compartment: Compartment is the vault compartment OCID. Required for PushSecret
+        :param encryption_key: EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret
+        :param principal_type: The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :schema: SecretStoreSpecProviderOracle
         '''
         if isinstance(auth, dict):
             auth = SecretStoreSpecProviderOracleAuth(**auth)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreSpecProviderOracleServiceAccountRef(**service_account_ref)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__8c20124e1b995d76a5c23860f9ecff1ebac42889eac56116daf01652dc9c1605)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument compartment", value=compartment, expected_type=type_hints["compartment"])
+            check_type(argname="argument encryption_key", value=encryption_key, expected_type=type_hints["encryption_key"])
+            check_type(argname="argument principal_type", value=principal_type, expected_type=type_hints["principal_type"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
         if auth is not None:
             self._values["auth"] = auth
+        if compartment is not None:
+            self._values["compartment"] = compartment
+        if encryption_key is not None:
+            self._values["encryption_key"] = encryption_key
+        if principal_type is not None:
+            self._values["principal_type"] = principal_type
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
 
     @builtins.property
     def region(self) -> builtins.str:
@@ -29986,12 +32379,58 @@ class SecretStoreSpecProviderOracle:
     def auth(self) -> typing.Optional["SecretStoreSpecProviderOracleAuth"]:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
 
         :schema: SecretStoreSpecProviderOracle#auth
         '''
         result = self._values.get("auth")
         return typing.cast(typing.Optional["SecretStoreSpecProviderOracleAuth"], result)
+
+    @builtins.property
+    def compartment(self) -> typing.Optional[builtins.str]:
+        '''Compartment is the vault compartment OCID.
+
+        Required for PushSecret
+
+        :schema: SecretStoreSpecProviderOracle#compartment
+        '''
+        result = self._values.get("compartment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def encryption_key(self) -> typing.Optional[builtins.str]:
+        '''EncryptionKey is the OCID of the encryption key within the vault.
+
+        Required for PushSecret
+
+        :schema: SecretStoreSpecProviderOracle#encryptionKey
+        '''
+        result = self._values.get("encryption_key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def principal_type(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderOraclePrincipalType"]:
+        '''The type of principal to use for authentication.
+
+        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+        :schema: SecretStoreSpecProviderOracle#principalType
+        '''
+        result = self._values.get("principal_type")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderOraclePrincipalType"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderOracleServiceAccountRef"]:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :schema: SecretStoreSpecProviderOracle#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderOracleServiceAccountRef"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -30020,7 +32459,7 @@ class SecretStoreSpecProviderOracleAuth:
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
 
         :param secret_ref: SecretRef to pass through sensitive information.
         :param tenancy: Tenancy is the tenancy OCID where user is located.
@@ -30297,6 +32736,99 @@ class SecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
 
     def __repr__(self) -> str:
         return "SecretStoreSpecProviderOracleAuthSecretRefPrivatekey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.SecretStoreSpecProviderOraclePrincipalType")
+class SecretStoreSpecProviderOraclePrincipalType(enum.Enum):
+    '''The type of principal to use for authentication.
+
+    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+    :schema: SecretStoreSpecProviderOraclePrincipalType
+    '''
+
+    USER_PRINCIPAL = "USER_PRINCIPAL"
+    '''UserPrincipal.'''
+    INSTANCE_PRINCIPAL = "INSTANCE_PRINCIPAL"
+    '''InstancePrincipal.'''
+    WORKLOAD = "WORKLOAD"
+    '''Workload.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderOracleServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderOracleServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOracleServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__97202d07f8a20c377da4a4404da5930f6c1182c8d25b0837a4ffd53826a2bd5c)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreSpecProviderOracleServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: SecretStoreSpecProviderOracleServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOracleServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderOracleServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -34988,6 +37520,7 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
         "auth": "auth",
         "external_id": "externalId",
         "role": "role",
+        "secrets_manager": "secretsManager",
         "session_tags": "sessionTags",
         "transitive_tag_keys": "transitiveTagKeys",
     },
@@ -35002,6 +37535,7 @@ class SecretStoreV1Beta1SpecProviderAws:
         auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         external_id: typing.Optional[builtins.str] = None,
         role: typing.Optional[builtins.str] = None,
+        secrets_manager: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAwsSecretsManager", typing.Dict[builtins.str, typing.Any]]] = None,
         session_tags: typing.Optional[typing.Sequence[typing.Union["SecretStoreV1Beta1SpecProviderAwsSessionTags", typing.Dict[builtins.str, typing.Any]]]] = None,
         transitive_tag_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
     ) -> None:
@@ -35009,17 +37543,20 @@ class SecretStoreV1Beta1SpecProviderAws:
 
         :param region: AWS Region to be used for the provider.
         :param service: Service defines which service should be used to fetch the secrets.
-        :param additional_roles: AdditionalRoles is a chained list of Role ARNs which the SecretManager provider will sequentially assume before assuming Role.
+        :param additional_roles: AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role.
         :param auth: Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials.
         :param external_id: AWS External ID set on assumed IAM roles.
-        :param role: Role is a Role ARN which the SecretManager provider will assume.
+        :param role: Role is a Role ARN which the provider will assume.
+        :param secrets_manager: SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
         :param session_tags: AWS STS assume role session tags.
-        :param transitive_tag_keys: AWS STS assume role transitive session tags. Required when multiple rules are used with SecretStore
+        :param transitive_tag_keys: AWS STS assume role transitive session tags. Required when multiple rules are used with the provider
 
         :schema: SecretStoreV1Beta1SpecProviderAws
         '''
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderAwsAuth(**auth)
+        if isinstance(secrets_manager, dict):
+            secrets_manager = SecretStoreV1Beta1SpecProviderAwsSecretsManager(**secrets_manager)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__62290ee01214cf301e7987fdab68bcb3b685aa43bf724e7dc735e5ac63111a0a)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
@@ -35028,6 +37565,7 @@ class SecretStoreV1Beta1SpecProviderAws:
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument external_id", value=external_id, expected_type=type_hints["external_id"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument secrets_manager", value=secrets_manager, expected_type=type_hints["secrets_manager"])
             check_type(argname="argument session_tags", value=session_tags, expected_type=type_hints["session_tags"])
             check_type(argname="argument transitive_tag_keys", value=transitive_tag_keys, expected_type=type_hints["transitive_tag_keys"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35042,6 +37580,8 @@ class SecretStoreV1Beta1SpecProviderAws:
             self._values["external_id"] = external_id
         if role is not None:
             self._values["role"] = role
+        if secrets_manager is not None:
+            self._values["secrets_manager"] = secrets_manager
         if session_tags is not None:
             self._values["session_tags"] = session_tags
         if transitive_tag_keys is not None:
@@ -35069,7 +37609,7 @@ class SecretStoreV1Beta1SpecProviderAws:
 
     @builtins.property
     def additional_roles(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''AdditionalRoles is a chained list of Role ARNs which the SecretManager provider will sequentially assume before assuming Role.
+        '''AdditionalRoles is a chained list of Role ARNs which the provider will sequentially assume before assuming the Role.
 
         :schema: SecretStoreV1Beta1SpecProviderAws#additionalRoles
         '''
@@ -35096,12 +37636,23 @@ class SecretStoreV1Beta1SpecProviderAws:
 
     @builtins.property
     def role(self) -> typing.Optional[builtins.str]:
-        '''Role is a Role ARN which the SecretManager provider will assume.
+        '''Role is a Role ARN which the provider will assume.
 
         :schema: SecretStoreV1Beta1SpecProviderAws#role
         '''
         result = self._values.get("role")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secrets_manager(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAwsSecretsManager"]:
+        '''SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
+
+        :schema: SecretStoreV1Beta1SpecProviderAws#secretsManager
+        '''
+        result = self._values.get("secrets_manager")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderAwsSecretsManager"], result)
 
     @builtins.property
     def session_tags(
@@ -35118,7 +37669,7 @@ class SecretStoreV1Beta1SpecProviderAws:
     def transitive_tag_keys(self) -> typing.Optional[typing.List[builtins.str]]:
         '''AWS STS assume role transitive session tags.
 
-        Required when multiple rules are used with SecretStore
+        Required when multiple rules are used with the provider
 
         :schema: SecretStoreV1Beta1SpecProviderAws#transitiveTagKeys
         '''
@@ -35643,6 +38194,72 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderAwsSecretsManager",
+    jsii_struct_bases=[],
+    name_mapping={
+        "force_delete_without_recovery": "forceDeleteWithoutRecovery",
+        "recovery_window_in_days": "recoveryWindowInDays",
+    },
+)
+class SecretStoreV1Beta1SpecProviderAwsSecretsManager:
+    def __init__(
+        self,
+        *,
+        force_delete_without_recovery: typing.Optional[builtins.bool] = None,
+        recovery_window_in_days: typing.Optional[jsii.Number] = None,
+    ) -> None:
+        '''SecretsManager defines how the provider behaves when interacting with AWS SecretsManager.
+
+        :param force_delete_without_recovery: Specifies whether to delete the secret without any recovery window. You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+        :param recovery_window_in_days: The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret. You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+
+        :schema: SecretStoreV1Beta1SpecProviderAwsSecretsManager
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__fcf0c03abb9abce00a1111221163bdab1cb870b96e6e63cbaef6d4817a797366)
+            check_type(argname="argument force_delete_without_recovery", value=force_delete_without_recovery, expected_type=type_hints["force_delete_without_recovery"])
+            check_type(argname="argument recovery_window_in_days", value=recovery_window_in_days, expected_type=type_hints["recovery_window_in_days"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if force_delete_without_recovery is not None:
+            self._values["force_delete_without_recovery"] = force_delete_without_recovery
+        if recovery_window_in_days is not None:
+            self._values["recovery_window_in_days"] = recovery_window_in_days
+
+    @builtins.property
+    def force_delete_without_recovery(self) -> typing.Optional[builtins.bool]:
+        '''Specifies whether to delete the secret without any recovery window.
+
+        You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+
+        :schema: SecretStoreV1Beta1SpecProviderAwsSecretsManager#forceDeleteWithoutRecovery
+        '''
+        result = self._values.get("force_delete_without_recovery")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
+    def recovery_window_in_days(self) -> typing.Optional[jsii.Number]:
+        '''The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret.
+
+        You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+
+        :schema: SecretStoreV1Beta1SpecProviderAwsSecretsManager#recoveryWindowInDays
+        '''
+        result = self._values.get("recovery_window_in_days")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderAwsSecretsManager(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -36212,7 +38829,12 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjur",
     jsii_struct_bases=[],
-    name_mapping={"auth": "auth", "url": "url", "ca_bundle": "caBundle"},
+    name_mapping={
+        "auth": "auth",
+        "url": "url",
+        "ca_bundle": "caBundle",
+        "ca_provider": "caProvider",
+    },
 )
 class SecretStoreV1Beta1SpecProviderConjur:
     def __init__(
@@ -36221,28 +38843,35 @@ class SecretStoreV1Beta1SpecProviderConjur:
         auth: typing.Union["SecretStoreV1Beta1SpecProviderConjurAuth", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
+        ca_provider: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Conjur configures this store to sync secrets using conjur provider.
 
         :param auth: 
         :param url: 
         :param ca_bundle: 
+        :param ca_provider: Used to provide custom certificate authority (CA) certificates for a secret store. The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
 
         :schema: SecretStoreV1Beta1SpecProviderConjur
         '''
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderConjurAuth(**auth)
+        if isinstance(ca_provider, dict):
+            ca_provider = SecretStoreV1Beta1SpecProviderConjurCaProvider(**ca_provider)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__a6f1ef64695568dabb0aa434d8e5124f9a6fabf324198091c3800f51bf04ab96)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
+            check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
             "url": url,
         }
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
+        if ca_provider is not None:
+            self._values["ca_provider"] = ca_provider
 
     @builtins.property
     def auth(self) -> "SecretStoreV1Beta1SpecProviderConjurAuth":
@@ -36270,6 +38899,19 @@ class SecretStoreV1Beta1SpecProviderConjur:
         result = self._values.get("ca_bundle")
         return typing.cast(typing.Optional[builtins.str], result)
 
+    @builtins.property
+    def ca_provider(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurCaProvider"]:
+        '''Used to provide custom certificate authority (CA) certificates for a secret store.
+
+        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjur#caProvider
+        '''
+        result = self._values.get("ca_provider")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderConjurCaProvider"], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -36285,36 +38927,52 @@ class SecretStoreV1Beta1SpecProviderConjur:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurAuth",
     jsii_struct_bases=[],
-    name_mapping={"apikey": "apikey"},
+    name_mapping={"apikey": "apikey", "jwt": "jwt"},
 )
 class SecretStoreV1Beta1SpecProviderConjurAuth:
     def __init__(
         self,
         *,
-        apikey: typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]],
+        apikey: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]]] = None,
+        jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param apikey: 
+        :param jwt: 
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuth
         '''
         if isinstance(apikey, dict):
             apikey = SecretStoreV1Beta1SpecProviderConjurAuthApikey(**apikey)
+        if isinstance(jwt, dict):
+            jwt = SecretStoreV1Beta1SpecProviderConjurAuthJwt(**jwt)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__1daccbc5c2a79286a9b9e0864bdccf07ed80e3907c3261763ab402ab42a84d3a)
             check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "apikey": apikey,
-        }
+            check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if apikey is not None:
+            self._values["apikey"] = apikey
+        if jwt is not None:
+            self._values["jwt"] = jwt
 
     @builtins.property
-    def apikey(self) -> "SecretStoreV1Beta1SpecProviderConjurAuthApikey":
+    def apikey(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthApikey"]:
         '''
         :schema: SecretStoreV1Beta1SpecProviderConjurAuth#apikey
         '''
         result = self._values.get("apikey")
-        assert result is not None, "Required property 'apikey' is missing"
-        return typing.cast("SecretStoreV1Beta1SpecProviderConjurAuthApikey", result)
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthApikey"], result)
+
+    @builtins.property
+    def jwt(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwt"]:
+        '''
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuth#jwt
+        '''
+        result = self._values.get("jwt")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwt"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -36560,6 +39218,370 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
         return "SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurAuthJwt",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "service_id": "serviceId",
+        "secret_ref": "secretRef",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class SecretStoreV1Beta1SpecProviderConjurAuthJwt:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        service_id: builtins.str,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param account: 
+        :param service_id: The conjur authn jwt webservice id.
+        :param secret_ref: Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+        :param service_account_ref: Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef(**secret_ref)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a867ef73ed6ba39fbba7a7f6d600f26748884d8042ede3b1085d3dd5f8eb0de3)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "service_id": service_id,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''The conjur authn jwt webservice id.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef"]:
+        '''Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef"]:
+        '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderConjurAuthJwt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ca4251b9478b27f6c74ac35dcd506c5a62a10be258bda857e096dc3e88fabef3)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d8a90af3fcfda6befe66e319ac7847d46dd60c6a7b559554710a2639a361a52b)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurCaProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "type": "type",
+        "key": "key",
+        "namespace": "namespace",
+    },
+)
+class SecretStoreV1Beta1SpecProviderConjurCaProvider:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        type: "SecretStoreV1Beta1SpecProviderConjurCaProviderType",
+        key: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Used to provide custom certificate authority (CA) certificates for a secret store.
+
+        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+
+        :param name: The name of the object located at the provider type.
+        :param type: The type of provider to use such as "Secret", or "ConfigMap".
+        :param key: The key where the CA certificate can be found in the Secret or ConfigMap.
+        :param namespace: The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurCaProvider
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__35f27de5668b24c62a9ca0d2d74309a50e26ee7a353e45ab9098d8a0984d75b4)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "type": type,
+        }
+        if key is not None:
+            self._values["key"] = key
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the object located at the provider type.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurCaProvider#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def type(self) -> "SecretStoreV1Beta1SpecProviderConjurCaProviderType":
+        '''The type of provider to use such as "Secret", or "ConfigMap".
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurCaProvider#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderConjurCaProviderType", result)
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the CA certificate can be found in the Secret or ConfigMap.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurCaProvider#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace the Provider type is in.
+
+        Can only be defined when used in a ClusterSecretStore.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurCaProvider#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderConjurCaProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderConjurCaProviderType"
+)
+class SecretStoreV1Beta1SpecProviderConjurCaProviderType(enum.Enum):
+    '''The type of provider to use such as "Secret", or "ConfigMap".
+
+    :schema: SecretStoreV1Beta1SpecProviderConjurCaProviderType
+    '''
+
+    SECRET = "SECRET"
+    '''Secret.'''
+    CONFIG_MAP = "CONFIG_MAP"
+    '''ConfigMap.'''
 
 
 @jsii.data_type(
@@ -37254,7 +40276,7 @@ class SecretStoreV1Beta1SpecProviderDopplerFormat(enum.Enum):
 
     JSON = "JSON"
     '''json.'''
-    DOTNET_JSON = "DOTNET_JSON"
+    DOTNET_HYPHEN_JSON = "DOTNET_HYPHEN_JSON"
     '''dotnet-json.'''
     ENV = "ENV"
     '''env.'''
@@ -37273,17 +40295,17 @@ class SecretStoreV1Beta1SpecProviderDopplerNameTransformer(enum.Enum):
     :schema: SecretStoreV1Beta1SpecProviderDopplerNameTransformer
     '''
 
-    UPPER_CAMEL = "UPPER_CAMEL"
+    UPPER_HYPHEN_CAMEL = "UPPER_HYPHEN_CAMEL"
     '''upper-camel.'''
     CAMEL = "CAMEL"
     '''camel.'''
-    LOWER_SNAKE = "LOWER_SNAKE"
+    LOWER_HYPHEN_SNAKE = "LOWER_HYPHEN_SNAKE"
     '''lower-snake.'''
-    TF_VAR = "TF_VAR"
+    TF_HYPHEN_VAR = "TF_HYPHEN_VAR"
     '''tf-var.'''
-    DOTNET_ENV = "DOTNET_ENV"
+    DOTNET_HYPHEN_ENV = "DOTNET_HYPHEN_ENV"
     '''dotnet-env.'''
-    LOWER_KEBAB = "LOWER_KEBAB"
+    LOWER_HYPHEN_KEBAB = "LOWER_HYPHEN_KEBAB"
     '''lower-kebab.'''
 
 
@@ -37354,7 +40376,7 @@ class SecretStoreV1Beta1SpecProviderFakeData:
         '''
         :param key: 
         :param value: 
-        :param value_map: 
+        :param value_map: Deprecated: ValueMap is deprecated and is intended to be removed in the future, use the ``value`` field instead.
         :param version: 
 
         :schema: SecretStoreV1Beta1SpecProviderFakeData
@@ -37394,7 +40416,8 @@ class SecretStoreV1Beta1SpecProviderFakeData:
 
     @builtins.property
     def value_map(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
-        '''
+        '''Deprecated: ValueMap is deprecated and is intended to be removed in the future, use the ``value`` field instead.
+
         :schema: SecretStoreV1Beta1SpecProviderFakeData#valueMap
         '''
         result = self._values.get("value_map")
@@ -39648,7 +42671,15 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRe
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOracle",
     jsii_struct_bases=[],
-    name_mapping={"region": "region", "vault": "vault", "auth": "auth"},
+    name_mapping={
+        "region": "region",
+        "vault": "vault",
+        "auth": "auth",
+        "compartment": "compartment",
+        "encryption_key": "encryptionKey",
+        "principal_type": "principalType",
+        "service_account_ref": "serviceAccountRef",
+    },
 )
 class SecretStoreV1Beta1SpecProviderOracle:
     def __init__(
@@ -39657,28 +42688,50 @@ class SecretStoreV1Beta1SpecProviderOracle:
         region: builtins.str,
         vault: builtins.str,
         auth: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracleAuth", typing.Dict[builtins.str, typing.Any]]] = None,
+        compartment: typing.Optional[builtins.str] = None,
+        encryption_key: typing.Optional[builtins.str] = None,
+        principal_type: typing.Optional["SecretStoreV1Beta1SpecProviderOraclePrincipalType"] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracleServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Oracle configures this store to sync secrets using Oracle Vault provider.
 
         :param region: Region is the region where vault is located.
         :param vault: Vault is the vault's OCID of the specific vault where secret is located.
         :param auth: Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.
+        :param compartment: Compartment is the vault compartment OCID. Required for PushSecret
+        :param encryption_key: EncryptionKey is the OCID of the encryption key within the vault. Required for PushSecret
+        :param principal_type: The type of principal to use for authentication. If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :schema: SecretStoreV1Beta1SpecProviderOracle
         '''
         if isinstance(auth, dict):
             auth = SecretStoreV1Beta1SpecProviderOracleAuth(**auth)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreV1Beta1SpecProviderOracleServiceAccountRef(**service_account_ref)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__64a73f7d94141f654d20eea2b114031d06b98e3f17f51f9796818f7873200e73)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument compartment", value=compartment, expected_type=type_hints["compartment"])
+            check_type(argname="argument encryption_key", value=encryption_key, expected_type=type_hints["encryption_key"])
+            check_type(argname="argument principal_type", value=principal_type, expected_type=type_hints["principal_type"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "region": region,
             "vault": vault,
         }
         if auth is not None:
             self._values["auth"] = auth
+        if compartment is not None:
+            self._values["compartment"] = compartment
+        if encryption_key is not None:
+            self._values["encryption_key"] = encryption_key
+        if principal_type is not None:
+            self._values["principal_type"] = principal_type
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
 
     @builtins.property
     def region(self) -> builtins.str:
@@ -39710,6 +42763,52 @@ class SecretStoreV1Beta1SpecProviderOracle:
         '''
         result = self._values.get("auth")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderOracleAuth"], result)
+
+    @builtins.property
+    def compartment(self) -> typing.Optional[builtins.str]:
+        '''Compartment is the vault compartment OCID.
+
+        Required for PushSecret
+
+        :schema: SecretStoreV1Beta1SpecProviderOracle#compartment
+        '''
+        result = self._values.get("compartment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def encryption_key(self) -> typing.Optional[builtins.str]:
+        '''EncryptionKey is the OCID of the encryption key within the vault.
+
+        Required for PushSecret
+
+        :schema: SecretStoreV1Beta1SpecProviderOracle#encryptionKey
+        '''
+        result = self._values.get("encryption_key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def principal_type(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderOraclePrincipalType"]:
+        '''The type of principal to use for authentication.
+
+        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracle#principalType
+        '''
+        result = self._values.get("principal_type")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderOraclePrincipalType"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderOracleServiceAccountRef"]:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracle#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderOracleServiceAccountRef"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -40019,6 +43118,101 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOraclePrincipalType"
+)
+class SecretStoreV1Beta1SpecProviderOraclePrincipalType(enum.Enum):
+    '''The type of principal to use for authentication.
+
+    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+
+    :schema: SecretStoreV1Beta1SpecProviderOraclePrincipalType
+    '''
+
+    USER_PRINCIPAL = "USER_PRINCIPAL"
+    '''UserPrincipal.'''
+    INSTANCE_PRINCIPAL = "INSTANCE_PRINCIPAL"
+    '''InstancePrincipal.'''
+    WORKLOAD = "WORKLOAD"
+    '''Workload.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ab989471fa0c25514c062bf2d2b0a040f69c8f8906d13ac7cd449e6d973fcb07)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderOracleServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -40852,6 +44046,7 @@ class SecretStoreV1Beta1SpecProviderVault:
         "kubernetes": "kubernetes",
         "ldap": "ldap",
         "token_secret_ref": "tokenSecretRef",
+        "user_pass": "userPass",
     },
 )
 class SecretStoreV1Beta1SpecProviderVaultAuth:
@@ -40865,6 +44060,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
         token_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        user_pass: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Vault server.
 
@@ -40875,6 +44071,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
+        :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuth
         '''
@@ -40892,6 +44089,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
             ldap = SecretStoreV1Beta1SpecProviderVaultAuthLdap(**ldap)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef(**token_secret_ref)
+        if isinstance(user_pass, dict):
+            user_pass = SecretStoreV1Beta1SpecProviderVaultAuthUserPass(**user_pass)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__400104a61eab9ca884187e2efbafa3aa344cc85d8fcba6bbf7136fc0639c2284)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
@@ -40901,6 +44100,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
+            check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
@@ -40916,6 +44116,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
             self._values["ldap"] = ldap
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
+        if user_pass is not None:
+            self._values["user_pass"] = user_pass
 
     @builtins.property
     def app_role(
@@ -40985,6 +44187,17 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         '''
         result = self._values.get("token_secret_ref")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef"], result)
+
+    @builtins.property
+    def user_pass(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthUserPass"]:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuth#userPass
+        '''
+        result = self._values.get("user_pass")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthUserPass"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -42929,6 +46142,161 @@ class SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultAuthUserPass",
+    jsii_struct_bases=[],
+    name_mapping={"path": "path", "username": "username", "secret_ref": "secretRef"},
+)
+class SecretStoreV1Beta1SpecProviderVaultAuthUserPass:
+    def __init__(
+        self,
+        *,
+        path: builtins.str,
+        username: builtins.str,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''UserPass authenticates with Vault by passing username/password pair.
+
+        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+        :param username: Username is a user name used to authenticate using the UserPass Vault authentication method.
+        :param secret_ref: SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPass
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__26b580e6525ab3445d9b91a981e063443ceb4b0e487369d400b953f01d78bb0d)
+            check_type(argname="argument path", value=path, expected_type=type_hints["path"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "path": path,
+            "username": username,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def path(self) -> builtins.str:
+        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPass#path
+        '''
+        result = self._values.get("path")
+        assert result is not None, "Required property 'path' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''Username is a user name used to authenticate using the UserPass Vault authentication method.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPass#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef"]:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPass#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderVaultAuthUserPass(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__194772104ad7af101c2de89b6ad71d08cfd0b369fe1e71b9d9f4735a47320e52)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultCaProvider",
     jsii_struct_bases=[],
     name_mapping={
@@ -44256,14 +47624,23 @@ __all__ = [
     "ClusterExternalSecretSpecExternalSecretSpecData",
     "ClusterExternalSecretSpecExternalSecretSpecDataFrom",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromExtract",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromFind",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromFindName",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromRewrite",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp",
+    "ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefGeneratorRef",
     "ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefStoreRef",
     "ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef",
+    "ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy",
+    "ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy",
+    "ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy",
     "ClusterExternalSecretSpecExternalSecretSpecDataSourceRef",
     "ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRef",
     "ClusterExternalSecretSpecExternalSecretSpecDataSourceRefStoreRef",
@@ -44272,12 +47649,17 @@ __all__ = [
     "ClusterExternalSecretSpecExternalSecretSpecTargetCreationPolicy",
     "ClusterExternalSecretSpecExternalSecretSpecTargetDeletionPolicy",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplate",
+    "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion",
+    "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItems",
+    "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret",
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItems",
+    "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs",
+    "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget",
     "ClusterExternalSecretSpecNamespaceSelector",
     "ClusterExternalSecretSpecNamespaceSelectorMatchExpressions",
     "ClusterSecretStore",
@@ -44348,6 +47730,8 @@ __all__ = [
     "ClusterSecretStoreSpecProviderOracleAuthSecretRef",
     "ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint",
     "ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey",
+    "ClusterSecretStoreSpecProviderOraclePrincipalType",
+    "ClusterSecretStoreSpecProviderOracleServiceAccountRef",
     "ClusterSecretStoreSpecProviderVault",
     "ClusterSecretStoreSpecProviderVaultAuth",
     "ClusterSecretStoreSpecProviderVaultAuthAppRole",
@@ -44412,6 +47796,7 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager",
     "ClusterSecretStoreV1Beta1SpecProviderAwsService",
     "ClusterSecretStoreV1Beta1SpecProviderAwsSessionTags",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekv",
@@ -44426,6 +47811,11 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey",
     "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef",
     "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef",
+    "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt",
+    "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef",
+    "ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider",
+    "ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType",
     "ClusterSecretStoreV1Beta1SpecProviderDelinea",
     "ClusterSecretStoreV1Beta1SpecProviderDelineaClientId",
     "ClusterSecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef",
@@ -44476,6 +47866,8 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint",
     "ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey",
+    "ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType",
+    "ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
     "ClusterSecretStoreV1Beta1SpecProviderScaleway",
     "ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKey",
     "ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef",
@@ -44509,6 +47901,8 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap",
     "ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass",
+    "ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider",
     "ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType",
     "ClusterSecretStoreV1Beta1SpecProviderVaultVersion",
@@ -44534,10 +47928,14 @@ __all__ = [
     "ExternalSecretSpec",
     "ExternalSecretSpecData",
     "ExternalSecretSpecDataFrom",
+    "ExternalSecretSpecDataFromConversionStrategy",
     "ExternalSecretSpecDataRemoteRef",
+    "ExternalSecretSpecDataRemoteRefConversionStrategy",
     "ExternalSecretSpecSecretStoreRef",
     "ExternalSecretSpecTarget",
+    "ExternalSecretSpecTargetCreationPolicy",
     "ExternalSecretSpecTargetTemplate",
+    "ExternalSecretSpecTargetTemplateEngineVersion",
     "ExternalSecretSpecTargetTemplateMetadata",
     "ExternalSecretSpecTargetTemplateTemplateFrom",
     "ExternalSecretSpecTargetTemplateTemplateFromConfigMap",
@@ -44550,14 +47948,23 @@ __all__ = [
     "ExternalSecretV1Beta1SpecData",
     "ExternalSecretV1Beta1SpecDataFrom",
     "ExternalSecretV1Beta1SpecDataFromExtract",
+    "ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy",
+    "ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy",
+    "ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy",
     "ExternalSecretV1Beta1SpecDataFromFind",
+    "ExternalSecretV1Beta1SpecDataFromFindConversionStrategy",
+    "ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy",
     "ExternalSecretV1Beta1SpecDataFromFindName",
     "ExternalSecretV1Beta1SpecDataFromRewrite",
     "ExternalSecretV1Beta1SpecDataFromRewriteRegexp",
+    "ExternalSecretV1Beta1SpecDataFromRewriteTransform",
     "ExternalSecretV1Beta1SpecDataFromSourceRef",
     "ExternalSecretV1Beta1SpecDataFromSourceRefGeneratorRef",
     "ExternalSecretV1Beta1SpecDataFromSourceRefStoreRef",
     "ExternalSecretV1Beta1SpecDataRemoteRef",
+    "ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy",
+    "ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy",
+    "ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy",
     "ExternalSecretV1Beta1SpecDataSourceRef",
     "ExternalSecretV1Beta1SpecDataSourceRefGeneratorRef",
     "ExternalSecretV1Beta1SpecDataSourceRefStoreRef",
@@ -44566,23 +47973,41 @@ __all__ = [
     "ExternalSecretV1Beta1SpecTargetCreationPolicy",
     "ExternalSecretV1Beta1SpecTargetDeletionPolicy",
     "ExternalSecretV1Beta1SpecTargetTemplate",
+    "ExternalSecretV1Beta1SpecTargetTemplateEngineVersion",
+    "ExternalSecretV1Beta1SpecTargetTemplateMergePolicy",
     "ExternalSecretV1Beta1SpecTargetTemplateMetadata",
     "ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom",
     "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap",
     "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItems",
+    "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs",
     "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret",
     "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItems",
+    "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs",
+    "ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget",
     "PushSecret",
     "PushSecretProps",
     "PushSecretSpec",
     "PushSecretSpecData",
     "PushSecretSpecDataMatch",
     "PushSecretSpecDataMatchRemoteRef",
+    "PushSecretSpecDeletionPolicy",
     "PushSecretSpecSecretStoreRefs",
     "PushSecretSpecSecretStoreRefsLabelSelector",
     "PushSecretSpecSecretStoreRefsLabelSelectorMatchExpressions",
     "PushSecretSpecSelector",
     "PushSecretSpecSelectorSecret",
+    "PushSecretSpecTemplate",
+    "PushSecretSpecTemplateEngineVersion",
+    "PushSecretSpecTemplateMergePolicy",
+    "PushSecretSpecTemplateMetadata",
+    "PushSecretSpecTemplateTemplateFrom",
+    "PushSecretSpecTemplateTemplateFromConfigMap",
+    "PushSecretSpecTemplateTemplateFromConfigMapItems",
+    "PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs",
+    "PushSecretSpecTemplateTemplateFromSecret",
+    "PushSecretSpecTemplateTemplateFromSecretItems",
+    "PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs",
+    "PushSecretSpecTemplateTemplateFromTarget",
     "SecretStore",
     "SecretStoreProps",
     "SecretStoreSpec",
@@ -44651,6 +48076,8 @@ __all__ = [
     "SecretStoreSpecProviderOracleAuthSecretRef",
     "SecretStoreSpecProviderOracleAuthSecretRefFingerprint",
     "SecretStoreSpecProviderOracleAuthSecretRefPrivatekey",
+    "SecretStoreSpecProviderOraclePrincipalType",
+    "SecretStoreSpecProviderOracleServiceAccountRef",
     "SecretStoreSpecProviderVault",
     "SecretStoreSpecProviderVaultAuth",
     "SecretStoreSpecProviderVaultAuthAppRole",
@@ -44715,6 +48142,7 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef",
     "SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef",
     "SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef",
+    "SecretStoreV1Beta1SpecProviderAwsSecretsManager",
     "SecretStoreV1Beta1SpecProviderAwsService",
     "SecretStoreV1Beta1SpecProviderAwsSessionTags",
     "SecretStoreV1Beta1SpecProviderAzurekv",
@@ -44729,6 +48157,11 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderConjurAuthApikey",
     "SecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef",
     "SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef",
+    "SecretStoreV1Beta1SpecProviderConjurAuthJwt",
+    "SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef",
+    "SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef",
+    "SecretStoreV1Beta1SpecProviderConjurCaProvider",
+    "SecretStoreV1Beta1SpecProviderConjurCaProviderType",
     "SecretStoreV1Beta1SpecProviderDelinea",
     "SecretStoreV1Beta1SpecProviderDelineaClientId",
     "SecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef",
@@ -44779,6 +48212,8 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderOracleAuthSecretRef",
     "SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint",
     "SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey",
+    "SecretStoreV1Beta1SpecProviderOraclePrincipalType",
+    "SecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
     "SecretStoreV1Beta1SpecProviderScaleway",
     "SecretStoreV1Beta1SpecProviderScalewayAccessKey",
     "SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef",
@@ -44812,6 +48247,8 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderVaultAuthLdap",
     "SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef",
     "SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef",
+    "SecretStoreV1Beta1SpecProviderVaultAuthUserPass",
+    "SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
     "SecretStoreV1Beta1SpecProviderVaultCaProvider",
     "SecretStoreV1Beta1SpecProviderVaultCaProviderType",
     "SecretStoreV1Beta1SpecProviderVaultVersion",
@@ -44857,9 +48294,10 @@ def _typecheckingstub__f74e2ba2ccb6cd4ff807d66b5a3c6750a98bf9aadca80dd11e5f2ce99
 def _typecheckingstub__8ef14ba98eb89c9ca89bac0d3d6a848b1d08606ee897d4645723837a3a0c8363(
     *,
     external_secret_spec: typing.Union[ClusterExternalSecretSpecExternalSecretSpec, typing.Dict[builtins.str, typing.Any]],
-    namespace_selector: typing.Union[ClusterExternalSecretSpecNamespaceSelector, typing.Dict[builtins.str, typing.Any]],
     external_secret_metadata: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
     external_secret_name: typing.Optional[builtins.str] = None,
+    namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace_selector: typing.Optional[typing.Union[ClusterExternalSecretSpecNamespaceSelector, typing.Dict[builtins.str, typing.Any]]] = None,
     refresh_time: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -44906,9 +48344,9 @@ def _typecheckingstub__ab42e9c8e44193a216bc48255b69844a18cb95933d526955a5d60b90a
 def _typecheckingstub__4e03ff5f59a1789f7214696b1cee4651df4495261ab18a2629aa1a0b877896e6(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
-    metadata_policy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy] = None,
+    metadata_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataFromExtractMetadataPolicy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -44917,8 +48355,8 @@ def _typecheckingstub__4e03ff5f59a1789f7214696b1cee4651df4495261ab18a2629aa1a0b8
 
 def _typecheckingstub__92077ca7c2f4d118e3eed11ddd89115353a2bba1dbb58f94f8e98f0407ce8371(
     *,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy] = None,
     name: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromFindName, typing.Dict[builtins.str, typing.Any]]] = None,
     path: typing.Optional[builtins.str] = None,
     tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
@@ -44936,6 +48374,7 @@ def _typecheckingstub__5968a6b40dcf2aead8c61044c5dee50fa9d4651e3d45dc7f12383fe77
 def _typecheckingstub__f601bc7c910f4395527a2edbe9ff719509d7d8808af893ad08740c049a2c5b76(
     *,
     regexp: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteRegexp, typing.Dict[builtins.str, typing.Any]]] = None,
+    transform: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecDataFromRewriteTransform, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -44944,6 +48383,13 @@ def _typecheckingstub__5b713d8124b2c817097f753f8dc9f6051b182ef78b70ea61bbbb37b1e
     *,
     source: builtins.str,
     target: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__593d67339e08298e9ffe3df7a50137c1841d53b5c13926c5f369a4f3172e807f(
+    *,
+    template: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -44976,9 +48422,9 @@ def _typecheckingstub__082917a72761ed0c1f366e52e34edade80e2390cdd82c1afa6c659882
 def _typecheckingstub__e6f3244609ebbc535f95a19792829d629cfcad19ee4566882417287402c07f3f(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
-    metadata_policy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy] = None,
+    metadata_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefMetadataPolicy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -45032,8 +48478,8 @@ def _typecheckingstub__d7d283c53e5807e3a14479debfe5a62ad7d33bbe1884db78b4005c97d
 def _typecheckingstub__e17311f817cc6c3870009753fdfc8659a03aed047d52e1c28f68c66c22f4326d(
     *,
     data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-    engine_version: typing.Optional[builtins.str] = None,
-    merge_policy: typing.Optional[builtins.str] = None,
+    engine_version: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateEngineVersion] = None,
+    merge_policy: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMergePolicy] = None,
     metadata: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
     template_from: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
     type: typing.Optional[builtins.str] = None,
@@ -45054,7 +48500,7 @@ def _typecheckingstub__6afaa4c609906e7626220c4fddf4bc3a8fcc807598ec8beb344f6b9de
     config_map: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
     literal: typing.Optional[builtins.str] = None,
     secret: typing.Optional[typing.Union[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
-    target: typing.Optional[builtins.str] = None,
+    target: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -45070,7 +48516,7 @@ def _typecheckingstub__e735e4983134a60d5944c221483b47abb6e945d1e4363c5bd39324ef1
 def _typecheckingstub__4cea9f6b57f176e25de456cef3b2ecab038f70307e22ed475c43feffc210d187(
     *,
     key: builtins.str,
-    template_as: typing.Optional[builtins.str] = None,
+    template_as: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromConfigMapItemsTemplateAs] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -45086,7 +48532,7 @@ def _typecheckingstub__57da7f59eff3d4d95d8055111305c41a7897499965ce955542ca05306
 def _typecheckingstub__679753049e28b5f77ae12540862ccff4cbfe346de1a2af57688741fa5517fdcf(
     *,
     key: builtins.str,
-    template_as: typing.Optional[builtins.str] = None,
+    template_as: typing.Optional[ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -45636,6 +49082,10 @@ def _typecheckingstub__d51df236a603c6f74a911105acff1a4f51f5d893faa22fc50dae2e587
     region: builtins.str,
     vault: builtins.str,
     auth: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    compartment: typing.Optional[builtins.str] = None,
+    encryption_key: typing.Optional[builtins.str] = None,
+    principal_type: typing.Optional[ClusterSecretStoreSpecProviderOraclePrincipalType] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracleServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -45670,6 +49120,15 @@ def _typecheckingstub__f4eb6469dd176c588e8c4a9bd39111e7f84482a99f9af9e62ed077924
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b2c2b61ca17414c8f7ada351a498ac1a2d985e403dcc1fe15eef63e22d74207a(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -46179,6 +49638,7 @@ def _typecheckingstub__6627988073d9ff383a854cf295ddb2aa2cfe69af584935d6041de0fd6
     auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     external_id: typing.Optional[builtins.str] = None,
     role: typing.Optional[builtins.str] = None,
+    secrets_manager: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager, typing.Dict[builtins.str, typing.Any]]] = None,
     session_tags: typing.Optional[typing.Sequence[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAwsSessionTags, typing.Dict[builtins.str, typing.Any]]]] = None,
     transitive_tag_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
 ) -> None:
@@ -46245,6 +49705,14 @@ def _typecheckingstub__3912a4e98840489edf6e5dfa8970de8ea9724ef8f4ceffd3960244361
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__48c5a27c67d8d807c1dae77d0c9163e10b98d1c6749b78b57aafbce00783830e(
+    *,
+    force_delete_without_recovery: typing.Optional[builtins.bool] = None,
+    recovery_window_in_days: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__ca4d5f8d4561743bd341a8ef02e3fe43606734481120c4be650df99a50ee88ad(
     *,
     key: builtins.str,
@@ -46306,13 +49774,15 @@ def _typecheckingstub__bd13f006bb522b34918dd83f7d4520b4c3e8918fa9caea1a889a5fcb2
     auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuth, typing.Dict[builtins.str, typing.Any]],
     url: builtins.str,
     ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
 def _typecheckingstub__4d3a7eca64b061adc53eed42df575bd0efc70846535a2435a0368c7b48c0eff1(
     *,
-    apikey: typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]],
+    apikey: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -46339,6 +49809,44 @@ def _typecheckingstub__1c532b61284b3c9f148319362b064408e397299e4acc7f3b5161bd2c9
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__52b0f350eacc0c9b57a1b6713a56af5acafeba5eba98459f04a1fe98b1f41edb(
+    *,
+    account: builtins.str,
+    service_id: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2477a088fdf273a37514328ebdad8069af4b5f06af6d86c3cb8020519cd3c403(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__da5e48d7b0634d1d4a4d79c54da3733a03b4bef7c946793c4591d0a9a5b6ee8d(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1347e7dc64bf4b13a7b4244986cd88a94b1dc46cc1f507df56bb3d0e3a2e2ce1(
+    *,
+    name: builtins.str,
+    type: ClusterSecretStoreV1Beta1SpecProviderConjurCaProviderType,
+    key: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -46709,6 +50217,10 @@ def _typecheckingstub__8799a207c6f9af8f59bb32f362d3937320020eec54a1cc499d8313921
     region: builtins.str,
     vault: builtins.str,
     auth: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    compartment: typing.Optional[builtins.str] = None,
+    encryption_key: typing.Optional[builtins.str] = None,
+    principal_type: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -46743,6 +50255,15 @@ def _typecheckingstub__5ef933a14bdabe16081013d01aaf091a9b526ae2581143345eefebbda
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bdc362d2dc657faa25b2dd71b2ac7510e47044f7a095df7486825735173be01e(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -46844,6 +50365,7 @@ def _typecheckingstub__fa1611c7ca8d9fedadb92afb290e6c41419ad09bd43146b4bdf9c1d75
     kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
     token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    user_pass: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47060,6 +50582,24 @@ def _typecheckingstub__f030b58112bf019c388c92034c3321dfa7a6cf28ed27ede3f4de94d58
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__4c0b94cc77dbc9bf5d277f712c6c780f02d800403f0170161b6ce6b1c7f0fb83(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e305806b5153df3a1a44c0688c27cfc4e9ac43a5df5c628abb8767da22caba6d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__614ead02a45818d7b842fdb84071c31ffdc2fa1b565a7ebdc48c6a9773ceeb9e(
     *,
     name: builtins.str,
@@ -47249,7 +50789,7 @@ def _typecheckingstub__475d807ac9fbc706d9ba6234ed898b602897f6af687b51a5cfabc7a77
 def _typecheckingstub__5652c1cf0894311801be60a13dd81647750db80e32bc8f49fe3e8235021c6c91(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ExternalSecretSpecDataFromConversionStrategy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -47259,7 +50799,7 @@ def _typecheckingstub__5652c1cf0894311801be60a13dd81647750db80e32bc8f49fe3e82350
 def _typecheckingstub__8fa135eb71c3b0e514a59fb4221d3694ecf54b320c828591b0435c574fdfb02c(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ExternalSecretSpecDataRemoteRefConversionStrategy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -47276,7 +50816,7 @@ def _typecheckingstub__6387a5fae9528a5204090c40d2c2889305f5e0931cd3c9f56f16b857a
 
 def _typecheckingstub__827bc50a1daa2c072beabe447d39f5aa425b2533370b434284005378aa9a35c4(
     *,
-    creation_policy: typing.Optional[builtins.str] = None,
+    creation_policy: typing.Optional[ExternalSecretSpecTargetCreationPolicy] = None,
     immutable: typing.Optional[builtins.bool] = None,
     name: typing.Optional[builtins.str] = None,
     template: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -47287,7 +50827,7 @@ def _typecheckingstub__827bc50a1daa2c072beabe447d39f5aa425b2533370b434284005378a
 def _typecheckingstub__8a97a9d748a88e76340582885a47a889666e169b36bf601e948fa8fbaf8eacb8(
     *,
     data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-    engine_version: typing.Optional[builtins.str] = None,
+    engine_version: typing.Optional[ExternalSecretSpecTargetTemplateEngineVersion] = None,
     metadata: typing.Optional[typing.Union[ExternalSecretSpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
     template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretSpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
     type: typing.Optional[builtins.str] = None,
@@ -47392,9 +50932,9 @@ def _typecheckingstub__7a22f4fe792b72c3eaf030666d89e08718509ca8d74cccad99560062b
 def _typecheckingstub__4470abe995b704cbdcdf0492e1e91e23a97f5bd83a22269ccf3af13015136970(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
-    metadata_policy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataFromExtractConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataFromExtractDecodingStrategy] = None,
+    metadata_policy: typing.Optional[ExternalSecretV1Beta1SpecDataFromExtractMetadataPolicy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -47403,8 +50943,8 @@ def _typecheckingstub__4470abe995b704cbdcdf0492e1e91e23a97f5bd83a22269ccf3af1301
 
 def _typecheckingstub__22b4b957dbb9cd8460e4e930700a48d34f638298827b6fe53d68d1b82de6f401(
     *,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataFromFindConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataFromFindDecodingStrategy] = None,
     name: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromFindName, typing.Dict[builtins.str, typing.Any]]] = None,
     path: typing.Optional[builtins.str] = None,
     tags: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
@@ -47422,6 +50962,7 @@ def _typecheckingstub__6f615a184713f5d364337da92283293111522fd42282ad325a8afbd2d
 def _typecheckingstub__454681f1cc3a392e81ef5c92bfa786dde1e38e7aaa5f2a3ed665e0b4cb009c13(
     *,
     regexp: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromRewriteRegexp, typing.Dict[builtins.str, typing.Any]]] = None,
+    transform: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecDataFromRewriteTransform, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47430,6 +50971,13 @@ def _typecheckingstub__22d63d6e820ab00e4df04c49344342bd4731978ef6611c06c5ac4b533
     *,
     source: builtins.str,
     target: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d47b0f8c8a5dc70763b8dc023f9180f55c381aaf0b4f19237eb10dcd1ac06128(
+    *,
+    template: builtins.str,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47462,9 +51010,9 @@ def _typecheckingstub__313a803335f1a3dcc9bd5c2b02ad7bab54c82cffdedec119f8d273c3c
 def _typecheckingstub__823faeef50b2c0df69c9ae99b8ab132511378b031b5042afba0c9fe24ba93dd4(
     *,
     key: builtins.str,
-    conversion_strategy: typing.Optional[builtins.str] = None,
-    decoding_strategy: typing.Optional[builtins.str] = None,
-    metadata_policy: typing.Optional[builtins.str] = None,
+    conversion_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataRemoteRefConversionStrategy] = None,
+    decoding_strategy: typing.Optional[ExternalSecretV1Beta1SpecDataRemoteRefDecodingStrategy] = None,
+    metadata_policy: typing.Optional[ExternalSecretV1Beta1SpecDataRemoteRefMetadataPolicy] = None,
     property: typing.Optional[builtins.str] = None,
     version: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -47518,8 +51066,8 @@ def _typecheckingstub__137058ee7bb8bbf207a1c6bea2d7edc847fcb8e66808b8a474d9e3f6c
 def _typecheckingstub__0845c9cb8505c291793a6fac848aa5d4340d17ecc2e58386511e13ecba7b0d77(
     *,
     data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
-    engine_version: typing.Optional[builtins.str] = None,
-    merge_policy: typing.Optional[builtins.str] = None,
+    engine_version: typing.Optional[ExternalSecretV1Beta1SpecTargetTemplateEngineVersion] = None,
+    merge_policy: typing.Optional[ExternalSecretV1Beta1SpecTargetTemplateMergePolicy] = None,
     metadata: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
     template_from: typing.Optional[typing.Sequence[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
     type: typing.Optional[builtins.str] = None,
@@ -47540,7 +51088,7 @@ def _typecheckingstub__cf8068a43ca684f4a943d7d5e82ab5f65a31b37cd2681ead194fa54dd
     config_map: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
     literal: typing.Optional[builtins.str] = None,
     secret: typing.Optional[typing.Union[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
-    target: typing.Optional[builtins.str] = None,
+    target: typing.Optional[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromTarget] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47556,7 +51104,7 @@ def _typecheckingstub__5d4521141f13b4bd1ec1e9d03377bb4f8fb99f832992af18de111f17b
 def _typecheckingstub__450b9bfafc5b457a75263d0420c05dfd89276947b601ed2cd9c63bca7bc8c6ed(
     *,
     key: builtins.str,
-    template_as: typing.Optional[builtins.str] = None,
+    template_as: typing.Optional[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromConfigMapItemsTemplateAs] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47572,7 +51120,7 @@ def _typecheckingstub__a4a2e35d3be01cb8a634eeb73ba90e80dfeb0ffe5653a7d44637ac186
 def _typecheckingstub__2623eb672daf55d319267bd37583020eebefd412a2e3fa6a451b378cf22e9522(
     *,
     key: builtins.str,
-    template_as: typing.Optional[builtins.str] = None,
+    template_as: typing.Optional[ExternalSecretV1Beta1SpecTargetTemplateTemplateFromSecretItemsTemplateAs] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47600,8 +51148,9 @@ def _typecheckingstub__01e12d461460e19379d69e28b07562f8ff407ec647ae133368d5aebd3
     secret_store_refs: typing.Sequence[typing.Union[PushSecretSpecSecretStoreRefs, typing.Dict[builtins.str, typing.Any]]],
     selector: typing.Union[PushSecretSpecSelector, typing.Dict[builtins.str, typing.Any]],
     data: typing.Optional[typing.Sequence[typing.Union[PushSecretSpecData, typing.Dict[builtins.str, typing.Any]]]] = None,
-    deletion_policy: typing.Optional[builtins.str] = None,
+    deletion_policy: typing.Optional[PushSecretSpecDeletionPolicy] = None,
     refresh_interval: typing.Optional[builtins.str] = None,
+    template: typing.Optional[typing.Union[PushSecretSpecTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47609,6 +51158,7 @@ def _typecheckingstub__01e12d461460e19379d69e28b07562f8ff407ec647ae133368d5aebd3
 def _typecheckingstub__2e69051c5188259a4dc4335438fe6e7bbda39d93381fe4f0033cda0f3f3bfcf8(
     *,
     match: typing.Union[PushSecretSpecDataMatch, typing.Dict[builtins.str, typing.Any]],
+    metadata: typing.Any = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47616,7 +51166,7 @@ def _typecheckingstub__2e69051c5188259a4dc4335438fe6e7bbda39d93381fe4f0033cda0f3
 def _typecheckingstub__2ac875402ec72b0e6df3e3764db655ec5d29fa1a690e7cb0cec2838ae0d9e339(
     *,
     remote_ref: typing.Union[PushSecretSpecDataMatchRemoteRef, typing.Dict[builtins.str, typing.Any]],
-    secret_key: builtins.str,
+    secret_key: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -47665,6 +51215,68 @@ def _typecheckingstub__3d7a3f2adcf7de568e829e7d5eee2938ce2ab1a46b00124f458bd6972
 def _typecheckingstub__f7b91364067418846d0a3b2395366778e11064c3f9e61a8308636472ad20c561(
     *,
     name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__043efa311dbe27603a426dd211a811e5149303d0034c83846ba775fa2e9085f5(
+    *,
+    data: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    engine_version: typing.Optional[PushSecretSpecTemplateEngineVersion] = None,
+    merge_policy: typing.Optional[PushSecretSpecTemplateMergePolicy] = None,
+    metadata: typing.Optional[typing.Union[PushSecretSpecTemplateMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    template_from: typing.Optional[typing.Sequence[typing.Union[PushSecretSpecTemplateTemplateFrom, typing.Dict[builtins.str, typing.Any]]]] = None,
+    type: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d52589b70a620d8ac512086f76140bbf322ad60786b3dec8258b5b52f568600(
+    *,
+    annotations: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f4a614224c0c7c641288cae1b707047dac305041493dfd9c87bbabace35f1620(
+    *,
+    config_map: typing.Optional[typing.Union[PushSecretSpecTemplateTemplateFromConfigMap, typing.Dict[builtins.str, typing.Any]]] = None,
+    literal: typing.Optional[builtins.str] = None,
+    secret: typing.Optional[typing.Union[PushSecretSpecTemplateTemplateFromSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+    target: typing.Optional[PushSecretSpecTemplateTemplateFromTarget] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ab8fa0fe2413fb0ecd9497afcfe96a9033efa9c944df15e078cf2dbb321fdd8c(
+    *,
+    items: typing.Sequence[typing.Union[PushSecretSpecTemplateTemplateFromConfigMapItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e6db7a84c42a39b4216b7fad6296c30fafe517dddacb69bc4a4cec9f07552b2a(
+    *,
+    key: builtins.str,
+    template_as: typing.Optional[PushSecretSpecTemplateTemplateFromConfigMapItemsTemplateAs] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cc8257e94fa508bc1d240a1c74aee6b95681f4425961467f7052144b089177af(
+    *,
+    items: typing.Sequence[typing.Union[PushSecretSpecTemplateTemplateFromSecretItems, typing.Dict[builtins.str, typing.Any]]],
+    name: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9339fc9558b78011b1c6592c9f29be59728aad524684c223264d0508baaf19cd(
+    *,
+    key: builtins.str,
+    template_as: typing.Optional[PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48197,6 +51809,10 @@ def _typecheckingstub__8c20124e1b995d76a5c23860f9ecff1ebac42889eac56116daf01652d
     region: builtins.str,
     vault: builtins.str,
     auth: typing.Optional[typing.Union[SecretStoreSpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    compartment: typing.Optional[builtins.str] = None,
+    encryption_key: typing.Optional[builtins.str] = None,
+    principal_type: typing.Optional[SecretStoreSpecProviderOraclePrincipalType] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderOracleServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48231,6 +51847,15 @@ def _typecheckingstub__a26c7af5eb3d372a1a790a6143a7ae00bd502b4516c33828cd4f888ef
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__97202d07f8a20c377da4a4404da5930f6c1182c8d25b0837a4ffd53826a2bd5c(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -48740,6 +52365,7 @@ def _typecheckingstub__62290ee01214cf301e7987fdab68bcb3b685aa43bf724e7dc735e5ac6
     auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     external_id: typing.Optional[builtins.str] = None,
     role: typing.Optional[builtins.str] = None,
+    secrets_manager: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAwsSecretsManager, typing.Dict[builtins.str, typing.Any]]] = None,
     session_tags: typing.Optional[typing.Sequence[typing.Union[SecretStoreV1Beta1SpecProviderAwsSessionTags, typing.Dict[builtins.str, typing.Any]]]] = None,
     transitive_tag_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
 ) -> None:
@@ -48806,6 +52432,14 @@ def _typecheckingstub__de5db4fa3573a19186756285ed3f23e894d62d5239c363795d0970988
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__fcf0c03abb9abce00a1111221163bdab1cb870b96e6e63cbaef6d4817a797366(
+    *,
+    force_delete_without_recovery: typing.Optional[builtins.bool] = None,
+    recovery_window_in_days: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__bec003d532442fc01806938cd60e826bbe59eaf5f2736326a27ddea7d79b6d19(
     *,
     key: builtins.str,
@@ -48867,13 +52501,15 @@ def _typecheckingstub__a6f1ef64695568dabb0aa434d8e5124f9a6fabf324198091c3800f51b
     auth: typing.Union[SecretStoreV1Beta1SpecProviderConjurAuth, typing.Dict[builtins.str, typing.Any]],
     url: builtins.str,
     ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
 
 def _typecheckingstub__1daccbc5c2a79286a9b9e0864bdccf07ed80e3907c3261763ab402ab42a84d3a(
     *,
-    apikey: typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]],
+    apikey: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]]] = None,
+    jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -48900,6 +52536,44 @@ def _typecheckingstub__81b4efd14e2dff860aa5f6097b35553e68b70a5eaf21be9f22fe6a7b0
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a867ef73ed6ba39fbba7a7f6d600f26748884d8042ede3b1085d3dd5f8eb0de3(
+    *,
+    account: builtins.str,
+    service_id: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ca4251b9478b27f6c74ac35dcd506c5a62a10be258bda857e096dc3e88fabef3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d8a90af3fcfda6befe66e319ac7847d46dd60c6a7b559554710a2639a361a52b(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__35f27de5668b24c62a9ca0d2d74309a50e26ee7a353e45ab9098d8a0984d75b4(
+    *,
+    name: builtins.str,
+    type: SecretStoreV1Beta1SpecProviderConjurCaProviderType,
+    key: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -49270,6 +52944,10 @@ def _typecheckingstub__64a73f7d94141f654d20eea2b114031d06b98e3f17f51f9796818f787
     region: builtins.str,
     vault: builtins.str,
     auth: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracleAuth, typing.Dict[builtins.str, typing.Any]]] = None,
+    compartment: typing.Optional[builtins.str] = None,
+    encryption_key: typing.Optional[builtins.str] = None,
+    principal_type: typing.Optional[SecretStoreV1Beta1SpecProviderOraclePrincipalType] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracleServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49304,6 +52982,15 @@ def _typecheckingstub__3d4cbeb2d65fda2f0f86577a2ee9cf1784799a03e0ec4de73ae3d4116
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ab989471fa0c25514c062bf2d2b0a040f69c8f8906d13ac7cd449e6d973fcb07(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -49405,6 +53092,7 @@ def _typecheckingstub__400104a61eab9ca884187e2efbafa3aa344cc85d8fcba6bbf7136fc06
     kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
     token_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    user_pass: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49613,6 +53301,24 @@ def _typecheckingstub__b3e2b5ca54356668b28b28010a671ca9c9051d330ec2474db708d50ec
     pass
 
 def _typecheckingstub__d517595b96eeeec71f466e5bfb29bd6b5c39213c8c5e12d513ed5717a5e79f6c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__26b580e6525ab3445d9b91a981e063443ceb4b0e487369d400b953f01d78bb0d(
+    *,
+    path: builtins.str,
+    username: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__194772104ad7af101c2de89b6ad71d08cfd0b369fe1e71b9d9f4735a47320e52(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
