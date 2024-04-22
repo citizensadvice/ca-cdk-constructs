@@ -9,7 +9,7 @@ homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 # When this range changes, make sure that the versions in .github/workflows/test.yaml matches this
 python = ">=3.10, <3.13"
 aws-cdk-lib = "~=2.137"
-cdk8s-plus-26 = "~=2.18"
+cdk8s = "~2.68.18"
 constructs = "~=10.1"
 cdk_remote_stack = "~=2.0"
 aws-cdk-lambda-layer-kubectl-v29 = "^2.0.0"
