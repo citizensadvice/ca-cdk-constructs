@@ -52,17 +52,17 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-asset-node-proxy-agent-v6"
-version = "2.0.1"
+version = "2.0.3"
 description = "@aws-cdk/asset-node-proxy-agent-v6"
 optional = false
-python-versions = "~=3.7"
+python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk.asset-node-proxy-agent-v6-2.0.1.tar.gz", hash = "sha256:42cdbc1de2ed3f845e3eb883a72f58fc7e5554c2e0b6fcdb366c159778dce74d"},
-    {file = "aws_cdk.asset_node_proxy_agent_v6-2.0.1-py3-none-any.whl", hash = "sha256:e442673d4f93137ab165b75386761b1d46eea25fc5015e5145ae3afa9da06b6e"},
+    {file = "aws-cdk.asset-node-proxy-agent-v6-2.0.3.tar.gz", hash = "sha256:b62cb10c69a42cab135e6bc670e3d2d3121fd4f53a0f61e53449da4b12738a6f"},
+    {file = "aws_cdk.asset_node_proxy_agent_v6-2.0.3-py3-none-any.whl", hash = "sha256:ef2ff0634ab037e2ebddbe69d7c92515a847c6c8bb2abdfc85b089f5e87761cb"},
 ]
 
 [package.dependencies]
-jsii = ">=1.86.1,<2.0.0"
+jsii = ">=1.96.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -86,33 +86,33 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.137.0"
+version = "2.138.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk-lib-2.137.0.tar.gz", hash = "sha256:ecdd3aaf6a25cefecb6dd16342013d792e9315798854eb1251a442331e27aef9"},
-    {file = "aws_cdk_lib-2.137.0-py3-none-any.whl", hash = "sha256:0cd861c315e4711dbffbc4ee3afe3cdc18c5154d4ab078a355e92011a6416c59"},
+    {file = "aws-cdk-lib-2.138.0.tar.gz", hash = "sha256:a3f69d1ea22271db4a89a28f3ccf6995c6591586aee0447766933488662a36d1"},
+    {file = "aws_cdk_lib-2.138.0-py3-none-any.whl", hash = "sha256:b528fe909dc0e8686f086369fe38bde6f448efbe9519dc56aef3be35d3da75f7"},
 ]
 
 [package.dependencies]
 "aws-cdk.asset-awscli-v1" = ">=2.2.202,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
-"aws-cdk.asset-node-proxy-agent-v6" = ">=2.0.1,<3.0.0"
+"aws-cdk.asset-node-proxy-agent-v6" = ">=2.0.3,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.96.0,<2.0.0"
+jsii = ">=1.97.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "boto3-stubs"
-version = "1.34.84"
-description = "Type annotations for boto3 1.34.84 generated with mypy-boto3-builder 7.23.2"
+version = "1.34.88"
+description = "Type annotations for boto3 1.34.88 generated with mypy-boto3-builder 7.23.2"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3_stubs-1.34.84-py3-none-any.whl", hash = "sha256:dd8b6147297b5aefd52212645179c96c4b5bcb4e514667dca6170485c1d4954a"},
-    {file = "boto3_stubs-1.34.84.tar.gz", hash = "sha256:73bbb509a69c4ac8cce038afb1510686b88398cbd46d5df1e3238fce66df9af5"},
+    {file = "boto3_stubs-1.34.88-py3-none-any.whl", hash = "sha256:8f472d1bf09743c3d33304ecc8830d70ebe3ca19ac9604ae8da9af55421b0fce"},
+    {file = "boto3_stubs-1.34.88.tar.gz", hash = "sha256:23ca9e0cd0d3e7702d6631a1e94a4208a26b39fa6b12c734427e68a7fa649477"},
 ]
 
 [package.dependencies]
@@ -165,7 +165,7 @@ bedrock-agent = ["mypy-boto3-bedrock-agent (>=1.34.0,<1.35.0)"]
 bedrock-agent-runtime = ["mypy-boto3-bedrock-agent-runtime (>=1.34.0,<1.35.0)"]
 bedrock-runtime = ["mypy-boto3-bedrock-runtime (>=1.34.0,<1.35.0)"]
 billingconductor = ["mypy-boto3-billingconductor (>=1.34.0,<1.35.0)"]
-boto3 = ["boto3 (==1.34.84)", "botocore (==1.34.84)"]
+boto3 = ["boto3 (==1.34.88)", "botocore (==1.34.88)"]
 braket = ["mypy-boto3-braket (>=1.34.0,<1.35.0)"]
 budgets = ["mypy-boto3-budgets (>=1.34.0,<1.35.0)"]
 ce = ["mypy-boto3-ce (>=1.34.0,<1.35.0)"]
@@ -571,18 +571,18 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.68.18"
+version = "2.68.60"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "cdk8s-2.68.18-py3-none-any.whl", hash = "sha256:ff00c44b0c7f779dea6434e35aa6a860db02bb439f53366745815da23c29adbc"},
-    {file = "cdk8s-2.68.18.tar.gz", hash = "sha256:a38799ca5f5843e90a787e8cb61bbb18c9bb954f97d448a39c4b4ce911614ab6"},
+    {file = "cdk8s-2.68.60-py3-none-any.whl", hash = "sha256:0eea260714b5342d85c3e04ef5218c716f990ef4ef81718638554bf51ab3c0de"},
+    {file = "cdk8s-2.68.60.tar.gz", hash = "sha256:2812299c4f239433d0c1e001c46cce58676481816b83d19d8232b46e0303bec9"},
 ]
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.93.0,<2.0.0"
+jsii = ">=1.97.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -945,4 +945,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.13"
-content-hash = "30999c1abe3fbbf005f814bc833efdd01adcfaa258a83d352e1eb5674a39a151"
+content-hash = "c56dc34ed8c86ab31848bc93901ec41bfe8eb436350622d34aa8bd88c1afee8c"
