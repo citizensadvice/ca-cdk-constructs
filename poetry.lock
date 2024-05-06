@@ -86,13 +86,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.139.1"
+version = "2.140.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk-lib-2.139.1.tar.gz", hash = "sha256:930fb4a1553a23c00bfa8eb80a2e901c52351abd1451d8fb66e1bb2d0bee92d6"},
-    {file = "aws_cdk_lib-2.139.1-py3-none-any.whl", hash = "sha256:3a1a971eb7db0184e18f0cc7bb7e237ae29eea03bf2c2bd86ce33728f1a4839e"},
+    {file = "aws-cdk-lib-2.140.0.tar.gz", hash = "sha256:2e1a83f1ab205790ca4ae5dc634929ebbb21e61634c468ea6390642b0bf62395"},
+    {file = "aws_cdk_lib-2.140.0-py3-none-any.whl", hash = "sha256:b169d53108807c9492d35f51bdf36b629a43dec8d00bdf66b5df32873e1746b3"},
 ]
 
 [package.dependencies]
@@ -100,19 +100,19 @@ files = [
 "aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.0.3,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.97.0,<2.0.0"
+jsii = ">=1.98.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "boto3-stubs"
-version = "1.34.95"
-description = "Type annotations for boto3 1.34.95 generated with mypy-boto3-builder 7.24.0"
+version = "1.34.98"
+description = "Type annotations for boto3 1.34.98 generated with mypy-boto3-builder 7.24.0"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3_stubs-1.34.95-py3-none-any.whl", hash = "sha256:4fb5830626de42446c238ca72ca1a53e461281396007fb900edf50ceeb044a10"},
-    {file = "boto3_stubs-1.34.95.tar.gz", hash = "sha256:412006b27ee707e9b51a084b02ac92b143af8a3b56727582afec2a76ce93c3b6"},
+    {file = "boto3_stubs-1.34.98-py3-none-any.whl", hash = "sha256:a0cbb21bc2221e888bc98c4879a4c8f16a4070c4b409d78642c3aaf65adcd5ea"},
+    {file = "boto3_stubs-1.34.98.tar.gz", hash = "sha256:2e1902e700662016b7339c0ec02a82a8bfa12770dcd866b55a8598f80ee7354b"},
 ]
 
 [package.dependencies]
@@ -165,7 +165,7 @@ bedrock-agent = ["mypy-boto3-bedrock-agent (>=1.34.0,<1.35.0)"]
 bedrock-agent-runtime = ["mypy-boto3-bedrock-agent-runtime (>=1.34.0,<1.35.0)"]
 bedrock-runtime = ["mypy-boto3-bedrock-runtime (>=1.34.0,<1.35.0)"]
 billingconductor = ["mypy-boto3-billingconductor (>=1.34.0,<1.35.0)"]
-boto3 = ["boto3 (==1.34.95)", "botocore (==1.34.95)"]
+boto3 = ["boto3 (==1.34.98)", "botocore (==1.34.98)"]
 braket = ["mypy-boto3-braket (>=1.34.0,<1.35.0)"]
 budgets = ["mypy-boto3-budgets (>=1.34.0,<1.35.0)"]
 ce = ["mypy-boto3-ce (>=1.34.0,<1.35.0)"]
@@ -572,18 +572,18 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.68.64"
+version = "2.68.65"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "cdk8s-2.68.64-py3-none-any.whl", hash = "sha256:fe48766406f59dca9c99eaa2fe291bfdf259899101a24f4de0b1a05b2cf6137e"},
-    {file = "cdk8s-2.68.64.tar.gz", hash = "sha256:4134b00d1a9bccc979ff2709c86245aeab07a2b9f1ca0437e0cc67fdc568be3e"},
+    {file = "cdk8s-2.68.65-py3-none-any.whl", hash = "sha256:f81a7f2d3702e8499a8d5d15d3766f3dfb0b1b079567cc202fcdd4207b017b1d"},
+    {file = "cdk8s-2.68.65.tar.gz", hash = "sha256:04b5e39f60ed436e3da93ca2dd2bc5a3926f156f67afceeaeb82a6a332050f8b"},
 ]
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.97.0,<2.0.0"
+jsii = ">=1.98.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -656,13 +656,13 @@ files = [
 
 [[package]]
 name = "jsii"
-version = "1.97.0"
+version = "1.98.0"
 description = "Python client for jsii runtime"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "jsii-1.97.0-py3-none-any.whl", hash = "sha256:5dd347cc9d279072c109829aaff11dae1c7f13169ce60887f1c1ab2c4cd4abcd"},
-    {file = "jsii-1.97.0.tar.gz", hash = "sha256:e6db98e34730cd972d180b7f4e21182b9a5105f537672716940b930ee933a1f2"},
+    {file = "jsii-1.98.0-py3-none-any.whl", hash = "sha256:3067d523126ce8178374dd958c60350efc831fc2ef3eb94a0a755d64fa4cc22d"},
+    {file = "jsii-1.98.0.tar.gz", hash = "sha256:64bbaf9c494626bc0afd1b95834f0dba66a2f2ecbb0da97fa3000c4b01d67857"},
 ]
 
 [package.dependencies]
@@ -946,4 +946,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10, <3.13"
-content-hash = "650a3bc6df0156e2326bcc38ffac6aa48d89251dcc7a631c0e462875aea3bf94"
+content-hash = "16e2de5f643e453f14cf38cd7d18504b1c68681906c2a9950f0f00cb8f6026cc"
