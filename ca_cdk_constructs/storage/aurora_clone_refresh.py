@@ -27,6 +27,7 @@ from aws_cdk.aws_stepfunctions import (
     TaskInput,
     Wait,
     WaitTime,
+    DefinitionBody,
 )
 from aws_cdk.aws_stepfunctions_tasks import LambdaInvoke, SnsPublish
 from constructs import Construct
@@ -342,7 +343,7 @@ class AuroraCloneRefresh(Construct):
         aurora_clone_state_machine = StateMachine(
             self,
             "AuroraCloneStateMachine",
-            definition=chain,
+            definition_body=DefinitionBody.from_chainable(chain),
             timeout=Duration.minutes(30),
         )
 
