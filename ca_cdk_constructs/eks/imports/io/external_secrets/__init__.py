@@ -1,3 +1,6 @@
+from pkgutil import extend_path
+__path__ = extend_path(__path__, __name__)
+
 import abc
 import builtins
 import datetime
@@ -151,6 +154,7 @@ class ClusterExternalSecretProps:
         "external_secret_name": "externalSecretName",
         "namespaces": "namespaces",
         "namespace_selector": "namespaceSelector",
+        "namespace_selectors": "namespaceSelectors",
         "refresh_time": "refreshTime",
     },
 )
@@ -163,6 +167,7 @@ class ClusterExternalSecretSpec:
         external_secret_name: typing.Optional[builtins.str] = None,
         namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
         namespace_selector: typing.Optional[typing.Union["ClusterExternalSecretSpecNamespaceSelector", typing.Dict[builtins.str, typing.Any]]] = None,
+        namespace_selectors: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecNamespaceSelectors", typing.Dict[builtins.str, typing.Any]]]] = None,
         refresh_time: typing.Optional[builtins.str] = None,
     ) -> None:
         '''ClusterExternalSecretSpec defines the desired state of ClusterExternalSecret.
@@ -170,8 +175,9 @@ class ClusterExternalSecretSpec:
         :param external_secret_spec: The spec for the ExternalSecrets to be created.
         :param external_secret_metadata: The metadata of the external secrets to be created.
         :param external_secret_name: The name of the external secrets to be created defaults to the name of the ClusterExternalSecret.
-        :param namespaces: Choose namespaces by name. This field is ORed with anything that NamespaceSelector ends up choosing.
-        :param namespace_selector: The labels to select by to find the Namespaces to create the ExternalSecrets in.
+        :param namespaces: Choose namespaces by name. This field is ORed with anything that NamespaceSelectors ends up choosing.
+        :param namespace_selector: The labels to select by to find the Namespaces to create the ExternalSecrets in. Deprecated: Use NamespaceSelectors instead.
+        :param namespace_selectors: A list of labels to select by to find the Namespaces to create the ExternalSecrets in. The selectors are ORed.
         :param refresh_time: The time in which the controller should reconcile its objects and recheck namespaces for labels.
 
         :schema: ClusterExternalSecretSpec
@@ -189,6 +195,7 @@ class ClusterExternalSecretSpec:
             check_type(argname="argument external_secret_name", value=external_secret_name, expected_type=type_hints["external_secret_name"])
             check_type(argname="argument namespaces", value=namespaces, expected_type=type_hints["namespaces"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
+            check_type(argname="argument namespace_selectors", value=namespace_selectors, expected_type=type_hints["namespace_selectors"])
             check_type(argname="argument refresh_time", value=refresh_time, expected_type=type_hints["refresh_time"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "external_secret_spec": external_secret_spec,
@@ -201,6 +208,8 @@ class ClusterExternalSecretSpec:
             self._values["namespaces"] = namespaces
         if namespace_selector is not None:
             self._values["namespace_selector"] = namespace_selector
+        if namespace_selectors is not None:
+            self._values["namespace_selectors"] = namespace_selectors
         if refresh_time is not None:
             self._values["refresh_time"] = refresh_time
 
@@ -238,7 +247,7 @@ class ClusterExternalSecretSpec:
     def namespaces(self) -> typing.Optional[typing.List[builtins.str]]:
         '''Choose namespaces by name.
 
-        This field is ORed with anything that NamespaceSelector ends up choosing.
+        This field is ORed with anything that NamespaceSelectors ends up choosing.
 
         :schema: ClusterExternalSecretSpec#namespaces
         '''
@@ -251,10 +260,25 @@ class ClusterExternalSecretSpec:
     ) -> typing.Optional["ClusterExternalSecretSpecNamespaceSelector"]:
         '''The labels to select by to find the Namespaces to create the ExternalSecrets in.
 
+        Deprecated: Use NamespaceSelectors instead.
+
         :schema: ClusterExternalSecretSpec#namespaceSelector
         '''
         result = self._values.get("namespace_selector")
         return typing.cast(typing.Optional["ClusterExternalSecretSpecNamespaceSelector"], result)
+
+    @builtins.property
+    def namespace_selectors(
+        self,
+    ) -> typing.Optional[typing.List["ClusterExternalSecretSpecNamespaceSelectors"]]:
+        '''A list of labels to select by to find the Namespaces to create the ExternalSecrets in.
+
+        The selectors are ORed.
+
+        :schema: ClusterExternalSecretSpec#namespaceSelectors
+        '''
+        result = self._values.get("namespace_selectors")
+        return typing.cast(typing.Optional[typing.List["ClusterExternalSecretSpecNamespaceSelectors"]], result)
 
     @builtins.property
     def refresh_time(self) -> typing.Optional[builtins.str]:
@@ -635,7 +659,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFrom:
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef"]:
         '''SourceRef points to a store or generator which contains secret values ready to use.
 
-        Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
+        Use this in combination with Extract or Find pull values out of
+        a specific SecretStore.
+        When sourceRef points to a generator Extract or Find is not supported.
+        The generator returns a static map of values
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFrom#sourceRef
         '''
@@ -1227,7 +1254,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRef:
     ) -> None:
         '''SourceRef points to a store or generator which contains secret values ready to use.
 
-        Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
+        Use this in combination with Extract or Find pull values out of
+        a specific SecretStore.
+        When sourceRef points to a generator Extract or Find is not supported.
+        The generator returns a static map of values
 
         :param generator_ref: GeneratorRef points to a generator custom resource.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
@@ -1647,7 +1677,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRef:
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRef"]:
         '''GeneratorRef points to a generator custom resource.
 
-        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
+        Deprecated: The generatorRef is not implemented in .data[].
+        this will be removed with v1.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataSourceRef#generatorRef
         '''
@@ -1692,7 +1723,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRef:
     ) -> None:
         '''GeneratorRef points to a generator custom resource.
 
-        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
+        Deprecated: The generatorRef is not implemented in .data[].
+        this will be removed with v1.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -2654,6 +2686,8 @@ class ClusterExternalSecretSpecNamespaceSelector:
     ) -> None:
         '''The labels to select by to find the Namespaces to create the ExternalSecrets in.
 
+        Deprecated: Use NamespaceSelectors instead.
+
         :param match_expressions: matchExpressions is a list of label selector requirements. The requirements are ANDed.
         :param match_labels: matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
 
@@ -2688,7 +2722,9 @@ class ClusterExternalSecretSpecNamespaceSelector:
     ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''matchLabels is a map of {key,value} pairs.
 
-        A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+        A single {key,value} in the matchLabels
+        map is equivalent to an element of matchExpressions, whose key field is "key", the
+        operator is "In", and the values array contains only "value". The requirements are ANDed.
 
         :schema: ClusterExternalSecretSpecNamespaceSelector#matchLabels
         '''
@@ -2766,7 +2802,10 @@ class ClusterExternalSecretSpecNamespaceSelectorMatchExpressions:
     def values(self) -> typing.Optional[typing.List[builtins.str]]:
         '''values is an array of string values.
 
-        If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+        If the operator is In or NotIn,
+        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+        the values array must be empty. This array is replaced during a strategic
+        merge patch.
 
         :schema: ClusterExternalSecretSpecNamespaceSelectorMatchExpressions#values
         '''
@@ -2781,6 +2820,163 @@ class ClusterExternalSecretSpecNamespaceSelectorMatchExpressions:
 
     def __repr__(self) -> str:
         return "ClusterExternalSecretSpecNamespaceSelectorMatchExpressions(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecNamespaceSelectors",
+    jsii_struct_bases=[],
+    name_mapping={
+        "match_expressions": "matchExpressions",
+        "match_labels": "matchLabels",
+    },
+)
+class ClusterExternalSecretSpecNamespaceSelectors:
+    def __init__(
+        self,
+        *,
+        match_expressions: typing.Optional[typing.Sequence[typing.Union["ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions", typing.Dict[builtins.str, typing.Any]]]] = None,
+        match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    ) -> None:
+        '''A label selector is a label query over a set of resources.
+
+        The result of matchLabels and
+        matchExpressions are ANDed. An empty label selector matches all objects. A null
+        label selector matches no objects.
+
+        :param match_expressions: matchExpressions is a list of label selector requirements. The requirements are ANDed.
+        :param match_labels: matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectors
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__63f9a14423beda1e46223e279f4c160319ad2adb6f5680b3a0eddf15e36a736e)
+            check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
+            check_type(argname="argument match_labels", value=match_labels, expected_type=type_hints["match_labels"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if match_expressions is not None:
+            self._values["match_expressions"] = match_expressions
+        if match_labels is not None:
+            self._values["match_labels"] = match_labels
+
+    @builtins.property
+    def match_expressions(
+        self,
+    ) -> typing.Optional[typing.List["ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions"]]:
+        '''matchExpressions is a list of label selector requirements.
+
+        The requirements are ANDed.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectors#matchExpressions
+        '''
+        result = self._values.get("match_expressions")
+        return typing.cast(typing.Optional[typing.List["ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions"]], result)
+
+    @builtins.property
+    def match_labels(
+        self,
+    ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
+        '''matchLabels is a map of {key,value} pairs.
+
+        A single {key,value} in the matchLabels
+        map is equivalent to an element of matchExpressions, whose key field is "key", the
+        operator is "In", and the values array contains only "value". The requirements are ANDed.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectors#matchLabels
+        '''
+        result = self._values.get("match_labels")
+        return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterExternalSecretSpecNamespaceSelectors(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "operator": "operator", "values": "values"},
+)
+class ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions:
+    def __init__(
+        self,
+        *,
+        key: builtins.str,
+        operator: builtins.str,
+        values: typing.Optional[typing.Sequence[builtins.str]] = None,
+    ) -> None:
+        '''A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+
+        :param key: key is the label key that the selector applies to.
+        :param operator: operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+        :param values: values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9d206e1e151bff3e2c286fdc18e8127271e514c58791c38b149828428eb62bf7)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
+            check_type(argname="argument values", value=values, expected_type=type_hints["values"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "key": key,
+            "operator": operator,
+        }
+        if values is not None:
+            self._values["values"] = values
+
+    @builtins.property
+    def key(self) -> builtins.str:
+        '''key is the label key that the selector applies to.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions#key
+        '''
+        result = self._values.get("key")
+        assert result is not None, "Required property 'key' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def operator(self) -> builtins.str:
+        '''operator represents a key's relationship to a set of values.
+
+        Valid operators are In, NotIn, Exists and DoesNotExist.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions#operator
+        '''
+        result = self._values.get("operator")
+        assert result is not None, "Required property 'operator' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def values(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''values is an array of string values.
+
+        If the operator is In or NotIn,
+        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+        the values array must be empty. This array is replaced during a strategic
+        merge patch.
+
+        :schema: ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions#values
+        '''
+        result = self._values.get("values")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -3009,6 +3205,7 @@ class ClusterSecretStoreSpec:
         "ibm": "ibm",
         "kubernetes": "kubernetes",
         "oracle": "oracle",
+        "passworddepot": "passworddepot",
         "vault": "vault",
         "webhook": "webhook",
         "yandexlockbox": "yandexlockbox",
@@ -3028,6 +3225,7 @@ class ClusterSecretStoreSpecProvider:
         ibm: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         oracle: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        passworddepot: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderPassworddepot", typing.Dict[builtins.str, typing.Any]]] = None,
         vault: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
         webhook: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
         yandexlockbox: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -3046,6 +3244,7 @@ class ClusterSecretStoreSpecProvider:
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param kubernetes: Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
         :param oracle: Oracle configures this store to sync secrets using Oracle Vault provider.
+        :param passworddepot: Configures a store to sync secrets with a Password Depot instance.
         :param vault: Vault configures this store to sync secrets using Hashi provider.
         :param webhook: Webhook configures this store to sync secrets using a generic templated webhook.
         :param yandexlockbox: YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
@@ -3072,6 +3271,8 @@ class ClusterSecretStoreSpecProvider:
             kubernetes = ClusterSecretStoreSpecProviderKubernetes(**kubernetes)
         if isinstance(oracle, dict):
             oracle = ClusterSecretStoreSpecProviderOracle(**oracle)
+        if isinstance(passworddepot, dict):
+            passworddepot = ClusterSecretStoreSpecProviderPassworddepot(**passworddepot)
         if isinstance(vault, dict):
             vault = ClusterSecretStoreSpecProviderVault(**vault)
         if isinstance(webhook, dict):
@@ -3090,6 +3291,7 @@ class ClusterSecretStoreSpecProvider:
             check_type(argname="argument ibm", value=ibm, expected_type=type_hints["ibm"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument oracle", value=oracle, expected_type=type_hints["oracle"])
+            check_type(argname="argument passworddepot", value=passworddepot, expected_type=type_hints["passworddepot"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
@@ -3114,6 +3316,8 @@ class ClusterSecretStoreSpecProvider:
             self._values["kubernetes"] = kubernetes
         if oracle is not None:
             self._values["oracle"] = oracle
+        if passworddepot is not None:
+            self._values["passworddepot"] = passworddepot
         if vault is not None:
             self._values["vault"] = vault
         if webhook is not None:
@@ -3210,6 +3414,17 @@ class ClusterSecretStoreSpecProvider:
         '''
         result = self._values.get("oracle")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOracle"], result)
+
+    @builtins.property
+    def passworddepot(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderPassworddepot"]:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :schema: ClusterSecretStoreSpecProvider#passworddepot
+        '''
+        result = self._values.get("passworddepot")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderPassworddepot"], result)
 
     @builtins.property
     def vault(self) -> typing.Optional["ClusterSecretStoreSpecProviderVault"]:
@@ -3323,7 +3538,9 @@ class ClusterSecretStoreSpecProviderAkeyless:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate.
 
-        Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreSpecProviderAkeyless#caBundle
         '''
@@ -3493,7 +3710,9 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth#secretRef
         '''
@@ -3506,7 +3725,9 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth#serviceAccountRef
         '''
@@ -3540,7 +3761,9 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -3565,7 +3788,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#key
         '''
@@ -3585,7 +3809,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#namespace
         '''
@@ -3619,7 +3844,9 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -3663,7 +3890,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#namespace
         '''
@@ -3809,7 +4037,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId#key
         '''
@@ -3829,7 +4058,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId#namespace
         '''
@@ -3886,7 +4116,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType#key
         '''
@@ -3906,7 +4137,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType#namespace
         '''
@@ -3963,7 +4195,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#key
         '''
@@ -3983,7 +4216,8 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#namespace
         '''
@@ -4435,7 +4669,8 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -4455,7 +4690,8 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -4512,7 +4748,8 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#key
         '''
@@ -4532,7 +4769,8 @@ class ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#namespace
         '''
@@ -4817,7 +5055,8 @@ class ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef#namespace
         '''
@@ -4944,7 +5183,8 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -4964,7 +5204,8 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -5021,7 +5262,8 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -5041,7 +5283,8 @@ class ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -5162,7 +5405,10 @@ class ClusterSecretStoreSpecProviderAzurekv:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderAzurekvAuthType"]:
         '''Auth type defines how to authenticate to the keyvault service.
 
-        Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+        Valid values are:
+
+        - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+        - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
         :schema: ClusterSecretStoreSpecProviderAzurekv#authType
         '''
@@ -5319,7 +5565,8 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId#key
         '''
@@ -5339,7 +5586,8 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientId#namespace
         '''
@@ -5396,7 +5644,8 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret#key
         '''
@@ -5416,7 +5665,8 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret#namespace
         '''
@@ -5441,7 +5691,10 @@ class ClusterSecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
 class ClusterSecretStoreSpecProviderAzurekvAuthType(enum.Enum):
     '''Auth type defines how to authenticate to the keyvault service.
 
-    Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+    Valid values are:
+
+    - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+    - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
     :schema: ClusterSecretStoreSpecProviderAzurekvAuthType
     '''
@@ -5511,7 +5764,8 @@ class ClusterSecretStoreSpecProviderAzurekvServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvServiceAccountRef#namespace
         '''
@@ -5875,7 +6129,8 @@ class ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -5895,7 +6150,8 @@ class ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -6064,7 +6320,8 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -6296,7 +6553,8 @@ class ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken#key
         '''
@@ -6316,7 +6574,8 @@ class ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderGitlabAuthSecretRefAccessToken#namespace
         '''
@@ -6530,7 +6789,8 @@ class ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef#key
         '''
@@ -6550,7 +6810,8 @@ class ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef#namespace
         '''
@@ -6847,7 +7108,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert#key
         '''
@@ -6867,7 +7129,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientCert#namespace
         '''
@@ -6924,7 +7187,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey#key
         '''
@@ -6944,7 +7208,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthCertClientKey#namespace
         '''
@@ -7069,7 +7334,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount#namespace
         '''
@@ -7175,7 +7441,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken#key
         '''
@@ -7195,7 +7462,8 @@ class ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthTokenBearerToken#namespace
         '''
@@ -7488,7 +7756,8 @@ class ClusterSecretStoreSpecProviderOracle:
     def auth(self) -> typing.Optional["ClusterSecretStoreSpecProviderOracleAuth"]:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        If empty, instance principal is used. Optionally, the authenticating principal type
+        and/or user data may be supplied for the use of workload identity and user principal.
 
         :schema: ClusterSecretStoreSpecProviderOracle#auth
         '''
@@ -7523,7 +7792,9 @@ class ClusterSecretStoreSpecProviderOracle:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderOraclePrincipalType"]:
         '''The type of principal to use for authentication.
 
-        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        If left blank, the Auth struct will
+        determine the principal type. This optional field must be specified if using
+        workload identity.
 
         :schema: ClusterSecretStoreSpecProviderOracle#principalType
         '''
@@ -7568,7 +7839,8 @@ class ClusterSecretStoreSpecProviderOracleAuth:
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        If empty, instance principal is used. Optionally, the authenticating principal type
+        and/or user data may be supplied for the use of workload identity and user principal.
 
         :param secret_ref: SecretRef to pass through sensitive information.
         :param tenancy: Tenancy is the tenancy OCID where user is located.
@@ -7737,7 +8009,8 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint#key
         '''
@@ -7757,7 +8030,8 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefFingerprint#namespace
         '''
@@ -7814,7 +8088,8 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey#key
         '''
@@ -7834,7 +8109,8 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey#namespace
         '''
@@ -7859,7 +8135,9 @@ class ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
 class ClusterSecretStoreSpecProviderOraclePrincipalType(enum.Enum):
     '''The type of principal to use for authentication.
 
-    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+    If left blank, the Auth struct will
+    determine the principal type. This optional field must be specified if using
+    workload identity.
 
     :schema: ClusterSecretStoreSpecProviderOraclePrincipalType
     '''
@@ -7929,7 +8207,8 @@ class ClusterSecretStoreSpecProviderOracleServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef#namespace
         '''
@@ -7944,6 +8223,256 @@ class ClusterSecretStoreSpecProviderOracleServiceAccountRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreSpecProviderOracleServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderPassworddepot",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "database": "database", "host": "host"},
+)
+class ClusterSecretStoreSpecProviderPassworddepot:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterSecretStoreSpecProviderPassworddepotAuth", typing.Dict[builtins.str, typing.Any]],
+        database: builtins.str,
+        host: builtins.str,
+    ) -> None:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :param auth: Auth configures how secret-manager authenticates with a Password Depot instance.
+        :param database: Database to use as source.
+        :param host: URL configures the Password Depot instance URL.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepot
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterSecretStoreSpecProviderPassworddepotAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__72d2dda8f33fd1e3871450460f964c43585b0825137f24072af76f387fdb8f53)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument database", value=database, expected_type=type_hints["database"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "database": database,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "ClusterSecretStoreSpecProviderPassworddepotAuth":
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepot#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderPassworddepotAuth", result)
+
+    @builtins.property
+    def database(self) -> builtins.str:
+        '''Database to use as source.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepot#database
+        '''
+        result = self._values.get("database")
+        assert result is not None, "Required property 'database' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''URL configures the Password Depot instance URL.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepot#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderPassworddepot(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderPassworddepotAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreSpecProviderPassworddepotAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :param secret_ref: 
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b6b6ea9a2b87f39442403b43f12453ef96e7f78fd325509788386688440d487b)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef":
+        '''
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderPassworddepotAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"credentials": "credentials"},
+)
+class ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        credentials: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param credentials: Username / Password is used for authentication.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef
+        '''
+        if isinstance(credentials, dict):
+            credentials = ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials(**credentials)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d9d6e961d14c0b06bf046bf2b304ec7d6ec46e370ab98ee8caa1ead22a914088)
+            check_type(argname="argument credentials", value=credentials, expected_type=type_hints["credentials"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if credentials is not None:
+            self._values["credentials"] = credentials
+
+    @builtins.property
+    def credentials(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials"]:
+        '''Username / Password is used for authentication.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef#credentials
+        '''
+        result = self._values.get("credentials")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Username / Password is used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4dc2de537e242a05d9395953fcfbf59daabc5a55a600ae989930d018a6751dd6)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -8049,7 +8578,10 @@ class ClusterSecretStoreSpecProviderVault:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate Vault server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreSpecProviderVault#caBundle
         '''
@@ -8071,7 +8603,9 @@ class ClusterSecretStoreSpecProviderVault:
     def forward_inconsistent(self) -> typing.Optional[builtins.bool]:
         '''ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop.
 
-        This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+        This can increase performance if
+        the option is enabled serverside.
+        https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 
         :schema: ClusterSecretStoreSpecProviderVault#forwardInconsistent
         '''
@@ -8082,7 +8616,9 @@ class ClusterSecretStoreSpecProviderVault:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Name of the vault namespace.
 
-        Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 
         :schema: ClusterSecretStoreSpecProviderVault#namespace
         '''
@@ -8102,7 +8638,8 @@ class ClusterSecretStoreSpecProviderVault:
     def read_your_writes(self) -> typing.Optional[builtins.bool]:
         '''ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request.
 
-        More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        More information about eventual consistency in Vault can be found here
+        https://www.vaultproject.io/docs/enterprise/consistency
 
         :schema: ClusterSecretStoreSpecProviderVault#readYourWrites
         '''
@@ -8113,7 +8650,8 @@ class ClusterSecretStoreSpecProviderVault:
     def version(self) -> typing.Optional["ClusterSecretStoreSpecProviderVaultVersion"]:
         '''Version is the Vault KV secret engine version.
 
-        This can be either "v1" or "v2". Version defaults to "v2".
+        This can be either "v1" or
+        "v2". Version defaults to "v2".
 
         :schema: ClusterSecretStoreSpecProviderVault#version
         '''
@@ -8330,7 +8868,8 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRole:
     def secret_ref(self) -> "ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef":
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthAppRole#secretRef
         '''
@@ -8365,7 +8904,8 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -8390,7 +8930,8 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef#key
         '''
@@ -8410,7 +8951,8 @@ class ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthAppRoleSecretRef#namespace
         '''
@@ -8534,7 +9076,8 @@ class ClusterSecretStoreSpecProviderVaultAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertClientCert#key
         '''
@@ -8554,7 +9097,8 @@ class ClusterSecretStoreSpecProviderVaultAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertClientCert#namespace
         '''
@@ -8611,7 +9155,8 @@ class ClusterSecretStoreSpecProviderVaultAuthCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertSecretRef#key
         '''
@@ -8631,7 +9176,8 @@ class ClusterSecretStoreSpecProviderVaultAuthCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthCertSecretRef#namespace
         '''
@@ -8898,7 +9444,8 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#namespace
         '''
@@ -8955,7 +9502,8 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef#key
         '''
@@ -8975,7 +9523,8 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtSecretRef#namespace
         '''
@@ -9055,7 +9604,8 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetes:
     def role(self) -> builtins.str:
         '''A required field containing the Vault Role to assume.
 
-        A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
+        A Role binds a
+        Kubernetes ServiceAccount with a set of Vault policies.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetes#role
         '''
@@ -9069,7 +9619,9 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetes#secretRef
         '''
@@ -9082,7 +9634,9 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetes#serviceAccountRef
         '''
@@ -9116,7 +9670,9 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -9141,7 +9697,8 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef#key
         '''
@@ -9161,7 +9718,8 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesSecretRef#namespace
         '''
@@ -9195,7 +9753,9 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -9239,7 +9799,8 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef#namespace
         '''
@@ -9374,7 +9935,8 @@ class ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef#key
         '''
@@ -9394,7 +9956,8 @@ class ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthLdapSecretRef#namespace
         '''
@@ -9451,7 +10014,8 @@ class ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef#key
         '''
@@ -9471,7 +10035,8 @@ class ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthTokenSecretRef#namespace
         '''
@@ -9602,7 +10167,8 @@ class ClusterSecretStoreSpecProviderVaultCaProviderType(enum.Enum):
 class ClusterSecretStoreSpecProviderVaultVersion(enum.Enum):
     '''Version is the Vault KV secret engine version.
 
-    This can be either "v1" or "v2". Version defaults to "v2".
+    This can be either "v1" or
+    "v2". Version defaults to "v2".
 
     :schema: ClusterSecretStoreSpecProviderVaultVersion
     '''
@@ -9723,7 +10289,10 @@ class ClusterSecretStoreSpecProviderWebhook:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate webhook server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreSpecProviderWebhook#caBundle
         '''
@@ -10039,7 +10608,8 @@ class ClusterSecretStoreSpecProviderWebhookSecretsSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderWebhookSecretsSecretRef#key
         '''
@@ -10059,7 +10629,8 @@ class ClusterSecretStoreSpecProviderWebhookSecretsSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderWebhookSecretsSecretRef#namespace
         '''
@@ -10249,7 +10820,8 @@ class ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef#key
         '''
@@ -10269,7 +10841,8 @@ class ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef#namespace
         '''
@@ -10375,7 +10948,8 @@ class ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef#key
         '''
@@ -10395,7 +10969,8 @@ class ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef#namespace
         '''
@@ -10836,7 +11411,9 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector:
     ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''matchLabels is a map of {key,value} pairs.
 
-        A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+        A single {key,value} in the matchLabels
+        map is equivalent to an element of matchExpressions, whose key field is "key", the
+        operator is "In", and the values array contains only "value". The requirements are ANDed.
 
         :schema: ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelector#matchLabels
         '''
@@ -10914,7 +11491,10 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
     def values(self) -> typing.Optional[typing.List[builtins.str]]:
         '''values is an array of string values.
 
-        If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+        If the operator is In or NotIn,
+        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+        the values array must be empty. This array is replaced during a strategic
+        merge patch.
 
         :schema: ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions#values
         '''
@@ -10941,17 +11521,23 @@ class ClusterSecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
         "alibaba": "alibaba",
         "aws": "aws",
         "azurekv": "azurekv",
+        "chef": "chef",
         "conjur": "conjur",
         "delinea": "delinea",
         "doppler": "doppler",
         "fake": "fake",
+        "fortanix": "fortanix",
         "gcpsm": "gcpsm",
         "gitlab": "gitlab",
         "ibm": "ibm",
         "keepersecurity": "keepersecurity",
         "kubernetes": "kubernetes",
+        "onboardbase": "onboardbase",
         "onepassword": "onepassword",
         "oracle": "oracle",
+        "passbolt": "passbolt",
+        "passworddepot": "passworddepot",
+        "pulumi": "pulumi",
         "scaleway": "scaleway",
         "senhasegura": "senhasegura",
         "vault": "vault",
@@ -10968,17 +11554,23 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         alibaba: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
         aws: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
         azurekv: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        chef: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderChef", typing.Dict[builtins.str, typing.Any]]] = None,
         conjur: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjur", typing.Dict[builtins.str, typing.Any]]] = None,
         delinea: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderDelinea", typing.Dict[builtins.str, typing.Any]]] = None,
         doppler: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderDoppler", typing.Dict[builtins.str, typing.Any]]] = None,
         fake: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        fortanix: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFortanix", typing.Dict[builtins.str, typing.Any]]] = None,
         gcpsm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
         gitlab: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
         ibm: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
         keepersecurity: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKeepersecurity", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        onboardbase: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnboardbase", typing.Dict[builtins.str, typing.Any]]] = None,
         onepassword: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[builtins.str, typing.Any]]] = None,
         oracle: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        passbolt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassbolt", typing.Dict[builtins.str, typing.Any]]] = None,
+        passworddepot: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassworddepot", typing.Dict[builtins.str, typing.Any]]] = None,
+        pulumi: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderPulumi", typing.Dict[builtins.str, typing.Any]]] = None,
         scaleway: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderScaleway", typing.Dict[builtins.str, typing.Any]]] = None,
         senhasegura: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[builtins.str, typing.Any]]] = None,
         vault: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -10994,17 +11586,23 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         :param alibaba: Alibaba configures this store to sync secrets using Alibaba Cloud provider.
         :param aws: AWS configures this store to sync secrets using AWS Secret Manager provider.
         :param azurekv: AzureKV configures this store to sync secrets using Azure Key Vault provider.
+        :param chef: Chef configures this store to sync secrets with chef server.
         :param conjur: Conjur configures this store to sync secrets using conjur provider.
         :param delinea: Delinea DevOps Secrets Vault https://docs.delinea.com/online-help/products/devops-secrets-vault/current.
         :param doppler: Doppler configures this store to sync secrets using the Doppler provider.
         :param fake: Fake configures a store with static key/value pairs.
+        :param fortanix: Fortanix configures this store to sync secrets using the Fortanix provider.
         :param gcpsm: GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
         :param gitlab: GitLab configures this store to sync secrets using GitLab Variables provider.
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param keepersecurity: KeeperSecurity configures this store to sync secrets using the KeeperSecurity provider.
         :param kubernetes: Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
+        :param onboardbase: Onboardbase configures this store to sync secrets using the Onboardbase provider.
         :param onepassword: OnePassword configures this store to sync secrets using the 1Password Cloud provider.
         :param oracle: Oracle configures this store to sync secrets using Oracle Vault provider.
+        :param passbolt: 
+        :param passworddepot: Configures a store to sync secrets with a Password Depot instance.
+        :param pulumi: Pulumi configures this store to sync secrets using the Pulumi provider.
         :param scaleway: Scaleway.
         :param senhasegura: Senhasegura configures this store to sync secrets using senhasegura provider.
         :param vault: Vault configures this store to sync secrets using Hashi provider.
@@ -11022,6 +11620,8 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             aws = ClusterSecretStoreV1Beta1SpecProviderAws(**aws)
         if isinstance(azurekv, dict):
             azurekv = ClusterSecretStoreV1Beta1SpecProviderAzurekv(**azurekv)
+        if isinstance(chef, dict):
+            chef = ClusterSecretStoreV1Beta1SpecProviderChef(**chef)
         if isinstance(conjur, dict):
             conjur = ClusterSecretStoreV1Beta1SpecProviderConjur(**conjur)
         if isinstance(delinea, dict):
@@ -11030,6 +11630,8 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             doppler = ClusterSecretStoreV1Beta1SpecProviderDoppler(**doppler)
         if isinstance(fake, dict):
             fake = ClusterSecretStoreV1Beta1SpecProviderFake(**fake)
+        if isinstance(fortanix, dict):
+            fortanix = ClusterSecretStoreV1Beta1SpecProviderFortanix(**fortanix)
         if isinstance(gcpsm, dict):
             gcpsm = ClusterSecretStoreV1Beta1SpecProviderGcpsm(**gcpsm)
         if isinstance(gitlab, dict):
@@ -11040,10 +11642,18 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             keepersecurity = ClusterSecretStoreV1Beta1SpecProviderKeepersecurity(**keepersecurity)
         if isinstance(kubernetes, dict):
             kubernetes = ClusterSecretStoreV1Beta1SpecProviderKubernetes(**kubernetes)
+        if isinstance(onboardbase, dict):
+            onboardbase = ClusterSecretStoreV1Beta1SpecProviderOnboardbase(**onboardbase)
         if isinstance(onepassword, dict):
             onepassword = ClusterSecretStoreV1Beta1SpecProviderOnepassword(**onepassword)
         if isinstance(oracle, dict):
             oracle = ClusterSecretStoreV1Beta1SpecProviderOracle(**oracle)
+        if isinstance(passbolt, dict):
+            passbolt = ClusterSecretStoreV1Beta1SpecProviderPassbolt(**passbolt)
+        if isinstance(passworddepot, dict):
+            passworddepot = ClusterSecretStoreV1Beta1SpecProviderPassworddepot(**passworddepot)
+        if isinstance(pulumi, dict):
+            pulumi = ClusterSecretStoreV1Beta1SpecProviderPulumi(**pulumi)
         if isinstance(scaleway, dict):
             scaleway = ClusterSecretStoreV1Beta1SpecProviderScaleway(**scaleway)
         if isinstance(senhasegura, dict):
@@ -11062,17 +11672,23 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
             check_type(argname="argument azurekv", value=azurekv, expected_type=type_hints["azurekv"])
+            check_type(argname="argument chef", value=chef, expected_type=type_hints["chef"])
             check_type(argname="argument conjur", value=conjur, expected_type=type_hints["conjur"])
             check_type(argname="argument delinea", value=delinea, expected_type=type_hints["delinea"])
             check_type(argname="argument doppler", value=doppler, expected_type=type_hints["doppler"])
             check_type(argname="argument fake", value=fake, expected_type=type_hints["fake"])
+            check_type(argname="argument fortanix", value=fortanix, expected_type=type_hints["fortanix"])
             check_type(argname="argument gcpsm", value=gcpsm, expected_type=type_hints["gcpsm"])
             check_type(argname="argument gitlab", value=gitlab, expected_type=type_hints["gitlab"])
             check_type(argname="argument ibm", value=ibm, expected_type=type_hints["ibm"])
             check_type(argname="argument keepersecurity", value=keepersecurity, expected_type=type_hints["keepersecurity"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
+            check_type(argname="argument onboardbase", value=onboardbase, expected_type=type_hints["onboardbase"])
             check_type(argname="argument onepassword", value=onepassword, expected_type=type_hints["onepassword"])
             check_type(argname="argument oracle", value=oracle, expected_type=type_hints["oracle"])
+            check_type(argname="argument passbolt", value=passbolt, expected_type=type_hints["passbolt"])
+            check_type(argname="argument passworddepot", value=passworddepot, expected_type=type_hints["passworddepot"])
+            check_type(argname="argument pulumi", value=pulumi, expected_type=type_hints["pulumi"])
             check_type(argname="argument scaleway", value=scaleway, expected_type=type_hints["scaleway"])
             check_type(argname="argument senhasegura", value=senhasegura, expected_type=type_hints["senhasegura"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
@@ -11088,6 +11704,8 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             self._values["aws"] = aws
         if azurekv is not None:
             self._values["azurekv"] = azurekv
+        if chef is not None:
+            self._values["chef"] = chef
         if conjur is not None:
             self._values["conjur"] = conjur
         if delinea is not None:
@@ -11096,6 +11714,8 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             self._values["doppler"] = doppler
         if fake is not None:
             self._values["fake"] = fake
+        if fortanix is not None:
+            self._values["fortanix"] = fortanix
         if gcpsm is not None:
             self._values["gcpsm"] = gcpsm
         if gitlab is not None:
@@ -11106,10 +11726,18 @@ class ClusterSecretStoreV1Beta1SpecProvider:
             self._values["keepersecurity"] = keepersecurity
         if kubernetes is not None:
             self._values["kubernetes"] = kubernetes
+        if onboardbase is not None:
+            self._values["onboardbase"] = onboardbase
         if onepassword is not None:
             self._values["onepassword"] = onepassword
         if oracle is not None:
             self._values["oracle"] = oracle
+        if passbolt is not None:
+            self._values["passbolt"] = passbolt
+        if passworddepot is not None:
+            self._values["passworddepot"] = passworddepot
+        if pulumi is not None:
+            self._values["pulumi"] = pulumi
         if scaleway is not None:
             self._values["scaleway"] = scaleway
         if senhasegura is not None:
@@ -11166,6 +11794,15 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekv"], result)
 
     @builtins.property
+    def chef(self) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderChef"]:
+        '''Chef configures this store to sync secrets with chef server.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#chef
+        '''
+        result = self._values.get("chef")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderChef"], result)
+
+    @builtins.property
     def conjur(self) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjur"]:
         '''Conjur configures this store to sync secrets using conjur provider.
 
@@ -11204,6 +11841,17 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         '''
         result = self._values.get("fake")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFake"], result)
+
+    @builtins.property
+    def fortanix(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanix"]:
+        '''Fortanix configures this store to sync secrets using the Fortanix provider.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#fortanix
+        '''
+        result = self._values.get("fortanix")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanix"], result)
 
     @builtins.property
     def gcpsm(self) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderGcpsm"]:
@@ -11255,6 +11903,17 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderKubernetes"], result)
 
     @builtins.property
+    def onboardbase(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOnboardbase"]:
+        '''Onboardbase configures this store to sync secrets using the Onboardbase provider.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#onboardbase
+        '''
+        result = self._values.get("onboardbase")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOnboardbase"], result)
+
+    @builtins.property
     def onepassword(
         self,
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOnepassword"]:
@@ -11273,6 +11932,36 @@ class ClusterSecretStoreV1Beta1SpecProvider:
         '''
         result = self._values.get("oracle")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOracle"], result)
+
+    @builtins.property
+    def passbolt(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassbolt"]:
+        '''
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#passbolt
+        '''
+        result = self._values.get("passbolt")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassbolt"], result)
+
+    @builtins.property
+    def passworddepot(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassworddepot"]:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#passworddepot
+        '''
+        result = self._values.get("passworddepot")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassworddepot"], result)
+
+    @builtins.property
+    def pulumi(self) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPulumi"]:
+        '''Pulumi configures this store to sync secrets using the Pulumi provider.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProvider#pulumi
+        '''
+        result = self._values.get("pulumi")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPulumi"], result)
 
     @builtins.property
     def scaleway(
@@ -11423,7 +12112,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeyless:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate.
 
-        Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeyless#caBundle
         '''
@@ -11593,7 +12284,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth#secretRef
         '''
@@ -11606,7 +12299,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth#serviceAccountRef
         '''
@@ -11640,7 +12335,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -11665,7 +12362,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#key
         '''
@@ -11685,7 +12383,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#namespace
         '''
@@ -11719,7 +12418,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -11763,7 +12464,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#namespace
         '''
@@ -11909,7 +12611,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessI
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId#key
         '''
@@ -11929,7 +12632,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessI
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId#namespace
         '''
@@ -11986,7 +12690,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType#key
         '''
@@ -12006,7 +12711,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType#namespace
         '''
@@ -12063,7 +12769,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#key
         '''
@@ -12083,7 +12790,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessT
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#namespace
         '''
@@ -12539,7 +13247,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecret
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -12559,7 +13268,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecret
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -12616,7 +13326,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSe
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#key
         '''
@@ -12636,7 +13347,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#namespace
         '''
@@ -13004,7 +13716,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef#namespace
         '''
@@ -13150,7 +13863,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -13170,7 +13884,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -13227,7 +13942,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecret
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -13247,7 +13963,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecret
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -13304,7 +14021,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef#key
         '''
@@ -13324,7 +14042,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef#namespace
         '''
@@ -13379,7 +14098,11 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager:
     def force_delete_without_recovery(self) -> typing.Optional[builtins.bool]:
         '''Specifies whether to delete the secret without any recovery window.
 
-        You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+        You
+        can't use both this parameter and RecoveryWindowInDays in the same call.
+        If you don't use either, then by default Secrets Manager uses a 30 day
+        recovery window.
+        see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager#forceDeleteWithoutRecovery
         '''
@@ -13390,7 +14113,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager:
     def recovery_window_in_days(self) -> typing.Optional[jsii.Number]:
         '''The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret.
 
-        You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+        You can't use both this parameter and
+        ForceDeleteWithoutRecovery in the same call. If you don't use either,
+        then by default Secrets Manager uses a 30 day recovery window.
+        see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsSecretsManager#recoveryWindowInDays
         '''
@@ -13504,12 +14230,12 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
 
         :param vault_url: Vault Url from which the secrets to be fetched from.
-        :param auth_secret_ref: Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type.
+        :param auth_secret_ref: Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
         :param auth_type: Auth type defines how to authenticate to the keyvault service. Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
         :param environment_type: EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure. By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
         :param identity_id: If multiple Managed Identity is assigned to the pod, you can select the one to be used.
         :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
-        :param tenant_id: TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.
+        :param tenant_id: TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekv
         '''
@@ -13558,7 +14284,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef"]:
         '''Auth configures how the operator authenticates with Azure.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekv#authSecretRef
         '''
@@ -13571,7 +14297,10 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType"]:
         '''Auth type defines how to authenticate to the keyvault service.
 
-        Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+        Valid values are:
+
+        - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+        - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekv#authType
         '''
@@ -13584,7 +14313,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType"]:
         '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-        By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+        By default it points to the public cloud AAD endpoint.
+        The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+        PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekv#environmentType
         '''
@@ -13615,7 +14346,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
     def tenant_id(self) -> typing.Optional[builtins.str]:
         '''TenantID configures the Azure Tenant to send requests to.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekv#tenantId
         '''
@@ -13637,43 +14368,73 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekv:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef",
     jsii_struct_bases=[],
-    name_mapping={"client_id": "clientId", "client_secret": "clientSecret"},
+    name_mapping={
+        "client_certificate": "clientCertificate",
+        "client_id": "clientId",
+        "client_secret": "clientSecret",
+        "tenant_id": "tenantId",
+    },
 )
 class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
+        client_certificate: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate", typing.Dict[builtins.str, typing.Any]]] = None,
         client_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
         client_secret: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
+        tenant_id: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
-        :param client_id: The Azure clientId of the service principle used for authentication.
+        :param client_certificate: The Azure ClientCertificate of the service principle used for authentication.
+        :param client_id: The Azure clientId of the service principle or managed identity used for authentication.
         :param client_secret: The Azure ClientSecret of the service principle used for authentication.
+        :param tenant_id: The Azure tenantId of the managed identity used for authentication.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef
         '''
+        if isinstance(client_certificate, dict):
+            client_certificate = ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate(**client_certificate)
         if isinstance(client_id, dict):
             client_id = ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId(**client_id)
         if isinstance(client_secret, dict):
             client_secret = ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
+        if isinstance(tenant_id, dict):
+            tenant_id = ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId(**tenant_id)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__5b5c6576dd0bcff847eb542793197cccaed967a7895b6800a3297ababb2258a6)
+            check_type(argname="argument client_certificate", value=client_certificate, expected_type=type_hints["client_certificate"])
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
+            check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if client_certificate is not None:
+            self._values["client_certificate"] = client_certificate
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
             self._values["client_secret"] = client_secret
+        if tenant_id is not None:
+            self._values["tenant_id"] = tenant_id
+
+    @builtins.property
+    def client_certificate(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate"]:
+        '''The Azure ClientCertificate of the service principle used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#clientCertificate
+        '''
+        result = self._values.get("client_certificate")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate"], result)
 
     @builtins.property
     def client_id(
         self,
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId"]:
-        '''The Azure clientId of the service principle used for authentication.
+        '''The Azure clientId of the service principle or managed identity used for authentication.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#clientId
         '''
@@ -13691,6 +14452,17 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
         result = self._values.get("client_secret")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret"], result)
 
+    @builtins.property
+    def tenant_id(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId"]:
+        '''The Azure tenantId of the managed identity used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#tenantId
+        '''
+        result = self._values.get("tenant_id")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId"], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -13699,6 +14471,85 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''The Azure ClientCertificate of the service principle used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a020b2caecfdbe5ac6df9941e14be21d70df6d9ac4b30816931e54e3377ba0fd)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -13716,7 +14567,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
         name: typing.Optional[builtins.str] = None,
         namespace: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''The Azure clientId of the service principle used for authentication.
+        '''The Azure clientId of the service principle or managed identity used for authentication.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -13741,7 +14592,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId#key
         '''
@@ -13761,7 +14613,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId#namespace
         '''
@@ -13818,7 +14671,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret#key
         '''
@@ -13838,7 +14692,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret#namespace
         '''
@@ -13857,13 +14712,95 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
         )
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''The Azure tenantId of the managed identity used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e4429b736687abdfd285a8c1cb74d70991015d3ce65c34dc4a97d594505bd73c)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 @jsii.enum(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType"
 )
 class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType(enum.Enum):
     '''Auth type defines how to authenticate to the keyvault service.
 
-    Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+    Valid values are:
+
+    - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+    - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
     :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType
     '''
@@ -13882,7 +14819,9 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType(enum.Enum):
 class ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType(enum.Enum):
     '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-    By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+    By default it points to the public cloud AAD endpoint.
+    The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+    PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
     :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType
     '''
@@ -13954,7 +14893,8 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef#namespace
         '''
@@ -13969,6 +14909,261 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderChef",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "server_url": "serverUrl", "username": "username"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderChef:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderChefAuth", typing.Dict[builtins.str, typing.Any]],
+        server_url: builtins.str,
+        username: builtins.str,
+    ) -> None:
+        '''Chef configures this store to sync secrets with chef server.
+
+        :param auth: Auth defines the information necessary to authenticate against chef Server.
+        :param server_url: ServerURL is the chef server URL used to connect to. If using orgs you should include your org in the url and terminate the url with a "/"
+        :param username: UserName should be the user ID on the chef server.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChef
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterSecretStoreV1Beta1SpecProviderChefAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__88acac78c56cdf7d7b25b35249fe8c901d534be93b0484bde9c8d649b70de553)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument server_url", value=server_url, expected_type=type_hints["server_url"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "server_url": server_url,
+            "username": username,
+        }
+
+    @builtins.property
+    def auth(self) -> "ClusterSecretStoreV1Beta1SpecProviderChefAuth":
+        '''Auth defines the information necessary to authenticate against chef Server.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChef#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderChefAuth", result)
+
+    @builtins.property
+    def server_url(self) -> builtins.str:
+        '''ServerURL is the chef server URL used to connect to.
+
+        If using orgs you should include your org in the url and terminate the url with a "/"
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChef#serverUrl
+        '''
+        result = self._values.get("server_url")
+        assert result is not None, "Required property 'server_url' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''UserName should be the user ID on the chef server.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChef#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderChef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderChefAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderChefAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth defines the information necessary to authenticate against chef Server.
+
+        :param secret_ref: ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b37a2cbd8da0cdf523622a0f633b0d18512951980846f004df6a950b8d7942b8)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef":
+        '''ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderChefAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"private_key_secret_ref": "privateKeySecretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        private_key_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :param private_key_secret_ref: SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef
+        '''
+        if isinstance(private_key_secret_ref, dict):
+            private_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef(**private_key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f25b6de66eaab11b8c4daae7eec60aebf678febadf1761328a10c1b73ed2feaa)
+            check_type(argname="argument private_key_secret_ref", value=private_key_secret_ref, expected_type=type_hints["private_key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "private_key_secret_ref": private_key_secret_ref,
+        }
+
+    @builtins.property
+    def private_key_secret_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef":
+        '''SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef#privateKeySecretRef
+        '''
+        result = self._values.get("private_key_secret_ref")
+        assert result is not None, "Required property 'private_key_secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__83670b4c46a4338b8b67fec9e6cc81a8b7c03be59f98d76ae4db7578f48def37)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -14052,7 +15247,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjur:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider"]:
         '''Used to provide custom certificate authority (CA) certificates for a secret store.
 
-        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+        The CAProvider points to a Secret or ConfigMap resource
+        that contains a PEM-encoded certificate.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjur#caProvider
         '''
@@ -14257,7 +15453,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef#key
         '''
@@ -14277,7 +15474,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef#namespace
         '''
@@ -14334,7 +15532,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef#key
         '''
@@ -14354,7 +15553,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef#namespace
         '''
@@ -14379,6 +15579,7 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     name_mapping={
         "account": "account",
         "service_id": "serviceId",
+        "host_id": "hostId",
         "secret_ref": "secretRef",
         "service_account_ref": "serviceAccountRef",
     },
@@ -14389,12 +15590,14 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt:
         *,
         account: builtins.str,
         service_id: builtins.str,
+        host_id: typing.Optional[builtins.str] = None,
         secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param account: 
         :param service_id: The conjur authn jwt webservice id.
+        :param host_id: Optional HostID for JWT authentication. This may be used depending on how the Conjur JWT authenticator policy is configured.
         :param secret_ref: Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
         :param service_account_ref: Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
@@ -14408,12 +15611,15 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt:
             type_hints = typing.get_type_hints(_typecheckingstub__52b0f350eacc0c9b57a1b6713a56af5acafeba5eba98459f04a1fe98b1f41edb)
             check_type(argname="argument account", value=account, expected_type=type_hints["account"])
             check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "account": account,
             "service_id": service_id,
         }
+        if host_id is not None:
+            self._values["host_id"] = host_id
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if service_account_ref is not None:
@@ -14437,6 +15643,18 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt:
         result = self._values.get("service_id")
         assert result is not None, "Required property 'service_id' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> typing.Optional[builtins.str]:
+        '''Optional HostID for JWT authentication.
+
+        This may be used depending
+        on how the Conjur JWT authenticator policy is configured.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwt#hostId
+        '''
+        result = self._values.get("host_id")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def secret_ref(
@@ -14510,7 +15728,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#key
         '''
@@ -14530,7 +15749,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#namespace
         '''
@@ -14606,7 +15826,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#namespace
         '''
@@ -14646,7 +15867,8 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurCaProvider:
     ) -> None:
         '''Used to provide custom certificate authority (CA) certificates for a secret store.
 
-        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+        The CAProvider points to a Secret or ConfigMap resource
+        that contains a PEM-encoded certificate.
 
         :param name: The name of the object located at the provider type.
         :param type: The type of provider to use such as "Secret", or "ConfigMap".
@@ -14954,7 +16176,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef#key
         '''
@@ -14974,7 +16197,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef#namespace
         '''
@@ -15094,7 +16318,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef#key
         '''
@@ -15114,7 +16339,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef#namespace
         '''
@@ -15325,7 +16551,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
     ) -> "ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken":
         '''The DopplerToken is used for authentication.
 
-        See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
+        See https://docs.doppler.com/reference/api#authentication for auth token types.
+        The Key attribute defaults to dopplerToken if not specified.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRef#dopplerToken
         '''
@@ -15360,7 +16587,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     ) -> None:
         '''The DopplerToken is used for authentication.
 
-        See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
+        See https://docs.doppler.com/reference/api#authentication for auth token types.
+        The Key attribute defaults to dopplerToken if not specified.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -15385,7 +16613,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken#key
         '''
@@ -15405,7 +16634,8 @@ class ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken#namespace
         '''
@@ -15598,6 +16828,201 @@ class ClusterSecretStoreV1Beta1SpecProviderFakeData:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderFakeData(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderFortanix",
+    jsii_struct_bases=[],
+    name_mapping={"api_key": "apiKey", "api_url": "apiUrl"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderFortanix:
+    def __init__(
+        self,
+        *,
+        api_key: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey", typing.Dict[builtins.str, typing.Any]]] = None,
+        api_url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Fortanix configures this store to sync secrets using the Fortanix provider.
+
+        :param api_key: APIKey is the API token to access SDKMS Applications.
+        :param api_url: APIURL is the URL of SDKMS API. Defaults to ``sdkms.fortanix.com``. Default: sdkms.fortanix.com`.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanix
+        '''
+        if isinstance(api_key, dict):
+            api_key = ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey(**api_key)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__23f53b5511de04a43eca076d3113fbd4876b859968943ded73579584b830281b)
+            check_type(argname="argument api_key", value=api_key, expected_type=type_hints["api_key"])
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if api_key is not None:
+            self._values["api_key"] = api_key
+        if api_url is not None:
+            self._values["api_url"] = api_url
+
+    @builtins.property
+    def api_key(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey"]:
+        '''APIKey is the API token to access SDKMS Applications.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanix#apiKey
+        '''
+        result = self._values.get("api_key")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey"], result)
+
+    @builtins.property
+    def api_url(self) -> typing.Optional[builtins.str]:
+        '''APIURL is the URL of SDKMS API.
+
+        Defaults to ``sdkms.fortanix.com``.
+
+        :default: sdkms.fortanix.com`.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanix#apiUrl
+        '''
+        result = self._values.get("api_url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderFortanix(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''APIKey is the API token to access SDKMS Applications.
+
+        :param secret_ref: SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4d4be3708e44244dbee2a11e44eb789795cfe48c43302b71a8a433000e9efcc3)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef"]:
+        '''SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__91961b519bcb0f662eabc09b7254758dc88f1b7138634b36f11b7124f01dd138)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -15814,7 +17239,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecr
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -15834,7 +17260,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecr
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -16003,7 +17430,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccou
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -16286,7 +17714,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken#key
         '''
@@ -16306,7 +17735,8 @@ class ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken#namespace
         '''
@@ -16616,7 +18046,8 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef#key
         '''
@@ -16636,7 +18067,8 @@ class ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef#namespace
         '''
@@ -16754,7 +18186,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKeepersecurityAuthRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKeepersecurityAuthRef#key
         '''
@@ -16774,7 +18207,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKeepersecurityAuthRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKeepersecurityAuthRef#namespace
         '''
@@ -17071,7 +18505,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert#key
         '''
@@ -17091,7 +18526,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert#namespace
         '''
@@ -17148,7 +18584,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey#key
         '''
@@ -17168,7 +18605,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey#namespace
         '''
@@ -17244,7 +18682,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount#namespace
         '''
@@ -17350,7 +18789,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken#key
         '''
@@ -17370,7 +18810,8 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken#namespace
         '''
@@ -17576,6 +19017,331 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType(enum.E
     '''Secret.'''
     CONFIG_MAP = "CONFIG_MAP"
     '''ConfigMap.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOnboardbase",
+    jsii_struct_bases=[],
+    name_mapping={
+        "api_host": "apiHost",
+        "auth": "auth",
+        "environment": "environment",
+        "project": "project",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderOnboardbase:
+    def __init__(
+        self,
+        *,
+        api_host: builtins.str,
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth", typing.Dict[builtins.str, typing.Any]],
+        environment: builtins.str,
+        project: builtins.str,
+    ) -> None:
+        '''Onboardbase configures this store to sync secrets using the Onboardbase provider.
+
+        :param api_host: APIHost use this to configure the host url for the API for selfhosted installation, default is https://public.onboardbase.com/api/v1/.
+        :param auth: Auth configures how the Operator authenticates with the Onboardbase API.
+        :param environment: Environment is the name of an environmnent within a project to pull the secrets from.
+        :param project: Project is an onboardbase project that the secrets should be pulled from.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbase
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__fef0fe20d06010db0b115f64a6faaeae6035afd6ee50023dd2905ba6edb385d9)
+            check_type(argname="argument api_host", value=api_host, expected_type=type_hints["api_host"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
+            check_type(argname="argument project", value=project, expected_type=type_hints["project"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_host": api_host,
+            "auth": auth,
+            "environment": environment,
+            "project": project,
+        }
+
+    @builtins.property
+    def api_host(self) -> builtins.str:
+        '''APIHost use this to configure the host url for the API for selfhosted installation, default is https://public.onboardbase.com/api/v1/.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbase#apiHost
+        '''
+        result = self._values.get("api_host")
+        assert result is not None, "Required property 'api_host' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth":
+        '''Auth configures how the Operator authenticates with the Onboardbase API.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbase#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth", result)
+
+    @builtins.property
+    def environment(self) -> builtins.str:
+        '''Environment is the name of an environmnent within a project to pull the secrets from.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbase#environment
+        '''
+        result = self._values.get("environment")
+        assert result is not None, "Required property 'environment' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def project(self) -> builtins.str:
+        '''Project is an onboardbase project that the secrets should be pulled from.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbase#project
+        '''
+        result = self._values.get("project")
+        assert result is not None, "Required property 'project' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderOnboardbase(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth",
+    jsii_struct_bases=[],
+    name_mapping={"api_key_ref": "apiKeyRef", "passcode_ref": "passcodeRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth:
+    def __init__(
+        self,
+        *,
+        api_key_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef", typing.Dict[builtins.str, typing.Any]],
+        passcode_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how the Operator authenticates with the Onboardbase API.
+
+        :param api_key_ref: OnboardbaseAPIKey is the APIKey generated by an admin account. It is used to recognize and authorize access to a project and environment within onboardbase
+        :param passcode_ref: OnboardbasePasscode is the passcode attached to the API Key.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth
+        '''
+        if isinstance(api_key_ref, dict):
+            api_key_ref = ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef(**api_key_ref)
+        if isinstance(passcode_ref, dict):
+            passcode_ref = ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef(**passcode_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d1cbb2018cddeec517a9daacbd3efacd9e12b372cdda0ccf5f1c4e390b0a3187)
+            check_type(argname="argument api_key_ref", value=api_key_ref, expected_type=type_hints["api_key_ref"])
+            check_type(argname="argument passcode_ref", value=passcode_ref, expected_type=type_hints["passcode_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_key_ref": api_key_ref,
+            "passcode_ref": passcode_ref,
+        }
+
+    @builtins.property
+    def api_key_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef":
+        '''OnboardbaseAPIKey is the APIKey generated by an admin account.
+
+        It is used to recognize and authorize access to a project and environment within onboardbase
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth#apiKeyRef
+        '''
+        result = self._values.get("api_key_ref")
+        assert result is not None, "Required property 'api_key_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef", result)
+
+    @builtins.property
+    def passcode_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef":
+        '''OnboardbasePasscode is the passcode attached to the API Key.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth#passcodeRef
+        '''
+        result = self._values.get("passcode_ref")
+        assert result is not None, "Required property 'passcode_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''OnboardbaseAPIKey is the APIKey generated by an admin account.
+
+        It is used to recognize and authorize access to a project and environment within onboardbase
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e48908cdfeadc38509946151999d447e24d1ae1619cc7a9071c10f1e788238b0)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''OnboardbasePasscode is the passcode attached to the API Key.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__96c99d992290dc70599e2af41c3bea41966ab99f0af0c5260d74a5302466d420)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
 
 
 @jsii.data_type(
@@ -17792,7 +19558,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenS
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef#key
         '''
@@ -17812,7 +19579,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenS
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef#namespace
         '''
@@ -17957,7 +19725,9 @@ class ClusterSecretStoreV1Beta1SpecProviderOracle:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType"]:
         '''The type of principal to use for authentication.
 
-        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        If left blank, the Auth struct will
+        determine the principal type. This optional field must be specified if using
+        workload identity.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracle#principalType
         '''
@@ -18171,7 +19941,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint#key
         '''
@@ -18191,7 +19962,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint#namespace
         '''
@@ -18248,7 +20020,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey#key
         '''
@@ -18268,7 +20041,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey#namespace
         '''
@@ -18293,7 +20067,9 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
 class ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType(enum.Enum):
     '''The type of principal to use for authentication.
 
-    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+    If left blank, the Auth struct will
+    determine the principal type. This optional field must be specified if using
+    workload identity.
 
     :schema: ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType
     '''
@@ -18363,7 +20139,8 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef#namespace
         '''
@@ -18378,6 +20155,775 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassbolt",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "host": "host"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassbolt:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassboltAuth", typing.Dict[builtins.str, typing.Any]],
+        host: builtins.str,
+    ) -> None:
+        '''
+        :param auth: Auth defines the information necessary to authenticate against Passbolt Server.
+        :param host: Host defines the Passbolt Server to connect to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassbolt
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterSecretStoreV1Beta1SpecProviderPassboltAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3a5bdf2a0b57968765bc44e2884c1669c82fec7a7708fe5dca91387ae68da08e)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "ClusterSecretStoreV1Beta1SpecProviderPassboltAuth":
+        '''Auth defines the information necessary to authenticate against Passbolt Server.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassbolt#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPassboltAuth", result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''Host defines the Passbolt Server to connect to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassbolt#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassbolt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassboltAuth",
+    jsii_struct_bases=[],
+    name_mapping={
+        "password_secret_ref": "passwordSecretRef",
+        "private_key_secret_ref": "privateKeySecretRef",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassboltAuth:
+    def __init__(
+        self,
+        *,
+        password_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef", typing.Dict[builtins.str, typing.Any]],
+        private_key_secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth defines the information necessary to authenticate against Passbolt Server.
+
+        :param password_secret_ref: A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+        :param private_key_secret_ref: A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuth
+        '''
+        if isinstance(password_secret_ref, dict):
+            password_secret_ref = ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef(**password_secret_ref)
+        if isinstance(private_key_secret_ref, dict):
+            private_key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef(**private_key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__483cad95d0042cdbab9a60c81b20980557e0b60689450c8717896ab6c1d6e15f)
+            check_type(argname="argument password_secret_ref", value=password_secret_ref, expected_type=type_hints["password_secret_ref"])
+            check_type(argname="argument private_key_secret_ref", value=private_key_secret_ref, expected_type=type_hints["private_key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password_secret_ref": password_secret_ref,
+            "private_key_secret_ref": private_key_secret_ref,
+        }
+
+    @builtins.property
+    def password_secret_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef":
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuth#passwordSecretRef
+        '''
+        result = self._values.get("password_secret_ref")
+        assert result is not None, "Required property 'password_secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef", result)
+
+    @builtins.property
+    def private_key_secret_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef":
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuth#privateKeySecretRef
+        '''
+        result = self._values.get("private_key_secret_ref")
+        assert result is not None, "Required property 'private_key_secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassboltAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__642fd1ce8f6dea3187f6aee48bbbe2e1933e1c9c53f560119d3d1841066fbc78)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__59ae23d4cc00631d4f90cb043b7bc74c3052fd82a2664116f490110123809074)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassworddepot",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "database": "database", "host": "host"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassworddepot:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth", typing.Dict[builtins.str, typing.Any]],
+        database: builtins.str,
+        host: builtins.str,
+    ) -> None:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :param auth: Auth configures how secret-manager authenticates with a Password Depot instance.
+        :param database: Database to use as source.
+        :param host: URL configures the Password Depot instance URL.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepot
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b3e4ac61bac2d763c98707b1962c58667b9ac61ee2b2dea402f347b1c481fb79)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument database", value=database, expected_type=type_hints["database"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "database": database,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth":
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepot#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth", result)
+
+    @builtins.property
+    def database(self) -> builtins.str:
+        '''Database to use as source.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepot#database
+        '''
+        result = self._values.get("database")
+        assert result is not None, "Required property 'database' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''URL configures the Password Depot instance URL.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepot#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassworddepot(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :param secret_ref: 
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__05c65e058ced4bdb5cef3641cc9e5cfaae0387cd9db325478de3ddeda13003c7)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef":
+        '''
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"credentials": "credentials"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        credentials: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param credentials: Username / Password is used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef
+        '''
+        if isinstance(credentials, dict):
+            credentials = ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials(**credentials)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6de977b5878b841de2449126618c6a83ce9e9bea33c1d98d8a99425cdf649481)
+            check_type(argname="argument credentials", value=credentials, expected_type=type_hints["credentials"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if credentials is not None:
+            self._values["credentials"] = credentials
+
+    @builtins.property
+    def credentials(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials"]:
+        '''Username / Password is used for authentication.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef#credentials
+        '''
+        result = self._values.get("credentials")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Username / Password is used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2ed80b8a0ccff8d950eb589785a3db8eda34428f58f04ec1844c28d4d1b9dd2a)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPulumi",
+    jsii_struct_bases=[],
+    name_mapping={
+        "access_token": "accessToken",
+        "environment": "environment",
+        "organization": "organization",
+        "api_url": "apiUrl",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderPulumi:
+    def __init__(
+        self,
+        *,
+        access_token: typing.Union["ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken", typing.Dict[builtins.str, typing.Any]],
+        environment: builtins.str,
+        organization: builtins.str,
+        api_url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Pulumi configures this store to sync secrets using the Pulumi provider.
+
+        :param access_token: AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+        :param environment: Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments. To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
+        :param organization: Organization are a space to collaborate on shared projects and stacks. To create a new organization, visit https://app.pulumi.com/ and click "New Organization".
+        :param api_url: APIURL is the URL of the Pulumi API.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumi
+        '''
+        if isinstance(access_token, dict):
+            access_token = ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken(**access_token)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3a3d514f7841dfe014761e2c7d90549223f920bae7e524a1516bfa510a96c06f)
+            check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
+            check_type(argname="argument organization", value=organization, expected_type=type_hints["organization"])
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "access_token": access_token,
+            "environment": environment,
+            "organization": organization,
+        }
+        if api_url is not None:
+            self._values["api_url"] = api_url
+
+    @builtins.property
+    def access_token(self) -> "ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken":
+        '''AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumi#accessToken
+        '''
+        result = self._values.get("access_token")
+        assert result is not None, "Required property 'access_token' is missing"
+        return typing.cast("ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken", result)
+
+    @builtins.property
+    def environment(self) -> builtins.str:
+        '''Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments.
+
+        To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumi#environment
+        '''
+        result = self._values.get("environment")
+        assert result is not None, "Required property 'environment' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def organization(self) -> builtins.str:
+        '''Organization are a space to collaborate on shared projects and stacks.
+
+        To create a new organization, visit https://app.pulumi.com/ and click "New Organization".
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumi#organization
+        '''
+        result = self._values.get("organization")
+        assert result is not None, "Required property 'organization' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def api_url(self) -> typing.Optional[builtins.str]:
+        '''APIURL is the URL of the Pulumi API.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumi#apiUrl
+        '''
+        result = self._values.get("api_url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPulumi(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+
+        :param secret_ref: SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__8ce20bfd85695402dc2849f6d7d6aa51cffd3b4566344bb15cb2a217d2c57995)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef"]:
+        '''SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__803f54068a7a9a3d2dd582de1857a6521e55ab7acbd0a7fd47cda1cd02fd01af)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -18599,7 +21145,8 @@ class ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef#key
         '''
@@ -18619,7 +21166,8 @@ class ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef#namespace
         '''
@@ -18739,7 +21287,8 @@ class ClusterSecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef#key
         '''
@@ -18759,7 +21308,8 @@ class ClusterSecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef#namespace
         '''
@@ -18977,7 +21527,8 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef#key
         '''
@@ -18997,7 +21548,8 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef#namespace
         '''
@@ -19028,6 +21580,7 @@ class ClusterSecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
         "namespace": "namespace",
         "path": "path",
         "read_your_writes": "readYourWrites",
+        "tls": "tls",
         "version": "version",
     },
 )
@@ -19043,6 +21596,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
         read_your_writes: typing.Optional[builtins.bool] = None,
+        tls: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultTls", typing.Dict[builtins.str, typing.Any]]] = None,
         version: typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultVersion"] = None,
     ) -> None:
         '''Vault configures this store to sync secrets using Hashi provider.
@@ -19055,6 +21609,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         :param namespace: Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
         :param path: Path is the mount path of the Vault KV backend endpoint, e.g: "secret". The v2 KV secret engine version specific "/data" path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.
         :param read_your_writes: ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        :param tls: The configuration used for client side related TLS communication, when the Vault server requires mutual authentication. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. It's worth noting this configuration is different from the "TLS certificates auth method", which is available under the ``auth.cert`` section.
         :param version: Version is the Vault KV secret engine version. This can be either "v1" or "v2". Version defaults to "v2".
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault
@@ -19063,6 +21618,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
             auth = ClusterSecretStoreV1Beta1SpecProviderVaultAuth(**auth)
         if isinstance(ca_provider, dict):
             ca_provider = ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider(**ca_provider)
+        if isinstance(tls, dict):
+            tls = ClusterSecretStoreV1Beta1SpecProviderVaultTls(**tls)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__d1ed82d254940b706af74554873fa54b86cd8804d7fee8da566eedeb386d5b29)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
@@ -19073,6 +21630,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
+            check_type(argname="argument tls", value=tls, expected_type=type_hints["tls"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
@@ -19090,6 +21648,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
             self._values["path"] = path
         if read_your_writes is not None:
             self._values["read_your_writes"] = read_your_writes
+        if tls is not None:
+            self._values["tls"] = tls
         if version is not None:
             self._values["version"] = version
 
@@ -19117,7 +21677,10 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate Vault server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault#caBundle
         '''
@@ -19139,7 +21702,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
     def forward_inconsistent(self) -> typing.Optional[builtins.bool]:
         '''ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop.
 
-        This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+        This can increase performance if
+        the option is enabled serverside.
+        https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault#forwardInconsistent
         '''
@@ -19150,7 +21715,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Name of the vault namespace.
 
-        Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault#namespace
         '''
@@ -19170,7 +21737,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
     def read_your_writes(self) -> typing.Optional[builtins.bool]:
         '''ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request.
 
-        More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        More information about eventual consistency in Vault can be found here
+        https://www.vaultproject.io/docs/enterprise/consistency
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault#readYourWrites
         '''
@@ -19178,12 +21746,27 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
+    def tls(self) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTls"]:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVault#tls
+        '''
+        result = self._values.get("tls")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTls"], result)
+
+    @builtins.property
     def version(
         self,
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultVersion"]:
         '''Version is the Vault KV secret engine version.
 
-        This can be either "v1" or "v2". Version defaults to "v2".
+        This can be either "v1" or
+        "v2". Version defaults to "v2".
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVault#version
         '''
@@ -19212,6 +21795,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVault:
         "jwt": "jwt",
         "kubernetes": "kubernetes",
         "ldap": "ldap",
+        "namespace": "namespace",
         "token_secret_ref": "tokenSecretRef",
         "user_pass": "userPass",
     },
@@ -19226,6 +21810,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         jwt: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        namespace: typing.Optional[builtins.str] = None,
         token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         user_pass: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
@@ -19237,6 +21822,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         :param jwt: Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
+        :param namespace: Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces This will default to Vault.Namespace field if set, or empty otherwise
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
         :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
@@ -19266,6 +21852,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
             check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -19281,6 +21868,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
             self._values["kubernetes"] = kubernetes
         if ldap is not None:
             self._values["ldap"] = ldap
+        if namespace is not None:
+            self._values["namespace"] = namespace
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
         if user_pass is not None:
@@ -19351,6 +21940,21 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuth:
         '''
         result = self._values.get("ldap")
         return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap"], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Name of the vault namespace to authenticate to.
+
+        This can be different than the namespace your secret is in.
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        This will default to Vault.Namespace field if set, or empty otherwise
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuth#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def token_secret_ref(
@@ -19449,7 +22053,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole:
     ) -> "ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef":
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole#secretRef
         '''
@@ -19472,7 +22077,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef"]:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRole#roleRef
         '''
@@ -19506,7 +22112,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -19531,7 +22138,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef#key
         '''
@@ -19551,7 +22159,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef#namespace
         '''
@@ -19585,7 +22194,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -19610,7 +22220,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef#key
         '''
@@ -19630,7 +22241,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef#namespace
         '''
@@ -19754,7 +22366,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert#key
         '''
@@ -19774,7 +22387,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertClientCert#namespace
         '''
@@ -19831,7 +22445,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef#key
         '''
@@ -19851,7 +22466,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef#namespace
         '''
@@ -20141,7 +22757,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef#namespace
         '''
@@ -20287,7 +22904,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecre
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef#key
         '''
@@ -20307,7 +22925,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecre
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -20364,7 +22983,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeyS
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRef#key
         '''
@@ -20384,7 +23004,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeyS
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -20441,7 +23062,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecr
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef#key
         '''
@@ -20461,7 +23083,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecr
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef#namespace
         '''
@@ -20601,7 +23224,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
         '''Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param service_account_ref: Service account field containing the name of a kubernetes ServiceAccount.
-        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified.
         :param expiration_seconds: Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Deprecated: this will be removed in the future. Defaults to 10 minutes. Default: 10 minutes.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken
@@ -20637,9 +23260,10 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
         '''Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        Defaults to a single audience ``vault`` it not specified.
+        Deprecated: use serviceAccountRef.Audiences instead
 
-        :default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :default: a single audience ``vault`` it not specified.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken#audiences
         '''
@@ -20650,7 +23274,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
     def expiration_seconds(self) -> typing.Optional[jsii.Number]:
         '''Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Deprecated: this will be removed in the future. Defaults to 10 minutes.
+        Deprecated: this will be removed in the future.
+        Defaults to 10 minutes.
 
         :default: 10 minutes.
 
@@ -20728,7 +23353,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#namespace
         '''
@@ -20785,7 +23411,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef#key
         '''
@@ -20805,7 +23432,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef#namespace
         '''
@@ -20885,7 +23513,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     def role(self) -> builtins.str:
         '''A required field containing the Vault Role to assume.
 
-        A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
+        A Role binds a
+        Kubernetes ServiceAccount with a set of Vault policies.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes#role
         '''
@@ -20899,7 +23528,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes#secretRef
         '''
@@ -20912,7 +23543,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes#serviceAccountRef
         '''
@@ -20946,7 +23579,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -20971,7 +23606,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef#key
         '''
@@ -20991,7 +23627,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef#namespace
         '''
@@ -21025,7 +23662,9 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -21069,7 +23708,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef#namespace
         '''
@@ -21204,7 +23844,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef#key
         '''
@@ -21224,7 +23865,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef#namespace
         '''
@@ -21281,7 +23923,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef#key
         '''
@@ -21301,7 +23944,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef#namespace
         '''
@@ -21436,7 +24080,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#key
         '''
@@ -21456,7 +24101,8 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#namespace
         '''
@@ -21585,13 +24231,255 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType(enum.Enum):
     '''ConfigMap.'''
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultTls",
+    jsii_struct_bases=[],
+    name_mapping={
+        "cert_secret_ref": "certSecretRef",
+        "key_secret_ref": "keySecretRef",
+    },
+)
+class ClusterSecretStoreV1Beta1SpecProviderVaultTls:
+    def __init__(
+        self,
+        *,
+        cert_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        key_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :param cert_secret_ref: CertSecretRef is a certificate added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+        :param key_secret_ref: KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTls
+        '''
+        if isinstance(cert_secret_ref, dict):
+            cert_secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef(**cert_secret_ref)
+        if isinstance(key_secret_ref, dict):
+            key_secret_ref = ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef(**key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__60e9db85165a8f05f9caf59c9ac1e9d32997804e3ffd2311317fbadc5f4781a4)
+            check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
+            check_type(argname="argument key_secret_ref", value=key_secret_ref, expected_type=type_hints["key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if cert_secret_ref is not None:
+            self._values["cert_secret_ref"] = cert_secret_ref
+        if key_secret_ref is not None:
+            self._values["key_secret_ref"] = key_secret_ref
+
+    @builtins.property
+    def cert_secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef"]:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTls#certSecretRef
+        '''
+        result = self._values.get("cert_secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef"], result)
+
+    @builtins.property
+    def key_secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef"]:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTls#keySecretRef
+        '''
+        result = self._values.get("key_secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderVaultTls(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__01682b1e5411c8e610560ab926f0f147190ed85dfac508657bb97191c51301b8)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__be1cc6ff896b92e00f1824eb023193a80c1e140bd11b60acb0549f8bb4fd2523)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 @jsii.enum(
     jsii_type="ioexternal-secrets.ClusterSecretStoreV1Beta1SpecProviderVaultVersion"
 )
 class ClusterSecretStoreV1Beta1SpecProviderVaultVersion(enum.Enum):
     '''Version is the Vault KV secret engine version.
 
-    This can be either "v1" or "v2". Version defaults to "v2".
+    This can be either "v1" or
+    "v2". Version defaults to "v2".
 
     :schema: ClusterSecretStoreV1Beta1SpecProviderVaultVersion
     '''
@@ -21712,7 +24600,10 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhook:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate webhook server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhook#caBundle
         '''
@@ -22030,7 +24921,8 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef#key
         '''
@@ -22050,7 +24942,8 @@ class ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef#namespace
         '''
@@ -22242,7 +25135,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorize
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef#key
         '''
@@ -22262,7 +25156,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorize
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef#namespace
         '''
@@ -22368,7 +25263,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCer
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef#key
         '''
@@ -22388,7 +25284,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCer
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef#namespace
         '''
@@ -22578,7 +25475,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretR
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef#key
         '''
@@ -22598,7 +25496,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretR
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef#namespace
         '''
@@ -22704,7 +25603,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef#key
         '''
@@ -22724,7 +25624,8 @@ class ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef#namespace
         '''
@@ -24361,7 +27262,10 @@ class ExternalSecretV1Beta1SpecDataFrom:
     ) -> typing.Optional["ExternalSecretV1Beta1SpecDataFromSourceRef"]:
         '''SourceRef points to a store or generator which contains secret values ready to use.
 
-        Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
+        Use this in combination with Extract or Find pull values out of
+        a specific SecretStore.
+        When sourceRef points to a generator Extract or Find is not supported.
+        The generator returns a static map of values
 
         :schema: ExternalSecretV1Beta1SpecDataFrom#sourceRef
         '''
@@ -24941,7 +27845,10 @@ class ExternalSecretV1Beta1SpecDataFromSourceRef:
     ) -> None:
         '''SourceRef points to a store or generator which contains secret values ready to use.
 
-        Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values
+        Use this in combination with Extract or Find pull values out of
+        a specific SecretStore.
+        When sourceRef points to a generator Extract or Find is not supported.
+        The generator returns a static map of values
 
         :param generator_ref: GeneratorRef points to a generator custom resource.
         :param store_ref: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
@@ -25357,7 +28264,8 @@ class ExternalSecretV1Beta1SpecDataSourceRef:
     ) -> typing.Optional["ExternalSecretV1Beta1SpecDataSourceRefGeneratorRef"]:
         '''GeneratorRef points to a generator custom resource.
 
-        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
+        Deprecated: The generatorRef is not implemented in .data[].
+        this will be removed with v1.
 
         :schema: ExternalSecretV1Beta1SpecDataSourceRef#generatorRef
         '''
@@ -25402,7 +28310,8 @@ class ExternalSecretV1Beta1SpecDataSourceRefGeneratorRef:
     ) -> None:
         '''GeneratorRef points to a generator custom resource.
 
-        Deprecated: The generatorRef is not implemented in .data[]. this will be removed with v1.
+        Deprecated: The generatorRef is not implemented in .data[].
+        this will be removed with v1.
 
         :param kind: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
         :param name: Specify the name of the generator resource.
@@ -26477,6 +29386,7 @@ class PushSecretProps:
         "deletion_policy": "deletionPolicy",
         "refresh_interval": "refreshInterval",
         "template": "template",
+        "update_policy": "updatePolicy",
     },
 )
 class PushSecretSpec:
@@ -26489,6 +29399,7 @@ class PushSecretSpec:
         deletion_policy: typing.Optional["PushSecretSpecDeletionPolicy"] = None,
         refresh_interval: typing.Optional[builtins.str] = None,
         template: typing.Optional[typing.Union["PushSecretSpecTemplate", typing.Dict[builtins.str, typing.Any]]] = None,
+        update_policy: typing.Optional["PushSecretSpecUpdatePolicy"] = None,
     ) -> None:
         '''PushSecretSpec configures the behavior of the PushSecret.
 
@@ -26498,6 +29409,7 @@ class PushSecretSpec:
         :param deletion_policy: Deletion Policy to handle Secrets in the provider. Possible Values: "Delete/None". Defaults to "None". Default: None".
         :param refresh_interval: The Interval to which External Secrets will try to push a secret definition.
         :param template: Template defines a blueprint for the created Secret resource.
+        :param update_policy: UpdatePolicy to handle Secrets in the provider. Possible Values: "Replace/IfNotExists". Defaults to "Replace". Default: Replace".
 
         :schema: PushSecretSpec
         '''
@@ -26513,6 +29425,7 @@ class PushSecretSpec:
             check_type(argname="argument deletion_policy", value=deletion_policy, expected_type=type_hints["deletion_policy"])
             check_type(argname="argument refresh_interval", value=refresh_interval, expected_type=type_hints["refresh_interval"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
+            check_type(argname="argument update_policy", value=update_policy, expected_type=type_hints["update_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_store_refs": secret_store_refs,
             "selector": selector,
@@ -26525,6 +29438,8 @@ class PushSecretSpec:
             self._values["refresh_interval"] = refresh_interval
         if template is not None:
             self._values["template"] = template
+        if update_policy is not None:
+            self._values["update_policy"] = update_policy
 
     @builtins.property
     def secret_store_refs(self) -> typing.List["PushSecretSpecSecretStoreRefs"]:
@@ -26585,6 +29500,19 @@ class PushSecretSpec:
         result = self._values.get("template")
         return typing.cast(typing.Optional["PushSecretSpecTemplate"], result)
 
+    @builtins.property
+    def update_policy(self) -> typing.Optional["PushSecretSpecUpdatePolicy"]:
+        '''UpdatePolicy to handle Secrets in the provider.
+
+        Possible Values: "Replace/IfNotExists". Defaults to "Replace".
+
+        :default: Replace".
+
+        :schema: PushSecretSpec#updatePolicy
+        '''
+        result = self._values.get("update_policy")
+        return typing.cast(typing.Optional["PushSecretSpecUpdatePolicy"], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -26600,17 +29528,23 @@ class PushSecretSpec:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.PushSecretSpecData",
     jsii_struct_bases=[],
-    name_mapping={"match": "match", "metadata": "metadata"},
+    name_mapping={
+        "match": "match",
+        "conversion_strategy": "conversionStrategy",
+        "metadata": "metadata",
+    },
 )
 class PushSecretSpecData:
     def __init__(
         self,
         *,
         match: typing.Union["PushSecretSpecDataMatch", typing.Dict[builtins.str, typing.Any]],
+        conversion_strategy: typing.Optional["PushSecretSpecDataConversionStrategy"] = None,
         metadata: typing.Any = None,
     ) -> None:
         '''
         :param match: Match a given Secret Key to be pushed to the provider.
+        :param conversion_strategy: Used to define a conversion Strategy for the secret keys.
         :param metadata: Metadata is metadata attached to the secret. The structure of metadata is provider specific, please look it up in the provider documentation.
 
         :schema: PushSecretSpecData
@@ -26620,10 +29554,13 @@ class PushSecretSpecData:
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__2e69051c5188259a4dc4335438fe6e7bbda39d93381fe4f0033cda0f3f3bfcf8)
             check_type(argname="argument match", value=match, expected_type=type_hints["match"])
+            check_type(argname="argument conversion_strategy", value=conversion_strategy, expected_type=type_hints["conversion_strategy"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "match": match,
         }
+        if conversion_strategy is not None:
+            self._values["conversion_strategy"] = conversion_strategy
         if metadata is not None:
             self._values["metadata"] = metadata
 
@@ -26636,6 +29573,17 @@ class PushSecretSpecData:
         result = self._values.get("match")
         assert result is not None, "Required property 'match' is missing"
         return typing.cast("PushSecretSpecDataMatch", result)
+
+    @builtins.property
+    def conversion_strategy(
+        self,
+    ) -> typing.Optional["PushSecretSpecDataConversionStrategy"]:
+        '''Used to define a conversion Strategy for the secret keys.
+
+        :schema: PushSecretSpecData#conversionStrategy
+        '''
+        result = self._values.get("conversion_strategy")
+        return typing.cast(typing.Optional["PushSecretSpecDataConversionStrategy"], result)
 
     @builtins.property
     def metadata(self) -> typing.Any:
@@ -26658,6 +29606,19 @@ class PushSecretSpecData:
         return "PushSecretSpecData(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecDataConversionStrategy")
+class PushSecretSpecDataConversionStrategy(enum.Enum):
+    '''Used to define a conversion Strategy for the secret keys.
+
+    :schema: PushSecretSpecDataConversionStrategy
+    '''
+
+    NONE = "NONE"
+    '''None.'''
+    REVERSE_UNICODE = "REVERSE_UNICODE"
+    '''ReverseUnicode.'''
 
 
 @jsii.data_type(
@@ -26928,7 +29889,9 @@ class PushSecretSpecSecretStoreRefsLabelSelector:
     ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''matchLabels is a map of {key,value} pairs.
 
-        A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+        A single {key,value} in the matchLabels
+        map is equivalent to an element of matchExpressions, whose key field is "key", the
+        operator is "In", and the values array contains only "value". The requirements are ANDed.
 
         :schema: PushSecretSpecSecretStoreRefsLabelSelector#matchLabels
         '''
@@ -27006,7 +29969,10 @@ class PushSecretSpecSecretStoreRefsLabelSelectorMatchExpressions:
     def values(self) -> typing.Optional[typing.List[builtins.str]]:
         '''values is an array of string values.
 
-        If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+        If the operator is In or NotIn,
+        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+        the values array must be empty. This array is replaced during a strategic
+        merge patch.
 
         :schema: PushSecretSpecSecretStoreRefsLabelSelectorMatchExpressions#values
         '''
@@ -27690,6 +30656,23 @@ class PushSecretSpecTemplateTemplateFromTarget(enum.Enum):
     '''Labels.'''
 
 
+@jsii.enum(jsii_type="ioexternal-secrets.PushSecretSpecUpdatePolicy")
+class PushSecretSpecUpdatePolicy(enum.Enum):
+    '''UpdatePolicy to handle Secrets in the provider.
+
+    Possible Values: "Replace/IfNotExists". Defaults to "Replace".
+
+    :default: Replace".
+
+    :schema: PushSecretSpecUpdatePolicy
+    '''
+
+    REPLACE = "REPLACE"
+    '''Replace.'''
+    IF_NOT_EXISTS = "IF_NOT_EXISTS"
+    '''IfNotExists.'''
+
+
 class SecretStore(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -27914,6 +30897,7 @@ class SecretStoreSpec:
         "ibm": "ibm",
         "kubernetes": "kubernetes",
         "oracle": "oracle",
+        "passworddepot": "passworddepot",
         "vault": "vault",
         "webhook": "webhook",
         "yandexlockbox": "yandexlockbox",
@@ -27933,6 +30917,7 @@ class SecretStoreSpecProvider:
         ibm: typing.Optional[typing.Union["SecretStoreSpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         oracle: typing.Optional[typing.Union["SecretStoreSpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        passworddepot: typing.Optional[typing.Union["SecretStoreSpecProviderPassworddepot", typing.Dict[builtins.str, typing.Any]]] = None,
         vault: typing.Optional[typing.Union["SecretStoreSpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
         webhook: typing.Optional[typing.Union["SecretStoreSpecProviderWebhook", typing.Dict[builtins.str, typing.Any]]] = None,
         yandexlockbox: typing.Optional[typing.Union["SecretStoreSpecProviderYandexlockbox", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -27951,6 +30936,7 @@ class SecretStoreSpecProvider:
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param kubernetes: Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
         :param oracle: Oracle configures this store to sync secrets using Oracle Vault provider.
+        :param passworddepot: Configures a store to sync secrets with a Password Depot instance.
         :param vault: Vault configures this store to sync secrets using Hashi provider.
         :param webhook: Webhook configures this store to sync secrets using a generic templated webhook.
         :param yandexlockbox: YandexLockbox configures this store to sync secrets using Yandex Lockbox provider.
@@ -27977,6 +30963,8 @@ class SecretStoreSpecProvider:
             kubernetes = SecretStoreSpecProviderKubernetes(**kubernetes)
         if isinstance(oracle, dict):
             oracle = SecretStoreSpecProviderOracle(**oracle)
+        if isinstance(passworddepot, dict):
+            passworddepot = SecretStoreSpecProviderPassworddepot(**passworddepot)
         if isinstance(vault, dict):
             vault = SecretStoreSpecProviderVault(**vault)
         if isinstance(webhook, dict):
@@ -27995,6 +30983,7 @@ class SecretStoreSpecProvider:
             check_type(argname="argument ibm", value=ibm, expected_type=type_hints["ibm"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument oracle", value=oracle, expected_type=type_hints["oracle"])
+            check_type(argname="argument passworddepot", value=passworddepot, expected_type=type_hints["passworddepot"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
             check_type(argname="argument yandexlockbox", value=yandexlockbox, expected_type=type_hints["yandexlockbox"])
@@ -28019,6 +31008,8 @@ class SecretStoreSpecProvider:
             self._values["kubernetes"] = kubernetes
         if oracle is not None:
             self._values["oracle"] = oracle
+        if passworddepot is not None:
+            self._values["passworddepot"] = passworddepot
         if vault is not None:
             self._values["vault"] = vault
         if webhook is not None:
@@ -28115,6 +31106,15 @@ class SecretStoreSpecProvider:
         '''
         result = self._values.get("oracle")
         return typing.cast(typing.Optional["SecretStoreSpecProviderOracle"], result)
+
+    @builtins.property
+    def passworddepot(self) -> typing.Optional["SecretStoreSpecProviderPassworddepot"]:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :schema: SecretStoreSpecProvider#passworddepot
+        '''
+        result = self._values.get("passworddepot")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderPassworddepot"], result)
 
     @builtins.property
     def vault(self) -> typing.Optional["SecretStoreSpecProviderVault"]:
@@ -28226,7 +31226,9 @@ class SecretStoreSpecProviderAkeyless:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate.
 
-        Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreSpecProviderAkeyless#caBundle
         '''
@@ -28396,7 +31398,9 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth#secretRef
         '''
@@ -28409,7 +31413,9 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuth#serviceAccountRef
         '''
@@ -28443,7 +31449,9 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -28468,7 +31476,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#key
         '''
@@ -28488,7 +31497,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#namespace
         '''
@@ -28522,7 +31532,9 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRe
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -28566,7 +31578,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#namespace
         '''
@@ -28712,7 +31725,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId#key
         '''
@@ -28732,7 +31746,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessId#namespace
         '''
@@ -28789,7 +31804,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType#key
         '''
@@ -28809,7 +31825,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessType#namespace
         '''
@@ -28866,7 +31883,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#key
         '''
@@ -28886,7 +31904,8 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#namespace
         '''
@@ -29338,7 +32357,8 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -29358,7 +32378,8 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -29415,7 +32436,8 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#key
         '''
@@ -29435,7 +32457,8 @@ class SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#namespace
         '''
@@ -29718,7 +32741,8 @@ class SecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAwsAuthJwtServiceAccountRef#namespace
         '''
@@ -29845,7 +32869,8 @@ class SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -29865,7 +32890,8 @@ class SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -29922,7 +32948,8 @@ class SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -29942,7 +32969,8 @@ class SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -30061,7 +33089,10 @@ class SecretStoreSpecProviderAzurekv:
     def auth_type(self) -> typing.Optional["SecretStoreSpecProviderAzurekvAuthType"]:
         '''Auth type defines how to authenticate to the keyvault service.
 
-        Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+        Valid values are:
+
+        - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+        - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
         :schema: SecretStoreSpecProviderAzurekv#authType
         '''
@@ -30218,7 +33249,8 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientId#key
         '''
@@ -30238,7 +33270,8 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientId#namespace
         '''
@@ -30295,7 +33328,8 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret#key
         '''
@@ -30315,7 +33349,8 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret#namespace
         '''
@@ -30338,7 +33373,10 @@ class SecretStoreSpecProviderAzurekvAuthSecretRefClientSecret:
 class SecretStoreSpecProviderAzurekvAuthType(enum.Enum):
     '''Auth type defines how to authenticate to the keyvault service.
 
-    Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+    Valid values are:
+
+    - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+    - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
     :schema: SecretStoreSpecProviderAzurekvAuthType
     '''
@@ -30408,7 +33446,8 @@ class SecretStoreSpecProviderAzurekvServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAzurekvServiceAccountRef#namespace
         '''
@@ -30772,7 +33811,8 @@ class SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -30792,7 +33832,8 @@ class SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -30961,7 +34002,8 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -31193,7 +34235,8 @@ class SecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderGitlabAuthSecretRefAccessToken#key
         '''
@@ -31213,7 +34256,8 @@ class SecretStoreSpecProviderGitlabAuthSecretRefAccessToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderGitlabAuthSecretRefAccessToken#namespace
         '''
@@ -31427,7 +34471,8 @@ class SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef#key
         '''
@@ -31447,7 +34492,8 @@ class SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderIbmAuthSecretRefSecretApiKeySecretRef#namespace
         '''
@@ -31738,7 +34784,8 @@ class SecretStoreSpecProviderKubernetesAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientCert#key
         '''
@@ -31758,7 +34805,8 @@ class SecretStoreSpecProviderKubernetesAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientCert#namespace
         '''
@@ -31815,7 +34863,8 @@ class SecretStoreSpecProviderKubernetesAuthCertClientKey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientKey#key
         '''
@@ -31835,7 +34884,8 @@ class SecretStoreSpecProviderKubernetesAuthCertClientKey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderKubernetesAuthCertClientKey#namespace
         '''
@@ -31960,7 +35010,8 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderKubernetesAuthServiceAccountServiceAccount#namespace
         '''
@@ -32066,7 +35117,8 @@ class SecretStoreSpecProviderKubernetesAuthTokenBearerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderKubernetesAuthTokenBearerToken#key
         '''
@@ -32086,7 +35138,8 @@ class SecretStoreSpecProviderKubernetesAuthTokenBearerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderKubernetesAuthTokenBearerToken#namespace
         '''
@@ -32379,7 +35432,8 @@ class SecretStoreSpecProviderOracle:
     def auth(self) -> typing.Optional["SecretStoreSpecProviderOracleAuth"]:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        If empty, instance principal is used. Optionally, the authenticating principal type
+        and/or user data may be supplied for the use of workload identity and user principal.
 
         :schema: SecretStoreSpecProviderOracle#auth
         '''
@@ -32414,7 +35468,9 @@ class SecretStoreSpecProviderOracle:
     ) -> typing.Optional["SecretStoreSpecProviderOraclePrincipalType"]:
         '''The type of principal to use for authentication.
 
-        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        If left blank, the Auth struct will
+        determine the principal type. This optional field must be specified if using
+        workload identity.
 
         :schema: SecretStoreSpecProviderOracle#principalType
         '''
@@ -32459,7 +35515,8 @@ class SecretStoreSpecProviderOracleAuth:
     ) -> None:
         '''Auth configures how secret-manager authenticates with the Oracle Vault.
 
-        If empty, instance principal is used. Optionally, the authenticating principal type and/or user data may be supplied for the use of workload identity and user principal.
+        If empty, instance principal is used. Optionally, the authenticating principal type
+        and/or user data may be supplied for the use of workload identity and user principal.
 
         :param secret_ref: SecretRef to pass through sensitive information.
         :param tenancy: Tenancy is the tenancy OCID where user is located.
@@ -32624,7 +35681,8 @@ class SecretStoreSpecProviderOracleAuthSecretRefFingerprint:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderOracleAuthSecretRefFingerprint#key
         '''
@@ -32644,7 +35702,8 @@ class SecretStoreSpecProviderOracleAuthSecretRefFingerprint:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderOracleAuthSecretRefFingerprint#namespace
         '''
@@ -32701,7 +35760,8 @@ class SecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderOracleAuthSecretRefPrivatekey#key
         '''
@@ -32721,7 +35781,8 @@ class SecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderOracleAuthSecretRefPrivatekey#namespace
         '''
@@ -32744,7 +35805,9 @@ class SecretStoreSpecProviderOracleAuthSecretRefPrivatekey:
 class SecretStoreSpecProviderOraclePrincipalType(enum.Enum):
     '''The type of principal to use for authentication.
 
-    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+    If left blank, the Auth struct will
+    determine the principal type. This optional field must be specified if using
+    workload identity.
 
     :schema: SecretStoreSpecProviderOraclePrincipalType
     '''
@@ -32814,7 +35877,8 @@ class SecretStoreSpecProviderOracleServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderOracleServiceAccountRef#namespace
         '''
@@ -32829,6 +35893,256 @@ class SecretStoreSpecProviderOracleServiceAccountRef:
 
     def __repr__(self) -> str:
         return "SecretStoreSpecProviderOracleServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderPassworddepot",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "database": "database", "host": "host"},
+)
+class SecretStoreSpecProviderPassworddepot:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["SecretStoreSpecProviderPassworddepotAuth", typing.Dict[builtins.str, typing.Any]],
+        database: builtins.str,
+        host: builtins.str,
+    ) -> None:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :param auth: Auth configures how secret-manager authenticates with a Password Depot instance.
+        :param database: Database to use as source.
+        :param host: URL configures the Password Depot instance URL.
+
+        :schema: SecretStoreSpecProviderPassworddepot
+        '''
+        if isinstance(auth, dict):
+            auth = SecretStoreSpecProviderPassworddepotAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__9210cc06755b6f79ef88436221883e23a6bc7877dd0f395c4cd16ac6a07cf1b7)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument database", value=database, expected_type=type_hints["database"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "database": database,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "SecretStoreSpecProviderPassworddepotAuth":
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :schema: SecretStoreSpecProviderPassworddepot#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("SecretStoreSpecProviderPassworddepotAuth", result)
+
+    @builtins.property
+    def database(self) -> builtins.str:
+        '''Database to use as source.
+
+        :schema: SecretStoreSpecProviderPassworddepot#database
+        '''
+        result = self._values.get("database")
+        assert result is not None, "Required property 'database' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''URL configures the Password Depot instance URL.
+
+        :schema: SecretStoreSpecProviderPassworddepot#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderPassworddepot(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderPassworddepotAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreSpecProviderPassworddepotAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["SecretStoreSpecProviderPassworddepotAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :param secret_ref: 
+
+        :schema: SecretStoreSpecProviderPassworddepotAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderPassworddepotAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__feb83c7479202ef875edec190269329957bcb4a5f12a7ddb3764ed63f3198eae)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "SecretStoreSpecProviderPassworddepotAuthSecretRef":
+        '''
+        :schema: SecretStoreSpecProviderPassworddepotAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("SecretStoreSpecProviderPassworddepotAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderPassworddepotAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderPassworddepotAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"credentials": "credentials"},
+)
+class SecretStoreSpecProviderPassworddepotAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        credentials: typing.Optional[typing.Union["SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param credentials: Username / Password is used for authentication.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRef
+        '''
+        if isinstance(credentials, dict):
+            credentials = SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials(**credentials)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__385e5404d7188efbe5c105cd17b7472fdbe052f3dbb8ac60cc6cffbd88bd05a0)
+            check_type(argname="argument credentials", value=credentials, expected_type=type_hints["credentials"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if credentials is not None:
+            self._values["credentials"] = credentials
+
+    @builtins.property
+    def credentials(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials"]:
+        '''Username / Password is used for authentication.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRef#credentials
+        '''
+        result = self._values.get("credentials")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderPassworddepotAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Username / Password is used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__959a3bfa5af19658f93dc84d289d96c810eeb3219467e12a36491d3bcf6bc0d1)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -32934,7 +36248,10 @@ class SecretStoreSpecProviderVault:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate Vault server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreSpecProviderVault#caBundle
         '''
@@ -32954,7 +36271,9 @@ class SecretStoreSpecProviderVault:
     def forward_inconsistent(self) -> typing.Optional[builtins.bool]:
         '''ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop.
 
-        This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+        This can increase performance if
+        the option is enabled serverside.
+        https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 
         :schema: SecretStoreSpecProviderVault#forwardInconsistent
         '''
@@ -32965,7 +36284,9 @@ class SecretStoreSpecProviderVault:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Name of the vault namespace.
 
-        Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 
         :schema: SecretStoreSpecProviderVault#namespace
         '''
@@ -32985,7 +36306,8 @@ class SecretStoreSpecProviderVault:
     def read_your_writes(self) -> typing.Optional[builtins.bool]:
         '''ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request.
 
-        More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        More information about eventual consistency in Vault can be found here
+        https://www.vaultproject.io/docs/enterprise/consistency
 
         :schema: SecretStoreSpecProviderVault#readYourWrites
         '''
@@ -32996,7 +36318,8 @@ class SecretStoreSpecProviderVault:
     def version(self) -> typing.Optional["SecretStoreSpecProviderVaultVersion"]:
         '''Version is the Vault KV secret engine version.
 
-        This can be either "v1" or "v2". Version defaults to "v2".
+        This can be either "v1" or
+        "v2". Version defaults to "v2".
 
         :schema: SecretStoreSpecProviderVault#version
         '''
@@ -33211,7 +36534,8 @@ class SecretStoreSpecProviderVaultAuthAppRole:
     def secret_ref(self) -> "SecretStoreSpecProviderVaultAuthAppRoleSecretRef":
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :schema: SecretStoreSpecProviderVaultAuthAppRole#secretRef
         '''
@@ -33246,7 +36570,8 @@ class SecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -33271,7 +36596,8 @@ class SecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthAppRoleSecretRef#key
         '''
@@ -33291,7 +36617,8 @@ class SecretStoreSpecProviderVaultAuthAppRoleSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthAppRoleSecretRef#namespace
         '''
@@ -33415,7 +36742,8 @@ class SecretStoreSpecProviderVaultAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthCertClientCert#key
         '''
@@ -33435,7 +36763,8 @@ class SecretStoreSpecProviderVaultAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthCertClientCert#namespace
         '''
@@ -33492,7 +36821,8 @@ class SecretStoreSpecProviderVaultAuthCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthCertSecretRef#key
         '''
@@ -33512,7 +36842,8 @@ class SecretStoreSpecProviderVaultAuthCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthCertSecretRef#namespace
         '''
@@ -33779,7 +37110,8 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAcc
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#namespace
         '''
@@ -33836,7 +37168,8 @@ class SecretStoreSpecProviderVaultAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthJwtSecretRef#key
         '''
@@ -33856,7 +37189,8 @@ class SecretStoreSpecProviderVaultAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthJwtSecretRef#namespace
         '''
@@ -33936,7 +37270,8 @@ class SecretStoreSpecProviderVaultAuthKubernetes:
     def role(self) -> builtins.str:
         '''A required field containing the Vault Role to assume.
 
-        A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
+        A Role binds a
+        Kubernetes ServiceAccount with a set of Vault policies.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetes#role
         '''
@@ -33950,7 +37285,9 @@ class SecretStoreSpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["SecretStoreSpecProviderVaultAuthKubernetesSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetes#secretRef
         '''
@@ -33963,7 +37300,9 @@ class SecretStoreSpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetes#serviceAccountRef
         '''
@@ -33997,7 +37336,9 @@ class SecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -34022,7 +37363,8 @@ class SecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetesSecretRef#key
         '''
@@ -34042,7 +37384,8 @@ class SecretStoreSpecProviderVaultAuthKubernetesSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetesSecretRef#namespace
         '''
@@ -34076,7 +37419,9 @@ class SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -34120,7 +37465,8 @@ class SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef#namespace
         '''
@@ -34255,7 +37601,8 @@ class SecretStoreSpecProviderVaultAuthLdapSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthLdapSecretRef#key
         '''
@@ -34275,7 +37622,8 @@ class SecretStoreSpecProviderVaultAuthLdapSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthLdapSecretRef#namespace
         '''
@@ -34332,7 +37680,8 @@ class SecretStoreSpecProviderVaultAuthTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderVaultAuthTokenSecretRef#key
         '''
@@ -34352,7 +37701,8 @@ class SecretStoreSpecProviderVaultAuthTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthTokenSecretRef#namespace
         '''
@@ -34481,7 +37831,8 @@ class SecretStoreSpecProviderVaultCaProviderType(enum.Enum):
 class SecretStoreSpecProviderVaultVersion(enum.Enum):
     '''Version is the Vault KV secret engine version.
 
-    This can be either "v1" or "v2". Version defaults to "v2".
+    This can be either "v1" or
+    "v2". Version defaults to "v2".
 
     :schema: SecretStoreSpecProviderVaultVersion
     '''
@@ -34602,7 +37953,10 @@ class SecretStoreSpecProviderWebhook:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate webhook server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreSpecProviderWebhook#caBundle
         '''
@@ -34916,7 +38270,8 @@ class SecretStoreSpecProviderWebhookSecretsSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderWebhookSecretsSecretRef#key
         '''
@@ -34936,7 +38291,8 @@ class SecretStoreSpecProviderWebhookSecretsSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderWebhookSecretsSecretRef#namespace
         '''
@@ -35126,7 +38482,8 @@ class SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef#key
         '''
@@ -35146,7 +38503,8 @@ class SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderYandexlockboxAuthAuthorizedKeySecretRef#namespace
         '''
@@ -35252,7 +38610,8 @@ class SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef#key
         '''
@@ -35272,7 +38631,8 @@ class SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderYandexlockboxCaProviderCertSecretRef#namespace
         '''
@@ -35711,7 +39071,9 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelector:
     ) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
         '''matchLabels is a map of {key,value} pairs.
 
-        A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+        A single {key,value} in the matchLabels
+        map is equivalent to an element of matchExpressions, whose key field is "key", the
+        operator is "In", and the values array contains only "value". The requirements are ANDed.
 
         :schema: SecretStoreV1Beta1SpecConditionsNamespaceSelector#matchLabels
         '''
@@ -35789,7 +39151,10 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
     def values(self) -> typing.Optional[typing.List[builtins.str]]:
         '''values is an array of string values.
 
-        If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+        If the operator is In or NotIn,
+        the values array must be non-empty. If the operator is Exists or DoesNotExist,
+        the values array must be empty. This array is replaced during a strategic
+        merge patch.
 
         :schema: SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions#values
         '''
@@ -35816,17 +39181,23 @@ class SecretStoreV1Beta1SpecConditionsNamespaceSelectorMatchExpressions:
         "alibaba": "alibaba",
         "aws": "aws",
         "azurekv": "azurekv",
+        "chef": "chef",
         "conjur": "conjur",
         "delinea": "delinea",
         "doppler": "doppler",
         "fake": "fake",
+        "fortanix": "fortanix",
         "gcpsm": "gcpsm",
         "gitlab": "gitlab",
         "ibm": "ibm",
         "keepersecurity": "keepersecurity",
         "kubernetes": "kubernetes",
+        "onboardbase": "onboardbase",
         "onepassword": "onepassword",
         "oracle": "oracle",
+        "passbolt": "passbolt",
+        "passworddepot": "passworddepot",
+        "pulumi": "pulumi",
         "scaleway": "scaleway",
         "senhasegura": "senhasegura",
         "vault": "vault",
@@ -35843,17 +39214,23 @@ class SecretStoreV1Beta1SpecProvider:
         alibaba: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAlibaba", typing.Dict[builtins.str, typing.Any]]] = None,
         aws: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAws", typing.Dict[builtins.str, typing.Any]]] = None,
         azurekv: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekv", typing.Dict[builtins.str, typing.Any]]] = None,
+        chef: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderChef", typing.Dict[builtins.str, typing.Any]]] = None,
         conjur: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjur", typing.Dict[builtins.str, typing.Any]]] = None,
         delinea: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderDelinea", typing.Dict[builtins.str, typing.Any]]] = None,
         doppler: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderDoppler", typing.Dict[builtins.str, typing.Any]]] = None,
         fake: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFake", typing.Dict[builtins.str, typing.Any]]] = None,
+        fortanix: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFortanix", typing.Dict[builtins.str, typing.Any]]] = None,
         gcpsm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGcpsm", typing.Dict[builtins.str, typing.Any]]] = None,
         gitlab: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderGitlab", typing.Dict[builtins.str, typing.Any]]] = None,
         ibm: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderIbm", typing.Dict[builtins.str, typing.Any]]] = None,
         keepersecurity: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKeepersecurity", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
+        onboardbase: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOnboardbase", typing.Dict[builtins.str, typing.Any]]] = None,
         onepassword: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOnepassword", typing.Dict[builtins.str, typing.Any]]] = None,
         oracle: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderOracle", typing.Dict[builtins.str, typing.Any]]] = None,
+        passbolt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderPassbolt", typing.Dict[builtins.str, typing.Any]]] = None,
+        passworddepot: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderPassworddepot", typing.Dict[builtins.str, typing.Any]]] = None,
+        pulumi: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderPulumi", typing.Dict[builtins.str, typing.Any]]] = None,
         scaleway: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderScaleway", typing.Dict[builtins.str, typing.Any]]] = None,
         senhasegura: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderSenhasegura", typing.Dict[builtins.str, typing.Any]]] = None,
         vault: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVault", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -35869,17 +39246,23 @@ class SecretStoreV1Beta1SpecProvider:
         :param alibaba: Alibaba configures this store to sync secrets using Alibaba Cloud provider.
         :param aws: AWS configures this store to sync secrets using AWS Secret Manager provider.
         :param azurekv: AzureKV configures this store to sync secrets using Azure Key Vault provider.
+        :param chef: Chef configures this store to sync secrets with chef server.
         :param conjur: Conjur configures this store to sync secrets using conjur provider.
         :param delinea: Delinea DevOps Secrets Vault https://docs.delinea.com/online-help/products/devops-secrets-vault/current.
         :param doppler: Doppler configures this store to sync secrets using the Doppler provider.
         :param fake: Fake configures a store with static key/value pairs.
+        :param fortanix: Fortanix configures this store to sync secrets using the Fortanix provider.
         :param gcpsm: GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
         :param gitlab: GitLab configures this store to sync secrets using GitLab Variables provider.
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param keepersecurity: KeeperSecurity configures this store to sync secrets using the KeeperSecurity provider.
         :param kubernetes: Kubernetes configures this store to sync secrets using a Kubernetes cluster provider.
+        :param onboardbase: Onboardbase configures this store to sync secrets using the Onboardbase provider.
         :param onepassword: OnePassword configures this store to sync secrets using the 1Password Cloud provider.
         :param oracle: Oracle configures this store to sync secrets using Oracle Vault provider.
+        :param passbolt: 
+        :param passworddepot: Configures a store to sync secrets with a Password Depot instance.
+        :param pulumi: Pulumi configures this store to sync secrets using the Pulumi provider.
         :param scaleway: Scaleway.
         :param senhasegura: Senhasegura configures this store to sync secrets using senhasegura provider.
         :param vault: Vault configures this store to sync secrets using Hashi provider.
@@ -35897,6 +39280,8 @@ class SecretStoreV1Beta1SpecProvider:
             aws = SecretStoreV1Beta1SpecProviderAws(**aws)
         if isinstance(azurekv, dict):
             azurekv = SecretStoreV1Beta1SpecProviderAzurekv(**azurekv)
+        if isinstance(chef, dict):
+            chef = SecretStoreV1Beta1SpecProviderChef(**chef)
         if isinstance(conjur, dict):
             conjur = SecretStoreV1Beta1SpecProviderConjur(**conjur)
         if isinstance(delinea, dict):
@@ -35905,6 +39290,8 @@ class SecretStoreV1Beta1SpecProvider:
             doppler = SecretStoreV1Beta1SpecProviderDoppler(**doppler)
         if isinstance(fake, dict):
             fake = SecretStoreV1Beta1SpecProviderFake(**fake)
+        if isinstance(fortanix, dict):
+            fortanix = SecretStoreV1Beta1SpecProviderFortanix(**fortanix)
         if isinstance(gcpsm, dict):
             gcpsm = SecretStoreV1Beta1SpecProviderGcpsm(**gcpsm)
         if isinstance(gitlab, dict):
@@ -35915,10 +39302,18 @@ class SecretStoreV1Beta1SpecProvider:
             keepersecurity = SecretStoreV1Beta1SpecProviderKeepersecurity(**keepersecurity)
         if isinstance(kubernetes, dict):
             kubernetes = SecretStoreV1Beta1SpecProviderKubernetes(**kubernetes)
+        if isinstance(onboardbase, dict):
+            onboardbase = SecretStoreV1Beta1SpecProviderOnboardbase(**onboardbase)
         if isinstance(onepassword, dict):
             onepassword = SecretStoreV1Beta1SpecProviderOnepassword(**onepassword)
         if isinstance(oracle, dict):
             oracle = SecretStoreV1Beta1SpecProviderOracle(**oracle)
+        if isinstance(passbolt, dict):
+            passbolt = SecretStoreV1Beta1SpecProviderPassbolt(**passbolt)
+        if isinstance(passworddepot, dict):
+            passworddepot = SecretStoreV1Beta1SpecProviderPassworddepot(**passworddepot)
+        if isinstance(pulumi, dict):
+            pulumi = SecretStoreV1Beta1SpecProviderPulumi(**pulumi)
         if isinstance(scaleway, dict):
             scaleway = SecretStoreV1Beta1SpecProviderScaleway(**scaleway)
         if isinstance(senhasegura, dict):
@@ -35937,17 +39332,23 @@ class SecretStoreV1Beta1SpecProvider:
             check_type(argname="argument alibaba", value=alibaba, expected_type=type_hints["alibaba"])
             check_type(argname="argument aws", value=aws, expected_type=type_hints["aws"])
             check_type(argname="argument azurekv", value=azurekv, expected_type=type_hints["azurekv"])
+            check_type(argname="argument chef", value=chef, expected_type=type_hints["chef"])
             check_type(argname="argument conjur", value=conjur, expected_type=type_hints["conjur"])
             check_type(argname="argument delinea", value=delinea, expected_type=type_hints["delinea"])
             check_type(argname="argument doppler", value=doppler, expected_type=type_hints["doppler"])
             check_type(argname="argument fake", value=fake, expected_type=type_hints["fake"])
+            check_type(argname="argument fortanix", value=fortanix, expected_type=type_hints["fortanix"])
             check_type(argname="argument gcpsm", value=gcpsm, expected_type=type_hints["gcpsm"])
             check_type(argname="argument gitlab", value=gitlab, expected_type=type_hints["gitlab"])
             check_type(argname="argument ibm", value=ibm, expected_type=type_hints["ibm"])
             check_type(argname="argument keepersecurity", value=keepersecurity, expected_type=type_hints["keepersecurity"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
+            check_type(argname="argument onboardbase", value=onboardbase, expected_type=type_hints["onboardbase"])
             check_type(argname="argument onepassword", value=onepassword, expected_type=type_hints["onepassword"])
             check_type(argname="argument oracle", value=oracle, expected_type=type_hints["oracle"])
+            check_type(argname="argument passbolt", value=passbolt, expected_type=type_hints["passbolt"])
+            check_type(argname="argument passworddepot", value=passworddepot, expected_type=type_hints["passworddepot"])
+            check_type(argname="argument pulumi", value=pulumi, expected_type=type_hints["pulumi"])
             check_type(argname="argument scaleway", value=scaleway, expected_type=type_hints["scaleway"])
             check_type(argname="argument senhasegura", value=senhasegura, expected_type=type_hints["senhasegura"])
             check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
@@ -35963,6 +39364,8 @@ class SecretStoreV1Beta1SpecProvider:
             self._values["aws"] = aws
         if azurekv is not None:
             self._values["azurekv"] = azurekv
+        if chef is not None:
+            self._values["chef"] = chef
         if conjur is not None:
             self._values["conjur"] = conjur
         if delinea is not None:
@@ -35971,6 +39374,8 @@ class SecretStoreV1Beta1SpecProvider:
             self._values["doppler"] = doppler
         if fake is not None:
             self._values["fake"] = fake
+        if fortanix is not None:
+            self._values["fortanix"] = fortanix
         if gcpsm is not None:
             self._values["gcpsm"] = gcpsm
         if gitlab is not None:
@@ -35981,10 +39386,18 @@ class SecretStoreV1Beta1SpecProvider:
             self._values["keepersecurity"] = keepersecurity
         if kubernetes is not None:
             self._values["kubernetes"] = kubernetes
+        if onboardbase is not None:
+            self._values["onboardbase"] = onboardbase
         if onepassword is not None:
             self._values["onepassword"] = onepassword
         if oracle is not None:
             self._values["oracle"] = oracle
+        if passbolt is not None:
+            self._values["passbolt"] = passbolt
+        if passworddepot is not None:
+            self._values["passworddepot"] = passworddepot
+        if pulumi is not None:
+            self._values["pulumi"] = pulumi
         if scaleway is not None:
             self._values["scaleway"] = scaleway
         if senhasegura is not None:
@@ -36035,6 +39448,15 @@ class SecretStoreV1Beta1SpecProvider:
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderAzurekv"], result)
 
     @builtins.property
+    def chef(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderChef"]:
+        '''Chef configures this store to sync secrets with chef server.
+
+        :schema: SecretStoreV1Beta1SpecProvider#chef
+        '''
+        result = self._values.get("chef")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderChef"], result)
+
+    @builtins.property
     def conjur(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjur"]:
         '''Conjur configures this store to sync secrets using conjur provider.
 
@@ -36069,6 +39491,15 @@ class SecretStoreV1Beta1SpecProvider:
         '''
         result = self._values.get("fake")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderFake"], result)
+
+    @builtins.property
+    def fortanix(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderFortanix"]:
+        '''Fortanix configures this store to sync secrets using the Fortanix provider.
+
+        :schema: SecretStoreV1Beta1SpecProvider#fortanix
+        '''
+        result = self._values.get("fortanix")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderFortanix"], result)
 
     @builtins.property
     def gcpsm(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderGcpsm"]:
@@ -36118,6 +39549,17 @@ class SecretStoreV1Beta1SpecProvider:
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderKubernetes"], result)
 
     @builtins.property
+    def onboardbase(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderOnboardbase"]:
+        '''Onboardbase configures this store to sync secrets using the Onboardbase provider.
+
+        :schema: SecretStoreV1Beta1SpecProvider#onboardbase
+        '''
+        result = self._values.get("onboardbase")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderOnboardbase"], result)
+
+    @builtins.property
     def onepassword(
         self,
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderOnepassword"]:
@@ -36136,6 +39578,34 @@ class SecretStoreV1Beta1SpecProvider:
         '''
         result = self._values.get("oracle")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderOracle"], result)
+
+    @builtins.property
+    def passbolt(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderPassbolt"]:
+        '''
+        :schema: SecretStoreV1Beta1SpecProvider#passbolt
+        '''
+        result = self._values.get("passbolt")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderPassbolt"], result)
+
+    @builtins.property
+    def passworddepot(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderPassworddepot"]:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :schema: SecretStoreV1Beta1SpecProvider#passworddepot
+        '''
+        result = self._values.get("passworddepot")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderPassworddepot"], result)
+
+    @builtins.property
+    def pulumi(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderPulumi"]:
+        '''Pulumi configures this store to sync secrets using the Pulumi provider.
+
+        :schema: SecretStoreV1Beta1SpecProvider#pulumi
+        '''
+        result = self._values.get("pulumi")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderPulumi"], result)
 
     @builtins.property
     def scaleway(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderScaleway"]:
@@ -36280,7 +39750,9 @@ class SecretStoreV1Beta1SpecProviderAkeyless:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM/base64 encoded CA bundle used to validate Akeyless Gateway certificate.
 
-        Only used if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the AkeylessGWApiURL URL is using HTTPS protocol. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeyless#caBundle
         '''
@@ -36450,7 +39922,9 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth#secretRef
         '''
@@ -36463,7 +39937,9 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuth#serviceAccountRef
         '''
@@ -36497,7 +39973,9 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -36522,7 +40000,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#key
         '''
@@ -36542,7 +40021,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSecretRef#namespace
         '''
@@ -36576,7 +40056,9 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Akeyless. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -36620,7 +40102,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#namespace
         '''
@@ -36766,7 +40249,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId#key
         '''
@@ -36786,7 +40270,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessId#namespace
         '''
@@ -36843,7 +40328,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType#key
         '''
@@ -36863,7 +40349,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessType#namespace
         '''
@@ -36920,7 +40407,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#key
         '''
@@ -36940,7 +40428,8 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypePara
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefSecretRefAccessTypeParam#namespace
         '''
@@ -37394,7 +40883,8 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -37414,7 +40904,8 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -37471,7 +40962,8 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#key
         '''
@@ -37491,7 +40983,8 @@ class SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAlibabaAuthSecretRefAccessKeySecretSecretRef#namespace
         '''
@@ -37859,7 +41352,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef#namespace
         '''
@@ -38005,7 +41499,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -38025,7 +41520,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -38082,7 +41578,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -38102,7 +41599,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -38159,7 +41657,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef#key
         '''
@@ -38179,7 +41678,8 @@ class SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthSecretRefSessionTokenSecretRef#namespace
         '''
@@ -38234,7 +41734,11 @@ class SecretStoreV1Beta1SpecProviderAwsSecretsManager:
     def force_delete_without_recovery(self) -> typing.Optional[builtins.bool]:
         '''Specifies whether to delete the secret without any recovery window.
 
-        You can't use both this parameter and RecoveryWindowInDays in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
+        You
+        can't use both this parameter and RecoveryWindowInDays in the same call.
+        If you don't use either, then by default Secrets Manager uses a 30 day
+        recovery window.
+        see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-ForceDeleteWithoutRecovery
 
         :schema: SecretStoreV1Beta1SpecProviderAwsSecretsManager#forceDeleteWithoutRecovery
         '''
@@ -38245,7 +41749,10 @@ class SecretStoreV1Beta1SpecProviderAwsSecretsManager:
     def recovery_window_in_days(self) -> typing.Optional[jsii.Number]:
         '''The number of days from 7 to 30 that Secrets Manager waits before permanently deleting the secret.
 
-        You can't use both this parameter and ForceDeleteWithoutRecovery in the same call. If you don't use either, then by default Secrets Manager uses a 30 day recovery window. see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
+        You can't use both this parameter and
+        ForceDeleteWithoutRecovery in the same call. If you don't use either,
+        then by default Secrets Manager uses a 30 day recovery window.
+        see: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html#SecretsManager-DeleteSecret-request-RecoveryWindowInDays
 
         :schema: SecretStoreV1Beta1SpecProviderAwsSecretsManager#recoveryWindowInDays
         '''
@@ -38357,12 +41864,12 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
         '''AzureKV configures this store to sync secrets using Azure Key Vault provider.
 
         :param vault_url: Vault Url from which the secrets to be fetched from.
-        :param auth_secret_ref: Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type.
+        :param auth_secret_ref: Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
         :param auth_type: Auth type defines how to authenticate to the keyvault service. Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
         :param environment_type: EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure. By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
         :param identity_id: If multiple Managed Identity is assigned to the pod, you can select the one to be used.
         :param service_account_ref: ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
-        :param tenant_id: TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.
+        :param tenant_id: TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekv
         '''
@@ -38411,7 +41918,7 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef"]:
         '''Auth configures how the operator authenticates with Azure.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekv#authSecretRef
         '''
@@ -38424,7 +41931,10 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthType"]:
         '''Auth type defines how to authenticate to the keyvault service.
 
-        Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+        Valid values are:
+
+        - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+        - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekv#authType
         '''
@@ -38437,7 +41947,9 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType"]:
         '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-        By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+        By default it points to the public cloud AAD endpoint.
+        The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+        PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekv#environmentType
         '''
@@ -38468,7 +41980,7 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
     def tenant_id(self) -> typing.Optional[builtins.str]:
         '''TenantID configures the Azure Tenant to send requests to.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekv#tenantId
         '''
@@ -38490,43 +42002,73 @@ class SecretStoreV1Beta1SpecProviderAzurekv:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef",
     jsii_struct_bases=[],
-    name_mapping={"client_id": "clientId", "client_secret": "clientSecret"},
+    name_mapping={
+        "client_certificate": "clientCertificate",
+        "client_id": "clientId",
+        "client_secret": "clientSecret",
+        "tenant_id": "tenantId",
+    },
 )
 class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
     def __init__(
         self,
         *,
+        client_certificate: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate", typing.Dict[builtins.str, typing.Any]]] = None,
         client_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId", typing.Dict[builtins.str, typing.Any]]] = None,
         client_secret: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret", typing.Dict[builtins.str, typing.Any]]] = None,
+        tenant_id: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth configures how the operator authenticates with Azure.
 
-        Required for ServicePrincipal auth type.
+        Required for ServicePrincipal auth type. Optional for WorkloadIdentity.
 
-        :param client_id: The Azure clientId of the service principle used for authentication.
+        :param client_certificate: The Azure ClientCertificate of the service principle used for authentication.
+        :param client_id: The Azure clientId of the service principle or managed identity used for authentication.
         :param client_secret: The Azure ClientSecret of the service principle used for authentication.
+        :param tenant_id: The Azure tenantId of the managed identity used for authentication.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef
         '''
+        if isinstance(client_certificate, dict):
+            client_certificate = SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate(**client_certificate)
         if isinstance(client_id, dict):
             client_id = SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId(**client_id)
         if isinstance(client_secret, dict):
             client_secret = SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret(**client_secret)
+        if isinstance(tenant_id, dict):
+            tenant_id = SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId(**tenant_id)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__0a4938b5255f3aa984783f676bc89cdd2bd990505a85f0fd72b37dbaa5f7b4ef)
+            check_type(argname="argument client_certificate", value=client_certificate, expected_type=type_hints["client_certificate"])
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
+            check_type(argname="argument tenant_id", value=tenant_id, expected_type=type_hints["tenant_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if client_certificate is not None:
+            self._values["client_certificate"] = client_certificate
         if client_id is not None:
             self._values["client_id"] = client_id
         if client_secret is not None:
             self._values["client_secret"] = client_secret
+        if tenant_id is not None:
+            self._values["tenant_id"] = tenant_id
+
+    @builtins.property
+    def client_certificate(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate"]:
+        '''The Azure ClientCertificate of the service principle used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#clientCertificate
+        '''
+        result = self._values.get("client_certificate")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate"], result)
 
     @builtins.property
     def client_id(
         self,
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId"]:
-        '''The Azure clientId of the service principle used for authentication.
+        '''The Azure clientId of the service principle or managed identity used for authentication.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#clientId
         '''
@@ -38544,6 +42086,17 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
         result = self._values.get("client_secret")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret"], result)
 
+    @builtins.property
+    def tenant_id(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId"]:
+        '''The Azure tenantId of the managed identity used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef#tenantId
+        '''
+        result = self._values.get("tenant_id")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId"], result)
+
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
 
@@ -38552,6 +42105,85 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''The Azure ClientCertificate of the service principle used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__831c428d32e1809fa8755d7275384249478a2b1b2977461d205882f576150ee7)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -38569,7 +42201,7 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
         name: typing.Optional[builtins.str] = None,
         namespace: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''The Azure clientId of the service principle used for authentication.
+        '''The Azure clientId of the service principle or managed identity used for authentication.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -38594,7 +42226,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId#key
         '''
@@ -38614,7 +42247,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId#namespace
         '''
@@ -38671,7 +42305,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret#key
         '''
@@ -38691,7 +42326,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret#namespace
         '''
@@ -38710,13 +42346,95 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret:
         )
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''The Azure tenantId of the managed identity used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1681d1ac099829c7e3d7ddc9d8d2171f0c00eac05620d619ba73a164a4ac8b46)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 @jsii.enum(
     jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderAzurekvAuthType"
 )
 class SecretStoreV1Beta1SpecProviderAzurekvAuthType(enum.Enum):
     '''Auth type defines how to authenticate to the keyvault service.
 
-    Valid values are: - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret) - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
+    Valid values are:
+
+    - "ServicePrincipal" (default): Using a service principal (tenantId, clientId, clientSecret)
+    - "ManagedIdentity": Using Managed Identity assigned to the pod (see aad-pod-identity)
 
     :schema: SecretStoreV1Beta1SpecProviderAzurekvAuthType
     '''
@@ -38735,7 +42453,9 @@ class SecretStoreV1Beta1SpecProviderAzurekvAuthType(enum.Enum):
 class SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType(enum.Enum):
     '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-    By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+    By default it points to the public cloud AAD endpoint.
+    The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+    PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
     :schema: SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType
     '''
@@ -38807,7 +42527,8 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef#namespace
         '''
@@ -38822,6 +42543,261 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderChef",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "server_url": "serverUrl", "username": "username"},
+)
+class SecretStoreV1Beta1SpecProviderChef:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderChefAuth", typing.Dict[builtins.str, typing.Any]],
+        server_url: builtins.str,
+        username: builtins.str,
+    ) -> None:
+        '''Chef configures this store to sync secrets with chef server.
+
+        :param auth: Auth defines the information necessary to authenticate against chef Server.
+        :param server_url: ServerURL is the chef server URL used to connect to. If using orgs you should include your org in the url and terminate the url with a "/"
+        :param username: UserName should be the user ID on the chef server.
+
+        :schema: SecretStoreV1Beta1SpecProviderChef
+        '''
+        if isinstance(auth, dict):
+            auth = SecretStoreV1Beta1SpecProviderChefAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f64e0832ce2e5bdcc4b76418c1c8f6b250a9915dfc564831df334ef7324e7409)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument server_url", value=server_url, expected_type=type_hints["server_url"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "server_url": server_url,
+            "username": username,
+        }
+
+    @builtins.property
+    def auth(self) -> "SecretStoreV1Beta1SpecProviderChefAuth":
+        '''Auth defines the information necessary to authenticate against chef Server.
+
+        :schema: SecretStoreV1Beta1SpecProviderChef#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderChefAuth", result)
+
+    @builtins.property
+    def server_url(self) -> builtins.str:
+        '''ServerURL is the chef server URL used to connect to.
+
+        If using orgs you should include your org in the url and terminate the url with a "/"
+
+        :schema: SecretStoreV1Beta1SpecProviderChef#serverUrl
+        '''
+        result = self._values.get("server_url")
+        assert result is not None, "Required property 'server_url' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''UserName should be the user ID on the chef server.
+
+        :schema: SecretStoreV1Beta1SpecProviderChef#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderChef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderChefAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreV1Beta1SpecProviderChefAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderChefAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth defines the information necessary to authenticate against chef Server.
+
+        :param secret_ref: ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderChefAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__841e246e57cfb6bedacfdb7742ddc5fb831a8819df60d0fa000de5a0226dd6af)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "SecretStoreV1Beta1SpecProviderChefAuthSecretRef":
+        '''ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderChefAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderChefAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderChefAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"private_key_secret_ref": "privateKeySecretRef"},
+)
+class SecretStoreV1Beta1SpecProviderChefAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        private_key_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''ChefAuthSecretRef holds secret references for chef server login credentials.
+
+        :param private_key_secret_ref: SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRef
+        '''
+        if isinstance(private_key_secret_ref, dict):
+            private_key_secret_ref = SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef(**private_key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ccec2280a7834691b1b1a1e3a425d5af5af629d5c5443ff97529003d2afb968e)
+            check_type(argname="argument private_key_secret_ref", value=private_key_secret_ref, expected_type=type_hints["private_key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "private_key_secret_ref": private_key_secret_ref,
+        }
+
+    @builtins.property
+    def private_key_secret_ref(
+        self,
+    ) -> "SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef":
+        '''SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRef#privateKeySecretRef
+        '''
+        result = self._values.get("private_key_secret_ref")
+        assert result is not None, "Required property 'private_key_secret_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderChefAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKey is the Signing Key in PEM format, used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__bb2b4c047fa2fef18f7acb531b269edb3f14b2cadd6b0e431ebd04ac42fdc47e)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -38905,7 +42881,8 @@ class SecretStoreV1Beta1SpecProviderConjur:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderConjurCaProvider"]:
         '''Used to provide custom certificate authority (CA) certificates for a secret store.
 
-        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+        The CAProvider points to a Secret or ConfigMap resource
+        that contains a PEM-encoded certificate.
 
         :schema: SecretStoreV1Beta1SpecProviderConjur#caProvider
         '''
@@ -39104,7 +43081,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef#key
         '''
@@ -39124,7 +43102,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthApikeyApiKeyRef#namespace
         '''
@@ -39181,7 +43160,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef#key
         '''
@@ -39201,7 +43181,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef#namespace
         '''
@@ -39226,6 +43207,7 @@ class SecretStoreV1Beta1SpecProviderConjurAuthApikeyUserRef:
     name_mapping={
         "account": "account",
         "service_id": "serviceId",
+        "host_id": "hostId",
         "secret_ref": "secretRef",
         "service_account_ref": "serviceAccountRef",
     },
@@ -39236,12 +43218,14 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwt:
         *,
         account: builtins.str,
         service_id: builtins.str,
+        host_id: typing.Optional[builtins.str] = None,
         secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         service_account_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''
         :param account: 
         :param service_id: The conjur authn jwt webservice id.
+        :param host_id: Optional HostID for JWT authentication. This may be used depending on how the Conjur JWT authenticator policy is configured.
         :param secret_ref: Optional SecretRef that refers to a key in a Secret resource containing JWT token to authenticate with Conjur using the JWT authentication method.
         :param service_account_ref: Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
@@ -39255,12 +43239,15 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwt:
             type_hints = typing.get_type_hints(_typecheckingstub__a867ef73ed6ba39fbba7a7f6d600f26748884d8042ede3b1085d3dd5f8eb0de3)
             check_type(argname="argument account", value=account, expected_type=type_hints["account"])
             check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "account": account,
             "service_id": service_id,
         }
+        if host_id is not None:
+            self._values["host_id"] = host_id
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
         if service_account_ref is not None:
@@ -39284,6 +43271,18 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwt:
         result = self._values.get("service_id")
         assert result is not None, "Required property 'service_id' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> typing.Optional[builtins.str]:
+        '''Optional HostID for JWT authentication.
+
+        This may be used depending
+        on how the Conjur JWT authenticator policy is configured.
+
+        :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwt#hostId
+        '''
+        result = self._values.get("host_id")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def secret_ref(
@@ -39357,7 +43356,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#key
         '''
@@ -39377,7 +43377,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef#namespace
         '''
@@ -39453,7 +43454,8 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#namespace
         '''
@@ -39493,7 +43495,8 @@ class SecretStoreV1Beta1SpecProviderConjurCaProvider:
     ) -> None:
         '''Used to provide custom certificate authority (CA) certificates for a secret store.
 
-        The CAProvider points to a Secret or ConfigMap resource that contains a PEM-encoded certificate.
+        The CAProvider points to a Secret or ConfigMap resource
+        that contains a PEM-encoded certificate.
 
         :param name: The name of the object located at the provider type.
         :param type: The type of provider to use such as "Secret", or "ConfigMap".
@@ -39799,7 +43802,8 @@ class SecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef#key
         '''
@@ -39819,7 +43823,8 @@ class SecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderDelineaClientIdSecretRef#namespace
         '''
@@ -39939,7 +43944,8 @@ class SecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef#key
         '''
@@ -39959,7 +43965,8 @@ class SecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderDelineaClientSecretSecretRef#namespace
         '''
@@ -40168,7 +44175,8 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef:
     ) -> "SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken":
         '''The DopplerToken is used for authentication.
 
-        See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
+        See https://docs.doppler.com/reference/api#authentication for auth token types.
+        The Key attribute defaults to dopplerToken if not specified.
 
         :schema: SecretStoreV1Beta1SpecProviderDopplerAuthSecretRef#dopplerToken
         '''
@@ -40203,7 +44211,8 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     ) -> None:
         '''The DopplerToken is used for authentication.
 
-        See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.
+        See https://docs.doppler.com/reference/api#authentication for auth token types.
+        The Key attribute defaults to dopplerToken if not specified.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -40228,7 +44237,8 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken#key
         '''
@@ -40248,7 +44258,8 @@ class SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderDopplerAuthSecretRefDopplerToken#namespace
         '''
@@ -40439,6 +44450,201 @@ class SecretStoreV1Beta1SpecProviderFakeData:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderFakeData(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderFortanix",
+    jsii_struct_bases=[],
+    name_mapping={"api_key": "apiKey", "api_url": "apiUrl"},
+)
+class SecretStoreV1Beta1SpecProviderFortanix:
+    def __init__(
+        self,
+        *,
+        api_key: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFortanixApiKey", typing.Dict[builtins.str, typing.Any]]] = None,
+        api_url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Fortanix configures this store to sync secrets using the Fortanix provider.
+
+        :param api_key: APIKey is the API token to access SDKMS Applications.
+        :param api_url: APIURL is the URL of SDKMS API. Defaults to ``sdkms.fortanix.com``. Default: sdkms.fortanix.com`.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanix
+        '''
+        if isinstance(api_key, dict):
+            api_key = SecretStoreV1Beta1SpecProviderFortanixApiKey(**api_key)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__06565003520ed3b4b182cebc0df0782c7397bedc4434807ad14ffd5aec404b33)
+            check_type(argname="argument api_key", value=api_key, expected_type=type_hints["api_key"])
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if api_key is not None:
+            self._values["api_key"] = api_key
+        if api_url is not None:
+            self._values["api_url"] = api_url
+
+    @builtins.property
+    def api_key(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderFortanixApiKey"]:
+        '''APIKey is the API token to access SDKMS Applications.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanix#apiKey
+        '''
+        result = self._values.get("api_key")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderFortanixApiKey"], result)
+
+    @builtins.property
+    def api_url(self) -> typing.Optional[builtins.str]:
+        '''APIURL is the URL of SDKMS API.
+
+        Defaults to ``sdkms.fortanix.com``.
+
+        :default: sdkms.fortanix.com`.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanix#apiUrl
+        '''
+        result = self._values.get("api_url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderFortanix(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderFortanixApiKey",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreV1Beta1SpecProviderFortanixApiKey:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''APIKey is the API token to access SDKMS Applications.
+
+        :param secret_ref: SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKey
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__cd5c80b0001695a1fb0fcff73f4aeb88106fef86a38f6efecd70f8518b4c0535)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef"]:
+        '''SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKey#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderFortanixApiKey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef is a reference to a secret containing the SDKMS API Key.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e8e0fb3b561b24e961f7cc53b7d7f52995c9a1587f2622d98c62cbd10481f550)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -40655,7 +44861,8 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -40675,7 +44882,8 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -40844,7 +45052,8 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -41127,7 +45336,8 @@ class SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken#key
         '''
@@ -41147,7 +45357,8 @@ class SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderGitlabAuthSecretRefAccessToken#namespace
         '''
@@ -41457,7 +45668,8 @@ class SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef#key
         '''
@@ -41477,7 +45689,8 @@ class SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderIbmAuthSecretRefSecretApiKeySecretRef#namespace
         '''
@@ -41595,7 +45808,8 @@ class SecretStoreV1Beta1SpecProviderKeepersecurityAuthRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderKeepersecurityAuthRef#key
         '''
@@ -41615,7 +45829,8 @@ class SecretStoreV1Beta1SpecProviderKeepersecurityAuthRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKeepersecurityAuthRef#namespace
         '''
@@ -41912,7 +46127,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert#key
         '''
@@ -41932,7 +46148,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientCert#namespace
         '''
@@ -41989,7 +46206,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey#key
         '''
@@ -42009,7 +46227,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthCertClientKey#namespace
         '''
@@ -42085,7 +46304,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount#namespace
         '''
@@ -42191,7 +46411,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken#key
         '''
@@ -42211,7 +46432,8 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthTokenBearerToken#namespace
         '''
@@ -42415,6 +46637,329 @@ class SecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType(enum.Enum):
     '''Secret.'''
     CONFIG_MAP = "CONFIG_MAP"
     '''ConfigMap.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOnboardbase",
+    jsii_struct_bases=[],
+    name_mapping={
+        "api_host": "apiHost",
+        "auth": "auth",
+        "environment": "environment",
+        "project": "project",
+    },
+)
+class SecretStoreV1Beta1SpecProviderOnboardbase:
+    def __init__(
+        self,
+        *,
+        api_host: builtins.str,
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderOnboardbaseAuth", typing.Dict[builtins.str, typing.Any]],
+        environment: builtins.str,
+        project: builtins.str,
+    ) -> None:
+        '''Onboardbase configures this store to sync secrets using the Onboardbase provider.
+
+        :param api_host: APIHost use this to configure the host url for the API for selfhosted installation, default is https://public.onboardbase.com/api/v1/.
+        :param auth: Auth configures how the Operator authenticates with the Onboardbase API.
+        :param environment: Environment is the name of an environmnent within a project to pull the secrets from.
+        :param project: Project is an onboardbase project that the secrets should be pulled from.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbase
+        '''
+        if isinstance(auth, dict):
+            auth = SecretStoreV1Beta1SpecProviderOnboardbaseAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a5297836f61be88e9ba167fa61d792f192e7ee54541be7598800f46cdf85c06f)
+            check_type(argname="argument api_host", value=api_host, expected_type=type_hints["api_host"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
+            check_type(argname="argument project", value=project, expected_type=type_hints["project"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_host": api_host,
+            "auth": auth,
+            "environment": environment,
+            "project": project,
+        }
+
+    @builtins.property
+    def api_host(self) -> builtins.str:
+        '''APIHost use this to configure the host url for the API for selfhosted installation, default is https://public.onboardbase.com/api/v1/.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbase#apiHost
+        '''
+        result = self._values.get("api_host")
+        assert result is not None, "Required property 'api_host' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> "SecretStoreV1Beta1SpecProviderOnboardbaseAuth":
+        '''Auth configures how the Operator authenticates with the Onboardbase API.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbase#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderOnboardbaseAuth", result)
+
+    @builtins.property
+    def environment(self) -> builtins.str:
+        '''Environment is the name of an environmnent within a project to pull the secrets from.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbase#environment
+        '''
+        result = self._values.get("environment")
+        assert result is not None, "Required property 'environment' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def project(self) -> builtins.str:
+        '''Project is an onboardbase project that the secrets should be pulled from.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbase#project
+        '''
+        result = self._values.get("project")
+        assert result is not None, "Required property 'project' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderOnboardbase(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOnboardbaseAuth",
+    jsii_struct_bases=[],
+    name_mapping={"api_key_ref": "apiKeyRef", "passcode_ref": "passcodeRef"},
+)
+class SecretStoreV1Beta1SpecProviderOnboardbaseAuth:
+    def __init__(
+        self,
+        *,
+        api_key_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef", typing.Dict[builtins.str, typing.Any]],
+        passcode_ref: typing.Union["SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how the Operator authenticates with the Onboardbase API.
+
+        :param api_key_ref: OnboardbaseAPIKey is the APIKey generated by an admin account. It is used to recognize and authorize access to a project and environment within onboardbase
+        :param passcode_ref: OnboardbasePasscode is the passcode attached to the API Key.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuth
+        '''
+        if isinstance(api_key_ref, dict):
+            api_key_ref = SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef(**api_key_ref)
+        if isinstance(passcode_ref, dict):
+            passcode_ref = SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef(**passcode_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__27d3d52870731bdad3efa483bda2c12fa98b99d06da2ac3c8d51bb74987d8366)
+            check_type(argname="argument api_key_ref", value=api_key_ref, expected_type=type_hints["api_key_ref"])
+            check_type(argname="argument passcode_ref", value=passcode_ref, expected_type=type_hints["passcode_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_key_ref": api_key_ref,
+            "passcode_ref": passcode_ref,
+        }
+
+    @builtins.property
+    def api_key_ref(self) -> "SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef":
+        '''OnboardbaseAPIKey is the APIKey generated by an admin account.
+
+        It is used to recognize and authorize access to a project and environment within onboardbase
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuth#apiKeyRef
+        '''
+        result = self._values.get("api_key_ref")
+        assert result is not None, "Required property 'api_key_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef", result)
+
+    @builtins.property
+    def passcode_ref(
+        self,
+    ) -> "SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef":
+        '''OnboardbasePasscode is the passcode attached to the API Key.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuth#passcodeRef
+        '''
+        result = self._values.get("passcode_ref")
+        assert result is not None, "Required property 'passcode_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderOnboardbaseAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''OnboardbaseAPIKey is the APIKey generated by an admin account.
+
+        It is used to recognize and authorize access to a project and environment within onboardbase
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__e793cc39e597aa506da9da0bca2c01ebb177e9ae284121a87ddb4e8bdb7ad74a)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''OnboardbasePasscode is the passcode attached to the API Key.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c1b4261fef432b3a9873355545275d22cda7f776ba4b42b420ca47c56f503270)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
 
 
 @jsii.data_type(
@@ -42629,7 +47174,8 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRe
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef#key
         '''
@@ -42649,7 +47195,8 @@ class SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef#namespace
         '''
@@ -42792,7 +47339,9 @@ class SecretStoreV1Beta1SpecProviderOracle:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderOraclePrincipalType"]:
         '''The type of principal to use for authentication.
 
-        If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+        If left blank, the Auth struct will
+        determine the principal type. This optional field must be specified if using
+        workload identity.
 
         :schema: SecretStoreV1Beta1SpecProviderOracle#principalType
         '''
@@ -43006,7 +47555,8 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint#key
         '''
@@ -43026,7 +47576,8 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefFingerprint#namespace
         '''
@@ -43083,7 +47634,8 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey#key
         '''
@@ -43103,7 +47655,8 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey#namespace
         '''
@@ -43128,7 +47681,9 @@ class SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey:
 class SecretStoreV1Beta1SpecProviderOraclePrincipalType(enum.Enum):
     '''The type of principal to use for authentication.
 
-    If left blank, the Auth struct will determine the principal type. This optional field must be specified if using workload identity.
+    If left blank, the Auth struct will
+    determine the principal type. This optional field must be specified if using
+    workload identity.
 
     :schema: SecretStoreV1Beta1SpecProviderOraclePrincipalType
     '''
@@ -43198,7 +47753,8 @@ class SecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef#namespace
         '''
@@ -43213,6 +47769,773 @@ class SecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
 
     def __repr__(self) -> str:
         return "SecretStoreV1Beta1SpecProviderOracleServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassbolt",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "host": "host"},
+)
+class SecretStoreV1Beta1SpecProviderPassbolt:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderPassboltAuth", typing.Dict[builtins.str, typing.Any]],
+        host: builtins.str,
+    ) -> None:
+        '''
+        :param auth: Auth defines the information necessary to authenticate against Passbolt Server.
+        :param host: Host defines the Passbolt Server to connect to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassbolt
+        '''
+        if isinstance(auth, dict):
+            auth = SecretStoreV1Beta1SpecProviderPassboltAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c1489eb7e9620965a440726c06aec5ce16ef1b5e841250fcc5024c91215ecb5d)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "SecretStoreV1Beta1SpecProviderPassboltAuth":
+        '''Auth defines the information necessary to authenticate against Passbolt Server.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassbolt#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPassboltAuth", result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''Host defines the Passbolt Server to connect to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassbolt#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassbolt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassboltAuth",
+    jsii_struct_bases=[],
+    name_mapping={
+        "password_secret_ref": "passwordSecretRef",
+        "private_key_secret_ref": "privateKeySecretRef",
+    },
+)
+class SecretStoreV1Beta1SpecProviderPassboltAuth:
+    def __init__(
+        self,
+        *,
+        password_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef", typing.Dict[builtins.str, typing.Any]],
+        private_key_secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth defines the information necessary to authenticate against Passbolt Server.
+
+        :param password_secret_ref: A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+        :param private_key_secret_ref: A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuth
+        '''
+        if isinstance(password_secret_ref, dict):
+            password_secret_ref = SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef(**password_secret_ref)
+        if isinstance(private_key_secret_ref, dict):
+            private_key_secret_ref = SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef(**private_key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__538289df280cd946c84fd37eb4ea94fc8b0ce1695213961d36001d162548db6a)
+            check_type(argname="argument password_secret_ref", value=password_secret_ref, expected_type=type_hints["password_secret_ref"])
+            check_type(argname="argument private_key_secret_ref", value=private_key_secret_ref, expected_type=type_hints["private_key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password_secret_ref": password_secret_ref,
+            "private_key_secret_ref": private_key_secret_ref,
+        }
+
+    @builtins.property
+    def password_secret_ref(
+        self,
+    ) -> "SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef":
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuth#passwordSecretRef
+        '''
+        result = self._values.get("password_secret_ref")
+        assert result is not None, "Required property 'password_secret_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef", result)
+
+    @builtins.property
+    def private_key_secret_ref(
+        self,
+    ) -> "SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef":
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuth#privateKeySecretRef
+        '''
+        result = self._values.get("private_key_secret_ref")
+        assert result is not None, "Required property 'private_key_secret_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassboltAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4bb9db9eee1ce9a5ca112400260bc8086ba70cc39b797ee628675edf22f744fd)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__29ab280066a1eb0cb5742d20eccfc087ef8b391f016590bf1f8d8ffe52b75d48)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassworddepot",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "database": "database", "host": "host"},
+)
+class SecretStoreV1Beta1SpecProviderPassworddepot:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["SecretStoreV1Beta1SpecProviderPassworddepotAuth", typing.Dict[builtins.str, typing.Any]],
+        database: builtins.str,
+        host: builtins.str,
+    ) -> None:
+        '''Configures a store to sync secrets with a Password Depot instance.
+
+        :param auth: Auth configures how secret-manager authenticates with a Password Depot instance.
+        :param database: Database to use as source.
+        :param host: URL configures the Password Depot instance URL.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepot
+        '''
+        if isinstance(auth, dict):
+            auth = SecretStoreV1Beta1SpecProviderPassworddepotAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c0f976ddef5429db57e42aed47827f8bed0917b9cf825b4f4a67d69f3688518a)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument database", value=database, expected_type=type_hints["database"])
+            check_type(argname="argument host", value=host, expected_type=type_hints["host"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "database": database,
+            "host": host,
+        }
+
+    @builtins.property
+    def auth(self) -> "SecretStoreV1Beta1SpecProviderPassworddepotAuth":
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepot#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPassworddepotAuth", result)
+
+    @builtins.property
+    def database(self) -> builtins.str:
+        '''Database to use as source.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepot#database
+        '''
+        result = self._values.get("database")
+        assert result is not None, "Required property 'database' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host(self) -> builtins.str:
+        '''URL configures the Password Depot instance URL.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepot#host
+        '''
+        result = self._values.get("host")
+        assert result is not None, "Required property 'host' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassworddepot(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassworddepotAuth",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreV1Beta1SpecProviderPassworddepotAuth:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how secret-manager authenticates with a Password Depot instance.
+
+        :param secret_ref: 
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuth
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d705a50aad2a9503d46ad8df7d7b529abbb45897e6b649a2329c4c293aa5fd62)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef":
+        '''
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuth#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassworddepotAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"credentials": "credentials"},
+)
+class SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef:
+    def __init__(
+        self,
+        *,
+        credentials: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param credentials: Username / Password is used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef
+        '''
+        if isinstance(credentials, dict):
+            credentials = SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials(**credentials)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0e52c9857e3f7680b291d78b0c4ddc8089923f4b2d668fb96c0e45ae9c6e0b0c)
+            check_type(argname="argument credentials", value=credentials, expected_type=type_hints["credentials"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if credentials is not None:
+            self._values["credentials"] = credentials
+
+    @builtins.property
+    def credentials(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials"]:
+        '''Username / Password is used for authentication.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef#credentials
+        '''
+        result = self._values.get("credentials")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Username / Password is used for authentication.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0dfaa99e7d51b44c06c1fae991b4fc1c9128eb872d34546de35780afdde50f52)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPulumi",
+    jsii_struct_bases=[],
+    name_mapping={
+        "access_token": "accessToken",
+        "environment": "environment",
+        "organization": "organization",
+        "api_url": "apiUrl",
+    },
+)
+class SecretStoreV1Beta1SpecProviderPulumi:
+    def __init__(
+        self,
+        *,
+        access_token: typing.Union["SecretStoreV1Beta1SpecProviderPulumiAccessToken", typing.Dict[builtins.str, typing.Any]],
+        environment: builtins.str,
+        organization: builtins.str,
+        api_url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Pulumi configures this store to sync secrets using the Pulumi provider.
+
+        :param access_token: AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+        :param environment: Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments. To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
+        :param organization: Organization are a space to collaborate on shared projects and stacks. To create a new organization, visit https://app.pulumi.com/ and click "New Organization".
+        :param api_url: APIURL is the URL of the Pulumi API.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumi
+        '''
+        if isinstance(access_token, dict):
+            access_token = SecretStoreV1Beta1SpecProviderPulumiAccessToken(**access_token)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__939d01649b08ff60f9a7a30761431e0f272e31bdd0a4b75e5bc6568af08a25b7)
+            check_type(argname="argument access_token", value=access_token, expected_type=type_hints["access_token"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
+            check_type(argname="argument organization", value=organization, expected_type=type_hints["organization"])
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "access_token": access_token,
+            "environment": environment,
+            "organization": organization,
+        }
+        if api_url is not None:
+            self._values["api_url"] = api_url
+
+    @builtins.property
+    def access_token(self) -> "SecretStoreV1Beta1SpecProviderPulumiAccessToken":
+        '''AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumi#accessToken
+        '''
+        result = self._values.get("access_token")
+        assert result is not None, "Required property 'access_token' is missing"
+        return typing.cast("SecretStoreV1Beta1SpecProviderPulumiAccessToken", result)
+
+    @builtins.property
+    def environment(self) -> builtins.str:
+        '''Environment are YAML documents composed of static key-value pairs, programmatic expressions, dynamically retrieved values from supported providers including all major clouds, and other Pulumi ESC environments.
+
+        To create a new environment, visit https://www.pulumi.com/docs/esc/environments/ for more information.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumi#environment
+        '''
+        result = self._values.get("environment")
+        assert result is not None, "Required property 'environment' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def organization(self) -> builtins.str:
+        '''Organization are a space to collaborate on shared projects and stacks.
+
+        To create a new organization, visit https://app.pulumi.com/ and click "New Organization".
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumi#organization
+        '''
+        result = self._values.get("organization")
+        assert result is not None, "Required property 'organization' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def api_url(self) -> typing.Optional[builtins.str]:
+        '''APIURL is the URL of the Pulumi API.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumi#apiUrl
+        '''
+        result = self._values.get("api_url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPulumi(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPulumiAccessToken",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreV1Beta1SpecProviderPulumiAccessToken:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''AccessToken is the access tokens to sign in to the Pulumi Cloud Console.
+
+        :param secret_ref: SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessToken
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__49f1e598bc6963cbfc96bb6e5cc69cf9b281444f3b47cfdec842d82b0e927630)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef"]:
+        '''SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessToken#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPulumiAccessToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretRef is a reference to a secret containing the Pulumi API token.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ba202441e53a6a6e88d62b095d491369de97f4e30a14970f0a02e9fb6da4a987)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -43434,7 +48757,8 @@ class SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef#key
         '''
@@ -43454,7 +48778,8 @@ class SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef#namespace
         '''
@@ -43574,7 +48899,8 @@ class SecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef#key
         '''
@@ -43594,7 +48920,8 @@ class SecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderScalewaySecretKeySecretRef#namespace
         '''
@@ -43812,7 +49139,8 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef#key
         '''
@@ -43832,7 +49160,8 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef#namespace
         '''
@@ -43863,6 +49192,7 @@ class SecretStoreV1Beta1SpecProviderSenhaseguraAuthClientSecretSecretRef:
         "namespace": "namespace",
         "path": "path",
         "read_your_writes": "readYourWrites",
+        "tls": "tls",
         "version": "version",
     },
 )
@@ -43878,6 +49208,7 @@ class SecretStoreV1Beta1SpecProviderVault:
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
         read_your_writes: typing.Optional[builtins.bool] = None,
+        tls: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultTls", typing.Dict[builtins.str, typing.Any]]] = None,
         version: typing.Optional["SecretStoreV1Beta1SpecProviderVaultVersion"] = None,
     ) -> None:
         '''Vault configures this store to sync secrets using Hashi provider.
@@ -43890,6 +49221,7 @@ class SecretStoreV1Beta1SpecProviderVault:
         :param namespace: Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
         :param path: Path is the mount path of the Vault KV backend endpoint, e.g: "secret". The v2 KV secret engine version specific "/data" path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.
         :param read_your_writes: ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        :param tls: The configuration used for client side related TLS communication, when the Vault server requires mutual authentication. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. It's worth noting this configuration is different from the "TLS certificates auth method", which is available under the ``auth.cert`` section.
         :param version: Version is the Vault KV secret engine version. This can be either "v1" or "v2". Version defaults to "v2".
 
         :schema: SecretStoreV1Beta1SpecProviderVault
@@ -43898,6 +49230,8 @@ class SecretStoreV1Beta1SpecProviderVault:
             auth = SecretStoreV1Beta1SpecProviderVaultAuth(**auth)
         if isinstance(ca_provider, dict):
             ca_provider = SecretStoreV1Beta1SpecProviderVaultCaProvider(**ca_provider)
+        if isinstance(tls, dict):
+            tls = SecretStoreV1Beta1SpecProviderVaultTls(**tls)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__9fc4023c465f1be1a5c234fc3840fd441fe986a5b257d0ae414a562c34af5757)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
@@ -43908,6 +49242,7 @@ class SecretStoreV1Beta1SpecProviderVault:
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
+            check_type(argname="argument tls", value=tls, expected_type=type_hints["tls"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
@@ -43925,6 +49260,8 @@ class SecretStoreV1Beta1SpecProviderVault:
             self._values["path"] = path
         if read_your_writes is not None:
             self._values["read_your_writes"] = read_your_writes
+        if tls is not None:
+            self._values["tls"] = tls
         if version is not None:
             self._values["version"] = version
 
@@ -43952,7 +49289,10 @@ class SecretStoreV1Beta1SpecProviderVault:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate Vault server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreV1Beta1SpecProviderVault#caBundle
         '''
@@ -43974,7 +49314,9 @@ class SecretStoreV1Beta1SpecProviderVault:
     def forward_inconsistent(self) -> typing.Optional[builtins.bool]:
         '''ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop.
 
-        This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+        This can increase performance if
+        the option is enabled serverside.
+        https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 
         :schema: SecretStoreV1Beta1SpecProviderVault#forwardInconsistent
         '''
@@ -43985,7 +49327,9 @@ class SecretStoreV1Beta1SpecProviderVault:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Name of the vault namespace.
 
-        Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 
         :schema: SecretStoreV1Beta1SpecProviderVault#namespace
         '''
@@ -44005,7 +49349,8 @@ class SecretStoreV1Beta1SpecProviderVault:
     def read_your_writes(self) -> typing.Optional[builtins.bool]:
         '''ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request.
 
-        More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        More information about eventual consistency in Vault can be found here
+        https://www.vaultproject.io/docs/enterprise/consistency
 
         :schema: SecretStoreV1Beta1SpecProviderVault#readYourWrites
         '''
@@ -44013,10 +49358,25 @@ class SecretStoreV1Beta1SpecProviderVault:
         return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
+    def tls(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultTls"]:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :schema: SecretStoreV1Beta1SpecProviderVault#tls
+        '''
+        result = self._values.get("tls")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultTls"], result)
+
+    @builtins.property
     def version(self) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultVersion"]:
         '''Version is the Vault KV secret engine version.
 
-        This can be either "v1" or "v2". Version defaults to "v2".
+        This can be either "v1" or
+        "v2". Version defaults to "v2".
 
         :schema: SecretStoreV1Beta1SpecProviderVault#version
         '''
@@ -44045,6 +49405,7 @@ class SecretStoreV1Beta1SpecProviderVault:
         "jwt": "jwt",
         "kubernetes": "kubernetes",
         "ldap": "ldap",
+        "namespace": "namespace",
         "token_secret_ref": "tokenSecretRef",
         "user_pass": "userPass",
     },
@@ -44059,6 +49420,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         jwt: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        namespace: typing.Optional[builtins.str] = None,
         token_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         user_pass: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
@@ -44070,6 +49432,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         :param jwt: Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
+        :param namespace: Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces This will default to Vault.Namespace field if set, or empty otherwise
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
         :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
@@ -44099,6 +49462,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
             check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -44114,6 +49478,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
             self._values["kubernetes"] = kubernetes
         if ldap is not None:
             self._values["ldap"] = ldap
+        if namespace is not None:
+            self._values["namespace"] = namespace
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
         if user_pass is not None:
@@ -44176,6 +49542,21 @@ class SecretStoreV1Beta1SpecProviderVaultAuth:
         '''
         result = self._values.get("ldap")
         return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthLdap"], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Name of the vault namespace to authenticate to.
+
+        This can be different than the namespace your secret is in.
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        This will default to Vault.Namespace field if set, or empty otherwise
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultAuth#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def token_secret_ref(
@@ -44272,7 +49653,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRole:
     def secret_ref(self) -> "SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef":
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRole#secretRef
         '''
@@ -44295,7 +49677,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRole:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef"]:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRole#roleRef
         '''
@@ -44329,7 +49712,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -44354,7 +49738,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef#key
         '''
@@ -44374,7 +49759,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRoleRoleRef#namespace
         '''
@@ -44408,7 +49794,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -44433,7 +49820,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef#key
         '''
@@ -44453,7 +49841,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthAppRoleSecretRef#namespace
         '''
@@ -44577,7 +49966,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert#key
         '''
@@ -44597,7 +49987,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertClientCert#namespace
         '''
@@ -44654,7 +50045,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef#key
         '''
@@ -44674,7 +50066,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthCertSecretRef#namespace
         '''
@@ -44962,7 +50355,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef#namespace
         '''
@@ -45108,7 +50502,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef#key
         '''
@@ -45128,7 +50523,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -45185,7 +50581,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRe
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRef#key
         '''
@@ -45205,7 +50602,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRe
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -45262,7 +50660,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef#key
         '''
@@ -45282,7 +50681,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamSecretRefSessionTokenSecretRef#namespace
         '''
@@ -45422,7 +50822,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken:
         '''Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param service_account_ref: Service account field containing the name of a kubernetes ServiceAccount.
-        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified.
         :param expiration_seconds: Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Deprecated: this will be removed in the future. Defaults to 10 minutes. Default: 10 minutes.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken
@@ -45458,9 +50858,10 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken:
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
         '''Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        Defaults to a single audience ``vault`` it not specified.
+        Deprecated: use serviceAccountRef.Audiences instead
 
-        :default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :default: a single audience ``vault`` it not specified.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken#audiences
         '''
@@ -45471,7 +50872,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountToken:
     def expiration_seconds(self) -> typing.Optional[jsii.Number]:
         '''Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Deprecated: this will be removed in the future. Defaults to 10 minutes.
+        Deprecated: this will be removed in the future.
+        Defaults to 10 minutes.
 
         :default: 10 minutes.
 
@@ -45549,7 +50951,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#namespace
         '''
@@ -45606,7 +51009,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef#key
         '''
@@ -45626,7 +51030,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtSecretRef#namespace
         '''
@@ -45706,7 +51111,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     def role(self) -> builtins.str:
         '''A required field containing the Vault Role to assume.
 
-        A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
+        A Role binds a
+        Kubernetes ServiceAccount with a set of Vault policies.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetes#role
         '''
@@ -45720,7 +51126,9 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetes#secretRef
         '''
@@ -45733,7 +51141,9 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetes:
     ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetes#serviceAccountRef
         '''
@@ -45767,7 +51177,9 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -45792,7 +51204,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef#key
         '''
@@ -45812,7 +51225,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesSecretRef#namespace
         '''
@@ -45846,7 +51260,9 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -45890,7 +51306,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef#namespace
         '''
@@ -46025,7 +51442,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef#key
         '''
@@ -46045,7 +51463,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthLdapSecretRef#namespace
         '''
@@ -46102,7 +51521,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef#key
         '''
@@ -46122,7 +51542,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef#namespace
         '''
@@ -46257,7 +51678,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#key
         '''
@@ -46277,7 +51699,8 @@ class SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef#namespace
         '''
@@ -46406,11 +51829,253 @@ class SecretStoreV1Beta1SpecProviderVaultCaProviderType(enum.Enum):
     '''ConfigMap.'''
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultTls",
+    jsii_struct_bases=[],
+    name_mapping={
+        "cert_secret_ref": "certSecretRef",
+        "key_secret_ref": "keySecretRef",
+    },
+)
+class SecretStoreV1Beta1SpecProviderVaultTls:
+    def __init__(
+        self,
+        *,
+        cert_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        key_secret_ref: typing.Optional[typing.Union["SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :param cert_secret_ref: CertSecretRef is a certificate added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+        :param key_secret_ref: KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTls
+        '''
+        if isinstance(cert_secret_ref, dict):
+            cert_secret_ref = SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef(**cert_secret_ref)
+        if isinstance(key_secret_ref, dict):
+            key_secret_ref = SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef(**key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__fab4fa2118e761f43d471939d2609be45e644e4caad93f6c1903c7e2891f558b)
+            check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
+            check_type(argname="argument key_secret_ref", value=key_secret_ref, expected_type=type_hints["key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if cert_secret_ref is not None:
+            self._values["cert_secret_ref"] = cert_secret_ref
+        if key_secret_ref is not None:
+            self._values["key_secret_ref"] = key_secret_ref
+
+    @builtins.property
+    def cert_secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef"]:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTls#certSecretRef
+        '''
+        result = self._values.get("cert_secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef"], result)
+
+    @builtins.property
+    def key_secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef"]:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTls#keySecretRef
+        '''
+        result = self._values.get("key_secret_ref")
+        return typing.cast(typing.Optional["SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderVaultTls(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b5f1f826ab42f41a7a85805f377a816e90679ccc5ac3167e7de43fc68e87c137)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__7c2580e3c74388f828c123433a329221fa36b0958fcfd40ad56bbc96daad799e)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 @jsii.enum(jsii_type="ioexternal-secrets.SecretStoreV1Beta1SpecProviderVaultVersion")
 class SecretStoreV1Beta1SpecProviderVaultVersion(enum.Enum):
     '''Version is the Vault KV secret engine version.
 
-    This can be either "v1" or "v2". Version defaults to "v2".
+    This can be either "v1" or
+    "v2". Version defaults to "v2".
 
     :schema: SecretStoreV1Beta1SpecProviderVaultVersion
     '''
@@ -46531,7 +52196,10 @@ class SecretStoreV1Beta1SpecProviderWebhook:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate webhook server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: SecretStoreV1Beta1SpecProviderWebhook#caBundle
         '''
@@ -46847,7 +52515,8 @@ class SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef#key
         '''
@@ -46867,7 +52536,8 @@ class SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderWebhookSecretsSecretRef#namespace
         '''
@@ -47057,7 +52727,8 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySec
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef#key
         '''
@@ -47077,7 +52748,8 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySec
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerAuthAuthorizedKeySecretRef#namespace
         '''
@@ -47183,7 +52855,8 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecret
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef#key
         '''
@@ -47203,7 +52876,8 @@ class SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecret
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexcertificatemanagerCaProviderCertSecretRef#namespace
         '''
@@ -47393,7 +53067,8 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef#key
         '''
@@ -47413,7 +53088,8 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxAuthAuthorizedKeySecretRef#namespace
         '''
@@ -47519,7 +53195,8 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef#key
         '''
@@ -47539,7 +53216,8 @@ class SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderYandexlockboxCaProviderCertSecretRef#namespace
         '''
@@ -47662,6 +53340,8 @@ __all__ = [
     "ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromTarget",
     "ClusterExternalSecretSpecNamespaceSelector",
     "ClusterExternalSecretSpecNamespaceSelectorMatchExpressions",
+    "ClusterExternalSecretSpecNamespaceSelectors",
+    "ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions",
     "ClusterSecretStore",
     "ClusterSecretStoreProps",
     "ClusterSecretStoreSpec",
@@ -47732,6 +53412,10 @@ __all__ = [
     "ClusterSecretStoreSpecProviderOracleAuthSecretRefPrivatekey",
     "ClusterSecretStoreSpecProviderOraclePrincipalType",
     "ClusterSecretStoreSpecProviderOracleServiceAccountRef",
+    "ClusterSecretStoreSpecProviderPassworddepot",
+    "ClusterSecretStoreSpecProviderPassworddepotAuth",
+    "ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef",
+    "ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials",
     "ClusterSecretStoreSpecProviderVault",
     "ClusterSecretStoreSpecProviderVaultAuth",
     "ClusterSecretStoreSpecProviderVaultAuthAppRole",
@@ -47801,11 +53485,17 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderAwsSessionTags",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekv",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret",
+    "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthType",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvEnvironmentType",
     "ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef",
+    "ClusterSecretStoreV1Beta1SpecProviderChef",
+    "ClusterSecretStoreV1Beta1SpecProviderChefAuth",
+    "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderConjur",
     "ClusterSecretStoreV1Beta1SpecProviderConjurAuth",
     "ClusterSecretStoreV1Beta1SpecProviderConjurAuthApikey",
@@ -47829,6 +53519,9 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderDopplerNameTransformer",
     "ClusterSecretStoreV1Beta1SpecProviderFake",
     "ClusterSecretStoreV1Beta1SpecProviderFakeData",
+    "ClusterSecretStoreV1Beta1SpecProviderFortanix",
+    "ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey",
+    "ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderGcpsm",
     "ClusterSecretStoreV1Beta1SpecProviderGcpsmAuth",
     "ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef",
@@ -47857,6 +53550,10 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderKubernetesServer",
     "ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProvider",
     "ClusterSecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType",
+    "ClusterSecretStoreV1Beta1SpecProviderOnboardbase",
+    "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth",
+    "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef",
+    "ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef",
     "ClusterSecretStoreV1Beta1SpecProviderOnepassword",
     "ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth",
     "ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef",
@@ -47868,6 +53565,17 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey",
     "ClusterSecretStoreV1Beta1SpecProviderOraclePrincipalType",
     "ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
+    "ClusterSecretStoreV1Beta1SpecProviderPassbolt",
+    "ClusterSecretStoreV1Beta1SpecProviderPassboltAuth",
+    "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderPassworddepot",
+    "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth",
+    "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials",
+    "ClusterSecretStoreV1Beta1SpecProviderPulumi",
+    "ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken",
+    "ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderScaleway",
     "ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKey",
     "ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef",
@@ -47905,6 +53613,9 @@ __all__ = [
     "ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderVaultCaProvider",
     "ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType",
+    "ClusterSecretStoreV1Beta1SpecProviderVaultTls",
+    "ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef",
+    "ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef",
     "ClusterSecretStoreV1Beta1SpecProviderVaultVersion",
     "ClusterSecretStoreV1Beta1SpecProviderWebhook",
     "ClusterSecretStoreV1Beta1SpecProviderWebhookCaProvider",
@@ -47988,6 +53699,7 @@ __all__ = [
     "PushSecretProps",
     "PushSecretSpec",
     "PushSecretSpecData",
+    "PushSecretSpecDataConversionStrategy",
     "PushSecretSpecDataMatch",
     "PushSecretSpecDataMatchRemoteRef",
     "PushSecretSpecDeletionPolicy",
@@ -48008,6 +53720,7 @@ __all__ = [
     "PushSecretSpecTemplateTemplateFromSecretItems",
     "PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs",
     "PushSecretSpecTemplateTemplateFromTarget",
+    "PushSecretSpecUpdatePolicy",
     "SecretStore",
     "SecretStoreProps",
     "SecretStoreSpec",
@@ -48078,6 +53791,10 @@ __all__ = [
     "SecretStoreSpecProviderOracleAuthSecretRefPrivatekey",
     "SecretStoreSpecProviderOraclePrincipalType",
     "SecretStoreSpecProviderOracleServiceAccountRef",
+    "SecretStoreSpecProviderPassworddepot",
+    "SecretStoreSpecProviderPassworddepotAuth",
+    "SecretStoreSpecProviderPassworddepotAuthSecretRef",
+    "SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials",
     "SecretStoreSpecProviderVault",
     "SecretStoreSpecProviderVaultAuth",
     "SecretStoreSpecProviderVaultAuthAppRole",
@@ -48147,11 +53864,17 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderAwsSessionTags",
     "SecretStoreV1Beta1SpecProviderAzurekv",
     "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRef",
+    "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate",
     "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId",
     "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret",
+    "SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId",
     "SecretStoreV1Beta1SpecProviderAzurekvAuthType",
     "SecretStoreV1Beta1SpecProviderAzurekvEnvironmentType",
     "SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef",
+    "SecretStoreV1Beta1SpecProviderChef",
+    "SecretStoreV1Beta1SpecProviderChefAuth",
+    "SecretStoreV1Beta1SpecProviderChefAuthSecretRef",
+    "SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef",
     "SecretStoreV1Beta1SpecProviderConjur",
     "SecretStoreV1Beta1SpecProviderConjurAuth",
     "SecretStoreV1Beta1SpecProviderConjurAuthApikey",
@@ -48175,6 +53898,9 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderDopplerNameTransformer",
     "SecretStoreV1Beta1SpecProviderFake",
     "SecretStoreV1Beta1SpecProviderFakeData",
+    "SecretStoreV1Beta1SpecProviderFortanix",
+    "SecretStoreV1Beta1SpecProviderFortanixApiKey",
+    "SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef",
     "SecretStoreV1Beta1SpecProviderGcpsm",
     "SecretStoreV1Beta1SpecProviderGcpsmAuth",
     "SecretStoreV1Beta1SpecProviderGcpsmAuthSecretRef",
@@ -48203,6 +53929,10 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderKubernetesServer",
     "SecretStoreV1Beta1SpecProviderKubernetesServerCaProvider",
     "SecretStoreV1Beta1SpecProviderKubernetesServerCaProviderType",
+    "SecretStoreV1Beta1SpecProviderOnboardbase",
+    "SecretStoreV1Beta1SpecProviderOnboardbaseAuth",
+    "SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef",
+    "SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef",
     "SecretStoreV1Beta1SpecProviderOnepassword",
     "SecretStoreV1Beta1SpecProviderOnepasswordAuth",
     "SecretStoreV1Beta1SpecProviderOnepasswordAuthSecretRef",
@@ -48214,6 +53944,17 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderOracleAuthSecretRefPrivatekey",
     "SecretStoreV1Beta1SpecProviderOraclePrincipalType",
     "SecretStoreV1Beta1SpecProviderOracleServiceAccountRef",
+    "SecretStoreV1Beta1SpecProviderPassbolt",
+    "SecretStoreV1Beta1SpecProviderPassboltAuth",
+    "SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef",
+    "SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef",
+    "SecretStoreV1Beta1SpecProviderPassworddepot",
+    "SecretStoreV1Beta1SpecProviderPassworddepotAuth",
+    "SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef",
+    "SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials",
+    "SecretStoreV1Beta1SpecProviderPulumi",
+    "SecretStoreV1Beta1SpecProviderPulumiAccessToken",
+    "SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef",
     "SecretStoreV1Beta1SpecProviderScaleway",
     "SecretStoreV1Beta1SpecProviderScalewayAccessKey",
     "SecretStoreV1Beta1SpecProviderScalewayAccessKeySecretRef",
@@ -48251,6 +53992,9 @@ __all__ = [
     "SecretStoreV1Beta1SpecProviderVaultAuthUserPassSecretRef",
     "SecretStoreV1Beta1SpecProviderVaultCaProvider",
     "SecretStoreV1Beta1SpecProviderVaultCaProviderType",
+    "SecretStoreV1Beta1SpecProviderVaultTls",
+    "SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef",
+    "SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef",
     "SecretStoreV1Beta1SpecProviderVaultVersion",
     "SecretStoreV1Beta1SpecProviderWebhook",
     "SecretStoreV1Beta1SpecProviderWebhookCaProvider",
@@ -48298,6 +54042,7 @@ def _typecheckingstub__8ef14ba98eb89c9ca89bac0d3d6a848b1d08606ee897d4645723837a3
     external_secret_name: typing.Optional[builtins.str] = None,
     namespaces: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace_selector: typing.Optional[typing.Union[ClusterExternalSecretSpecNamespaceSelector, typing.Dict[builtins.str, typing.Any]]] = None,
+    namespace_selectors: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecNamespaceSelectors, typing.Dict[builtins.str, typing.Any]]]] = None,
     refresh_time: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -48554,6 +54299,23 @@ def _typecheckingstub__29a0c54f3edfd70da195fb2028a37b74ef6137c8c5c102801f6e46ea8
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__63f9a14423beda1e46223e279f4c160319ad2adb6f5680b3a0eddf15e36a736e(
+    *,
+    match_expressions: typing.Optional[typing.Sequence[typing.Union[ClusterExternalSecretSpecNamespaceSelectorsMatchExpressions, typing.Dict[builtins.str, typing.Any]]]] = None,
+    match_labels: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__9d206e1e151bff3e2c286fdc18e8127271e514c58791c38b149828428eb62bf7(
+    *,
+    key: builtins.str,
+    operator: builtins.str,
+    values: typing.Optional[typing.Sequence[builtins.str]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__8dd63b4b951d1c0f1810393f2ea2739eb3c8df2dbba5c1c17c9369fa23105354(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -48593,6 +54355,7 @@ def _typecheckingstub__b577f0ccbbef07f08ad1ab52f92fc2ed139f3591354a8294c647ea76a
     ibm: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     oracle: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    passworddepot: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderPassworddepot, typing.Dict[builtins.str, typing.Any]]] = None,
     vault: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
     webhook: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
     yandexlockbox: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -49134,6 +54897,38 @@ def _typecheckingstub__b2c2b61ca17414c8f7ada351a498ac1a2d985e403dcc1fe15eef63e22
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__72d2dda8f33fd1e3871450460f964c43585b0825137f24072af76f387fdb8f53(
+    *,
+    auth: typing.Union[ClusterSecretStoreSpecProviderPassworddepotAuth, typing.Dict[builtins.str, typing.Any]],
+    database: builtins.str,
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b6b6ea9a2b87f39442403b43f12453ef96e7f78fd325509788386688440d487b(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderPassworddepotAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d9d6e961d14c0b06bf046bf2b304ec7d6ec46e370ab98ee8caa1ead22a914088(
+    *,
+    credentials: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderPassworddepotAuthSecretRefCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4dc2de537e242a05d9395953fcfbf59daabc5a55a600ae989930d018a6751dd6(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__ef68b3d001dc894733c01b794ca1a457786564b75fec9c23ebf82feb51a68d1c(
     *,
     auth: typing.Union[ClusterSecretStoreSpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
@@ -49465,17 +55260,23 @@ def _typecheckingstub__68ba9e9c4c46e5f6c6fca915ad8c80109c0ed4a1cdb61ca84e474072d
     alibaba: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
     aws: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
     azurekv: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    chef: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderChef, typing.Dict[builtins.str, typing.Any]]] = None,
     conjur: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjur, typing.Dict[builtins.str, typing.Any]]] = None,
     delinea: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderDelinea, typing.Dict[builtins.str, typing.Any]]] = None,
     doppler: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderDoppler, typing.Dict[builtins.str, typing.Any]]] = None,
     fake: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    fortanix: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFortanix, typing.Dict[builtins.str, typing.Any]]] = None,
     gcpsm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
     gitlab: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
     ibm: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
     keepersecurity: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKeepersecurity, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    onboardbase: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnboardbase, typing.Dict[builtins.str, typing.Any]]] = None,
     onepassword: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[builtins.str, typing.Any]]] = None,
     oracle: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    passbolt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassbolt, typing.Dict[builtins.str, typing.Any]]] = None,
+    passworddepot: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassworddepot, typing.Dict[builtins.str, typing.Any]]] = None,
+    pulumi: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderPulumi, typing.Dict[builtins.str, typing.Any]]] = None,
     scaleway: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderScaleway, typing.Dict[builtins.str, typing.Any]]] = None,
     senhasegura: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[builtins.str, typing.Any]]] = None,
     vault: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -49736,8 +55537,19 @@ def _typecheckingstub__abf7c19186023102b0e55132e0eeb8f816d43879e662f9fc61393882d
 
 def _typecheckingstub__5b5c6576dd0bcff847eb542793197cccaed967a7895b6800a3297ababb2258a6(
     *,
+    client_certificate: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate, typing.Dict[builtins.str, typing.Any]]] = None,
     client_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
     client_secret: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a020b2caecfdbe5ac6df9941e14be21d70df6d9ac4b30816931e54e3377ba0fd(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -49760,10 +55572,51 @@ def _typecheckingstub__00f7e356b48005cce89b72ead3be30d457b3e32c2e5bcf50f43bdf167
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__e4429b736687abdfd285a8c1cb74d70991015d3ce65c34dc4a97d594505bd73c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__99524d6c465621fc67233b99280c814ee97e0c6e2aaad7b7fb19183628a5f5f4(
     *,
     name: builtins.str,
     audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__88acac78c56cdf7d7b25b35249fe8c901d534be93b0484bde9c8d649b70de553(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderChefAuth, typing.Dict[builtins.str, typing.Any]],
+    server_url: builtins.str,
+    username: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b37a2cbd8da0cdf523622a0f633b0d18512951980846f004df6a950b8d7942b8(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f25b6de66eaab11b8c4daae7eec60aebf678febadf1761328a10c1b73ed2feaa(
+    *,
+    private_key_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__83670b4c46a4338b8b67fec9e6cc81a8b7c03be59f98d76ae4db7578f48def37(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -49818,6 +55671,7 @@ def _typecheckingstub__52b0f350eacc0c9b57a1b6713a56af5acafeba5eba98459f04a1fe98b
     *,
     account: builtins.str,
     service_id: builtins.str,
+    host_id: typing.Optional[builtins.str] = None,
     secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -49944,6 +55798,30 @@ def _typecheckingstub__aecd81391352349eccc8183460b87996d0fb8c9e4bd5f75c376baf485
     value: typing.Optional[builtins.str] = None,
     value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__23f53b5511de04a43eca076d3113fbd4876b859968943ded73579584b830281b(
+    *,
+    api_key: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFortanixApiKey, typing.Dict[builtins.str, typing.Any]]] = None,
+    api_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4d4be3708e44244dbee2a11e44eb789795cfe48c43302b71a8a433000e9efcc3(
+    *,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__91961b519bcb0f662eabc09b7254758dc88f1b7138634b36f11b7124f01dd138(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -50180,6 +56058,42 @@ def _typecheckingstub__b4e3f7f956c039a12dbeed25ac8b12f48c513e3306b05774406b2ce6f
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__fef0fe20d06010db0b115f64a6faaeae6035afd6ee50023dd2905ba6edb385d9(
+    *,
+    api_host: builtins.str,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuth, typing.Dict[builtins.str, typing.Any]],
+    environment: builtins.str,
+    project: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d1cbb2018cddeec517a9daacbd3efacd9e12b372cdda0ccf5f1c4e390b0a3187(
+    *,
+    api_key_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef, typing.Dict[builtins.str, typing.Any]],
+    passcode_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e48908cdfeadc38509946151999d447e24d1ae1619cc7a9071c10f1e788238b0(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__96c99d992290dc70599e2af41c3bea41966ab99f0af0c5260d74a5302466d420(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__e7023e452cdb4cf6a57594c3ae644dd93fd67ddecc86ef9bcc979edb5f9aebe4(
     *,
     auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[builtins.str, typing.Any]],
@@ -50269,6 +56183,98 @@ def _typecheckingstub__bdc362d2dc657faa25b2dd71b2ac7510e47044f7a095df74868257351
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__3a5bdf2a0b57968765bc44e2884c1669c82fec7a7708fe5dca91387ae68da08e(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassboltAuth, typing.Dict[builtins.str, typing.Any]],
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__483cad95d0042cdbab9a60c81b20980557e0b60689450c8717896ab6c1d6e15f(
+    *,
+    password_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef, typing.Dict[builtins.str, typing.Any]],
+    private_key_secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__642fd1ce8f6dea3187f6aee48bbbe2e1933e1c9c53f560119d3d1841066fbc78(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__59ae23d4cc00631d4f90cb043b7bc74c3052fd82a2664116f490110123809074(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b3e4ac61bac2d763c98707b1962c58667b9ac61ee2b2dea402f347b1c481fb79(
+    *,
+    auth: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuth, typing.Dict[builtins.str, typing.Any]],
+    database: builtins.str,
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__05c65e058ced4bdb5cef3641cc9e5cfaae0387cd9db325478de3ddeda13003c7(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6de977b5878b841de2449126618c6a83ce9e9bea33c1d98d8a99425cdf649481(
+    *,
+    credentials: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2ed80b8a0ccff8d950eb589785a3db8eda34428f58f04ec1844c28d4d1b9dd2a(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3a3d514f7841dfe014761e2c7d90549223f920bae7e524a1516bfa510a96c06f(
+    *,
+    access_token: typing.Union[ClusterSecretStoreV1Beta1SpecProviderPulumiAccessToken, typing.Dict[builtins.str, typing.Any]],
+    environment: builtins.str,
+    organization: builtins.str,
+    api_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8ce20bfd85695402dc2849f6d7d6aa51cffd3b4566344bb15cb2a217d2c57995(
+    *,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__803f54068a7a9a3d2dd582de1857a6521e55ab7acbd0a7fd47cda1cd02fd01af(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__34a650bc4b0a2bc1f9f27e56bc55b81edf43ce63c03c1f2688ccfcb6c0edb300(
     *,
     access_key: typing.Union[ClusterSecretStoreV1Beta1SpecProviderScalewayAccessKey, typing.Dict[builtins.str, typing.Any]],
@@ -50351,6 +56357,7 @@ def _typecheckingstub__d1ed82d254940b706af74554873fa54b86cd8804d7fee8da566eedeb3
     namespace: typing.Optional[builtins.str] = None,
     path: typing.Optional[builtins.str] = None,
     read_your_writes: typing.Optional[builtins.bool] = None,
+    tls: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultTls, typing.Dict[builtins.str, typing.Any]]] = None,
     version: typing.Optional[ClusterSecretStoreV1Beta1SpecProviderVaultVersion] = None,
 ) -> None:
     """Type checking stubs"""
@@ -50364,6 +56371,7 @@ def _typecheckingstub__fa1611c7ca8d9fedadb92afb290e6c41419ad09bd43146b4bdf9c1d75
     jwt: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    namespace: typing.Optional[builtins.str] = None,
     token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     user_pass: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -50605,6 +56613,32 @@ def _typecheckingstub__614ead02a45818d7b842fdb84071c31ffdc2fa1b565a7ebdc48c6a977
     name: builtins.str,
     type: ClusterSecretStoreV1Beta1SpecProviderVaultCaProviderType,
     key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__60e9db85165a8f05f9caf59c9ac1e9d32997804e3ffd2311317fbadc5f4781a4(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    key_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__01682b1e5411c8e610560ab926f0f147190ed85dfac508657bb97191c51301b8(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__be1cc6ff896b92e00f1824eb023193a80c1e140bd11b60acb0549f8bb4fd2523(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -51151,6 +57185,7 @@ def _typecheckingstub__01e12d461460e19379d69e28b07562f8ff407ec647ae133368d5aebd3
     deletion_policy: typing.Optional[PushSecretSpecDeletionPolicy] = None,
     refresh_interval: typing.Optional[builtins.str] = None,
     template: typing.Optional[typing.Union[PushSecretSpecTemplate, typing.Dict[builtins.str, typing.Any]]] = None,
+    update_policy: typing.Optional[PushSecretSpecUpdatePolicy] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -51158,6 +57193,7 @@ def _typecheckingstub__01e12d461460e19379d69e28b07562f8ff407ec647ae133368d5aebd3
 def _typecheckingstub__2e69051c5188259a4dc4335438fe6e7bbda39d93381fe4f0033cda0f3f3bfcf8(
     *,
     match: typing.Union[PushSecretSpecDataMatch, typing.Dict[builtins.str, typing.Any]],
+    conversion_strategy: typing.Optional[PushSecretSpecDataConversionStrategy] = None,
     metadata: typing.Any = None,
 ) -> None:
     """Type checking stubs"""
@@ -51320,6 +57356,7 @@ def _typecheckingstub__c530965dc9a8ce9c6b19c8fa2f1a1209e5d3f087076176d43c9a82a73
     ibm: typing.Optional[typing.Union[SecretStoreSpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     oracle: typing.Optional[typing.Union[SecretStoreSpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    passworddepot: typing.Optional[typing.Union[SecretStoreSpecProviderPassworddepot, typing.Dict[builtins.str, typing.Any]]] = None,
     vault: typing.Optional[typing.Union[SecretStoreSpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
     webhook: typing.Optional[typing.Union[SecretStoreSpecProviderWebhook, typing.Dict[builtins.str, typing.Any]]] = None,
     yandexlockbox: typing.Optional[typing.Union[SecretStoreSpecProviderYandexlockbox, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -51861,6 +57898,38 @@ def _typecheckingstub__97202d07f8a20c377da4a4404da5930f6c1182c8d25b0837a4ffd5382
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__9210cc06755b6f79ef88436221883e23a6bc7877dd0f395c4cd16ac6a07cf1b7(
+    *,
+    auth: typing.Union[SecretStoreSpecProviderPassworddepotAuth, typing.Dict[builtins.str, typing.Any]],
+    database: builtins.str,
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__feb83c7479202ef875edec190269329957bcb4a5f12a7ddb3764ed63f3198eae(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderPassworddepotAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__385e5404d7188efbe5c105cd17b7472fdbe052f3dbb8ac60cc6cffbd88bd05a0(
+    *,
+    credentials: typing.Optional[typing.Union[SecretStoreSpecProviderPassworddepotAuthSecretRefCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__959a3bfa5af19658f93dc84d289d96c810eeb3219467e12a36491d3bcf6bc0d1(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__4ae354c0bc0f63e88460e1b51ccf0b056861e4af5089834a48e7ffbaa7318995(
     *,
     auth: typing.Union[SecretStoreSpecProviderVaultAuth, typing.Dict[builtins.str, typing.Any]],
@@ -52192,17 +58261,23 @@ def _typecheckingstub__ea7dd9e387afcb814f7b73b94bda5cdd7dfdba58759fb42c1d3512912
     alibaba: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAlibaba, typing.Dict[builtins.str, typing.Any]]] = None,
     aws: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAws, typing.Dict[builtins.str, typing.Any]]] = None,
     azurekv: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekv, typing.Dict[builtins.str, typing.Any]]] = None,
+    chef: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderChef, typing.Dict[builtins.str, typing.Any]]] = None,
     conjur: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjur, typing.Dict[builtins.str, typing.Any]]] = None,
     delinea: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderDelinea, typing.Dict[builtins.str, typing.Any]]] = None,
     doppler: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderDoppler, typing.Dict[builtins.str, typing.Any]]] = None,
     fake: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFake, typing.Dict[builtins.str, typing.Any]]] = None,
+    fortanix: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFortanix, typing.Dict[builtins.str, typing.Any]]] = None,
     gcpsm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGcpsm, typing.Dict[builtins.str, typing.Any]]] = None,
     gitlab: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderGitlab, typing.Dict[builtins.str, typing.Any]]] = None,
     ibm: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderIbm, typing.Dict[builtins.str, typing.Any]]] = None,
     keepersecurity: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKeepersecurity, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
+    onboardbase: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOnboardbase, typing.Dict[builtins.str, typing.Any]]] = None,
     onepassword: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOnepassword, typing.Dict[builtins.str, typing.Any]]] = None,
     oracle: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderOracle, typing.Dict[builtins.str, typing.Any]]] = None,
+    passbolt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderPassbolt, typing.Dict[builtins.str, typing.Any]]] = None,
+    passworddepot: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderPassworddepot, typing.Dict[builtins.str, typing.Any]]] = None,
+    pulumi: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderPulumi, typing.Dict[builtins.str, typing.Any]]] = None,
     scaleway: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderScaleway, typing.Dict[builtins.str, typing.Any]]] = None,
     senhasegura: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderSenhasegura, typing.Dict[builtins.str, typing.Any]]] = None,
     vault: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVault, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -52463,8 +58538,19 @@ def _typecheckingstub__1102c98a03f32b51f230ee6adf278c19d54673b52c8312fe8182f941b
 
 def _typecheckingstub__0a4938b5255f3aa984783f676bc89cdd2bd990505a85f0fd72b37dbaa5f7b4ef(
     *,
+    client_certificate: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientCertificate, typing.Dict[builtins.str, typing.Any]]] = None,
     client_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientId, typing.Dict[builtins.str, typing.Any]]] = None,
     client_secret: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefClientSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+    tenant_id: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderAzurekvAuthSecretRefTenantId, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__831c428d32e1809fa8755d7275384249478a2b1b2977461d205882f576150ee7(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -52487,10 +58573,51 @@ def _typecheckingstub__b5781b1e7d687e6973d4e5221625c7edbeae341526205210eb53c4781
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__1681d1ac099829c7e3d7ddc9d8d2171f0c00eac05620d619ba73a164a4ac8b46(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__c3701d52a6b4ef32f42230c1c20ac928c8800856543ae008bb3eff3348b988ed(
     *,
     name: builtins.str,
     audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f64e0832ce2e5bdcc4b76418c1c8f6b250a9915dfc564831df334ef7324e7409(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderChefAuth, typing.Dict[builtins.str, typing.Any]],
+    server_url: builtins.str,
+    username: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__841e246e57cfb6bedacfdb7742ddc5fb831a8819df60d0fa000de5a0226dd6af(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderChefAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ccec2280a7834691b1b1a1e3a425d5af5af629d5c5443ff97529003d2afb968e(
+    *,
+    private_key_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderChefAuthSecretRefPrivateKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bb2b4c047fa2fef18f7acb531b269edb3f14b2cadd6b0e431ebd04ac42fdc47e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -52545,6 +58672,7 @@ def _typecheckingstub__a867ef73ed6ba39fbba7a7f6d600f26748884d8042ede3b1085d3dd5f
     *,
     account: builtins.str,
     service_id: builtins.str,
+    host_id: typing.Optional[builtins.str] = None,
     secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthJwtSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     service_account_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -52671,6 +58799,30 @@ def _typecheckingstub__29a0c184f90e7b31b38a333f23beda06732b2fd6367a56e1d22e214b8
     value: typing.Optional[builtins.str] = None,
     value_map: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     version: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__06565003520ed3b4b182cebc0df0782c7397bedc4434807ad14ffd5aec404b33(
+    *,
+    api_key: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFortanixApiKey, typing.Dict[builtins.str, typing.Any]]] = None,
+    api_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cd5c80b0001695a1fb0fcff73f4aeb88106fef86a38f6efecd70f8518b4c0535(
+    *,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderFortanixApiKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e8e0fb3b561b24e961f7cc53b7d7f52995c9a1587f2622d98c62cbd10481f550(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -52907,6 +59059,42 @@ def _typecheckingstub__1f682dc01ab3544124912213346c39e299a227713b49003eb2742c133
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__a5297836f61be88e9ba167fa61d792f192e7ee54541be7598800f46cdf85c06f(
+    *,
+    api_host: builtins.str,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderOnboardbaseAuth, typing.Dict[builtins.str, typing.Any]],
+    environment: builtins.str,
+    project: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__27d3d52870731bdad3efa483bda2c12fa98b99d06da2ac3c8d51bb74987d8366(
+    *,
+    api_key_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnboardbaseAuthApiKeyRef, typing.Dict[builtins.str, typing.Any]],
+    passcode_ref: typing.Union[SecretStoreV1Beta1SpecProviderOnboardbaseAuthPasscodeRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e793cc39e597aa506da9da0bca2c01ebb177e9ae284121a87ddb4e8bdb7ad74a(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c1b4261fef432b3a9873355545275d22cda7f776ba4b42b420ca47c56f503270(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__f1799d8f5d4e7fd3e38d4ffda5fbe26f701abb1ac72c72e62e17dc32d661c52f(
     *,
     auth: typing.Union[SecretStoreV1Beta1SpecProviderOnepasswordAuth, typing.Dict[builtins.str, typing.Any]],
@@ -52996,6 +59184,98 @@ def _typecheckingstub__ab989471fa0c25514c062bf2d2b0a040f69c8f8906d13ac7cd449e6d9
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__c1489eb7e9620965a440726c06aec5ce16ef1b5e841250fcc5024c91215ecb5d(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderPassboltAuth, typing.Dict[builtins.str, typing.Any]],
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__538289df280cd946c84fd37eb4ea94fc8b0ce1695213961d36001d162548db6a(
+    *,
+    password_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderPassboltAuthPasswordSecretRef, typing.Dict[builtins.str, typing.Any]],
+    private_key_secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderPassboltAuthPrivateKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4bb9db9eee1ce9a5ca112400260bc8086ba70cc39b797ee628675edf22f744fd(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__29ab280066a1eb0cb5742d20eccfc087ef8b391f016590bf1f8d8ffe52b75d48(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c0f976ddef5429db57e42aed47827f8bed0917b9cf825b4f4a67d69f3688518a(
+    *,
+    auth: typing.Union[SecretStoreV1Beta1SpecProviderPassworddepotAuth, typing.Dict[builtins.str, typing.Any]],
+    database: builtins.str,
+    host: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d705a50aad2a9503d46ad8df7d7b529abbb45897e6b649a2329c4c293aa5fd62(
+    *,
+    secret_ref: typing.Union[SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0e52c9857e3f7680b291d78b0c4ddc8089923f4b2d668fb96c0e45ae9c6e0b0c(
+    *,
+    credentials: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderPassworddepotAuthSecretRefCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0dfaa99e7d51b44c06c1fae991b4fc1c9128eb872d34546de35780afdde50f52(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__939d01649b08ff60f9a7a30761431e0f272e31bdd0a4b75e5bc6568af08a25b7(
+    *,
+    access_token: typing.Union[SecretStoreV1Beta1SpecProviderPulumiAccessToken, typing.Dict[builtins.str, typing.Any]],
+    environment: builtins.str,
+    organization: builtins.str,
+    api_url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__49f1e598bc6963cbfc96bb6e5cc69cf9b281444f3b47cfdec842d82b0e927630(
+    *,
+    secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderPulumiAccessTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ba202441e53a6a6e88d62b095d491369de97f4e30a14970f0a02e9fb6da4a987(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__9b2d10d04e4764b296e1ce01f19a28ce1674275dd261d44db6c973b670d9553e(
     *,
     access_key: typing.Union[SecretStoreV1Beta1SpecProviderScalewayAccessKey, typing.Dict[builtins.str, typing.Any]],
@@ -53078,6 +59358,7 @@ def _typecheckingstub__9fc4023c465f1be1a5c234fc3840fd441fe986a5b257d0ae414a562c3
     namespace: typing.Optional[builtins.str] = None,
     path: typing.Optional[builtins.str] = None,
     read_your_writes: typing.Optional[builtins.bool] = None,
+    tls: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultTls, typing.Dict[builtins.str, typing.Any]]] = None,
     version: typing.Optional[SecretStoreV1Beta1SpecProviderVaultVersion] = None,
 ) -> None:
     """Type checking stubs"""
@@ -53091,6 +59372,7 @@ def _typecheckingstub__400104a61eab9ca884187e2efbafa3aa344cc85d8fcba6bbf7136fc06
     jwt: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    namespace: typing.Optional[builtins.str] = None,
     token_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     user_pass: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -53332,6 +59614,32 @@ def _typecheckingstub__32dea37cf93e2ea75f29adf17d3938b2218a712b370866878b2757313
     name: builtins.str,
     type: SecretStoreV1Beta1SpecProviderVaultCaProviderType,
     key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fab4fa2118e761f43d471939d2609be45e644e4caad93f6c1903c7e2891f558b(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultTlsCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    key_secret_ref: typing.Optional[typing.Union[SecretStoreV1Beta1SpecProviderVaultTlsKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b5f1f826ab42f41a7a85805f377a816e90679ccc5ac3167e7de43fc68e87c137(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7c2580e3c74388f828c123433a329221fa36b0958fcfd40ad56bbc96daad799e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
