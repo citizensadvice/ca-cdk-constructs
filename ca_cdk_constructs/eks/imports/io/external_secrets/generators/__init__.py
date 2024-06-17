@@ -1,3 +1,6 @@
+from pkgutil import extend_path
+__path__ = extend_path(__path__, __name__)
+
 import abc
 import builtins
 import datetime
@@ -23,7 +26,11 @@ class AcrAccessToken(
 ):
     '''ACRAccessToken returns a Azure Container Registry token that can be used for pushing/pulling images.
 
-    Note: by default it will return an ACR Refresh Token with full access (depending on the identity). This can be scoped down to the repository level using .spec.scope. In case scope is defined it will return an ACR Access Token.
+    Note: by default it will return an ACR Refresh Token with full access
+    (depending on the identity).
+    This can be scoped down to the repository level using .spec.scope.
+    In case scope is defined it will return an ACR Access Token.
+
     See docs: https://github.com/Azure/acr/blob/main/docs/AAD-OAuth.md
 
     :schema: ACRAccessToken
@@ -97,7 +104,11 @@ class AcrAccessTokenProps:
     ) -> None:
         '''ACRAccessToken returns a Azure Container Registry token that can be used for pushing/pulling images.
 
-        Note: by default it will return an ACR Refresh Token with full access (depending on the identity). This can be scoped down to the repository level using .spec.scope. In case scope is defined it will return an ACR Access Token.
+        Note: by default it will return an ACR Refresh Token with full access
+        (depending on the identity).
+        This can be scoped down to the repository level using .spec.scope.
+        In case scope is defined it will return an ACR Access Token.
+
         See docs: https://github.com/Azure/acr/blob/main/docs/AAD-OAuth.md
 
         :param metadata: 
@@ -174,7 +185,7 @@ class AcrAccessTokenSpec:
         :param auth: 
         :param registry: the domain name of the ACR registry e.g. foobarexample.azurecr.io.
         :param environment_type: EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure. By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
-        :param scope: Define the scope for the access token, e.g. pull/push access for a repository. if not provided it will return a refresh token that has full scope. Note: you need to pin it down to the repository level, there is no wildcard available. examples: repository:my-repository:pull,push repository:my-repository:pull see docs for details: https://docs.docker.com/registry/spec/auth/scope/.
+        :param scope: Define the scope for the access token, e.g. pull/push access for a repository. if not provided it will return a refresh token that has full scope. Note: you need to pin it down to the repository level, there is no wildcard available. examples: repository:my-repository:pull,push repository:my-repository:pull see docs for details: https://docs.docker.com/registry/spec/auth/scope/
         :param tenant_id: TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.
 
         :schema: AcrAccessTokenSpec
@@ -222,7 +233,9 @@ class AcrAccessTokenSpec:
     def environment_type(self) -> typing.Optional["AcrAccessTokenSpecEnvironmentType"]:
         '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-        By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+        By default it points to the public cloud AAD endpoint.
+        The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+        PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
         :schema: AcrAccessTokenSpec#environmentType
         '''
@@ -231,7 +244,13 @@ class AcrAccessTokenSpec:
 
     @builtins.property
     def scope(self) -> typing.Optional[builtins.str]:
-        '''Define the scope for the access token, e.g. pull/push access for a repository. if not provided it will return a refresh token that has full scope. Note: you need to pin it down to the repository level, there is no wildcard available. examples: repository:my-repository:pull,push repository:my-repository:pull see docs for details: https://docs.docker.com/registry/spec/auth/scope/.
+        '''Define the scope for the access token, e.g. pull/push access for a repository. if not provided it will return a refresh token that has full scope. Note: you need to pin it down to the repository level, there is no wildcard available.
+
+        examples:
+        repository:my-repository:pull,push
+        repository:my-repository:pull
+
+        see docs for details: https://docs.docker.com/registry/spec/auth/scope/
 
         :schema: AcrAccessTokenSpec#scope
         '''
@@ -543,7 +562,8 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId#key
         '''
@@ -563,7 +583,8 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId#namespace
         '''
@@ -620,7 +641,8 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret#key
         '''
@@ -640,7 +662,8 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret#namespace
         '''
@@ -765,7 +788,8 @@ class AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -788,7 +812,9 @@ class AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
 class AcrAccessTokenSpecEnvironmentType(enum.Enum):
     '''EnvironmentType specifies the Azure cloud environment endpoints to use for connecting and authenticating with Azure.
 
-    By default it points to the public cloud AAD endpoint. The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152 PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
+    By default it points to the public cloud AAD endpoint.
+    The following endpoints are available, also see here: https://github.com/Azure/go-autorest/blob/main/autorest/azure/environments.go#L152
+    PublicCloud, USGovernmentCloud, ChinaCloud, GermanCloud
 
     :schema: AcrAccessTokenSpecEnvironmentType
     '''
@@ -810,7 +836,10 @@ class EcrAuthorizationToken(
 ):
     '''ECRAuthorizationTokenSpec uses the GetAuthorizationToken API to retrieve an authorization token.
 
-    The authorization token is valid for 12 hours. The authorizationToken returned is a base64 encoded string that can be decoded and used in a docker login command to authenticate to a registry. For more information, see Registry authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the Amazon Elastic Container Registry User Guide.
+    The authorization token is valid for 12 hours.
+    The authorizationToken returned is a base64 encoded string that can be decoded
+    and used in a docker login command to authenticate to a registry.
+    For more information, see Registry authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the Amazon Elastic Container Registry User Guide.
 
     :schema: ECRAuthorizationToken
     '''
@@ -883,7 +912,10 @@ class EcrAuthorizationTokenProps:
     ) -> None:
         '''ECRAuthorizationTokenSpec uses the GetAuthorizationToken API to retrieve an authorization token.
 
-        The authorization token is valid for 12 hours. The authorizationToken returned is a base64 encoded string that can be decoded and used in a docker login command to authenticate to a registry. For more information, see Registry authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the Amazon Elastic Container Registry User Guide.
+        The authorization token is valid for 12 hours.
+        The authorizationToken returned is a base64 encoded string that can be decoded
+        and used in a docker login command to authenticate to a registry.
+        For more information, see Registry authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the Amazon Elastic Container Registry User Guide.
 
         :param metadata: 
         :param spec: 
@@ -1176,7 +1208,8 @@ class EcrAuthorizationTokenSpecAuthJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: EcrAuthorizationTokenSpecAuthJwtServiceAccountRef#namespace
         '''
@@ -1322,7 +1355,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef#key
         '''
@@ -1342,7 +1376,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -1399,7 +1434,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -1419,7 +1455,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -1476,7 +1513,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef#key
         '''
@@ -1496,7 +1534,8 @@ class EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef#namespace
         '''
@@ -1522,7 +1561,8 @@ class Fake(
 ):
     '''Fake generator is used for testing.
 
-    It lets you define a static set of credentials that is always returned.
+    It lets you define
+    a static set of credentials that is always returned.
 
     :schema: Fake
     '''
@@ -1595,7 +1635,8 @@ class FakeProps:
     ) -> None:
         '''Fake generator is used for testing.
 
-        It lets you define a static set of credentials that is always returned.
+        It lets you define
+        a static set of credentials that is always returned.
 
         :param metadata: 
         :param spec: FakeSpec contains the static data.
@@ -2039,7 +2080,8 @@ class GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef#key
         '''
@@ -2059,7 +2101,8 @@ class GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -2228,7 +2271,8 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#namespace
         '''
@@ -2243,6 +2287,400 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
 
     def __repr__(self) -> str:
         return "GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class GithubAccessToken(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.GithubAccessToken",
+):
+    '''GithubAccessToken generates ghs_ accessToken.
+
+    :schema: GithubAccessToken
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GithubAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "GithubAccessToken" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: 
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4a77570c44994c62f1495ca397b0a38a34f7359399b5a5c444421df203d8116b)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = GithubAccessTokenProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GithubAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "GithubAccessToken".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: 
+        '''
+        props = GithubAccessTokenProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "GithubAccessToken".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class GithubAccessTokenProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GithubAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''GithubAccessToken generates ghs_ accessToken.
+
+        :param metadata: 
+        :param spec: 
+
+        :schema: GithubAccessToken
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = GithubAccessTokenSpec(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__03fef391cab2e0e91a690c6535a6c54804108aecbfe23f30906d896706375319)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
+        '''
+        :schema: GithubAccessToken#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["GithubAccessTokenSpec"]:
+        '''
+        :schema: GithubAccessToken#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["GithubAccessTokenSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "app_id": "appId",
+        "auth": "auth",
+        "install_id": "installId",
+        "url": "url",
+    },
+)
+class GithubAccessTokenSpec:
+    def __init__(
+        self,
+        *,
+        app_id: builtins.str,
+        auth: typing.Union["GithubAccessTokenSpecAuth", typing.Dict[builtins.str, typing.Any]],
+        install_id: builtins.str,
+        url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''
+        :param app_id: 
+        :param auth: Auth configures how ESO authenticates with a Github instance.
+        :param install_id: 
+        :param url: URL configures the Github instance URL. Defaults to https://github.com/. Default: https://github.com/.
+
+        :schema: GithubAccessTokenSpec
+        '''
+        if isinstance(auth, dict):
+            auth = GithubAccessTokenSpecAuth(**auth)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb)
+            check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument install_id", value=install_id, expected_type=type_hints["install_id"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "app_id": app_id,
+            "auth": auth,
+            "install_id": install_id,
+        }
+        if url is not None:
+            self._values["url"] = url
+
+    @builtins.property
+    def app_id(self) -> builtins.str:
+        '''
+        :schema: GithubAccessTokenSpec#appID
+        '''
+        result = self._values.get("app_id")
+        assert result is not None, "Required property 'app_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> "GithubAccessTokenSpecAuth":
+        '''Auth configures how ESO authenticates with a Github instance.
+
+        :schema: GithubAccessTokenSpec#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("GithubAccessTokenSpecAuth", result)
+
+    @builtins.property
+    def install_id(self) -> builtins.str:
+        '''
+        :schema: GithubAccessTokenSpec#installID
+        '''
+        result = self._values.get("install_id")
+        assert result is not None, "Required property 'install_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def url(self) -> typing.Optional[builtins.str]:
+        '''URL configures the Github instance URL.
+
+        Defaults to https://github.com/.
+
+        :default: https://github.com/.
+
+        :schema: GithubAccessTokenSpec#url
+        '''
+        result = self._values.get("url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"privat_key": "privatKey"},
+)
+class GithubAccessTokenSpecAuth:
+    def __init__(
+        self,
+        *,
+        privat_key: typing.Union["GithubAccessTokenSpecAuthPrivatKey", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how ESO authenticates with a Github instance.
+
+        :param privat_key: 
+
+        :schema: GithubAccessTokenSpecAuth
+        '''
+        if isinstance(privat_key, dict):
+            privat_key = GithubAccessTokenSpecAuthPrivatKey(**privat_key)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__eb19f408f5f81b80adaeb0752891235a4de94e26ecf80e23ae76b0df8fce09e1)
+            check_type(argname="argument privat_key", value=privat_key, expected_type=type_hints["privat_key"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "privat_key": privat_key,
+        }
+
+    @builtins.property
+    def privat_key(self) -> "GithubAccessTokenSpecAuthPrivatKey":
+        '''
+        :schema: GithubAccessTokenSpecAuth#privatKey
+        '''
+        result = self._values.get("privat_key")
+        assert result is not None, "Required property 'privat_key' is missing"
+        return typing.cast("GithubAccessTokenSpecAuthPrivatKey", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpecAuthPrivatKey",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class GithubAccessTokenSpecAuthPrivatKey:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["GithubAccessTokenSpecAuthPrivatKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''
+        :param secret_ref: A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKey
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = GithubAccessTokenSpecAuthPrivatKeySecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a050f85eb9a101ba0f5eebd093e0ab19ad5208fcbd1dfe18d7647a1d2a82d24a)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "GithubAccessTokenSpecAuthPrivatKeySecretRef":
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKey#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("GithubAccessTokenSpecAuthPrivatKeySecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpecAuthPrivatKey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpecAuthPrivatKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class GithubAccessTokenSpecAuthPrivatKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource, In some instances, ``key`` is a required field.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6634718e2ef048a73b33870883284ef098357d1e9eb446ea42fe28cc7b89d329)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecAuthPrivatKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpecAuthPrivatKeySecretRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -2738,7 +3176,10 @@ class VaultDynamicSecretSpec:
     def result_type(self) -> typing.Optional["VaultDynamicSecretSpecResultType"]:
         '''Result type defines which data is returned from the generator.
 
-        By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
+        By default it is the "data" section of the Vault API response.
+        When using e.g. /auth/token/create the "data" section is empty but
+        the "auth" section contains the generated token.
+        Please refer to the vault docs regarding the result data structure.
 
         :schema: VaultDynamicSecretSpec#resultType
         '''
@@ -2769,6 +3210,7 @@ class VaultDynamicSecretSpec:
         "namespace": "namespace",
         "path": "path",
         "read_your_writes": "readYourWrites",
+        "tls": "tls",
         "version": "version",
     },
 )
@@ -2784,6 +3226,7 @@ class VaultDynamicSecretSpecProvider:
         namespace: typing.Optional[builtins.str] = None,
         path: typing.Optional[builtins.str] = None,
         read_your_writes: typing.Optional[builtins.bool] = None,
+        tls: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderTls", typing.Dict[builtins.str, typing.Any]]] = None,
         version: typing.Optional["VaultDynamicSecretSpecProviderVersion"] = None,
     ) -> None:
         '''Vault provider common spec.
@@ -2796,6 +3239,7 @@ class VaultDynamicSecretSpecProvider:
         :param namespace: Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
         :param path: Path is the mount path of the Vault KV backend endpoint, e.g: "secret". The v2 KV secret engine version specific "/data" path suffix for fetching secrets from Vault is optional and will be appended if not present in specified path.
         :param read_your_writes: ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        :param tls: The configuration used for client side related TLS communication, when the Vault server requires mutual authentication. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. It's worth noting this configuration is different from the "TLS certificates auth method", which is available under the ``auth.cert`` section.
         :param version: Version is the Vault KV secret engine version. This can be either "v1" or "v2". Version defaults to "v2".
 
         :schema: VaultDynamicSecretSpecProvider
@@ -2804,6 +3248,8 @@ class VaultDynamicSecretSpecProvider:
             auth = VaultDynamicSecretSpecProviderAuth(**auth)
         if isinstance(ca_provider, dict):
             ca_provider = VaultDynamicSecretSpecProviderCaProvider(**ca_provider)
+        if isinstance(tls, dict):
+            tls = VaultDynamicSecretSpecProviderTls(**tls)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb0ddf60a)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
@@ -2814,6 +3260,7 @@ class VaultDynamicSecretSpecProvider:
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_your_writes", value=read_your_writes, expected_type=type_hints["read_your_writes"])
+            check_type(argname="argument tls", value=tls, expected_type=type_hints["tls"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
@@ -2831,6 +3278,8 @@ class VaultDynamicSecretSpecProvider:
             self._values["path"] = path
         if read_your_writes is not None:
             self._values["read_your_writes"] = read_your_writes
+        if tls is not None:
+            self._values["tls"] = tls
         if version is not None:
             self._values["version"] = version
 
@@ -2858,7 +3307,10 @@ class VaultDynamicSecretSpecProvider:
     def ca_bundle(self) -> typing.Optional[builtins.str]:
         '''PEM encoded CA bundle used to validate Vault server certificate.
 
-        Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
 
         :schema: VaultDynamicSecretSpecProvider#caBundle
         '''
@@ -2880,7 +3332,9 @@ class VaultDynamicSecretSpecProvider:
     def forward_inconsistent(self) -> typing.Optional[builtins.bool]:
         '''ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop.
 
-        This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
+        This can increase performance if
+        the option is enabled serverside.
+        https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
 
         :schema: VaultDynamicSecretSpecProvider#forwardInconsistent
         '''
@@ -2891,7 +3345,9 @@ class VaultDynamicSecretSpecProvider:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Name of the vault namespace.
 
-        Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
 
         :schema: VaultDynamicSecretSpecProvider#namespace
         '''
@@ -2911,7 +3367,8 @@ class VaultDynamicSecretSpecProvider:
     def read_your_writes(self) -> typing.Optional[builtins.bool]:
         '''ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request.
 
-        More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency
+        More information about eventual consistency in Vault can be found here
+        https://www.vaultproject.io/docs/enterprise/consistency
 
         :schema: VaultDynamicSecretSpecProvider#readYourWrites
         '''
@@ -2919,10 +3376,25 @@ class VaultDynamicSecretSpecProvider:
         return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
+    def tls(self) -> typing.Optional["VaultDynamicSecretSpecProviderTls"]:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :schema: VaultDynamicSecretSpecProvider#tls
+        '''
+        result = self._values.get("tls")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderTls"], result)
+
+    @builtins.property
     def version(self) -> typing.Optional["VaultDynamicSecretSpecProviderVersion"]:
         '''Version is the Vault KV secret engine version.
 
-        This can be either "v1" or "v2". Version defaults to "v2".
+        This can be either "v1" or
+        "v2". Version defaults to "v2".
 
         :schema: VaultDynamicSecretSpecProvider#version
         '''
@@ -2951,6 +3423,7 @@ class VaultDynamicSecretSpecProvider:
         "jwt": "jwt",
         "kubernetes": "kubernetes",
         "ldap": "ldap",
+        "namespace": "namespace",
         "token_secret_ref": "tokenSecretRef",
         "user_pass": "userPass",
     },
@@ -2965,6 +3438,7 @@ class VaultDynamicSecretSpecProviderAuth:
         jwt: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
         kubernetes: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         ldap: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthLdap", typing.Dict[builtins.str, typing.Any]]] = None,
+        namespace: typing.Optional[builtins.str] = None,
         token_secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         user_pass: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
@@ -2976,6 +3450,7 @@ class VaultDynamicSecretSpecProviderAuth:
         :param jwt: Jwt authenticates with Vault by passing role and JWT token using the JWT/OIDC authentication method.
         :param kubernetes: Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.
         :param ldap: Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
+        :param namespace: Name of the vault namespace to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: "ns1". More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces This will default to Vault.Namespace field if set, or empty otherwise
         :param token_secret_ref: TokenSecretRef authenticates with Vault by presenting a token.
         :param user_pass: UserPass authenticates with Vault by passing username/password pair.
 
@@ -3005,6 +3480,7 @@ class VaultDynamicSecretSpecProviderAuth:
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument ldap", value=ldap, expected_type=type_hints["ldap"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
             check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -3020,6 +3496,8 @@ class VaultDynamicSecretSpecProviderAuth:
             self._values["kubernetes"] = kubernetes
         if ldap is not None:
             self._values["ldap"] = ldap
+        if namespace is not None:
+            self._values["namespace"] = namespace
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
         if user_pass is not None:
@@ -3080,6 +3558,21 @@ class VaultDynamicSecretSpecProviderAuth:
         '''
         result = self._values.get("ldap")
         return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuthLdap"], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Name of the vault namespace to authenticate to.
+
+        This can be different than the namespace your secret is in.
+        Namespaces is a set of features within Vault Enterprise that allows
+        Vault environments to support Secure Multi-tenancy. e.g: "ns1".
+        More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces
+        This will default to Vault.Namespace field if set, or empty otherwise
+
+        :schema: VaultDynamicSecretSpecProviderAuth#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def token_secret_ref(
@@ -3176,7 +3669,8 @@ class VaultDynamicSecretSpecProviderAuthAppRole:
     def secret_ref(self) -> "VaultDynamicSecretSpecProviderAuthAppRoleSecretRef":
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRole#secretRef
         '''
@@ -3199,7 +3693,8 @@ class VaultDynamicSecretSpecProviderAuthAppRole:
     ) -> typing.Optional["VaultDynamicSecretSpecProviderAuthAppRoleRoleRef"]:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRole#roleRef
         '''
@@ -3233,7 +3728,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleRoleRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role ID used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role id.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role id.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -3258,7 +3754,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleRoleRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleRoleRef#key
         '''
@@ -3278,7 +3775,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleRoleRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleRoleRef#namespace
         '''
@@ -3312,7 +3810,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleSecretRef:
     ) -> None:
         '''Reference to a key in a Secret that contains the App Role secret used to authenticate with Vault.
 
-        The ``key`` field must be specified and denotes which entry within the Secret resource is used as the app role secret.
+        The ``key`` field must be specified and denotes which entry within the Secret
+        resource is used as the app role secret.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -3337,7 +3836,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleSecretRef#key
         '''
@@ -3357,7 +3857,8 @@ class VaultDynamicSecretSpecProviderAuthAppRoleSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleSecretRef#namespace
         '''
@@ -3481,7 +3982,8 @@ class VaultDynamicSecretSpecProviderAuthCertClientCert:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthCertClientCert#key
         '''
@@ -3501,7 +4003,8 @@ class VaultDynamicSecretSpecProviderAuthCertClientCert:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthCertClientCert#namespace
         '''
@@ -3558,7 +4061,8 @@ class VaultDynamicSecretSpecProviderAuthCertSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthCertSecretRef#key
         '''
@@ -3578,7 +4082,8 @@ class VaultDynamicSecretSpecProviderAuthCertSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthCertSecretRef#namespace
         '''
@@ -3866,7 +4371,8 @@ class VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef#namespace
         '''
@@ -4012,7 +4518,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef#key
         '''
@@ -4032,7 +4539,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef#namespace
         '''
@@ -4089,7 +4597,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef#key
         '''
@@ -4109,7 +4618,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef#namespace
         '''
@@ -4166,7 +4676,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef#key
         '''
@@ -4186,7 +4697,8 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef#namespace
         '''
@@ -4326,7 +4838,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken:
         '''Optional ServiceAccountToken specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param service_account_ref: Service account field containing the name of a kubernetes ServiceAccount.
-        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :param audiences: Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead Default: a single audience ``vault`` it not specified.
         :param expiration_seconds: Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``. Deprecated: this will be removed in the future. Defaults to 10 minutes. Default: 10 minutes.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken
@@ -4362,9 +4874,10 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken:
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
         '''Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Defaults to a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        Defaults to a single audience ``vault`` it not specified.
+        Deprecated: use serviceAccountRef.Audiences instead
 
-        :default: a single audience ``vault`` it not specified. Deprecated: use serviceAccountRef.Audiences instead
+        :default: a single audience ``vault`` it not specified.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken#audiences
         '''
@@ -4375,7 +4888,8 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken:
     def expiration_seconds(self) -> typing.Optional[jsii.Number]:
         '''Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
-        Deprecated: this will be removed in the future. Defaults to 10 minutes.
+        Deprecated: this will be removed in the future.
+        Defaults to 10 minutes.
 
         :default: 10 minutes.
 
@@ -4453,7 +4967,8 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceA
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef#namespace
         '''
@@ -4510,7 +5025,8 @@ class VaultDynamicSecretSpecProviderAuthJwtSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtSecretRef#key
         '''
@@ -4530,7 +5046,8 @@ class VaultDynamicSecretSpecProviderAuthJwtSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtSecretRef#namespace
         '''
@@ -4610,7 +5127,8 @@ class VaultDynamicSecretSpecProviderAuthKubernetes:
     def role(self) -> builtins.str:
         '''A required field containing the Vault Role to assume.
 
-        A Role binds a Kubernetes ServiceAccount with a set of Vault policies.
+        A Role binds a
+        Kubernetes ServiceAccount with a set of Vault policies.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetes#role
         '''
@@ -4624,7 +5142,9 @@ class VaultDynamicSecretSpecProviderAuthKubernetes:
     ) -> typing.Optional["VaultDynamicSecretSpecProviderAuthKubernetesSecretRef"]:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetes#secretRef
         '''
@@ -4637,7 +5157,9 @@ class VaultDynamicSecretSpecProviderAuthKubernetes:
     ) -> typing.Optional["VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef"]:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetes#serviceAccountRef
         '''
@@ -4671,7 +5193,9 @@ class VaultDynamicSecretSpecProviderAuthKubernetesSecretRef:
     ) -> None:
         '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault.
 
-        If a name is specified without a key, ``token`` is the default. If one is not specified, the one bound to the controller will be used.
+        If a name is specified without a key,
+        ``token`` is the default. If one is not specified, the one bound to
+        the controller will be used.
 
         :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
         :param name: The name of the Secret resource being referred to.
@@ -4696,7 +5220,8 @@ class VaultDynamicSecretSpecProviderAuthKubernetesSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesSecretRef#key
         '''
@@ -4716,7 +5241,8 @@ class VaultDynamicSecretSpecProviderAuthKubernetesSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesSecretRef#namespace
         '''
@@ -4750,7 +5276,9 @@ class VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef:
     ) -> None:
         '''Optional service account field containing the name of a kubernetes ServiceAccount.
 
-        If the service account is specified, the service account secret token JWT will be used for authenticating with Vault. If the service account selector is not supplied, the secretRef will be used instead.
+        If the service account is specified, the service account secret token JWT will be used
+        for authenticating with Vault. If the service account selector is not supplied,
+        the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
         :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
@@ -4794,7 +5322,8 @@ class VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef#namespace
         '''
@@ -4929,7 +5458,8 @@ class VaultDynamicSecretSpecProviderAuthLdapSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthLdapSecretRef#key
         '''
@@ -4949,7 +5479,8 @@ class VaultDynamicSecretSpecProviderAuthLdapSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthLdapSecretRef#namespace
         '''
@@ -5006,7 +5537,8 @@ class VaultDynamicSecretSpecProviderAuthTokenSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthTokenSecretRef#key
         '''
@@ -5026,7 +5558,8 @@ class VaultDynamicSecretSpecProviderAuthTokenSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthTokenSecretRef#namespace
         '''
@@ -5161,7 +5694,8 @@ class VaultDynamicSecretSpecProviderAuthUserPassSecretRef:
     def key(self) -> typing.Optional[builtins.str]:
         '''The key of the entry in the Secret resource's ``data`` field to be used.
 
-        Some instances of this field may be defaulted, in others it may be required.
+        Some instances of this field may be
+        defaulted, in others it may be required.
 
         :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef#key
         '''
@@ -5181,7 +5715,8 @@ class VaultDynamicSecretSpecProviderAuthUserPassSecretRef:
     def namespace(self) -> typing.Optional[builtins.str]:
         '''Namespace of the resource being referred to.
 
-        Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef#namespace
         '''
@@ -5310,13 +5845,255 @@ class VaultDynamicSecretSpecProviderCaProviderType(enum.Enum):
     '''ConfigMap.'''
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderTls",
+    jsii_struct_bases=[],
+    name_mapping={
+        "cert_secret_ref": "certSecretRef",
+        "key_secret_ref": "keySecretRef",
+    },
+)
+class VaultDynamicSecretSpecProviderTls:
+    def __init__(
+        self,
+        *,
+        cert_secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderTlsCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        key_secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderTlsKeySecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''The configuration used for client side related TLS communication, when the Vault server requires mutual authentication.
+
+        Only used if the Server URL is using HTTPS protocol.
+        This parameter is ignored for plain HTTP protocol connection.
+        It's worth noting this configuration is different from the "TLS certificates auth method",
+        which is available under the ``auth.cert`` section.
+
+        :param cert_secret_ref: CertSecretRef is a certificate added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+        :param key_secret_ref: KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server. If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: VaultDynamicSecretSpecProviderTls
+        '''
+        if isinstance(cert_secret_ref, dict):
+            cert_secret_ref = VaultDynamicSecretSpecProviderTlsCertSecretRef(**cert_secret_ref)
+        if isinstance(key_secret_ref, dict):
+            key_secret_ref = VaultDynamicSecretSpecProviderTlsKeySecretRef(**key_secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__4c359e9ca0ed96202a7b48da939ccca9ad838ac2a1792e970ccc859acc513b5e)
+            check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
+            check_type(argname="argument key_secret_ref", value=key_secret_ref, expected_type=type_hints["key_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if cert_secret_ref is not None:
+            self._values["cert_secret_ref"] = cert_secret_ref
+        if key_secret_ref is not None:
+            self._values["key_secret_ref"] = key_secret_ref
+
+    @builtins.property
+    def cert_secret_ref(
+        self,
+    ) -> typing.Optional["VaultDynamicSecretSpecProviderTlsCertSecretRef"]:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :schema: VaultDynamicSecretSpecProviderTls#certSecretRef
+        '''
+        result = self._values.get("cert_secret_ref")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderTlsCertSecretRef"], result)
+
+    @builtins.property
+    def key_secret_ref(
+        self,
+    ) -> typing.Optional["VaultDynamicSecretSpecProviderTlsKeySecretRef"]:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :schema: VaultDynamicSecretSpecProviderTls#keySecretRef
+        '''
+        result = self._values.get("key_secret_ref")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderTlsKeySecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VaultDynamicSecretSpecProviderTls(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderTlsCertSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class VaultDynamicSecretSpecProviderTlsCertSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''CertSecretRef is a certificate added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.crt'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderTlsCertSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__599cbaf122859dd7f009e3ed451c225503a46650ac59351333ec8c7e1ebdbeae)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: VaultDynamicSecretSpecProviderTlsCertSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: VaultDynamicSecretSpecProviderTlsCertSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderTlsCertSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VaultDynamicSecretSpecProviderTlsCertSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderTlsKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class VaultDynamicSecretSpecProviderTlsKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''KeySecretRef to a key in a Secret resource containing client private key added to the transport layer when communicating with the Vault server.
+
+        If no key for the Secret is specified, external-secret will default to 'tls.key'.
+
+        :param key: The key of the entry in the Secret resource's ``data`` field to be used. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderTlsKeySecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__bc5c0e299295a5a887aeb0ffd3b0c7b44ddedc0ba8c0a2218c5f3b3b4b61d977)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key of the entry in the Secret resource's ``data`` field to be used.
+
+        Some instances of this field may be
+        defaulted, in others it may be required.
+
+        :schema: VaultDynamicSecretSpecProviderTlsKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: VaultDynamicSecretSpecProviderTlsKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped. cluster-scoped defaults
+        to the namespace of the referent.
+
+        :schema: VaultDynamicSecretSpecProviderTlsKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "VaultDynamicSecretSpecProviderTlsKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 @jsii.enum(
     jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProviderVersion"
 )
 class VaultDynamicSecretSpecProviderVersion(enum.Enum):
     '''Version is the Vault KV secret engine version.
 
-    This can be either "v1" or "v2". Version defaults to "v2".
+    This can be either "v1" or
+    "v2". Version defaults to "v2".
 
     :schema: VaultDynamicSecretSpecProviderVersion
     '''
@@ -5331,7 +6108,10 @@ class VaultDynamicSecretSpecProviderVersion(enum.Enum):
 class VaultDynamicSecretSpecResultType(enum.Enum):
     '''Result type defines which data is returned from the generator.
 
-    By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
+    By default it is the "data" section of the Vault API response.
+    When using e.g. /auth/token/create the "data" section is empty but
+    the "auth" section contains the generated token.
+    Please refer to the vault docs regarding the result data structure.
 
     :schema: VaultDynamicSecretSpecResultType
     '''
@@ -5340,6 +6120,586 @@ class VaultDynamicSecretSpecResultType(enum.Enum):
     '''Data.'''
     AUTH = "AUTH"
     '''Auth.'''
+
+
+class Webhook(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.Webhook",
+):
+    '''Webhook connects to a third party API server to handle the secrets generation configuration parameters in spec.
+
+    You can specify the server, the token, and additional body parameters.
+    See documentation for the full API specification for requests and responses.
+
+    :schema: Webhook
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["WebhookSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "Webhook" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: WebhookSpec controls the behavior of the external generator. Any body parameters should be passed to the server through the parameters field.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2b3398300afa4aac17177a7f5a19102c6ef4c1f09f44bd175a63555207914180)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = WebhookProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["WebhookSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "Webhook".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: WebhookSpec controls the behavior of the external generator. Any body parameters should be passed to the server through the parameters field.
+        '''
+        props = WebhookProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "Webhook".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class WebhookProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["WebhookSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Webhook connects to a third party API server to handle the secrets generation configuration parameters in spec.
+
+        You can specify the server, the token, and additional body parameters.
+        See documentation for the full API specification for requests and responses.
+
+        :param metadata: 
+        :param spec: WebhookSpec controls the behavior of the external generator. Any body parameters should be passed to the server through the parameters field.
+
+        :schema: Webhook
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = WebhookSpec(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0b254d63d89ea234a5552305205259b657fc7bdae3ce04b66e322f35dde31921)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
+        '''
+        :schema: Webhook#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["WebhookSpec"]:
+        '''WebhookSpec controls the behavior of the external generator.
+
+        Any body parameters should be passed to the server through the parameters field.
+
+        :schema: Webhook#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["WebhookSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "result": "result",
+        "url": "url",
+        "body": "body",
+        "ca_bundle": "caBundle",
+        "ca_provider": "caProvider",
+        "headers": "headers",
+        "method": "method",
+        "secrets": "secrets",
+        "timeout": "timeout",
+    },
+)
+class WebhookSpec:
+    def __init__(
+        self,
+        *,
+        result: typing.Union["WebhookSpecResult", typing.Dict[builtins.str, typing.Any]],
+        url: builtins.str,
+        body: typing.Optional[builtins.str] = None,
+        ca_bundle: typing.Optional[builtins.str] = None,
+        ca_provider: typing.Optional[typing.Union["WebhookSpecCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
+        headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+        method: typing.Optional[builtins.str] = None,
+        secrets: typing.Optional[typing.Sequence[typing.Union["WebhookSpecSecrets", typing.Dict[builtins.str, typing.Any]]]] = None,
+        timeout: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''WebhookSpec controls the behavior of the external generator.
+
+        Any body parameters should be passed to the server through the parameters field.
+
+        :param result: Result formatting.
+        :param url: Webhook url to call.
+        :param body: Body.
+        :param ca_bundle: PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
+        :param ca_provider: The provider for the CA bundle to use to validate webhook server certificate.
+        :param headers: Headers.
+        :param method: Webhook Method.
+        :param secrets: Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name.
+        :param timeout: Timeout.
+
+        :schema: WebhookSpec
+        '''
+        if isinstance(result, dict):
+            result = WebhookSpecResult(**result)
+        if isinstance(ca_provider, dict):
+            ca_provider = WebhookSpecCaProvider(**ca_provider)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd91575ec)
+            check_type(argname="argument result", value=result, expected_type=type_hints["result"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+            check_type(argname="argument body", value=body, expected_type=type_hints["body"])
+            check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
+            check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
+            check_type(argname="argument headers", value=headers, expected_type=type_hints["headers"])
+            check_type(argname="argument method", value=method, expected_type=type_hints["method"])
+            check_type(argname="argument secrets", value=secrets, expected_type=type_hints["secrets"])
+            check_type(argname="argument timeout", value=timeout, expected_type=type_hints["timeout"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "result": result,
+            "url": url,
+        }
+        if body is not None:
+            self._values["body"] = body
+        if ca_bundle is not None:
+            self._values["ca_bundle"] = ca_bundle
+        if ca_provider is not None:
+            self._values["ca_provider"] = ca_provider
+        if headers is not None:
+            self._values["headers"] = headers
+        if method is not None:
+            self._values["method"] = method
+        if secrets is not None:
+            self._values["secrets"] = secrets
+        if timeout is not None:
+            self._values["timeout"] = timeout
+
+    @builtins.property
+    def result(self) -> "WebhookSpecResult":
+        '''Result formatting.
+
+        :schema: WebhookSpec#result
+        '''
+        result = self._values.get("result")
+        assert result is not None, "Required property 'result' is missing"
+        return typing.cast("WebhookSpecResult", result)
+
+    @builtins.property
+    def url(self) -> builtins.str:
+        '''Webhook url to call.
+
+        :schema: WebhookSpec#url
+        '''
+        result = self._values.get("url")
+        assert result is not None, "Required property 'url' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def body(self) -> typing.Optional[builtins.str]:
+        '''Body.
+
+        :schema: WebhookSpec#body
+        '''
+        result = self._values.get("body")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def ca_bundle(self) -> typing.Optional[builtins.str]:
+        '''PEM encoded CA bundle used to validate webhook server certificate.
+
+        Only used
+        if the Server URL is using HTTPS protocol. This parameter is ignored for
+        plain HTTP protocol connection. If not set the system root certificates
+        are used to validate the TLS connection.
+
+        :schema: WebhookSpec#caBundle
+        '''
+        result = self._values.get("ca_bundle")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def ca_provider(self) -> typing.Optional["WebhookSpecCaProvider"]:
+        '''The provider for the CA bundle to use to validate webhook server certificate.
+
+        :schema: WebhookSpec#caProvider
+        '''
+        result = self._values.get("ca_provider")
+        return typing.cast(typing.Optional["WebhookSpecCaProvider"], result)
+
+    @builtins.property
+    def headers(self) -> typing.Optional[typing.Mapping[builtins.str, builtins.str]]:
+        '''Headers.
+
+        :schema: WebhookSpec#headers
+        '''
+        result = self._values.get("headers")
+        return typing.cast(typing.Optional[typing.Mapping[builtins.str, builtins.str]], result)
+
+    @builtins.property
+    def method(self) -> typing.Optional[builtins.str]:
+        '''Webhook Method.
+
+        :schema: WebhookSpec#method
+        '''
+        result = self._values.get("method")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secrets(self) -> typing.Optional[typing.List["WebhookSpecSecrets"]]:
+        '''Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name.
+
+        :schema: WebhookSpec#secrets
+        '''
+        result = self._values.get("secrets")
+        return typing.cast(typing.Optional[typing.List["WebhookSpecSecrets"]], result)
+
+    @builtins.property
+    def timeout(self) -> typing.Optional[builtins.str]:
+        '''Timeout.
+
+        :schema: WebhookSpec#timeout
+        '''
+        result = self._values.get("timeout")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecCaProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "type": "type",
+        "key": "key",
+        "namespace": "namespace",
+    },
+)
+class WebhookSpecCaProvider:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        type: "WebhookSpecCaProviderType",
+        key: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''The provider for the CA bundle to use to validate webhook server certificate.
+
+        :param name: The name of the object located at the provider type.
+        :param type: The type of provider to use such as "Secret", or "ConfigMap".
+        :param key: The key the value inside of the provider type to use, only used with "Secret" type.
+        :param namespace: The namespace the Provider type is in.
+
+        :schema: WebhookSpecCaProvider
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__90b741732fca9bf2aae7312269add8c4a03df33524d5574edd943d60f2b4f152)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "type": type,
+        }
+        if key is not None:
+            self._values["key"] = key
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the object located at the provider type.
+
+        :schema: WebhookSpecCaProvider#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def type(self) -> "WebhookSpecCaProviderType":
+        '''The type of provider to use such as "Secret", or "ConfigMap".
+
+        :schema: WebhookSpecCaProvider#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast("WebhookSpecCaProviderType", result)
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key the value inside of the provider type to use, only used with "Secret" type.
+
+        :schema: WebhookSpecCaProvider#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace the Provider type is in.
+
+        :schema: WebhookSpecCaProvider#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecCaProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(jsii_type="ioexternal-secretsgenerators.WebhookSpecCaProviderType")
+class WebhookSpecCaProviderType(enum.Enum):
+    '''The type of provider to use such as "Secret", or "ConfigMap".
+
+    :schema: WebhookSpecCaProviderType
+    '''
+
+    SECRET = "SECRET"
+    '''Secret.'''
+    CONFIG_MAP = "CONFIG_MAP"
+    '''ConfigMap.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecResult",
+    jsii_struct_bases=[],
+    name_mapping={"json_path": "jsonPath"},
+)
+class WebhookSpecResult:
+    def __init__(self, *, json_path: typing.Optional[builtins.str] = None) -> None:
+        '''Result formatting.
+
+        :param json_path: Json path of return value.
+
+        :schema: WebhookSpecResult
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__ca17a0cafac72c20c4b5371c2a40624b79067e28976caaef7d455a3af73b33b7)
+            check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if json_path is not None:
+            self._values["json_path"] = json_path
+
+    @builtins.property
+    def json_path(self) -> typing.Optional[builtins.str]:
+        '''Json path of return value.
+
+        :schema: WebhookSpecResult#jsonPath
+        '''
+        result = self._values.get("json_path")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecResult(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecSecrets",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "secret_ref": "secretRef"},
+)
+class WebhookSpecSecrets:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        secret_ref: typing.Union["WebhookSpecSecretsSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''
+        :param name: Name of this secret in templates.
+        :param secret_ref: Secret ref to fill in credentials.
+
+        :schema: WebhookSpecSecrets
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = WebhookSpecSecretsSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f6c624ae8cdb02a080db2665a395b8aab26b2f157404c3891b4e3195fc8dfc4a)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name of this secret in templates.
+
+        :schema: WebhookSpecSecrets#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(self) -> "WebhookSpecSecretsSecretRef":
+        '''Secret ref to fill in credentials.
+
+        :schema: WebhookSpecSecrets#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("WebhookSpecSecretsSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecSecrets(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecSecretsSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name"},
+)
+class WebhookSpecSecretsSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Secret ref to fill in credentials.
+
+        :param key: The key where the token is found.
+        :param name: The name of the Secret resource being referred to.
+
+        :schema: WebhookSpecSecretsSecretRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__da7206ccc0e7cc05ae6cece8b22e90df4f71703b449edd6dfd8a06e7de96daf9)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the token is found.
+
+        :schema: WebhookSpecSecretsSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: WebhookSpecSecretsSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecSecretsSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
 
 
 __all__ = [
@@ -5376,6 +6736,12 @@ __all__ = [
     "GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef",
     "GcrAccessTokenSpecAuthWorkloadIdentity",
     "GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef",
+    "GithubAccessToken",
+    "GithubAccessTokenProps",
+    "GithubAccessTokenSpec",
+    "GithubAccessTokenSpecAuth",
+    "GithubAccessTokenSpecAuthPrivatKey",
+    "GithubAccessTokenSpecAuthPrivatKeySecretRef",
     "Password",
     "PasswordProps",
     "PasswordSpec",
@@ -5411,8 +6777,19 @@ __all__ = [
     "VaultDynamicSecretSpecProviderAuthUserPassSecretRef",
     "VaultDynamicSecretSpecProviderCaProvider",
     "VaultDynamicSecretSpecProviderCaProviderType",
+    "VaultDynamicSecretSpecProviderTls",
+    "VaultDynamicSecretSpecProviderTlsCertSecretRef",
+    "VaultDynamicSecretSpecProviderTlsKeySecretRef",
     "VaultDynamicSecretSpecProviderVersion",
     "VaultDynamicSecretSpecResultType",
+    "Webhook",
+    "WebhookProps",
+    "WebhookSpec",
+    "WebhookSpecCaProvider",
+    "WebhookSpecCaProviderType",
+    "WebhookSpecResult",
+    "WebhookSpecSecrets",
+    "WebhookSpecSecretsSecretRef",
 ]
 
 publication.publish()
@@ -5693,6 +7070,57 @@ def _typecheckingstub__4f74d21068366cc4deb9b1d016fb257384b4390cdceab57845386c22a
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__4a77570c44994c62f1495ca397b0a38a34f7359399b5a5c444421df203d8116b(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GithubAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__03fef391cab2e0e91a690c6535a6c54804108aecbfe23f30906d896706375319(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GithubAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb(
+    *,
+    app_id: builtins.str,
+    auth: typing.Union[GithubAccessTokenSpecAuth, typing.Dict[builtins.str, typing.Any]],
+    install_id: builtins.str,
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__eb19f408f5f81b80adaeb0752891235a4de94e26ecf80e23ae76b0df8fce09e1(
+    *,
+    privat_key: typing.Union[GithubAccessTokenSpecAuthPrivatKey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a050f85eb9a101ba0f5eebd093e0ab19ad5208fcbd1dfe18d7647a1d2a82d24a(
+    *,
+    secret_ref: typing.Union[GithubAccessTokenSpecAuthPrivatKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6634718e2ef048a73b33870883284ef098357d1e9eb446ea42fe28cc7b89d329(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__4c09e9ade3db32eebcba799d9623871d6d90ce0ae11f370436996ea869284e6d(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -5763,6 +7191,7 @@ def _typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb
     namespace: typing.Optional[builtins.str] = None,
     path: typing.Optional[builtins.str] = None,
     read_your_writes: typing.Optional[builtins.bool] = None,
+    tls: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderTls, typing.Dict[builtins.str, typing.Any]]] = None,
     version: typing.Optional[VaultDynamicSecretSpecProviderVersion] = None,
 ) -> None:
     """Type checking stubs"""
@@ -5776,6 +7205,7 @@ def _typecheckingstub__f1db161975aac815c821c159e465d76a46225986d5820ef576591b42b
     jwt: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
     kubernetes: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     ldap: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthLdap, typing.Dict[builtins.str, typing.Any]]] = None,
+    namespace: typing.Optional[builtins.str] = None,
     token_secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     user_pass: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -6018,6 +7448,98 @@ def _typecheckingstub__47aa9e507cb3a56b1071f68782774cbb97be7b7e78095f1255b6540a5
     type: VaultDynamicSecretSpecProviderCaProviderType,
     key: typing.Optional[builtins.str] = None,
     namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4c359e9ca0ed96202a7b48da939ccca9ad838ac2a1792e970ccc859acc513b5e(
+    *,
+    cert_secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderTlsCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    key_secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderTlsKeySecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__599cbaf122859dd7f009e3ed451c225503a46650ac59351333ec8c7e1ebdbeae(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bc5c0e299295a5a887aeb0ffd3b0c7b44ddedc0ba8c0a2218c5f3b3b4b61d977(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2b3398300afa4aac17177a7f5a19102c6ef4c1f09f44bd175a63555207914180(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[WebhookSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0b254d63d89ea234a5552305205259b657fc7bdae3ce04b66e322f35dde31921(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[WebhookSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd91575ec(
+    *,
+    result: typing.Union[WebhookSpecResult, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+    body: typing.Optional[builtins.str] = None,
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[WebhookSpecCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    headers: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
+    method: typing.Optional[builtins.str] = None,
+    secrets: typing.Optional[typing.Sequence[typing.Union[WebhookSpecSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
+    timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__90b741732fca9bf2aae7312269add8c4a03df33524d5574edd943d60f2b4f152(
+    *,
+    name: builtins.str,
+    type: WebhookSpecCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__ca17a0cafac72c20c4b5371c2a40624b79067e28976caaef7d455a3af73b33b7(
+    *,
+    json_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f6c624ae8cdb02a080db2665a395b8aab26b2f157404c3891b4e3195fc8dfc4a(
+    *,
+    name: builtins.str,
+    secret_ref: typing.Union[WebhookSpecSecretsSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__da7206ccc0e7cc05ae6cece8b22e90df4f71703b449edd6dfd8a06e7de96daf9(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
