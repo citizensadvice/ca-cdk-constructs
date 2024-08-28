@@ -1,5 +1,6 @@
 from typing import Optional
 import aws_cdk.custom_resources as cr
+import aws_cdk as cdk
 from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
 from aws_cdk.aws_eks import Cluster, OpenIdConnectProvider
@@ -105,6 +106,12 @@ class EksClusterIntegration(Construct):
             kubectl_layer=KubectlLayer(self, "KubectlLayer"),
             vpc=vpc,
             prune=prune,  # https://github.com/aws/aws-cdk/issues/19843
+        )
+
+        # Acknowledge missing route table warnings as workaround for https://github.com/aws/aws-cdk/issues/19786#issuecomment-1892761555
+        # If the Cluster object starts using the routetable later, this might be causing deployment-time issues, but that's unlikely
+        cdk.Annotations.of(self.cluster).acknowledge_warning(
+            "@aws-cdk/aws-ec2:noSubnetRouteTableId"
         )
 
         # useful to debug sdk lookup calls
