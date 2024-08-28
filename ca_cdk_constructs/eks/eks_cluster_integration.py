@@ -95,13 +95,6 @@ class EksClusterIntegration(Construct):
             self, "ClusterOIDCProvider", open_id_connect_provider_arn=oidc_provider_arn
         )
 
-        # Acknowledge missing route table warnings as workaround for https://github.com/aws/aws-cdk/issues/19786#issuecomment-1892761555
-        # If the Cluster object starts using the routetable later, this might be causing deployment-time issues, but that's unlikely
-        for subnet in private_subnets:
-            cdk.Annotations.of(subnet).acknowledgeWarning(
-                "@aws-cdk/aws-ec2:noSubnetRouteTableId"
-            )
-
         self.cluster = Cluster.from_cluster_attributes(
             self,
             "Resource",
@@ -113,6 +106,12 @@ class EksClusterIntegration(Construct):
             kubectl_layer=KubectlLayer(self, "KubectlLayer"),
             vpc=vpc,
             prune=prune,  # https://github.com/aws/aws-cdk/issues/19843
+        )
+
+        # Acknowledge missing route table warnings as workaround for https://github.com/aws/aws-cdk/issues/19786#issuecomment-1892761555
+        # If the Cluster object starts using the routetable later, this might be causing deployment-time issues, but that's unlikely
+        cdk.Annotations.of(self.cluster).acknowledge_warning(
+            "@aws-cdk/aws-ec2:noSubnetRouteTableId"
         )
 
         # useful to debug sdk lookup calls
