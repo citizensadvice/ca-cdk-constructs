@@ -1,28 +1,20 @@
-name: test
+name: Tests
 
 on: pull_request
 
 jobs:
   ruff:
-    name: Ruff ${{ matrix.action.name }}
+    name: Ruff Check & Format
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        action:
-          - name: check
-            cmd: check
-          - name: format
-            cmd: format --check
     steps:
       - uses: actions/checkout@v3
       - name: Install Ruff
-        run: pip3 install ruff==0.1.5 # Must match version pinned in .pre-commit.yaml
-      - name: Ruff ${{ matrix.action.name }}
-        run: ruff ${{ matrix.action.cmd }} .
+        run: pip3 install ruff==0.6.7 # Must match version pinned in .pre-commit.yaml
+      - run: ruff check
+      - run: ruff format --check
 
   typecheck:
-    name: Running type check
-    continue-on-error: true # Run as a warning rather than an error at this stage
+    name: MyPy Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,10 +24,9 @@ jobs:
       - name: Run type check
         run: poetry run mypy . 
 
-  tests:
+  pytest:
     name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
-    needs: ruff
     strategy:
       fail-fast: false
       matrix:
@@ -51,9 +42,10 @@ jobs:
 
   test:
     # Single job for github to expect. Any merge-blocking checks should be added to the needs array
-    if: ${{ always() }}
+    name: Gather Results
+    if: always()
     runs-on: ubuntu-latest
-    needs: [tests]
+    needs: [ruff, pytest, typecheck]
     steps:
       - run: exit 1
         if: ${{contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')}}
