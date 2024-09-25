@@ -17,7 +17,7 @@ def waf_builder():
 
 def test_waf_v2_builder_type(waf_builder):
     waf = waf_builder.build()
-    assert type(waf) == aws_wafv2.CfnWebACL
+    assert type(waf) is aws_wafv2.CfnWebACL
 
 
 def test_waf_v2_builder_name(waf_builder):
@@ -41,7 +41,7 @@ def test_waf_v2_ip_rule(waf_builder):
     )
     waf = waf_builder.build()
     assert len(waf.rules) == 1
-    assert type(waf.rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+    assert type(waf.rules[0]) is aws_wafv2.CfnWebACL.RuleProperty
     assert waf.rules[0].name == "TestIpRule"
 
 
@@ -81,7 +81,7 @@ def test_waf_v2_managed_rule(waf_builder):
     )
     waf = waf_builder.build()
     assert len(waf.rules) == 1
-    assert type(waf.rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+    assert type(waf.rules[0]) is aws_wafv2.CfnWebACL.RuleProperty
     assert waf.rules[0].name == "TestManagedRule"
 
 
@@ -115,7 +115,7 @@ def test_waf_v2_get_rules(waf_builder):
     )
     rules = waf_builder.get_rules()
     assert len(rules) == 1
-    assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+    assert type(rules[0]) is aws_wafv2.CfnWebACL.RuleProperty
 
 
 def test_waf_v2_restricted_uri_string_rule(waf_builder):
@@ -128,10 +128,10 @@ def test_waf_v2_restricted_uri_string_rule(waf_builder):
     waf_builder.build()
     rules = waf_builder.get_rules()
     # basically testing that we block with AND (check for path, NOT ( OR ( in allowed ipv4 or allowed ipv6 sets)))
-    assert type(rules[0]) == aws_wafv2.CfnWebACL.RuleProperty
+    assert type(rules[0]) is aws_wafv2.CfnWebACL.RuleProperty
     assert (
         type(rules[0].statement.and_statement.statements[0].byte_match_statement)
-        == aws_wafv2.CfnWebACL.ByteMatchStatementProperty
+        is aws_wafv2.CfnWebACL.ByteMatchStatementProperty
     )
     assert (
         type(
@@ -140,7 +140,7 @@ def test_waf_v2_restricted_uri_string_rule(waf_builder):
             .not_statement.statement.or_statement.statements[0]
             .ip_set_reference_statement
         )
-        == aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
+        is aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
     )
     assert (
         type(
@@ -149,5 +149,5 @@ def test_waf_v2_restricted_uri_string_rule(waf_builder):
             .not_statement.statement.or_statement.statements[1]
             .ip_set_reference_statement
         )
-        == aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
+        is aws_wafv2.CfnWebACL.IPSetReferenceStatementProperty
     )
