@@ -57,6 +57,7 @@ class AuroraCloneRefresh(Construct):
         clone_instance_parameter_group: CfnDBParameterGroup,
         clone_tags: Optional[dict] = None,
         clone_schedule: Schedule = Schedule.cron(minute="0", hour="8"),
+        clone_secret_name: Optional[str] = None,
         notifications_topic: Optional[ITopic] = None,
     ) -> None:
         """
@@ -72,6 +73,7 @@ class AuroraCloneRefresh(Construct):
             clone_instance_parameter_group (CfnDBParameterGroup): the parameter group of the primary instance in the cloned cluster
             clone_tags (dict[str,str]): optional tags to be added to the cloned cluster and instance. The source cluster tags are added automatically
             clone_schedule (Schedule): Clone schedule
+            clone_secret_name: (str): optionally override the name of the SecretsManager secret containing the cloned db details
             notifications_topic (ITopic): Existing topic to publish notifications to. Default - new topic will be created
         """
         super().__init__(scope, id)
@@ -90,7 +92,10 @@ class AuroraCloneRefresh(Construct):
         self.notifications_topic = notifications_topic or Topic(self, "Notifications")
 
         self.clone_secret = DatabaseSecret(
-            self, "ClonedClusterSecret", username=source_cluster_master_username
+            self,
+            "ClonedClusterSecret",
+            username=source_cluster_master_username,
+            secret_name=clone_secret_name,
         )
 
         db_subnet_group = SubnetGroup(
