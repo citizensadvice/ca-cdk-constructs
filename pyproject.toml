@@ -18,7 +18,7 @@ aws-cdk-lambda-layer-kubectl-v30 = "^2.0.1"
 boto3-stubs = {version = "1.35.81", extras = ["rds", "secretsmanager"]}
 pytest = "~=8.3"
 syrupy = "~=4.8"
-ruff = "^0.8.2"
+ruff = "^0.8.3"
 mypy = "^1.13.0"
 
 [build-system]
