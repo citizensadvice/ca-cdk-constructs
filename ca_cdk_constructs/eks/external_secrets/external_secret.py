@@ -9,6 +9,7 @@ from ca_cdk_constructs.eks.imports.io.external_secrets import (
     ExternalSecretV1Beta1Spec,
     ExternalSecretV1Beta1SpecSecretStoreRef,
     ExternalSecretV1Beta1SpecDataRemoteRef,
+    ExternalSecretV1Beta1SpecSecretStoreRefKind,
     ExternalSecretV1Beta1SpecTarget,
     ExternalSecretV1Beta1SpecData,
 )
@@ -85,7 +86,7 @@ class ExternalSecret(Construct):
             spec=ExternalSecretV1Beta1Spec(
                 secret_store_ref=ExternalSecretV1Beta1SpecSecretStoreRef(
                     name=store_name,
-                    kind="SecretStore",
+                    kind=ExternalSecretV1Beta1SpecSecretStoreRefKind.SECRET_STORE,
                 ),
                 refresh_interval=secret_source.refresh_interval,
                 target=ExternalSecretV1Beta1SpecTarget(name=secret_source.k8s_secret_name),
