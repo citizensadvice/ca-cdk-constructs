@@ -1430,6 +1430,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefGeneratorRefKi
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -1440,6 +1442,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromSourceRefGeneratorRefKi
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 @jsii.data_type(
@@ -1886,6 +1890,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRefKind(
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -1896,6 +1902,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataSourceRefGeneratorRefKind(
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 @jsii.data_type(
@@ -16056,6 +16064,7 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustAuthClientSecretSecretRef:
     name_mapping={
         "api_url": "apiUrl",
         "verify_ca": "verifyCa",
+        "api_version": "apiVersion",
         "client_time_out_seconds": "clientTimeOutSeconds",
         "retrieval_type": "retrievalType",
         "separator": "separator",
@@ -16067,6 +16076,7 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer:
         *,
         api_url: builtins.str,
         verify_ca: builtins.bool,
+        api_version: typing.Optional[builtins.str] = None,
         client_time_out_seconds: typing.Optional[jsii.Number] = None,
         retrieval_type: typing.Optional[builtins.str] = None,
         separator: typing.Optional[builtins.str] = None,
@@ -16075,6 +16085,7 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer:
 
         :param api_url: 
         :param verify_ca: 
+        :param api_version: 
         :param client_time_out_seconds: Timeout specifies a time limit for requests made by this Client. The timeout includes connection time, any redirects, and reading the response body. Defaults to 45 seconds. Default: 45 seconds.
         :param retrieval_type: The secret retrieval type. SECRET = Secrets Safe (credential, text, file). MANAGED_ACCOUNT = Password Safe account associated with a system.
         :param separator: A character that separates the folder names.
@@ -16085,6 +16096,7 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer:
             type_hints = typing.get_type_hints(_typecheckingstub__4baad16e8885afc816e35320219242f427726fad7c713c13199df71c35bdef69)
             check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
             check_type(argname="argument verify_ca", value=verify_ca, expected_type=type_hints["verify_ca"])
+            check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument client_time_out_seconds", value=client_time_out_seconds, expected_type=type_hints["client_time_out_seconds"])
             check_type(argname="argument retrieval_type", value=retrieval_type, expected_type=type_hints["retrieval_type"])
             check_type(argname="argument separator", value=separator, expected_type=type_hints["separator"])
@@ -16092,6 +16104,8 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer:
             "api_url": api_url,
             "verify_ca": verify_ca,
         }
+        if api_version is not None:
+            self._values["api_version"] = api_version
         if client_time_out_seconds is not None:
             self._values["client_time_out_seconds"] = client_time_out_seconds
         if retrieval_type is not None:
@@ -16116,6 +16130,14 @@ class ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer:
         result = self._values.get("verify_ca")
         assert result is not None, "Required property 'verify_ca' is missing"
         return typing.cast(builtins.bool, result)
+
+    @builtins.property
+    def api_version(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: ClusterSecretStoreV1Beta1SpecProviderBeyondtrustServer#apiVersion
+        '''
+        result = self._values.get("api_version")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def client_time_out_seconds(self) -> typing.Optional[jsii.Number]:
@@ -31098,6 +31120,8 @@ class ExternalSecretV1Beta1SpecDataFromSourceRefGeneratorRefKind(enum.Enum):
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -31108,6 +31132,8 @@ class ExternalSecretV1Beta1SpecDataFromSourceRefGeneratorRefKind(enum.Enum):
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 @jsii.data_type(
@@ -31544,6 +31570,8 @@ class ExternalSecretV1Beta1SpecDataSourceRefGeneratorRefKind(enum.Enum):
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -31554,6 +31582,8 @@ class ExternalSecretV1Beta1SpecDataSourceRefGeneratorRefKind(enum.Enum):
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 @jsii.data_type(
@@ -33378,6 +33408,8 @@ class PushSecretSpecSelectorGeneratorRefKind(enum.Enum):
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -33388,6 +33420,8 @@ class PushSecretSpecSelectorGeneratorRefKind(enum.Enum):
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 @jsii.data_type(
@@ -46872,6 +46906,7 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustAuthClientSecretSecretRef:
     name_mapping={
         "api_url": "apiUrl",
         "verify_ca": "verifyCa",
+        "api_version": "apiVersion",
         "client_time_out_seconds": "clientTimeOutSeconds",
         "retrieval_type": "retrievalType",
         "separator": "separator",
@@ -46883,6 +46918,7 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustServer:
         *,
         api_url: builtins.str,
         verify_ca: builtins.bool,
+        api_version: typing.Optional[builtins.str] = None,
         client_time_out_seconds: typing.Optional[jsii.Number] = None,
         retrieval_type: typing.Optional[builtins.str] = None,
         separator: typing.Optional[builtins.str] = None,
@@ -46891,6 +46927,7 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustServer:
 
         :param api_url: 
         :param verify_ca: 
+        :param api_version: 
         :param client_time_out_seconds: Timeout specifies a time limit for requests made by this Client. The timeout includes connection time, any redirects, and reading the response body. Defaults to 45 seconds. Default: 45 seconds.
         :param retrieval_type: The secret retrieval type. SECRET = Secrets Safe (credential, text, file). MANAGED_ACCOUNT = Password Safe account associated with a system.
         :param separator: A character that separates the folder names.
@@ -46901,6 +46938,7 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustServer:
             type_hints = typing.get_type_hints(_typecheckingstub__e3a45e59ccaf8d835902daa56d4287a9108ffbc3c080277441ed37dbf953131a)
             check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
             check_type(argname="argument verify_ca", value=verify_ca, expected_type=type_hints["verify_ca"])
+            check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument client_time_out_seconds", value=client_time_out_seconds, expected_type=type_hints["client_time_out_seconds"])
             check_type(argname="argument retrieval_type", value=retrieval_type, expected_type=type_hints["retrieval_type"])
             check_type(argname="argument separator", value=separator, expected_type=type_hints["separator"])
@@ -46908,6 +46946,8 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustServer:
             "api_url": api_url,
             "verify_ca": verify_ca,
         }
+        if api_version is not None:
+            self._values["api_version"] = api_version
         if client_time_out_seconds is not None:
             self._values["client_time_out_seconds"] = client_time_out_seconds
         if retrieval_type is not None:
@@ -46932,6 +46972,14 @@ class SecretStoreV1Beta1SpecProviderBeyondtrustServer:
         result = self._values.get("verify_ca")
         assert result is not None, "Required property 'verify_ca' is missing"
         return typing.cast(builtins.bool, result)
+
+    @builtins.property
+    def api_version(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: SecretStoreV1Beta1SpecProviderBeyondtrustServer#apiVersion
+        '''
+        result = self._values.get("api_version")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def client_time_out_seconds(self) -> typing.Optional[jsii.Number]:
@@ -62043,6 +62091,7 @@ def _typecheckingstub__4baad16e8885afc816e35320219242f427726fad7c713c13199df71c3
     *,
     api_url: builtins.str,
     verify_ca: builtins.bool,
+    api_version: typing.Optional[builtins.str] = None,
     client_time_out_seconds: typing.Optional[jsii.Number] = None,
     retrieval_type: typing.Optional[builtins.str] = None,
     separator: typing.Optional[builtins.str] = None,
@@ -65394,6 +65443,7 @@ def _typecheckingstub__e3a45e59ccaf8d835902daa56d4287a9108ffbc3c080277441ed37dbf
     *,
     api_url: builtins.str,
     verify_ca: builtins.bool,
+    api_version: typing.Optional[builtins.str] = None,
     client_time_out_seconds: typing.Optional[jsii.Number] = None,
     retrieval_type: typing.Optional[builtins.str] = None,
     separator: typing.Optional[builtins.str] = None,
