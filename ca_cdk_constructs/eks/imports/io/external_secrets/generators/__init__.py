@@ -1034,7 +1034,9 @@ class ClusterGeneratorSpec:
         "fake_spec": "fakeSpec",
         "gcr_access_token_spec": "gcrAccessTokenSpec",
         "github_access_token_spec": "githubAccessTokenSpec",
+        "grafana_spec": "grafanaSpec",
         "password_spec": "passwordSpec",
+        "quay_access_token_spec": "quayAccessTokenSpec",
         "sts_session_token_spec": "stsSessionTokenSpec",
         "uuid_spec": "uuidSpec",
         "vault_dynamic_secret_spec": "vaultDynamicSecretSpec",
@@ -1050,7 +1052,9 @@ class ClusterGeneratorSpecGenerator:
         fake_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorFakeSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         gcr_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGcrAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         github_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGithubAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+        grafana_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         password_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorPasswordSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+        quay_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorQuayAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         sts_session_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorStsSessionTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         uuid_spec: typing.Any = None,
         vault_dynamic_secret_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -1063,7 +1067,9 @@ class ClusterGeneratorSpecGenerator:
         :param fake_spec: FakeSpec contains the static data.
         :param gcr_access_token_spec: 
         :param github_access_token_spec: 
+        :param grafana_spec: GrafanaSpec controls the behavior of the grafana generator.
         :param password_spec: PasswordSpec controls the behavior of the password generator.
+        :param quay_access_token_spec: 
         :param sts_session_token_spec: 
         :param uuid_spec: UUIDSpec controls the behavior of the uuid generator.
         :param vault_dynamic_secret_spec: 
@@ -1081,8 +1087,12 @@ class ClusterGeneratorSpecGenerator:
             gcr_access_token_spec = ClusterGeneratorSpecGeneratorGcrAccessTokenSpec(**gcr_access_token_spec)
         if isinstance(github_access_token_spec, dict):
             github_access_token_spec = ClusterGeneratorSpecGeneratorGithubAccessTokenSpec(**github_access_token_spec)
+        if isinstance(grafana_spec, dict):
+            grafana_spec = ClusterGeneratorSpecGeneratorGrafanaSpec(**grafana_spec)
         if isinstance(password_spec, dict):
             password_spec = ClusterGeneratorSpecGeneratorPasswordSpec(**password_spec)
+        if isinstance(quay_access_token_spec, dict):
+            quay_access_token_spec = ClusterGeneratorSpecGeneratorQuayAccessTokenSpec(**quay_access_token_spec)
         if isinstance(sts_session_token_spec, dict):
             sts_session_token_spec = ClusterGeneratorSpecGeneratorStsSessionTokenSpec(**sts_session_token_spec)
         if isinstance(vault_dynamic_secret_spec, dict):
@@ -1096,7 +1106,9 @@ class ClusterGeneratorSpecGenerator:
             check_type(argname="argument fake_spec", value=fake_spec, expected_type=type_hints["fake_spec"])
             check_type(argname="argument gcr_access_token_spec", value=gcr_access_token_spec, expected_type=type_hints["gcr_access_token_spec"])
             check_type(argname="argument github_access_token_spec", value=github_access_token_spec, expected_type=type_hints["github_access_token_spec"])
+            check_type(argname="argument grafana_spec", value=grafana_spec, expected_type=type_hints["grafana_spec"])
             check_type(argname="argument password_spec", value=password_spec, expected_type=type_hints["password_spec"])
+            check_type(argname="argument quay_access_token_spec", value=quay_access_token_spec, expected_type=type_hints["quay_access_token_spec"])
             check_type(argname="argument sts_session_token_spec", value=sts_session_token_spec, expected_type=type_hints["sts_session_token_spec"])
             check_type(argname="argument uuid_spec", value=uuid_spec, expected_type=type_hints["uuid_spec"])
             check_type(argname="argument vault_dynamic_secret_spec", value=vault_dynamic_secret_spec, expected_type=type_hints["vault_dynamic_secret_spec"])
@@ -1112,8 +1124,12 @@ class ClusterGeneratorSpecGenerator:
             self._values["gcr_access_token_spec"] = gcr_access_token_spec
         if github_access_token_spec is not None:
             self._values["github_access_token_spec"] = github_access_token_spec
+        if grafana_spec is not None:
+            self._values["grafana_spec"] = grafana_spec
         if password_spec is not None:
             self._values["password_spec"] = password_spec
+        if quay_access_token_spec is not None:
+            self._values["quay_access_token_spec"] = quay_access_token_spec
         if sts_session_token_spec is not None:
             self._values["sts_session_token_spec"] = sts_session_token_spec
         if uuid_spec is not None:
@@ -1174,6 +1190,17 @@ class ClusterGeneratorSpecGenerator:
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpec"], result)
 
     @builtins.property
+    def grafana_spec(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpec"]:
+        '''GrafanaSpec controls the behavior of the grafana generator.
+
+        :schema: ClusterGeneratorSpecGenerator#grafanaSpec
+        '''
+        result = self._values.get("grafana_spec")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpec"], result)
+
+    @builtins.property
     def password_spec(
         self,
     ) -> typing.Optional["ClusterGeneratorSpecGeneratorPasswordSpec"]:
@@ -1183,6 +1210,16 @@ class ClusterGeneratorSpecGenerator:
         '''
         result = self._values.get("password_spec")
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorPasswordSpec"], result)
+
+    @builtins.property
+    def quay_access_token_spec(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorQuayAccessTokenSpec"]:
+        '''
+        :schema: ClusterGeneratorSpecGenerator#quayAccessTokenSpec
+        '''
+        result = self._values.get("quay_access_token_spec")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorQuayAccessTokenSpec"], result)
 
     @builtins.property
     def sts_session_token_spec(
@@ -3311,6 +3348,259 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpec",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "service_account": "serviceAccount", "url": "url"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpec:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuth", typing.Dict[builtins.str, typing.Any]],
+        service_account: typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount", typing.Dict[builtins.str, typing.Any]],
+        url: builtins.str,
+    ) -> None:
+        '''GrafanaSpec controls the behavior of the grafana generator.
+
+        :param auth: Auth is the authentication configuration to authenticate against the Grafana instance.
+        :param service_account: ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+        :param url: URL is the URL of the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpec
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterGeneratorSpecGeneratorGrafanaSpecAuth(**auth)
+        if isinstance(service_account, dict):
+            service_account = ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount(**service_account)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d9ed2181)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "service_account": service_account,
+            "url": url,
+        }
+
+    @builtins.property
+    def auth(self) -> "ClusterGeneratorSpecGeneratorGrafanaSpecAuth":
+        '''Auth is the authentication configuration to authenticate against the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpec#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGrafanaSpecAuth", result)
+
+    @builtins.property
+    def service_account(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount":
+        '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpec#serviceAccount
+        '''
+        result = self._values.get("service_account")
+        assert result is not None, "Required property 'service_account' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount", result)
+
+    @builtins.property
+    def url(self) -> builtins.str:
+        '''URL is the URL of the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpec#url
+        '''
+        result = self._values.get("url")
+        assert result is not None, "Required property 'url' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpecAuth:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth is the authentication configuration to authenticate against the Grafana instance.
+
+        :param token: A service account token used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuth
+        '''
+        if isinstance(token, dict):
+            token = ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken(**token)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(self) -> "ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken":
+        '''A service account token used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuth#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A service account token used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :param key: The key where the token is found.
+        :param name: The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5d5967d1dd883faa977030d1a3045ba2620b8f9c2c50ca22bba80be43429c9fe)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the token is found.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "role": "role"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount:
+    def __init__(self, *, name: builtins.str, role: builtins.str) -> None:
+        '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+
+        :param name: Name is the name of the service account that will be created by ESO.
+        :param role: Role is the role of the service account. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c952f78a75a5bbd20df3105965c9af2c7aabb17469a906f4db76fe7c9d677307)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "role": role,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of the service account that will be created by ESO.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def role(self) -> builtins.str:
+        '''Role is the role of the service account.
+
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount#role
+        '''
+        result = self._values.get("role")
+        assert result is not None, "Required property 'role' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorPasswordSpec",
     jsii_struct_bases=[],
     name_mapping={
@@ -3437,6 +3727,167 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
 
     def __repr__(self) -> str:
         return "ClusterGeneratorSpecGeneratorPasswordSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorQuayAccessTokenSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "robot_account": "robotAccount",
+        "service_account_ref": "serviceAccountRef",
+        "url": "url",
+    },
+)
+class ClusterGeneratorSpecGeneratorQuayAccessTokenSpec:
+    def __init__(
+        self,
+        *,
+        robot_account: builtins.str,
+        service_account_ref: typing.Union["ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
+        url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''
+        :param robot_account: Name of the robot account you are federating with.
+        :param service_account_ref: Name of the service account you are federating with.
+        :param url: URL configures the Quay instance URL. Defaults to quay.io. Default: quay.io.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpec
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b760f8c5fad1753090f4c7fdeb158c58f3a5285b02656fd11f8fd4e619c8135f)
+            check_type(argname="argument robot_account", value=robot_account, expected_type=type_hints["robot_account"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "robot_account": robot_account,
+            "service_account_ref": service_account_ref,
+        }
+        if url is not None:
+            self._values["url"] = url
+
+    @builtins.property
+    def robot_account(self) -> builtins.str:
+        '''Name of the robot account you are federating with.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpec#robotAccount
+        '''
+        result = self._values.get("robot_account")
+        assert result is not None, "Required property 'robot_account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef":
+        '''Name of the service account you are federating with.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpec#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        assert result is not None, "Required property 'service_account_ref' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef", result)
+
+    @builtins.property
+    def url(self) -> typing.Optional[builtins.str]:
+        '''URL configures the Quay instance URL.
+
+        Defaults to quay.io.
+
+        :default: quay.io.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpec#url
+        '''
+        result = self._values.get("url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorQuayAccessTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Name of the service account you are federating with.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__b680ae1b78ef0032f149e40bb4a19c7a0b03d8afb67edc0edde80e855f7132ee)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -4143,6 +4594,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecRequestParameters:
     name_mapping={
         "path": "path",
         "provider": "provider",
+        "allow_empty_response": "allowEmptyResponse",
         "controller": "controller",
         "method": "method",
         "parameters": "parameters",
@@ -4156,6 +4608,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
         *,
         path: builtins.str,
         provider: typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider", typing.Dict[builtins.str, typing.Any]],
+        allow_empty_response: typing.Optional[builtins.bool] = None,
         controller: typing.Optional[builtins.str] = None,
         method: typing.Optional[builtins.str] = None,
         parameters: typing.Any = None,
@@ -4165,10 +4618,11 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
         '''
         :param path: Vault path to obtain the dynamic secret from.
         :param provider: Vault provider common spec.
+        :param allow_empty_response: Do not fail if no secrets are found. Useful for requests where no data is expected.
         :param controller: Used to select the correct ESO controller (think: ingress.ingressClassName) The ESO controller is instantiated with a specific controller name and filters VDS based on this property.
         :param method: Vault API method to use (GET/POST/other).
         :param parameters: Parameters to pass to Vault write (for non-GET methods).
-        :param result_type: Result type defines which data is returned from the generator. By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
+        :param result_type: Result type defines which data is returned from the generator. By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure. Additionally, accessing the raw response is possibly by using "Raw" result type.
         :param retry_settings: Used to configure http retries if failed.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec
@@ -4181,6 +4635,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
             type_hints = typing.get_type_hints(_typecheckingstub__10e2321e1cd5730bc9b0e182284aef50907db67d44c1acfada3f65f196f1582c)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
+            check_type(argname="argument allow_empty_response", value=allow_empty_response, expected_type=type_hints["allow_empty_response"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
@@ -4190,6 +4645,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
             "path": path,
             "provider": provider,
         }
+        if allow_empty_response is not None:
+            self._values["allow_empty_response"] = allow_empty_response
         if controller is not None:
             self._values["controller"] = controller
         if method is not None:
@@ -4220,6 +4677,17 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
         result = self._values.get("provider")
         assert result is not None, "Required property 'provider' is missing"
         return typing.cast("ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider", result)
+
+    @builtins.property
+    def allow_empty_response(self) -> typing.Optional[builtins.bool]:
+        '''Do not fail if no secrets are found.
+
+        Useful for requests where no data is expected.
+
+        :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec#allowEmptyResponse
+        '''
+        result = self._values.get("allow_empty_response")
+        return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
     def controller(self) -> typing.Optional[builtins.str]:
@@ -4258,6 +4726,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
         When using e.g. /auth/token/create the "data" section is empty but
         the "auth" section contains the generated token.
         Please refer to the vault docs regarding the result data structure.
+        Additionally, accessing the raw response is possibly by using "Raw" result type.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec#resultType
         '''
@@ -7209,6 +7678,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecResultType(enum.Enum):
     When using e.g. /auth/token/create the "data" section is empty but
     the "auth" section contains the generated token.
     Please refer to the vault docs regarding the result data structure.
+    Additionally, accessing the raw response is possibly by using "Raw" result type.
 
     :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecResultType
     '''
@@ -7217,6 +7687,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecResultType(enum.Enum):
     '''Data.'''
     AUTH = "AUTH"
     '''Auth.'''
+    RAW = "RAW"
+    '''Raw.'''
 
 
 @jsii.data_type(
@@ -7745,6 +8217,8 @@ class ClusterGeneratorSpecKind(enum.Enum):
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
+    '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
     '''Password.'''
     STS_SESSION_TOKEN = "STS_SESSION_TOKEN"
@@ -7755,6 +8229,8 @@ class ClusterGeneratorSpecKind(enum.Enum):
     '''VaultDynamicSecret.'''
     WEBHOOK = "WEBHOOK"
     '''Webhook.'''
+    GRAFANA = "GRAFANA"
+    '''Grafana.'''
 
 
 class EcrAuthorizationToken(
@@ -9230,6 +9706,215 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
         )
 
 
+class GeneratorState(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.GeneratorState",
+):
+    '''
+    :schema: GeneratorState
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GeneratorStateSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "GeneratorState" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: 
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__958486a855120fc7a31aee0ba4cca65a04bf9a182445fbe480e553b98ccd9036)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = GeneratorStateProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GeneratorStateSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "GeneratorState".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: 
+        '''
+        props = GeneratorStateProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "GeneratorState".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GeneratorStateProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class GeneratorStateProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GeneratorStateSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param metadata: 
+        :param spec: 
+
+        :schema: GeneratorState
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = GeneratorStateSpec(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__64f82fa95da182d383bede8cfe8bee7ac5e64f879b5ea01270eecda15719f058)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
+        '''
+        :schema: GeneratorState#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["GeneratorStateSpec"]:
+        '''
+        :schema: GeneratorState#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["GeneratorStateSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GeneratorStateProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GeneratorStateSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "resource": "resource",
+        "state": "state",
+        "garbage_collection_deadline": "garbageCollectionDeadline",
+    },
+)
+class GeneratorStateSpec:
+    def __init__(
+        self,
+        *,
+        resource: typing.Any,
+        state: typing.Any,
+        garbage_collection_deadline: typing.Optional[datetime.datetime] = None,
+    ) -> None:
+        '''
+        :param resource: Resource is the generator manifest that produced the state. It is a snapshot of the generator manifest at the time the state was produced. This manifest will be used to delete the resource. Any configuration that is referenced in the manifest should be available at the time of garbage collection. If that is not the case deletion will be blocked by a finalizer.
+        :param state: State is the state that was produced by the generator implementation.
+        :param garbage_collection_deadline: GarbageCollectionDeadline is the time after which the generator state will be deleted. It is set by the controller which creates the generator state and can be set configured by the user. If the garbage collection deadline is not set the generator state will not be deleted.
+
+        :schema: GeneratorStateSpec
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5d80cd3e33b0c4a2ec892301c844aee6f41a860238c42c36e51455f76caf187a)
+            check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
+            check_type(argname="argument state", value=state, expected_type=type_hints["state"])
+            check_type(argname="argument garbage_collection_deadline", value=garbage_collection_deadline, expected_type=type_hints["garbage_collection_deadline"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "resource": resource,
+            "state": state,
+        }
+        if garbage_collection_deadline is not None:
+            self._values["garbage_collection_deadline"] = garbage_collection_deadline
+
+    @builtins.property
+    def resource(self) -> typing.Any:
+        '''Resource is the generator manifest that produced the state.
+
+        It is a snapshot of the generator manifest at the time the state was produced.
+        This manifest will be used to delete the resource. Any configuration that is referenced
+        in the manifest should be available at the time of garbage collection. If that is not the case deletion will
+        be blocked by a finalizer.
+
+        :schema: GeneratorStateSpec#resource
+        '''
+        result = self._values.get("resource")
+        assert result is not None, "Required property 'resource' is missing"
+        return typing.cast(typing.Any, result)
+
+    @builtins.property
+    def state(self) -> typing.Any:
+        '''State is the state that was produced by the generator implementation.
+
+        :schema: GeneratorStateSpec#state
+        '''
+        result = self._values.get("state")
+        assert result is not None, "Required property 'state' is missing"
+        return typing.cast(typing.Any, result)
+
+    @builtins.property
+    def garbage_collection_deadline(self) -> typing.Optional[datetime.datetime]:
+        '''GarbageCollectionDeadline is the time after which the generator state will be deleted.
+
+        It is set by the controller which creates the generator state and
+        can be set configured by the user.
+        If the garbage collection deadline is not set the generator state will not be deleted.
+
+        :schema: GeneratorStateSpec#garbageCollectionDeadline
+        '''
+        result = self._values.get("garbage_collection_deadline")
+        return typing.cast(typing.Optional[datetime.datetime], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GeneratorStateSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class GithubAccessToken(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -9663,6 +10348,381 @@ class GithubAccessTokenSpecAuthPrivateKeySecretRef:
         )
 
 
+class Grafana(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.Grafana",
+):
+    '''
+    :schema: Grafana
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GrafanaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "Grafana" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: GrafanaSpec controls the behavior of the grafana generator.
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__d80f5795b34eebd4414d453e74364019631d46df1d6f77332167900032b31ac2)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = GrafanaProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GrafanaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "Grafana".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: GrafanaSpec controls the behavior of the grafana generator.
+        '''
+        props = GrafanaProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "Grafana".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class GrafanaProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GrafanaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''
+        :param metadata: 
+        :param spec: GrafanaSpec controls the behavior of the grafana generator.
+
+        :schema: Grafana
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = GrafanaSpec(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__653972c42261a54dd717de914b7983783972daddb15fd7d6225a1b5875a8244e)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
+        '''
+        :schema: Grafana#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["GrafanaSpec"]:
+        '''GrafanaSpec controls the behavior of the grafana generator.
+
+        :schema: Grafana#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["GrafanaSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpec",
+    jsii_struct_bases=[],
+    name_mapping={"auth": "auth", "service_account": "serviceAccount", "url": "url"},
+)
+class GrafanaSpec:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["GrafanaSpecAuth", typing.Dict[builtins.str, typing.Any]],
+        service_account: typing.Union["GrafanaSpecServiceAccount", typing.Dict[builtins.str, typing.Any]],
+        url: builtins.str,
+    ) -> None:
+        '''GrafanaSpec controls the behavior of the grafana generator.
+
+        :param auth: Auth is the authentication configuration to authenticate against the Grafana instance.
+        :param service_account: ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+        :param url: URL is the URL of the Grafana instance.
+
+        :schema: GrafanaSpec
+        '''
+        if isinstance(auth, dict):
+            auth = GrafanaSpecAuth(**auth)
+        if isinstance(service_account, dict):
+            service_account = GrafanaSpecServiceAccount(**service_account)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__6625fbfd4423ace39404bc8b275e8825a4e344ae14018a39aa1fad007fdc9a36)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "service_account": service_account,
+            "url": url,
+        }
+
+    @builtins.property
+    def auth(self) -> "GrafanaSpecAuth":
+        '''Auth is the authentication configuration to authenticate against the Grafana instance.
+
+        :schema: GrafanaSpec#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("GrafanaSpecAuth", result)
+
+    @builtins.property
+    def service_account(self) -> "GrafanaSpecServiceAccount":
+        '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+
+        :schema: GrafanaSpec#serviceAccount
+        '''
+        result = self._values.get("service_account")
+        assert result is not None, "Required property 'service_account' is missing"
+        return typing.cast("GrafanaSpecServiceAccount", result)
+
+    @builtins.property
+    def url(self) -> builtins.str:
+        '''URL is the URL of the Grafana instance.
+
+        :schema: GrafanaSpec#url
+        '''
+        result = self._values.get("url")
+        assert result is not None, "Required property 'url' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class GrafanaSpecAuth:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["GrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth is the authentication configuration to authenticate against the Grafana instance.
+
+        :param token: A service account token used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: GrafanaSpecAuth
+        '''
+        if isinstance(token, dict):
+            token = GrafanaSpecAuthToken(**token)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(self) -> "GrafanaSpecAuthToken":
+        '''A service account token used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: GrafanaSpecAuth#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("GrafanaSpecAuthToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpecAuthToken",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name"},
+)
+class GrafanaSpecAuthToken:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A service account token used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :param key: The key where the token is found.
+        :param name: The name of the Secret resource being referred to.
+
+        :schema: GrafanaSpecAuthToken
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__cff8454759fb223792b7471399e0c8d402d5677cb65b01c20b534a42a98a6aad)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the token is found.
+
+        :schema: GrafanaSpecAuthToken#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GrafanaSpecAuthToken#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpecAuthToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpecServiceAccount",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "role": "role"},
+)
+class GrafanaSpecServiceAccount:
+    def __init__(self, *, name: builtins.str, role: builtins.str) -> None:
+        '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
+
+        :param name: Name is the name of the service account that will be created by ESO.
+        :param role: Role is the role of the service account. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: GrafanaSpecServiceAccount
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0b90062b32e8b1dfb708e1e449e63bfe0aa427c431738c846dd6d11249ad0851)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "role": role,
+        }
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name is the name of the service account that will be created by ESO.
+
+        :schema: GrafanaSpecServiceAccount#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def role(self) -> builtins.str:
+        '''Role is the role of the service account.
+
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: GrafanaSpecServiceAccount#role
+        '''
+        result = self._values.get("role")
+        assert result is not None, "Required property 'role' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpecServiceAccount(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class Password(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -9920,6 +10980,290 @@ class PasswordSpec:
 
     def __repr__(self) -> str:
         return "PasswordSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+class QuayAccessToken(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.QuayAccessToken",
+):
+    '''QuayAccessToken generates Quay oauth token for pulling/pushing images.
+
+    :schema: QuayAccessToken
+    '''
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["QuayAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "QuayAccessToken" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: 
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__58971dea6308deeb2631c838ee3c6601a0b25893b80479dc4e945254f22274b6)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = QuayAccessTokenProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["QuayAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "QuayAccessToken".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: 
+        '''
+        props = QuayAccessTokenProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> _cdk8s_d3d9af27.GroupVersionKind:
+        '''Returns the apiVersion and kind for "QuayAccessToken".'''
+        return typing.cast(_cdk8s_d3d9af27.GroupVersionKind, jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.QuayAccessTokenProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class QuayAccessTokenProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["QuayAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''QuayAccessToken generates Quay oauth token for pulling/pushing images.
+
+        :param metadata: 
+        :param spec: 
+
+        :schema: QuayAccessToken
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = QuayAccessTokenSpec(**spec)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c1de6b6de8dac96a29a81c78e7a31cd2fe43fbcb8590f2510368200297fde71d)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata]:
+        '''
+        :schema: QuayAccessToken#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional[_cdk8s_d3d9af27.ApiObjectMetadata], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["QuayAccessTokenSpec"]:
+        '''
+        :schema: QuayAccessToken#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["QuayAccessTokenSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "QuayAccessTokenProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.QuayAccessTokenSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "robot_account": "robotAccount",
+        "service_account_ref": "serviceAccountRef",
+        "url": "url",
+    },
+)
+class QuayAccessTokenSpec:
+    def __init__(
+        self,
+        *,
+        robot_account: builtins.str,
+        service_account_ref: typing.Union["QuayAccessTokenSpecServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
+        url: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''
+        :param robot_account: Name of the robot account you are federating with.
+        :param service_account_ref: Name of the service account you are federating with.
+        :param url: URL configures the Quay instance URL. Defaults to quay.io. Default: quay.io.
+
+        :schema: QuayAccessTokenSpec
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = QuayAccessTokenSpecServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__f2f7947dd3ee6ff17129eb636fd5d530fa48f6d2fec09d2559cef20aa537a9d7)
+            check_type(argname="argument robot_account", value=robot_account, expected_type=type_hints["robot_account"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "robot_account": robot_account,
+            "service_account_ref": service_account_ref,
+        }
+        if url is not None:
+            self._values["url"] = url
+
+    @builtins.property
+    def robot_account(self) -> builtins.str:
+        '''Name of the robot account you are federating with.
+
+        :schema: QuayAccessTokenSpec#robotAccount
+        '''
+        result = self._values.get("robot_account")
+        assert result is not None, "Required property 'robot_account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_account_ref(self) -> "QuayAccessTokenSpecServiceAccountRef":
+        '''Name of the service account you are federating with.
+
+        :schema: QuayAccessTokenSpec#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        assert result is not None, "Required property 'service_account_ref' is missing"
+        return typing.cast("QuayAccessTokenSpecServiceAccountRef", result)
+
+    @builtins.property
+    def url(self) -> typing.Optional[builtins.str]:
+        '''URL configures the Quay instance URL.
+
+        Defaults to quay.io.
+
+        :default: quay.io.
+
+        :schema: QuayAccessTokenSpec#url
+        '''
+        result = self._values.get("url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "QuayAccessTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.QuayAccessTokenSpecServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class QuayAccessTokenSpecServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Name of the service account you are federating with.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: QuayAccessTokenSpecServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__3e1a2c5b1a9946bee470f5e44e7010f914a64be38e1bd6c83605261840dff854)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: QuayAccessTokenSpecServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+
+        :schema: QuayAccessTokenSpecServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: QuayAccessTokenSpecServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "QuayAccessTokenSpecServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -11000,6 +12344,7 @@ class VaultDynamicSecretProps:
     name_mapping={
         "path": "path",
         "provider": "provider",
+        "allow_empty_response": "allowEmptyResponse",
         "controller": "controller",
         "method": "method",
         "parameters": "parameters",
@@ -11013,6 +12358,7 @@ class VaultDynamicSecretSpec:
         *,
         path: builtins.str,
         provider: typing.Union["VaultDynamicSecretSpecProvider", typing.Dict[builtins.str, typing.Any]],
+        allow_empty_response: typing.Optional[builtins.bool] = None,
         controller: typing.Optional[builtins.str] = None,
         method: typing.Optional[builtins.str] = None,
         parameters: typing.Any = None,
@@ -11022,10 +12368,11 @@ class VaultDynamicSecretSpec:
         '''
         :param path: Vault path to obtain the dynamic secret from.
         :param provider: Vault provider common spec.
+        :param allow_empty_response: Do not fail if no secrets are found. Useful for requests where no data is expected.
         :param controller: Used to select the correct ESO controller (think: ingress.ingressClassName) The ESO controller is instantiated with a specific controller name and filters VDS based on this property.
         :param method: Vault API method to use (GET/POST/other).
         :param parameters: Parameters to pass to Vault write (for non-GET methods).
-        :param result_type: Result type defines which data is returned from the generator. By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure.
+        :param result_type: Result type defines which data is returned from the generator. By default it is the "data" section of the Vault API response. When using e.g. /auth/token/create the "data" section is empty but the "auth" section contains the generated token. Please refer to the vault docs regarding the result data structure. Additionally, accessing the raw response is possibly by using "Raw" result type.
         :param retry_settings: Used to configure http retries if failed.
 
         :schema: VaultDynamicSecretSpec
@@ -11038,6 +12385,7 @@ class VaultDynamicSecretSpec:
             type_hints = typing.get_type_hints(_typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f398263266288)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
+            check_type(argname="argument allow_empty_response", value=allow_empty_response, expected_type=type_hints["allow_empty_response"])
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument method", value=method, expected_type=type_hints["method"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
@@ -11047,6 +12395,8 @@ class VaultDynamicSecretSpec:
             "path": path,
             "provider": provider,
         }
+        if allow_empty_response is not None:
+            self._values["allow_empty_response"] = allow_empty_response
         if controller is not None:
             self._values["controller"] = controller
         if method is not None:
@@ -11077,6 +12427,17 @@ class VaultDynamicSecretSpec:
         result = self._values.get("provider")
         assert result is not None, "Required property 'provider' is missing"
         return typing.cast("VaultDynamicSecretSpecProvider", result)
+
+    @builtins.property
+    def allow_empty_response(self) -> typing.Optional[builtins.bool]:
+        '''Do not fail if no secrets are found.
+
+        Useful for requests where no data is expected.
+
+        :schema: VaultDynamicSecretSpec#allowEmptyResponse
+        '''
+        result = self._values.get("allow_empty_response")
+        return typing.cast(typing.Optional[builtins.bool], result)
 
     @builtins.property
     def controller(self) -> typing.Optional[builtins.str]:
@@ -11113,6 +12474,7 @@ class VaultDynamicSecretSpec:
         When using e.g. /auth/token/create the "data" section is empty but
         the "auth" section contains the generated token.
         Please refer to the vault docs regarding the result data structure.
+        Additionally, accessing the raw response is possibly by using "Raw" result type.
 
         :schema: VaultDynamicSecretSpec#resultType
         '''
@@ -14038,6 +15400,7 @@ class VaultDynamicSecretSpecResultType(enum.Enum):
     When using e.g. /auth/token/create the "data" section is empty but
     the "auth" section contains the generated token.
     Please refer to the vault docs regarding the result data structure.
+    Additionally, accessing the raw response is possibly by using "Raw" result type.
 
     :schema: VaultDynamicSecretSpecResultType
     '''
@@ -14046,6 +15409,8 @@ class VaultDynamicSecretSpecResultType(enum.Enum):
     '''Data.'''
     AUTH = "AUTH"
     '''Auth.'''
+    RAW = "RAW"
+    '''Raw.'''
 
 
 @jsii.data_type(
@@ -14731,7 +16096,13 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKey",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "ClusterGeneratorSpecGeneratorGrafanaSpec",
+    "ClusterGeneratorSpecGeneratorGrafanaSpecAuth",
+    "ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken",
+    "ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount",
     "ClusterGeneratorSpecGeneratorPasswordSpec",
+    "ClusterGeneratorSpecGeneratorQuayAccessTokenSpec",
+    "ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef",
     "ClusterGeneratorSpecGeneratorStsSessionTokenSpec",
     "ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuth",
     "ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwt",
@@ -14805,15 +16176,28 @@ __all__ = [
     "GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef",
     "GcrAccessTokenSpecAuthWorkloadIdentity",
     "GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef",
+    "GeneratorState",
+    "GeneratorStateProps",
+    "GeneratorStateSpec",
     "GithubAccessToken",
     "GithubAccessTokenProps",
     "GithubAccessTokenSpec",
     "GithubAccessTokenSpecAuth",
     "GithubAccessTokenSpecAuthPrivateKey",
     "GithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "Grafana",
+    "GrafanaProps",
+    "GrafanaSpec",
+    "GrafanaSpecAuth",
+    "GrafanaSpecAuthToken",
+    "GrafanaSpecServiceAccount",
     "Password",
     "PasswordProps",
     "PasswordSpec",
+    "QuayAccessToken",
+    "QuayAccessTokenProps",
+    "QuayAccessTokenSpec",
+    "QuayAccessTokenSpecServiceAccountRef",
     "StsSessionToken",
     "StsSessionTokenProps",
     "StsSessionTokenSpec",
@@ -15004,7 +16388,9 @@ def _typecheckingstub__75697d100ce0404120222110ca16af3984f4ab31958e84b7756b37400
     fake_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorFakeSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     gcr_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGcrAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     github_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGithubAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+    grafana_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     password_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorPasswordSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+    quay_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorQuayAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     sts_session_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorStsSessionTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     uuid_spec: typing.Any = None,
     vault_dynamic_secret_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -15253,6 +16639,38 @@ def _typecheckingstub__9f5225114d04258c4451905d0b8fab6c9f168173f252619ec0e7e3456
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d9ed2181(
+    *,
+    auth: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuth, typing.Dict[builtins.str, typing.Any]],
+    service_account: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550(
+    *,
+    token: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d5967d1dd883faa977030d1a3045ba2620b8f9c2c50ca22bba80be43429c9fe(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c952f78a75a5bbd20df3105965c9af2c7aabb17469a906f4db76fe7c9d677307(
+    *,
+    name: builtins.str,
+    role: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__6b3ec65a0916fa97e69ec9837c4c6798e17e81eb424563cc5bd5349de2ec13d6(
     *,
     allow_repeat: builtins.bool,
@@ -15261,6 +16679,24 @@ def _typecheckingstub__6b3ec65a0916fa97e69ec9837c4c6798e17e81eb424563cc5bd5349de
     digits: typing.Optional[jsii.Number] = None,
     symbol_characters: typing.Optional[builtins.str] = None,
     symbols: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b760f8c5fad1753090f4c7fdeb158c58f3a5285b02656fd11f8fd4e619c8135f(
+    *,
+    robot_account: builtins.str,
+    service_account_ref: typing.Union[ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b680ae1b78ef0032f149e40bb4a19c7a0b03d8afb67edc0edde80e855f7132ee(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -15348,6 +16784,7 @@ def _typecheckingstub__10e2321e1cd5730bc9b0e182284aef50907db67d44c1acfada3f65f19
     *,
     path: builtins.str,
     provider: typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    allow_empty_response: typing.Optional[builtins.bool] = None,
     controller: typing.Optional[builtins.str] = None,
     method: typing.Optional[builtins.str] = None,
     parameters: typing.Any = None,
@@ -15894,6 +17331,33 @@ def _typecheckingstub__4f74d21068366cc4deb9b1d016fb257384b4390cdceab57845386c22a
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__958486a855120fc7a31aee0ba4cca65a04bf9a182445fbe480e553b98ccd9036(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GeneratorStateSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__64f82fa95da182d383bede8cfe8bee7ac5e64f879b5ea01270eecda15719f058(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GeneratorStateSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d80cd3e33b0c4a2ec892301c844aee6f41a860238c42c36e51455f76caf187a(
+    *,
+    resource: typing.Any,
+    state: typing.Any,
+    garbage_collection_deadline: typing.Optional[datetime.datetime] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__4a77570c44994c62f1495ca397b0a38a34f7359399b5a5c444421df203d8116b(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -15947,6 +17411,56 @@ def _typecheckingstub__f44ce4532c26c546f28a977216d68c41dc675e15baa70c2618c40a1fd
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__d80f5795b34eebd4414d453e74364019631d46df1d6f77332167900032b31ac2(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GrafanaSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__653972c42261a54dd717de914b7983783972daddb15fd7d6225a1b5875a8244e(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GrafanaSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6625fbfd4423ace39404bc8b275e8825a4e344ae14018a39aa1fad007fdc9a36(
+    *,
+    auth: typing.Union[GrafanaSpecAuth, typing.Dict[builtins.str, typing.Any]],
+    service_account: typing.Union[GrafanaSpecServiceAccount, typing.Dict[builtins.str, typing.Any]],
+    url: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4(
+    *,
+    token: typing.Union[GrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cff8454759fb223792b7471399e0c8d402d5677cb65b01c20b534a42a98a6aad(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0b90062b32e8b1dfb708e1e449e63bfe0aa427c431738c846dd6d11249ad0851(
+    *,
+    name: builtins.str,
+    role: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__4c09e9ade3db32eebcba799d9623871d6d90ce0ae11f370436996ea869284e6d(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -15973,6 +17487,42 @@ def _typecheckingstub__b4393f1aed12b90dce27cf67a339b9404fe1de87a2e6dc07a755ffa39
     digits: typing.Optional[jsii.Number] = None,
     symbol_characters: typing.Optional[builtins.str] = None,
     symbols: typing.Optional[jsii.Number] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__58971dea6308deeb2631c838ee3c6601a0b25893b80479dc4e945254f22274b6(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[QuayAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c1de6b6de8dac96a29a81c78e7a31cd2fe43fbcb8590f2510368200297fde71d(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[QuayAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f2f7947dd3ee6ff17129eb636fd5d530fa48f6d2fec09d2559cef20aa537a9d7(
+    *,
+    robot_account: builtins.str,
+    service_account_ref: typing.Union[QuayAccessTokenSpecServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+    url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3e1a2c5b1a9946bee470f5e44e7010f914a64be38e1bd6c83605261840dff854(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -16114,6 +17664,7 @@ def _typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f39826
     *,
     path: builtins.str,
     provider: typing.Union[VaultDynamicSecretSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    allow_empty_response: typing.Optional[builtins.bool] = None,
     controller: typing.Optional[builtins.str] = None,
     method: typing.Optional[builtins.str] = None,
     parameters: typing.Any = None,
