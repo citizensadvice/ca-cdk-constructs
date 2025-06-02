@@ -12,7 +12,7 @@ aws-cdk-lib = "~=2.199"
 cdk8s = "~2.69.71"
 constructs = "~=10.4"
 cdk_remote_stack = "~=2.1"
-aws-cdk-lambda-layer-kubectl-v32 = "^2.1.0"
+aws-cdk-lambda-layer-kubectl-v33 = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 boto3-stubs = {version = "1.38.27", extras = ["rds", "secretsmanager"]}
