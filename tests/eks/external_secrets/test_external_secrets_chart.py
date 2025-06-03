@@ -7,7 +7,7 @@ from ca_cdk_constructs.eks.external_secrets.external_aws_secrets_chart import (
     ExternalAwsSecretsChart,
 )
 from ca_cdk_constructs.eks.imports.io.external_secrets import (
-    SecretStoreV1Beta1SpecProviderAwsService as SecretStoreSpecProviderAwsService,
+    SecretStoreSpecProviderAwsService,
 )
 
 

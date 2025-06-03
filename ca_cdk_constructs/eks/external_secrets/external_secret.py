@@ -1,17 +1,19 @@
-from attr import define
+from typing import Any, Union
 
-from typing import Union, Any
+from attr import define
 from cdk8s import ApiObjectMetadata
 from constructs import Construct
 
 from ca_cdk_constructs.eks.imports.io.external_secrets import (
-    ExternalSecretV1Beta1,
-    ExternalSecretV1Beta1Spec,
-    ExternalSecretV1Beta1SpecSecretStoreRef,
-    ExternalSecretV1Beta1SpecDataRemoteRef,
-    ExternalSecretV1Beta1SpecSecretStoreRefKind,
-    ExternalSecretV1Beta1SpecTarget,
-    ExternalSecretV1Beta1SpecData,
+    ExternalSecret as ExternalSecretV1,  # Renamed to avoid conflict with ExternalSecret class
+)
+from ca_cdk_constructs.eks.imports.io.external_secrets import (
+    ExternalSecretSpec,
+    ExternalSecretSpecData,
+    ExternalSecretSpecDataRemoteRef,
+    ExternalSecretSpecSecretStoreRef,
+    ExternalSecretSpecSecretStoreRefKind,
+    ExternalSecretSpecTarget,
 )
 
 
@@ -79,20 +81,20 @@ class ExternalSecret(Construct):
         super().__init__(scope, id)
         self._k8s_secret_name = secret_source.k8s_secret_name
 
-        ExternalSecretV1Beta1(
+        ExternalSecretV1(
             self,
             "Resource",
             metadata=metadata,
-            spec=ExternalSecretV1Beta1Spec(
-                secret_store_ref=ExternalSecretV1Beta1SpecSecretStoreRef(
+            spec=ExternalSecretSpec(
+                secret_store_ref=ExternalSecretSpecSecretStoreRef(
                     name=store_name,
-                    kind=ExternalSecretV1Beta1SpecSecretStoreRefKind.SECRET_STORE,
+                    kind=ExternalSecretSpecSecretStoreRefKind.SECRET_STORE,
                 ),
                 refresh_interval=secret_source.refresh_interval,
-                target=ExternalSecretV1Beta1SpecTarget(name=secret_source.k8s_secret_name),
+                target=ExternalSecretSpecTarget(name=secret_source.k8s_secret_name),
                 data=[
-                    ExternalSecretV1Beta1SpecData(
-                        remote_ref=ExternalSecretV1Beta1SpecDataRemoteRef(
+                    ExternalSecretSpecData(
+                        remote_ref=ExternalSecretSpecDataRemoteRef(
                             key=secret_source.source_secret,
                             # which property to retrieve from provider
                             property=k,

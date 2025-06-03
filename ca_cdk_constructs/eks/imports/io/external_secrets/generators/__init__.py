@@ -39,7 +39,7 @@ class AcrAccessToken(
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secretsgenerators.AcrAccessToken",
 ):
-    '''ACRAccessToken returns a Azure Container Registry token that can be used for pushing/pulling images.
+    '''ACRAccessToken returns an Azure Container Registry token that can be used for pushing/pulling images.
 
     Note: by default it will return an ACR Refresh Token with full access
     (depending on the identity).
@@ -117,7 +117,7 @@ class AcrAccessTokenProps:
         metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
         spec: typing.Optional[typing.Union["AcrAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
-        '''ACRAccessToken returns a Azure Container Registry token that can be used for pushing/pulling images.
+        '''ACRAccessToken returns an Azure Container Registry token that can be used for pushing/pulling images.
 
         Note: by default it will return an ACR Refresh Token with full access
         (depending on the identity).
@@ -3430,31 +3430,55 @@ class ClusterGeneratorSpecGeneratorGrafanaSpec:
 @jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecAuth",
     jsii_struct_bases=[],
-    name_mapping={"token": "token"},
+    name_mapping={"basic": "basic", "token": "token"},
 )
 class ClusterGeneratorSpecGeneratorGrafanaSpecAuth:
     def __init__(
         self,
         *,
-        token: typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+        basic: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth is the authentication configuration to authenticate against the Grafana instance.
 
+        :param basic: Basic auth credentials used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
         :param token: A service account token used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
 
         :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuth
         '''
+        if isinstance(basic, dict):
+            basic = ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic(**basic)
         if isinstance(token, dict):
             token = ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken(**token)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550)
+            check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "token": token,
-        }
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if basic is not None:
+            self._values["basic"] = basic
+        if token is not None:
+            self._values["token"] = token
 
     @builtins.property
-    def token(self) -> "ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken":
+    def basic(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic"]:
+        '''Basic auth credentials used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuth#basic
+        '''
+        result = self._values.get("basic")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic"], result)
+
+    @builtins.property
+    def token(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken"]:
         '''A service account token used to authenticate against the Grafana instance.
 
         Note: you need a token which has elevated permissions to create service accounts.
@@ -3464,8 +3488,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuth:
         :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuth#token
         '''
         result = self._values.get("token")
-        assert result is not None, "Required property 'token' is missing"
-        return typing.cast("ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken", result)
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -3475,6 +3498,131 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuth:
 
     def __repr__(self) -> str:
         return "ClusterGeneratorSpecGeneratorGrafanaSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic",
+    jsii_struct_bases=[],
+    name_mapping={"password": "password", "username": "username"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic:
+    def __init__(
+        self,
+        *,
+        password: typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword", typing.Dict[builtins.str, typing.Any]],
+        username: builtins.str,
+    ) -> None:
+        '''Basic auth credentials used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :param password: A basic auth password used to authenticate against the Grafana instance.
+        :param username: A basic auth username used to authenticate against the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic
+        '''
+        if isinstance(password, dict):
+            password = ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword(**password)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0ca9e0312250798706b0bbbc493bb9f05d7676fc92dd825ae023d37d7286ef86)
+            check_type(argname="argument password", value=password, expected_type=type_hints["password"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password": password,
+            "username": username,
+        }
+
+    @builtins.property
+    def password(self) -> "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword":
+        '''A basic auth password used to authenticate against the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic#password
+        '''
+        result = self._values.get("password")
+        assert result is not None, "Required property 'password' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword", result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''A basic auth username used to authenticate against the Grafana instance.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name"},
+)
+class ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A basic auth password used to authenticate against the Grafana instance.
+
+        :param key: The key where the token is found.
+        :param name: The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__52cbf108e35477a5a146125711b6edb5cb2e91146f6276f2d40795dc8149d0ec)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the token is found.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -4760,8 +4908,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider",
     jsii_struct_bases=[],
     name_mapping={
-        "auth": "auth",
         "server": "server",
+        "auth": "auth",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
         "forward_inconsistent": "forwardInconsistent",
@@ -4777,8 +4925,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
     def __init__(
         self,
         *,
-        auth: typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
+        auth: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
@@ -4791,8 +4939,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
     ) -> None:
         '''Vault provider common spec.
 
-        :param auth: Auth configures how secret-manager authenticates with the Vault server.
         :param server: Server is the connection address for the Vault server, e.g: "https://vault.example.com:8200".
+        :param auth: Auth configures how secret-manager authenticates with the Vault server.
         :param ca_bundle: PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate Vault server certificate.
         :param forward_inconsistent: ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
@@ -4813,8 +4961,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
             tls = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTls(**tls)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__02abd566c822847d8f25656374f5c631e294093b6020fa8ec60a874e692efe08)
-            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument forward_inconsistent", value=forward_inconsistent, expected_type=type_hints["forward_inconsistent"])
@@ -4825,9 +4973,10 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
             check_type(argname="argument tls", value=tls, expected_type=type_hints["tls"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "auth": auth,
             "server": server,
         }
+        if auth is not None:
+            self._values["auth"] = auth
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -4848,16 +4997,6 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
             self._values["version"] = version
 
     @builtins.property
-    def auth(self) -> "ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth":
-        '''Auth configures how secret-manager authenticates with the Vault server.
-
-        :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider#auth
-        '''
-        result = self._values.get("auth")
-        assert result is not None, "Required property 'auth' is missing"
-        return typing.cast("ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth", result)
-
-    @builtins.property
     def server(self) -> builtins.str:
         '''Server is the connection address for the Vault server, e.g: "https://vault.example.com:8200".
 
@@ -4866,6 +5005,17 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
         result = self._values.get("server")
         assert result is not None, "Required property 'server' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth"]:
+        '''Auth configures how secret-manager authenticates with the Vault server.
+
+        :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider#auth
+        '''
+        result = self._values.get("auth")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth"], result)
 
     @builtins.property
     def ca_bundle(self) -> typing.Optional[builtins.str]:
@@ -6928,7 +7078,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdap:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
         :param path: Path where the LDAP authentication backend is mounted in Vault, e.g: "ldap".
-        :param username: Username is a LDAP user name used to authenticate using the LDAP Vault authentication method.
+        :param username: Username is an LDAP username used to authenticate using the LDAP Vault authentication method.
         :param secret_ref: SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdap
@@ -6959,7 +7109,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdap:
 
     @builtins.property
     def username(self) -> builtins.str:
-        '''Username is a LDAP user name used to authenticate using the LDAP Vault authentication method.
+        '''Username is an LDAP username used to authenticate using the LDAP Vault authentication method.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdap#username
         '''
@@ -7159,8 +7309,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass:
     ) -> None:
         '''UserPass authenticates with Vault by passing username/password pair.
 
-        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
-        :param username: Username is a user name used to authenticate using the UserPass Vault authentication method.
+        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "userpass".
+        :param username: Username is a username used to authenticate using the UserPass Vault authentication method.
         :param secret_ref: SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass
@@ -7181,7 +7331,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass:
 
     @builtins.property
     def path(self) -> builtins.str:
-        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "userpass".
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass#path
         '''
@@ -7191,7 +7341,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass:
 
     @builtins.property
     def username(self) -> builtins.str:
-        '''Username is a user name used to authenticate using the UserPass Vault authentication method.
+        '''Username is a username used to authenticate using the UserPass Vault authentication method.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass#username
         '''
@@ -7754,6 +7904,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecRetrySettings:
     name_mapping={
         "result": "result",
         "url": "url",
+        "auth": "auth",
         "body": "body",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
@@ -7769,6 +7920,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
         *,
         result: typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
+        auth: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -7783,6 +7935,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
 
         :param result: Result formatting.
         :param url: Webhook url to call.
+        :param auth: Auth specifies a authorization protocol. Only one protocol may be set.
         :param body: Body.
         :param ca_bundle: PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate webhook server certificate.
@@ -7795,12 +7948,15 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
         '''
         if isinstance(result, dict):
             result = ClusterGeneratorSpecGeneratorWebhookSpecResult(**result)
+        if isinstance(auth, dict):
+            auth = ClusterGeneratorSpecGeneratorWebhookSpecAuth(**auth)
         if isinstance(ca_provider, dict):
             ca_provider = ClusterGeneratorSpecGeneratorWebhookSpecCaProvider(**ca_provider)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__d6461244ada6ac27bc8b5825bc53378b49b97c43164c4e5d508c69ab37ef4761)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
@@ -7812,6 +7968,8 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
             "result": result,
             "url": url,
         }
+        if auth is not None:
+            self._values["auth"] = auth
         if body is not None:
             self._values["body"] = body
         if ca_bundle is not None:
@@ -7846,6 +8004,17 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
         result = self._values.get("url")
         assert result is not None, "Required property 'url' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> typing.Optional["ClusterGeneratorSpecGeneratorWebhookSpecAuth"]:
+        '''Auth specifies a authorization protocol.
+
+        Only one protocol may be set.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpec#auth
+        '''
+        result = self._values.get("auth")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorWebhookSpecAuth"], result)
 
     @builtins.property
     def body(self) -> typing.Optional[builtins.str]:
@@ -7927,6 +8096,290 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
 
     def __repr__(self) -> str:
         return "ClusterGeneratorSpecGeneratorWebhookSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorWebhookSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"ntlm": "ntlm"},
+)
+class ClusterGeneratorSpecGeneratorWebhookSpecAuth:
+    def __init__(
+        self,
+        *,
+        ntlm: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Auth specifies a authorization protocol.
+
+        Only one protocol may be set.
+
+        :param ntlm: NTLMProtocol configures the store to use NTLM for auth.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuth
+        '''
+        if isinstance(ntlm, dict):
+            ntlm = ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm(**ntlm)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__5dcfc882e004f94cf73db65a2a920c62c718b548501cfa608829f09e91423b6d)
+            check_type(argname="argument ntlm", value=ntlm, expected_type=type_hints["ntlm"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if ntlm is not None:
+            self._values["ntlm"] = ntlm
+
+    @builtins.property
+    def ntlm(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm"]:
+        '''NTLMProtocol configures the store to use NTLM for auth.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuth#ntlm
+        '''
+        result = self._values.get("ntlm")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorWebhookSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm",
+    jsii_struct_bases=[],
+    name_mapping={
+        "password_secret": "passwordSecret",
+        "username_secret": "usernameSecret",
+    },
+)
+class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm:
+    def __init__(
+        self,
+        *,
+        password_secret: typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret", typing.Dict[builtins.str, typing.Any]],
+        username_secret: typing.Union["ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''NTLMProtocol configures the store to use NTLM for auth.
+
+        :param password_secret: A reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+        :param username_secret: A reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm
+        '''
+        if isinstance(password_secret, dict):
+            password_secret = ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret(**password_secret)
+        if isinstance(username_secret, dict):
+            username_secret = ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret(**username_secret)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__1c7b235434f71cb2dedf89df634e92c9be7c19319bdbabf850fb2ef0f7f26a81)
+            check_type(argname="argument password_secret", value=password_secret, expected_type=type_hints["password_secret"])
+            check_type(argname="argument username_secret", value=username_secret, expected_type=type_hints["username_secret"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password_secret": password_secret,
+            "username_secret": username_secret,
+        }
+
+    @builtins.property
+    def password_secret(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret":
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm#passwordSecret
+        '''
+        result = self._values.get("password_secret")
+        assert result is not None, "Required property 'password_secret' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret", result)
+
+    @builtins.property
+    def username_secret(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret":
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm#usernameSecret
+        '''
+        result = self._values.get("username_secret")
+        assert result is not None, "Required property 'username_secret' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__89e3c64096d7ab15ba070babc315844393aa774d5e6d59f8d8af1081809d3a33)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__debabacb7a72e2aa4ed6e808a4b80893eb1122c2c840d54555a48ec65fe99f40)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -10553,31 +11006,51 @@ class GrafanaSpec:
 @jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.GrafanaSpecAuth",
     jsii_struct_bases=[],
-    name_mapping={"token": "token"},
+    name_mapping={"basic": "basic", "token": "token"},
 )
 class GrafanaSpecAuth:
     def __init__(
         self,
         *,
-        token: typing.Union["GrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+        basic: typing.Optional[typing.Union["GrafanaSpecAuthBasic", typing.Dict[builtins.str, typing.Any]]] = None,
+        token: typing.Optional[typing.Union["GrafanaSpecAuthToken", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth is the authentication configuration to authenticate against the Grafana instance.
 
+        :param basic: Basic auth credentials used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
         :param token: A service account token used to authenticate against the Grafana instance. Note: you need a token which has elevated permissions to create service accounts. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
 
         :schema: GrafanaSpecAuth
         '''
+        if isinstance(basic, dict):
+            basic = GrafanaSpecAuthBasic(**basic)
         if isinstance(token, dict):
             token = GrafanaSpecAuthToken(**token)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4)
+            check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "token": token,
-        }
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if basic is not None:
+            self._values["basic"] = basic
+        if token is not None:
+            self._values["token"] = token
 
     @builtins.property
-    def token(self) -> "GrafanaSpecAuthToken":
+    def basic(self) -> typing.Optional["GrafanaSpecAuthBasic"]:
+        '''Basic auth credentials used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :schema: GrafanaSpecAuth#basic
+        '''
+        result = self._values.get("basic")
+        return typing.cast(typing.Optional["GrafanaSpecAuthBasic"], result)
+
+    @builtins.property
+    def token(self) -> typing.Optional["GrafanaSpecAuthToken"]:
         '''A service account token used to authenticate against the Grafana instance.
 
         Note: you need a token which has elevated permissions to create service accounts.
@@ -10587,8 +11060,7 @@ class GrafanaSpecAuth:
         :schema: GrafanaSpecAuth#token
         '''
         result = self._values.get("token")
-        assert result is not None, "Required property 'token' is missing"
-        return typing.cast("GrafanaSpecAuthToken", result)
+        return typing.cast(typing.Optional["GrafanaSpecAuthToken"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -10598,6 +11070,131 @@ class GrafanaSpecAuth:
 
     def __repr__(self) -> str:
         return "GrafanaSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpecAuthBasic",
+    jsii_struct_bases=[],
+    name_mapping={"password": "password", "username": "username"},
+)
+class GrafanaSpecAuthBasic:
+    def __init__(
+        self,
+        *,
+        password: typing.Union["GrafanaSpecAuthBasicPassword", typing.Dict[builtins.str, typing.Any]],
+        username: builtins.str,
+    ) -> None:
+        '''Basic auth credentials used to authenticate against the Grafana instance.
+
+        Note: you need a token which has elevated permissions to create service accounts.
+        See here for the documentation on basic roles offered by Grafana:
+        https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+
+        :param password: A basic auth password used to authenticate against the Grafana instance.
+        :param username: A basic auth username used to authenticate against the Grafana instance.
+
+        :schema: GrafanaSpecAuthBasic
+        '''
+        if isinstance(password, dict):
+            password = GrafanaSpecAuthBasicPassword(**password)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__0542f077ce34199f3ffc66976e46e28ec5e0917422dc9b25348d809fce646abb)
+            check_type(argname="argument password", value=password, expected_type=type_hints["password"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password": password,
+            "username": username,
+        }
+
+    @builtins.property
+    def password(self) -> "GrafanaSpecAuthBasicPassword":
+        '''A basic auth password used to authenticate against the Grafana instance.
+
+        :schema: GrafanaSpecAuthBasic#password
+        '''
+        result = self._values.get("password")
+        assert result is not None, "Required property 'password' is missing"
+        return typing.cast("GrafanaSpecAuthBasicPassword", result)
+
+    @builtins.property
+    def username(self) -> builtins.str:
+        '''A basic auth username used to authenticate against the Grafana instance.
+
+        :schema: GrafanaSpecAuthBasic#username
+        '''
+        result = self._values.get("username")
+        assert result is not None, "Required property 'username' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpecAuthBasic(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GrafanaSpecAuthBasicPassword",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name"},
+)
+class GrafanaSpecAuthBasicPassword:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A basic auth password used to authenticate against the Grafana instance.
+
+        :param key: The key where the token is found.
+        :param name: The name of the Secret resource being referred to.
+
+        :schema: GrafanaSpecAuthBasicPassword
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__378165568ab72ed346357c2af9813218ae826bea628ea6dcefbbbf7e29a79846)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the token is found.
+
+        :schema: GrafanaSpecAuthBasicPassword#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GrafanaSpecAuthBasicPassword#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GrafanaSpecAuthBasicPassword(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -12506,8 +13103,8 @@ class VaultDynamicSecretSpec:
     jsii_type="ioexternal-secretsgenerators.VaultDynamicSecretSpecProvider",
     jsii_struct_bases=[],
     name_mapping={
-        "auth": "auth",
         "server": "server",
+        "auth": "auth",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
         "forward_inconsistent": "forwardInconsistent",
@@ -12523,8 +13120,8 @@ class VaultDynamicSecretSpecProvider:
     def __init__(
         self,
         *,
-        auth: typing.Union["VaultDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]],
         server: builtins.str,
+        auth: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
         forward_inconsistent: typing.Optional[builtins.bool] = None,
@@ -12537,8 +13134,8 @@ class VaultDynamicSecretSpecProvider:
     ) -> None:
         '''Vault provider common spec.
 
-        :param auth: Auth configures how secret-manager authenticates with the Vault server.
         :param server: Server is the connection address for the Vault server, e.g: "https://vault.example.com:8200".
+        :param auth: Auth configures how secret-manager authenticates with the Vault server.
         :param ca_bundle: PEM encoded CA bundle used to validate Vault server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate Vault server certificate.
         :param forward_inconsistent: ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header
@@ -12559,8 +13156,8 @@ class VaultDynamicSecretSpecProvider:
             tls = VaultDynamicSecretSpecProviderTls(**tls)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb0ddf60a)
-            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
             check_type(argname="argument forward_inconsistent", value=forward_inconsistent, expected_type=type_hints["forward_inconsistent"])
@@ -12571,9 +13168,10 @@ class VaultDynamicSecretSpecProvider:
             check_type(argname="argument tls", value=tls, expected_type=type_hints["tls"])
             check_type(argname="argument version", value=version, expected_type=type_hints["version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "auth": auth,
             "server": server,
         }
+        if auth is not None:
+            self._values["auth"] = auth
         if ca_bundle is not None:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
@@ -12594,16 +13192,6 @@ class VaultDynamicSecretSpecProvider:
             self._values["version"] = version
 
     @builtins.property
-    def auth(self) -> "VaultDynamicSecretSpecProviderAuth":
-        '''Auth configures how secret-manager authenticates with the Vault server.
-
-        :schema: VaultDynamicSecretSpecProvider#auth
-        '''
-        result = self._values.get("auth")
-        assert result is not None, "Required property 'auth' is missing"
-        return typing.cast("VaultDynamicSecretSpecProviderAuth", result)
-
-    @builtins.property
     def server(self) -> builtins.str:
         '''Server is the connection address for the Vault server, e.g: "https://vault.example.com:8200".
 
@@ -12612,6 +13200,15 @@ class VaultDynamicSecretSpecProvider:
         result = self._values.get("server")
         assert result is not None, "Required property 'server' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> typing.Optional["VaultDynamicSecretSpecProviderAuth"]:
+        '''Auth configures how secret-manager authenticates with the Vault server.
+
+        :schema: VaultDynamicSecretSpecProvider#auth
+        '''
+        result = self._values.get("auth")
+        return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuth"], result)
 
     @builtins.property
     def ca_bundle(self) -> typing.Optional[builtins.str]:
@@ -14656,7 +15253,7 @@ class VaultDynamicSecretSpecProviderAuthLdap:
         '''Ldap authenticates with Vault by passing username/password pair using the LDAP authentication method.
 
         :param path: Path where the LDAP authentication backend is mounted in Vault, e.g: "ldap".
-        :param username: Username is a LDAP user name used to authenticate using the LDAP Vault authentication method.
+        :param username: Username is an LDAP username used to authenticate using the LDAP Vault authentication method.
         :param secret_ref: SecretRef to a key in a Secret resource containing password for the LDAP user used to authenticate with Vault using the LDAP authentication method.
 
         :schema: VaultDynamicSecretSpecProviderAuthLdap
@@ -14687,7 +15284,7 @@ class VaultDynamicSecretSpecProviderAuthLdap:
 
     @builtins.property
     def username(self) -> builtins.str:
-        '''Username is a LDAP user name used to authenticate using the LDAP Vault authentication method.
+        '''Username is an LDAP username used to authenticate using the LDAP Vault authentication method.
 
         :schema: VaultDynamicSecretSpecProviderAuthLdap#username
         '''
@@ -14887,8 +15484,8 @@ class VaultDynamicSecretSpecProviderAuthUserPass:
     ) -> None:
         '''UserPass authenticates with Vault by passing username/password pair.
 
-        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
-        :param username: Username is a user name used to authenticate using the UserPass Vault authentication method.
+        :param path: Path where the UserPassword authentication backend is mounted in Vault, e.g: "userpass".
+        :param username: Username is a username used to authenticate using the UserPass Vault authentication method.
         :param secret_ref: SecretRef to a key in a Secret resource containing password for the user used to authenticate with Vault using the UserPass authentication method.
 
         :schema: VaultDynamicSecretSpecProviderAuthUserPass
@@ -14909,7 +15506,7 @@ class VaultDynamicSecretSpecProviderAuthUserPass:
 
     @builtins.property
     def path(self) -> builtins.str:
-        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "user".
+        '''Path where the UserPassword authentication backend is mounted in Vault, e.g: "userpass".
 
         :schema: VaultDynamicSecretSpecProviderAuthUserPass#path
         '''
@@ -14919,7 +15516,7 @@ class VaultDynamicSecretSpecProviderAuthUserPass:
 
     @builtins.property
     def username(self) -> builtins.str:
-        '''Username is a user name used to authenticate using the UserPass Vault authentication method.
+        '''Username is a username used to authenticate using the UserPass Vault authentication method.
 
         :schema: VaultDynamicSecretSpecProviderAuthUserPass#username
         '''
@@ -15610,6 +16207,7 @@ class WebhookProps:
     name_mapping={
         "result": "result",
         "url": "url",
+        "auth": "auth",
         "body": "body",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
@@ -15625,6 +16223,7 @@ class WebhookSpec:
         *,
         result: typing.Union["WebhookSpecResult", typing.Dict[builtins.str, typing.Any]],
         url: builtins.str,
+        auth: typing.Optional[typing.Union["WebhookSpecAuth", typing.Dict[builtins.str, typing.Any]]] = None,
         body: typing.Optional[builtins.str] = None,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["WebhookSpecCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -15639,6 +16238,7 @@ class WebhookSpec:
 
         :param result: Result formatting.
         :param url: Webhook url to call.
+        :param auth: Auth specifies a authorization protocol. Only one protocol may be set.
         :param body: Body.
         :param ca_bundle: PEM encoded CA bundle used to validate webhook server certificate. Only used if the Server URL is using HTTPS protocol. This parameter is ignored for plain HTTP protocol connection. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate webhook server certificate.
@@ -15651,12 +16251,15 @@ class WebhookSpec:
         '''
         if isinstance(result, dict):
             result = WebhookSpecResult(**result)
+        if isinstance(auth, dict):
+            auth = WebhookSpecAuth(**auth)
         if isinstance(ca_provider, dict):
             ca_provider = WebhookSpecCaProvider(**ca_provider)
         if __debug__:
             type_hints = typing.get_type_hints(_typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd91575ec)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument body", value=body, expected_type=type_hints["body"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
@@ -15668,6 +16271,8 @@ class WebhookSpec:
             "result": result,
             "url": url,
         }
+        if auth is not None:
+            self._values["auth"] = auth
         if body is not None:
             self._values["body"] = body
         if ca_bundle is not None:
@@ -15702,6 +16307,17 @@ class WebhookSpec:
         result = self._values.get("url")
         assert result is not None, "Required property 'url' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def auth(self) -> typing.Optional["WebhookSpecAuth"]:
+        '''Auth specifies a authorization protocol.
+
+        Only one protocol may be set.
+
+        :schema: WebhookSpec#auth
+        '''
+        result = self._values.get("auth")
+        return typing.cast(typing.Optional["WebhookSpecAuth"], result)
 
     @builtins.property
     def body(self) -> typing.Optional[builtins.str]:
@@ -15779,6 +16395,284 @@ class WebhookSpec:
 
     def __repr__(self) -> str:
         return "WebhookSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"ntlm": "ntlm"},
+)
+class WebhookSpecAuth:
+    def __init__(
+        self,
+        *,
+        ntlm: typing.Optional[typing.Union["WebhookSpecAuthNtlm", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Auth specifies a authorization protocol.
+
+        Only one protocol may be set.
+
+        :param ntlm: NTLMProtocol configures the store to use NTLM for auth.
+
+        :schema: WebhookSpecAuth
+        '''
+        if isinstance(ntlm, dict):
+            ntlm = WebhookSpecAuthNtlm(**ntlm)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__78defe8d10b15821216ddfd3f988c664963f350cdd10aa5c48a1c5a5734905a6)
+            check_type(argname="argument ntlm", value=ntlm, expected_type=type_hints["ntlm"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if ntlm is not None:
+            self._values["ntlm"] = ntlm
+
+    @builtins.property
+    def ntlm(self) -> typing.Optional["WebhookSpecAuthNtlm"]:
+        '''NTLMProtocol configures the store to use NTLM for auth.
+
+        :schema: WebhookSpecAuth#ntlm
+        '''
+        result = self._values.get("ntlm")
+        return typing.cast(typing.Optional["WebhookSpecAuthNtlm"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecAuthNtlm",
+    jsii_struct_bases=[],
+    name_mapping={
+        "password_secret": "passwordSecret",
+        "username_secret": "usernameSecret",
+    },
+)
+class WebhookSpecAuthNtlm:
+    def __init__(
+        self,
+        *,
+        password_secret: typing.Union["WebhookSpecAuthNtlmPasswordSecret", typing.Dict[builtins.str, typing.Any]],
+        username_secret: typing.Union["WebhookSpecAuthNtlmUsernameSecret", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''NTLMProtocol configures the store to use NTLM for auth.
+
+        :param password_secret: A reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+        :param username_secret: A reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: WebhookSpecAuthNtlm
+        '''
+        if isinstance(password_secret, dict):
+            password_secret = WebhookSpecAuthNtlmPasswordSecret(**password_secret)
+        if isinstance(username_secret, dict):
+            username_secret = WebhookSpecAuthNtlmUsernameSecret(**username_secret)
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__54f272261eb357770cbc8bfec20f2a259f0d7047b325a6c635ab4acecc21d863)
+            check_type(argname="argument password_secret", value=password_secret, expected_type=type_hints["password_secret"])
+            check_type(argname="argument username_secret", value=username_secret, expected_type=type_hints["username_secret"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "password_secret": password_secret,
+            "username_secret": username_secret,
+        }
+
+    @builtins.property
+    def password_secret(self) -> "WebhookSpecAuthNtlmPasswordSecret":
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: WebhookSpecAuthNtlm#passwordSecret
+        '''
+        result = self._values.get("password_secret")
+        assert result is not None, "Required property 'password_secret' is missing"
+        return typing.cast("WebhookSpecAuthNtlmPasswordSecret", result)
+
+    @builtins.property
+    def username_secret(self) -> "WebhookSpecAuthNtlmUsernameSecret":
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: WebhookSpecAuthNtlm#usernameSecret
+        '''
+        result = self._values.get("username_secret")
+        assert result is not None, "Required property 'username_secret' is missing"
+        return typing.cast("WebhookSpecAuthNtlmUsernameSecret", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecAuthNtlm(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecAuthNtlmPasswordSecret",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class WebhookSpecAuthNtlmPasswordSecret:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: WebhookSpecAuthNtlmPasswordSecret
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__2deaaac4bc9b8850bb1260ca7fc7e46f31d6a7fd0b83be30603d96939c1a744c)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: WebhookSpecAuthNtlmPasswordSecret#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: WebhookSpecAuthNtlmPasswordSecret#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: WebhookSpecAuthNtlmPasswordSecret#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecAuthNtlmPasswordSecret(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.WebhookSpecAuthNtlmUsernameSecret",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class WebhookSpecAuthNtlmUsernameSecret:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: WebhookSpecAuthNtlmUsernameSecret
+        '''
+        if __debug__:
+            type_hints = typing.get_type_hints(_typecheckingstub__c7a59ddd5e3704e4ca2730280bf8bd48570c20f65dafe99041e6a266f16c3e1a)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: WebhookSpecAuthNtlmUsernameSecret#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: WebhookSpecAuthNtlmUsernameSecret#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: WebhookSpecAuthNtlmUsernameSecret#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "WebhookSpecAuthNtlmUsernameSecret(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -16098,6 +16992,8 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef",
     "ClusterGeneratorSpecGeneratorGrafanaSpec",
     "ClusterGeneratorSpecGeneratorGrafanaSpecAuth",
+    "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic",
+    "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword",
     "ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken",
     "ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount",
     "ClusterGeneratorSpecGeneratorPasswordSpec",
@@ -16149,6 +17045,10 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecResultType",
     "ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecRetrySettings",
     "ClusterGeneratorSpecGeneratorWebhookSpec",
+    "ClusterGeneratorSpecGeneratorWebhookSpecAuth",
+    "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm",
+    "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret",
+    "ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret",
     "ClusterGeneratorSpecGeneratorWebhookSpecCaProvider",
     "ClusterGeneratorSpecGeneratorWebhookSpecCaProviderType",
     "ClusterGeneratorSpecGeneratorWebhookSpecResult",
@@ -16189,6 +17089,8 @@ __all__ = [
     "GrafanaProps",
     "GrafanaSpec",
     "GrafanaSpecAuth",
+    "GrafanaSpecAuthBasic",
+    "GrafanaSpecAuthBasicPassword",
     "GrafanaSpecAuthToken",
     "GrafanaSpecServiceAccount",
     "Password",
@@ -16252,6 +17154,10 @@ __all__ = [
     "Webhook",
     "WebhookProps",
     "WebhookSpec",
+    "WebhookSpecAuth",
+    "WebhookSpecAuthNtlm",
+    "WebhookSpecAuthNtlmPasswordSecret",
+    "WebhookSpecAuthNtlmUsernameSecret",
     "WebhookSpecCaProvider",
     "WebhookSpecCaProviderType",
     "WebhookSpecResult",
@@ -16650,7 +17556,24 @@ def _typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d
 
 def _typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550(
     *,
-    token: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+    basic: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0ca9e0312250798706b0bbbc493bb9f05d7676fc92dd825ae023d37d7286ef86(
+    *,
+    password: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword, typing.Dict[builtins.str, typing.Any]],
+    username: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__52cbf108e35477a5a146125711b6edb5cb2e91146f6276f2d40795dc8149d0ec(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -16796,8 +17719,8 @@ def _typecheckingstub__10e2321e1cd5730bc9b0e182284aef50907db67d44c1acfada3f65f19
 
 def _typecheckingstub__02abd566c822847d8f25656374f5c631e294093b6020fa8ec60a874e692efe08(
     *,
-    auth: typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]],
     server: builtins.str,
+    auth: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
     forward_inconsistent: typing.Optional[builtins.bool] = None,
@@ -17104,6 +18027,7 @@ def _typecheckingstub__d6461244ada6ac27bc8b5825bc53378b49b97c43164c4e5d508c69ab3
     *,
     result: typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecResult, typing.Dict[builtins.str, typing.Any]],
     url: builtins.str,
+    auth: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     body: typing.Optional[builtins.str] = None,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -17111,6 +18035,39 @@ def _typecheckingstub__d6461244ada6ac27bc8b5825bc53378b49b97c43164c4e5d508c69ab3
     method: typing.Optional[builtins.str] = None,
     secrets: typing.Optional[typing.Sequence[typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
     timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5dcfc882e004f94cf73db65a2a920c62c718b548501cfa608829f09e91423b6d(
+    *,
+    ntlm: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1c7b235434f71cb2dedf89df634e92c9be7c19319bdbabf850fb2ef0f7f26a81(
+    *,
+    password_secret: typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret, typing.Dict[builtins.str, typing.Any]],
+    username_secret: typing.Union[ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__89e3c64096d7ab15ba070babc315844393aa774d5e6d59f8d8af1081809d3a33(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__debabacb7a72e2aa4ed6e808a4b80893eb1122c2c840d54555a48ec65fe99f40(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -17440,7 +18397,24 @@ def _typecheckingstub__6625fbfd4423ace39404bc8b275e8825a4e344ae14018a39aa1fad007
 
 def _typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4(
     *,
-    token: typing.Union[GrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+    basic: typing.Optional[typing.Union[GrafanaSpecAuthBasic, typing.Dict[builtins.str, typing.Any]]] = None,
+    token: typing.Optional[typing.Union[GrafanaSpecAuthToken, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0542f077ce34199f3ffc66976e46e28ec5e0917422dc9b25348d809fce646abb(
+    *,
+    password: typing.Union[GrafanaSpecAuthBasicPassword, typing.Dict[builtins.str, typing.Any]],
+    username: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__378165568ab72ed346357c2af9813218ae826bea628ea6dcefbbbf7e29a79846(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -17676,8 +18650,8 @@ def _typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f39826
 
 def _typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb0ddf60a(
     *,
-    auth: typing.Union[VaultDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]],
     server: builtins.str,
+    auth: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
     forward_inconsistent: typing.Optional[builtins.bool] = None,
@@ -18002,6 +18976,7 @@ def _typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd
     *,
     result: typing.Union[WebhookSpecResult, typing.Dict[builtins.str, typing.Any]],
     url: builtins.str,
+    auth: typing.Optional[typing.Union[WebhookSpecAuth, typing.Dict[builtins.str, typing.Any]]] = None,
     body: typing.Optional[builtins.str] = None,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[WebhookSpecCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -18009,6 +18984,39 @@ def _typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd
     method: typing.Optional[builtins.str] = None,
     secrets: typing.Optional[typing.Sequence[typing.Union[WebhookSpecSecrets, typing.Dict[builtins.str, typing.Any]]]] = None,
     timeout: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__78defe8d10b15821216ddfd3f988c664963f350cdd10aa5c48a1c5a5734905a6(
+    *,
+    ntlm: typing.Optional[typing.Union[WebhookSpecAuthNtlm, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__54f272261eb357770cbc8bfec20f2a259f0d7047b325a6c635ab4acecc21d863(
+    *,
+    password_secret: typing.Union[WebhookSpecAuthNtlmPasswordSecret, typing.Dict[builtins.str, typing.Any]],
+    username_secret: typing.Union[WebhookSpecAuthNtlmUsernameSecret, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2deaaac4bc9b8850bb1260ca7fc7e46f31d6a7fd0b83be30603d96939c1a744c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c7a59ddd5e3704e4ca2730280bf8bd48570c20f65dafe99041e6a266f16c3e1a(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
