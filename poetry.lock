@@ -91,20 +91,20 @@ typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.200.1"
+version = "2.201.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "aws_cdk_lib-2.200.1-py3-none-any.whl", hash = "sha256:ac7f4f5b80b9183615698925746a2ae937498bfb5ae899746f19c76ed1688e62"},
-    {file = "aws_cdk_lib-2.200.1.tar.gz", hash = "sha256:3f64251327d2f64b2bc86e8e3fc5ab2c7381f135ad781c447f7dc64298397d33"},
+    {file = "aws_cdk_lib-2.201.0-py3-none-any.whl", hash = "sha256:0856569d0ecb81414d08d987950261957d331486cd9daa7a115f2cf38b12c64d"},
+    {file = "aws_cdk_lib-2.201.0.tar.gz", hash = "sha256:4dfdb59c5ff0341c48b1c91755e729a61d6508d015d2b9d545a825b9194eb1d2"},
 ]
 
 [package.dependencies]
 "aws-cdk.asset-awscli-v1" = "2.2.237"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.0,<3.0.0"
-"aws-cdk.cloud-assembly-schema" = ">=44.1.0,<45.0.0"
+"aws-cdk.cloud-assembly-schema" = ">=44.2.0,<45.0.0"
 constructs = ">=10.0.0,<11.0.0"
 jsii = ">=1.112.0,<2.0.0"
 publication = ">=0.0.3"
@@ -112,14 +112,14 @@ typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "boto3-stubs"
-version = "1.38.32"
-description = "Type annotations for boto3 1.38.32 generated with mypy-boto3-builder 8.11.0"
+version = "1.38.36"
+description = "Type annotations for boto3 1.38.36 generated with mypy-boto3-builder 8.11.0"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "boto3_stubs-1.38.32-py3-none-any.whl", hash = "sha256:20f493bfdd44e4e1a76ab76e22e32256e6ba3d8cfae07b066c7878cc61e7c37d"},
-    {file = "boto3_stubs-1.38.32.tar.gz", hash = "sha256:f57cdb44f87baf52e236951dcf9d32b93a906e21d5c0fe394b4166a5c0e16734"},
+    {file = "boto3_stubs-1.38.36-py3-none-any.whl", hash = "sha256:1f79b85f93772df94854e9e570a917f1d762f4080a88ed16b9f2e4b98b24f1f1"},
+    {file = "boto3_stubs-1.38.36.tar.gz", hash = "sha256:8de916b9433e9224f3bd4a79ed41e508dc532bfee7db34bfd3752901bcd7e69f"},
 ]
 
 [package.dependencies]
@@ -177,7 +177,7 @@ bedrock-data-automation-runtime = ["mypy-boto3-bedrock-data-automation-runtime (
 bedrock-runtime = ["mypy-boto3-bedrock-runtime (>=1.38.0,<1.39.0)"]
 billing = ["mypy-boto3-billing (>=1.38.0,<1.39.0)"]
 billingconductor = ["mypy-boto3-billingconductor (>=1.38.0,<1.39.0)"]
-boto3 = ["boto3 (==1.38.32)"]
+boto3 = ["boto3 (==1.38.36)"]
 braket = ["mypy-boto3-braket (>=1.38.0,<1.39.0)"]
 budgets = ["mypy-boto3-budgets (>=1.38.0,<1.39.0)"]
 ce = ["mypy-boto3-ce (>=1.38.0,<1.39.0)"]
@@ -604,14 +604,14 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.69.72"
+version = "2.69.73"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "cdk8s-2.69.72-py3-none-any.whl", hash = "sha256:71e00c7413c49a272ca6a96e0e50bc13a90ca81fd553ccc930ce1979c44643fc"},
-    {file = "cdk8s-2.69.72.tar.gz", hash = "sha256:e4a3649b9770e36e4d7c82eef7baa9c0cb4b6493c27082ee052f9648c6b96c3c"},
+    {file = "cdk8s-2.69.73-py3-none-any.whl", hash = "sha256:f6dce3fb56302b39f01d985b9a03f3e1c242ccb7587874cdcd434e5cbb5cdcb5"},
+    {file = "cdk8s-2.69.73.tar.gz", hash = "sha256:c751fb5c439d72c98eb98e0092ec4c961bf44e8051b2aedb052af785d593df52"},
 ]
 
 [package.dependencies]
@@ -1041,4 +1041,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10, <3.13"
-content-hash = "b15a94d75409ed8910ded4dc0b9300d374546e3368383ea9457a40a077624906"
+content-hash = "f20a504179f8f899bb388bf91915dfc54cb26e25359b09779b073c15fdd92112"
