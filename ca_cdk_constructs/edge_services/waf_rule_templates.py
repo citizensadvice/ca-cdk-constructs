@@ -92,6 +92,7 @@ def ip_rule_property(
     allow: bool = False,
     count_only: bool = False,
     cloud_watch_metrics_enabled: bool = False,
+    waf_scope: str = "CLOUDFRONT",
 ) -> waf.CfnWebACL.RuleProperty:
     """A wrapper that returns an `aws_wafv2.CfnWebACL.RuleProperty` object to be used in a list and passed to the CfnWebACL instance.
 
@@ -102,6 +103,7 @@ def ip_rule_property(
     :param allow: Set to True to allow the IP addresses, False to block, defaults to False.
     :param count_only: Set to True to only count and not take action on matching requests, defaults to False.
     :param cloud_watch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to Fasle.
+    :param waf_scope: The scope of the WAF ACL. Defaults to CLOUDFRONT.
     :return: aws_cdk.aws_wafv2.CfnWebACL.RuleProperty.
 
     :example:
@@ -144,7 +146,7 @@ def ip_rule_property(
         addresses=addresses.get("IPV4", []),
         description=f"{name}IpSetIPV4",
         ip_address_version="IPV4",
-        scope="CLOUDFRONT",
+        scope=waf_scope,
     ).attr_arn
 
     ipv6_arn = waf.CfnIPSet(
@@ -153,7 +155,7 @@ def ip_rule_property(
         addresses=addresses.get("IPV6", []),
         description=f"{name}IpSetIPV6",
         ip_address_version="IPV6",
-        scope="CLOUDFRONT",
+        scope=waf_scope,
     ).attr_arn
 
     return waf.CfnWebACL.RuleProperty(
@@ -192,6 +194,7 @@ def restricted_uri_string_property(
     allowed_addresses: dict[str, list[str]] = {},
     count_only: bool = False,
     cloud_watch_metrics_enabled: bool = False,
+    waf_scope: str = "CLOUDFRONT",
 ) -> waf.CfnWebACL.RuleProperty:
     """A wrapper that returns an `aws_wafv2.CfnWebACL.RuleProperty` object to be used in a list and passed to the CfnWebACL instance.
 
@@ -202,6 +205,7 @@ def restricted_uri_string_property(
     :param allowed_addresses: A dictionary of strings that specifies zero or more IP addresses or blocks of IP addresses for "IPV4" and "IPV6". Defaults to {}. All addresses must be specified using Classless Inter-Domain Routing (CIDR) notation.
     :param count_only: Set to True to only count and not BLOCK on matching requests, defaults to False.
     :param cloud_watch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to Fasle.
+    :param waf_scope: The scope of the WAF ACL. Defaults to CLOUDFRONT.
     :return: aws_cdk.aws_wafv2.CfnWebACL.RuleProperty.
 
     :example:
@@ -241,7 +245,7 @@ def restricted_uri_string_property(
         addresses=allowed_addresses.get("IPV4", []),
         description=f"{name}IpSetIPV4",
         ip_address_version="IPV4",
-        scope="CLOUDFRONT",
+        scope=waf_scope,
     ).attr_arn
 
     ipv6_arn = waf.CfnIPSet(
@@ -250,7 +254,7 @@ def restricted_uri_string_property(
         addresses=allowed_addresses.get("IPV6", []),
         description=f"{name}IpSetIPV6",
         ip_address_version="IPV6",
-        scope="CLOUDFRONT",
+        scope=waf_scope,
     ).attr_arn
 
     return waf.CfnWebACL.RuleProperty(
