@@ -1,5 +1,7 @@
+from typing import Any, Dict, Optional, Sequence
+
+from aws_cdk import IResolvable
 from aws_cdk import aws_wafv2 as waf
-import typing
 
 ###################################################################
 # A COLLECTION OF HELPER FUNCTIONS FOR GENERATING AWS WAFV2 RULES #
@@ -19,6 +21,9 @@ def managed_rule_group_property(
     count_only: bool = False,
     rules_to_exclude: list[str] = [],
     cloud_watch_metrics_enabled: bool = False,
+    managed_rule_group_configs: IResolvable
+    | Sequence[IResolvable | waf.CfnWebACL.ManagedRuleGroupConfigProperty | Dict[str, Any]]
+    | None = None,
 ) -> waf.CfnWebACL.RuleProperty:
     """A wrapper that returns an `aws_wafv2.CfnWebACL.RuleProperty` object to be used in a list and passed to the CfnWebACL instance
 
@@ -29,6 +34,7 @@ def managed_rule_group_property(
     :param count_only: Set to True to only count and not take action on matching requests, defaults to False.
     :param rules_to_exclude: A list of str names of individual rules to ignore (set to COUNT) within the managed rule group, defaults to [].
     :param cloudwatch_metrics_enabled: Set to True to enable logging via Cloudwatch, defaults to False.
+    :param managed_rule_group_configs: Additional information that's used by a managed rule group. Many managed rule groups don't require this. The rule groups used for intelligent threat mitigation require additional configuration.
     :return: aws_cdk.aws_wafv2.CfnWebACL.RuleProperty.
 
     :example:
@@ -79,6 +85,7 @@ def managed_rule_group_property(
                 vendor_name=managed_rule_vendor,
                 # overrides for individual rules within the group
                 rule_action_overrides=rule_action_overrides,
+                managed_rule_group_configs=managed_rule_group_configs,
             )
         ),
     )
@@ -117,7 +124,7 @@ def ip_rule_property(
     )
     """
 
-    count_property: typing.Optional[dict[typing.Any, typing.Any]] = None
+    count_property: Optional[dict[Any, Any]] = None
 
     # Count must be set to {} or None.
     if count_only:
@@ -220,7 +227,7 @@ def restricted_uri_string_property(
     )
     """
 
-    count_property: typing.Optional[dict[typing.Any, typing.Any]] = None
+    count_property: Optional[dict[Any, Any]] = None
 
     # Count must be set to {} or None.
     if count_only:
