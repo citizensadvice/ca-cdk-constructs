@@ -55,14 +55,14 @@ class WafV2Builder:
         scope: Construct,
         name: str,
         description: str,
-        waf_scope: Optional[str] = "CLOUDFRONT",
+        waf_scope: str = "CLOUDFRONT",
         log_group: Optional[cf_logs.LogGroup] = None,
         default_action: Optional[waf.CfnWebACL.DefaultActionProperty] = None,
     ) -> None:
         self.rules: typing.List[waf.CfnWebACL.RuleProperty] = []
         self.scope = scope
+        self.waf_scope = waf_scope
         self.name = name
-        self.waf_scope = waf_scope or "CLOUDFRONT"
         self.description = description
         self.log_group = log_group
 
@@ -153,6 +153,7 @@ class WafV2Builder:
                 allow or False,
                 count_only or False,
                 cloud_watch_metrics_enabled or False,
+                waf_scope=self.waf_scope,
             )
         )
 
