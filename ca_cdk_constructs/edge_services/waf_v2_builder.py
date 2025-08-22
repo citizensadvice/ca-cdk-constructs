@@ -1,13 +1,16 @@
+import typing
+from typing import Any, Dict, Optional, Sequence
+
+from aws_cdk import IResolvable
+from aws_cdk import aws_logs as cf_logs
+from aws_cdk import aws_wafv2 as waf
 from constructs import Construct
-from aws_cdk import aws_wafv2 as waf, aws_logs as cf_logs
-from typing import Optional
+
 from ca_cdk_constructs.edge_services.waf_rule_templates import (
-    managed_rule_group_property,
     ip_rule_property,
+    managed_rule_group_property,
     restricted_uri_string_property,
 )
-
-import typing
 
 
 class WafV2Builder:
@@ -101,6 +104,9 @@ class WafV2Builder:
         count_only: Optional[bool] = False,
         rules_to_exclude: Optional[list[str]] = [],
         cloud_watch_metrics_enabled: Optional[bool] = False,
+        managed_rule_group_configs: IResolvable
+        | Sequence[IResolvable | waf.CfnWebACL.ManagedRuleGroupConfigProperty | Dict[str, Any]]
+        | None = None,
     ) -> None:
         """
         Adds a managed rule to the WAFv2 WebACL.
@@ -112,6 +118,7 @@ class WafV2Builder:
         :param count_only: Whether to only count the requests. Defaults to False
         :param rules_to_exclude: A list of rules to exclude. Defaults to an empty list.
         :param cloud_watch_metrics_enabled: Whether to enable CloudWatch metrics. Defaults to False.
+        :param managed_rule_group_configs: Additional information that's used by a managed rule group. Many managed rule groups don't require this. The rule groups used for intelligent threat mitigation require additional configuration.
         """
         self.rules.append(
             managed_rule_group_property(
@@ -122,6 +129,7 @@ class WafV2Builder:
                 count_only or False,
                 rules_to_exclude or [],
                 cloud_watch_metrics_enabled or False,
+                managed_rule_group_configs,
             )
         )
 
