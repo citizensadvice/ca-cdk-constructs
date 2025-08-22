@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "ca_cdk_constructs"
-version = "0.15.0"
+version = "0.16.0"
 description = "Shared CDK constructs"
 authors = ["CA"]
 homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
 
 [tool.poetry.dependencies]
 # When this range changes, make sure that the versions in .github/workflows/test.yaml matches this
-python = ">=3.10, <3.13"
+python = ">=3.10, <3.14"
 aws-cdk-lib = "~=2.200"
 cdk8s = "~2.69.72"
 constructs = "~=10.4"
