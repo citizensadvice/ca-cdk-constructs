@@ -112,14 +112,14 @@ typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "boto3-stubs"
-version = "1.40.24"
-description = "Type annotations for boto3 1.40.24 generated with mypy-boto3-builder 8.11.0"
+version = "1.40.25"
+description = "Type annotations for boto3 1.40.25 generated with mypy-boto3-builder 8.11.0"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "boto3_stubs-1.40.24-py3-none-any.whl", hash = "sha256:742063f591256ec1aa5aa28f4ef4bd1a1379ba7ee4d648bf28988cfa6ee8ad2a"},
-    {file = "boto3_stubs-1.40.24.tar.gz", hash = "sha256:53d7b33da00013495577c979f309271fb5166d73d6d42ec5f6a3c98a768c508a"},
+    {file = "boto3_stubs-1.40.25-py3-none-any.whl", hash = "sha256:6fbc7f4775b03cd4856d408fa7bd5d3b0bb0326f0aa561ffdcd33cca564eb729"},
+    {file = "boto3_stubs-1.40.25.tar.gz", hash = "sha256:420aedc1dc5ae653977af711c7b925f95645bcfdff294c6d0fabaac994182e09"},
 ]
 
 [package.dependencies]
@@ -183,7 +183,7 @@ bedrock-data-automation-runtime = ["mypy-boto3-bedrock-data-automation-runtime (
 bedrock-runtime = ["mypy-boto3-bedrock-runtime (>=1.40.0,<1.41.0)"]
 billing = ["mypy-boto3-billing (>=1.40.0,<1.41.0)"]
 billingconductor = ["mypy-boto3-billingconductor (>=1.40.0,<1.41.0)"]
-boto3 = ["boto3 (==1.40.24)"]
+boto3 = ["boto3 (==1.40.25)"]
 braket = ["mypy-boto3-braket (>=1.40.0,<1.41.0)"]
 budgets = ["mypy-boto3-budgets (>=1.40.0,<1.41.0)"]
 ce = ["mypy-boto3-ce (>=1.40.0,<1.41.0)"]
@@ -613,19 +613,19 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "cdk8s"
-version = "2.70.11"
+version = "2.70.12"
 description = "This is the core library of Cloud Development Kit (CDK) for Kubernetes (cdk8s). cdk8s apps synthesize into standard Kubernetes manifests which can be applied to any Kubernetes cluster."
 optional = false
 python-versions = "~=3.9"
 groups = ["main"]
 files = [
-    {file = "cdk8s-2.70.11-py3-none-any.whl", hash = "sha256:1fc7266cd002f6deb0e95941cbb3d2f618a007d5989e2f26a37184b839ed924a"},
-    {file = "cdk8s-2.70.11.tar.gz", hash = "sha256:31b5b00ee51310092ac2d572a16b64e8305b1c47c81a27181af556e41d48eabb"},
+    {file = "cdk8s-2.70.12-py3-none-any.whl", hash = "sha256:be95129a7f9d851ef20adb62eea748e9310265a436f58d10b3cce085122270e2"},
+    {file = "cdk8s-2.70.12.tar.gz", hash = "sha256:3a0bb7accf6ad9d51b893b3590d2f14d57f951ea2564791387b850628340026b"},
 ]
 
 [package.dependencies]
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.113.0,<2.0.0"
+jsii = ">=1.114.1,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<4.3.0"
 
@@ -1057,4 +1057,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10, <3.14"
-content-hash = "36b98c40eaf252e7e9479547a85d7f9c86301a3b666c50c70e6bba9ac980f3c0"
+content-hash = "33b3bf223e5c21dad759269f0a189a1ab3ce60461c809d6c0a26f896584afe52"
