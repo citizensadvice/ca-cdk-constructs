@@ -2,7 +2,7 @@
 @help:
     just --list
 
-# Run ty type checker
+# Run mypy type checker
 [group("code quality")]
 mypy +files='.':
     uv run mypy {{ files }}
