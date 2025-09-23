@@ -1,29 +1,32 @@
-[tool.poetry]
+[project]
 name = "ca_cdk_constructs"
 version = "0.16.0"
 description = "Shared CDK constructs"
-authors = ["CA"]
-homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
+requires-python = ">=3.10"
+dependencies = [
+    "aws-cdk-lib>=2.215",
+    "cdk8s>=2.70.15",
+    "constructs>=10.4",
+    "cdk_remote_stack>=2.1",
+    "aws-cdk-lambda-layer-kubectl-v33>=2.0.0",
+]
 
-[tool.poetry.dependencies]
-# When this range changes, make sure that the versions in .github/workflows/test.yaml matches this
-python = ">=3.10, <3.14"
-aws-cdk-lib = "~=2.215"
-cdk8s = "~2.70.15"
-constructs = "~=10.4"
-cdk_remote_stack = "~=2.1"
-aws-cdk-lambda-layer-kubectl-v33 = "^2.0.0"
-
-[tool.poetry.group.dev.dependencies]
-boto3-stubs = {version = "1.40.35", extras = ["rds", "secretsmanager"]}
-pytest = "~=8.4"
-syrupy = "~=4.9"
-ruff = "^0.13.0"
-mypy = "^1.18.2"
+[dependency-groups]
+dev = [
+    "boto3-stubs[rds, secretsmanager] >=1.40.35",
+    "pytest>=8.4",
+    "syrupy>=4.9",
+    "ruff>=0.13.0",
+    "mypy>=1.18.2",
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "setuptools>=45", "setuptools_scm[toml]>=6.2"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ca_cdk_constructs"
+module-root = "."
 
 [tool.ruff]
 target-version = 'py312'
@@ -31,8 +34,6 @@ line-length = 95
 exclude = ["ca_cdk_constructs/eks/imports"]
 
 [tool.ruff.lint]
-# Documentation on Linting and formatting for Python projects
-# https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/3991601167/Linting+and+formatting+for+Python+projects#Rulesets
 ignore = ['E501']
 select = ['E', 'W', 'F', 'C', 'N', 'INP001']
 
