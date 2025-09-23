@@ -1,8 +1,19 @@
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.7 # Must match version pinned in the CI workflow
+  - repo: local
     hooks:
-      # Run the linter.
-      - id: ruff
-      # Run the formatter.
-      - id: ruff-format
+      - id: lint
+        name: Linting
+        entry: just lint
+        language: system
+        always_run: true
+        pass_filenames: true
+        types: [python]
+  - repo: local
+    hooks:
+      - id: typecheck
+        name: Typecheck
+        entry: just mypy
+        language: system
+        always_run: true
+        pass_filenames: true
+        types: [python]
