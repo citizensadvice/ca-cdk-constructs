@@ -165,10 +165,18 @@ cloned_cluster.event_rule
 
 </details>
 
-## Tests
+## Contributing
+
+We welcome contributions.
+
+This project uses `just` for running tasks and `uv` for project management.
+
+Install and run `just` to see the list of available commands.
+
+### Tests
 
 ```shell
-uv run pytest
+just pytest
 ```
 
 To run tests against a particular version of python (e.g. 3.10), run `uv venv --python 3.10 --clear`.
