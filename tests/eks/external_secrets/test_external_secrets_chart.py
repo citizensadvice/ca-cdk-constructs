@@ -12,7 +12,7 @@ from ca_cdk_constructs.eks.imports.io.external_secrets import (
 
 
 # to update the snapshot, run:
-#   poetry run pytest tests/cdk8s_lib/external_secrets/test_external_secrets_chart.py --snapshot-update
+#   uv run pytest tests/cdk8s_lib/external_secrets/test_external_secrets_chart.py --snapshot-update
 def test_external_secret_chart(snapshot):
     app = App()
 

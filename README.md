@@ -168,12 +168,10 @@ cloned_cluster.event_rule
 ## Tests
 
 ```shell
-poetry install
-
-poetry run pytest
+uv run pytest
 ```
 
-To run tests against a particular version of python (e.g. 3.10), run `poetry env use 3.10` before `poetry install`. You do need to have that version installed on your system through `brew install python@3.10` first.
+To run tests against a particular version of python (e.g. 3.10), run `uv venv --python 3.10 --clear`.
 
 ## Versioning and deployments
 
