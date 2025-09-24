@@ -165,16 +165,31 @@ cloned_cluster.event_rule
 
 </details>
 
-## Tests
+## Contributing
+
+We welcome contributions.
+
+This project uses `just` for running tasks and `uv` for project management.
+
+Install and run `just` to see the list of available commands.
+
+### Tests
 
 ```shell
-uv run pytest
+just pytest
 ```
 
 To run tests against a particular version of python (e.g. 3.10), run `uv venv --python 3.10 --clear`.
 
-## Versioning and deployments
+### Releases
 
-Versioning and depoyments are done via Github releases. Information on creating releases can be found [here](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release). Please follow the existing convention for version names and use automatic patch notes for consistence unless a major change is being made.
+This project uses semantic versioning and versions must be bumped in accordance with SemVer rules.
 
-When making a new release, please ensure that the **package version in `pyproject.toml` is updated** with the version matching the tag name.
+The `Justfile` contains a helper command for making releases, `just draft-release`. To use it:
+
+1. Determine the release type (patch, minor, major)
+2. Run `just draft-release <patch | minor | major>`
+3. Approve the version bump if acceptable
+4. Check the staged changes and approve if acceptable
+5. Follow the link to the draft release and edit it to add details if requied
+6. Publish the release

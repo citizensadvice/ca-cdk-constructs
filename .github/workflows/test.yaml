@@ -3,28 +3,19 @@ name: Tests
 on: pull_request
 
 jobs:
-  ruff:
-    name: Ruff Check & Format
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Ruff
-        run: pip3 install ruff==0.6.7 # Must match version pinned in .pre-commit.yaml
-      - run: ruff check
-      - run: ruff format --check
-
   typecheck:
     name: MyPy Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: extractions/setup-just@v3
       - uses: citizensadvice/python-uv-setup-action@v1
         with:
-          python_version: 3.12
+          python_version: 3.13
       - name: Run type check
-        run: uv run mypy .
+        run: just mypy
 
-  pytest:
+  test:
     name: Testing on python ${{ matrix.python_version }}
     runs-on: ubuntu-latest
     strategy:
@@ -33,17 +24,18 @@ jobs:
         python_version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v2
+      - uses: extractions/setup-just@v3
       - uses: citizensadvice/python-uv-setup-action@v1
         with:
           python_version: ${{ matrix.python_version }}
-      - name: Run tests
-        run: uv run pytest -vv
+      - run: just lint
+      - run: just pytest
 
   checks-successful:
     name: All Checks Passed
     runs-on: ubuntu-latest
     if: always()
-    needs: [ruff, typecheck, pytest]
+    needs: [typecheck, test]
     steps:
       - uses: re-actors/alls-green@v1.2.2
         with:
