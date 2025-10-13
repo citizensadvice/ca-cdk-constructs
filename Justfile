@@ -29,6 +29,11 @@ format *files:
     uv run ruff check --fix {{ files }}
     just --fmt --unstable
 
+# Update the cdk8s imports
+[group("updates")]
+import-cdk8s:
+    cdk8s import --output ca_cdk_constructs/eks/imports
+
 # Bump version, push and create draft release
 [confirm("Are you sure you want to draft a release? [y/N]")]
 [group("release")]
