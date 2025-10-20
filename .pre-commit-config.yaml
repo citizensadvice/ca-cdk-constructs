@@ -5,8 +5,8 @@ repos:
         name: Linting
         entry: just lint
         language: system
-        always_run: true
         pass_filenames: true
+        exclude: ca_cdk_constructs/eks/imports/
         types: [python]
   - repo: local
     hooks:
@@ -14,6 +14,6 @@ repos:
         name: Typecheck
         entry: just mypy
         language: system
-        always_run: true
         pass_filenames: true
+        exclude: ca_cdk_constructs/eks/imports/
         types: [python]

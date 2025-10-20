@@ -53,7 +53,7 @@ You need to update the version of `ca_cdk_constructs` in your project if both of
 To vendor the libraries for the [K8s version currently supported by the CA Kubernetes platform](https://citizensadvice.atlassian.net/wiki/spaces/OPS/pages/2874441735/Current+version):
 
 - update the k8s / crd versions in `cdk8s.yaml`
-- run `cdk8s import --output ca_cdk_constructs/eks/imports`
+- run `just import-cdk8s`
 
 The library can be then used as follows:
 
