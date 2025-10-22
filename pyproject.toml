@@ -8,7 +8,7 @@ dependencies = [
     "cdk8s>=2.70.15",
     "constructs>=10.4",
     "cdk_remote_stack>=2.1",
-    "aws-cdk-lambda-layer-kubectl-v33>=2.0.0",
+    "aws-cdk-lambda-layer-kubectl-v34>=2.0.0",
 ]
 
 [dependency-groups]
