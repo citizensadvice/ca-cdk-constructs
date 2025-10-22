@@ -1,6 +1,6 @@
 [project]
 name = "ca_cdk_constructs"
-version = "0.16.0"
+version = "0.17.0"
 description = "Shared CDK constructs"
 requires-python = ">=3.10"
 dependencies = [
@@ -8,7 +8,7 @@ dependencies = [
     "cdk8s>=2.70.15",
     "constructs>=10.4",
     "cdk_remote_stack>=2.1",
-    "aws-cdk-lambda-layer-kubectl-v33>=2.0.0",
+    "aws-cdk-lambda-layer-kubectl-v34>=2.0.0",
 ]
 
 [dependency-groups]
