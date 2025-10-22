@@ -1,11 +1,12 @@
 from typing import Optional
-import aws_cdk.custom_resources as cr
+
 import aws_cdk as cdk
+import aws_cdk.custom_resources as cr
 from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
 from aws_cdk.aws_eks import Cluster, OpenIdConnectProvider
-from aws_cdk.aws_iam import IRole, Role, AccountRootPrincipal
-from aws_cdk.lambda_layer_kubectl_v33 import KubectlV33Layer as KubectlLayer
+from aws_cdk.aws_iam import AccountRootPrincipal, IRole, Role
+from aws_cdk.lambda_layer_kubectl_v34 import KubectlV34Layer as KubectlLayer
 from constructs import Construct
 
 

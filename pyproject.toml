@@ -1,6 +1,6 @@
 [project]
 name = "ca_cdk_constructs"
-version = "0.16.0"
+version = "0.17.0"
 description = "Shared CDK constructs"
 requires-python = ">=3.10"
 dependencies = [
