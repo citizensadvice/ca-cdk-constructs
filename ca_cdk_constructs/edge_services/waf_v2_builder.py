@@ -1,9 +1,7 @@
 import typing
 from typing import Any, Dict, Optional, Sequence
 
-from aws_cdk import IResolvable
-from aws_cdk import aws_logs as cf_logs
-from aws_cdk import aws_wafv2 as waf
+from aws_cdk import IResolvable, aws_logs as cf_logs, aws_wafv2 as waf
 from constructs import Construct
 
 from ca_cdk_constructs.edge_services.waf_rule_templates import (

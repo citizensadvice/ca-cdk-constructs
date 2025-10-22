@@ -1,5 +1,5 @@
-from aws_cdk.aws_ecr import Repository, LifecycleRule, TagStatus
 from aws_cdk import Duration
+from aws_cdk.aws_ecr import LifecycleRule, Repository, TagStatus
 from constructs import Construct
 
 

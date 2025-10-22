@@ -1,7 +1,6 @@
 from typing import Any, Dict, Optional, Sequence
 
-from aws_cdk import IResolvable
-from aws_cdk import aws_wafv2 as waf
+from aws_cdk import IResolvable, aws_wafv2 as waf
 
 ###################################################################
 # A COLLECTION OF HELPER FUNCTIONS FOR GENERATING AWS WAFV2 RULES #

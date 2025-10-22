@@ -1,9 +1,8 @@
 from attr import dataclass
-from constructs import Construct
-
-from aws_cdk import Stack, Fn, CfnOutput
+from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_iam import Role
 from aws_cdk.aws_route53 import CrossAccountZoneDelegationRecord, IPublicHostedZone
+from constructs import Construct
 
 
 @dataclass

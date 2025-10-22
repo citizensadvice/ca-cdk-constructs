@@ -6,8 +6,6 @@ from constructs import Construct
 
 from ca_cdk_constructs.eks.imports.io.external_secrets import (
     ExternalSecret as ExternalSecretV1,  # Renamed to avoid conflict with ExternalSecret class
-)
-from ca_cdk_constructs.eks.imports.io.external_secrets import (
     ExternalSecretSpec,
     ExternalSecretSpecData,
     ExternalSecretSpecDataRemoteRef,
