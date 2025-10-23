@@ -1,7 +1,6 @@
 import pytest
-from aws_cdk import App, Stack
-from aws_cdk import aws_wafv2
-from aws_cdk import aws_logs
+from aws_cdk import App, Stack, aws_logs, aws_wafv2
+
 from ca_cdk_constructs.edge_services.waf_v2_builder import WafV2Builder
 
 

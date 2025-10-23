@@ -41,6 +41,7 @@ select = [
    'INP001', # flake8-no-pep420
    'N',      # pep8-naming
    'W',      # pycodestyle
+   'I'       # Isort
 ]
 ignore = [
    'E501', # line-too-long
@@ -54,3 +55,6 @@ module = [
     "publication"
 ]
 ignore_missing_imports = true
+
+[tool.ruff.lint.isort]
+combine-as-imports = true

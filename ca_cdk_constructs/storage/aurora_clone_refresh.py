@@ -20,6 +20,7 @@ from aws_cdk.aws_stepfunctions import (
     Chain,
     Choice,
     Condition,
+    DefinitionBody,
     Fail,
     JsonPath,
     Pass,
@@ -27,7 +28,6 @@ from aws_cdk.aws_stepfunctions import (
     TaskInput,
     Wait,
     WaitTime,
-    DefinitionBody,
 )
 from aws_cdk.aws_stepfunctions_tasks import LambdaInvoke, SnsPublish
 from constructs import Construct
