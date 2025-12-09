@@ -3,6 +3,8 @@ name = "ca-cdk-constructs"
 version = "0.17.1"
 description = "Shared CDK constructs"
 requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Citizens Advice", email = "cloud.engineering@citizensadvice.org.uk" }]
 dependencies = [
     "aws-cdk-lib>=2.215",
     "cdk8s>=2.70.15",
@@ -10,6 +12,12 @@ dependencies = [
     "cdk_remote_stack>=2.1",
     "aws-cdk-lambda-layer-kubectl-v34>=2.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/citizensadvice/ca-cdk-constructs"
+Repository = "https://github.com/matthewcane/ca-cdk-constructs"
+Issues = "https://github.com/citizensadvice/ca-cdk-constructs/issues"
+Changelog = "https://github.com/citizensadvice/ca-cdk-constructs/releases"
 
 [dependency-groups]
 dev = [
