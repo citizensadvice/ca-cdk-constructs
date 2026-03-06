@@ -6,7 +6,7 @@ from aws_cdk import CfnOutput, Fn, Stack
 from aws_cdk.aws_ec2 import IVpc
 from aws_cdk.aws_eks import Cluster, OpenIdConnectProvider
 from aws_cdk.aws_iam import AccountRootPrincipal, IRole, Role
-from aws_cdk.lambda_layer_kubectl_v34 import KubectlV34Layer as KubectlLayer
+from aws_cdk.lambda_layer_kubectl_v35 import KubectlV35Layer as KubectlLayer
 from constructs import Construct
 
 
