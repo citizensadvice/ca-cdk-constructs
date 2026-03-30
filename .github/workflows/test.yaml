@@ -7,9 +7,9 @@ jobs:
     name: MyPy Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: extractions/setup-just@v3
-      - uses: citizensadvice/python-uv-setup-action@v1
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+      - uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+      - uses: citizensadvice/python-uv-setup-action@7da89585988537f240cbc9833829f3fdfeb7aa2a
         with:
           python_version: 3.13
       - name: Run type check
@@ -23,9 +23,9 @@ jobs:
       matrix:
         python_version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/checkout@v2
-      - uses: extractions/setup-just@v3
-      - uses: citizensadvice/python-uv-setup-action@v1
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+      - uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+      - uses: citizensadvice/python-uv-setup-action@7da89585988537f240cbc9833829f3fdfeb7aa2a
         with:
           python_version: ${{ matrix.python_version }}
       - run: just lint
@@ -37,6 +37,6 @@ jobs:
     if: always()
     needs: [typecheck, test]
     steps:
-      - uses: re-actors/alls-green@v1.2.2
+      - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe
         with:
           jobs: ${{ toJSON(needs) }}
