@@ -79,7 +79,7 @@ class ModifyDBClusterPassword(Construct):
         self.lambda_funct = Function(
             self,
             "ModifyDBClusterPasswordLambda",
-            runtime=Runtime.PYTHON_3_10,
+            runtime=Runtime.PYTHON_3_14,
             timeout=Duration.minutes(15),
             code=Code.from_inline(lambda_code),
             handler="index.handler",
