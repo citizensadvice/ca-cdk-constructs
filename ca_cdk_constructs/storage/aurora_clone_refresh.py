@@ -119,7 +119,7 @@ class AuroraCloneRefresh(Construct):
         cluster_clone_lambda = Function(
             self,
             "AuroraCloneLambda",
-            runtime=Runtime.PYTHON_3_10,
+            runtime=Runtime.PYTHON_3_14,
             timeout=Duration.minutes(15),
             code=self.lambda_source_code("aurora_clone.py"),
             handler="index.lambda_handler",
@@ -167,7 +167,7 @@ class AuroraCloneRefresh(Construct):
         cluster_status_lambda = Function(
             self,
             "AuroraStatusCheckLambda",
-            runtime=Runtime.PYTHON_3_10,
+            runtime=Runtime.PYTHON_3_14,
             timeout=Duration.minutes(15),
             code=self.lambda_source_code("aurora_check_status.py"),
             handler="index.lambda_handler",
@@ -183,7 +183,7 @@ class AuroraCloneRefresh(Construct):
         aurora_delete_clone_lambda = Function(
             self,
             "AuroraDeleteClusterLambda",
-            runtime=Runtime.PYTHON_3_10,
+            runtime=Runtime.PYTHON_3_14,
             timeout=Duration.minutes(15),
             code=self.lambda_source_code("aurora_delete_clone.py"),
             handler="index.lambda_handler",
