@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pkgutil import extend_path
 __path__ = extend_path(__path__, __name__)
 
@@ -11,27 +13,29 @@ import jsii
 import publication
 import typing_extensions
 
-import typeguard
-from importlib.metadata import version as _metadata_package_version
-TYPEGUARD_MAJOR_VERSION = int(_metadata_package_version('typeguard').split('.')[0])
+from jsii._type_checking import cached_type_hints, check_type
 
-def check_type(argname: str, value: object, expected_type: typing.Any) -> typing.Any:
-    if TYPEGUARD_MAJOR_VERSION <= 2:
-        return typeguard.check_type(argname=argname, value=value, expected_type=expected_type) # type:ignore
-    else:
-        if isinstance(value, jsii._reference_map.InterfaceDynamicProxy): # pyright: ignore [reportAttributeAccessIssue]
-           pass
-        else:
-            if TYPEGUARD_MAJOR_VERSION == 3:
-                typeguard.config.collection_check_strategy = typeguard.CollectionCheckStrategy.ALL_ITEMS # type:ignore
-                typeguard.check_type(value=value, expected_type=expected_type) # type:ignore
-            else:
-                typeguard.check_type(value=value, expected_type=expected_type, collection_check_strategy=typeguard.CollectionCheckStrategy.ALL_ITEMS) # type:ignore
 
 from ._jsii import *
 
-import cdk8s as _cdk8s_d3d9af27
-import constructs as _constructs_77d1e7e8
+class _LazyImport:
+    def __init__(self, module_name: str) -> None:
+        self._module_name = module_name
+        self._module: typing.Any = None
+    def __getattr__(self, name: str) -> typing.Any:
+        if self._module is None:
+            import importlib
+            self._module = importlib.import_module(self._module_name)
+        return getattr(self._module, name)
+
+if typing.TYPE_CHECKING:
+
+    import cdk8s as _cdk8s_d3d9af27
+    import constructs as _constructs_77d1e7e8
+else:
+
+    _cdk8s_d3d9af27 = _LazyImport("cdk8s")
+    _constructs_77d1e7e8 = _LazyImport("constructs")
 
 
 @jsii.data_type(
@@ -66,7 +70,7 @@ class Affinity:
         if isinstance(pod_anti_affinity, dict):
             pod_anti_affinity = PodAntiAffinity(**pod_anti_affinity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b0b5f1aeea5be7ebc9dd226948240c3fe007bf069ec377c716b2c8df75f266a9)
+            type_hints = cached_type_hints(_typecheckingstub__b0b5f1aeea5be7ebc9dd226948240c3fe007bf069ec377c716b2c8df75f266a9)
             check_type(argname="argument node_affinity", value=node_affinity, expected_type=type_hints["node_affinity"])
             check_type(argname="argument pod_affinity", value=pod_affinity, expected_type=type_hints["pod_affinity"])
             check_type(argname="argument pod_anti_affinity", value=pod_anti_affinity, expected_type=type_hints["pod_anti_affinity"])
@@ -135,7 +139,7 @@ class AggregationRule:
         :schema: io.k8s.api.rbac.v1.AggregationRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c6abea0d97901d2b42508f6bafd4b7f3b8e99dae1eb38751770090a223a1158b)
+            type_hints = cached_type_hints(_typecheckingstub__c6abea0d97901d2b42508f6bafd4b7f3b8e99dae1eb38751770090a223a1158b)
             check_type(argname="argument cluster_role_selectors", value=cluster_role_selectors, expected_type=type_hints["cluster_role_selectors"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cluster_role_selectors is not None:
@@ -206,7 +210,7 @@ class ApiServiceSpec:
         if isinstance(service, dict):
             service = ServiceReference(**service)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f218ab0fc666c93118e68a7a785bfe54888e33ebd68f9d3998ddac4e96d4a04d)
+            type_hints = cached_type_hints(_typecheckingstub__f218ab0fc666c93118e68a7a785bfe54888e33ebd68f9d3998ddac4e96d4a04d)
             check_type(argname="argument group_priority_minimum", value=group_priority_minimum, expected_type=type_hints["group_priority_minimum"])
             check_type(argname="argument version_priority", value=version_priority, expected_type=type_hints["version_priority"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -338,7 +342,7 @@ class AppArmorProfile:
         :schema: io.k8s.api.core.v1.AppArmorProfile
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f6525a0b1d531611026e034b4665b51e7faa295a6ee2f925226f7df9e54e5d91)
+            type_hints = cached_type_hints(_typecheckingstub__f6525a0b1d531611026e034b4665b51e7faa295a6ee2f925226f7df9e54e5d91)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument localhost_profile", value=localhost_profile, expected_type=type_hints["localhost_profile"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -399,7 +403,7 @@ class ApplyConfigurationV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.ApplyConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__43a59dc5513f01033228e560b6d0cc77e73b706cb34b1a57c058114e9f818225)
+            type_hints = cached_type_hints(_typecheckingstub__43a59dc5513f01033228e560b6d0cc77e73b706cb34b1a57c058114e9f818225)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if expression is not None:
@@ -467,7 +471,7 @@ class ApplyConfigurationV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.ApplyConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__395693e6178b891d69e05f3ffe290fafa719cb08e2cfeb36593c5eeeb0f1bcd6)
+            type_hints = cached_type_hints(_typecheckingstub__395693e6178b891d69e05f3ffe290fafa719cb08e2cfeb36593c5eeeb0f1bcd6)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if expression is not None:
@@ -536,7 +540,7 @@ class AuditAnnotation:
         :schema: io.k8s.api.admissionregistration.v1.AuditAnnotation
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cdb61422e9edade33e15a8324ec72015ce70065a765c447e7b907dc2468b3d53)
+            type_hints = cached_type_hints(_typecheckingstub__cdb61422e9edade33e15a8324ec72015ce70065a765c447e7b907dc2468b3d53)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument value_expression", value=value_expression, expected_type=type_hints["value_expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -621,7 +625,7 @@ class AwsElasticBlockStoreVolumeSource:
         :schema: io.k8s.api.core.v1.AWSElasticBlockStoreVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cfdcc8025d63ab999a257c0732b1137f522923a572bda91f7ca61de5c1afd6ec)
+            type_hints = cached_type_hints(_typecheckingstub__cfdcc8025d63ab999a257c0732b1137f522923a572bda91f7ca61de5c1afd6ec)
             check_type(argname="argument volume_id", value=volume_id, expected_type=type_hints["volume_id"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument partition", value=partition, expected_type=type_hints["partition"])
@@ -728,7 +732,7 @@ class AzureDiskVolumeSource:
         :schema: io.k8s.api.core.v1.AzureDiskVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__42545c3f07626c9bf98c297356705624406f44b3ada49253cfa8b75145c9636d)
+            type_hints = cached_type_hints(_typecheckingstub__42545c3f07626c9bf98c297356705624406f44b3ada49253cfa8b75145c9636d)
             check_type(argname="argument disk_name", value=disk_name, expected_type=type_hints["disk_name"])
             check_type(argname="argument disk_uri", value=disk_uri, expected_type=type_hints["disk_uri"])
             check_type(argname="argument caching_mode", value=caching_mode, expected_type=type_hints["caching_mode"])
@@ -853,7 +857,7 @@ class AzureFilePersistentVolumeSource:
         :schema: io.k8s.api.core.v1.AzureFilePersistentVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__84f066edf5f8bb2aff501a75543bcd7bb28c293243500d6e69343a9a24263569)
+            type_hints = cached_type_hints(_typecheckingstub__84f066edf5f8bb2aff501a75543bcd7bb28c293243500d6e69343a9a24263569)
             check_type(argname="argument secret_name", value=secret_name, expected_type=type_hints["secret_name"])
             check_type(argname="argument share_name", value=share_name, expected_type=type_hints["share_name"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -945,7 +949,7 @@ class AzureFileVolumeSource:
         :schema: io.k8s.api.core.v1.AzureFileVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__94648be721e46971848c0b51f3b1d4399d4a5e674368c83a893121cb3e801106)
+            type_hints = cached_type_hints(_typecheckingstub__94648be721e46971848c0b51f3b1d4399d4a5e674368c83a893121cb3e801106)
             check_type(argname="argument secret_name", value=secret_name, expected_type=type_hints["secret_name"])
             check_type(argname="argument share_name", value=share_name, expected_type=type_hints["share_name"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -1051,7 +1055,7 @@ class BasicDeviceV1Beta1:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__93c7b346a850646d64a74855105c3dae9359f889676bdd9d17e485e899b4fdaa)
+            type_hints = cached_type_hints(_typecheckingstub__93c7b346a850646d64a74855105c3dae9359f889676bdd9d17e485e899b4fdaa)
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
             check_type(argname="argument allow_multiple_allocations", value=allow_multiple_allocations, expected_type=type_hints["allow_multiple_allocations"])
             check_type(argname="argument attributes", value=attributes, expected_type=type_hints["attributes"])
@@ -1279,7 +1283,7 @@ class BoundObjectReference:
         :schema: io.k8s.api.authentication.v1.BoundObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3842071c1f7fa48baa6f58272703081a16a5000ba6ca2a54f8ed32aceb2e5309)
+            type_hints = cached_type_hints(_typecheckingstub__3842071c1f7fa48baa6f58272703081a16a5000ba6ca2a54f8ed32aceb2e5309)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -1364,7 +1368,7 @@ class Capabilities:
         :schema: io.k8s.api.core.v1.Capabilities
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__be353859945b18989b92f139f2d1450880c136c416dfb6159bcc2bedd35f5528)
+            type_hints = cached_type_hints(_typecheckingstub__be353859945b18989b92f139f2d1450880c136c416dfb6159bcc2bedd35f5528)
             check_type(argname="argument add", value=add, expected_type=type_hints["add"])
             check_type(argname="argument drop", value=drop, expected_type=type_hints["drop"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -1433,7 +1437,7 @@ class CapacityRequestPolicy:
         if isinstance(valid_range, dict):
             valid_range = CapacityRequestPolicyRange(**valid_range)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__01a0054a9cf9445d0fe8fae5b14cef3ad77f250a6238f3f53d04d72e721b635d)
+            type_hints = cached_type_hints(_typecheckingstub__01a0054a9cf9445d0fe8fae5b14cef3ad77f250a6238f3f53d04d72e721b635d)
             check_type(argname="argument default", value=default, expected_type=type_hints["default"])
             check_type(argname="argument valid_range", value=valid_range, expected_type=type_hints["valid_range"])
             check_type(argname="argument valid_values", value=valid_values, expected_type=type_hints["valid_values"])
@@ -1527,7 +1531,7 @@ class CapacityRequestPolicyRange:
         :schema: io.k8s.api.resource.v1.CapacityRequestPolicyRange
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7291f7bc34632eac605dfc0f520117e4c3f160ee1880c271ca65d9e2e57b887b)
+            type_hints = cached_type_hints(_typecheckingstub__7291f7bc34632eac605dfc0f520117e4c3f160ee1880c271ca65d9e2e57b887b)
             check_type(argname="argument min", value=min, expected_type=type_hints["min"])
             check_type(argname="argument max", value=max, expected_type=type_hints["max"])
             check_type(argname="argument step", value=step, expected_type=type_hints["step"])
@@ -1614,7 +1618,7 @@ class CapacityRequestPolicyRangeV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.CapacityRequestPolicyRange
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__549c8d6c022d4848c050e2ef24285cc2a972985670e31fdc01c780fdd7d25fed)
+            type_hints = cached_type_hints(_typecheckingstub__549c8d6c022d4848c050e2ef24285cc2a972985670e31fdc01c780fdd7d25fed)
             check_type(argname="argument min", value=min, expected_type=type_hints["min"])
             check_type(argname="argument max", value=max, expected_type=type_hints["max"])
             check_type(argname="argument step", value=step, expected_type=type_hints["step"])
@@ -1701,7 +1705,7 @@ class CapacityRequestPolicyRangeV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.CapacityRequestPolicyRange
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6ca48afe770d874eef73cbfdaa354bb4d783909809584b0064b5fa84fa3614a6)
+            type_hints = cached_type_hints(_typecheckingstub__6ca48afe770d874eef73cbfdaa354bb4d783909809584b0064b5fa84fa3614a6)
             check_type(argname="argument min", value=min, expected_type=type_hints["min"])
             check_type(argname="argument max", value=max, expected_type=type_hints["max"])
             check_type(argname="argument step", value=step, expected_type=type_hints["step"])
@@ -1789,7 +1793,7 @@ class CapacityRequestPolicyV1Beta1:
         if isinstance(valid_range, dict):
             valid_range = CapacityRequestPolicyRangeV1Beta1(**valid_range)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__faaac96154ef4d7fa9241b01e95ef55678679dfd119f0acdc44ee48752d6d60b)
+            type_hints = cached_type_hints(_typecheckingstub__faaac96154ef4d7fa9241b01e95ef55678679dfd119f0acdc44ee48752d6d60b)
             check_type(argname="argument default", value=default, expected_type=type_hints["default"])
             check_type(argname="argument valid_range", value=valid_range, expected_type=type_hints["valid_range"])
             check_type(argname="argument valid_values", value=valid_values, expected_type=type_hints["valid_values"])
@@ -1884,7 +1888,7 @@ class CapacityRequestPolicyV1Beta2:
         if isinstance(valid_range, dict):
             valid_range = CapacityRequestPolicyRangeV1Beta2(**valid_range)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0d8b96198d3e6bc9e4d32e48731b13f4ed78e882012eb5cea860e47962627666)
+            type_hints = cached_type_hints(_typecheckingstub__0d8b96198d3e6bc9e4d32e48731b13f4ed78e882012eb5cea860e47962627666)
             check_type(argname="argument default", value=default, expected_type=type_hints["default"])
             check_type(argname="argument valid_range", value=valid_range, expected_type=type_hints["valid_range"])
             check_type(argname="argument valid_values", value=valid_values, expected_type=type_hints["valid_values"])
@@ -1967,7 +1971,7 @@ class CapacityRequirements:
         :schema: io.k8s.api.resource.v1.CapacityRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9a08aa51ba2d34e38dceb7ae1a248c54c7723285048e4c6d988982fcfb241576)
+            type_hints = cached_type_hints(_typecheckingstub__9a08aa51ba2d34e38dceb7ae1a248c54c7723285048e4c6d988982fcfb241576)
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if requests is not None:
@@ -2023,7 +2027,7 @@ class CapacityRequirementsV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.CapacityRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__71ad746716f12c1c59c0ef6db0afcc816f435279798cb97d83c7c36f175ac065)
+            type_hints = cached_type_hints(_typecheckingstub__71ad746716f12c1c59c0ef6db0afcc816f435279798cb97d83c7c36f175ac065)
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if requests is not None:
@@ -2079,7 +2083,7 @@ class CapacityRequirementsV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.CapacityRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a87b9659adbb01cd9a152c0934a95f2eb8b00c8d0c6fa0c8fc2d047d724ef1a4)
+            type_hints = cached_type_hints(_typecheckingstub__a87b9659adbb01cd9a152c0934a95f2eb8b00c8d0c6fa0c8fc2d047d724ef1a4)
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if requests is not None:
@@ -2131,7 +2135,7 @@ class CelDeviceSelector:
         :schema: io.k8s.api.resource.v1.CELDeviceSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2d226b610b4bbdc558963f12b53a25d32427813d0aacb95a54346d71960131e9)
+            type_hints = cached_type_hints(_typecheckingstub__2d226b610b4bbdc558963f12b53a25d32427813d0aacb95a54346d71960131e9)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "expression": expression,
@@ -2206,7 +2210,7 @@ class CelDeviceSelectorV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.CELDeviceSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68ebac4a09c08f00006de9d0809efffb1db328fc9db93870ed71283c8bae4c69)
+            type_hints = cached_type_hints(_typecheckingstub__68ebac4a09c08f00006de9d0809efffb1db328fc9db93870ed71283c8bae4c69)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "expression": expression,
@@ -2281,7 +2285,7 @@ class CelDeviceSelectorV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.CELDeviceSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__653b913a509b4f39c62adeb4c7cd582a062a5bc686c48b9a18cf089ca5870d6a)
+            type_hints = cached_type_hints(_typecheckingstub__653b913a509b4f39c62adeb4c7cd582a062a5bc686c48b9a18cf089ca5870d6a)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "expression": expression,
@@ -2379,7 +2383,7 @@ class CephFsPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3b5ad69df26a24d2f512ef505faa2117b55637afeef4390b17721af52ec2e212)
+            type_hints = cached_type_hints(_typecheckingstub__3b5ad69df26a24d2f512ef505faa2117b55637afeef4390b17721af52ec2e212)
             check_type(argname="argument monitors", value=monitors, expected_type=type_hints["monitors"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -2510,7 +2514,7 @@ class CephFsVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__58ba734b607dafa3947531043b85de9735a63082b9ba851ec726adf616b87935)
+            type_hints = cached_type_hints(_typecheckingstub__58ba734b607dafa3947531043b85de9735a63082b9ba851ec726adf616b87935)
             check_type(argname="argument monitors", value=monitors, expected_type=type_hints["monitors"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -2645,7 +2649,7 @@ class CertificateSigningRequestSpec:
         :schema: io.k8s.api.certificates.v1.CertificateSigningRequestSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a33e7e945dc9d389d58598a00c0615e6a0c101c66e3b1019bfbc65ff586ad288)
+            type_hints = cached_type_hints(_typecheckingstub__a33e7e945dc9d389d58598a00c0615e6a0c101c66e3b1019bfbc65ff586ad288)
             check_type(argname="argument request", value=request, expected_type=type_hints["request"])
             check_type(argname="argument signer_name", value=signer_name, expected_type=type_hints["signer_name"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
@@ -2850,7 +2854,7 @@ class CinderPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__881438521a2ffa8cb492e1a592803eba0118f41d19c6c9b21f89488919c9fe95)
+            type_hints = cached_type_hints(_typecheckingstub__881438521a2ffa8cb492e1a592803eba0118f41d19c6c9b21f89488919c9fe95)
             check_type(argname="argument volume_id", value=volume_id, expected_type=type_hints["volume_id"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -2955,7 +2959,7 @@ class CinderVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06ae43f93ff756a310e6d5117e9cf8625447a987c3d9a7fda373017a190d72bc)
+            type_hints = cached_type_hints(_typecheckingstub__06ae43f93ff756a310e6d5117e9cf8625447a987c3d9a7fda373017a190d72bc)
             check_type(argname="argument volume_id", value=volume_id, expected_type=type_hints["volume_id"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -3039,7 +3043,7 @@ class ClientIpConfig:
         :schema: io.k8s.api.core.v1.ClientIPConfig
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__29a449f3b3357364e9fe2eedbf3639c327226f11ef6b646b27d4a54e71dc5c9e)
+            type_hints = cached_type_hints(_typecheckingstub__29a449f3b3357364e9fe2eedbf3639c327226f11ef6b646b27d4a54e71dc5c9e)
             check_type(argname="argument timeout_seconds", value=timeout_seconds, expected_type=type_hints["timeout_seconds"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if timeout_seconds is not None:
@@ -3102,7 +3106,7 @@ class ClusterTrustBundleProjection:
         if isinstance(label_selector, dict):
             label_selector = LabelSelector(**label_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eab090aee9ac01137fe787f9fe7c2c0d52a88cd3105c109c08b1eaa23dbb8932)
+            type_hints = cached_type_hints(_typecheckingstub__eab090aee9ac01137fe787f9fe7c2c0d52a88cd3105c109c08b1eaa23dbb8932)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument label_selector", value=label_selector, expected_type=type_hints["label_selector"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -3206,7 +3210,7 @@ class ClusterTrustBundleSpecV1Alpha1:
         :schema: io.k8s.api.certificates.v1alpha1.ClusterTrustBundleSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6a9bef18641cae2e8ea743ffce231b3a70e8274b3f75e68f15b194722bd3ae46)
+            type_hints = cached_type_hints(_typecheckingstub__6a9bef18641cae2e8ea743ffce231b3a70e8274b3f75e68f15b194722bd3ae46)
             check_type(argname="argument trust_bundle", value=trust_bundle, expected_type=type_hints["trust_bundle"])
             check_type(argname="argument signer_name", value=signer_name, expected_type=type_hints["signer_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -3278,7 +3282,7 @@ class ClusterTrustBundleSpecV1Beta1:
         :schema: io.k8s.api.certificates.v1beta1.ClusterTrustBundleSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__37393eb96cade16e658d6eb2a5c4e5352d41911822b1d3bc015f96511767dd78)
+            type_hints = cached_type_hints(_typecheckingstub__37393eb96cade16e658d6eb2a5c4e5352d41911822b1d3bc015f96511767dd78)
             check_type(argname="argument trust_bundle", value=trust_bundle, expected_type=type_hints["trust_bundle"])
             check_type(argname="argument signer_name", value=signer_name, expected_type=type_hints["signer_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -3359,7 +3363,7 @@ class ComponentCondition:
         :schema: io.k8s.api.core.v1.ComponentCondition
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e5c6f493a36d20a0f5c15799a425473df0ef3509854c45bf00c9f2d1df43078b)
+            type_hints = cached_type_hints(_typecheckingstub__e5c6f493a36d20a0f5c15799a425473df0ef3509854c45bf00c9f2d1df43078b)
             check_type(argname="argument status", value=status, expected_type=type_hints["status"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument error", value=error, expected_type=type_hints["error"])
@@ -3453,7 +3457,7 @@ class ConfigMapEnvSource:
         :schema: io.k8s.api.core.v1.ConfigMapEnvSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__370b1c0b36f05ff3192a8cbbd224accabfbc47a41badefad8eae8d70919df5a8)
+            type_hints = cached_type_hints(_typecheckingstub__370b1c0b36f05ff3192a8cbbd224accabfbc47a41badefad8eae8d70919df5a8)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -3516,7 +3520,7 @@ class ConfigMapKeySelector:
         :schema: io.k8s.api.core.v1.ConfigMapKeySelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e7b538afefcd3178906246a4633aa3edf9a64dc6b4f99e4f91adaab9981d5e5e)
+            type_hints = cached_type_hints(_typecheckingstub__e7b538afefcd3178906246a4633aa3edf9a64dc6b4f99e4f91adaab9981d5e5e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
@@ -3604,7 +3608,7 @@ class ConfigMapNodeConfigSource:
         :schema: io.k8s.api.core.v1.ConfigMapNodeConfigSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1e65fe961a56a03c3374ec1160978c65396b145146e3c13dc4180daa47d645b1)
+            type_hints = cached_type_hints(_typecheckingstub__1e65fe961a56a03c3374ec1160978c65396b145146e3c13dc4180daa47d645b1)
             check_type(argname="argument kubelet_config_key", value=kubelet_config_key, expected_type=type_hints["kubelet_config_key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3704,7 +3708,7 @@ class ConfigMapProjection:
         :schema: io.k8s.api.core.v1.ConfigMapProjection
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8f0e7adaaf9481758c5623030368e21ede02645c5c82f6c273c7c50fce12b22c)
+            type_hints = cached_type_hints(_typecheckingstub__8f0e7adaaf9481758c5623030368e21ede02645c5c82f6c273c7c50fce12b22c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
@@ -3790,7 +3794,7 @@ class ConfigMapVolumeSource:
         :schema: io.k8s.api.core.v1.ConfigMapVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f732f389aef3745668fe1484c8ff5f95aba0fd695dd9a611adf068af963d4ed6)
+            type_hints = cached_type_hints(_typecheckingstub__f732f389aef3745668fe1484c8ff5f95aba0fd695dd9a611adf068af963d4ed6)
             check_type(argname="argument default_mode", value=default_mode, expected_type=type_hints["default_mode"])
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -3965,7 +3969,7 @@ class Container:
         if isinstance(startup_probe, dict):
             startup_probe = Probe(**startup_probe)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1b3b3fe219125d2e54fdddd91ecda52e6a495f38680a3a53b33f1b02c1b671da)
+            type_hints = cached_type_hints(_typecheckingstub__1b3b3fe219125d2e54fdddd91ecda52e6a495f38680a3a53b33f1b02c1b671da)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument args", value=args, expected_type=type_hints["args"])
             check_type(argname="argument command", value=command, expected_type=type_hints["command"])
@@ -4375,7 +4379,7 @@ class ContainerPort:
         :schema: io.k8s.api.core.v1.ContainerPort
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ea50a33f53045ef963173d2b69fe4fa77a8142b8ae58ea83960e69f4839c879a)
+            type_hints = cached_type_hints(_typecheckingstub__ea50a33f53045ef963173d2b69fe4fa77a8142b8ae58ea83960e69f4839c879a)
             check_type(argname="argument container_port", value=container_port, expected_type=type_hints["container_port"])
             check_type(argname="argument host_ip", value=host_ip, expected_type=type_hints["host_ip"])
             check_type(argname="argument host_port", value=host_port, expected_type=type_hints["host_port"])
@@ -4481,7 +4485,7 @@ class ContainerResizePolicy:
         :schema: io.k8s.api.core.v1.ContainerResizePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e67f6595895fd5a9a7fe0c13ca80d8c3fa406cb081f8f5aff47e39181112e7d9)
+            type_hints = cached_type_hints(_typecheckingstub__e67f6595895fd5a9a7fe0c13ca80d8c3fa406cb081f8f5aff47e39181112e7d9)
             check_type(argname="argument resource_name", value=resource_name, expected_type=type_hints["resource_name"])
             check_type(argname="argument restart_policy", value=restart_policy, expected_type=type_hints["restart_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4549,7 +4553,7 @@ class ContainerResourceMetricSourceV2:
         if isinstance(target, dict):
             target = MetricTargetV2(**target)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b4e84c9f4f18c845b4719ea9f3557e5fb076a9b483c5cb7bcb93a992c8066a28)
+            type_hints = cached_type_hints(_typecheckingstub__b4e84c9f4f18c845b4719ea9f3557e5fb076a9b483c5cb7bcb93a992c8066a28)
             check_type(argname="argument container", value=container, expected_type=type_hints["container"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
@@ -4623,7 +4627,7 @@ class ContainerRestartRule:
         if isinstance(exit_codes, dict):
             exit_codes = ContainerRestartRuleOnExitCodes(**exit_codes)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8d4bdd70ea2cb3f28e8c896323bf3b894554af60b29e172956774e3ce18ac9b8)
+            type_hints = cached_type_hints(_typecheckingstub__8d4bdd70ea2cb3f28e8c896323bf3b894554af60b29e172956774e3ce18ac9b8)
             check_type(argname="argument action", value=action, expected_type=type_hints["action"])
             check_type(argname="argument exit_codes", value=exit_codes, expected_type=type_hints["exit_codes"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4685,7 +4689,7 @@ class ContainerRestartRuleOnExitCodes:
         :schema: io.k8s.api.core.v1.ContainerRestartRuleOnExitCodes
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eae617098f13e870023180ff6e42494be75266edc61537312aaa3e82992db864)
+            type_hints = cached_type_hints(_typecheckingstub__eae617098f13e870023180ff6e42494be75266edc61537312aaa3e82992db864)
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4747,7 +4751,7 @@ class Counter:
         :schema: io.k8s.api.resource.v1.Counter
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e8f3b314ceb70148beb9c4d658eb337cd47a323d97277c5907227b2464fc9bc2)
+            type_hints = cached_type_hints(_typecheckingstub__e8f3b314ceb70148beb9c4d658eb337cd47a323d97277c5907227b2464fc9bc2)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "value": value,
@@ -4797,7 +4801,7 @@ class CounterSet:
         :schema: io.k8s.api.resource.v1.CounterSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7e3ecc8fafcd6eadb92bd1260328011b847db545fead1ea41bd25a56d701f3c0)
+            type_hints = cached_type_hints(_typecheckingstub__7e3ecc8fafcd6eadb92bd1260328011b847db545fead1ea41bd25a56d701f3c0)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4863,7 +4867,7 @@ class CounterSetV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.CounterSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6f800d226821845ecf2ee8cf0e66156d3fc75e847cc58235f1cd3cf28f162b68)
+            type_hints = cached_type_hints(_typecheckingstub__6f800d226821845ecf2ee8cf0e66156d3fc75e847cc58235f1cd3cf28f162b68)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4929,7 +4933,7 @@ class CounterSetV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.CounterSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d2f2f17418ce6e298f1cc5d3ae501a69da970c16a357c6943b9792cbe377b1b5)
+            type_hints = cached_type_hints(_typecheckingstub__d2f2f17418ce6e298f1cc5d3ae501a69da970c16a357c6943b9792cbe377b1b5)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4987,7 +4991,7 @@ class CounterV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.Counter
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1301e4bc625eee7682fe81a75419098ca1d747070c1a7ad1a26e2c0e35686567)
+            type_hints = cached_type_hints(_typecheckingstub__1301e4bc625eee7682fe81a75419098ca1d747070c1a7ad1a26e2c0e35686567)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "value": value,
@@ -5029,7 +5033,7 @@ class CounterV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.Counter
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e9d3eb534c8a3725545a7e5ce26498e78bc56b6d68a47b1e6b0bc3b86682fa9d)
+            type_hints = cached_type_hints(_typecheckingstub__e9d3eb534c8a3725545a7e5ce26498e78bc56b6d68a47b1e6b0bc3b86682fa9d)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "value": value,
@@ -5100,7 +5104,7 @@ class CronJobSpec:
         if isinstance(job_template, dict):
             job_template = JobTemplateSpec(**job_template)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ede2ac625e6994d9a90814ee390559d5afe3fc8cbac21bd43b66df929f6dc946)
+            type_hints = cached_type_hints(_typecheckingstub__ede2ac625e6994d9a90814ee390559d5afe3fc8cbac21bd43b66df929f6dc946)
             check_type(argname="argument job_template", value=job_template, expected_type=type_hints["job_template"])
             check_type(argname="argument schedule", value=schedule, expected_type=type_hints["schedule"])
             check_type(argname="argument concurrency_policy", value=concurrency_policy, expected_type=type_hints["concurrency_policy"])
@@ -5250,7 +5254,7 @@ class CrossVersionObjectReference:
         :schema: io.k8s.api.autoscaling.v1.CrossVersionObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__16088e27454cd0459d4b0c1ddae21a0af78275822fe3ad5b12a9c2a78b7075bb)
+            type_hints = cached_type_hints(_typecheckingstub__16088e27454cd0459d4b0c1ddae21a0af78275822fe3ad5b12a9c2a78b7075bb)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
@@ -5328,7 +5332,7 @@ class CrossVersionObjectReferenceV2:
         :schema: io.k8s.api.autoscaling.v2.CrossVersionObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3af8150f9f5d358140c2abd5fb9f92e0e98dd7941df54ff76043b6eff438e4e5)
+            type_hints = cached_type_hints(_typecheckingstub__3af8150f9f5d358140c2abd5fb9f92e0e98dd7941df54ff76043b6eff438e4e5)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
@@ -5431,7 +5435,7 @@ class CsiDriverSpec:
         :schema: io.k8s.api.storage.v1.CSIDriverSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__17e3bd16387b10ac52d67d9c371444bdd008a79a45fd1fa94cf98f80b9c7070f)
+            type_hints = cached_type_hints(_typecheckingstub__17e3bd16387b10ac52d67d9c371444bdd008a79a45fd1fa94cf98f80b9c7070f)
             check_type(argname="argument attach_required", value=attach_required, expected_type=type_hints["attach_required"])
             check_type(argname="argument fs_group_policy", value=fs_group_policy, expected_type=type_hints["fs_group_policy"])
             check_type(argname="argument node_allocatable_update_period_seconds", value=node_allocatable_update_period_seconds, expected_type=type_hints["node_allocatable_update_period_seconds"])
@@ -5672,7 +5676,7 @@ class CsiNodeDriver:
         if isinstance(allocatable, dict):
             allocatable = VolumeNodeResources(**allocatable)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__adf2babe98e03e365ff1231a34008326706969b8f221e55270d116f02fb1c250)
+            type_hints = cached_type_hints(_typecheckingstub__adf2babe98e03e365ff1231a34008326706969b8f221e55270d116f02fb1c250)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument node_id", value=node_id, expected_type=type_hints["node_id"])
             check_type(argname="argument allocatable", value=allocatable, expected_type=type_hints["allocatable"])
@@ -5762,7 +5766,7 @@ class CsiNodeSpec:
         :schema: io.k8s.api.storage.v1.CSINodeSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__39088f7ceefdd1a9586f416018ad793cc2af5c04145208fe263fc1262780bed0)
+            type_hints = cached_type_hints(_typecheckingstub__39088f7ceefdd1a9586f416018ad793cc2af5c04145208fe263fc1262780bed0)
             check_type(argname="argument drivers", value=drivers, expected_type=type_hints["drivers"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "drivers": drivers,
@@ -5849,7 +5853,7 @@ class CsiPersistentVolumeSource:
         if isinstance(node_stage_secret_ref, dict):
             node_stage_secret_ref = SecretReference(**node_stage_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a4ab30eceffd6722994926b775cdc47f663e43744c6b71a78d0f1642819580a5)
+            type_hints = cached_type_hints(_typecheckingstub__a4ab30eceffd6722994926b775cdc47f663e43744c6b71a78d0f1642819580a5)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument volume_handle", value=volume_handle, expected_type=type_hints["volume_handle"])
             check_type(argname="argument controller_expand_secret_ref", value=controller_expand_secret_ref, expected_type=type_hints["controller_expand_secret_ref"])
@@ -6041,7 +6045,7 @@ class CsiVolumeSource:
         if isinstance(node_publish_secret_ref, dict):
             node_publish_secret_ref = LocalObjectReference(**node_publish_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__65e9dfb99794038b02bcf5d69b1da24f041cc9f271cf98f603749465f2a3c2fe)
+            type_hints = cached_type_hints(_typecheckingstub__65e9dfb99794038b02bcf5d69b1da24f041cc9f271cf98f603749465f2a3c2fe)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument node_publish_secret_ref", value=node_publish_secret_ref, expected_type=type_hints["node_publish_secret_ref"])
@@ -6166,7 +6170,7 @@ class CustomResourceColumnDefinition:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceColumnDefinition
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67357d094ad4e40c9fcc3d8cbf7b086f1bfc3261b70c6905ae016e7272d48696)
+            type_hints = cached_type_hints(_typecheckingstub__67357d094ad4e40c9fcc3d8cbf7b086f1bfc3261b70c6905ae016e7272d48696)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
@@ -6282,7 +6286,7 @@ class CustomResourceConversion:
         if isinstance(webhook, dict):
             webhook = WebhookConversion(**webhook)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d70408b4791a667462cf9c5081a65101e992ff219dda7178fc0fe4a250937f89)
+            type_hints = cached_type_hints(_typecheckingstub__d70408b4791a667462cf9c5081a65101e992ff219dda7178fc0fe4a250937f89)
             check_type(argname="argument strategy", value=strategy, expected_type=type_hints["strategy"])
             check_type(argname="argument webhook", value=webhook, expected_type=type_hints["webhook"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -6362,7 +6366,7 @@ class CustomResourceDefinitionNames:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceDefinitionNames
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9f1b391925af7e4945bb8d4ea39747ad4716515ac0a5519bb5b63e5039390614)
+            type_hints = cached_type_hints(_typecheckingstub__9f1b391925af7e4945bb8d4ea39747ad4716515ac0a5519bb5b63e5039390614)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument plural", value=plural, expected_type=type_hints["plural"])
             check_type(argname="argument categories", value=categories, expected_type=type_hints["categories"])
@@ -6503,7 +6507,7 @@ class CustomResourceDefinitionSpec:
         if isinstance(conversion, dict):
             conversion = CustomResourceConversion(**conversion)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3998b630c25e34db9c60fa9ce393302f885dc2d0aa7e7eddb9228b8dc8335d91)
+            type_hints = cached_type_hints(_typecheckingstub__3998b630c25e34db9c60fa9ce393302f885dc2d0aa7e7eddb9228b8dc8335d91)
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
             check_type(argname="argument names", value=names, expected_type=type_hints["names"])
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
@@ -6647,7 +6651,7 @@ class CustomResourceDefinitionVersion:
         if isinstance(subresources, dict):
             subresources = CustomResourceSubresources(**subresources)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d6df99d714ea39698bb4328abb2c39a68421fd691d72d93bd6ddbb23b90046bf)
+            type_hints = cached_type_hints(_typecheckingstub__d6df99d714ea39698bb4328abb2c39a68421fd691d72d93bd6ddbb23b90046bf)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument served", value=served, expected_type=type_hints["served"])
             check_type(argname="argument storage", value=storage, expected_type=type_hints["storage"])
@@ -6811,7 +6815,7 @@ class CustomResourceSubresourceScale:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.CustomResourceSubresourceScale
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e504fd18aae767ddb56fbac096bf70df45780d510027e105b410fa62efa0ce33)
+            type_hints = cached_type_hints(_typecheckingstub__e504fd18aae767ddb56fbac096bf70df45780d510027e105b410fa62efa0ce33)
             check_type(argname="argument spec_replicas_path", value=spec_replicas_path, expected_type=type_hints["spec_replicas_path"])
             check_type(argname="argument status_replicas_path", value=status_replicas_path, expected_type=type_hints["status_replicas_path"])
             check_type(argname="argument label_selector_path", value=label_selector_path, expected_type=type_hints["label_selector_path"])
@@ -6885,7 +6889,7 @@ class CustomResourceSubresources:
         if isinstance(scale, dict):
             scale = CustomResourceSubresourceScale(**scale)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c50da5aa5369520674d278d624a5847abf90b5ff122b8050299b5990def114cd)
+            type_hints = cached_type_hints(_typecheckingstub__c50da5aa5369520674d278d624a5847abf90b5ff122b8050299b5990def114cd)
             check_type(argname="argument scale", value=scale, expected_type=type_hints["scale"])
             check_type(argname="argument status", value=status, expected_type=type_hints["status"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -6946,7 +6950,7 @@ class CustomResourceValidation:
         if isinstance(open_apiv3_schema, dict):
             open_apiv3_schema = JsonSchemaProps(**open_apiv3_schema)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__043bf7c99906ebf978f378e80401b671bd7d527825d3a4d5d96e0c729fdbf9a8)
+            type_hints = cached_type_hints(_typecheckingstub__043bf7c99906ebf978f378e80401b671bd7d527825d3a4d5d96e0c729fdbf9a8)
             check_type(argname="argument open_apiv3_schema", value=open_apiv3_schema, expected_type=type_hints["open_apiv3_schema"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if open_apiv3_schema is not None:
@@ -7011,7 +7015,7 @@ class DaemonSetSpec:
         if isinstance(update_strategy, dict):
             update_strategy = DaemonSetUpdateStrategy(**update_strategy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__14204ab2e113520a3c936870c510953423acc16ac3f52118402d23dec634f9a1)
+            type_hints = cached_type_hints(_typecheckingstub__14204ab2e113520a3c936870c510953423acc16ac3f52118402d23dec634f9a1)
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
@@ -7121,7 +7125,7 @@ class DaemonSetUpdateStrategy:
         if isinstance(rolling_update, dict):
             rolling_update = RollingUpdateDaemonSet(**rolling_update)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8b11783b3c58aecec2330e072809ea832cb9b06930ebac2636be1238b0ff753f)
+            type_hints = cached_type_hints(_typecheckingstub__8b11783b3c58aecec2330e072809ea832cb9b06930ebac2636be1238b0ff753f)
             check_type(argname="argument rolling_update", value=rolling_update, expected_type=type_hints["rolling_update"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -7209,7 +7213,7 @@ class DeleteOptions:
         if isinstance(preconditions, dict):
             preconditions = Preconditions(**preconditions)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__51651210b2f45ea52509def59df38f1a165f6231405843108f8fb43c79e7fd13)
+            type_hints = cached_type_hints(_typecheckingstub__51651210b2f45ea52509def59df38f1a165f6231405843108f8fb43c79e7fd13)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument dry_run", value=dry_run, expected_type=type_hints["dry_run"])
             check_type(argname="argument grace_period_seconds", value=grace_period_seconds, expected_type=type_hints["grace_period_seconds"])
@@ -7387,7 +7391,7 @@ class DeploymentSpec:
         if isinstance(strategy, dict):
             strategy = DeploymentStrategy(**strategy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__88d492f2893c840ec003d2ddba4caf15921d31465e62b8a4667d961a583e3504)
+            type_hints = cached_type_hints(_typecheckingstub__88d492f2893c840ec003d2ddba4caf15921d31465e62b8a4667d961a583e3504)
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
@@ -7541,7 +7545,7 @@ class DeploymentStrategy:
         if isinstance(rolling_update, dict):
             rolling_update = RollingUpdateDeployment(**rolling_update)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__47c8ed86524662fa654ab55acc09523cd7f42475f5339eab3418ffa208e11b45)
+            type_hints = cached_type_hints(_typecheckingstub__47c8ed86524662fa654ab55acc09523cd7f42475f5339eab3418ffa208e11b45)
             check_type(argname="argument rolling_update", value=rolling_update, expected_type=type_hints["rolling_update"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -7643,7 +7647,7 @@ class Device:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__802977b03e88681facf1781394e349fe998843ae2a7b60ccad649caba3a31b9f)
+            type_hints = cached_type_hints(_typecheckingstub__802977b03e88681facf1781394e349fe998843ae2a7b60ccad649caba3a31b9f)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
             check_type(argname="argument allow_multiple_allocations", value=allow_multiple_allocations, expected_type=type_hints["allow_multiple_allocations"])
@@ -7886,7 +7890,7 @@ class DeviceAttribute:
         :schema: io.k8s.api.resource.v1.DeviceAttribute
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__202572b0695e1bd7f0adcb331b630eff1d77b467a7ca329121a097aa2e1c54a0)
+            type_hints = cached_type_hints(_typecheckingstub__202572b0695e1bd7f0adcb331b630eff1d77b467a7ca329121a097aa2e1c54a0)
             check_type(argname="argument bool", value=bool, expected_type=type_hints["bool"])
             check_type(argname="argument int", value=int, expected_type=type_hints["int"])
             check_type(argname="argument string", value=string, expected_type=type_hints["string"])
@@ -7980,7 +7984,7 @@ class DeviceAttributeV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceAttribute
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9fa1fb3f7059fe243c3a4d615363b72988487133195fb32f98885462161556c2)
+            type_hints = cached_type_hints(_typecheckingstub__9fa1fb3f7059fe243c3a4d615363b72988487133195fb32f98885462161556c2)
             check_type(argname="argument bool", value=bool, expected_type=type_hints["bool"])
             check_type(argname="argument int", value=int, expected_type=type_hints["int"])
             check_type(argname="argument string", value=string, expected_type=type_hints["string"])
@@ -8074,7 +8078,7 @@ class DeviceAttributeV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceAttribute
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ac2e3cc980736fc6b7ed6be5866896dd64dbdd096bdc6c03346293fd4a8f3af4)
+            type_hints = cached_type_hints(_typecheckingstub__ac2e3cc980736fc6b7ed6be5866896dd64dbdd096bdc6c03346293fd4a8f3af4)
             check_type(argname="argument bool", value=bool, expected_type=type_hints["bool"])
             check_type(argname="argument int", value=int, expected_type=type_hints["int"])
             check_type(argname="argument string", value=string, expected_type=type_hints["string"])
@@ -8161,7 +8165,7 @@ class DeviceCapacity:
         if isinstance(request_policy, dict):
             request_policy = CapacityRequestPolicy(**request_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__911b4d3084e816328912b580352a5895b97e1c03156d42f9ada25e05276326f7)
+            type_hints = cached_type_hints(_typecheckingstub__911b4d3084e816328912b580352a5895b97e1c03156d42f9ada25e05276326f7)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument request_policy", value=request_policy, expected_type=type_hints["request_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -8229,7 +8233,7 @@ class DeviceCapacityV1Beta1:
         if isinstance(request_policy, dict):
             request_policy = CapacityRequestPolicyV1Beta1(**request_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34193d8143d543d866db2b72458b133a8da90eafbb9469e09264188c4bbbd53e)
+            type_hints = cached_type_hints(_typecheckingstub__34193d8143d543d866db2b72458b133a8da90eafbb9469e09264188c4bbbd53e)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument request_policy", value=request_policy, expected_type=type_hints["request_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -8297,7 +8301,7 @@ class DeviceCapacityV1Beta2:
         if isinstance(request_policy, dict):
             request_policy = CapacityRequestPolicyV1Beta2(**request_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ddedb363f1af9ae86e54f243381f88f04f8aa311a8cbb95a6dca39c669ff14b7)
+            type_hints = cached_type_hints(_typecheckingstub__ddedb363f1af9ae86e54f243381f88f04f8aa311a8cbb95a6dca39c669ff14b7)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument request_policy", value=request_policy, expected_type=type_hints["request_policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -8369,7 +8373,7 @@ class DeviceClaim:
         :schema: io.k8s.api.resource.v1.DeviceClaim
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c5bc5b31e0ec83c87c2d0ee9850d37ac62eb54c43f7cdfa6d4faf879a9e6711d)
+            type_hints = cached_type_hints(_typecheckingstub__c5bc5b31e0ec83c87c2d0ee9850d37ac62eb54c43f7cdfa6d4faf879a9e6711d)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument constraints", value=constraints, expected_type=type_hints["constraints"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -8446,7 +8450,7 @@ class DeviceClaimConfiguration:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfiguration(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b9737e2a828a8d6364f180eacec0b3bd9a949d70b7de3c5f0ef3bd054a602df4)
+            type_hints = cached_type_hints(_typecheckingstub__b9737e2a828a8d6364f180eacec0b3bd9a949d70b7de3c5f0ef3bd054a602df4)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -8509,7 +8513,7 @@ class DeviceClaimConfigurationV1Beta1:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfigurationV1Beta1(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c5a20cd3b7994acb12ad7a838e80584a5949a736e2c889f3e11e75ab4c922c97)
+            type_hints = cached_type_hints(_typecheckingstub__c5a20cd3b7994acb12ad7a838e80584a5949a736e2c889f3e11e75ab4c922c97)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -8572,7 +8576,7 @@ class DeviceClaimConfigurationV1Beta2:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfigurationV1Beta2(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6ce041582cd64848322c36ec9827b1abfc868f17af094b2c420d864b51e5ba4f)
+            type_hints = cached_type_hints(_typecheckingstub__6ce041582cd64848322c36ec9827b1abfc868f17af094b2c420d864b51e5ba4f)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -8639,7 +8643,7 @@ class DeviceClaimV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceClaim
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__10fcf0871ca86bf90b766cddaf3c0114eb3aa8211c1ddd87adb940578290c420)
+            type_hints = cached_type_hints(_typecheckingstub__10fcf0871ca86bf90b766cddaf3c0114eb3aa8211c1ddd87adb940578290c420)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument constraints", value=constraints, expected_type=type_hints["constraints"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -8720,7 +8724,7 @@ class DeviceClaimV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceClaim
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__617a0b2de19cc0b6c827df4cbc093a9b8572727aa442193554bd13d7ee7c7549)
+            type_hints = cached_type_hints(_typecheckingstub__617a0b2de19cc0b6c827df4cbc093a9b8572727aa442193554bd13d7ee7c7549)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument constraints", value=constraints, expected_type=type_hints["constraints"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -8795,7 +8799,7 @@ class DeviceClassConfiguration:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfiguration(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f947471803a14769ca1f3884badd933049445dabda67e6911dc581eb7e23f204)
+            type_hints = cached_type_hints(_typecheckingstub__f947471803a14769ca1f3884badd933049445dabda67e6911dc581eb7e23f204)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if opaque is not None:
@@ -8842,7 +8846,7 @@ class DeviceClassConfigurationV1Beta1:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfigurationV1Beta1(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0e093a0ea88d48ac692707e2df94c9ee6d167d0c57da8e054086e4f20dee9311)
+            type_hints = cached_type_hints(_typecheckingstub__0e093a0ea88d48ac692707e2df94c9ee6d167d0c57da8e054086e4f20dee9311)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if opaque is not None:
@@ -8889,7 +8893,7 @@ class DeviceClassConfigurationV1Beta2:
         if isinstance(opaque, dict):
             opaque = OpaqueDeviceConfigurationV1Beta2(**opaque)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9874347a0524169d3341c7c0d1bf11d6a901d34178c55b5d98c00b2c986e1c94)
+            type_hints = cached_type_hints(_typecheckingstub__9874347a0524169d3341c7c0d1bf11d6a901d34178c55b5d98c00b2c986e1c94)
             check_type(argname="argument opaque", value=opaque, expected_type=type_hints["opaque"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if opaque is not None:
@@ -8942,7 +8946,7 @@ class DeviceClassSpec:
         :schema: io.k8s.api.resource.v1.DeviceClassSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d1a3e472728d0f7e2f5065b6eca3fc440b9dbc7959643d522bf32e68a834df46)
+            type_hints = cached_type_hints(_typecheckingstub__d1a3e472728d0f7e2f5065b6eca3fc440b9dbc7959643d522bf32e68a834df46)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument extended_resource_name", value=extended_resource_name, expected_type=type_hints["extended_resource_name"])
             check_type(argname="argument selectors", value=selectors, expected_type=type_hints["selectors"])
@@ -9027,7 +9031,7 @@ class DeviceClassSpecV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceClassSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__95dfc6958d18aeacb48786e5cd471812a5575d15e0370ff4cd6deb49eace516d)
+            type_hints = cached_type_hints(_typecheckingstub__95dfc6958d18aeacb48786e5cd471812a5575d15e0370ff4cd6deb49eace516d)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument extended_resource_name", value=extended_resource_name, expected_type=type_hints["extended_resource_name"])
             check_type(argname="argument selectors", value=selectors, expected_type=type_hints["selectors"])
@@ -9112,7 +9116,7 @@ class DeviceClassSpecV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceClassSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c43467da66caf267d8c8acb9d77e00d137395b065021aed5b552cdf373274346)
+            type_hints = cached_type_hints(_typecheckingstub__c43467da66caf267d8c8acb9d77e00d137395b065021aed5b552cdf373274346)
             check_type(argname="argument config", value=config, expected_type=type_hints["config"])
             check_type(argname="argument extended_resource_name", value=extended_resource_name, expected_type=type_hints["extended_resource_name"])
             check_type(argname="argument selectors", value=selectors, expected_type=type_hints["selectors"])
@@ -9197,7 +9201,7 @@ class DeviceConstraint:
         :schema: io.k8s.api.resource.v1.DeviceConstraint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__66c6df94c2bcf38533083009e09c73b12ecf8f743fba6ead1e62c9e3333aa356)
+            type_hints = cached_type_hints(_typecheckingstub__66c6df94c2bcf38533083009e09c73b12ecf8f743fba6ead1e62c9e3333aa356)
             check_type(argname="argument distinct_attribute", value=distinct_attribute, expected_type=type_hints["distinct_attribute"])
             check_type(argname="argument match_attribute", value=match_attribute, expected_type=type_hints["match_attribute"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -9288,7 +9292,7 @@ class DeviceConstraintV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceConstraint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a9fc84b91bd140cc7144de52cf67c67f6f7c0c93ef7280e12be7ba51f2ae5799)
+            type_hints = cached_type_hints(_typecheckingstub__a9fc84b91bd140cc7144de52cf67c67f6f7c0c93ef7280e12be7ba51f2ae5799)
             check_type(argname="argument distinct_attribute", value=distinct_attribute, expected_type=type_hints["distinct_attribute"])
             check_type(argname="argument match_attribute", value=match_attribute, expected_type=type_hints["match_attribute"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -9379,7 +9383,7 @@ class DeviceConstraintV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceConstraint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__04ac74e6c76c716005ed037b74b6f5ee633ad541f4dc95012a594b9dc7cd2c8a)
+            type_hints = cached_type_hints(_typecheckingstub__04ac74e6c76c716005ed037b74b6f5ee633ad541f4dc95012a594b9dc7cd2c8a)
             check_type(argname="argument distinct_attribute", value=distinct_attribute, expected_type=type_hints["distinct_attribute"])
             check_type(argname="argument match_attribute", value=match_attribute, expected_type=type_hints["match_attribute"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -9464,7 +9468,7 @@ class DeviceCounterConsumption:
         :schema: io.k8s.api.resource.v1.DeviceCounterConsumption
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6e6f2ad97f1787024b1e6872e5db021f3801bde019233fa43406bdabf240300b)
+            type_hints = cached_type_hints(_typecheckingstub__6e6f2ad97f1787024b1e6872e5db021f3801bde019233fa43406bdabf240300b)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument counter_set", value=counter_set, expected_type=type_hints["counter_set"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -9526,7 +9530,7 @@ class DeviceCounterConsumptionV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceCounterConsumption
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__53dc55e510abda651b842d854ed10ece23dbd339accdd426d60b1dcbd628f7bd)
+            type_hints = cached_type_hints(_typecheckingstub__53dc55e510abda651b842d854ed10ece23dbd339accdd426d60b1dcbd628f7bd)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument counter_set", value=counter_set, expected_type=type_hints["counter_set"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -9588,7 +9592,7 @@ class DeviceCounterConsumptionV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceCounterConsumption
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__13af7dd9174cc4e84364c706eea41018ec433171050a7f16760e0da479859cb8)
+            type_hints = cached_type_hints(_typecheckingstub__13af7dd9174cc4e84364c706eea41018ec433171050a7f16760e0da479859cb8)
             check_type(argname="argument counters", value=counters, expected_type=type_hints["counters"])
             check_type(argname="argument counter_set", value=counter_set, expected_type=type_hints["counter_set"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -9660,7 +9664,7 @@ class DeviceRequest:
         if isinstance(exactly, dict):
             exactly = ExactDeviceRequest(**exactly)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3d125dd52db1bc02de06c549848a34a6efe97d581a231a42d68e954dd9bd36b0)
+            type_hints = cached_type_hints(_typecheckingstub__3d125dd52db1bc02de06c549848a34a6efe97d581a231a42d68e954dd9bd36b0)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument exactly", value=exactly, expected_type=type_hints["exactly"])
             check_type(argname="argument first_available", value=first_available, expected_type=type_hints["first_available"])
@@ -9770,7 +9774,7 @@ class DeviceRequestV1Beta1:
         if isinstance(capacity, dict):
             capacity = CapacityRequirementsV1Beta1(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5f28a02c48dc8f0c9f6efec0b0744b1a354bbddc4e9b2bd733fae8cddcd5d2c9)
+            type_hints = cached_type_hints(_typecheckingstub__5f28a02c48dc8f0c9f6efec0b0744b1a354bbddc4e9b2bd733fae8cddcd5d2c9)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument admin_access", value=admin_access, expected_type=type_hints["admin_access"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -9980,7 +9984,7 @@ class DeviceRequestV1Beta2:
         if isinstance(exactly, dict):
             exactly = ExactDeviceRequestV1Beta2(**exactly)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8f44c59bb719843ebc8fda08112c170238c93034d336e9caf04b2152a788a08)
+            type_hints = cached_type_hints(_typecheckingstub__d8f44c59bb719843ebc8fda08112c170238c93034d336e9caf04b2152a788a08)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument exactly", value=exactly, expected_type=type_hints["exactly"])
             check_type(argname="argument first_available", value=first_available, expected_type=type_hints["first_available"])
@@ -10064,7 +10068,7 @@ class DeviceSelector:
         if isinstance(cel, dict):
             cel = CelDeviceSelector(**cel)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8a5c321d54c15b3413c72d3547cf4b39c677d489246df7fcb996449a0187d16)
+            type_hints = cached_type_hints(_typecheckingstub__d8a5c321d54c15b3413c72d3547cf4b39c677d489246df7fcb996449a0187d16)
             check_type(argname="argument cel", value=cel, expected_type=type_hints["cel"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cel is not None:
@@ -10111,7 +10115,7 @@ class DeviceSelectorV1Beta1:
         if isinstance(cel, dict):
             cel = CelDeviceSelectorV1Beta1(**cel)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c74a271980b588e6ca7107a34cb028c9cd44fdefea02b98bb9fa53be3e0d425e)
+            type_hints = cached_type_hints(_typecheckingstub__c74a271980b588e6ca7107a34cb028c9cd44fdefea02b98bb9fa53be3e0d425e)
             check_type(argname="argument cel", value=cel, expected_type=type_hints["cel"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cel is not None:
@@ -10158,7 +10162,7 @@ class DeviceSelectorV1Beta2:
         if isinstance(cel, dict):
             cel = CelDeviceSelectorV1Beta2(**cel)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3f4f1fa620ef05a6428cae3512a568d3f6de30e979826289550c49592cc73752)
+            type_hints = cached_type_hints(_typecheckingstub__3f4f1fa620ef05a6428cae3512a568d3f6de30e979826289550c49592cc73752)
             check_type(argname="argument cel", value=cel, expected_type=type_hints["cel"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cel is not None:
@@ -10227,7 +10231,7 @@ class DeviceSubRequest:
         if isinstance(capacity, dict):
             capacity = CapacityRequirements(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__37c1290804cb286ce48bd9ccab3e3dea5451fdc4d9e0b31e25f87aa7a2e6ed3b)
+            type_hints = cached_type_hints(_typecheckingstub__37c1290804cb286ce48bd9ccab3e3dea5451fdc4d9e0b31e25f87aa7a2e6ed3b)
             check_type(argname="argument device_class_name", value=device_class_name, expected_type=type_hints["device_class_name"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -10404,7 +10408,7 @@ class DeviceSubRequestV1Beta1:
         if isinstance(capacity, dict):
             capacity = CapacityRequirementsV1Beta1(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2aad085413afac95d6d96fa5ca99beb272a300437308cafe852e9ec9fb9d4809)
+            type_hints = cached_type_hints(_typecheckingstub__2aad085413afac95d6d96fa5ca99beb272a300437308cafe852e9ec9fb9d4809)
             check_type(argname="argument device_class_name", value=device_class_name, expected_type=type_hints["device_class_name"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -10581,7 +10585,7 @@ class DeviceSubRequestV1Beta2:
         if isinstance(capacity, dict):
             capacity = CapacityRequirementsV1Beta2(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__77dcba0c1c732565c9d430d2679c6a162a90c299301213732f3b89aba707d8e4)
+            type_hints = cached_type_hints(_typecheckingstub__77dcba0c1c732565c9d430d2679c6a162a90c299301213732f3b89aba707d8e4)
             check_type(argname="argument device_class_name", value=device_class_name, expected_type=type_hints["device_class_name"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -10745,7 +10749,7 @@ class DeviceTaint:
         :schema: io.k8s.api.resource.v1.DeviceTaint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db67eb278d054fa475e95d799f2e57531db674a54a3a6c560127f3edd418f8e2)
+            type_hints = cached_type_hints(_typecheckingstub__db67eb278d054fa475e95d799f2e57531db674a54a3a6c560127f3edd418f8e2)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument time_added", value=time_added, expected_type=type_hints["time_added"])
@@ -10841,7 +10845,7 @@ class DeviceTaintRuleSpecV1Alpha3:
         if isinstance(device_selector, dict):
             device_selector = DeviceTaintSelectorV1Alpha3(**device_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4b91a976af0bb7a8442a4b5300d69a2fb7a15078cd16e8ca98cd9f3837547c8e)
+            type_hints = cached_type_hints(_typecheckingstub__4b91a976af0bb7a8442a4b5300d69a2fb7a15078cd16e8ca98cd9f3837547c8e)
             check_type(argname="argument taint", value=taint, expected_type=type_hints["taint"])
             check_type(argname="argument device_selector", value=device_selector, expected_type=type_hints["device_selector"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -10907,7 +10911,7 @@ class DeviceTaintSelectorV1Alpha3:
         :schema: io.k8s.api.resource.v1alpha3.DeviceTaintSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__934b04d4e7ddcdd32de824074c3a9f6bbb84c57e1939d784cf2894e2d4550ecb)
+            type_hints = cached_type_hints(_typecheckingstub__934b04d4e7ddcdd32de824074c3a9f6bbb84c57e1939d784cf2894e2d4550ecb)
             check_type(argname="argument device", value=device, expected_type=type_hints["device"])
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument pool", value=pool, expected_type=type_hints["pool"])
@@ -10993,7 +10997,7 @@ class DeviceTaintV1Alpha3:
         :schema: io.k8s.api.resource.v1alpha3.DeviceTaint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__095f613e283fdc6f5b30834639b5ea29b712a30202787a6cc723f9a5f5b32de6)
+            type_hints = cached_type_hints(_typecheckingstub__095f613e283fdc6f5b30834639b5ea29b712a30202787a6cc723f9a5f5b32de6)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument time_added", value=time_added, expected_type=type_hints["time_added"])
@@ -11094,7 +11098,7 @@ class DeviceTaintV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceTaint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7d3fb46811190f0e9383baa0a5ce3ad2cb7101faafcb991cf4e6651168be353e)
+            type_hints = cached_type_hints(_typecheckingstub__7d3fb46811190f0e9383baa0a5ce3ad2cb7101faafcb991cf4e6651168be353e)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument time_added", value=time_added, expected_type=type_hints["time_added"])
@@ -11195,7 +11199,7 @@ class DeviceTaintV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceTaint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c52d68ff00fc0a61d20c4165d61747d4a622a23e3cf7fcc042c87a7079ceea0)
+            type_hints = cached_type_hints(_typecheckingstub__8c52d68ff00fc0a61d20c4165d61747d4a622a23e3cf7fcc042c87a7079ceea0)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument time_added", value=time_added, expected_type=type_hints["time_added"])
@@ -11299,7 +11303,7 @@ class DeviceToleration:
         :schema: io.k8s.api.resource.v1.DeviceToleration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__33c6f4a3eb370c18d39d30c051d4646d78c265049c6267e02885b966619e8794)
+            type_hints = cached_type_hints(_typecheckingstub__33c6f4a3eb370c18d39d30c051d4646d78c265049c6267e02885b966619e8794)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
@@ -11418,7 +11422,7 @@ class DeviceTolerationV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.DeviceToleration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5cb811df3c602e47517d7717a38697590cc3b2e13f9298391a777585d8eb1a40)
+            type_hints = cached_type_hints(_typecheckingstub__5cb811df3c602e47517d7717a38697590cc3b2e13f9298391a777585d8eb1a40)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
@@ -11537,7 +11541,7 @@ class DeviceTolerationV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.DeviceToleration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__19eda660a630406bd0021e3ebb98582e19ae90af6367e17237253d8d6431cdfd)
+            type_hints = cached_type_hints(_typecheckingstub__19eda660a630406bd0021e3ebb98582e19ae90af6367e17237253d8d6431cdfd)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
@@ -11648,7 +11652,7 @@ class DeviceV1Beta1:
         if isinstance(basic, dict):
             basic = BasicDeviceV1Beta1(**basic)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eec4b801b650660565a593e6a0f143e4c92b6f14965e4c67e3af4454e14a95cb)
+            type_hints = cached_type_hints(_typecheckingstub__eec4b801b650660565a593e6a0f143e4c92b6f14965e4c67e3af4454e14a95cb)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -11747,7 +11751,7 @@ class DeviceV1Beta2:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4b7400802c85655626dc58b3e0e228dd06a97eab898319154e93068ebee0a4e8)
+            type_hints = cached_type_hints(_typecheckingstub__4b7400802c85655626dc58b3e0e228dd06a97eab898319154e93068ebee0a4e8)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
             check_type(argname="argument allow_multiple_allocations", value=allow_multiple_allocations, expected_type=type_hints["allow_multiple_allocations"])
@@ -11981,7 +11985,7 @@ class DownwardApiProjection:
         :schema: io.k8s.api.core.v1.DownwardAPIProjection
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__869e1c36b23a22ea11fcce61bba7f500c0b12d2d573aa9739a152c0099840760)
+            type_hints = cached_type_hints(_typecheckingstub__869e1c36b23a22ea11fcce61bba7f500c0b12d2d573aa9739a152c0099840760)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if items is not None:
@@ -12041,7 +12045,7 @@ class DownwardApiVolumeFile:
         if isinstance(resource_field_ref, dict):
             resource_field_ref = ResourceFieldSelector(**resource_field_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__101db0695abfdddd40bd62385a630a47df841ee1a6f24407608f8fe8b6ff069d)
+            type_hints = cached_type_hints(_typecheckingstub__101db0695abfdddd40bd62385a630a47df841ee1a6f24407608f8fe8b6ff069d)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument field_ref", value=field_ref, expected_type=type_hints["field_ref"])
             check_type(argname="argument mode", value=mode, expected_type=type_hints["mode"])
@@ -12131,7 +12135,7 @@ class DownwardApiVolumeSource:
         :schema: io.k8s.api.core.v1.DownwardAPIVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d43c40d536e8ef2ac9d664987c3d40ea8d2b2a7183453e3267caf21a4f0e109a)
+            type_hints = cached_type_hints(_typecheckingstub__d43c40d536e8ef2ac9d664987c3d40ea8d2b2a7183453e3267caf21a4f0e109a)
             check_type(argname="argument default_mode", value=default_mode, expected_type=type_hints["default_mode"])
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -12196,7 +12200,7 @@ class EmptyDirVolumeSource:
         :schema: io.k8s.api.core.v1.EmptyDirVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__51336821e156a17acb25064d05a943dee51ed6d9fede28f0496b90a126cbde50)
+            type_hints = cached_type_hints(_typecheckingstub__51336821e156a17acb25064d05a943dee51ed6d9fede28f0496b90a126cbde50)
             check_type(argname="argument medium", value=medium, expected_type=type_hints["medium"])
             check_type(argname="argument size_limit", value=size_limit, expected_type=type_hints["size_limit"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -12286,7 +12290,7 @@ class Endpoint:
         if isinstance(target_ref, dict):
             target_ref = ObjectReference(**target_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aecf0f91e9c72760558c73c60babfa2b9ec1400a6ace4c1cad4cdb2ce4cf4276)
+            type_hints = cached_type_hints(_typecheckingstub__aecf0f91e9c72760558c73c60babfa2b9ec1400a6ace4c1cad4cdb2ce4cf4276)
             check_type(argname="argument addresses", value=addresses, expected_type=type_hints["addresses"])
             check_type(argname="argument conditions", value=conditions, expected_type=type_hints["conditions"])
             check_type(argname="argument deprecated_topology", value=deprecated_topology, expected_type=type_hints["deprecated_topology"])
@@ -12441,7 +12445,7 @@ class EndpointAddress:
         if isinstance(target_ref, dict):
             target_ref = ObjectReference(**target_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__970f09567748e206afbb46c0fa29177fb5967712f3943c875ccea8dfd5d1b3ce)
+            type_hints = cached_type_hints(_typecheckingstub__970f09567748e206afbb46c0fa29177fb5967712f3943c875ccea8dfd5d1b3ce)
             check_type(argname="argument ip", value=ip, expected_type=type_hints["ip"])
             check_type(argname="argument hostname", value=hostname, expected_type=type_hints["hostname"])
             check_type(argname="argument node_name", value=node_name, expected_type=type_hints["node_name"])
@@ -12535,7 +12539,7 @@ class EndpointConditions:
         :schema: io.k8s.api.discovery.v1.EndpointConditions
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b2b5238272f9d14831397973a28343d30df4184341889339940e2808d1357461)
+            type_hints = cached_type_hints(_typecheckingstub__b2b5238272f9d14831397973a28343d30df4184341889339940e2808d1357461)
             check_type(argname="argument ready", value=ready, expected_type=type_hints["ready"])
             check_type(argname="argument serving", value=serving, expected_type=type_hints["serving"])
             check_type(argname="argument terminating", value=terminating, expected_type=type_hints["terminating"])
@@ -12612,7 +12616,7 @@ class EndpointHints:
         :schema: io.k8s.api.discovery.v1.EndpointHints
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__72b3d0ad7203c24d6795afe4a3e837823411fa92c071099c508160c704770992)
+            type_hints = cached_type_hints(_typecheckingstub__72b3d0ad7203c24d6795afe4a3e837823411fa92c071099c508160c704770992)
             check_type(argname="argument for_nodes", value=for_nodes, expected_type=type_hints["for_nodes"])
             check_type(argname="argument for_zones", value=for_zones, expected_type=type_hints["for_zones"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -12686,7 +12690,7 @@ class EndpointPort:
         :schema: io.k8s.api.core.v1.EndpointPort
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__198ff7c8fddac2085d2564d42a0d2f8327272caf700986100e27c5038c106c79)
+            type_hints = cached_type_hints(_typecheckingstub__198ff7c8fddac2085d2564d42a0d2f8327272caf700986100e27c5038c106c79)
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument app_protocol", value=app_protocol, expected_type=type_hints["app_protocol"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -12805,7 +12809,7 @@ class EndpointSubset:
         :schema: io.k8s.api.core.v1.EndpointSubset
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f3121032b6cb224e5e34b7639c8027fadb2a705523967f72dda8e1bb2dc1c8ab)
+            type_hints = cached_type_hints(_typecheckingstub__f3121032b6cb224e5e34b7639c8027fadb2a705523967f72dda8e1bb2dc1c8ab)
             check_type(argname="argument addresses", value=addresses, expected_type=type_hints["addresses"])
             check_type(argname="argument not_ready_addresses", value=not_ready_addresses, expected_type=type_hints["not_ready_addresses"])
             check_type(argname="argument ports", value=ports, expected_type=type_hints["ports"])
@@ -12888,7 +12892,7 @@ class EnvFromSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretEnvSource(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1e745a3a12e83796a4c7e9f2246565d74fe3f6a1041987cbb7dd3435aaba3180)
+            type_hints = cached_type_hints(_typecheckingstub__1e745a3a12e83796a4c7e9f2246565d74fe3f6a1041987cbb7dd3435aaba3180)
             check_type(argname="argument config_map_ref", value=config_map_ref, expected_type=type_hints["config_map_ref"])
             check_type(argname="argument prefix", value=prefix, expected_type=type_hints["prefix"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -12965,7 +12969,7 @@ class EnvVar:
         if isinstance(value_from, dict):
             value_from = EnvVarSource(**value_from)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7ff167fe39eff04347196f0b38e85c859cfdf9180d26b47b3ccc003411311c3a)
+            type_hints = cached_type_hints(_typecheckingstub__7ff167fe39eff04347196f0b38e85c859cfdf9180d26b47b3ccc003411311c3a)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument value_from", value=value_from, expected_type=type_hints["value_from"])
@@ -13067,7 +13071,7 @@ class EnvVarSource:
         if isinstance(secret_key_ref, dict):
             secret_key_ref = SecretKeySelector(**secret_key_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8200f0b06b85522180fa691bfce5b26210b45cbf9374d77ea5dd65cbbf09b32a)
+            type_hints = cached_type_hints(_typecheckingstub__8200f0b06b85522180fa691bfce5b26210b45cbf9374d77ea5dd65cbbf09b32a)
             check_type(argname="argument config_map_key_ref", value=config_map_key_ref, expected_type=type_hints["config_map_key_ref"])
             check_type(argname="argument field_ref", value=field_ref, expected_type=type_hints["field_ref"])
             check_type(argname="argument file_key_ref", value=file_key_ref, expected_type=type_hints["file_key_ref"])
@@ -13255,7 +13259,7 @@ class EphemeralContainer:
         if isinstance(startup_probe, dict):
             startup_probe = Probe(**startup_probe)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3e01c0b51ea0b6a8c67c37763e480129a2534ef49ece7c443d6c8063f7415d29)
+            type_hints = cached_type_hints(_typecheckingstub__3e01c0b51ea0b6a8c67c37763e480129a2534ef49ece7c443d6c8063f7415d29)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument args", value=args, expected_type=type_hints["args"])
             check_type(argname="argument command", value=command, expected_type=type_hints["command"])
@@ -13657,7 +13661,7 @@ class EphemeralVolumeSource:
         if isinstance(volume_claim_template, dict):
             volume_claim_template = PersistentVolumeClaimTemplate(**volume_claim_template)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b18bb939a5ee93260e717b4a8b31bc6e5ff1329bc0dfc81f9c7fa24800f6854b)
+            type_hints = cached_type_hints(_typecheckingstub__b18bb939a5ee93260e717b4a8b31bc6e5ff1329bc0dfc81f9c7fa24800f6854b)
             check_type(argname="argument volume_claim_template", value=volume_claim_template, expected_type=type_hints["volume_claim_template"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if volume_claim_template is not None:
@@ -13712,7 +13716,7 @@ class EventSeries:
         :schema: io.k8s.api.events.v1.EventSeries
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__004487d3474ef54e77d3c4fc15800f434258914047b941481974745bac50347a)
+            type_hints = cached_type_hints(_typecheckingstub__004487d3474ef54e77d3c4fc15800f434258914047b941481974745bac50347a)
             check_type(argname="argument count", value=count, expected_type=type_hints["count"])
             check_type(argname="argument last_observed_time", value=last_observed_time, expected_type=type_hints["last_observed_time"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -13772,7 +13776,7 @@ class EventSource:
         :schema: io.k8s.api.core.v1.EventSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4a9e80d349ff66b0083f1d53dad15acd2eb7b7353b7849460bd62f8e25e7974e)
+            type_hints = cached_type_hints(_typecheckingstub__4a9e80d349ff66b0083f1d53dad15acd2eb7b7353b7849460bd62f8e25e7974e)
             check_type(argname="argument component", value=component, expected_type=type_hints["component"])
             check_type(argname="argument host", value=host, expected_type=type_hints["host"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13851,7 +13855,7 @@ class ExactDeviceRequest:
         if isinstance(capacity, dict):
             capacity = CapacityRequirements(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__03587dcebe95206773fcb86a2840b8507e7dea7eec6f3cb55b620ea667a11dfd)
+            type_hints = cached_type_hints(_typecheckingstub__03587dcebe95206773fcb86a2840b8507e7dea7eec6f3cb55b620ea667a11dfd)
             check_type(argname="argument device_class_name", value=device_class_name, expected_type=type_hints["device_class_name"])
             check_type(argname="argument admin_access", value=admin_access, expected_type=type_hints["admin_access"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -14027,7 +14031,7 @@ class ExactDeviceRequestV1Beta2:
         if isinstance(capacity, dict):
             capacity = CapacityRequirementsV1Beta2(**capacity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__137e0c65d74bd7f0f84e993fffa44f17b9cdc920aa88d7746e0a95b936ee16a2)
+            type_hints = cached_type_hints(_typecheckingstub__137e0c65d74bd7f0f84e993fffa44f17b9cdc920aa88d7746e0a95b936ee16a2)
             check_type(argname="argument device_class_name", value=device_class_name, expected_type=type_hints["device_class_name"])
             check_type(argname="argument admin_access", value=admin_access, expected_type=type_hints["admin_access"])
             check_type(argname="argument allocation_mode", value=allocation_mode, expected_type=type_hints["allocation_mode"])
@@ -14181,7 +14185,7 @@ class ExecAction:
         :schema: io.k8s.api.core.v1.ExecAction
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__39b0da0ddb8fa067bbecf85dd3d7748f68c3c1d726d1f55f6612b8bd92883a73)
+            type_hints = cached_type_hints(_typecheckingstub__39b0da0ddb8fa067bbecf85dd3d7748f68c3c1d726d1f55f6612b8bd92883a73)
             check_type(argname="argument command", value=command, expected_type=type_hints["command"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if command is not None:
@@ -14235,7 +14239,7 @@ class ExemptPriorityLevelConfiguration:
         :schema: io.k8s.api.flowcontrol.v1.ExemptPriorityLevelConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__38d3e71fc47b23f845145c96e08833e354704130cfd0ad5cfbd88f63416c42c2)
+            type_hints = cached_type_hints(_typecheckingstub__38d3e71fc47b23f845145c96e08833e354704130cfd0ad5cfbd88f63416c42c2)
             check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
             check_type(argname="argument nominal_concurrency_shares", value=nominal_concurrency_shares, expected_type=type_hints["nominal_concurrency_shares"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14304,7 +14308,7 @@ class ExternalDocumentation:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ExternalDocumentation
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ed55df628bde684d5aa951f6b4c6672c57289721dbb3a11facc37969e46246f1)
+            type_hints = cached_type_hints(_typecheckingstub__ed55df628bde684d5aa951f6b4c6672c57289721dbb3a11facc37969e46246f1)
             check_type(argname="argument description", value=description, expected_type=type_hints["description"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14365,7 +14369,7 @@ class ExternalMetricSourceV2:
         if isinstance(target, dict):
             target = MetricTargetV2(**target)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__991911955f55da3c4dbd38270ac60d304756b0eac9946bf6bab366840a5e5a7a)
+            type_hints = cached_type_hints(_typecheckingstub__991911955f55da3c4dbd38270ac60d304756b0eac9946bf6bab366840a5e5a7a)
             check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -14439,7 +14443,7 @@ class FcVolumeSource:
         :schema: io.k8s.api.core.v1.FCVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2745107e20cb778ffd413fedde9112e0e0e1ad8530ac6be3aa44daf745945cd1)
+            type_hints = cached_type_hints(_typecheckingstub__2745107e20cb778ffd413fedde9112e0e0e1ad8530ac6be3aa44daf745945cd1)
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument lun", value=lun, expected_type=type_hints["lun"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -14542,7 +14546,7 @@ class FieldSelectorAttributes:
         :schema: io.k8s.api.authorization.v1.FieldSelectorAttributes
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ee58ef4e07e904e7a21e77bf751e7fa6c99fdca3cf2e62e7fbe67d9e279d32ed)
+            type_hints = cached_type_hints(_typecheckingstub__ee58ef4e07e904e7a21e77bf751e7fa6c99fdca3cf2e62e7fbe67d9e279d32ed)
             check_type(argname="argument raw_selector", value=raw_selector, expected_type=type_hints["raw_selector"])
             check_type(argname="argument requirements", value=requirements, expected_type=type_hints["requirements"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14607,7 +14611,7 @@ class FieldSelectorRequirement:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.FieldSelectorRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0cf309c1504722ca15b9d30f286e9f6036e2c3be964a6239f8d156acc849c785)
+            type_hints = cached_type_hints(_typecheckingstub__0cf309c1504722ca15b9d30f286e9f6036e2c3be964a6239f8d156acc849c785)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
@@ -14692,7 +14696,7 @@ class FileKeySelector:
         :schema: io.k8s.api.core.v1.FileKeySelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__42e55359916d364b8cb6357d3d2787e4d7fddb43b98d3cb2c1e0f75f1fbd4520)
+            type_hints = cached_type_hints(_typecheckingstub__42e55359916d364b8cb6357d3d2787e4d7fddb43b98d3cb2c1e0f75f1fbd4520)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument volume_name", value=volume_name, expected_type=type_hints["volume_name"])
@@ -14798,7 +14802,7 @@ class FlexPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__361bb86c0f3e6ad95260e69e5449b56f8ed56cc62d38e36d89c325ca5045168e)
+            type_hints = cached_type_hints(_typecheckingstub__361bb86c0f3e6ad95260e69e5449b56f8ed56cc62d38e36d89c325ca5045168e)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument options", value=options, expected_type=type_hints["options"])
@@ -14914,7 +14918,7 @@ class FlexVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__01d639d31d18ccaee6a1c059e3369e39b1ae2532a11a7a6f32fd5bcfb50615c4)
+            type_hints = cached_type_hints(_typecheckingstub__01d639d31d18ccaee6a1c059e3369e39b1ae2532a11a7a6f32fd5bcfb50615c4)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument options", value=options, expected_type=type_hints["options"])
@@ -15018,7 +15022,7 @@ class FlockerVolumeSource:
         :schema: io.k8s.api.core.v1.FlockerVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c8da19b7f0ffd9cf70dddb6e7c6984f3d78d5aa2c70fad98b528bc4aded8a549)
+            type_hints = cached_type_hints(_typecheckingstub__c8da19b7f0ffd9cf70dddb6e7c6984f3d78d5aa2c70fad98b528bc4aded8a549)
             check_type(argname="argument dataset_name", value=dataset_name, expected_type=type_hints["dataset_name"])
             check_type(argname="argument dataset_uuid", value=dataset_uuid, expected_type=type_hints["dataset_uuid"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -15073,7 +15077,7 @@ class FlowDistinguisherMethod:
         :schema: io.k8s.api.flowcontrol.v1.FlowDistinguisherMethod
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a8bc982396f7a07de849db937f37ca0525c39d2d41ce07bb73756927b11a5759)
+            type_hints = cached_type_hints(_typecheckingstub__a8bc982396f7a07de849db937f37ca0525c39d2d41ce07bb73756927b11a5759)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "type": type,
@@ -15136,7 +15140,7 @@ class FlowSchemaSpec:
         if isinstance(distinguisher_method, dict):
             distinguisher_method = FlowDistinguisherMethod(**distinguisher_method)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__308c168aeb899ef87e4f3799861273dc7358cccbad1a8a462e45fc81d9572231)
+            type_hints = cached_type_hints(_typecheckingstub__308c168aeb899ef87e4f3799861273dc7358cccbad1a8a462e45fc81d9572231)
             check_type(argname="argument priority_level_configuration", value=priority_level_configuration, expected_type=type_hints["priority_level_configuration"])
             check_type(argname="argument distinguisher_method", value=distinguisher_method, expected_type=type_hints["distinguisher_method"])
             check_type(argname="argument matching_precedence", value=matching_precedence, expected_type=type_hints["matching_precedence"])
@@ -15222,7 +15226,7 @@ class ForNode:
         :schema: io.k8s.api.discovery.v1.ForNode
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__616c3a0e8e29e851d38fa4d959cb3657938005f66337f07037d52031339242c9)
+            type_hints = cached_type_hints(_typecheckingstub__616c3a0e8e29e851d38fa4d959cb3657938005f66337f07037d52031339242c9)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -15264,7 +15268,7 @@ class ForZone:
         :schema: io.k8s.api.discovery.v1.ForZone
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fc406b0dce866e82fadbc8c73de5da39909470ea692a663d044c98e9e75e472e)
+            type_hints = cached_type_hints(_typecheckingstub__fc406b0dce866e82fadbc8c73de5da39909470ea692a663d044c98e9e75e472e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -15306,7 +15310,7 @@ class GangSchedulingPolicyV1Alpha1:
         :schema: io.k8s.api.scheduling.v1alpha1.GangSchedulingPolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aef3006b80a197eab0e8b6a2b1a7719fbf4e062ed07f69c79f8f4fa83363c61d)
+            type_hints = cached_type_hints(_typecheckingstub__aef3006b80a197eab0e8b6a2b1a7719fbf4e062ed07f69c79f8f4fa83363c61d)
             check_type(argname="argument min_count", value=min_count, expected_type=type_hints["min_count"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "min_count": min_count,
@@ -15367,7 +15371,7 @@ class GcePersistentDiskVolumeSource:
         :schema: io.k8s.api.core.v1.GCEPersistentDiskVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67fa0238ae227faa5913c9a406cb8c1df336aa99b59c22be5e9022157eef8101)
+            type_hints = cached_type_hints(_typecheckingstub__67fa0238ae227faa5913c9a406cb8c1df336aa99b59c22be5e9022157eef8101)
             check_type(argname="argument pd_name", value=pd_name, expected_type=type_hints["pd_name"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument partition", value=partition, expected_type=type_hints["partition"])
@@ -15471,7 +15475,7 @@ class GitRepoVolumeSource:
         :schema: io.k8s.api.core.v1.GitRepoVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d3929ab9177d349a3cbc08144a071eb034b82c6d036e2f32c383d99193bfa2fc)
+            type_hints = cached_type_hints(_typecheckingstub__d3929ab9177d349a3cbc08144a071eb034b82c6d036e2f32c383d99193bfa2fc)
             check_type(argname="argument repository", value=repository, expected_type=type_hints["repository"])
             check_type(argname="argument directory", value=directory, expected_type=type_hints["directory"])
             check_type(argname="argument revision", value=revision, expected_type=type_hints["revision"])
@@ -15556,7 +15560,7 @@ class GlusterfsPersistentVolumeSource:
         :schema: io.k8s.api.core.v1.GlusterfsPersistentVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__77c2e679ddedc14c8c772b4af1c9ebb540b76f5b4ae46f0ddd7f13c3f9068d2e)
+            type_hints = cached_type_hints(_typecheckingstub__77c2e679ddedc14c8c772b4af1c9ebb540b76f5b4ae46f0ddd7f13c3f9068d2e)
             check_type(argname="argument endpoints", value=endpoints, expected_type=type_hints["endpoints"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument endpoints_namespace", value=endpoints_namespace, expected_type=type_hints["endpoints_namespace"])
@@ -15654,7 +15658,7 @@ class GlusterfsVolumeSource:
         :schema: io.k8s.api.core.v1.GlusterfsVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ee9a1041172608f39bf295d6750ada62e4ab7bf9812fabbb918c35d5ff339178)
+            type_hints = cached_type_hints(_typecheckingstub__ee9a1041172608f39bf295d6750ada62e4ab7bf9812fabbb918c35d5ff339178)
             check_type(argname="argument endpoints", value=endpoints, expected_type=type_hints["endpoints"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -15729,7 +15733,7 @@ class GroupResource:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.GroupResource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f9aef31c9e1b88e416a08bd460bf6ead7786372bb4ac3ef61d8e19fdfb07f201)
+            type_hints = cached_type_hints(_typecheckingstub__f9aef31c9e1b88e416a08bd460bf6ead7786372bb4ac3ef61d8e19fdfb07f201)
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -15787,7 +15791,7 @@ class GrpcAction:
         :schema: io.k8s.api.core.v1.GRPCAction
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a4c720717a12c121388433640f65c648a1215ba44d394b015fa52bde58de178d)
+            type_hints = cached_type_hints(_typecheckingstub__a4c720717a12c121388433640f65c648a1215ba44d394b015fa52bde58de178d)
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -15855,7 +15859,7 @@ class HorizontalPodAutoscalerBehaviorV2:
         if isinstance(scale_up, dict):
             scale_up = HpaScalingRulesV2(**scale_up)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fda77f8a90785391fbbcd3ca1c11f062fa6bf7ae954e80fb24e4e288fdd17832)
+            type_hints = cached_type_hints(_typecheckingstub__fda77f8a90785391fbbcd3ca1c11f062fa6bf7ae954e80fb24e4e288fdd17832)
             check_type(argname="argument scale_down", value=scale_down, expected_type=type_hints["scale_down"])
             check_type(argname="argument scale_up", value=scale_up, expected_type=type_hints["scale_up"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -15933,7 +15937,7 @@ class HorizontalPodAutoscalerSpec:
         if isinstance(scale_target_ref, dict):
             scale_target_ref = CrossVersionObjectReference(**scale_target_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67e90701cb6e8283c6dcdce1a9bcefa03010668cc5c0dc412f36e77d3b94c2c6)
+            type_hints = cached_type_hints(_typecheckingstub__67e90701cb6e8283c6dcdce1a9bcefa03010668cc5c0dc412f36e77d3b94c2c6)
             check_type(argname="argument max_replicas", value=max_replicas, expected_type=type_hints["max_replicas"])
             check_type(argname="argument scale_target_ref", value=scale_target_ref, expected_type=type_hints["scale_target_ref"])
             check_type(argname="argument min_replicas", value=min_replicas, expected_type=type_hints["min_replicas"])
@@ -16041,7 +16045,7 @@ class HorizontalPodAutoscalerSpecV2:
         if isinstance(behavior, dict):
             behavior = HorizontalPodAutoscalerBehaviorV2(**behavior)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a1323a69e978b64e93ef7f04e8455a1c9a9c3bb874ab3f67e7522bf7d2a07c64)
+            type_hints = cached_type_hints(_typecheckingstub__a1323a69e978b64e93ef7f04e8455a1c9a9c3bb874ab3f67e7522bf7d2a07c64)
             check_type(argname="argument max_replicas", value=max_replicas, expected_type=type_hints["max_replicas"])
             check_type(argname="argument scale_target_ref", value=scale_target_ref, expected_type=type_hints["scale_target_ref"])
             check_type(argname="argument behavior", value=behavior, expected_type=type_hints["behavior"])
@@ -16145,7 +16149,7 @@ class HostAlias:
         :schema: io.k8s.api.core.v1.HostAlias
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__baf1f258035adb05fce6a499ac90c7c683c23515cb2387103291d65c150db057)
+            type_hints = cached_type_hints(_typecheckingstub__baf1f258035adb05fce6a499ac90c7c683c23515cb2387103291d65c150db057)
             check_type(argname="argument ip", value=ip, expected_type=type_hints["ip"])
             check_type(argname="argument hostnames", value=hostnames, expected_type=type_hints["hostnames"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -16207,7 +16211,7 @@ class HostPathVolumeSource:
         :schema: io.k8s.api.core.v1.HostPathVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6e89b87d54e04bd3a5ed5104bd9aeeebc90ed613bc0805a39560bc2bbf615e55)
+            type_hints = cached_type_hints(_typecheckingstub__6e89b87d54e04bd3a5ed5104bd9aeeebc90ed613bc0805a39560bc2bbf615e55)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -16273,7 +16277,7 @@ class HpaScalingPolicyV2:
         :schema: io.k8s.api.autoscaling.v2.HPAScalingPolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aeb589a0fa4d0cc40251749153c9f79afe4dfc58697049ab09f63ee4925eb96d)
+            type_hints = cached_type_hints(_typecheckingstub__aeb589a0fa4d0cc40251749153c9f79afe4dfc58697049ab09f63ee4925eb96d)
             check_type(argname="argument period_seconds", value=period_seconds, expected_type=type_hints["period_seconds"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
@@ -16362,7 +16366,7 @@ class HpaScalingRulesV2:
         :schema: io.k8s.api.autoscaling.v2.HPAScalingRules
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__01955266417ee884ef4e85d0ff6d261477e416614ba711701a5aa2f989ee95ae)
+            type_hints = cached_type_hints(_typecheckingstub__01955266417ee884ef4e85d0ff6d261477e416614ba711701a5aa2f989ee95ae)
             check_type(argname="argument policies", value=policies, expected_type=type_hints["policies"])
             check_type(argname="argument select_policy", value=select_policy, expected_type=type_hints["select_policy"])
             check_type(argname="argument stabilization_window_seconds", value=stabilization_window_seconds, expected_type=type_hints["stabilization_window_seconds"])
@@ -16467,7 +16471,7 @@ class HttpGetAction:
         :schema: io.k8s.api.core.v1.HTTPGetAction
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__62efc5742934988596159a1c4328467a5bf15711d92d0298db109be22da42dbc)
+            type_hints = cached_type_hints(_typecheckingstub__62efc5742934988596159a1c4328467a5bf15711d92d0298db109be22da42dbc)
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument host", value=host, expected_type=type_hints["host"])
             check_type(argname="argument http_headers", value=http_headers, expected_type=type_hints["http_headers"])
@@ -16568,7 +16572,7 @@ class HttpHeader:
         :schema: io.k8s.api.core.v1.HTTPHeader
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__65a4ad915e61cf4f8034eb768af84855c5eb30565af7046319e9debb114d6dbf)
+            type_hints = cached_type_hints(_typecheckingstub__65a4ad915e61cf4f8034eb768af84855c5eb30565af7046319e9debb114d6dbf)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -16636,7 +16640,7 @@ class HttpIngressPath:
         if isinstance(backend, dict):
             backend = IngressBackend(**backend)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1cca829c509cb330ab5cf95c6fc26b20f21813dc375800b70fcbfdfeec2654c5)
+            type_hints = cached_type_hints(_typecheckingstub__1cca829c509cb330ab5cf95c6fc26b20f21813dc375800b70fcbfdfeec2654c5)
             check_type(argname="argument backend", value=backend, expected_type=type_hints["backend"])
             check_type(argname="argument path_type", value=path_type, expected_type=type_hints["path_type"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
@@ -16723,7 +16727,7 @@ class HttpIngressRuleValue:
         :schema: io.k8s.api.networking.v1.HTTPIngressRuleValue
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__05cd1df4bce67e8fa976f9efada12c170538e64a48328c5f255efdebc8f61d9a)
+            type_hints = cached_type_hints(_typecheckingstub__05cd1df4bce67e8fa976f9efada12c170538e64a48328c5f255efdebc8f61d9a)
             check_type(argname="argument paths", value=paths, expected_type=type_hints["paths"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "paths": paths,
@@ -16771,7 +16775,7 @@ class ImageVolumeSource:
         :schema: io.k8s.api.core.v1.ImageVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a232810a477fcc37caf2904002d897a76df6a21dafb3d93699f409a08c13cfc7)
+            type_hints = cached_type_hints(_typecheckingstub__a232810a477fcc37caf2904002d897a76df6a21dafb3d93699f409a08c13cfc7)
             check_type(argname="argument pull_policy", value=pull_policy, expected_type=type_hints["pull_policy"])
             check_type(argname="argument reference", value=reference, expected_type=type_hints["reference"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -16840,7 +16844,7 @@ class IngressBackend:
         if isinstance(service, dict):
             service = IngressServiceBackend(**service)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__df26b528fe90e75693923674dff2a906cecf821611adf7cf1d7a6745fd0cd715)
+            type_hints = cached_type_hints(_typecheckingstub__df26b528fe90e75693923674dff2a906cecf821611adf7cf1d7a6745fd0cd715)
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -16917,7 +16921,7 @@ class IngressClassParametersReference:
         :schema: io.k8s.api.networking.v1.IngressClassParametersReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b55c86b8fa568f61df7bfe266dca0075b336f1056df734d8a5f9f6b5116eadc6)
+            type_hints = cached_type_hints(_typecheckingstub__b55c86b8fa568f61df7bfe266dca0075b336f1056df734d8a5f9f6b5116eadc6)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -17021,7 +17025,7 @@ class IngressClassSpec:
         if isinstance(parameters, dict):
             parameters = IngressClassParametersReference(**parameters)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9135d7f530914c8efd0036d3c9b7f8302e7bf5f1a915332fbf5ddccf196262d1)
+            type_hints = cached_type_hints(_typecheckingstub__9135d7f530914c8efd0036d3c9b7f8302e7bf5f1a915332fbf5ddccf196262d1)
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -17088,7 +17092,7 @@ class IngressRule:
         if isinstance(http, dict):
             http = HttpIngressRuleValue(**http)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f579f76985685fddfa2343f3fdb2f56b0ad569a16de003c2209b63ace70d1fee)
+            type_hints = cached_type_hints(_typecheckingstub__f579f76985685fddfa2343f3fdb2f56b0ad569a16de003c2209b63ace70d1fee)
             check_type(argname="argument host", value=host, expected_type=type_hints["host"])
             check_type(argname="argument http", value=http, expected_type=type_hints["http"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -17157,7 +17161,7 @@ class IngressServiceBackend:
         if isinstance(port, dict):
             port = ServiceBackendPort(**port)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e3e97fffe88d91fb9b536c53695ba745cdabbeb12e55b6dea45d253fdc89f5cd)
+            type_hints = cached_type_hints(_typecheckingstub__e3e97fffe88d91fb9b536c53695ba745cdabbeb12e55b6dea45d253fdc89f5cd)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -17232,7 +17236,7 @@ class IngressSpec:
         if isinstance(default_backend, dict):
             default_backend = IngressBackend(**default_backend)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__97b273849944944f09361df5533bf081b4f556d667e5a81bba5956e651d6411b)
+            type_hints = cached_type_hints(_typecheckingstub__97b273849944944f09361df5533bf081b4f556d667e5a81bba5956e651d6411b)
             check_type(argname="argument default_backend", value=default_backend, expected_type=type_hints["default_backend"])
             check_type(argname="argument ingress_class_name", value=ingress_class_name, expected_type=type_hints["ingress_class_name"])
             check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
@@ -17323,7 +17327,7 @@ class IngressTls:
         :schema: io.k8s.api.networking.v1.IngressTLS
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8025d7972fe3e671efe9fc76590f08e6af4537e71b575480407655a7b7b7b9ef)
+            type_hints = cached_type_hints(_typecheckingstub__8025d7972fe3e671efe9fc76590f08e6af4537e71b575480407655a7b7b7b9ef)
             check_type(argname="argument hosts", value=hosts, expected_type=type_hints["hosts"])
             check_type(argname="argument secret_name", value=secret_name, expected_type=type_hints["secret_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -17380,7 +17384,7 @@ class IntOrString(metaclass=jsii.JSIIMeta, jsii_type="k8s.IntOrString"):
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__35530c996723c32c7f16f8470b1263773efdf426fdc5791968292d1634936acc)
+            type_hints = cached_type_hints(_typecheckingstub__35530c996723c32c7f16f8470b1263773efdf426fdc5791968292d1634936acc)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("IntOrString", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -17391,7 +17395,7 @@ class IntOrString(metaclass=jsii.JSIIMeta, jsii_type="k8s.IntOrString"):
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c0d8454a87ccd93d2d171f9e20405b3c5d7964bd41fa7e35f0ca4da486da3504)
+            type_hints = cached_type_hints(_typecheckingstub__c0d8454a87ccd93d2d171f9e20405b3c5d7964bd41fa7e35f0ca4da486da3504)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("IntOrString", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -17434,7 +17438,7 @@ class IpAddressSpec:
         if isinstance(parent_ref, dict):
             parent_ref = ParentReference(**parent_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4adb7a881dd62f264b124ba8c7f5ee816a1d743fbb8c683f2ce689c2e3235678)
+            type_hints = cached_type_hints(_typecheckingstub__4adb7a881dd62f264b124ba8c7f5ee816a1d743fbb8c683f2ce689c2e3235678)
             check_type(argname="argument parent_ref", value=parent_ref, expected_type=type_hints["parent_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "parent_ref": parent_ref,
@@ -17484,7 +17488,7 @@ class IpAddressSpecV1Beta1:
         if isinstance(parent_ref, dict):
             parent_ref = ParentReferenceV1Beta1(**parent_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__00f03fa96ce17e7784c2327206365bc563fb78bae8268d981dfb63456c9809e6)
+            type_hints = cached_type_hints(_typecheckingstub__00f03fa96ce17e7784c2327206365bc563fb78bae8268d981dfb63456c9809e6)
             check_type(argname="argument parent_ref", value=parent_ref, expected_type=type_hints["parent_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "parent_ref": parent_ref,
@@ -17536,7 +17540,7 @@ class IpBlock:
         :schema: io.k8s.api.networking.v1.IPBlock
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06c394466495c1b06784a9836bf93d9ce9aec1a818eac2478c2db2ccb377d374)
+            type_hints = cached_type_hints(_typecheckingstub__06c394466495c1b06784a9836bf93d9ce9aec1a818eac2478c2db2ccb377d374)
             check_type(argname="argument cidr", value=cidr, expected_type=type_hints["cidr"])
             check_type(argname="argument except_", value=except_, expected_type=type_hints["except_"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -17630,7 +17634,7 @@ class IscsiPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__61f74686d735cd7119fc3fdb8061ce0c3372549a76fba9b78a682fb2b8737efe)
+            type_hints = cached_type_hints(_typecheckingstub__61f74686d735cd7119fc3fdb8061ce0c3372549a76fba9b78a682fb2b8737efe)
             check_type(argname="argument iqn", value=iqn, expected_type=type_hints["iqn"])
             check_type(argname="argument lun", value=lun, expected_type=type_hints["lun"])
             check_type(argname="argument target_portal", value=target_portal, expected_type=type_hints["target_portal"])
@@ -17848,7 +17852,7 @@ class IscsiVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3f8a3f5224af62afa8f0a6e18b9dbecb3365354c791cdf02387e47f4f53ef0b6)
+            type_hints = cached_type_hints(_typecheckingstub__3f8a3f5224af62afa8f0a6e18b9dbecb3365354c791cdf02387e47f4f53ef0b6)
             check_type(argname="argument iqn", value=iqn, expected_type=type_hints["iqn"])
             check_type(argname="argument lun", value=lun, expected_type=type_hints["lun"])
             check_type(argname="argument target_portal", value=target_portal, expected_type=type_hints["target_portal"])
@@ -18085,7 +18089,7 @@ class JobSpec:
         if isinstance(success_policy, dict):
             success_policy = SuccessPolicy(**success_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__292598de0c2d5d5c366c954213d0653c155500e82fa84af63083a2187622ca4d)
+            type_hints = cached_type_hints(_typecheckingstub__292598de0c2d5d5c366c954213d0653c155500e82fa84af63083a2187622ca4d)
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument active_deadline_seconds", value=active_deadline_seconds, expected_type=type_hints["active_deadline_seconds"])
             check_type(argname="argument backoff_limit", value=backoff_limit, expected_type=type_hints["backoff_limit"])
@@ -18363,7 +18367,7 @@ class JobTemplateSpec:
         if isinstance(spec, dict):
             spec = JobSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1105e17aa0c313f4565b5065f5605339ba31de88c8c745050dc45e87d82509cd)
+            type_hints = cached_type_hints(_typecheckingstub__1105e17aa0c313f4565b5065f5605339ba31de88c8c745050dc45e87d82509cd)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -18420,7 +18424,7 @@ class JsonPatchV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.JSONPatch
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a24f8eb8f996e893a9f88dec0dd01da0bf1b20c9e645e015d90f009cd294a27a)
+            type_hints = cached_type_hints(_typecheckingstub__a24f8eb8f996e893a9f88dec0dd01da0bf1b20c9e645e015d90f009cd294a27a)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if expression is not None:
@@ -18514,7 +18518,7 @@ class JsonPatchV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.JSONPatch
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__16aae27636b8f0f7216707527a25230687a908cb479be85840200d392f2daa5c)
+            type_hints = cached_type_hints(_typecheckingstub__16aae27636b8f0f7216707527a25230687a908cb479be85840200d392f2daa5c)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if expression is not None:
@@ -18747,7 +18751,7 @@ class JsonSchemaProps:
         if isinstance(not_, dict):
             not_ = JsonSchemaProps(**not_)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__daf776f0153100d207addeedc621b9aaef5a61bb490f24eaa0139862d3db2a89)
+            type_hints = cached_type_hints(_typecheckingstub__daf776f0153100d207addeedc621b9aaef5a61bb490f24eaa0139862d3db2a89)
             check_type(argname="argument additional_items", value=additional_items, expected_type=type_hints["additional_items"])
             check_type(argname="argument additional_properties", value=additional_properties, expected_type=type_hints["additional_properties"])
             check_type(argname="argument all_of", value=all_of, expected_type=type_hints["all_of"])
@@ -19335,7 +19339,7 @@ class KeyToPath:
         :schema: io.k8s.api.core.v1.KeyToPath
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1f579c4b13a88f3186bcbc183fc5b54bf1b162f87adf1d2ad83a9a8b5e0bb447)
+            type_hints = cached_type_hints(_typecheckingstub__1f579c4b13a88f3186bcbc183fc5b54bf1b162f87adf1d2ad83a9a8b5e0bb447)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument mode", value=mode, expected_type=type_hints["mode"])
@@ -19419,7 +19423,7 @@ class KubeApiService(
         :param spec: Spec contains information for locating and communicating with a server.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ad1fad6e721ef9e49639f06836c185c6738b1170ece4dac50e287ae3f90985ef)
+            type_hints = cached_type_hints(_typecheckingstub__ad1fad6e721ef9e49639f06836c185c6738b1170ece4dac50e287ae3f90985ef)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeApiServiceProps(metadata=metadata, spec=spec)
@@ -19483,7 +19487,7 @@ class KubeApiServiceList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__77fd17dee8360181013ec5a3e589f22059cfcb4847e3a0abf0dfd56b33024d5e)
+            type_hints = cached_type_hints(_typecheckingstub__77fd17dee8360181013ec5a3e589f22059cfcb4847e3a0abf0dfd56b33024d5e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeApiServiceListProps(items=items, metadata=metadata)
@@ -19543,7 +19547,7 @@ class KubeApiServiceListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e14504c02b3947489445078365563d536c1ed7457661296ae07aa79c8452d4e1)
+            type_hints = cached_type_hints(_typecheckingstub__e14504c02b3947489445078365563d536c1ed7457661296ae07aa79c8452d4e1)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -19609,7 +19613,7 @@ class KubeApiServiceProps:
         if isinstance(spec, dict):
             spec = ApiServiceSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fa388b54653e1794b03d081efbf5ba6ac4082c87f562e32c6beeaedcb2062b0f)
+            type_hints = cached_type_hints(_typecheckingstub__fa388b54653e1794b03d081efbf5ba6ac4082c87f562e32c6beeaedcb2062b0f)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -19678,7 +19682,7 @@ class KubeBinding(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3278205b7b7726ad41ab6a4d62cd97f9a37714beb4600b6ee0290e7ff44f6280)
+            type_hints = cached_type_hints(_typecheckingstub__3278205b7b7726ad41ab6a4d62cd97f9a37714beb4600b6ee0290e7ff44f6280)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeBindingProps(target=target, metadata=metadata)
@@ -19742,7 +19746,7 @@ class KubeBindingProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__17f73704962797e0f37ad68c644b7528547425a2b7852b93aad34d9faee41a89)
+            type_hints = cached_type_hints(_typecheckingstub__17f73704962797e0f37ad68c644b7528547425a2b7852b93aad34d9faee41a89)
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -19817,7 +19821,7 @@ class KubeCertificateSigningRequest(
         :param metadata: 
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8ca0f64663445c4ac257415151a8230f1cc231c9caccfdbdc0b6fa02d9459d2)
+            type_hints = cached_type_hints(_typecheckingstub__d8ca0f64663445c4ac257415151a8230f1cc231c9caccfdbdc0b6fa02d9459d2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCertificateSigningRequestProps(spec=spec, metadata=metadata)
@@ -19881,7 +19885,7 @@ class KubeCertificateSigningRequestList(
         :param metadata: 
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0e52ee2201ff43e5e93e3d5f4283d795109cda99111d410facf2ba779fca8f23)
+            type_hints = cached_type_hints(_typecheckingstub__0e52ee2201ff43e5e93e3d5f4283d795109cda99111d410facf2ba779fca8f23)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCertificateSigningRequestListProps(items=items, metadata=metadata)
@@ -19941,7 +19945,7 @@ class KubeCertificateSigningRequestListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2dcc4a87e5addcc1390a4a9233596ca3523db6bde4ddce413276e7da14156140)
+            type_hints = cached_type_hints(_typecheckingstub__2dcc4a87e5addcc1390a4a9233596ca3523db6bde4ddce413276e7da14156140)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20011,7 +20015,7 @@ class KubeCertificateSigningRequestProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ea26900e83d9c03052f5118bf686d1cf204888ec1fe99f0622dd1de5b45ebc2a)
+            type_hints = cached_type_hints(_typecheckingstub__ea26900e83d9c03052f5118bf686d1cf204888ec1fe99f0622dd1de5b45ebc2a)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20080,7 +20084,7 @@ class KubeClusterRole(
         :param rules: Rules holds all the PolicyRules for this ClusterRole.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3dee6cbdf96ca0b97f9963be7a7a6f153933e9b244671b09569b2449b5df5bfb)
+            type_hints = cached_type_hints(_typecheckingstub__3dee6cbdf96ca0b97f9963be7a7a6f153933e9b244671b09569b2449b5df5bfb)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterRoleProps(
@@ -20154,7 +20158,7 @@ class KubeClusterRoleBinding(
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3e6775a7ad52980f5d176d04772d94063734f3c3829aeb08e03f9554da3c084e)
+            type_hints = cached_type_hints(_typecheckingstub__3e6775a7ad52980f5d176d04772d94063734f3c3829aeb08e03f9554da3c084e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterRoleBindingProps(
@@ -20224,7 +20228,7 @@ class KubeClusterRoleBindingList(
         :param metadata: Standard object's metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0c3606f96360dc6b85d5722a2bd315d4372920a7b08580cdd2b23ef4b3de402c)
+            type_hints = cached_type_hints(_typecheckingstub__0c3606f96360dc6b85d5722a2bd315d4372920a7b08580cdd2b23ef4b3de402c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterRoleBindingListProps(items=items, metadata=metadata)
@@ -20284,7 +20288,7 @@ class KubeClusterRoleBindingListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2c82a518d0376ee32a141ec070cbf273462cdd5ce947e4b47885cda5cfe73403)
+            type_hints = cached_type_hints(_typecheckingstub__2c82a518d0376ee32a141ec070cbf273462cdd5ce947e4b47885cda5cfe73403)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20356,7 +20360,7 @@ class KubeClusterRoleBindingProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__257a9d454c53443a5bcf76ea68af6361260af7fedca4596fd5f3e37805c7a05f)
+            type_hints = cached_type_hints(_typecheckingstub__257a9d454c53443a5bcf76ea68af6361260af7fedca4596fd5f3e37805c7a05f)
             check_type(argname="argument role_ref", value=role_ref, expected_type=type_hints["role_ref"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument subjects", value=subjects, expected_type=type_hints["subjects"])
@@ -20436,7 +20440,7 @@ class KubeClusterRoleList(
         :param metadata: Standard object's metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2a7f78944eda3f35935b1126aeb9bacc3bb96930fb629d27ae700ff852b519da)
+            type_hints = cached_type_hints(_typecheckingstub__2a7f78944eda3f35935b1126aeb9bacc3bb96930fb629d27ae700ff852b519da)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterRoleListProps(items=items, metadata=metadata)
@@ -20496,7 +20500,7 @@ class KubeClusterRoleListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3567db5c4e5df260e3bfb132c868492937f16ab86f1fd556633c1bdf5c23ac38)
+            type_hints = cached_type_hints(_typecheckingstub__3567db5c4e5df260e3bfb132c868492937f16ab86f1fd556633c1bdf5c23ac38)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20566,7 +20570,7 @@ class KubeClusterRoleProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6faf558e694a82d5282c1ee1c2544179d7e40c708128f00e73fbc361becd9539)
+            type_hints = cached_type_hints(_typecheckingstub__6faf558e694a82d5282c1ee1c2544179d7e40c708128f00e73fbc361becd9539)
             check_type(argname="argument aggregation_rule", value=aggregation_rule, expected_type=type_hints["aggregation_rule"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
@@ -20645,7 +20649,7 @@ class KubeClusterTrustBundleListV1Alpha1(
         :param metadata: metadata contains the list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f93fc4d82dfde6a6fc160e1494922e8fd6164f65d1a44c956d746ca3f3f072ec)
+            type_hints = cached_type_hints(_typecheckingstub__f93fc4d82dfde6a6fc160e1494922e8fd6164f65d1a44c956d746ca3f3f072ec)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterTrustBundleListV1Alpha1Props(items=items, metadata=metadata)
@@ -20705,7 +20709,7 @@ class KubeClusterTrustBundleListV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2a1744260f576ca046c6a966a4564d3d3422d0d87cef3cc630a777a4344c4c6f)
+            type_hints = cached_type_hints(_typecheckingstub__2a1744260f576ca046c6a966a4564d3d3422d0d87cef3cc630a777a4344c4c6f)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20771,7 +20775,7 @@ class KubeClusterTrustBundleListV1Beta1(
         :param metadata: metadata contains the list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06c8b65067e9beb1fb201ae50521eb0a7370cba6e7ad88c42e73d27ab8c1c06c)
+            type_hints = cached_type_hints(_typecheckingstub__06c8b65067e9beb1fb201ae50521eb0a7370cba6e7ad88c42e73d27ab8c1c06c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterTrustBundleListV1Beta1Props(items=items, metadata=metadata)
@@ -20831,7 +20835,7 @@ class KubeClusterTrustBundleListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__54c30bda5350e7e4a118cec965e27dd0e98189814629e40d279f792228e9600c)
+            type_hints = cached_type_hints(_typecheckingstub__54c30bda5350e7e4a118cec965e27dd0e98189814629e40d279f792228e9600c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20901,7 +20905,7 @@ class KubeClusterTrustBundleV1Alpha1(
         :param metadata: metadata contains the object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__30285f82fa8bc6746329e40f965ecc6be9f1035835a23fb7c6b2c34d159abfcc)
+            type_hints = cached_type_hints(_typecheckingstub__30285f82fa8bc6746329e40f965ecc6be9f1035835a23fb7c6b2c34d159abfcc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterTrustBundleV1Alpha1Props(spec=spec, metadata=metadata)
@@ -20967,7 +20971,7 @@ class KubeClusterTrustBundleV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9539a89df5b132edfa3c817a6357b431b64b4db27fadd919e70b3004d3f2fef5)
+            type_hints = cached_type_hints(_typecheckingstub__9539a89df5b132edfa3c817a6357b431b64b4db27fadd919e70b3004d3f2fef5)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21037,7 +21041,7 @@ class KubeClusterTrustBundleV1Beta1(
         :param metadata: metadata contains the object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5f7fc9bff7681543e793807c637958753bdde7e2abf2e824c4327b0db278bbee)
+            type_hints = cached_type_hints(_typecheckingstub__5f7fc9bff7681543e793807c637958753bdde7e2abf2e824c4327b0db278bbee)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeClusterTrustBundleV1Beta1Props(spec=spec, metadata=metadata)
@@ -21103,7 +21107,7 @@ class KubeClusterTrustBundleV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ec98cdc1968619c65c0fafcda2988f677dad681c19891bcc2ab4f90d95a66e1e)
+            type_hints = cached_type_hints(_typecheckingstub__ec98cdc1968619c65c0fafcda2988f677dad681c19891bcc2ab4f90d95a66e1e)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21171,7 +21175,7 @@ class KubeComponentStatus(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8eff1e5ed3dcdcfd0064a2af74f4bb031286a15e4ced98c55de4d26be394984)
+            type_hints = cached_type_hints(_typecheckingstub__d8eff1e5ed3dcdcfd0064a2af74f4bb031286a15e4ced98c55de4d26be394984)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeComponentStatusProps(conditions=conditions, metadata=metadata)
@@ -21237,7 +21241,7 @@ class KubeComponentStatusList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0d9905c184dc69ca415f46304054e8fc5f1fccdfa501490bb06a6ae27a2d0ba1)
+            type_hints = cached_type_hints(_typecheckingstub__0d9905c184dc69ca415f46304054e8fc5f1fccdfa501490bb06a6ae27a2d0ba1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeComponentStatusListProps(items=items, metadata=metadata)
@@ -21299,7 +21303,7 @@ class KubeComponentStatusListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5c9df658fe078e86baff4d98993a70937fe9986e7be888a790e26f3c6c308a3c)
+            type_hints = cached_type_hints(_typecheckingstub__5c9df658fe078e86baff4d98993a70937fe9986e7be888a790e26f3c6c308a3c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21365,7 +21369,7 @@ class KubeComponentStatusProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67f24fea501ac86ffd29cd8da4d47fae1b8eb42d42c249efb3614ebb5feb3863)
+            type_hints = cached_type_hints(_typecheckingstub__67f24fea501ac86ffd29cd8da4d47fae1b8eb42d42c249efb3614ebb5feb3863)
             check_type(argname="argument conditions", value=conditions, expected_type=type_hints["conditions"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -21436,7 +21440,7 @@ class KubeConfigMap(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__44ace9753e03a95f69ddde69315c9f4f0d5af51063739be870b98c92d1309343)
+            type_hints = cached_type_hints(_typecheckingstub__44ace9753e03a95f69ddde69315c9f4f0d5af51063739be870b98c92d1309343)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeConfigMapProps(
@@ -21508,7 +21512,7 @@ class KubeConfigMapList(
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bc144a49936aebdfc387ec91a45153a5fd302f7ee0809a80a9ce001cf966a1ab)
+            type_hints = cached_type_hints(_typecheckingstub__bc144a49936aebdfc387ec91a45153a5fd302f7ee0809a80a9ce001cf966a1ab)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeConfigMapListProps(items=items, metadata=metadata)
@@ -21568,7 +21572,7 @@ class KubeConfigMapListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__48767662592e262431179254e449350dab987b1cb93287f37b377cb0152ccfe0)
+            type_hints = cached_type_hints(_typecheckingstub__48767662592e262431179254e449350dab987b1cb93287f37b377cb0152ccfe0)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21639,7 +21643,7 @@ class KubeConfigMapProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1a39b77b09572a5978b914a6a73c5b5de4761e48a8d3b3d72892406c734d515a)
+            type_hints = cached_type_hints(_typecheckingstub__1a39b77b09572a5978b914a6a73c5b5de4761e48a8d3b3d72892406c734d515a)
             check_type(argname="argument binary_data", value=binary_data, expected_type=type_hints["binary_data"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument immutable", value=immutable, expected_type=type_hints["immutable"])
@@ -21742,7 +21746,7 @@ class KubeControllerRevision(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3f6bf27fc901e0e15fea30db5d1c34b86ec9c3614e410979df0e341049bf3822)
+            type_hints = cached_type_hints(_typecheckingstub__3f6bf27fc901e0e15fea30db5d1c34b86ec9c3614e410979df0e341049bf3822)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeControllerRevisionProps(
@@ -21812,7 +21816,7 @@ class KubeControllerRevisionList(
         :param metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__53efa27ce81b16cf7569d10e432e48ab5aea03632a8afb6454ccfa8e6454c620)
+            type_hints = cached_type_hints(_typecheckingstub__53efa27ce81b16cf7569d10e432e48ab5aea03632a8afb6454ccfa8e6454c620)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeControllerRevisionListProps(items=items, metadata=metadata)
@@ -21872,7 +21876,7 @@ class KubeControllerRevisionListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b4279c16d501dc382f5edb2bf61182477b32760c149cdd162209ec9571c29ccf)
+            type_hints = cached_type_hints(_typecheckingstub__b4279c16d501dc382f5edb2bf61182477b32760c149cdd162209ec9571c29ccf)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21938,7 +21942,7 @@ class KubeControllerRevisionProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2de468b613a3e33f95f5158a17d168ea0ab46ec3ccc31df40206c6abcc1e847c)
+            type_hints = cached_type_hints(_typecheckingstub__2de468b613a3e33f95f5158a17d168ea0ab46ec3ccc31df40206c6abcc1e847c)
             check_type(argname="argument revision", value=revision, expected_type=type_hints["revision"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
@@ -22018,7 +22022,7 @@ class KubeCronJob(
         :param spec: Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6f1a45e449c623808f20a18094f28e7c251c7307291135b721a1487e56524e00)
+            type_hints = cached_type_hints(_typecheckingstub__6f1a45e449c623808f20a18094f28e7c251c7307291135b721a1487e56524e00)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCronJobProps(metadata=metadata, spec=spec)
@@ -22082,7 +22086,7 @@ class KubeCronJobList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bcac49fe1ddc47b748d3a574b6b07b351b0ff80b7dc9c34aa888370f7d9b0db7)
+            type_hints = cached_type_hints(_typecheckingstub__bcac49fe1ddc47b748d3a574b6b07b351b0ff80b7dc9c34aa888370f7d9b0db7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCronJobListProps(items=items, metadata=metadata)
@@ -22142,7 +22146,7 @@ class KubeCronJobListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06c3ad596042c9920e15bed2efd12904b2272ff2c9e68409c0600e6a9c884986)
+            type_hints = cached_type_hints(_typecheckingstub__06c3ad596042c9920e15bed2efd12904b2272ff2c9e68409c0600e6a9c884986)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22208,7 +22212,7 @@ class KubeCronJobProps:
         if isinstance(spec, dict):
             spec = CronJobSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c260e3c5e7fe913831f1f3fd5594cf9e987523fa1fe919b7bd14b3830dc4259)
+            type_hints = cached_type_hints(_typecheckingstub__8c260e3c5e7fe913831f1f3fd5594cf9e987523fa1fe919b7bd14b3830dc4259)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -22279,7 +22283,7 @@ class KubeCsiDriver(
         :param metadata: Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6e7e584127b81c956ad07d8cf4276ab9626e642741a92936946c0e875c29d3a1)
+            type_hints = cached_type_hints(_typecheckingstub__6e7e584127b81c956ad07d8cf4276ab9626e642741a92936946c0e875c29d3a1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiDriverProps(spec=spec, metadata=metadata)
@@ -22343,7 +22347,7 @@ class KubeCsiDriverList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b44071bd892488f6cfd5df886a9920126e60fa5a0934f4b7139d3fb2d7d22baa)
+            type_hints = cached_type_hints(_typecheckingstub__b44071bd892488f6cfd5df886a9920126e60fa5a0934f4b7139d3fb2d7d22baa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiDriverListProps(items=items, metadata=metadata)
@@ -22403,7 +22407,7 @@ class KubeCsiDriverListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8a6ccbefd0e7c044fdda4f1e093169516e8d19ebafaa273f96679b9ab863cdf9)
+            type_hints = cached_type_hints(_typecheckingstub__8a6ccbefd0e7c044fdda4f1e093169516e8d19ebafaa273f96679b9ab863cdf9)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22469,7 +22473,7 @@ class KubeCsiDriverProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__192ebe10745c7f8861d48c71de7ec8b38130461925dd6355d7c98af27ca4a75e)
+            type_hints = cached_type_hints(_typecheckingstub__192ebe10745c7f8861d48c71de7ec8b38130461925dd6355d7c98af27ca4a75e)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22539,7 +22543,7 @@ class KubeCsiNode(
         :param metadata: Standard object's metadata. metadata.name must be the Kubernetes node name.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7dd065420aed16ce38e08784b9f9c9401b5ee146421a5de47261e92390d97f7f)
+            type_hints = cached_type_hints(_typecheckingstub__7dd065420aed16ce38e08784b9f9c9401b5ee146421a5de47261e92390d97f7f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiNodeProps(spec=spec, metadata=metadata)
@@ -22603,7 +22607,7 @@ class KubeCsiNodeList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0deee8737363a6bd1dbec0ca3dacc8cee5d8804a1ad839104355341fbb23d96e)
+            type_hints = cached_type_hints(_typecheckingstub__0deee8737363a6bd1dbec0ca3dacc8cee5d8804a1ad839104355341fbb23d96e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiNodeListProps(items=items, metadata=metadata)
@@ -22663,7 +22667,7 @@ class KubeCsiNodeListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__66913be37f64f6682b27e7f3a521516525d302b97ec992adec50d5de0ba5090d)
+            type_hints = cached_type_hints(_typecheckingstub__66913be37f64f6682b27e7f3a521516525d302b97ec992adec50d5de0ba5090d)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22729,7 +22733,7 @@ class KubeCsiNodeProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__42b00c3000fc9438453d9f4f95e20b93766d5f40f65fce8ca9b29b21e1ab5b96)
+            type_hints = cached_type_hints(_typecheckingstub__42b00c3000fc9438453d9f4f95e20b93766d5f40f65fce8ca9b29b21e1ab5b96)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -22813,7 +22817,7 @@ class KubeCsiStorageCapacity(
         :param node_topology: nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__672a59a6175ac3d81f59910bb1d738e8e11c47b69c2c3db2480f4a98e073f0df)
+            type_hints = cached_type_hints(_typecheckingstub__672a59a6175ac3d81f59910bb1d738e8e11c47b69c2c3db2480f4a98e073f0df)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiStorageCapacityProps(
@@ -22895,7 +22899,7 @@ class KubeCsiStorageCapacityList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__26349328195cfeb3eebe739f212c79b7cd4474d7dcb20a0a0589a9932a0d1b21)
+            type_hints = cached_type_hints(_typecheckingstub__26349328195cfeb3eebe739f212c79b7cd4474d7dcb20a0a0589a9932a0d1b21)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCsiStorageCapacityListProps(items=items, metadata=metadata)
@@ -22955,7 +22959,7 @@ class KubeCsiStorageCapacityListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__65f4b3047ee5f0d908b2716319143dd4ccd26083f8d0735e0801a078fe3d839a)
+            type_hints = cached_type_hints(_typecheckingstub__65f4b3047ee5f0d908b2716319143dd4ccd26083f8d0735e0801a078fe3d839a)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -23041,7 +23045,7 @@ class KubeCsiStorageCapacityProps:
         if isinstance(node_topology, dict):
             node_topology = LabelSelector(**node_topology)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fdfcf2ccfe14adfd27a6bbb6dc09e54facd4c0be62f6bb48afb0ce7b0e5f31bd)
+            type_hints = cached_type_hints(_typecheckingstub__fdfcf2ccfe14adfd27a6bbb6dc09e54facd4c0be62f6bb48afb0ce7b0e5f31bd)
             check_type(argname="argument storage_class_name", value=storage_class_name, expected_type=type_hints["storage_class_name"])
             check_type(argname="argument capacity", value=capacity, expected_type=type_hints["capacity"])
             check_type(argname="argument maximum_volume_size", value=maximum_volume_size, expected_type=type_hints["maximum_volume_size"])
@@ -23159,7 +23163,7 @@ class KubeCustomResourceDefinition(
         :param metadata: Standard object's metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__334b5f39cea8395ab2e2384ecfed468321d1dfffaf1287949e0062ceeb5f21e2)
+            type_hints = cached_type_hints(_typecheckingstub__334b5f39cea8395ab2e2384ecfed468321d1dfffaf1287949e0062ceeb5f21e2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCustomResourceDefinitionProps(spec=spec, metadata=metadata)
@@ -23223,7 +23227,7 @@ class KubeCustomResourceDefinitionList(
         :param metadata: Standard object's metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__62a298f00bfce341f3c14b23cd20df7fd098569753f147819ade11b8eec605b1)
+            type_hints = cached_type_hints(_typecheckingstub__62a298f00bfce341f3c14b23cd20df7fd098569753f147819ade11b8eec605b1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeCustomResourceDefinitionListProps(items=items, metadata=metadata)
@@ -23283,7 +23287,7 @@ class KubeCustomResourceDefinitionListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1f2426ee351c62ae7b958ae547946c551446a7db0fe0c9ccdaa7a2c0f038b9ee)
+            type_hints = cached_type_hints(_typecheckingstub__1f2426ee351c62ae7b958ae547946c551446a7db0fe0c9ccdaa7a2c0f038b9ee)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -23349,7 +23353,7 @@ class KubeCustomResourceDefinitionProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__44acb3eb0ed88657237084766aeeb318a33cb87a320ff83db090657729bf6a38)
+            type_hints = cached_type_hints(_typecheckingstub__44acb3eb0ed88657237084766aeeb318a33cb87a320ff83db090657729bf6a38)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -23415,7 +23419,7 @@ class KubeDaemonSet(
         :param spec: The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e6e8fa30f38ce100278001efebe064bf62d0a0cf7e9f6a251b4a468ea63e5b8a)
+            type_hints = cached_type_hints(_typecheckingstub__e6e8fa30f38ce100278001efebe064bf62d0a0cf7e9f6a251b4a468ea63e5b8a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDaemonSetProps(metadata=metadata, spec=spec)
@@ -23479,7 +23483,7 @@ class KubeDaemonSetList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7f2704f8f4ce59ac94c9b58e78430742d4a18fba3f41ec245074edd74b149be0)
+            type_hints = cached_type_hints(_typecheckingstub__7f2704f8f4ce59ac94c9b58e78430742d4a18fba3f41ec245074edd74b149be0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDaemonSetListProps(items=items, metadata=metadata)
@@ -23539,7 +23543,7 @@ class KubeDaemonSetListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__abb376a268375c85da81816f728709a72ab35d8db244a766b4b858a0479a2d2f)
+            type_hints = cached_type_hints(_typecheckingstub__abb376a268375c85da81816f728709a72ab35d8db244a766b4b858a0479a2d2f)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -23605,7 +23609,7 @@ class KubeDaemonSetProps:
         if isinstance(spec, dict):
             spec = DaemonSetSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8fbbc65d9c988de23c71a61edaf7bba46d33be225fd1159056e6bef26714816b)
+            type_hints = cached_type_hints(_typecheckingstub__8fbbc65d9c988de23c71a61edaf7bba46d33be225fd1159056e6bef26714816b)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -23674,7 +23678,7 @@ class KubeDeployment(
         :param spec: Specification of the desired behavior of the Deployment.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5e1e2a79d85486449fa0833d4177ee006fe290e62f76e13917ded50a2b61ba2d)
+            type_hints = cached_type_hints(_typecheckingstub__5e1e2a79d85486449fa0833d4177ee006fe290e62f76e13917ded50a2b61ba2d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeploymentProps(metadata=metadata, spec=spec)
@@ -23738,7 +23742,7 @@ class KubeDeploymentList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8338f8fe3af7e0a8022f1814586a09e0d841fc7164e1523e8640ea827a30f1a9)
+            type_hints = cached_type_hints(_typecheckingstub__8338f8fe3af7e0a8022f1814586a09e0d841fc7164e1523e8640ea827a30f1a9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeploymentListProps(items=items, metadata=metadata)
@@ -23798,7 +23802,7 @@ class KubeDeploymentListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6c281c2946d751d060ba2a36cc155cd227429237972a82bf34b0aa5ec907a092)
+            type_hints = cached_type_hints(_typecheckingstub__6c281c2946d751d060ba2a36cc155cd227429237972a82bf34b0aa5ec907a092)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -23862,7 +23866,7 @@ class KubeDeploymentProps:
         if isinstance(spec, dict):
             spec = DeploymentSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3f938ae7726ab98563b8c569f39380bdfb08ba493b5b18b7911fc99dd59fca9d)
+            type_hints = cached_type_hints(_typecheckingstub__3f938ae7726ab98563b8c569f39380bdfb08ba493b5b18b7911fc99dd59fca9d)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -23933,7 +23937,7 @@ class KubeDeviceClass(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba756ea252c412cfb1e0398faceed494aa05fa0b2946bd907ee0df320b6c4a1d)
+            type_hints = cached_type_hints(_typecheckingstub__ba756ea252c412cfb1e0398faceed494aa05fa0b2946bd907ee0df320b6c4a1d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassProps(spec=spec, metadata=metadata)
@@ -23997,7 +24001,7 @@ class KubeDeviceClassList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eae9b2475aa860b88b9c8f4597b19ea87ef727af5446e3b0b1ad65ace299ceb4)
+            type_hints = cached_type_hints(_typecheckingstub__eae9b2475aa860b88b9c8f4597b19ea87ef727af5446e3b0b1ad65ace299ceb4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassListProps(items=items, metadata=metadata)
@@ -24057,7 +24061,7 @@ class KubeDeviceClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4eb1bcb8388bbf8dd107e9659e3121108a093968b4e390a35949e530dfc98bf0)
+            type_hints = cached_type_hints(_typecheckingstub__4eb1bcb8388bbf8dd107e9659e3121108a093968b4e390a35949e530dfc98bf0)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24123,7 +24127,7 @@ class KubeDeviceClassListV1Beta1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c404218cc476931a5b6bdbe7c3d8483e8bf7d351629615c6488dac23896e532d)
+            type_hints = cached_type_hints(_typecheckingstub__c404218cc476931a5b6bdbe7c3d8483e8bf7d351629615c6488dac23896e532d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassListV1Beta1Props(items=items, metadata=metadata)
@@ -24183,7 +24187,7 @@ class KubeDeviceClassListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bae0e5ee8f65e8a7300587468b09a61ec1e03ef99834d57100b590e30245cb71)
+            type_hints = cached_type_hints(_typecheckingstub__bae0e5ee8f65e8a7300587468b09a61ec1e03ef99834d57100b590e30245cb71)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24249,7 +24253,7 @@ class KubeDeviceClassListV1Beta2(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c5c37d65061e4059c4597e03f4e224d2f1d0c40d9f24d9a878ce86a649630fa0)
+            type_hints = cached_type_hints(_typecheckingstub__c5c37d65061e4059c4597e03f4e224d2f1d0c40d9f24d9a878ce86a649630fa0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassListV1Beta2Props(items=items, metadata=metadata)
@@ -24309,7 +24313,7 @@ class KubeDeviceClassListV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cdac3a4902d61432e4ce6b7f4293dba8e2264daf378f00b14891223e2922241d)
+            type_hints = cached_type_hints(_typecheckingstub__cdac3a4902d61432e4ce6b7f4293dba8e2264daf378f00b14891223e2922241d)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24377,7 +24381,7 @@ class KubeDeviceClassProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__57cf8c4353a333bbc6b14b691ceb687159e5291fd313d8e5418a548d1c51057a)
+            type_hints = cached_type_hints(_typecheckingstub__57cf8c4353a333bbc6b14b691ceb687159e5291fd313d8e5418a548d1c51057a)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24451,7 +24455,7 @@ class KubeDeviceClassV1Beta1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a498e1b0bc829aaec4bbaa18514ca3f53cad35644c7e04deeb4e83db707c81f1)
+            type_hints = cached_type_hints(_typecheckingstub__a498e1b0bc829aaec4bbaa18514ca3f53cad35644c7e04deeb4e83db707c81f1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassV1Beta1Props(spec=spec, metadata=metadata)
@@ -24517,7 +24521,7 @@ class KubeDeviceClassV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__233fe22a9e94289bc9a6ae0ac5aa6b28c30ec2c6c5b8397e6d6966e5fa9c5666)
+            type_hints = cached_type_hints(_typecheckingstub__233fe22a9e94289bc9a6ae0ac5aa6b28c30ec2c6c5b8397e6d6966e5fa9c5666)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24591,7 +24595,7 @@ class KubeDeviceClassV1Beta2(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__65e9e2818e2550714b52444a2a2e32ac3b1acd0b1c9a498ac5196c6f069360c7)
+            type_hints = cached_type_hints(_typecheckingstub__65e9e2818e2550714b52444a2a2e32ac3b1acd0b1c9a498ac5196c6f069360c7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceClassV1Beta2Props(spec=spec, metadata=metadata)
@@ -24657,7 +24661,7 @@ class KubeDeviceClassV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c02da4ddc376a7f6a54e95a92bcb37a8ad425bfeab82c1d62511ad59724a5b74)
+            type_hints = cached_type_hints(_typecheckingstub__c02da4ddc376a7f6a54e95a92bcb37a8ad425bfeab82c1d62511ad59724a5b74)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24727,7 +24731,7 @@ class KubeDeviceTaintRuleListV1Alpha3(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__88f5002a2a7734d927700bf29c00b83cafc000d0c48edd8f7f7adcaa77caa94a)
+            type_hints = cached_type_hints(_typecheckingstub__88f5002a2a7734d927700bf29c00b83cafc000d0c48edd8f7f7adcaa77caa94a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceTaintRuleListV1Alpha3Props(items=items, metadata=metadata)
@@ -24787,7 +24791,7 @@ class KubeDeviceTaintRuleListV1Alpha3Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b40a6eb5afbec612262d01a4ffd60221da639f34360a66acb996ffc21e128579)
+            type_hints = cached_type_hints(_typecheckingstub__b40a6eb5afbec612262d01a4ffd60221da639f34360a66acb996ffc21e128579)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24855,7 +24859,7 @@ class KubeDeviceTaintRuleV1Alpha3(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68553e5273901354316cf560745766854757528935a26aed06cda909392269a0)
+            type_hints = cached_type_hints(_typecheckingstub__68553e5273901354316cf560745766854757528935a26aed06cda909392269a0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeDeviceTaintRuleV1Alpha3Props(spec=spec, metadata=metadata)
@@ -24919,7 +24923,7 @@ class KubeDeviceTaintRuleV1Alpha3Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ad068a585918d146e7d4c6d3e7ae959d71b190c3fbc257acc5191bcdac97037)
+            type_hints = cached_type_hints(_typecheckingstub__0ad068a585918d146e7d4c6d3e7ae959d71b190c3fbc257acc5191bcdac97037)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -24993,7 +24997,7 @@ class KubeEndpointSlice(
         :param ports: ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. Each slice may include a maximum of 100 ports. Services always have at least 1 port, so EndpointSlices generated by the EndpointSlice controller will likewise always have at least 1 port. EndpointSlices used for other purposes may have an empty ports list.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4a3aca436c82217519bb07237133dd6f4d2c21c528a0a7e98d7963d8062245d1)
+            type_hints = cached_type_hints(_typecheckingstub__4a3aca436c82217519bb07237133dd6f4d2c21c528a0a7e98d7963d8062245d1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEndpointSliceProps(
@@ -25071,7 +25075,7 @@ class KubeEndpointSliceList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a4184b57cf196b9cf44ae6f0a3e88a09792447aa938bae1ad32ddf0430cc8472)
+            type_hints = cached_type_hints(_typecheckingstub__a4184b57cf196b9cf44ae6f0a3e88a09792447aa938bae1ad32ddf0430cc8472)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEndpointSliceListProps(items=items, metadata=metadata)
@@ -25131,7 +25135,7 @@ class KubeEndpointSliceListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__893756756978bc6e8b8cd4f9974acd87d10a41169ee8149b2474685511e1202f)
+            type_hints = cached_type_hints(_typecheckingstub__893756756978bc6e8b8cd4f9974acd87d10a41169ee8149b2474685511e1202f)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -25204,7 +25208,7 @@ class KubeEndpointSliceProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d5a0710afc3e844c1100b501405d8ce44983ec5b3c3f16765cabf7c83048029e)
+            type_hints = cached_type_hints(_typecheckingstub__d5a0710afc3e844c1100b501405d8ce44983ec5b3c3f16765cabf7c83048029e)
             check_type(argname="argument address_type", value=address_type, expected_type=type_hints["address_type"])
             check_type(argname="argument endpoints", value=endpoints, expected_type=type_hints["endpoints"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
@@ -25316,7 +25320,7 @@ class KubeEndpoints(
         :param subsets: The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__07c03de2e3c29871d33c0d6587ce2a4fb58f9ad5c55ff53ae8ca18161ca8f75d)
+            type_hints = cached_type_hints(_typecheckingstub__07c03de2e3c29871d33c0d6587ce2a4fb58f9ad5c55ff53ae8ca18161ca8f75d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEndpointsProps(metadata=metadata, subsets=subsets)
@@ -25382,7 +25386,7 @@ class KubeEndpointsList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f7ec0ee98c97171c7128134d941789c4354bb07ecb52a28f275a4b6010dc9009)
+            type_hints = cached_type_hints(_typecheckingstub__f7ec0ee98c97171c7128134d941789c4354bb07ecb52a28f275a4b6010dc9009)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEndpointsListProps(items=items, metadata=metadata)
@@ -25444,7 +25448,7 @@ class KubeEndpointsListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dabdb04acd54ff7c5f4be3268ab8a4d155c02f3b13492e7bc3edd37ae5e31e6e)
+            type_hints = cached_type_hints(_typecheckingstub__dabdb04acd54ff7c5f4be3268ab8a4d155c02f3b13492e7bc3edd37ae5e31e6e)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -25524,7 +25528,7 @@ class KubeEndpointsProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0dbeba4d3e9f8a17aefc98d861feaeeb225997236ef3922454cbd361215afdf7)
+            type_hints = cached_type_hints(_typecheckingstub__0dbeba4d3e9f8a17aefc98d861feaeeb225997236ef3922454cbd361215afdf7)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument subsets", value=subsets, expected_type=type_hints["subsets"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -25621,7 +25625,7 @@ class KubeEvent(
         :param type: type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable. This field cannot be empty for new Events.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bff248256702fdbc7f8830bde32e723508feda5df87528f11bc2ce4646805a0f)
+            type_hints = cached_type_hints(_typecheckingstub__bff248256702fdbc7f8830bde32e723508feda5df87528f11bc2ce4646805a0f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEventProps(
@@ -25743,7 +25747,7 @@ class KubeEventList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e546e7e1029a776b150b1d203fdfd30b45f89d03516fbe6b00d28c4dde254656)
+            type_hints = cached_type_hints(_typecheckingstub__e546e7e1029a776b150b1d203fdfd30b45f89d03516fbe6b00d28c4dde254656)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEventListProps(items=items, metadata=metadata)
@@ -25803,7 +25807,7 @@ class KubeEventListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f1413ee6881591e1991bd16a7298ddbd2f5adf1365ff312c068728af9df75f5d)
+            type_hints = cached_type_hints(_typecheckingstub__f1413ee6881591e1991bd16a7298ddbd2f5adf1365ff312c068728af9df75f5d)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -25919,7 +25923,7 @@ class KubeEventProps:
         if isinstance(series, dict):
             series = EventSeries(**series)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__48c2a6f443e17733c15e46b85814aa0990b46cd3a60cd4b9a9dbb71d3d3e844b)
+            type_hints = cached_type_hints(_typecheckingstub__48c2a6f443e17733c15e46b85814aa0990b46cd3a60cd4b9a9dbb71d3d3e844b)
             check_type(argname="argument event_time", value=event_time, expected_type=type_hints["event_time"])
             check_type(argname="argument action", value=action, expected_type=type_hints["action"])
             check_type(argname="argument deprecated_count", value=deprecated_count, expected_type=type_hints["deprecated_count"])
@@ -26159,7 +26163,7 @@ class KubeEviction(
         :param metadata: ObjectMeta describes the pod that is being evicted.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ce3fc7d57adcd46be2dfb9bf2c29323102143783bface1d1cbd34980309078ba)
+            type_hints = cached_type_hints(_typecheckingstub__ce3fc7d57adcd46be2dfb9bf2c29323102143783bface1d1cbd34980309078ba)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeEvictionProps(delete_options=delete_options, metadata=metadata)
@@ -26223,7 +26227,7 @@ class KubeEvictionProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__87cf0d2be9c3f9f8ef8e2278ad8544565ff3211d2445691804c2609bf06a14a3)
+            type_hints = cached_type_hints(_typecheckingstub__87cf0d2be9c3f9f8ef8e2278ad8544565ff3211d2445691804c2609bf06a14a3)
             check_type(argname="argument delete_options", value=delete_options, expected_type=type_hints["delete_options"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -26290,7 +26294,7 @@ class KubeFlowSchema(
         :param spec: ``spec`` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b75e8b7da2c947e429bcc0cf4c46e5322744f1d30221c5496558d8d4f786d670)
+            type_hints = cached_type_hints(_typecheckingstub__b75e8b7da2c947e429bcc0cf4c46e5322744f1d30221c5496558d8d4f786d670)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeFlowSchemaProps(metadata=metadata, spec=spec)
@@ -26354,7 +26358,7 @@ class KubeFlowSchemaList(
         :param metadata: ``metadata`` is the standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e963da264b81bbdb4dd4eb8ddfe1941d7da5612caccd52687ae33296aef81bea)
+            type_hints = cached_type_hints(_typecheckingstub__e963da264b81bbdb4dd4eb8ddfe1941d7da5612caccd52687ae33296aef81bea)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeFlowSchemaListProps(items=items, metadata=metadata)
@@ -26414,7 +26418,7 @@ class KubeFlowSchemaListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__598aa160ea0929a5cdbef55221e11d9d4239b788da9cf2ad31e7dfd9c170f07d)
+            type_hints = cached_type_hints(_typecheckingstub__598aa160ea0929a5cdbef55221e11d9d4239b788da9cf2ad31e7dfd9c170f07d)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -26482,7 +26486,7 @@ class KubeFlowSchemaProps:
         if isinstance(spec, dict):
             spec = FlowSchemaSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3412ba74cbad5590daca844ab6533c4b247e01aca5d9b645ac275b4a71ee78b4)
+            type_hints = cached_type_hints(_typecheckingstub__3412ba74cbad5590daca844ab6533c4b247e01aca5d9b645ac275b4a71ee78b4)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -26551,7 +26555,7 @@ class KubeHorizontalPodAutoscaler(
         :param spec: spec defines the behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3659a33a1f8b87b529d9e9023dd6bb01e0bfb73facc829ec1a43b27043decca0)
+            type_hints = cached_type_hints(_typecheckingstub__3659a33a1f8b87b529d9e9023dd6bb01e0bfb73facc829ec1a43b27043decca0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeHorizontalPodAutoscalerProps(metadata=metadata, spec=spec)
@@ -26615,7 +26619,7 @@ class KubeHorizontalPodAutoscalerList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d083f278632697415785096091248f1e45891163fa170df1eb5824abc4d7153c)
+            type_hints = cached_type_hints(_typecheckingstub__d083f278632697415785096091248f1e45891163fa170df1eb5824abc4d7153c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeHorizontalPodAutoscalerListProps(items=items, metadata=metadata)
@@ -26675,7 +26679,7 @@ class KubeHorizontalPodAutoscalerListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e26ffe8caa8bac98a411574cbd7526286da29c633ab894498e0b6be6bad7b5ec)
+            type_hints = cached_type_hints(_typecheckingstub__e26ffe8caa8bac98a411574cbd7526286da29c633ab894498e0b6be6bad7b5ec)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -26741,7 +26745,7 @@ class KubeHorizontalPodAutoscalerListV2(
         :param metadata: metadata is the standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__612b9b7f601cf85679f8310aba2b1726e9093cf95529f5cdb32980ecb876fc78)
+            type_hints = cached_type_hints(_typecheckingstub__612b9b7f601cf85679f8310aba2b1726e9093cf95529f5cdb32980ecb876fc78)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeHorizontalPodAutoscalerListV2Props(items=items, metadata=metadata)
@@ -26801,7 +26805,7 @@ class KubeHorizontalPodAutoscalerListV2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__82d754c8d97bd9130289b15ea62a398adf7971a9304499522bbc19f063139128)
+            type_hints = cached_type_hints(_typecheckingstub__82d754c8d97bd9130289b15ea62a398adf7971a9304499522bbc19f063139128)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -26865,7 +26869,7 @@ class KubeHorizontalPodAutoscalerProps:
         if isinstance(spec, dict):
             spec = HorizontalPodAutoscalerSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__542b4bd5deadf3f3ea668c268b55d72b558ce8b50e724f90f1bae3abad482de7)
+            type_hints = cached_type_hints(_typecheckingstub__542b4bd5deadf3f3ea668c268b55d72b558ce8b50e724f90f1bae3abad482de7)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -26934,7 +26938,7 @@ class KubeHorizontalPodAutoscalerV2(
         :param spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9ca507f6cd5ee9c7cea60234c215b0a4ffad2c91ec0a23f8d44798e355cbb065)
+            type_hints = cached_type_hints(_typecheckingstub__9ca507f6cd5ee9c7cea60234c215b0a4ffad2c91ec0a23f8d44798e355cbb065)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeHorizontalPodAutoscalerV2Props(metadata=metadata, spec=spec)
@@ -26996,7 +27000,7 @@ class KubeHorizontalPodAutoscalerV2Props:
         if isinstance(spec, dict):
             spec = HorizontalPodAutoscalerSpecV2(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__53e62de6a231cf1b2dd6d0d4c7bf7bca086b1fee4162cdbfec39861730181a09)
+            type_hints = cached_type_hints(_typecheckingstub__53e62de6a231cf1b2dd6d0d4c7bf7bca086b1fee4162cdbfec39861730181a09)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -27067,7 +27071,7 @@ class KubeIngress(
         :param spec: spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fecb69d0c5ae696fc26dfb5e8ab4fdf624ec8c1b40d730da8ee18908df85a89a)
+            type_hints = cached_type_hints(_typecheckingstub__fecb69d0c5ae696fc26dfb5e8ab4fdf624ec8c1b40d730da8ee18908df85a89a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIngressProps(metadata=metadata, spec=spec)
@@ -27133,7 +27137,7 @@ class KubeIngressClass(
         :param spec: spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d418ae2f0a6f2d90c9b2dd88ca1f6a84e3153a97a96e7ff6807e07b0dd61c0b7)
+            type_hints = cached_type_hints(_typecheckingstub__d418ae2f0a6f2d90c9b2dd88ca1f6a84e3153a97a96e7ff6807e07b0dd61c0b7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIngressClassProps(metadata=metadata, spec=spec)
@@ -27197,7 +27201,7 @@ class KubeIngressClassList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bc0fa42e29a73942af0afef36f066bacef13f7e6faa1064781e6f6b6797cc61a)
+            type_hints = cached_type_hints(_typecheckingstub__bc0fa42e29a73942af0afef36f066bacef13f7e6faa1064781e6f6b6797cc61a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIngressClassListProps(items=items, metadata=metadata)
@@ -27257,7 +27261,7 @@ class KubeIngressClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__82c7c14ff0df4771b1efd0ca1f8329565f6bcd7e8eaa44ac5477a9fd2a3c41d2)
+            type_hints = cached_type_hints(_typecheckingstub__82c7c14ff0df4771b1efd0ca1f8329565f6bcd7e8eaa44ac5477a9fd2a3c41d2)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -27323,7 +27327,7 @@ class KubeIngressClassProps:
         if isinstance(spec, dict):
             spec = IngressClassSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5ff63d6e124700008192e962f05892ebc82196bb74b11b70eaba4b39b70836b7)
+            type_hints = cached_type_hints(_typecheckingstub__5ff63d6e124700008192e962f05892ebc82196bb74b11b70eaba4b39b70836b7)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -27392,7 +27396,7 @@ class KubeIngressList(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f226e78ce6490682fe3c9a63b8ce32fe7c21b49aa9ce2e44e5b9fd3f61a3d60a)
+            type_hints = cached_type_hints(_typecheckingstub__f226e78ce6490682fe3c9a63b8ce32fe7c21b49aa9ce2e44e5b9fd3f61a3d60a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIngressListProps(items=items, metadata=metadata)
@@ -27452,7 +27456,7 @@ class KubeIngressListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f7312bcea7e490386f6d60582abdc979996825d2af8c213e81cab63ed38979d1)
+            type_hints = cached_type_hints(_typecheckingstub__f7312bcea7e490386f6d60582abdc979996825d2af8c213e81cab63ed38979d1)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -27520,7 +27524,7 @@ class KubeIngressProps:
         if isinstance(spec, dict):
             spec = IngressSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c6fb53470ef0dd80ea7bd4fef27d3ddf64cb7f36e5eea57e17b603eea466bdbd)
+            type_hints = cached_type_hints(_typecheckingstub__c6fb53470ef0dd80ea7bd4fef27d3ddf64cb7f36e5eea57e17b603eea466bdbd)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -27591,7 +27595,7 @@ class KubeIpAddress(
         :param spec: spec is the desired state of the IPAddress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__43ebebea08ca2b5676235585643f94c007904be88dc612d4b4abdd2956382a49)
+            type_hints = cached_type_hints(_typecheckingstub__43ebebea08ca2b5676235585643f94c007904be88dc612d4b4abdd2956382a49)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIpAddressProps(metadata=metadata, spec=spec)
@@ -27655,7 +27659,7 @@ class KubeIpAddressList(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f88b673ed38a99a546edbebf0d28e3eeb6378f4f0be8825ddabc172f6f8d3be9)
+            type_hints = cached_type_hints(_typecheckingstub__f88b673ed38a99a546edbebf0d28e3eeb6378f4f0be8825ddabc172f6f8d3be9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIpAddressListProps(items=items, metadata=metadata)
@@ -27715,7 +27719,7 @@ class KubeIpAddressListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0a853f4e10a802515b9e54f4bfef5cd817720cfe35cfd3218d0badf13000b4f8)
+            type_hints = cached_type_hints(_typecheckingstub__0a853f4e10a802515b9e54f4bfef5cd817720cfe35cfd3218d0badf13000b4f8)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -27783,7 +27787,7 @@ class KubeIpAddressListV1Beta1(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8dcea6a74159ef7820a8381b5e5c9fdbe1d91549d507aa775c3f4f872e5a229)
+            type_hints = cached_type_hints(_typecheckingstub__d8dcea6a74159ef7820a8381b5e5c9fdbe1d91549d507aa775c3f4f872e5a229)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIpAddressListV1Beta1Props(items=items, metadata=metadata)
@@ -27843,7 +27847,7 @@ class KubeIpAddressListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__38b5c56e3b0bb8fbfb938bd3caabc35f73365b98fde3ee0ac12be1e52ce38c1b)
+            type_hints = cached_type_hints(_typecheckingstub__38b5c56e3b0bb8fbfb938bd3caabc35f73365b98fde3ee0ac12be1e52ce38c1b)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -27911,7 +27915,7 @@ class KubeIpAddressProps:
         if isinstance(spec, dict):
             spec = IpAddressSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ce653c055b51151a0b13a4cb4cfb192663622be44ae6d67ce99eff3404701d80)
+            type_hints = cached_type_hints(_typecheckingstub__ce653c055b51151a0b13a4cb4cfb192663622be44ae6d67ce99eff3404701d80)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -27982,7 +27986,7 @@ class KubeIpAddressV1Beta1(
         :param spec: spec is the desired state of the IPAddress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ef678fba93bb483fb1c6bd25faf1866dd784d5b3833751516afb207f0c8ea6b7)
+            type_hints = cached_type_hints(_typecheckingstub__ef678fba93bb483fb1c6bd25faf1866dd784d5b3833751516afb207f0c8ea6b7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeIpAddressV1Beta1Props(metadata=metadata, spec=spec)
@@ -28046,7 +28050,7 @@ class KubeIpAddressV1Beta1Props:
         if isinstance(spec, dict):
             spec = IpAddressSpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f6e243a7c21449559850ccd62dd4b1123269351d12cc15e9130c67b9c8367a90)
+            type_hints = cached_type_hints(_typecheckingstub__f6e243a7c21449559850ccd62dd4b1123269351d12cc15e9130c67b9c8367a90)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -28115,7 +28119,7 @@ class KubeJob(
         :param spec: Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fff358859e9af9ea8332041ebc8c62133b4e15d6bae01f757722777868bbf975)
+            type_hints = cached_type_hints(_typecheckingstub__fff358859e9af9ea8332041ebc8c62133b4e15d6bae01f757722777868bbf975)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeJobProps(metadata=metadata, spec=spec)
@@ -28179,7 +28183,7 @@ class KubeJobList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ebfb0aedffe4b9969191f6572e8cede1b485af52b80986d4fcdbaf0f5983cd6d)
+            type_hints = cached_type_hints(_typecheckingstub__ebfb0aedffe4b9969191f6572e8cede1b485af52b80986d4fcdbaf0f5983cd6d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeJobListProps(items=items, metadata=metadata)
@@ -28239,7 +28243,7 @@ class KubeJobListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c68110c5b5d423614744f1c0238268018af1c5d3aac79966f04ee1b380605fa)
+            type_hints = cached_type_hints(_typecheckingstub__8c68110c5b5d423614744f1c0238268018af1c5d3aac79966f04ee1b380605fa)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -28305,7 +28309,7 @@ class KubeJobProps:
         if isinstance(spec, dict):
             spec = JobSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8623d11ce8ff4879cf0c14e0993080e88ac2cb1e525affa070848156c47f58d)
+            type_hints = cached_type_hints(_typecheckingstub__d8623d11ce8ff4879cf0c14e0993080e88ac2cb1e525affa070848156c47f58d)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -28374,7 +28378,7 @@ class KubeLease(
         :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9d7ac416a382b84ffda17705003bcb5bf298edcb4ce565074e252fb3615f92b2)
+            type_hints = cached_type_hints(_typecheckingstub__9d7ac416a382b84ffda17705003bcb5bf298edcb4ce565074e252fb3615f92b2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseProps(metadata=metadata, spec=spec)
@@ -28438,7 +28442,7 @@ class KubeLeaseCandidateListV1Alpha2(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f14de9ea288e4c10e60a46a9ef2348a45963c9f8e6416739b747dc50114371ea)
+            type_hints = cached_type_hints(_typecheckingstub__f14de9ea288e4c10e60a46a9ef2348a45963c9f8e6416739b747dc50114371ea)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseCandidateListV1Alpha2Props(items=items, metadata=metadata)
@@ -28498,7 +28502,7 @@ class KubeLeaseCandidateListV1Alpha2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8b1b8aed3b4cd70eeda9090be43dfbcb4ad9f89b0955cdd2cea8fdf572264a28)
+            type_hints = cached_type_hints(_typecheckingstub__8b1b8aed3b4cd70eeda9090be43dfbcb4ad9f89b0955cdd2cea8fdf572264a28)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -28566,7 +28570,7 @@ class KubeLeaseCandidateListV1Beta1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__018f03c6ae55552fc4e5b506cd5f6ecdbe89f6ba73d731474aa8b538321ba431)
+            type_hints = cached_type_hints(_typecheckingstub__018f03c6ae55552fc4e5b506cd5f6ecdbe89f6ba73d731474aa8b538321ba431)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseCandidateListV1Beta1Props(items=items, metadata=metadata)
@@ -28626,7 +28630,7 @@ class KubeLeaseCandidateListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dd0b0908a62cbba6f449277631e65c73120e7b0c24ea7bea01f6f132a98ad9ef)
+            type_hints = cached_type_hints(_typecheckingstub__dd0b0908a62cbba6f449277631e65c73120e7b0c24ea7bea01f6f132a98ad9ef)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -28696,7 +28700,7 @@ class KubeLeaseCandidateV1Alpha2(
         :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d0212f89d545811c79bd880c5221053afc9f6fa72c701c2d40f7a0e9fb64063)
+            type_hints = cached_type_hints(_typecheckingstub__6d0212f89d545811c79bd880c5221053afc9f6fa72c701c2d40f7a0e9fb64063)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseCandidateV1Alpha2Props(metadata=metadata, spec=spec)
@@ -28760,7 +28764,7 @@ class KubeLeaseCandidateV1Alpha2Props:
         if isinstance(spec, dict):
             spec = LeaseCandidateSpecV1Alpha2(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5692f4fdda5072efc543e9324d5b753b4ae6c19636e79f4aebd728995d631bb4)
+            type_hints = cached_type_hints(_typecheckingstub__5692f4fdda5072efc543e9324d5b753b4ae6c19636e79f4aebd728995d631bb4)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -28829,7 +28833,7 @@ class KubeLeaseCandidateV1Beta1(
         :param spec: spec contains the specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__873812f5ef848a879543ed44080b3b30d7e0c05133300deb76d5f0a4ff94d5b6)
+            type_hints = cached_type_hints(_typecheckingstub__873812f5ef848a879543ed44080b3b30d7e0c05133300deb76d5f0a4ff94d5b6)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseCandidateV1Beta1Props(metadata=metadata, spec=spec)
@@ -28893,7 +28897,7 @@ class KubeLeaseCandidateV1Beta1Props:
         if isinstance(spec, dict):
             spec = LeaseCandidateSpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0529ac1e4e13bd0e9635f8e9f70244a8e90bd14451c590da2eea0d28cdd31774)
+            type_hints = cached_type_hints(_typecheckingstub__0529ac1e4e13bd0e9635f8e9f70244a8e90bd14451c590da2eea0d28cdd31774)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -28960,7 +28964,7 @@ class KubeLeaseList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__75166c72791817156d385921cd400e23041c5ec11ee91d66d38a9f3f2858d1b7)
+            type_hints = cached_type_hints(_typecheckingstub__75166c72791817156d385921cd400e23041c5ec11ee91d66d38a9f3f2858d1b7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLeaseListProps(items=items, metadata=metadata)
@@ -29020,7 +29024,7 @@ class KubeLeaseListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__298c44b61ec9eb849c15cf2a5e383a73704159b87103b7b3ad5e506767bc102f)
+            type_hints = cached_type_hints(_typecheckingstub__298c44b61ec9eb849c15cf2a5e383a73704159b87103b7b3ad5e506767bc102f)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -29086,7 +29090,7 @@ class KubeLeaseProps:
         if isinstance(spec, dict):
             spec = LeaseSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__087e36c33055af38c535d84159dc6ca27d3ac01c18260bfd1accaa57ca9e9f87)
+            type_hints = cached_type_hints(_typecheckingstub__087e36c33055af38c535d84159dc6ca27d3ac01c18260bfd1accaa57ca9e9f87)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -29153,7 +29157,7 @@ class KubeLimitRange(
         :param spec: Spec defines the limits enforced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a07d6eaf25ce775558c3ff31cf7338c76165ccf4142236e04da563765d8cf0b1)
+            type_hints = cached_type_hints(_typecheckingstub__a07d6eaf25ce775558c3ff31cf7338c76165ccf4142236e04da563765d8cf0b1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLimitRangeProps(metadata=metadata, spec=spec)
@@ -29217,7 +29221,7 @@ class KubeLimitRangeList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c7a8f8a9863b43e2fd00c4b8c7d258d2c05e91ae89be7106f6de4aed120b72db)
+            type_hints = cached_type_hints(_typecheckingstub__c7a8f8a9863b43e2fd00c4b8c7d258d2c05e91ae89be7106f6de4aed120b72db)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLimitRangeListProps(items=items, metadata=metadata)
@@ -29277,7 +29281,7 @@ class KubeLimitRangeListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1ddfc6edaee1a35d88f539af8024140cdbeb093b064f536ca3b5b93e5ccaba6c)
+            type_hints = cached_type_hints(_typecheckingstub__1ddfc6edaee1a35d88f539af8024140cdbeb093b064f536ca3b5b93e5ccaba6c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -29345,7 +29349,7 @@ class KubeLimitRangeProps:
         if isinstance(spec, dict):
             spec = LimitRangeSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2f09492d34c2b6f246cc5363c69827532389bf688a8153b21d1be33b85f10e08)
+            type_hints = cached_type_hints(_typecheckingstub__2f09492d34c2b6f246cc5363c69827532389bf688a8153b21d1be33b85f10e08)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -29416,7 +29420,7 @@ class KubeLocalSubjectAccessReview(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cdf9554ef0e379495534a1087b68841710eca3f0d932611510b7ba25ae57d8c0)
+            type_hints = cached_type_hints(_typecheckingstub__cdf9554ef0e379495534a1087b68841710eca3f0d932611510b7ba25ae57d8c0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeLocalSubjectAccessReviewProps(spec=spec, metadata=metadata)
@@ -29480,7 +29484,7 @@ class KubeLocalSubjectAccessReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__70906afc8c383c855cbd20f07b10abc432f25794647078ae07044f7af0aecd01)
+            type_hints = cached_type_hints(_typecheckingstub__70906afc8c383c855cbd20f07b10abc432f25794647078ae07044f7af0aecd01)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -29550,7 +29554,7 @@ class KubeMutatingAdmissionPolicyBindingListV1Alpha1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__51efdb45906aee82cec57f3af19a962782fa470f101fd2de18c5edb4ab01eb9b)
+            type_hints = cached_type_hints(_typecheckingstub__51efdb45906aee82cec57f3af19a962782fa470f101fd2de18c5edb4ab01eb9b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyBindingListV1Alpha1Props(
@@ -29614,7 +29618,7 @@ class KubeMutatingAdmissionPolicyBindingListV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__61714a433a0eb1b59b098c499e9e3b97e9a7f14d982e848be851d847e8a6c6bb)
+            type_hints = cached_type_hints(_typecheckingstub__61714a433a0eb1b59b098c499e9e3b97e9a7f14d982e848be851d847e8a6c6bb)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -29682,7 +29686,7 @@ class KubeMutatingAdmissionPolicyBindingListV1Beta1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b17d0ee9ed082ae7a9114b6cba27866a5e24b0173e3e72633aeaec76f4e182e5)
+            type_hints = cached_type_hints(_typecheckingstub__b17d0ee9ed082ae7a9114b6cba27866a5e24b0173e3e72633aeaec76f4e182e5)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyBindingListV1Beta1Props(
@@ -29746,7 +29750,7 @@ class KubeMutatingAdmissionPolicyBindingListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c425797954fa1ffd6a3b793e260b0d0cd5f928c0ba9b67dd6a5982870e9bd87a)
+            type_hints = cached_type_hints(_typecheckingstub__c425797954fa1ffd6a3b793e260b0d0cd5f928c0ba9b67dd6a5982870e9bd87a)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -29820,7 +29824,7 @@ class KubeMutatingAdmissionPolicyBindingV1Alpha1(
         :param spec: Specification of the desired behavior of the MutatingAdmissionPolicyBinding.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7e5c99e639d39017cc7b39ddc5b46be95f2a5375901d7b328080413a62921614)
+            type_hints = cached_type_hints(_typecheckingstub__7e5c99e639d39017cc7b39ddc5b46be95f2a5375901d7b328080413a62921614)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyBindingV1Alpha1Props(
@@ -29892,7 +29896,7 @@ class KubeMutatingAdmissionPolicyBindingV1Alpha1Props:
         if isinstance(spec, dict):
             spec = MutatingAdmissionPolicyBindingSpecV1Alpha1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7f53808ca6e76e77949422e09db445f8a7ee4ef0cf1e836a54cd539901048c03)
+            type_hints = cached_type_hints(_typecheckingstub__7f53808ca6e76e77949422e09db445f8a7ee4ef0cf1e836a54cd539901048c03)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -29965,7 +29969,7 @@ class KubeMutatingAdmissionPolicyBindingV1Beta1(
         :param spec: Specification of the desired behavior of the MutatingAdmissionPolicyBinding.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__949f39ccf8b365f21c2c8a78f44c1cf5b7193d287585d699efda0aa71b78c7e4)
+            type_hints = cached_type_hints(_typecheckingstub__949f39ccf8b365f21c2c8a78f44c1cf5b7193d287585d699efda0aa71b78c7e4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyBindingV1Beta1Props(
@@ -30037,7 +30041,7 @@ class KubeMutatingAdmissionPolicyBindingV1Beta1Props:
         if isinstance(spec, dict):
             spec = MutatingAdmissionPolicyBindingSpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6ae824d81f7e4ba6d050739ceeb7631e71c642a1f8a536fddff36e4262799817)
+            type_hints = cached_type_hints(_typecheckingstub__6ae824d81f7e4ba6d050739ceeb7631e71c642a1f8a536fddff36e4262799817)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -30104,7 +30108,7 @@ class KubeMutatingAdmissionPolicyListV1Alpha1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ae0391470ba40639c3752d8974d90feb71d857feb9585a853d1a536ef44dc235)
+            type_hints = cached_type_hints(_typecheckingstub__ae0391470ba40639c3752d8974d90feb71d857feb9585a853d1a536ef44dc235)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyListV1Alpha1Props(
@@ -30168,7 +30172,7 @@ class KubeMutatingAdmissionPolicyListV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba1fc8d305404a505a24fcec1e994bd1f488774ab68a68959484a9cdc6d2a3d6)
+            type_hints = cached_type_hints(_typecheckingstub__ba1fc8d305404a505a24fcec1e994bd1f488774ab68a68959484a9cdc6d2a3d6)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -30236,7 +30240,7 @@ class KubeMutatingAdmissionPolicyListV1Beta1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6acffdacd6a59a23a4a542e79643db91a6f74cabbb42554240a4cda68056464f)
+            type_hints = cached_type_hints(_typecheckingstub__6acffdacd6a59a23a4a542e79643db91a6f74cabbb42554240a4cda68056464f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyListV1Beta1Props(
@@ -30300,7 +30304,7 @@ class KubeMutatingAdmissionPolicyListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__551a771a8c0465abedbce96874c9733bf27d0e6260f4700a4e0bbecee379c24b)
+            type_hints = cached_type_hints(_typecheckingstub__551a771a8c0465abedbce96874c9733bf27d0e6260f4700a4e0bbecee379c24b)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -30368,7 +30372,7 @@ class KubeMutatingAdmissionPolicyV1Alpha1(
         :param spec: Specification of the desired behavior of the MutatingAdmissionPolicy.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b00e1d8e86f906514d4325d5992119ecd7800af1f87cc4bf399a117a020b86ff)
+            type_hints = cached_type_hints(_typecheckingstub__b00e1d8e86f906514d4325d5992119ecd7800af1f87cc4bf399a117a020b86ff)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyV1Alpha1Props(metadata=metadata, spec=spec)
@@ -30430,7 +30434,7 @@ class KubeMutatingAdmissionPolicyV1Alpha1Props:
         if isinstance(spec, dict):
             spec = MutatingAdmissionPolicySpecV1Alpha1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__245d91f694b371808ac5543235d4b119cd4b3a12a75227ba080e375a07db125a)
+            type_hints = cached_type_hints(_typecheckingstub__245d91f694b371808ac5543235d4b119cd4b3a12a75227ba080e375a07db125a)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -30497,7 +30501,7 @@ class KubeMutatingAdmissionPolicyV1Beta1(
         :param spec: Specification of the desired behavior of the MutatingAdmissionPolicy.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7f39b0e2b47789f4efd25766f123a631d93b6f4e193a1050e8b948764ec02b2c)
+            type_hints = cached_type_hints(_typecheckingstub__7f39b0e2b47789f4efd25766f123a631d93b6f4e193a1050e8b948764ec02b2c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingAdmissionPolicyV1Beta1Props(metadata=metadata, spec=spec)
@@ -30559,7 +30563,7 @@ class KubeMutatingAdmissionPolicyV1Beta1Props:
         if isinstance(spec, dict):
             spec = MutatingAdmissionPolicySpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a614cacf73af43025eaa7bde2c2919d721ce2267082b1a306791c8fee844e94d)
+            type_hints = cached_type_hints(_typecheckingstub__a614cacf73af43025eaa7bde2c2919d721ce2267082b1a306791c8fee844e94d)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -30626,7 +30630,7 @@ class KubeMutatingWebhookConfiguration(
         :param webhooks: Webhooks is a list of webhooks and the affected resources and operations.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__78fbbe028a200f70510169b8127ab5f20fbf81ad5ddeeea991e488779448b60f)
+            type_hints = cached_type_hints(_typecheckingstub__78fbbe028a200f70510169b8127ab5f20fbf81ad5ddeeea991e488779448b60f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingWebhookConfigurationProps(
@@ -30694,7 +30698,7 @@ class KubeMutatingWebhookConfigurationList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__85169c24c76c15a829cd177c34e67d5781ce9a0ad8b7556ff48f987f00297ec0)
+            type_hints = cached_type_hints(_typecheckingstub__85169c24c76c15a829cd177c34e67d5781ce9a0ad8b7556ff48f987f00297ec0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeMutatingWebhookConfigurationListProps(
@@ -30758,7 +30762,7 @@ class KubeMutatingWebhookConfigurationListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c5bb2cd72caaf431cbf1350e28d2e0bcdd4dbf8a7a42278e8f2bea99bf5e665)
+            type_hints = cached_type_hints(_typecheckingstub__1c5bb2cd72caaf431cbf1350e28d2e0bcdd4dbf8a7a42278e8f2bea99bf5e665)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -30822,7 +30826,7 @@ class KubeMutatingWebhookConfigurationProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dcc8f1c51a09b8fe278a8bee5d20fb75c30d888189811d6a2f4a60c0182384cf)
+            type_hints = cached_type_hints(_typecheckingstub__dcc8f1c51a09b8fe278a8bee5d20fb75c30d888189811d6a2f4a60c0182384cf)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument webhooks", value=webhooks, expected_type=type_hints["webhooks"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -30891,7 +30895,7 @@ class KubeNamespace(
         :param spec: Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6f6e25823687f32bbbae9c3f609a0a538b76fedf96c8ad3f980c332a61ece4d7)
+            type_hints = cached_type_hints(_typecheckingstub__6f6e25823687f32bbbae9c3f609a0a538b76fedf96c8ad3f980c332a61ece4d7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNamespaceProps(metadata=metadata, spec=spec)
@@ -30955,7 +30959,7 @@ class KubeNamespaceList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__01d5f81c2dc4b588166fb78ad26a95dd96f084900df60db1eef3c086859371cc)
+            type_hints = cached_type_hints(_typecheckingstub__01d5f81c2dc4b588166fb78ad26a95dd96f084900df60db1eef3c086859371cc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNamespaceListProps(items=items, metadata=metadata)
@@ -31015,7 +31019,7 @@ class KubeNamespaceListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ce390ce5e8435afb3fcc00c620b42a1bcc0f105b5ece6671255dfd268155ef06)
+            type_hints = cached_type_hints(_typecheckingstub__ce390ce5e8435afb3fcc00c620b42a1bcc0f105b5ece6671255dfd268155ef06)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -31085,7 +31089,7 @@ class KubeNamespaceProps:
         if isinstance(spec, dict):
             spec = NamespaceSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e949e610104e12f08b92fa062a63801c86734b9c1a875a1871c872376e5f48f5)
+            type_hints = cached_type_hints(_typecheckingstub__e949e610104e12f08b92fa062a63801c86734b9c1a875a1871c872376e5f48f5)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -31154,7 +31158,7 @@ class KubeNetworkPolicy(
         :param spec: spec represents the specification of the desired behavior for this NetworkPolicy.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3711bfdbb9ff2b20fcc1d837ff64f7be94291bbcbda2f8e20d3fe735d0fca788)
+            type_hints = cached_type_hints(_typecheckingstub__3711bfdbb9ff2b20fcc1d837ff64f7be94291bbcbda2f8e20d3fe735d0fca788)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNetworkPolicyProps(metadata=metadata, spec=spec)
@@ -31218,7 +31222,7 @@ class KubeNetworkPolicyList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__00430867067236e8cdbeb77ac9ba9e262f12d9a45a20172656a49f0096a6a0fa)
+            type_hints = cached_type_hints(_typecheckingstub__00430867067236e8cdbeb77ac9ba9e262f12d9a45a20172656a49f0096a6a0fa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNetworkPolicyListProps(items=items, metadata=metadata)
@@ -31278,7 +31282,7 @@ class KubeNetworkPolicyListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b302db7bf53a96dc070815693c9fbbe25197993b09e83ed216e2ab04dea04a7c)
+            type_hints = cached_type_hints(_typecheckingstub__b302db7bf53a96dc070815693c9fbbe25197993b09e83ed216e2ab04dea04a7c)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -31344,7 +31348,7 @@ class KubeNetworkPolicyProps:
         if isinstance(spec, dict):
             spec = NetworkPolicySpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__56f98657e1b111a4046c2a9c0419040c502cc5aa1a89c7cf31c45f390c9d36f6)
+            type_hints = cached_type_hints(_typecheckingstub__56f98657e1b111a4046c2a9c0419040c502cc5aa1a89c7cf31c45f390c9d36f6)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -31413,7 +31417,7 @@ class KubeNode(
         :param spec: Spec defines the behavior of a node. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9d26fbe2f6299bf5a92f7395765819856b261fc03eda02a9a56f93d5b7387ad9)
+            type_hints = cached_type_hints(_typecheckingstub__9d26fbe2f6299bf5a92f7395765819856b261fc03eda02a9a56f93d5b7387ad9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNodeProps(metadata=metadata, spec=spec)
@@ -31477,7 +31481,7 @@ class KubeNodeList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8f7dc24543b0e86588c1d33f101b19fbd515d5284e141acd3821411e47509e33)
+            type_hints = cached_type_hints(_typecheckingstub__8f7dc24543b0e86588c1d33f101b19fbd515d5284e141acd3821411e47509e33)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeNodeListProps(items=items, metadata=metadata)
@@ -31537,7 +31541,7 @@ class KubeNodeListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5390372ece82529262be3baed0dd084e87300d8b0e3a8999ebe4dde860bbc9d5)
+            type_hints = cached_type_hints(_typecheckingstub__5390372ece82529262be3baed0dd084e87300d8b0e3a8999ebe4dde860bbc9d5)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -31605,7 +31609,7 @@ class KubeNodeProps:
         if isinstance(spec, dict):
             spec = NodeSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8da3066966e9bc82c9130ec84a7522be8c5dadb42ba10b9448c9336ca5c791b4)
+            type_hints = cached_type_hints(_typecheckingstub__8da3066966e9bc82c9130ec84a7522be8c5dadb42ba10b9448c9336ca5c791b4)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -31676,7 +31680,7 @@ class KubePersistentVolume(
         :param spec: spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__12bf57b692f7f69fdce50d1cd90aee7dac0c22bd6db1ac7fcdfc312a4655c48f)
+            type_hints = cached_type_hints(_typecheckingstub__12bf57b692f7f69fdce50d1cd90aee7dac0c22bd6db1ac7fcdfc312a4655c48f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePersistentVolumeProps(metadata=metadata, spec=spec)
@@ -31740,7 +31744,7 @@ class KubePersistentVolumeClaim(
         :param spec: spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__52de231eda8f9efad578bfd47588cd714011f8b2ef9871fb4aa8ea7d11990c24)
+            type_hints = cached_type_hints(_typecheckingstub__52de231eda8f9efad578bfd47588cd714011f8b2ef9871fb4aa8ea7d11990c24)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePersistentVolumeClaimProps(metadata=metadata, spec=spec)
@@ -31804,7 +31808,7 @@ class KubePersistentVolumeClaimList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__715fd5e65023048e75b48ea598d1ac99e0a7d2546108f2b88ab23ec45963900b)
+            type_hints = cached_type_hints(_typecheckingstub__715fd5e65023048e75b48ea598d1ac99e0a7d2546108f2b88ab23ec45963900b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePersistentVolumeClaimListProps(items=items, metadata=metadata)
@@ -31864,7 +31868,7 @@ class KubePersistentVolumeClaimListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fcb84271af780f85ce85f44dfbd05476e40e28da01cc541644af7cc50e317760)
+            type_hints = cached_type_hints(_typecheckingstub__fcb84271af780f85ce85f44dfbd05476e40e28da01cc541644af7cc50e317760)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -31932,7 +31936,7 @@ class KubePersistentVolumeClaimProps:
         if isinstance(spec, dict):
             spec = PersistentVolumeClaimSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b414219b4cd98868a08f6b7fd13ba03bb20c34f93bab1c6766671850b87da5ba)
+            type_hints = cached_type_hints(_typecheckingstub__b414219b4cd98868a08f6b7fd13ba03bb20c34f93bab1c6766671850b87da5ba)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -32001,7 +32005,7 @@ class KubePersistentVolumeList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__20543683b7b15c750805ae3b00ee8120f78f9aefc5d6360da9191b713c8a3df9)
+            type_hints = cached_type_hints(_typecheckingstub__20543683b7b15c750805ae3b00ee8120f78f9aefc5d6360da9191b713c8a3df9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePersistentVolumeListProps(items=items, metadata=metadata)
@@ -32061,7 +32065,7 @@ class KubePersistentVolumeListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__edf32a684938145a8c425ea13a1f6c2a5251323dae13a0c7266e5144002b58ea)
+            type_hints = cached_type_hints(_typecheckingstub__edf32a684938145a8c425ea13a1f6c2a5251323dae13a0c7266e5144002b58ea)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32131,7 +32135,7 @@ class KubePersistentVolumeProps:
         if isinstance(spec, dict):
             spec = PersistentVolumeSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b6dbdf4915f5c3999c02319ddabd6bc2300a3ec520d35a7124154a1d0c74b284)
+            type_hints = cached_type_hints(_typecheckingstub__b6dbdf4915f5c3999c02319ddabd6bc2300a3ec520d35a7124154a1d0c74b284)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -32202,7 +32206,7 @@ class KubePod(
         :param spec: Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__84a44a2c055874076c014e7b070891672ce45fae07fc36b0223efb3b157db547)
+            type_hints = cached_type_hints(_typecheckingstub__84a44a2c055874076c014e7b070891672ce45fae07fc36b0223efb3b157db547)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodProps(metadata=metadata, spec=spec)
@@ -32266,7 +32270,7 @@ class KubePodCertificateRequestListV1Beta1(
         :param metadata: metadata contains the list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aa091c214a3645b09f32238a1b5bcf6117157f3eb7ecb171715acd1e44cd5fa1)
+            type_hints = cached_type_hints(_typecheckingstub__aa091c214a3645b09f32238a1b5bcf6117157f3eb7ecb171715acd1e44cd5fa1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodCertificateRequestListV1Beta1Props(
@@ -32330,7 +32334,7 @@ class KubePodCertificateRequestListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__05e6aef23278838eec5b05bfae241f0d742082ab21209ed8cf4759a141b84e84)
+            type_hints = cached_type_hints(_typecheckingstub__05e6aef23278838eec5b05bfae241f0d742082ab21209ed8cf4759a141b84e84)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32398,7 +32402,7 @@ class KubePodCertificateRequestV1Beta1(
         :param metadata: metadata contains the object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f4fed7cb5216051dcb7879b75b2dccb9738b1e04bb7735930373fb86336730b6)
+            type_hints = cached_type_hints(_typecheckingstub__f4fed7cb5216051dcb7879b75b2dccb9738b1e04bb7735930373fb86336730b6)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodCertificateRequestV1Beta1Props(spec=spec, metadata=metadata)
@@ -32462,7 +32466,7 @@ class KubePodCertificateRequestV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aa9ed2f6d84f0700bc304de3275e72bdc6f18e7dfd4e682aa3304b4cfc4884fe)
+            type_hints = cached_type_hints(_typecheckingstub__aa9ed2f6d84f0700bc304de3275e72bdc6f18e7dfd4e682aa3304b4cfc4884fe)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32528,7 +32532,7 @@ class KubePodDisruptionBudget(
         :param spec: Specification of the desired behavior of the PodDisruptionBudget.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a57adcbd50267ff3f43029f0497ba1eecdf3774ae3544c7d0d200eb6af32af47)
+            type_hints = cached_type_hints(_typecheckingstub__a57adcbd50267ff3f43029f0497ba1eecdf3774ae3544c7d0d200eb6af32af47)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodDisruptionBudgetProps(metadata=metadata, spec=spec)
@@ -32592,7 +32596,7 @@ class KubePodDisruptionBudgetList(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5b28042f5f757861077d829159ace796645ed62a098c4b7445cc49d65bae4e39)
+            type_hints = cached_type_hints(_typecheckingstub__5b28042f5f757861077d829159ace796645ed62a098c4b7445cc49d65bae4e39)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodDisruptionBudgetListProps(items=items, metadata=metadata)
@@ -32652,7 +32656,7 @@ class KubePodDisruptionBudgetListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__46fe8577d9d9bc235b20f9635bed1bb38c4182635cbbbd4f777b9ecddafd24d4)
+            type_hints = cached_type_hints(_typecheckingstub__46fe8577d9d9bc235b20f9635bed1bb38c4182635cbbbd4f777b9ecddafd24d4)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32718,7 +32722,7 @@ class KubePodDisruptionBudgetProps:
         if isinstance(spec, dict):
             spec = PodDisruptionBudgetSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bb3fa1126b3b2249e66d034d2cb0c2af262892c5e513cb56fa7071cbf1f323b4)
+            type_hints = cached_type_hints(_typecheckingstub__bb3fa1126b3b2249e66d034d2cb0c2af262892c5e513cb56fa7071cbf1f323b4)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -32785,7 +32789,7 @@ class KubePodList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__26810161725b72ec95fed518f5f1bd2878189eec88948e1665c6504f0e1c80e4)
+            type_hints = cached_type_hints(_typecheckingstub__26810161725b72ec95fed518f5f1bd2878189eec88948e1665c6504f0e1c80e4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodListProps(items=items, metadata=metadata)
@@ -32845,7 +32849,7 @@ class KubePodListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6c6da0c93bfd87422fec0434260e7ca746775802e283035b82a97804b6a5cbad)
+            type_hints = cached_type_hints(_typecheckingstub__6c6da0c93bfd87422fec0434260e7ca746775802e283035b82a97804b6a5cbad)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32915,7 +32919,7 @@ class KubePodProps:
         if isinstance(spec, dict):
             spec = PodSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a49e5de6a1c7d64f87b3fd99f6f3a7f9173827eb846d6b3423f251cc8e6dee73)
+            type_hints = cached_type_hints(_typecheckingstub__a49e5de6a1c7d64f87b3fd99f6f3a7f9173827eb846d6b3423f251cc8e6dee73)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -32984,7 +32988,7 @@ class KubePodTemplate(
         :param template: Template defines the pods that will be created from this pod template. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ef25d47e407a94a1f7c5da1b4a8137999b9f10f2eb06612819328e43413ecaa)
+            type_hints = cached_type_hints(_typecheckingstub__0ef25d47e407a94a1f7c5da1b4a8137999b9f10f2eb06612819328e43413ecaa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodTemplateProps(metadata=metadata, template=template)
@@ -33048,7 +33052,7 @@ class KubePodTemplateList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e1a00fe17edb33a47aa58d4b3bdf326f8cd52b6c5fa5b4b447fef63416e0153a)
+            type_hints = cached_type_hints(_typecheckingstub__e1a00fe17edb33a47aa58d4b3bdf326f8cd52b6c5fa5b4b447fef63416e0153a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePodTemplateListProps(items=items, metadata=metadata)
@@ -33108,7 +33112,7 @@ class KubePodTemplateListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db699f3f7785aaafe421c68826e9aee0751d2471a5f84fcd072d2dc7bf1e42f6)
+            type_hints = cached_type_hints(_typecheckingstub__db699f3f7785aaafe421c68826e9aee0751d2471a5f84fcd072d2dc7bf1e42f6)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -33174,7 +33178,7 @@ class KubePodTemplateProps:
         if isinstance(template, dict):
             template = PodTemplateSpec(**template)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b1246c731572d1c19b516cbd1928d932af12c395562d89193038a193dc8c19d6)
+            type_hints = cached_type_hints(_typecheckingstub__b1246c731572d1c19b516cbd1928d932af12c395562d89193038a193dc8c19d6)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -33251,7 +33255,7 @@ class KubePriorityClass(
         :param preemption_policy: preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Default: PreemptLowerPriority if unset.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7849121f7cc4169719bf7c0334ed5b358df3185c443cdcca26f3ba64a177342f)
+            type_hints = cached_type_hints(_typecheckingstub__7849121f7cc4169719bf7c0334ed5b358df3185c443cdcca26f3ba64a177342f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePriorityClassProps(
@@ -33333,7 +33337,7 @@ class KubePriorityClassList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__925536e8f6c1bb4cef79d5881b407f57c20a6380415cbaf45a82301ab03c453c)
+            type_hints = cached_type_hints(_typecheckingstub__925536e8f6c1bb4cef79d5881b407f57c20a6380415cbaf45a82301ab03c453c)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePriorityClassListProps(items=items, metadata=metadata)
@@ -33393,7 +33397,7 @@ class KubePriorityClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__00e2a2b2d5dd902a6c32a404e9c7208d7bfc775f9ade4170dc45106963c0b49b)
+            type_hints = cached_type_hints(_typecheckingstub__00e2a2b2d5dd902a6c32a404e9c7208d7bfc775f9ade4170dc45106963c0b49b)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -33469,7 +33473,7 @@ class KubePriorityClassProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d2a7a0f6e62dd93fbc211f3259e5bdec03162b72d41924ec9b0431446407d338)
+            type_hints = cached_type_hints(_typecheckingstub__d2a7a0f6e62dd93fbc211f3259e5bdec03162b72d41924ec9b0431446407d338)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
             check_type(argname="argument description", value=description, expected_type=type_hints["description"])
             check_type(argname="argument global_default", value=global_default, expected_type=type_hints["global_default"])
@@ -33581,7 +33585,7 @@ class KubePriorityLevelConfiguration(
         :param spec: ``spec`` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c173f8eef6919214bd6bc378f91d5473b431a3e900675149d9527c476956e9f)
+            type_hints = cached_type_hints(_typecheckingstub__8c173f8eef6919214bd6bc378f91d5473b431a3e900675149d9527c476956e9f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePriorityLevelConfigurationProps(metadata=metadata, spec=spec)
@@ -33645,7 +33649,7 @@ class KubePriorityLevelConfigurationList(
         :param metadata: ``metadata`` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7549a6827f0c0900954f84ee1ea6f291b3e935371a6d241e8fc1e07fa0c6befa)
+            type_hints = cached_type_hints(_typecheckingstub__7549a6827f0c0900954f84ee1ea6f291b3e935371a6d241e8fc1e07fa0c6befa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubePriorityLevelConfigurationListProps(items=items, metadata=metadata)
@@ -33705,7 +33709,7 @@ class KubePriorityLevelConfigurationListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d8f34fb812af234ee189da68afd01882acf7d21827ca0c24797e53c6048bfad5)
+            type_hints = cached_type_hints(_typecheckingstub__d8f34fb812af234ee189da68afd01882acf7d21827ca0c24797e53c6048bfad5)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -33771,7 +33775,7 @@ class KubePriorityLevelConfigurationProps:
         if isinstance(spec, dict):
             spec = PriorityLevelConfigurationSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cc61e688ab5b52b749a1c055bd97af4fb58109a4c5e55f601fa5a5526e0d1d1f)
+            type_hints = cached_type_hints(_typecheckingstub__cc61e688ab5b52b749a1c055bd97af4fb58109a4c5e55f601fa5a5526e0d1d1f)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -33840,7 +33844,7 @@ class KubeReplicaSet(
         :param spec: Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__10b1e6952ed8e4461a4c7cb6055b12f7d11053876688102605ac9643cba57005)
+            type_hints = cached_type_hints(_typecheckingstub__10b1e6952ed8e4461a4c7cb6055b12f7d11053876688102605ac9643cba57005)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeReplicaSetProps(metadata=metadata, spec=spec)
@@ -33904,7 +33908,7 @@ class KubeReplicaSetList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__24d3450455c5e97bf49cda54253c588d8a6ee19f76f1cf671ba9f98802a53d99)
+            type_hints = cached_type_hints(_typecheckingstub__24d3450455c5e97bf49cda54253c588d8a6ee19f76f1cf671ba9f98802a53d99)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeReplicaSetListProps(items=items, metadata=metadata)
@@ -33964,7 +33968,7 @@ class KubeReplicaSetListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__62c387938d1bc321eddeb2ff018f798c1e609329bfdcd7b74261bb70e472d00f)
+            type_hints = cached_type_hints(_typecheckingstub__62c387938d1bc321eddeb2ff018f798c1e609329bfdcd7b74261bb70e472d00f)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34032,7 +34036,7 @@ class KubeReplicaSetProps:
         if isinstance(spec, dict):
             spec = ReplicaSetSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3356ec84091f3836aed86951b46f5c67fde6b2669f3404b932d0ffb3aa92b8b1)
+            type_hints = cached_type_hints(_typecheckingstub__3356ec84091f3836aed86951b46f5c67fde6b2669f3404b932d0ffb3aa92b8b1)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -34101,7 +34105,7 @@ class KubeReplicationController(
         :param spec: Spec defines the specification of the desired behavior of the replication controller. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b76c77ebee47f8e1db2fb813b337b8d1cb81ba43cc3b5afa6d87b4d42f8ccc27)
+            type_hints = cached_type_hints(_typecheckingstub__b76c77ebee47f8e1db2fb813b337b8d1cb81ba43cc3b5afa6d87b4d42f8ccc27)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeReplicationControllerProps(metadata=metadata, spec=spec)
@@ -34165,7 +34169,7 @@ class KubeReplicationControllerList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b3b728b8344327bdb06c9b83008eeef39b961f93e5cf0c03f478bfe4429bc465)
+            type_hints = cached_type_hints(_typecheckingstub__b3b728b8344327bdb06c9b83008eeef39b961f93e5cf0c03f478bfe4429bc465)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeReplicationControllerListProps(items=items, metadata=metadata)
@@ -34225,7 +34229,7 @@ class KubeReplicationControllerListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9883740538c9153a5fd5f360dbdefcf08f177d9bcc570eb8535695b601d2cc31)
+            type_hints = cached_type_hints(_typecheckingstub__9883740538c9153a5fd5f360dbdefcf08f177d9bcc570eb8535695b601d2cc31)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34293,7 +34297,7 @@ class KubeReplicationControllerProps:
         if isinstance(spec, dict):
             spec = ReplicationControllerSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d1907ebb731e0f56418eaea7fe01ae75a6a0f7a66fe54291e68654e7347b8e5c)
+            type_hints = cached_type_hints(_typecheckingstub__d1907ebb731e0f56418eaea7fe01ae75a6a0f7a66fe54291e68654e7347b8e5c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -34366,7 +34370,7 @@ class KubeResourceClaim(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__22ae84d1024689b98292ba965166058d3877e10252f20c34d90bf6e32ef36456)
+            type_hints = cached_type_hints(_typecheckingstub__22ae84d1024689b98292ba965166058d3877e10252f20c34d90bf6e32ef36456)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimProps(spec=spec, metadata=metadata)
@@ -34430,7 +34434,7 @@ class KubeResourceClaimList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8cde0fc00fab49b8ef09d06412fcf99739b51bf286b6f08ec2650db978b63fdd)
+            type_hints = cached_type_hints(_typecheckingstub__8cde0fc00fab49b8ef09d06412fcf99739b51bf286b6f08ec2650db978b63fdd)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimListProps(items=items, metadata=metadata)
@@ -34490,7 +34494,7 @@ class KubeResourceClaimListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__835c45407b49b7921c0be877d1b7a07d451416086b8e34b2ead4eae731f9ccca)
+            type_hints = cached_type_hints(_typecheckingstub__835c45407b49b7921c0be877d1b7a07d451416086b8e34b2ead4eae731f9ccca)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34556,7 +34560,7 @@ class KubeResourceClaimListV1Beta1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__869014c08c4cee6c0405e6b021e78299f5544798db0f2daf645a44c72b0af003)
+            type_hints = cached_type_hints(_typecheckingstub__869014c08c4cee6c0405e6b021e78299f5544798db0f2daf645a44c72b0af003)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimListV1Beta1Props(items=items, metadata=metadata)
@@ -34616,7 +34620,7 @@ class KubeResourceClaimListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d6a7b8dc8b6b365a0184f37300bfaa2a73af1e8ee31a5bd21b0fa96f1586f41)
+            type_hints = cached_type_hints(_typecheckingstub__6d6a7b8dc8b6b365a0184f37300bfaa2a73af1e8ee31a5bd21b0fa96f1586f41)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34682,7 +34686,7 @@ class KubeResourceClaimListV1Beta2(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5ccfa27c81c5269f66dbdca72ef9e1c9d92b41e4234bbec0ff6410db1438d40f)
+            type_hints = cached_type_hints(_typecheckingstub__5ccfa27c81c5269f66dbdca72ef9e1c9d92b41e4234bbec0ff6410db1438d40f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimListV1Beta2Props(items=items, metadata=metadata)
@@ -34742,7 +34746,7 @@ class KubeResourceClaimListV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__70aa8d66e8af14d9b8c003167f051f06b1eec292a0f890273b5ed9ff56249113)
+            type_hints = cached_type_hints(_typecheckingstub__70aa8d66e8af14d9b8c003167f051f06b1eec292a0f890273b5ed9ff56249113)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34810,7 +34814,7 @@ class KubeResourceClaimProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9f8404f048425dfe355be90e2c1a181d41339be0d96d6e45b8175bda0bae5e4d)
+            type_hints = cached_type_hints(_typecheckingstub__9f8404f048425dfe355be90e2c1a181d41339be0d96d6e45b8175bda0bae5e4d)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -34880,7 +34884,7 @@ class KubeResourceClaimTemplate(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f349bc7909d2c582ebfcac467bf33d5003cf827576772a1abd812386bc2a5821)
+            type_hints = cached_type_hints(_typecheckingstub__f349bc7909d2c582ebfcac467bf33d5003cf827576772a1abd812386bc2a5821)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateProps(spec=spec, metadata=metadata)
@@ -34944,7 +34948,7 @@ class KubeResourceClaimTemplateList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__95cba7fd6e28322eb5ed3794f103c64056971f540f8d8df28fa50eaa15b06ac9)
+            type_hints = cached_type_hints(_typecheckingstub__95cba7fd6e28322eb5ed3794f103c64056971f540f8d8df28fa50eaa15b06ac9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateListProps(items=items, metadata=metadata)
@@ -35004,7 +35008,7 @@ class KubeResourceClaimTemplateListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d7184bd382f1b5c73159dcfa432df8c2ccbf57094b89c7a141cdce1e9f81806d)
+            type_hints = cached_type_hints(_typecheckingstub__d7184bd382f1b5c73159dcfa432df8c2ccbf57094b89c7a141cdce1e9f81806d)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35070,7 +35074,7 @@ class KubeResourceClaimTemplateListV1Beta1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__02a34cd1e9e9fee0867ff0a701be6184ec17d68cafb8932fdfbeb6c3cb207284)
+            type_hints = cached_type_hints(_typecheckingstub__02a34cd1e9e9fee0867ff0a701be6184ec17d68cafb8932fdfbeb6c3cb207284)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateListV1Beta1Props(
@@ -35134,7 +35138,7 @@ class KubeResourceClaimTemplateListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__78dac9cb9858fb72b9213d260c42fcaeea384fae5898252f14479902c58ee1f6)
+            type_hints = cached_type_hints(_typecheckingstub__78dac9cb9858fb72b9213d260c42fcaeea384fae5898252f14479902c58ee1f6)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35200,7 +35204,7 @@ class KubeResourceClaimTemplateListV1Beta2(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db6758855d0e5b70c59203b055f90edbab5cb15f509a427e805a8fe1c1a63271)
+            type_hints = cached_type_hints(_typecheckingstub__db6758855d0e5b70c59203b055f90edbab5cb15f509a427e805a8fe1c1a63271)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateListV1Beta2Props(
@@ -35264,7 +35268,7 @@ class KubeResourceClaimTemplateListV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1b9e2c553017c8ce30b4c6a056466b9724e15bceecd3304952d584479b73a1ff)
+            type_hints = cached_type_hints(_typecheckingstub__1b9e2c553017c8ce30b4c6a056466b9724e15bceecd3304952d584479b73a1ff)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35330,7 +35334,7 @@ class KubeResourceClaimTemplateProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__43211e8a440ef10cf1cac6b9e91109d01ee173b6d9bf97efa301b1b59215a467)
+            type_hints = cached_type_hints(_typecheckingstub__43211e8a440ef10cf1cac6b9e91109d01ee173b6d9bf97efa301b1b59215a467)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35400,7 +35404,7 @@ class KubeResourceClaimTemplateV1Beta1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__861b56d212e2120177312ea7c28d4480829f3c1483b26c5b7c210455006cf7a3)
+            type_hints = cached_type_hints(_typecheckingstub__861b56d212e2120177312ea7c28d4480829f3c1483b26c5b7c210455006cf7a3)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateV1Beta1Props(spec=spec, metadata=metadata)
@@ -35464,7 +35468,7 @@ class KubeResourceClaimTemplateV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f15e725e9ce3eeeafa9581e075625a4d8c7132794027b74cc579bb2539eb8ef9)
+            type_hints = cached_type_hints(_typecheckingstub__f15e725e9ce3eeeafa9581e075625a4d8c7132794027b74cc579bb2539eb8ef9)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35534,7 +35538,7 @@ class KubeResourceClaimTemplateV1Beta2(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4605a461e3ecd0ac0ef3056f98f1b385bc4966e5688b966cb0811c7b07e657be)
+            type_hints = cached_type_hints(_typecheckingstub__4605a461e3ecd0ac0ef3056f98f1b385bc4966e5688b966cb0811c7b07e657be)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimTemplateV1Beta2Props(spec=spec, metadata=metadata)
@@ -35598,7 +35602,7 @@ class KubeResourceClaimTemplateV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b6d91f999d139a468190358bc19f16c4dc21a958651c2746e966388dd17afcf)
+            type_hints = cached_type_hints(_typecheckingstub__6b6d91f999d139a468190358bc19f16c4dc21a958651c2746e966388dd17afcf)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35670,7 +35674,7 @@ class KubeResourceClaimV1Beta1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c6ab50191ac6abff8cab74297bb10b8d451f6b6eb8971ce3f7210488e0871f2)
+            type_hints = cached_type_hints(_typecheckingstub__1c6ab50191ac6abff8cab74297bb10b8d451f6b6eb8971ce3f7210488e0871f2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimV1Beta1Props(spec=spec, metadata=metadata)
@@ -35736,7 +35740,7 @@ class KubeResourceClaimV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__56c14763188fb3e1b8be694638e26087321967b142f1dcb234c942cbe41c34d8)
+            type_hints = cached_type_hints(_typecheckingstub__56c14763188fb3e1b8be694638e26087321967b142f1dcb234c942cbe41c34d8)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35808,7 +35812,7 @@ class KubeResourceClaimV1Beta2(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__403400fdba63b6e02fc7d48bcbe5253496836dd8004c722ce7e208106e8e93b4)
+            type_hints = cached_type_hints(_typecheckingstub__403400fdba63b6e02fc7d48bcbe5253496836dd8004c722ce7e208106e8e93b4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceClaimV1Beta2Props(spec=spec, metadata=metadata)
@@ -35874,7 +35878,7 @@ class KubeResourceClaimV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__89fd91542127f5e3872280a725fc0e1e2db5eeb24e5f0e5774d0116d909c9921)
+            type_hints = cached_type_hints(_typecheckingstub__89fd91542127f5e3872280a725fc0e1e2db5eeb24e5f0e5774d0116d909c9921)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -35942,7 +35946,7 @@ class KubeResourceQuota(
         :param spec: Spec defines the desired quota. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3ac4857c79a81ca461b8b100787cc5d2e4fa270a239531d0b264e7c1c647ebbc)
+            type_hints = cached_type_hints(_typecheckingstub__3ac4857c79a81ca461b8b100787cc5d2e4fa270a239531d0b264e7c1c647ebbc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceQuotaProps(metadata=metadata, spec=spec)
@@ -36006,7 +36010,7 @@ class KubeResourceQuotaList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c8449d16fa5f0f57efb0bf048a173204cb2eee0724e5beee1997b7fd6446ae2)
+            type_hints = cached_type_hints(_typecheckingstub__1c8449d16fa5f0f57efb0bf048a173204cb2eee0724e5beee1997b7fd6446ae2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceQuotaListProps(items=items, metadata=metadata)
@@ -36066,7 +36070,7 @@ class KubeResourceQuotaListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fa8b7d22abad60c9e4fcd3d3a379006b596879c4f9044fb09d9e785c02019aa7)
+            type_hints = cached_type_hints(_typecheckingstub__fa8b7d22abad60c9e4fcd3d3a379006b596879c4f9044fb09d9e785c02019aa7)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36134,7 +36138,7 @@ class KubeResourceQuotaProps:
         if isinstance(spec, dict):
             spec = ResourceQuotaSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__659f76ba4ff363b4daafbc9b629fcbc230c1a0e0e932683b9fd35f50e4d29548)
+            type_hints = cached_type_hints(_typecheckingstub__659f76ba4ff363b4daafbc9b629fcbc230c1a0e0e932683b9fd35f50e4d29548)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -36215,7 +36219,7 @@ class KubeResourceSlice(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__167114a471b7056bfa1da1948e2b2f4a69bf910f725db8a421da290de476946e)
+            type_hints = cached_type_hints(_typecheckingstub__167114a471b7056bfa1da1948e2b2f4a69bf910f725db8a421da290de476946e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceProps(spec=spec, metadata=metadata)
@@ -36279,7 +36283,7 @@ class KubeResourceSliceList(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b640798659a23757971742185fe4f6e2a1cb35492bb4e80af8d5677d80add43b)
+            type_hints = cached_type_hints(_typecheckingstub__b640798659a23757971742185fe4f6e2a1cb35492bb4e80af8d5677d80add43b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceListProps(items=items, metadata=metadata)
@@ -36339,7 +36343,7 @@ class KubeResourceSliceListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9e0715df8478cebc35c3a69c3c89226c6b16f74a7051200d3ff018591df9a919)
+            type_hints = cached_type_hints(_typecheckingstub__9e0715df8478cebc35c3a69c3c89226c6b16f74a7051200d3ff018591df9a919)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36405,7 +36409,7 @@ class KubeResourceSliceListV1Beta1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d339f7efc88a3029e57c502cbfd8b56ae864e821963e5b459c40c18b49a2aba9)
+            type_hints = cached_type_hints(_typecheckingstub__d339f7efc88a3029e57c502cbfd8b56ae864e821963e5b459c40c18b49a2aba9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceListV1Beta1Props(items=items, metadata=metadata)
@@ -36465,7 +36469,7 @@ class KubeResourceSliceListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6c3f60df956cb877b5f206381202e3cb6f9381dad43a029a3c1e2eb0ef494156)
+            type_hints = cached_type_hints(_typecheckingstub__6c3f60df956cb877b5f206381202e3cb6f9381dad43a029a3c1e2eb0ef494156)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36531,7 +36535,7 @@ class KubeResourceSliceListV1Beta2(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ae7758b93d57ff5cd69992e573dc538b99c489109c156b794b0dc9ebf0bccd4f)
+            type_hints = cached_type_hints(_typecheckingstub__ae7758b93d57ff5cd69992e573dc538b99c489109c156b794b0dc9ebf0bccd4f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceListV1Beta2Props(items=items, metadata=metadata)
@@ -36591,7 +36595,7 @@ class KubeResourceSliceListV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c1ec2afa6b8a42d7f634659b826e1b1cc666d07d4b52ea2c528c93c0d5c7cf59)
+            type_hints = cached_type_hints(_typecheckingstub__c1ec2afa6b8a42d7f634659b826e1b1cc666d07d4b52ea2c528c93c0d5c7cf59)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36667,7 +36671,7 @@ class KubeResourceSliceProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e2ef56020c7e461557cf8191377e491a086dc61f35b9a0fa28cff71d2b5c2f4b)
+            type_hints = cached_type_hints(_typecheckingstub__e2ef56020c7e461557cf8191377e491a086dc61f35b9a0fa28cff71d2b5c2f4b)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36747,7 +36751,7 @@ class KubeResourceSliceV1Beta1(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__13b4c984a1e8106dc2e6785a2ce6b8d97ade5a80639260727a3bc07d7f7afd30)
+            type_hints = cached_type_hints(_typecheckingstub__13b4c984a1e8106dc2e6785a2ce6b8d97ade5a80639260727a3bc07d7f7afd30)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceV1Beta1Props(spec=spec, metadata=metadata)
@@ -36821,7 +36825,7 @@ class KubeResourceSliceV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d4d0a349398499b0fbb78a3a7bb32e60a23b826958eb36409d2420023917c295)
+            type_hints = cached_type_hints(_typecheckingstub__d4d0a349398499b0fbb78a3a7bb32e60a23b826958eb36409d2420023917c295)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -36901,7 +36905,7 @@ class KubeResourceSliceV1Beta2(
         :param metadata: Standard object metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c6e45944b963c8661c1a022975a14488ae2f04e19488da55a55d3d0bcf6d6af2)
+            type_hints = cached_type_hints(_typecheckingstub__c6e45944b963c8661c1a022975a14488ae2f04e19488da55a55d3d0bcf6d6af2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeResourceSliceV1Beta2Props(spec=spec, metadata=metadata)
@@ -36975,7 +36979,7 @@ class KubeResourceSliceV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4356061a8efe38c8a25a7981937502d72cfd6ccadc026b3540dd96c18d69f41e)
+            type_hints = cached_type_hints(_typecheckingstub__4356061a8efe38c8a25a7981937502d72cfd6ccadc026b3540dd96c18d69f41e)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -37043,7 +37047,7 @@ class KubeRole(
         :param rules: Rules holds all the PolicyRules for this Role.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__29ed150ac8d5e84462d3788ba6966b3d87204185e9002d23a85b76b17ea79449)
+            type_hints = cached_type_hints(_typecheckingstub__29ed150ac8d5e84462d3788ba6966b3d87204185e9002d23a85b76b17ea79449)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRoleProps(metadata=metadata, rules=rules)
@@ -37111,7 +37115,7 @@ class KubeRoleBinding(
         :param subjects: Subjects holds references to the objects the role applies to.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2165aae46dbd747e3dfe47c03209e8f301ca3f4ac24494fe9f9cda773496d188)
+            type_hints = cached_type_hints(_typecheckingstub__2165aae46dbd747e3dfe47c03209e8f301ca3f4ac24494fe9f9cda773496d188)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRoleBindingProps(
@@ -37181,7 +37185,7 @@ class KubeRoleBindingList(
         :param metadata: Standard object's metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f87b0d405558e8e0b39449098e57a74cf3f58b136a74b32013664caea0d5c426)
+            type_hints = cached_type_hints(_typecheckingstub__f87b0d405558e8e0b39449098e57a74cf3f58b136a74b32013664caea0d5c426)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRoleBindingListProps(items=items, metadata=metadata)
@@ -37241,7 +37245,7 @@ class KubeRoleBindingListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ea68389c941015338a6dd149e67bba16f03189d9fca5c31ff0b58b27c250791)
+            type_hints = cached_type_hints(_typecheckingstub__0ea68389c941015338a6dd149e67bba16f03189d9fca5c31ff0b58b27c250791)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -37313,7 +37317,7 @@ class KubeRoleBindingProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8a2b8de1d0bd2d542efd8d7543a30c1daee70a3e4a630cb0ef968ba5f26deb1d)
+            type_hints = cached_type_hints(_typecheckingstub__8a2b8de1d0bd2d542efd8d7543a30c1daee70a3e4a630cb0ef968ba5f26deb1d)
             check_type(argname="argument role_ref", value=role_ref, expected_type=type_hints["role_ref"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument subjects", value=subjects, expected_type=type_hints["subjects"])
@@ -37393,7 +37397,7 @@ class KubeRoleList(
         :param metadata: Standard object's metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__33688bb860def340a9dd80a000256bd8166770cd75a90c4230022160b6b60fa3)
+            type_hints = cached_type_hints(_typecheckingstub__33688bb860def340a9dd80a000256bd8166770cd75a90c4230022160b6b60fa3)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRoleListProps(items=items, metadata=metadata)
@@ -37453,7 +37457,7 @@ class KubeRoleListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__47ad3ce5aaac7e92b0ff56cef58990cd52e68663c4295dd4088db5f6306dfd41)
+            type_hints = cached_type_hints(_typecheckingstub__47ad3ce5aaac7e92b0ff56cef58990cd52e68663c4295dd4088db5f6306dfd41)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -37515,7 +37519,7 @@ class KubeRoleProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__03f10491b2f4c7a09738e2bec5b9b83fb9ac2df6d87e8a3a04a69a591071960d)
+            type_hints = cached_type_hints(_typecheckingstub__03f10491b2f4c7a09738e2bec5b9b83fb9ac2df6d87e8a3a04a69a591071960d)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -37586,7 +37590,7 @@ class KubeRuntimeClass(
         :param scheduling: scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__73e802aeb77adf68ded78bc844e953e29156ea338b23850869f1eb458d0535ba)
+            type_hints = cached_type_hints(_typecheckingstub__73e802aeb77adf68ded78bc844e953e29156ea338b23850869f1eb458d0535ba)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRuntimeClassProps(
@@ -37664,7 +37668,7 @@ class KubeRuntimeClassList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b5d566a802c97a52571a895dd9503f614c01f4aca1f561b22f26cc02ba498284)
+            type_hints = cached_type_hints(_typecheckingstub__b5d566a802c97a52571a895dd9503f614c01f4aca1f561b22f26cc02ba498284)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeRuntimeClassListProps(items=items, metadata=metadata)
@@ -37724,7 +37728,7 @@ class KubeRuntimeClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__235ff08f57089721a1cc755e07eeac0f1cf566b511fa57277b1026eb51582c2a)
+            type_hints = cached_type_hints(_typecheckingstub__235ff08f57089721a1cc755e07eeac0f1cf566b511fa57277b1026eb51582c2a)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -37803,7 +37807,7 @@ class KubeRuntimeClassProps:
         if isinstance(scheduling, dict):
             scheduling = Scheduling(**scheduling)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__66d9897bab16ca27a49026227ad29d408015abcd5910370e14974dcb1b0a858e)
+            type_hints = cached_type_hints(_typecheckingstub__66d9897bab16ca27a49026227ad29d408015abcd5910370e14974dcb1b0a858e)
             check_type(argname="argument handler", value=handler, expected_type=type_hints["handler"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument overhead", value=overhead, expected_type=type_hints["overhead"])
@@ -37900,7 +37904,7 @@ class KubeScale(
         :param spec: spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9b1969418b2c3135a3004bf63bc8af2d184c22929c1fbbbb43547d0537ad13fc)
+            type_hints = cached_type_hints(_typecheckingstub__9b1969418b2c3135a3004bf63bc8af2d184c22929c1fbbbb43547d0537ad13fc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeScaleProps(metadata=metadata, spec=spec)
@@ -37962,7 +37966,7 @@ class KubeScaleProps:
         if isinstance(spec, dict):
             spec = ScaleSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__13391d438725de4a637b7b0d0a5bd88c6ec8637161c91c5b416382d69c1a3ab7)
+            type_hints = cached_type_hints(_typecheckingstub__13391d438725de4a637b7b0d0a5bd88c6ec8637161c91c5b416382d69c1a3ab7)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -38039,7 +38043,7 @@ class KubeSecret(
         :param type: Used to facilitate programmatic handling of secret data. More info: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__58e682738c653346c651cc36d3c734a00b97388b8a9fd3f9cdc4718f06a89355)
+            type_hints = cached_type_hints(_typecheckingstub__58e682738c653346c651cc36d3c734a00b97388b8a9fd3f9cdc4718f06a89355)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSecretProps(
@@ -38121,7 +38125,7 @@ class KubeSecretList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dc75a614004131c047322f90f10784835a1f3438fc40eba549cef8b51c8279a7)
+            type_hints = cached_type_hints(_typecheckingstub__dc75a614004131c047322f90f10784835a1f3438fc40eba549cef8b51c8279a7)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSecretListProps(items=items, metadata=metadata)
@@ -38181,7 +38185,7 @@ class KubeSecretListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68a713428aa6f657fd246ae3b43b8fa8e61bb28094b94473804b537cbefbc6ec)
+            type_hints = cached_type_hints(_typecheckingstub__68a713428aa6f657fd246ae3b43b8fa8e61bb28094b94473804b537cbefbc6ec)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -38261,7 +38265,7 @@ class KubeSecretProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__63ee35f74b966b919ab03aa2ea463b9251eb7bc667ff598909abc78e4bdeaea6)
+            type_hints = cached_type_hints(_typecheckingstub__63ee35f74b966b919ab03aa2ea463b9251eb7bc667ff598909abc78e4bdeaea6)
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
             check_type(argname="argument immutable", value=immutable, expected_type=type_hints["immutable"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
@@ -38376,7 +38380,7 @@ class KubeSelfSubjectAccessReview(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__df9b9cd04099ed39eea458145ab91abff6e618a668a3f190dd8dd744c3510f27)
+            type_hints = cached_type_hints(_typecheckingstub__df9b9cd04099ed39eea458145ab91abff6e618a668a3f190dd8dd744c3510f27)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSelfSubjectAccessReviewProps(spec=spec, metadata=metadata)
@@ -38440,7 +38444,7 @@ class KubeSelfSubjectAccessReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eb99da3761969040fbad9ae0f21de6f39fd7f9db7330ac8a2e14fd12dbe08b62)
+            type_hints = cached_type_hints(_typecheckingstub__eb99da3761969040fbad9ae0f21de6f39fd7f9db7330ac8a2e14fd12dbe08b62)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -38510,7 +38514,7 @@ class KubeSelfSubjectReview(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__31c4a3b5ddc67a67bfaaa585938bc9bc4d75e4cc37be6ddfaa157194f72748b0)
+            type_hints = cached_type_hints(_typecheckingstub__31c4a3b5ddc67a67bfaaa585938bc9bc4d75e4cc37be6ddfaa157194f72748b0)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSelfSubjectReviewProps(metadata=metadata)
@@ -38568,7 +38572,7 @@ class KubeSelfSubjectReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__420703732e4979ebfe1fe36b8345a0798e125cb53250c9f0452b182db5bd70ea)
+            type_hints = cached_type_hints(_typecheckingstub__420703732e4979ebfe1fe36b8345a0798e125cb53250c9f0452b182db5bd70ea)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if metadata is not None:
@@ -38625,7 +38629,7 @@ class KubeSelfSubjectRulesReview(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__958ad9ca21d898b2c0171fc826e39e897cf8dea21c3e45749b9459904cb9d316)
+            type_hints = cached_type_hints(_typecheckingstub__958ad9ca21d898b2c0171fc826e39e897cf8dea21c3e45749b9459904cb9d316)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSelfSubjectRulesReviewProps(spec=spec, metadata=metadata)
@@ -38689,7 +38693,7 @@ class KubeSelfSubjectRulesReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__28a64acd86978440d745bb1246cc04b86d29d6d85116e22b178d1054e6389b67)
+            type_hints = cached_type_hints(_typecheckingstub__28a64acd86978440d745bb1246cc04b86d29d6d85116e22b178d1054e6389b67)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -38757,7 +38761,7 @@ class KubeService(
         :param spec: Spec defines the behavior of a service. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ae5267509ab57695c0bcbad4782a5c278f89e6749acf2e274e7fef884ff7c154)
+            type_hints = cached_type_hints(_typecheckingstub__ae5267509ab57695c0bcbad4782a5c278f89e6749acf2e274e7fef884ff7c154)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceProps(metadata=metadata, spec=spec)
@@ -38825,7 +38829,7 @@ class KubeServiceAccount(
         :param secrets: Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". The "kubernetes.io/enforce-mountable-secrets" annotation is deprecated since v1.32. Prefer separate namespaces to isolate access to mounted secrets. This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e5e237c758b7687f05aeba33ce7b5312826313f3a39706ad9f17b91865051abf)
+            type_hints = cached_type_hints(_typecheckingstub__e5e237c758b7687f05aeba33ce7b5312826313f3a39706ad9f17b91865051abf)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceAccountProps(
@@ -38903,7 +38907,7 @@ class KubeServiceAccountList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f86f64fd2fbbd19af1e77f68fedbf039aee41aa5d18ecc31b5ef98921f5a8a25)
+            type_hints = cached_type_hints(_typecheckingstub__f86f64fd2fbbd19af1e77f68fedbf039aee41aa5d18ecc31b5ef98921f5a8a25)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceAccountListProps(items=items, metadata=metadata)
@@ -38963,7 +38967,7 @@ class KubeServiceAccountListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__643831477ea8dbd90061f7f5cc95e1a83af9e4fdad06f1b94b48253d8f32f842)
+            type_hints = cached_type_hints(_typecheckingstub__643831477ea8dbd90061f7f5cc95e1a83af9e4fdad06f1b94b48253d8f32f842)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -39038,7 +39042,7 @@ class KubeServiceAccountProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ec9a6be9029d2ceb1c08d223e9b02d893a24441944fdbe9ad2eaa60dc6e92fb8)
+            type_hints = cached_type_hints(_typecheckingstub__ec9a6be9029d2ceb1c08d223e9b02d893a24441944fdbe9ad2eaa60dc6e92fb8)
             check_type(argname="argument automount_service_account_token", value=automount_service_account_token, expected_type=type_hints["automount_service_account_token"])
             check_type(argname="argument image_pull_secrets", value=image_pull_secrets, expected_type=type_hints["image_pull_secrets"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
@@ -39137,7 +39141,7 @@ class KubeServiceCidr(
         :param spec: spec is the desired state of the ServiceCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7c05e29e8cd03db6a52c6a5fe08f4c79cb7bbc07363c2d716ea536d649db4cae)
+            type_hints = cached_type_hints(_typecheckingstub__7c05e29e8cd03db6a52c6a5fe08f4c79cb7bbc07363c2d716ea536d649db4cae)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceCidrProps(metadata=metadata, spec=spec)
@@ -39201,7 +39205,7 @@ class KubeServiceCidrList(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cbbee012da984095a8915f8d858120bdb2643b32ad5c55c589d41101b8822b95)
+            type_hints = cached_type_hints(_typecheckingstub__cbbee012da984095a8915f8d858120bdb2643b32ad5c55c589d41101b8822b95)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceCidrListProps(items=items, metadata=metadata)
@@ -39261,7 +39265,7 @@ class KubeServiceCidrListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1035db9c0c30492fd26ea7fac2b5b0eeefec2cd8a8da70feeb7bc63c8031f237)
+            type_hints = cached_type_hints(_typecheckingstub__1035db9c0c30492fd26ea7fac2b5b0eeefec2cd8a8da70feeb7bc63c8031f237)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -39329,7 +39333,7 @@ class KubeServiceCidrListV1Beta1(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e1375d137cd10c02fa6216c66c56b3d3dac7817e3efd8d88e838582b4ce52f91)
+            type_hints = cached_type_hints(_typecheckingstub__e1375d137cd10c02fa6216c66c56b3d3dac7817e3efd8d88e838582b4ce52f91)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceCidrListV1Beta1Props(items=items, metadata=metadata)
@@ -39389,7 +39393,7 @@ class KubeServiceCidrListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ea12a8131617c41d4755da6d4191f6d591ff878d235b890ad69638cd8f02cf98)
+            type_hints = cached_type_hints(_typecheckingstub__ea12a8131617c41d4755da6d4191f6d591ff878d235b890ad69638cd8f02cf98)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -39455,7 +39459,7 @@ class KubeServiceCidrProps:
         if isinstance(spec, dict):
             spec = ServiceCidrSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b9b0149308a717f871b0b1a64fecfe6fe8512d061e055167914332033a82fa77)
+            type_hints = cached_type_hints(_typecheckingstub__b9b0149308a717f871b0b1a64fecfe6fe8512d061e055167914332033a82fa77)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -39524,7 +39528,7 @@ class KubeServiceCidrv1Beta1(
         :param spec: spec is the desired state of the ServiceCIDR. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__78288c3067128008e7072ddec559bcba324c3b61779c0250c95cb0db4448a35e)
+            type_hints = cached_type_hints(_typecheckingstub__78288c3067128008e7072ddec559bcba324c3b61779c0250c95cb0db4448a35e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceCidrv1Beta1Props(metadata=metadata, spec=spec)
@@ -39586,7 +39590,7 @@ class KubeServiceCidrv1Beta1Props:
         if isinstance(spec, dict):
             spec = ServiceCidrSpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d50c7890856087bf981e287baa7af7154f536e7447f8b1539960a9454b372bfd)
+            type_hints = cached_type_hints(_typecheckingstub__d50c7890856087bf981e287baa7af7154f536e7447f8b1539960a9454b372bfd)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -39655,7 +39659,7 @@ class KubeServiceList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__86886b0bfb469dbc12b9a68cef4da02889f1ee314d709a8e71414cc8031cfed6)
+            type_hints = cached_type_hints(_typecheckingstub__86886b0bfb469dbc12b9a68cef4da02889f1ee314d709a8e71414cc8031cfed6)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeServiceListProps(items=items, metadata=metadata)
@@ -39715,7 +39719,7 @@ class KubeServiceListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__59198a82aa11d0d9508f7dc568777e1717191f7b72d24ffdc52ce442de8d3c85)
+            type_hints = cached_type_hints(_typecheckingstub__59198a82aa11d0d9508f7dc568777e1717191f7b72d24ffdc52ce442de8d3c85)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -39781,7 +39785,7 @@ class KubeServiceProps:
         if isinstance(spec, dict):
             spec = ServiceSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__645975c208c0e6b41f85f3d3300b485fbb81771422750ddca1d83f18801e711c)
+            type_hints = cached_type_hints(_typecheckingstub__645975c208c0e6b41f85f3d3300b485fbb81771422750ddca1d83f18801e711c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -39857,7 +39861,7 @@ class KubeStatefulSet(
         :param spec: Spec defines the desired identities of pods in this set.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__312da024b0ac59942da22a6230187a87d3bbc5ff2eced525e6d591ec5c4ac0fd)
+            type_hints = cached_type_hints(_typecheckingstub__312da024b0ac59942da22a6230187a87d3bbc5ff2eced525e6d591ec5c4ac0fd)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStatefulSetProps(metadata=metadata, spec=spec)
@@ -39921,7 +39925,7 @@ class KubeStatefulSetList(
         :param metadata: Standard list's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c61b86fcbbb88c288e62d1aeb4e69b71ab9619771039bf5b77239a716db57dd)
+            type_hints = cached_type_hints(_typecheckingstub__8c61b86fcbbb88c288e62d1aeb4e69b71ab9619771039bf5b77239a716db57dd)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStatefulSetListProps(items=items, metadata=metadata)
@@ -39981,7 +39985,7 @@ class KubeStatefulSetListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__860181d5582a30497e3a5c2f4a313c6a4b92df72cfab5a28201a1e2c12cdd5d5)
+            type_hints = cached_type_hints(_typecheckingstub__860181d5582a30497e3a5c2f4a313c6a4b92df72cfab5a28201a1e2c12cdd5d5)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -40054,7 +40058,7 @@ class KubeStatefulSetProps:
         if isinstance(spec, dict):
             spec = StatefulSetSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9415c25af12fba9cb563f49680ded90088a786ca6ef171beb298495032382794)
+            type_hints = cached_type_hints(_typecheckingstub__9415c25af12fba9cb563f49680ded90088a786ca6ef171beb298495032382794)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -40127,7 +40131,7 @@ class KubeStatus(
         :param reason: A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5cd6f81cf090a4033a6f747068175ccdd01d276de8560fa979a1eea0da875d99)
+            type_hints = cached_type_hints(_typecheckingstub__5cd6f81cf090a4033a6f747068175ccdd01d276de8560fa979a1eea0da875d99)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStatusProps(
@@ -40219,7 +40223,7 @@ class KubeStatusProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4143b0ac58cd2ed3e56cba31c073cbc2ecd0f798e3c8eba8c4aa27bf03019254)
+            type_hints = cached_type_hints(_typecheckingstub__4143b0ac58cd2ed3e56cba31c073cbc2ecd0f798e3c8eba8c4aa27bf03019254)
             check_type(argname="argument code", value=code, expected_type=type_hints["code"])
             check_type(argname="argument details", value=details, expected_type=type_hints["details"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
@@ -40340,7 +40344,7 @@ class KubeStorageClass(
         :param volume_binding_mode: volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__047df7981d1ae82b04f2e59adc1e0b713c54c65e95598c90ab39efd0bbcffb11)
+            type_hints = cached_type_hints(_typecheckingstub__047df7981d1ae82b04f2e59adc1e0b713c54c65e95598c90ab39efd0bbcffb11)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageClassProps(
@@ -40434,7 +40438,7 @@ class KubeStorageClassList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bf39d1bbc80954512531c8ebbcfaeb459523317cb1f4375b5090a4c2a1c602f4)
+            type_hints = cached_type_hints(_typecheckingstub__bf39d1bbc80954512531c8ebbcfaeb459523317cb1f4375b5090a4c2a1c602f4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageClassListProps(items=items, metadata=metadata)
@@ -40494,7 +40498,7 @@ class KubeStorageClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__036f96145bee86ebfca9cb6d6479755dc2a261bf7c08a4d2e572d758d0005bf5)
+            type_hints = cached_type_hints(_typecheckingstub__036f96145bee86ebfca9cb6d6479755dc2a261bf7c08a4d2e572d758d0005bf5)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -40579,7 +40583,7 @@ class KubeStorageClassProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3697ffdc356ed18bd130e122d368bb18f095fa7f9f60844c7c50e565931d0f37)
+            type_hints = cached_type_hints(_typecheckingstub__3697ffdc356ed18bd130e122d368bb18f095fa7f9f60844c7c50e565931d0f37)
             check_type(argname="argument provisioner", value=provisioner, expected_type=type_hints["provisioner"])
             check_type(argname="argument allowed_topologies", value=allowed_topologies, expected_type=type_hints["allowed_topologies"])
             check_type(argname="argument allow_volume_expansion", value=allow_volume_expansion, expected_type=type_hints["allow_volume_expansion"])
@@ -40731,7 +40735,7 @@ class KubeStorageVersionListV1Alpha1(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6bef958a387947bcbcdbaaf4348094be86a7afa3a9acd45c6af4fa3f17a69374)
+            type_hints = cached_type_hints(_typecheckingstub__6bef958a387947bcbcdbaaf4348094be86a7afa3a9acd45c6af4fa3f17a69374)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageVersionListV1Alpha1Props(items=items, metadata=metadata)
@@ -40791,7 +40795,7 @@ class KubeStorageVersionListV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__19ee4dcbe1aeb266f148e1052692cd8958a0190c04daee972cd1b30ba28ce226)
+            type_hints = cached_type_hints(_typecheckingstub__19ee4dcbe1aeb266f148e1052692cd8958a0190c04daee972cd1b30ba28ce226)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -40859,7 +40863,7 @@ class KubeStorageVersionMigrationListV1Beta1(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__697703736d7aa147a0fe7d3e728bcdb73cb31aa17aeda7df86cf8b2b84f4cfaa)
+            type_hints = cached_type_hints(_typecheckingstub__697703736d7aa147a0fe7d3e728bcdb73cb31aa17aeda7df86cf8b2b84f4cfaa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageVersionMigrationListV1Beta1Props(
@@ -40923,7 +40927,7 @@ class KubeStorageVersionMigrationListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d36eca5e91772b4e539b99680699a6f0729cd38cee120e90734d0bd70de3ddb8)
+            type_hints = cached_type_hints(_typecheckingstub__d36eca5e91772b4e539b99680699a6f0729cd38cee120e90734d0bd70de3ddb8)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -40989,7 +40993,7 @@ class KubeStorageVersionMigrationV1Beta1(
         :param spec: Specification of the migration.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3ea9d8f4f4506533287988ceab3232ddf5ca2bf0cf09c443da89a311fca2b8a8)
+            type_hints = cached_type_hints(_typecheckingstub__3ea9d8f4f4506533287988ceab3232ddf5ca2bf0cf09c443da89a311fca2b8a8)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageVersionMigrationV1Beta1Props(metadata=metadata, spec=spec)
@@ -41051,7 +41055,7 @@ class KubeStorageVersionMigrationV1Beta1Props:
         if isinstance(spec, dict):
             spec = StorageVersionMigrationSpecV1Beta1(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__918dfc49561f03afa8cc7251e9e22f7c497a338809c07b507ca0acdb8a041fbb)
+            type_hints = cached_type_hints(_typecheckingstub__918dfc49561f03afa8cc7251e9e22f7c497a338809c07b507ca0acdb8a041fbb)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -41118,7 +41122,7 @@ class KubeStorageVersionV1Alpha1(
         :param metadata: The name is ..
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cc83b314c4364ad0b9556dfaf2c46909a2a42787e7446c3f1febc8414b884180)
+            type_hints = cached_type_hints(_typecheckingstub__cc83b314c4364ad0b9556dfaf2c46909a2a42787e7446c3f1febc8414b884180)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeStorageVersionV1Alpha1Props(spec=spec, metadata=metadata)
@@ -41178,7 +41182,7 @@ class KubeStorageVersionV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ce0ae7328893e918f22537ca4ff18691995679aa30d67b8739ecb52c8707ba18)
+            type_hints = cached_type_hints(_typecheckingstub__ce0ae7328893e918f22537ca4ff18691995679aa30d67b8739ecb52c8707ba18)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -41246,7 +41250,7 @@ class KubeSubjectAccessReview(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__37315244b0b06d4a6c0153890d8b113b5be8f7e3f4a53706dc5bc0f2430750e9)
+            type_hints = cached_type_hints(_typecheckingstub__37315244b0b06d4a6c0153890d8b113b5be8f7e3f4a53706dc5bc0f2430750e9)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeSubjectAccessReviewProps(spec=spec, metadata=metadata)
@@ -41308,7 +41312,7 @@ class KubeSubjectAccessReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__11cdd3c28c7b3734c17f57f7700873f376c05d84eb4ac3686850aba44049b917)
+            type_hints = cached_type_hints(_typecheckingstub__11cdd3c28c7b3734c17f57f7700873f376c05d84eb4ac3686850aba44049b917)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -41376,7 +41380,7 @@ class KubeTokenRequest(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__474147e21deffaa53de4be8235f1e51831b183ee5ffadd3666a10e29d2a2f678)
+            type_hints = cached_type_hints(_typecheckingstub__474147e21deffaa53de4be8235f1e51831b183ee5ffadd3666a10e29d2a2f678)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeTokenRequestProps(spec=spec, metadata=metadata)
@@ -41438,7 +41442,7 @@ class KubeTokenRequestProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__56b2d758ed6094af31246d270d662cd4cd5baa62a9a3db945fe752d8a0c8b2ba)
+            type_hints = cached_type_hints(_typecheckingstub__56b2d758ed6094af31246d270d662cd4cd5baa62a9a3db945fe752d8a0c8b2ba)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -41508,7 +41512,7 @@ class KubeTokenReview(
         :param metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__26b5a5f85fa4a9cd06563e623d28b06fe5cb2ff87240ba40c3ffd54a769b1b7e)
+            type_hints = cached_type_hints(_typecheckingstub__26b5a5f85fa4a9cd06563e623d28b06fe5cb2ff87240ba40c3ffd54a769b1b7e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeTokenReviewProps(spec=spec, metadata=metadata)
@@ -41572,7 +41576,7 @@ class KubeTokenReviewProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fdad9a9e34ccb530008909556ec697b7e32e7e75a62c0a40b2de70d6f94defa9)
+            type_hints = cached_type_hints(_typecheckingstub__fdad9a9e34ccb530008909556ec697b7e32e7e75a62c0a40b2de70d6f94defa9)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -41640,7 +41644,7 @@ class KubeValidatingAdmissionPolicy(
         :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicy.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eec2649302b014fbad801c46cd038b2dda3e11230c41cb4577a408845f0e884b)
+            type_hints = cached_type_hints(_typecheckingstub__eec2649302b014fbad801c46cd038b2dda3e11230c41cb4577a408845f0e884b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingAdmissionPolicyProps(metadata=metadata, spec=spec)
@@ -41710,7 +41714,7 @@ class KubeValidatingAdmissionPolicyBinding(
         :param spec: Specification of the desired behavior of the ValidatingAdmissionPolicyBinding.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__551bc44739a602f218c1f501af95c3b39526596c31289429df636a4f3b69b2cb)
+            type_hints = cached_type_hints(_typecheckingstub__551bc44739a602f218c1f501af95c3b39526596c31289429df636a4f3b69b2cb)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingAdmissionPolicyBindingProps(metadata=metadata, spec=spec)
@@ -41774,7 +41778,7 @@ class KubeValidatingAdmissionPolicyBindingList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__63ac8d3264b633b48619fa1fa6d04b9036dc2d10f0897b4757d647fcb2fa275d)
+            type_hints = cached_type_hints(_typecheckingstub__63ac8d3264b633b48619fa1fa6d04b9036dc2d10f0897b4757d647fcb2fa275d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingAdmissionPolicyBindingListProps(
@@ -41838,7 +41842,7 @@ class KubeValidatingAdmissionPolicyBindingListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b75ff34d90f3467c97462abaf93b961adad5de57e83a88817aad4821b2d59837)
+            type_hints = cached_type_hints(_typecheckingstub__b75ff34d90f3467c97462abaf93b961adad5de57e83a88817aad4821b2d59837)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -41910,7 +41914,7 @@ class KubeValidatingAdmissionPolicyBindingProps:
         if isinstance(spec, dict):
             spec = ValidatingAdmissionPolicyBindingSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__424acfa48bad62c302a5ec061c3dd41e30255a6ecdd978af5b24a6a205cbbfdf)
+            type_hints = cached_type_hints(_typecheckingstub__424acfa48bad62c302a5ec061c3dd41e30255a6ecdd978af5b24a6a205cbbfdf)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -41977,7 +41981,7 @@ class KubeValidatingAdmissionPolicyList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ac227264392222d9ab59ca4aea0a997004da2f872a9db5bdbb3dcf201dce5690)
+            type_hints = cached_type_hints(_typecheckingstub__ac227264392222d9ab59ca4aea0a997004da2f872a9db5bdbb3dcf201dce5690)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingAdmissionPolicyListProps(items=items, metadata=metadata)
@@ -42037,7 +42041,7 @@ class KubeValidatingAdmissionPolicyListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a310f84c746c0053f1c99af55236635657c61182fb52515ac0d79e26e8492cd2)
+            type_hints = cached_type_hints(_typecheckingstub__a310f84c746c0053f1c99af55236635657c61182fb52515ac0d79e26e8492cd2)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -42103,7 +42107,7 @@ class KubeValidatingAdmissionPolicyProps:
         if isinstance(spec, dict):
             spec = ValidatingAdmissionPolicySpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b85d4b8b03ab24b66136f75f7a7b3f467e5caad64515c45090ee7c04b4a82cce)
+            type_hints = cached_type_hints(_typecheckingstub__b85d4b8b03ab24b66136f75f7a7b3f467e5caad64515c45090ee7c04b4a82cce)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -42170,7 +42174,7 @@ class KubeValidatingWebhookConfiguration(
         :param webhooks: Webhooks is a list of webhooks and the affected resources and operations.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34e339703b236d0321dab9bd748a6980939b9f38a87e67f04aca4a50ee3aecf8)
+            type_hints = cached_type_hints(_typecheckingstub__34e339703b236d0321dab9bd748a6980939b9f38a87e67f04aca4a50ee3aecf8)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingWebhookConfigurationProps(
@@ -42238,7 +42242,7 @@ class KubeValidatingWebhookConfigurationList(
         :param metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1103257d673223fc00aa538b9609e9e419b426afd25ebb3a9b7dc9e0e202d6dc)
+            type_hints = cached_type_hints(_typecheckingstub__1103257d673223fc00aa538b9609e9e419b426afd25ebb3a9b7dc9e0e202d6dc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeValidatingWebhookConfigurationListProps(
@@ -42302,7 +42306,7 @@ class KubeValidatingWebhookConfigurationListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__702f63ae21781f4ac2e03fa52d1a43aa7dd941efb0a90957cb50bb979345695b)
+            type_hints = cached_type_hints(_typecheckingstub__702f63ae21781f4ac2e03fa52d1a43aa7dd941efb0a90957cb50bb979345695b)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -42366,7 +42370,7 @@ class KubeValidatingWebhookConfigurationProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bc3909ca83dd252c0b1916ec5180a66b37a3898a0491cb64159a92891339f221)
+            type_hints = cached_type_hints(_typecheckingstub__bc3909ca83dd252c0b1916ec5180a66b37a3898a0491cb64159a92891339f221)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument webhooks", value=webhooks, expected_type=type_hints["webhooks"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -42435,7 +42439,7 @@ class KubeVolumeAttachment(
         :param metadata: Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7d33788b211c51d74f2a918fa8acbb6022d3dcfdfc9205cd1ccd06c35a1ca5d1)
+            type_hints = cached_type_hints(_typecheckingstub__7d33788b211c51d74f2a918fa8acbb6022d3dcfdfc9205cd1ccd06c35a1ca5d1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttachmentProps(spec=spec, metadata=metadata)
@@ -42499,7 +42503,7 @@ class KubeVolumeAttachmentList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ab4791be96cea53663cb0786137bf6128b7451e4c73f0e202e0155efaf9d465b)
+            type_hints = cached_type_hints(_typecheckingstub__ab4791be96cea53663cb0786137bf6128b7451e4c73f0e202e0155efaf9d465b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttachmentListProps(items=items, metadata=metadata)
@@ -42559,7 +42563,7 @@ class KubeVolumeAttachmentListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__94942bd80cbcefacd1366946263ffe130479fa1a6a5daaf01c23920ee29e1db7)
+            type_hints = cached_type_hints(_typecheckingstub__94942bd80cbcefacd1366946263ffe130479fa1a6a5daaf01c23920ee29e1db7)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -42625,7 +42629,7 @@ class KubeVolumeAttachmentProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9667f25c50a7755fb88e35e207298fc0e40ee7aed92a3420f75a02d74426c326)
+            type_hints = cached_type_hints(_typecheckingstub__9667f25c50a7755fb88e35e207298fc0e40ee7aed92a3420f75a02d74426c326)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -42699,7 +42703,7 @@ class KubeVolumeAttributesClass(
         :param parameters: parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass. This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an "Infeasible" state in the modifyVolumeStatus field.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c7682a04e7ad9e54509ca468a5f4d963b487d3dc8f5f2f844d637575e0a2c22)
+            type_hints = cached_type_hints(_typecheckingstub__1c7682a04e7ad9e54509ca468a5f4d963b487d3dc8f5f2f844d637575e0a2c22)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttributesClassProps(
@@ -42769,7 +42773,7 @@ class KubeVolumeAttributesClassList(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__262e03bde209192c2deb208d67224ced72b022a5c30d9104d152d93d4a6856e8)
+            type_hints = cached_type_hints(_typecheckingstub__262e03bde209192c2deb208d67224ced72b022a5c30d9104d152d93d4a6856e8)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttributesClassListProps(items=items, metadata=metadata)
@@ -42829,7 +42833,7 @@ class KubeVolumeAttributesClassListProps:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e16305884deeb00bc37e9dffddd961dcc271084ec552fd48beecfc95eb71f093)
+            type_hints = cached_type_hints(_typecheckingstub__e16305884deeb00bc37e9dffddd961dcc271084ec552fd48beecfc95eb71f093)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -42895,7 +42899,7 @@ class KubeVolumeAttributesClassListV1Beta1(
         :param metadata: Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a07561846f1c692bd25f4f1106032a85cc8bd2438d9ce680d19d958ac15e28a2)
+            type_hints = cached_type_hints(_typecheckingstub__a07561846f1c692bd25f4f1106032a85cc8bd2438d9ce680d19d958ac15e28a2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttributesClassListV1Beta1Props(
@@ -42959,7 +42963,7 @@ class KubeVolumeAttributesClassListV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aa02b7d16d155dbb6b1eff2d59eb09f0f1e54f2f194732a1ff0c7b0bec0f9812)
+            type_hints = cached_type_hints(_typecheckingstub__aa02b7d16d155dbb6b1eff2d59eb09f0f1e54f2f194732a1ff0c7b0bec0f9812)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -43029,7 +43033,7 @@ class KubeVolumeAttributesClassProps:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__48619a59fb49d829d7eb640b2d8843d4b0055ec76cfa0944e97df58f74ebe6f4)
+            type_hints = cached_type_hints(_typecheckingstub__48619a59fb49d829d7eb640b2d8843d4b0055ec76cfa0944e97df58f74ebe6f4)
             check_type(argname="argument driver_name", value=driver_name, expected_type=type_hints["driver_name"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
@@ -43117,7 +43121,7 @@ class KubeVolumeAttributesClassV1Beta1(
         :param parameters: parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass. This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an "Infeasible" state in the modifyVolumeStatus field.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d0184f29ae2abb74eae75e9dd36cdc1255465965a8b2b17fbff0e863469b9eb)
+            type_hints = cached_type_hints(_typecheckingstub__6d0184f29ae2abb74eae75e9dd36cdc1255465965a8b2b17fbff0e863469b9eb)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeVolumeAttributesClassV1Beta1Props(
@@ -43191,7 +43195,7 @@ class KubeVolumeAttributesClassV1Beta1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1352f7d43112b51af1d339b6d084a9f8193d972f5666694a092b93fb61383836)
+            type_hints = cached_type_hints(_typecheckingstub__1352f7d43112b51af1d339b6d084a9f8193d972f5666694a092b93fb61383836)
             check_type(argname="argument driver_name", value=driver_name, expected_type=type_hints["driver_name"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
@@ -43275,7 +43279,7 @@ class KubeWorkloadListV1Alpha1(
         :param metadata: Standard list metadata.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f71599e3a73a7ccd13e24138306d24d5f6272a0337f9079fd0f52afe3a58b13a)
+            type_hints = cached_type_hints(_typecheckingstub__f71599e3a73a7ccd13e24138306d24d5f6272a0337f9079fd0f52afe3a58b13a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeWorkloadListV1Alpha1Props(items=items, metadata=metadata)
@@ -43335,7 +43339,7 @@ class KubeWorkloadListV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ListMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__833684722e9bf5ebc40346c6ca3ffe593aa51dba3e7948113470b2fff8e8e3a3)
+            type_hints = cached_type_hints(_typecheckingstub__833684722e9bf5ebc40346c6ca3ffe593aa51dba3e7948113470b2fff8e8e3a3)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -43401,7 +43405,7 @@ class KubeWorkloadV1Alpha1(
         :param metadata: Standard object's metadata. Name must be a DNS subdomain.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7f7b96f9c79b34767b6b9acbbb314384b4a2b538bb3868a43d715bd3dc1c04aa)
+            type_hints = cached_type_hints(_typecheckingstub__7f7b96f9c79b34767b6b9acbbb314384b4a2b538bb3868a43d715bd3dc1c04aa)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = KubeWorkloadV1Alpha1Props(spec=spec, metadata=metadata)
@@ -43463,7 +43467,7 @@ class KubeWorkloadV1Alpha1Props:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9cce9724318753abc74e19f2d0581cd194ffe34b707fe0109a701aa0a7a5db90)
+            type_hints = cached_type_hints(_typecheckingstub__9cce9724318753abc74e19f2d0581cd194ffe34b707fe0109a701aa0a7a5db90)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -43530,7 +43534,7 @@ class LabelSelector:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4d456112fc12591335ee47253835365291967e786ee79f8d91249182e98fdd86)
+            type_hints = cached_type_hints(_typecheckingstub__4d456112fc12591335ee47253835365291967e786ee79f8d91249182e98fdd86)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
             check_type(argname="argument match_labels", value=match_labels, expected_type=type_hints["match_labels"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -43599,7 +43603,7 @@ class LabelSelectorAttributes:
         :schema: io.k8s.api.authorization.v1.LabelSelectorAttributes
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5ea68c20130e023304f9b2d085f32e7acb587f1b71a0c7ceba58bc7209f9f04f)
+            type_hints = cached_type_hints(_typecheckingstub__5ea68c20130e023304f9b2d085f32e7acb587f1b71a0c7ceba58bc7209f9f04f)
             check_type(argname="argument raw_selector", value=raw_selector, expected_type=type_hints["raw_selector"])
             check_type(argname="argument requirements", value=requirements, expected_type=type_hints["requirements"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -43664,7 +43668,7 @@ class LabelSelectorRequirement:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e384e360ddc460b3a27ab64f240971fb10f71f62661ae8ee39b61341807594f2)
+            type_hints = cached_type_hints(_typecheckingstub__e384e360ddc460b3a27ab64f240971fb10f71f62661ae8ee39b61341807594f2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
@@ -43755,7 +43759,7 @@ class LeaseCandidateSpecV1Alpha2:
         :schema: io.k8s.api.coordination.v1alpha2.LeaseCandidateSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eaeadecd8656ae8f23b7c895da78136aa65c60c58bb3d15ab09dc356937d2b25)
+            type_hints = cached_type_hints(_typecheckingstub__eaeadecd8656ae8f23b7c895da78136aa65c60c58bb3d15ab09dc356937d2b25)
             check_type(argname="argument binary_version", value=binary_version, expected_type=type_hints["binary_version"])
             check_type(argname="argument lease_name", value=lease_name, expected_type=type_hints["lease_name"])
             check_type(argname="argument strategy", value=strategy, expected_type=type_hints["strategy"])
@@ -43890,7 +43894,7 @@ class LeaseCandidateSpecV1Beta1:
         :schema: io.k8s.api.coordination.v1beta1.LeaseCandidateSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__42aad1821b3e1c9804703c923262433625740db7d8b76fa2083128878e48861d)
+            type_hints = cached_type_hints(_typecheckingstub__42aad1821b3e1c9804703c923262433625740db7d8b76fa2083128878e48861d)
             check_type(argname="argument binary_version", value=binary_version, expected_type=type_hints["binary_version"])
             check_type(argname="argument lease_name", value=lease_name, expected_type=type_hints["lease_name"])
             check_type(argname="argument strategy", value=strategy, expected_type=type_hints["strategy"])
@@ -44028,7 +44032,7 @@ class LeaseSpec:
         :schema: io.k8s.api.coordination.v1.LeaseSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__401c15ef806c5b756921eeaf607340ba52477c9d6dab3b4ed3171aa7accf13c0)
+            type_hints = cached_type_hints(_typecheckingstub__401c15ef806c5b756921eeaf607340ba52477c9d6dab3b4ed3171aa7accf13c0)
             check_type(argname="argument acquire_time", value=acquire_time, expected_type=type_hints["acquire_time"])
             check_type(argname="argument holder_identity", value=holder_identity, expected_type=type_hints["holder_identity"])
             check_type(argname="argument lease_duration_seconds", value=lease_duration_seconds, expected_type=type_hints["lease_duration_seconds"])
@@ -44167,7 +44171,7 @@ class Lifecycle:
         if isinstance(pre_stop, dict):
             pre_stop = LifecycleHandler(**pre_stop)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7bd1d9e48df3fb31eaad590d942020be7329bc9ca7a62db73e43e7362b1cc50d)
+            type_hints = cached_type_hints(_typecheckingstub__7bd1d9e48df3fb31eaad590d942020be7329bc9ca7a62db73e43e7362b1cc50d)
             check_type(argname="argument post_start", value=post_start, expected_type=type_hints["post_start"])
             check_type(argname="argument pre_stop", value=pre_stop, expected_type=type_hints["pre_stop"])
             check_type(argname="argument stop_signal", value=stop_signal, expected_type=type_hints["stop_signal"])
@@ -44263,7 +44267,7 @@ class LifecycleHandler:
         if isinstance(tcp_socket, dict):
             tcp_socket = TcpSocketAction(**tcp_socket)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__26ab4379df425e6abfcd38434919756033f8e7da90416a68d159b10d8103d3a0)
+            type_hints = cached_type_hints(_typecheckingstub__26ab4379df425e6abfcd38434919756033f8e7da90416a68d159b10d8103d3a0)
             check_type(argname="argument exec", value=exec, expected_type=type_hints["exec"])
             check_type(argname="argument http_get", value=http_get, expected_type=type_hints["http_get"])
             check_type(argname="argument sleep", value=sleep, expected_type=type_hints["sleep"])
@@ -44363,7 +44367,7 @@ class LimitRangeItem:
         :schema: io.k8s.api.core.v1.LimitRangeItem
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f178641e82038afdb476dfb5344285c2cd173e3d277341d2bdd9147b73026eee)
+            type_hints = cached_type_hints(_typecheckingstub__f178641e82038afdb476dfb5344285c2cd173e3d277341d2bdd9147b73026eee)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument default", value=default, expected_type=type_hints["default"])
             check_type(argname="argument default_request", value=default_request, expected_type=type_hints["default_request"])
@@ -44475,7 +44479,7 @@ class LimitRangeSpec:
         :schema: io.k8s.api.core.v1.LimitRangeSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__027b4c522c19844f185c6e4f67a4d23daf36b62d09bea8f49867796254123ae9)
+            type_hints = cached_type_hints(_typecheckingstub__027b4c522c19844f185c6e4f67a4d23daf36b62d09bea8f49867796254123ae9)
             check_type(argname="argument limits", value=limits, expected_type=type_hints["limits"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "limits": limits,
@@ -44525,7 +44529,7 @@ class LimitResponse:
         if isinstance(queuing, dict):
             queuing = QueuingConfiguration(**queuing)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b94f0da55ab2d70196e61a1225c7314635b01ba619dfb3e508a238ae4f150b07)
+            type_hints = cached_type_hints(_typecheckingstub__b94f0da55ab2d70196e61a1225c7314635b01ba619dfb3e508a238ae4f150b07)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument queuing", value=queuing, expected_type=type_hints["queuing"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -44605,7 +44609,7 @@ class LimitedPriorityLevelConfiguration:
         if isinstance(limit_response, dict):
             limit_response = LimitResponse(**limit_response)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dc22f7e703e0364150853ffc9b44a3b6a8ec03891161caea265b163702939929)
+            type_hints = cached_type_hints(_typecheckingstub__dc22f7e703e0364150853ffc9b44a3b6a8ec03891161caea265b163702939929)
             check_type(argname="argument borrowing_limit_percent", value=borrowing_limit_percent, expected_type=type_hints["borrowing_limit_percent"])
             check_type(argname="argument lendable_percent", value=lendable_percent, expected_type=type_hints["lendable_percent"])
             check_type(argname="argument limit_response", value=limit_response, expected_type=type_hints["limit_response"])
@@ -44719,7 +44723,7 @@ class ListMeta:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c89d5e06a349da5660f2e0e4d4f09e7a3e9ddf286741898802308a9398682fb7)
+            type_hints = cached_type_hints(_typecheckingstub__c89d5e06a349da5660f2e0e4d4f09e7a3e9ddf286741898802308a9398682fb7)
             check_type(argname="argument continue_", value=continue_, expected_type=type_hints["continue_"])
             check_type(argname="argument remaining_item_count", value=remaining_item_count, expected_type=type_hints["remaining_item_count"])
             check_type(argname="argument resource_version", value=resource_version, expected_type=type_hints["resource_version"])
@@ -44802,7 +44806,7 @@ class LocalObjectReference:
         :schema: io.k8s.api.core.v1.LocalObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d4bcf5caa3c82746d54e01aae949e13a5e8eb43da22feabb16930ea634934182)
+            type_hints = cached_type_hints(_typecheckingstub__d4bcf5caa3c82746d54e01aae949e13a5e8eb43da22feabb16930ea634934182)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if name is not None:
@@ -44851,7 +44855,7 @@ class LocalVolumeSource:
         :schema: io.k8s.api.core.v1.LocalVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b968cf718668502f36d95fef3ccb40aea55d0b34c90e37b5b542eeec51d43091)
+            type_hints = cached_type_hints(_typecheckingstub__b968cf718668502f36d95fef3ccb40aea55d0b34c90e37b5b542eeec51d43091)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -44933,7 +44937,7 @@ class ManagedFieldsEntry:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ManagedFieldsEntry
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7d4739bc7dc7000dc6e5fca030c204929e2fd79081deaecd9bb2d31a8ff798f8)
+            type_hints = cached_type_hints(_typecheckingstub__7d4739bc7dc7000dc6e5fca030c204929e2fd79081deaecd9bb2d31a8ff798f8)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument fields_type", value=fields_type, expected_type=type_hints["fields_type"])
             check_type(argname="argument fields_v1", value=fields_v1, expected_type=type_hints["fields_v1"])
@@ -45057,7 +45061,7 @@ class MatchCondition:
         :schema: io.k8s.api.admissionregistration.v1.MatchCondition
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3800f669ab21a26d536ae83c136f2866c0e93717ab35288364734887c0897ff3)
+            type_hints = cached_type_hints(_typecheckingstub__3800f669ab21a26d536ae83c136f2866c0e93717ab35288364734887c0897ff3)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -45125,7 +45129,7 @@ class MatchConditionV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.MatchCondition
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__beea8e57725f27cd5055bfc69b7285a280467452baf7822cf280461af2cac429)
+            type_hints = cached_type_hints(_typecheckingstub__beea8e57725f27cd5055bfc69b7285a280467452baf7822cf280461af2cac429)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -45194,7 +45198,7 @@ class MatchConditionV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.MatchCondition
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9e49bf637f21e88073f98fa1103cd81916ae6d3820ed7367d000d2ae75800fb7)
+            type_hints = cached_type_hints(_typecheckingstub__9e49bf637f21e88073f98fa1103cd81916ae6d3820ed7367d000d2ae75800fb7)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -45286,7 +45290,7 @@ class MatchResources:
         if isinstance(object_selector, dict):
             object_selector = LabelSelector(**object_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e8a2987b6a59f35a581946210ba327876425a12524807d61232cd57c434b830c)
+            type_hints = cached_type_hints(_typecheckingstub__e8a2987b6a59f35a581946210ba327876425a12524807d61232cd57c434b830c)
             check_type(argname="argument exclude_resource_rules", value=exclude_resource_rules, expected_type=type_hints["exclude_resource_rules"])
             check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
@@ -45450,7 +45454,7 @@ class MatchResourcesV1Alpha1:
         if isinstance(object_selector, dict):
             object_selector = LabelSelector(**object_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008c59202f)
+            type_hints = cached_type_hints(_typecheckingstub__353cd8dc9e4702f1a8e203983ad89fe7e2f2cf3e018a030464f491008c59202f)
             check_type(argname="argument exclude_resource_rules", value=exclude_resource_rules, expected_type=type_hints["exclude_resource_rules"])
             check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
@@ -45616,7 +45620,7 @@ class MatchResourcesV1Beta1:
         if isinstance(object_selector, dict):
             object_selector = LabelSelector(**object_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1f544a901497696fa76856946cbb824eaf95d5b9cd4538d6f138fb971999df08)
+            type_hints = cached_type_hints(_typecheckingstub__1f544a901497696fa76856946cbb824eaf95d5b9cd4538d6f138fb971999df08)
             check_type(argname="argument exclude_resource_rules", value=exclude_resource_rules, expected_type=type_hints["exclude_resource_rules"])
             check_type(argname="argument match_policy", value=match_policy, expected_type=type_hints["match_policy"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
@@ -45766,7 +45770,7 @@ class MetricIdentifierV2:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__05f3c3477ee039ee62c1437881247ebc79634cd90deb0f404da58859b54f239b)
+            type_hints = cached_type_hints(_typecheckingstub__05f3c3477ee039ee62c1437881247ebc79634cd90deb0f404da58859b54f239b)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -45853,7 +45857,7 @@ class MetricSpecV2:
         if isinstance(resource, dict):
             resource = ResourceMetricSourceV2(**resource)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__776c3a518a700d093a83bf2abc7751e45a06a623a34cd032f17c5caa38d5a529)
+            type_hints = cached_type_hints(_typecheckingstub__776c3a518a700d093a83bf2abc7751e45a06a623a34cd032f17c5caa38d5a529)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument container_resource", value=container_resource, expected_type=type_hints["container_resource"])
             check_type(argname="argument external", value=external, expected_type=type_hints["external"])
@@ -45976,7 +45980,7 @@ class MetricTargetV2:
         :schema: io.k8s.api.autoscaling.v2.MetricTarget
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__91b2fc60d3480fdb5746f707be7158323bd2542cb5bf771776ee1d23f94b5209)
+            type_hints = cached_type_hints(_typecheckingstub__91b2fc60d3480fdb5746f707be7158323bd2542cb5bf771776ee1d23f94b5209)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument average_utilization", value=average_utilization, expected_type=type_hints["average_utilization"])
             check_type(argname="argument average_value", value=average_value, expected_type=type_hints["average_value"])
@@ -46072,7 +46076,7 @@ class MutatingAdmissionPolicyBindingSpecV1Alpha1:
         if isinstance(param_ref, dict):
             param_ref = ParamRefV1Alpha1(**param_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__96272b4acd6cef30477ca580d632b4731cfdcd5f001f4fc84d88f7476b0b5e72)
+            type_hints = cached_type_hints(_typecheckingstub__96272b4acd6cef30477ca580d632b4731cfdcd5f001f4fc84d88f7476b0b5e72)
             check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
             check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
             check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
@@ -46159,7 +46163,7 @@ class MutatingAdmissionPolicyBindingSpecV1Beta1:
         if isinstance(param_ref, dict):
             param_ref = ParamRefV1Beta1(**param_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68799813fea4d3433dcdde7b5f19f19a488a1d19559e3f369bfecc0c37ef6cdf)
+            type_hints = cached_type_hints(_typecheckingstub__68799813fea4d3433dcdde7b5f19f19a488a1d19559e3f369bfecc0c37ef6cdf)
             check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
             check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
             check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
@@ -46258,7 +46262,7 @@ class MutatingAdmissionPolicySpecV1Alpha1:
         if isinstance(param_kind, dict):
             param_kind = ParamKindV1Alpha1(**param_kind)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f2e65e5266821857a18b9caca6a2160224a5e6198cb7d10bd64d3babc4444618)
+            type_hints = cached_type_hints(_typecheckingstub__f2e65e5266821857a18b9caca6a2160224a5e6198cb7d10bd64d3babc4444618)
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
             check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
             check_type(argname="argument match_constraints", value=match_constraints, expected_type=type_hints["match_constraints"])
@@ -46440,7 +46444,7 @@ class MutatingAdmissionPolicySpecV1Beta1:
         if isinstance(param_kind, dict):
             param_kind = ParamKindV1Beta1(**param_kind)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__acfb2a945c5219af7819460106eae112bb4c5a39cf05e57ceb54774e5ed2fc69)
+            type_hints = cached_type_hints(_typecheckingstub__acfb2a945c5219af7819460106eae112bb4c5a39cf05e57ceb54774e5ed2fc69)
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
             check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
             check_type(argname="argument match_constraints", value=match_constraints, expected_type=type_hints["match_constraints"])
@@ -46637,7 +46641,7 @@ class MutatingWebhook:
         if isinstance(object_selector, dict):
             object_selector = LabelSelector(**object_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3b2b9fcd912bddbb67354eb50436e2e46cb9c69e54efee129d032491ec3fda21)
+            type_hints = cached_type_hints(_typecheckingstub__3b2b9fcd912bddbb67354eb50436e2e46cb9c69e54efee129d032491ec3fda21)
             check_type(argname="argument admission_review_versions", value=admission_review_versions, expected_type=type_hints["admission_review_versions"])
             check_type(argname="argument client_config", value=client_config, expected_type=type_hints["client_config"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -46911,7 +46915,7 @@ class MutationV1Alpha1:
         if isinstance(json_patch, dict):
             json_patch = JsonPatchV1Alpha1(**json_patch)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d94da35c9feb68657953120ec6f331b42d030761b53d9eb25def7d58b0a705b4)
+            type_hints = cached_type_hints(_typecheckingstub__d94da35c9feb68657953120ec6f331b42d030761b53d9eb25def7d58b0a705b4)
             check_type(argname="argument patch_type", value=patch_type, expected_type=type_hints["patch_type"])
             check_type(argname="argument apply_configuration", value=apply_configuration, expected_type=type_hints["apply_configuration"])
             check_type(argname="argument json_patch", value=json_patch, expected_type=type_hints["json_patch"])
@@ -46997,7 +47001,7 @@ class MutationV1Beta1:
         if isinstance(json_patch, dict):
             json_patch = JsonPatchV1Beta1(**json_patch)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__604ef81002417a0c4c1f049d3fac0448fafca3aacec8f70c13131a6caf7e1d32)
+            type_hints = cached_type_hints(_typecheckingstub__604ef81002417a0c4c1f049d3fac0448fafca3aacec8f70c13131a6caf7e1d32)
             check_type(argname="argument patch_type", value=patch_type, expected_type=type_hints["patch_type"])
             check_type(argname="argument apply_configuration", value=apply_configuration, expected_type=type_hints["apply_configuration"])
             check_type(argname="argument json_patch", value=json_patch, expected_type=type_hints["json_patch"])
@@ -47088,7 +47092,7 @@ class NamedRuleWithOperations:
         :schema: io.k8s.api.admissionregistration.v1.NamedRuleWithOperations
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dab25f1b027c9a1bf4bd59560bd849c7e08203c50a3f9e45c7a0e7934a513f9f)
+            type_hints = cached_type_hints(_typecheckingstub__dab25f1b027c9a1bf4bd59560bd849c7e08203c50a3f9e45c7a0e7934a513f9f)
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
             check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
@@ -47228,7 +47232,7 @@ class NamedRuleWithOperationsV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.NamedRuleWithOperations
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__86254bd3c48c4175d2d8989d74b51ebf1d5e08f635d6ca938cbe71ad127a3055)
+            type_hints = cached_type_hints(_typecheckingstub__86254bd3c48c4175d2d8989d74b51ebf1d5e08f635d6ca938cbe71ad127a3055)
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
             check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
@@ -47368,7 +47372,7 @@ class NamedRuleWithOperationsV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.NamedRuleWithOperations
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5752bf5c1318bb48fb98d55c7d64c8f6c4c0d21ee0ed3f837e48926229f41644)
+            type_hints = cached_type_hints(_typecheckingstub__5752bf5c1318bb48fb98d55c7d64c8f6c4c0d21ee0ed3f837e48926229f41644)
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
             check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
@@ -47491,7 +47495,7 @@ class NamespaceSpec:
         :schema: io.k8s.api.core.v1.NamespaceSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ea645c91cd000f5a4da28ff25155be76d43d13a8e9e70b0d5c0f6eb2529d3c8)
+            type_hints = cached_type_hints(_typecheckingstub__0ea645c91cd000f5a4da28ff25155be76d43d13a8e9e70b0d5c0f6eb2529d3c8)
             check_type(argname="argument finalizers", value=finalizers, expected_type=type_hints["finalizers"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if finalizers is not None:
@@ -47542,7 +47546,7 @@ class NetworkPolicyEgressRule:
         :schema: io.k8s.api.networking.v1.NetworkPolicyEgressRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2310900f85c6226ede2a61dd42a7652ea8cc83e009f119df2fbd2f16997b26de)
+            type_hints = cached_type_hints(_typecheckingstub__2310900f85c6226ede2a61dd42a7652ea8cc83e009f119df2fbd2f16997b26de)
             check_type(argname="argument ports", value=ports, expected_type=type_hints["ports"])
             check_type(argname="argument to", value=to, expected_type=type_hints["to"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -47607,7 +47611,7 @@ class NetworkPolicyIngressRule:
         :schema: io.k8s.api.networking.v1.NetworkPolicyIngressRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__539e72cf73f95f606fca75f4cbd682e72299b5c8617bc9a6aafa6f3c15b73e64)
+            type_hints = cached_type_hints(_typecheckingstub__539e72cf73f95f606fca75f4cbd682e72299b5c8617bc9a6aafa6f3c15b73e64)
             check_type(argname="argument from_", value=from_, expected_type=type_hints["from_"])
             check_type(argname="argument ports", value=ports, expected_type=type_hints["ports"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -47684,7 +47688,7 @@ class NetworkPolicyPeer:
         if isinstance(pod_selector, dict):
             pod_selector = LabelSelector(**pod_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__79d11d83de8d6e2520a2426cb19cd2d699bfd94c627f4b84d0a50530c388c1bf)
+            type_hints = cached_type_hints(_typecheckingstub__79d11d83de8d6e2520a2426cb19cd2d699bfd94c627f4b84d0a50530c388c1bf)
             check_type(argname="argument ip_block", value=ip_block, expected_type=type_hints["ip_block"])
             check_type(argname="argument namespace_selector", value=namespace_selector, expected_type=type_hints["namespace_selector"])
             check_type(argname="argument pod_selector", value=pod_selector, expected_type=type_hints["pod_selector"])
@@ -47767,7 +47771,7 @@ class NetworkPolicyPort:
         :schema: io.k8s.api.networking.v1.NetworkPolicyPort
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__49079df49fbd7a79ac55d3eb11dc0d2260b7ec0d23bd59e732339eebb03b1866)
+            type_hints = cached_type_hints(_typecheckingstub__49079df49fbd7a79ac55d3eb11dc0d2260b7ec0d23bd59e732339eebb03b1866)
             check_type(argname="argument end_port", value=end_port, expected_type=type_hints["end_port"])
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument protocol", value=protocol, expected_type=type_hints["protocol"])
@@ -47855,7 +47859,7 @@ class NetworkPolicySpec:
         if isinstance(pod_selector, dict):
             pod_selector = LabelSelector(**pod_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d9c84fc90459d1cd97b3329e793a8d157a79bc350c911daca3c8b5b185a16977)
+            type_hints = cached_type_hints(_typecheckingstub__d9c84fc90459d1cd97b3329e793a8d157a79bc350c911daca3c8b5b185a16977)
             check_type(argname="argument egress", value=egress, expected_type=type_hints["egress"])
             check_type(argname="argument ingress", value=ingress, expected_type=type_hints["ingress"])
             check_type(argname="argument pod_selector", value=pod_selector, expected_type=type_hints["pod_selector"])
@@ -47950,7 +47954,7 @@ class NfsVolumeSource:
         :schema: io.k8s.api.core.v1.NFSVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__64ef53a74120cbc99eb5a721f1a72955a4b1a591eaaf717f4ad02b252033b821)
+            type_hints = cached_type_hints(_typecheckingstub__64ef53a74120cbc99eb5a721f1a72955a4b1a591eaaf717f4ad02b252033b821)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -48035,7 +48039,7 @@ class NodeAffinity:
         if isinstance(required_during_scheduling_ignored_during_execution, dict):
             required_during_scheduling_ignored_during_execution = NodeSelector(**required_during_scheduling_ignored_during_execution)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b48e0015647b26feaba0b33c63daf8b67b9219ead4d1f2049e1565931a1ebf3f)
+            type_hints = cached_type_hints(_typecheckingstub__b48e0015647b26feaba0b33c63daf8b67b9219ead4d1f2049e1565931a1ebf3f)
             check_type(argname="argument preferred_during_scheduling_ignored_during_execution", value=preferred_during_scheduling_ignored_during_execution, expected_type=type_hints["preferred_during_scheduling_ignored_during_execution"])
             check_type(argname="argument required_during_scheduling_ignored_during_execution", value=required_during_scheduling_ignored_during_execution, expected_type=type_hints["required_during_scheduling_ignored_during_execution"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -48104,7 +48108,7 @@ class NodeConfigSource:
         if isinstance(config_map, dict):
             config_map = ConfigMapNodeConfigSource(**config_map)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cf7f83b52a971565e60c01b2feacf24dc56b2f356b8bd133298411fd8ca953fc)
+            type_hints = cached_type_hints(_typecheckingstub__cf7f83b52a971565e60c01b2feacf24dc56b2f356b8bd133298411fd8ca953fc)
             check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if config_map is not None:
@@ -48151,7 +48155,7 @@ class NodeSelector:
         :schema: io.k8s.api.core.v1.NodeSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__860ee52caab59ff2ee19e780fd4b3b278089ce131229f4b4c67d9158710bfd41)
+            type_hints = cached_type_hints(_typecheckingstub__860ee52caab59ff2ee19e780fd4b3b278089ce131229f4b4c67d9158710bfd41)
             check_type(argname="argument node_selector_terms", value=node_selector_terms, expected_type=type_hints["node_selector_terms"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "node_selector_terms": node_selector_terms,
@@ -48203,7 +48207,7 @@ class NodeSelectorRequirement:
         :schema: io.k8s.api.core.v1.NodeSelectorRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__078a37e4a700d461ea8bef52cbb31305d573e12bce0411df8938b6a2bea57c6e)
+            type_hints = cached_type_hints(_typecheckingstub__078a37e4a700d461ea8bef52cbb31305d573e12bce0411df8938b6a2bea57c6e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
@@ -48284,7 +48288,7 @@ class NodeSelectorTerm:
         :schema: io.k8s.api.core.v1.NodeSelectorTerm
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__00ea4bc7ccd8ca5e61bdb8b0ba65854a04f15b4b8fbaf25f3edafd171975a953)
+            type_hints = cached_type_hints(_typecheckingstub__00ea4bc7ccd8ca5e61bdb8b0ba65854a04f15b4b8fbaf25f3edafd171975a953)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
             check_type(argname="argument match_fields", value=match_fields, expected_type=type_hints["match_fields"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -48365,7 +48369,7 @@ class NodeSpec:
         if isinstance(config_source, dict):
             config_source = NodeConfigSource(**config_source)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6e50f14ca142b7e1ae3aa4c3b0de77e924013889955b6653359e1c2bc719eb0d)
+            type_hints = cached_type_hints(_typecheckingstub__6e50f14ca142b7e1ae3aa4c3b0de77e924013889955b6653359e1c2bc719eb0d)
             check_type(argname="argument config_source", value=config_source, expected_type=type_hints["config_source"])
             check_type(argname="argument external_id", value=external_id, expected_type=type_hints["external_id"])
             check_type(argname="argument pod_cidr", value=pod_cidr, expected_type=type_hints["pod_cidr"])
@@ -48492,7 +48496,7 @@ class NonResourceAttributes:
         :schema: io.k8s.api.authorization.v1.NonResourceAttributes
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__87614183732b5aa4dd1bacd6db0063d066b6c9f07ce5f58af69ea84b6410702b)
+            type_hints = cached_type_hints(_typecheckingstub__87614183732b5aa4dd1bacd6db0063d066b6c9f07ce5f58af69ea84b6410702b)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument verb", value=verb, expected_type=type_hints["verb"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -48553,7 +48557,7 @@ class NonResourcePolicyRule:
         :schema: io.k8s.api.flowcontrol.v1.NonResourcePolicyRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0503a9149bdee408cb75502226a48f4aa7bc6d0f26fe389250ddf6b15b965556)
+            type_hints = cached_type_hints(_typecheckingstub__0503a9149bdee408cb75502226a48f4aa7bc6d0f26fe389250ddf6b15b965556)
             check_type(argname="argument non_resource_ur_ls", value=non_resource_ur_ls, expected_type=type_hints["non_resource_ur_ls"])
             check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -48624,7 +48628,7 @@ class ObjectFieldSelector:
         :schema: io.k8s.api.core.v1.ObjectFieldSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c814859696bb254244f25cd638a669639c7d94c59b5e4180978a9f2c8497378a)
+            type_hints = cached_type_hints(_typecheckingstub__c814859696bb254244f25cd638a669639c7d94c59b5e4180978a9f2c8497378a)
             check_type(argname="argument field_path", value=field_path, expected_type=type_hints["field_path"])
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -48726,7 +48730,7 @@ class ObjectMeta:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7ee1f9d34e34f50cf19155ec68863e4beccde0e8fb69f1e800f6e8b53b8a2af5)
+            type_hints = cached_type_hints(_typecheckingstub__7ee1f9d34e34f50cf19155ec68863e4beccde0e8fb69f1e800f6e8b53b8a2af5)
             check_type(argname="argument annotations", value=annotations, expected_type=type_hints["annotations"])
             check_type(argname="argument creation_timestamp", value=creation_timestamp, expected_type=type_hints["creation_timestamp"])
             check_type(argname="argument deletion_grace_period_seconds", value=deletion_grace_period_seconds, expected_type=type_hints["deletion_grace_period_seconds"])
@@ -48997,7 +49001,7 @@ class ObjectMetricSourceV2:
         if isinstance(target, dict):
             target = MetricTargetV2(**target)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__059fe76b0567d05ad5259ae2145743ed0bb9b8ff4488936dba8234b467603882)
+            type_hints = cached_type_hints(_typecheckingstub__059fe76b0567d05ad5259ae2145743ed0bb9b8ff4488936dba8234b467603882)
             check_type(argname="argument described_object", value=described_object, expected_type=type_hints["described_object"])
             check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
@@ -49087,7 +49091,7 @@ class ObjectReference:
         :schema: io.k8s.api.core.v1.ObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c20094532bd9f73694f77438189bb3de9c66cbdd0365b5006af71270a4661cc5)
+            type_hints = cached_type_hints(_typecheckingstub__c20094532bd9f73694f77438189bb3de9c66cbdd0365b5006af71270a4661cc5)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument field_path", value=field_path, expected_type=type_hints["field_path"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
@@ -49211,7 +49215,7 @@ class OpaqueDeviceConfiguration:
         :schema: io.k8s.api.resource.v1.OpaqueDeviceConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6f7ad9b64d599c28a11ee881f0e71205de511c668e933cb898996a42fd15456c)
+            type_hints = cached_type_hints(_typecheckingstub__6f7ad9b64d599c28a11ee881f0e71205de511c668e933cb898996a42fd15456c)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -49274,7 +49278,7 @@ class OpaqueDeviceConfigurationV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1539ebfbd04d9e10699e04d2276cb1076dfc40cd3c0918e18f3b7982c07863f7)
+            type_hints = cached_type_hints(_typecheckingstub__1539ebfbd04d9e10699e04d2276cb1076dfc40cd3c0918e18f3b7982c07863f7)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -49337,7 +49341,7 @@ class OpaqueDeviceConfigurationV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.OpaqueDeviceConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fabfb6287f4c4bc2c92dbfe5d2469d18de9dda003bbcac88fd7ea2d4e130d0c9)
+            type_hints = cached_type_hints(_typecheckingstub__fabfb6287f4c4bc2c92dbfe5d2469d18de9dda003bbcac88fd7ea2d4e130d0c9)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument parameters", value=parameters, expected_type=type_hints["parameters"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -49403,7 +49407,7 @@ class Overhead:
         :schema: io.k8s.api.node.v1.Overhead
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__57ac617e483fea78edd490dac696636c32772cbc5e9c8196a16758039d227d56)
+            type_hints = cached_type_hints(_typecheckingstub__57ac617e483fea78edd490dac696636c32772cbc5e9c8196a16758039d227d56)
             check_type(argname="argument pod_fixed", value=pod_fixed, expected_type=type_hints["pod_fixed"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if pod_fixed is not None:
@@ -49467,7 +49471,7 @@ class OwnerReference:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.OwnerReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f492c2fd31467da33dd2714b04585d0827fb1e1b0cf0b750d6db405bd88f0eeb)
+            type_hints = cached_type_hints(_typecheckingstub__f492c2fd31467da33dd2714b04585d0827fb1e1b0cf0b750d6db405bd88f0eeb)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -49585,7 +49589,7 @@ class ParamKind:
         :schema: io.k8s.api.admissionregistration.v1.ParamKind
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d96eb62714c11aad351b6d891f46c63d53ffee56b975b57eb0081f7b4ab3769)
+            type_hints = cached_type_hints(_typecheckingstub__6d96eb62714c11aad351b6d891f46c63d53ffee56b975b57eb0081f7b4ab3769)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -49648,7 +49652,7 @@ class ParamKindV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.ParamKind
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ca366a1a5a55375a1aef0df1d3a5ee87b07269561ad4145843c552a10838efa1)
+            type_hints = cached_type_hints(_typecheckingstub__ca366a1a5a55375a1aef0df1d3a5ee87b07269561ad4145843c552a10838efa1)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -49711,7 +49715,7 @@ class ParamKindV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.ParamKind
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5902630c6b9959b6d8033dbff5bbb00a7dabcb3ab582f1fe6cbd68814a0784d1)
+            type_hints = cached_type_hints(_typecheckingstub__5902630c6b9959b6d8033dbff5bbb00a7dabcb3ab582f1fe6cbd68814a0784d1)
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -49785,7 +49789,7 @@ class ParamRef:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__93e79a5f9d1e6c428daef9bc3d37b99b616e545ec7af78e49137c4c6b57c9dfe)
+            type_hints = cached_type_hints(_typecheckingstub__93e79a5f9d1e6c428daef9bc3d37b99b616e545ec7af78e49137c4c6b57c9dfe)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument parameter_not_found_action", value=parameter_not_found_action, expected_type=type_hints["parameter_not_found_action"])
@@ -49902,7 +49906,7 @@ class ParamRefV1Alpha1:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e)
+            type_hints = cached_type_hints(_typecheckingstub__001cc96ea35cdecf4deeab0b5f67d5cac9ccd26cc9b639769b91f8b011165e5e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument parameter_not_found_action", value=parameter_not_found_action, expected_type=type_hints["parameter_not_found_action"])
@@ -50017,7 +50021,7 @@ class ParamRefV1Beta1:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__32c75a5e4f7852a9f3e5b9936993133a9c47453af8828503a27ae7e776b8d0f7)
+            type_hints = cached_type_hints(_typecheckingstub__32c75a5e4f7852a9f3e5b9936993133a9c47453af8828503a27ae7e776b8d0f7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument parameter_not_found_action", value=parameter_not_found_action, expected_type=type_hints["parameter_not_found_action"])
@@ -50132,7 +50136,7 @@ class ParentReference:
         :schema: io.k8s.api.networking.v1.ParentReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__140da7e7b8c459d40746927555dbb78c743cad9fb8ad971c13ce4062900718db)
+            type_hints = cached_type_hints(_typecheckingstub__140da7e7b8c459d40746927555dbb78c743cad9fb8ad971c13ce4062900718db)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
@@ -50225,7 +50229,7 @@ class ParentReferenceV1Beta1:
         :schema: io.k8s.api.networking.v1beta1.ParentReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f0c6ad3b9bf99157363c9ea34278e9e813c142018e7f310a18f63196cd6198b6)
+            type_hints = cached_type_hints(_typecheckingstub__f0c6ad3b9bf99157363c9ea34278e9e813c142018e7f310a18f63196cd6198b6)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
@@ -50341,7 +50345,7 @@ class PersistentVolumeClaimSpec:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__be23e20b8fae04cc3c5f02f0df1e7da53e588f89c5d6bcc9ca2ad145ca3ea9ac)
+            type_hints = cached_type_hints(_typecheckingstub__be23e20b8fae04cc3c5f02f0df1e7da53e588f89c5d6bcc9ca2ad145ca3ea9ac)
             check_type(argname="argument access_modes", value=access_modes, expected_type=type_hints["access_modes"])
             check_type(argname="argument data_source", value=data_source, expected_type=type_hints["data_source"])
             check_type(argname="argument data_source_ref", value=data_source_ref, expected_type=type_hints["data_source_ref"])
@@ -50508,7 +50512,7 @@ class PersistentVolumeClaimTemplate:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cee40a2a8084d3e6408f7a24fa29121063e73cd7d587715d3996c04e0be4bd5e)
+            type_hints = cached_type_hints(_typecheckingstub__cee40a2a8084d3e6408f7a24fa29121063e73cd7d587715d3996c04e0be4bd5e)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -50574,7 +50578,7 @@ class PersistentVolumeClaimVolumeSource:
         :schema: io.k8s.api.core.v1.PersistentVolumeClaimVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__077a0f4dddf176bb8ddbe6260969da6b9456d4aae46a38dd256c0a2204c8ee7b)
+            type_hints = cached_type_hints(_typecheckingstub__077a0f4dddf176bb8ddbe6260969da6b9456d4aae46a38dd256c0a2204c8ee7b)
             check_type(argname="argument claim_name", value=claim_name, expected_type=type_hints["claim_name"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -50776,7 +50780,7 @@ class PersistentVolumeSpec:
         if isinstance(vsphere_volume, dict):
             vsphere_volume = VsphereVirtualDiskVolumeSource(**vsphere_volume)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__35aff97a067cf96c268b843a969ca0b9162e0690f21670fdecba69ea27a470fb)
+            type_hints = cached_type_hints(_typecheckingstub__35aff97a067cf96c268b843a969ca0b9162e0690f21670fdecba69ea27a470fb)
             check_type(argname="argument access_modes", value=access_modes, expected_type=type_hints["access_modes"])
             check_type(argname="argument aws_elastic_block_store", value=aws_elastic_block_store, expected_type=type_hints["aws_elastic_block_store"])
             check_type(argname="argument azure_disk", value=azure_disk, expected_type=type_hints["azure_disk"])
@@ -51241,7 +51245,7 @@ class PhotonPersistentDiskVolumeSource:
         :schema: io.k8s.api.core.v1.PhotonPersistentDiskVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7b0be95f372a9aa5db6fdac38282cc046204e7f43c46d9459c585522c86b2f39)
+            type_hints = cached_type_hints(_typecheckingstub__7b0be95f372a9aa5db6fdac38282cc046204e7f43c46d9459c585522c86b2f39)
             check_type(argname="argument pd_id", value=pd_id, expected_type=type_hints["pd_id"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -51306,7 +51310,7 @@ class PodAffinity:
         :schema: io.k8s.api.core.v1.PodAffinity
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0830de33ed62413d27b090c2218c86cadcbd37738b116d98ce30ae82e8676733)
+            type_hints = cached_type_hints(_typecheckingstub__0830de33ed62413d27b090c2218c86cadcbd37738b116d98ce30ae82e8676733)
             check_type(argname="argument preferred_during_scheduling_ignored_during_execution", value=preferred_during_scheduling_ignored_during_execution, expected_type=type_hints["preferred_during_scheduling_ignored_during_execution"])
             check_type(argname="argument required_during_scheduling_ignored_during_execution", value=required_during_scheduling_ignored_during_execution, expected_type=type_hints["required_during_scheduling_ignored_during_execution"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -51392,7 +51396,7 @@ class PodAffinityTerm:
         if isinstance(namespace_selector, dict):
             namespace_selector = LabelSelector(**namespace_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__063b73cb46562ef4af361b17cfc211f3c56960b9052f045d67104026b7d98e93)
+            type_hints = cached_type_hints(_typecheckingstub__063b73cb46562ef4af361b17cfc211f3c56960b9052f045d67104026b7d98e93)
             check_type(argname="argument topology_key", value=topology_key, expected_type=type_hints["topology_key"])
             check_type(argname="argument label_selector", value=label_selector, expected_type=type_hints["label_selector"])
             check_type(argname="argument match_label_keys", value=match_label_keys, expected_type=type_hints["match_label_keys"])
@@ -51515,7 +51519,7 @@ class PodAntiAffinity:
         :schema: io.k8s.api.core.v1.PodAntiAffinity
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cab9a027f8884b485c148ce998a3d4c392c0b58b23786402dd0caf2c5a319034)
+            type_hints = cached_type_hints(_typecheckingstub__cab9a027f8884b485c148ce998a3d4c392c0b58b23786402dd0caf2c5a319034)
             check_type(argname="argument preferred_during_scheduling_ignored_during_execution", value=preferred_during_scheduling_ignored_during_execution, expected_type=type_hints["preferred_during_scheduling_ignored_during_execution"])
             check_type(argname="argument required_during_scheduling_ignored_during_execution", value=required_during_scheduling_ignored_during_execution, expected_type=type_hints["required_during_scheduling_ignored_during_execution"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -51600,7 +51604,7 @@ class PodCertificateProjection:
         :schema: io.k8s.api.core.v1.PodCertificateProjection
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__de29a00ced9ba62d9e54494ae7eac6a5b34ee89c43ce8260e594de25b984a981)
+            type_hints = cached_type_hints(_typecheckingstub__de29a00ced9ba62d9e54494ae7eac6a5b34ee89c43ce8260e594de25b984a981)
             check_type(argname="argument key_type", value=key_type, expected_type=type_hints["key_type"])
             check_type(argname="argument signer_name", value=signer_name, expected_type=type_hints["signer_name"])
             check_type(argname="argument certificate_chain_path", value=certificate_chain_path, expected_type=type_hints["certificate_chain_path"])
@@ -51780,7 +51784,7 @@ class PodCertificateRequestSpecV1Beta1:
         :schema: io.k8s.api.certificates.v1beta1.PodCertificateRequestSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b9b9cecbe8e48481fd8e0514a2033076dd1a017b146ad971bdee5ef5361a1fb6)
+            type_hints = cached_type_hints(_typecheckingstub__b9b9cecbe8e48481fd8e0514a2033076dd1a017b146ad971bdee5ef5361a1fb6)
             check_type(argname="argument node_name", value=node_name, expected_type=type_hints["node_name"])
             check_type(argname="argument node_uid", value=node_uid, expected_type=type_hints["node_uid"])
             check_type(argname="argument pkix_public_key", value=pkix_public_key, expected_type=type_hints["pkix_public_key"])
@@ -51987,7 +51991,7 @@ class PodDisruptionBudgetSpec:
         if isinstance(selector, dict):
             selector = LabelSelector(**selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fcf659f51d3ad1ddb70e76f4550c401ae77b9bed37d6671e9b1895983dbc2bc6)
+            type_hints = cached_type_hints(_typecheckingstub__fcf659f51d3ad1ddb70e76f4550c401ae77b9bed37d6671e9b1895983dbc2bc6)
             check_type(argname="argument max_unavailable", value=max_unavailable, expected_type=type_hints["max_unavailable"])
             check_type(argname="argument min_available", value=min_available, expected_type=type_hints["min_available"])
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
@@ -52088,7 +52092,7 @@ class PodDnsConfig:
         :schema: io.k8s.api.core.v1.PodDNSConfig
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c30b93db014abaf8ed6b5187f791e1155288ba850e120d30272e029498d46a2)
+            type_hints = cached_type_hints(_typecheckingstub__8c30b93db014abaf8ed6b5187f791e1155288ba850e120d30272e029498d46a2)
             check_type(argname="argument nameservers", value=nameservers, expected_type=type_hints["nameservers"])
             check_type(argname="argument options", value=options, expected_type=type_hints["options"])
             check_type(argname="argument searches", value=searches, expected_type=type_hints["searches"])
@@ -52165,7 +52169,7 @@ class PodDnsConfigOption:
         :schema: io.k8s.api.core.v1.PodDNSConfigOption
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__815fe5aad5ae05289693b717c8d0482e9f0ca6d59c31bed07e76d275fb763759)
+            type_hints = cached_type_hints(_typecheckingstub__815fe5aad5ae05289693b717c8d0482e9f0ca6d59c31bed07e76d275fb763759)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -52224,7 +52228,7 @@ class PodFailurePolicy:
         :schema: io.k8s.api.batch.v1.PodFailurePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7d648d0923526488e7170f574c8a29f5a5121299dee93365c01d1ca343751c04)
+            type_hints = cached_type_hints(_typecheckingstub__7d648d0923526488e7170f574c8a29f5a5121299dee93365c01d1ca343751c04)
             check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "rules": rules,
@@ -52282,7 +52286,7 @@ class PodFailurePolicyOnExitCodesRequirement:
         :schema: io.k8s.api.batch.v1.PodFailurePolicyOnExitCodesRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9156cdbac4d38b9bf3a2fd6d97fb9187f19aa4043a7010b5897b2c0ff19ddb5a)
+            type_hints = cached_type_hints(_typecheckingstub__9156cdbac4d38b9bf3a2fd6d97fb9187f19aa4043a7010b5897b2c0ff19ddb5a)
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
@@ -52368,7 +52372,7 @@ class PodFailurePolicyOnPodConditionsPattern:
         :schema: io.k8s.api.batch.v1.PodFailurePolicyOnPodConditionsPattern
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__749d7e1a80b843779b9d09f3b38a68a3fd1c77026783179dbf25170231c5a720)
+            type_hints = cached_type_hints(_typecheckingstub__749d7e1a80b843779b9d09f3b38a68a3fd1c77026783179dbf25170231c5a720)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument status", value=status, expected_type=type_hints["status"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -52444,7 +52448,7 @@ class PodFailurePolicyRule:
         if isinstance(on_exit_codes, dict):
             on_exit_codes = PodFailurePolicyOnExitCodesRequirement(**on_exit_codes)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9752d799ae40ee7e1d07cceb2daac5e29af9b379c43f336814f8928b638ebe0a)
+            type_hints = cached_type_hints(_typecheckingstub__9752d799ae40ee7e1d07cceb2daac5e29af9b379c43f336814f8928b638ebe0a)
             check_type(argname="argument action", value=action, expected_type=type_hints["action"])
             check_type(argname="argument on_exit_codes", value=on_exit_codes, expected_type=type_hints["on_exit_codes"])
             check_type(argname="argument on_pod_conditions", value=on_pod_conditions, expected_type=type_hints["on_pod_conditions"])
@@ -52534,7 +52538,7 @@ class PodGroupPolicyV1Alpha1:
         if isinstance(gang, dict):
             gang = GangSchedulingPolicyV1Alpha1(**gang)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba9366036bf6e07f322d26e323044d542948f0f7f2c61ed3542c6c7bba458792)
+            type_hints = cached_type_hints(_typecheckingstub__ba9366036bf6e07f322d26e323044d542948f0f7f2c61ed3542c6c7bba458792)
             check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
             check_type(argname="argument gang", value=gang, expected_type=type_hints["gang"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -52595,7 +52599,7 @@ class PodGroupV1Alpha1:
         if isinstance(policy, dict):
             policy = PodGroupPolicyV1Alpha1(**policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__18f1388f1901113195f8f93a623f5295e6af9eded238a1ef021f23ae4e349aa7)
+            type_hints = cached_type_hints(_typecheckingstub__18f1388f1901113195f8f93a623f5295e6af9eded238a1ef021f23ae4e349aa7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument policy", value=policy, expected_type=type_hints["policy"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -52651,7 +52655,7 @@ class PodOs:
         :schema: io.k8s.api.core.v1.PodOS
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__447466b6ee10b58f2a9031698c5d443c3de519f08a74be7dba21e1509f800a9f)
+            type_hints = cached_type_hints(_typecheckingstub__447466b6ee10b58f2a9031698c5d443c3de519f08a74be7dba21e1509f800a9f)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -52695,7 +52699,7 @@ class PodReadinessGate:
         :schema: io.k8s.api.core.v1.PodReadinessGate
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6efa6da68115e82d6b27bff9f91e3ed47585fedf0e8e6358afee97da2cccc1fc)
+            type_hints = cached_type_hints(_typecheckingstub__6efa6da68115e82d6b27bff9f91e3ed47585fedf0e8e6358afee97da2cccc1fc)
             check_type(argname="argument condition_type", value=condition_type, expected_type=type_hints["condition_type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "condition_type": condition_type,
@@ -52751,7 +52755,7 @@ class PodResourceClaim:
         :schema: io.k8s.api.core.v1.PodResourceClaim
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__593eecd9b8e25f27db87859570a28b2ffda74b52af7ef080a6bc114f4b263f52)
+            type_hints = cached_type_hints(_typecheckingstub__593eecd9b8e25f27db87859570a28b2ffda74b52af7ef080a6bc114f4b263f52)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource_claim_name", value=resource_claim_name, expected_type=type_hints["resource_claim_name"])
             check_type(argname="argument resource_claim_template_name", value=resource_claim_template_name, expected_type=type_hints["resource_claim_template_name"])
@@ -52827,7 +52831,7 @@ class PodSchedulingGate:
         :schema: io.k8s.api.core.v1.PodSchedulingGate
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc)
+            type_hints = cached_type_hints(_typecheckingstub__ba3a868f60063830cfdaddc5e19d4d1ef9980dc7ffe3b27b3e802c3eaede83dc)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -52923,7 +52927,7 @@ class PodSecurityContext:
         if isinstance(windows_options, dict):
             windows_options = WindowsSecurityContextOptions(**windows_options)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b23f586ca6b5b102b009640138cfcb7cb8db5fffa8d48ddb6c723e2d52bc60bc)
+            type_hints = cached_type_hints(_typecheckingstub__b23f586ca6b5b102b009640138cfcb7cb8db5fffa8d48ddb6c723e2d52bc60bc)
             check_type(argname="argument app_armor_profile", value=app_armor_profile, expected_type=type_hints["app_armor_profile"])
             check_type(argname="argument fs_group", value=fs_group, expected_type=type_hints["fs_group"])
             check_type(argname="argument fs_group_change_policy", value=fs_group_change_policy, expected_type=type_hints["fs_group_change_policy"])
@@ -53291,7 +53295,7 @@ class PodSpec:
         if isinstance(workload_ref, dict):
             workload_ref = WorkloadReference(**workload_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9ddad62f26f59d5b393ec9c7814efae31dbad75f06f4456a0bef61a6ce7dd763)
+            type_hints = cached_type_hints(_typecheckingstub__9ddad62f26f59d5b393ec9c7814efae31dbad75f06f4456a0bef61a6ce7dd763)
             check_type(argname="argument containers", value=containers, expected_type=type_hints["containers"])
             check_type(argname="argument active_deadline_seconds", value=active_deadline_seconds, expected_type=type_hints["active_deadline_seconds"])
             check_type(argname="argument affinity", value=affinity, expected_type=type_hints["affinity"])
@@ -53953,7 +53957,7 @@ class PodTemplateSpec:
         if isinstance(spec, dict):
             spec = PodSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a23cda3e55cf29ffda2e22bb377999f4b35fa2ff1fdb8ae27faf58b7f2b9c866)
+            type_hints = cached_type_hints(_typecheckingstub__a23cda3e55cf29ffda2e22bb377999f4b35fa2ff1fdb8ae27faf58b7f2b9c866)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -54022,7 +54026,7 @@ class PodsMetricSourceV2:
         if isinstance(target, dict):
             target = MetricTargetV2(**target)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4e1daa232feea2f9ba7daaf3807ee414905ce98c0d3805ab6cd957f8405729b3)
+            type_hints = cached_type_hints(_typecheckingstub__4e1daa232feea2f9ba7daaf3807ee414905ce98c0d3805ab6cd957f8405729b3)
             check_type(argname="argument metric", value=metric, expected_type=type_hints["metric"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -54094,7 +54098,7 @@ class PolicyRule:
         :schema: io.k8s.api.rbac.v1.PolicyRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__faa1080f7a02c3d2eac7f18aad0cdbef93f8f9cff0f9825224a9dd8a829faf0a)
+            type_hints = cached_type_hints(_typecheckingstub__faa1080f7a02c3d2eac7f18aad0cdbef93f8f9cff0f9825224a9dd8a829faf0a)
             check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument non_resource_ur_ls", value=non_resource_ur_ls, expected_type=type_hints["non_resource_ur_ls"])
@@ -54208,7 +54212,7 @@ class PolicyRulesWithSubjects:
         :schema: io.k8s.api.flowcontrol.v1.PolicyRulesWithSubjects
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__67286efa1e412d34738ce0e17ee40cc0523eec60897ea699f0b3b6cd16abb828)
+            type_hints = cached_type_hints(_typecheckingstub__67286efa1e412d34738ce0e17ee40cc0523eec60897ea699f0b3b6cd16abb828)
             check_type(argname="argument subjects", value=subjects, expected_type=type_hints["subjects"])
             check_type(argname="argument non_resource_rules", value=non_resource_rules, expected_type=type_hints["non_resource_rules"])
             check_type(argname="argument resource_rules", value=resource_rules, expected_type=type_hints["resource_rules"])
@@ -54292,7 +54296,7 @@ class PortworxVolumeSource:
         :schema: io.k8s.api.core.v1.PortworxVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e5881c74274a6e5dc2a25e69584d9a7a08eda9f51afd4f560f3731ae800319a9)
+            type_hints = cached_type_hints(_typecheckingstub__e5881c74274a6e5dc2a25e69584d9a7a08eda9f51afd4f560f3731ae800319a9)
             check_type(argname="argument volume_id", value=volume_id, expected_type=type_hints["volume_id"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
@@ -54368,7 +54372,7 @@ class Preconditions:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.Preconditions
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5d83cea33916e66ca6553e6bdfe2c022d25c2d9b0d13a46f323bef2db497363e)
+            type_hints = cached_type_hints(_typecheckingstub__5d83cea33916e66ca6553e6bdfe2c022d25c2d9b0d13a46f323bef2db497363e)
             check_type(argname="argument resource_version", value=resource_version, expected_type=type_hints["resource_version"])
             check_type(argname="argument uid", value=uid, expected_type=type_hints["uid"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -54429,7 +54433,7 @@ class PreferredSchedulingTerm:
         if isinstance(preference, dict):
             preference = NodeSelectorTerm(**preference)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4778017af685ac589aca31cd5f8aed67ddd4b8d050f99423b40b402a8758f9df)
+            type_hints = cached_type_hints(_typecheckingstub__4778017af685ac589aca31cd5f8aed67ddd4b8d050f99423b40b402a8758f9df)
             check_type(argname="argument preference", value=preference, expected_type=type_hints["preference"])
             check_type(argname="argument weight", value=weight, expected_type=type_hints["weight"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -54483,7 +54487,7 @@ class PriorityLevelConfigurationReference:
         :schema: io.k8s.api.flowcontrol.v1.PriorityLevelConfigurationReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a1a46600ff012bb3c8efe41691f649d89eb7c9998640768ca15b9e7606cba4b7)
+            type_hints = cached_type_hints(_typecheckingstub__a1a46600ff012bb3c8efe41691f649d89eb7c9998640768ca15b9e7606cba4b7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -54537,7 +54541,7 @@ class PriorityLevelConfigurationSpec:
         if isinstance(limited, dict):
             limited = LimitedPriorityLevelConfiguration(**limited)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db99c7d72cfc5aa978b0375ae6a7d8604894270011df52c2d72b3031f5e42d29)
+            type_hints = cached_type_hints(_typecheckingstub__db99c7d72cfc5aa978b0375ae6a7d8604894270011df52c2d72b3031f5e42d29)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument exempt", value=exempt, expected_type=type_hints["exempt"])
             check_type(argname="argument limited", value=limited, expected_type=type_hints["limited"])
@@ -54650,7 +54654,7 @@ class Probe:
         if isinstance(tcp_socket, dict):
             tcp_socket = TcpSocketAction(**tcp_socket)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db09437a4be3e51aba0181b1494c0c550aa4867813268b893ac716f115fa48c1)
+            type_hints = cached_type_hints(_typecheckingstub__db09437a4be3e51aba0181b1494c0c550aa4867813268b893ac716f115fa48c1)
             check_type(argname="argument exec", value=exec, expected_type=type_hints["exec"])
             check_type(argname="argument failure_threshold", value=failure_threshold, expected_type=type_hints["failure_threshold"])
             check_type(argname="argument grpc", value=grpc, expected_type=type_hints["grpc"])
@@ -54825,7 +54829,7 @@ class ProjectedVolumeSource:
         :schema: io.k8s.api.core.v1.ProjectedVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7074d18926a011b639c0d0e74c2a29fc486086a8992a0ccda6c888fe8065ce84)
+            type_hints = cached_type_hints(_typecheckingstub__7074d18926a011b639c0d0e74c2a29fc486086a8992a0ccda6c888fe8065ce84)
             check_type(argname="argument default_mode", value=default_mode, expected_type=type_hints["default_mode"])
             check_type(argname="argument sources", value=sources, expected_type=type_hints["sources"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -54880,7 +54884,7 @@ class Quantity(metaclass=jsii.JSIIMeta, jsii_type="k8s.Quantity"):
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5424c0bd9afaecc70d51e745b052a4e736b88cf285925889028bab8d3cfb8fee)
+            type_hints = cached_type_hints(_typecheckingstub__5424c0bd9afaecc70d51e745b052a4e736b88cf285925889028bab8d3cfb8fee)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("Quantity", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -54891,7 +54895,7 @@ class Quantity(metaclass=jsii.JSIIMeta, jsii_type="k8s.Quantity"):
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__abf2ed361dde0b07fa7185d50da371e8631fdccf28cb302e7e5d62f671a79d9a)
+            type_hints = cached_type_hints(_typecheckingstub__abf2ed361dde0b07fa7185d50da371e8631fdccf28cb302e7e5d62f671a79d9a)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("Quantity", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -54927,7 +54931,7 @@ class QueuingConfiguration:
         :schema: io.k8s.api.flowcontrol.v1.QueuingConfiguration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__866305bb136ed6e4201aad1ec145e2be462f37ae94c3ac19926010148ab4e158)
+            type_hints = cached_type_hints(_typecheckingstub__866305bb136ed6e4201aad1ec145e2be462f37ae94c3ac19926010148ab4e158)
             check_type(argname="argument hand_size", value=hand_size, expected_type=type_hints["hand_size"])
             check_type(argname="argument queue_length_limit", value=queue_length_limit, expected_type=type_hints["queue_length_limit"])
             check_type(argname="argument queues", value=queues, expected_type=type_hints["queues"])
@@ -55021,7 +55025,7 @@ class QuobyteVolumeSource:
         :schema: io.k8s.api.core.v1.QuobyteVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06c16a4eef69abcb24206e80e63cd1b95acadcfeb11e968c6e6938adf8d6afba)
+            type_hints = cached_type_hints(_typecheckingstub__06c16a4eef69abcb24206e80e63cd1b95acadcfeb11e968c6e6938adf8d6afba)
             check_type(argname="argument registry", value=registry, expected_type=type_hints["registry"])
             check_type(argname="argument volume", value=volume, expected_type=type_hints["volume"])
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
@@ -55162,7 +55166,7 @@ class RbdPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4f5316d57fc5b5c34025f51982f7e682403dd695b70e08c67fc74cffd5c675fb)
+            type_hints = cached_type_hints(_typecheckingstub__4f5316d57fc5b5c34025f51982f7e682403dd695b70e08c67fc74cffd5c675fb)
             check_type(argname="argument image", value=image, expected_type=type_hints["image"])
             check_type(argname="argument monitors", value=monitors, expected_type=type_hints["monitors"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
@@ -55345,7 +55349,7 @@ class RbdVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b775d6c9c36f825c00349ce924014aaf1d073ef444b854540aaaa1b195f1f2e1)
+            type_hints = cached_type_hints(_typecheckingstub__b775d6c9c36f825c00349ce924014aaf1d073ef444b854540aaaa1b195f1f2e1)
             check_type(argname="argument image", value=image, expected_type=type_hints["image"])
             check_type(argname="argument monitors", value=monitors, expected_type=type_hints["monitors"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
@@ -55516,7 +55520,7 @@ class ReplicaSetSpec:
         if isinstance(template, dict):
             template = PodTemplateSpec(**template)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4a649a1eff04d9feb07747ac0b41f1e738bb62df7f0a6d730148217e8a0b1f7b)
+            type_hints = cached_type_hints(_typecheckingstub__4a649a1eff04d9feb07747ac0b41f1e738bb62df7f0a6d730148217e8a0b1f7b)
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
             check_type(argname="argument replicas", value=replicas, expected_type=type_hints["replicas"])
@@ -55623,7 +55627,7 @@ class ReplicationControllerSpec:
         if isinstance(template, dict):
             template = PodTemplateSpec(**template)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cb1a637f64dd89041b0c36855e6e4b2ebb97a853ce2ab8bf74baa53399293aa9)
+            type_hints = cached_type_hints(_typecheckingstub__cb1a637f64dd89041b0c36855e6e4b2ebb97a853ce2ab8bf74baa53399293aa9)
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
             check_type(argname="argument replicas", value=replicas, expected_type=type_hints["replicas"])
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
@@ -55746,7 +55750,7 @@ class ResourceAttributes:
         if isinstance(label_selector, dict):
             label_selector = LabelSelectorAttributes(**label_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1389ee6ee42f772dc34e626fc6cda72a7449fbddee89e52988179f65c725d996)
+            type_hints = cached_type_hints(_typecheckingstub__1389ee6ee42f772dc34e626fc6cda72a7449fbddee89e52988179f65c725d996)
             check_type(argname="argument field_selector", value=field_selector, expected_type=type_hints["field_selector"])
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
             check_type(argname="argument label_selector", value=label_selector, expected_type=type_hints["label_selector"])
@@ -55907,7 +55911,7 @@ class ResourceClaim:
         :schema: io.k8s.api.core.v1.ResourceClaim
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__91cfdd0118d393ecd84db840ef420f5ffe5190ebbd91733137901a1accc49509)
+            type_hints = cached_type_hints(_typecheckingstub__91cfdd0118d393ecd84db840ef420f5ffe5190ebbd91733137901a1accc49509)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument request", value=request, expected_type=type_hints["request"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -55969,7 +55973,7 @@ class ResourceClaimSpec:
         if isinstance(devices, dict):
             devices = DeviceClaim(**devices)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3bf5453bbbb65fae7eeed58ed3479610698f2eae3568be734e971c5901e70c43)
+            type_hints = cached_type_hints(_typecheckingstub__3bf5453bbbb65fae7eeed58ed3479610698f2eae3568be734e971c5901e70c43)
             check_type(argname="argument devices", value=devices, expected_type=type_hints["devices"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if devices is not None:
@@ -56016,7 +56020,7 @@ class ResourceClaimSpecV1Beta1:
         if isinstance(devices, dict):
             devices = DeviceClaimV1Beta1(**devices)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7d03e095db43f87e6f6bfdf97b44eb77aecbe6871aad99cb1c635995bc656cae)
+            type_hints = cached_type_hints(_typecheckingstub__7d03e095db43f87e6f6bfdf97b44eb77aecbe6871aad99cb1c635995bc656cae)
             check_type(argname="argument devices", value=devices, expected_type=type_hints["devices"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if devices is not None:
@@ -56063,7 +56067,7 @@ class ResourceClaimSpecV1Beta2:
         if isinstance(devices, dict):
             devices = DeviceClaimV1Beta2(**devices)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9d21b696a47632be2e5379f34fc2ad07ab9dc0a81bbb05d38e14f958ac23089f)
+            type_hints = cached_type_hints(_typecheckingstub__9d21b696a47632be2e5379f34fc2ad07ab9dc0a81bbb05d38e14f958ac23089f)
             check_type(argname="argument devices", value=devices, expected_type=type_hints["devices"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if devices is not None:
@@ -56114,7 +56118,7 @@ class ResourceClaimTemplateSpec:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cce52597dac1c239f680aa221fa849dd3ed236e33ade29f3c253a55e5b8415d8)
+            type_hints = cached_type_hints(_typecheckingstub__cce52597dac1c239f680aa221fa849dd3ed236e33ade29f3c253a55e5b8415d8)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -56182,7 +56186,7 @@ class ResourceClaimTemplateSpecV1Beta1:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__75a93893d94ca1eeb3c8152022c1252e088ffa84654a85fb589eb5d91b290b7b)
+            type_hints = cached_type_hints(_typecheckingstub__75a93893d94ca1eeb3c8152022c1252e088ffa84654a85fb589eb5d91b290b7b)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -56250,7 +56254,7 @@ class ResourceClaimTemplateSpecV1Beta2:
         if isinstance(metadata, dict):
             metadata = ObjectMeta(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__db622810da29dde4b336bf2a69db871a891cd7e7d95c5f03fc412a186c5a4b50)
+            type_hints = cached_type_hints(_typecheckingstub__db622810da29dde4b336bf2a69db871a891cd7e7d95c5f03fc412a186c5a4b50)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -56320,7 +56324,7 @@ class ResourceFieldSelector:
         :schema: io.k8s.api.core.v1.ResourceFieldSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7117ce5ef6d2382048cc325329ebe4abba77c2be754492f7322ea7cc6b3c8c8c)
+            type_hints = cached_type_hints(_typecheckingstub__7117ce5ef6d2382048cc325329ebe4abba77c2be754492f7322ea7cc6b3c8c8c)
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
             check_type(argname="argument divisor", value=divisor, expected_type=type_hints["divisor"])
@@ -56394,7 +56398,7 @@ class ResourceMetricSourceV2:
         if isinstance(target, dict):
             target = MetricTargetV2(**target)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__62e5706b1c72eb3d6f6b070e53fc6646c3236f3cf9b9bbbbfc3f1022dda08d0d)
+            type_hints = cached_type_hints(_typecheckingstub__62e5706b1c72eb3d6f6b070e53fc6646c3236f3cf9b9bbbbfc3f1022dda08d0d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument target", value=target, expected_type=type_hints["target"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -56468,7 +56472,7 @@ class ResourcePolicyRule:
         :schema: io.k8s.api.flowcontrol.v1.ResourcePolicyRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1046d4a3e3be3782f43bbf405f3dcbe066815edcab20518ac325b7fd4dc87913)
+            type_hints = cached_type_hints(_typecheckingstub__1046d4a3e3be3782f43bbf405f3dcbe066815edcab20518ac325b7fd4dc87913)
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
             check_type(argname="argument verbs", value=verbs, expected_type=type_hints["verbs"])
@@ -56578,7 +56582,7 @@ class ResourcePool:
         :schema: io.k8s.api.resource.v1.ResourcePool
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2c1a1f332490811cdbe6473ce4181661b08584d7d7ef8933e8d7d86c8be0ca95)
+            type_hints = cached_type_hints(_typecheckingstub__2c1a1f332490811cdbe6473ce4181661b08584d7d7ef8933e8d7d86c8be0ca95)
             check_type(argname="argument generation", value=generation, expected_type=type_hints["generation"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource_slice_count", value=resource_slice_count, expected_type=type_hints["resource_slice_count"])
@@ -56666,7 +56670,7 @@ class ResourcePoolV1Beta1:
         :schema: io.k8s.api.resource.v1beta1.ResourcePool
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c39597d8e7d4584fc76bb2399be31e680dd5b5618ca695fba344df462737068f)
+            type_hints = cached_type_hints(_typecheckingstub__c39597d8e7d4584fc76bb2399be31e680dd5b5618ca695fba344df462737068f)
             check_type(argname="argument generation", value=generation, expected_type=type_hints["generation"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource_slice_count", value=resource_slice_count, expected_type=type_hints["resource_slice_count"])
@@ -56754,7 +56758,7 @@ class ResourcePoolV1Beta2:
         :schema: io.k8s.api.resource.v1beta2.ResourcePool
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b059981669acc50b798b9772c0eee031cee3531986c49285b8361e6777bbfac5)
+            type_hints = cached_type_hints(_typecheckingstub__b059981669acc50b798b9772c0eee031cee3531986c49285b8361e6777bbfac5)
             check_type(argname="argument generation", value=generation, expected_type=type_hints["generation"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument resource_slice_count", value=resource_slice_count, expected_type=type_hints["resource_slice_count"])
@@ -56844,7 +56848,7 @@ class ResourceQuotaSpec:
         if isinstance(scope_selector, dict):
             scope_selector = ScopeSelector(**scope_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1f38b292c93787ac346fc7bdbff50edd3c17b9ea8d3ae69b3ef92ad11538687e)
+            type_hints = cached_type_hints(_typecheckingstub__1f38b292c93787ac346fc7bdbff50edd3c17b9ea8d3ae69b3ef92ad11538687e)
             check_type(argname="argument hard", value=hard, expected_type=type_hints["hard"])
             check_type(argname="argument scopes", value=scopes, expected_type=type_hints["scopes"])
             check_type(argname="argument scope_selector", value=scope_selector, expected_type=type_hints["scope_selector"])
@@ -56923,7 +56927,7 @@ class ResourceRequirements:
         :schema: io.k8s.api.core.v1.ResourceRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6f28381f115e86cc4a857dc64662f80338d1b27b3fbd53665d90231711e3a3cd)
+            type_hints = cached_type_hints(_typecheckingstub__6f28381f115e86cc4a857dc64662f80338d1b27b3fbd53665d90231711e3a3cd)
             check_type(argname="argument claims", value=claims, expected_type=type_hints["claims"])
             check_type(argname="argument limits", value=limits, expected_type=type_hints["limits"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
@@ -57027,7 +57031,7 @@ class ResourceSliceSpec:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eec5fa1f597c04a5fd768822d3f3adef6043455467a1ae6b0b001cf142433c9e)
+            type_hints = cached_type_hints(_typecheckingstub__eec5fa1f597c04a5fd768822d3f3adef6043455467a1ae6b0b001cf142433c9e)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument pool", value=pool, expected_type=type_hints["pool"])
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
@@ -57214,7 +57218,7 @@ class ResourceSliceSpecV1Beta1:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__964693a4d8c62c552a696a126aa655a9d4ebed234fe9c2cefff0dd8dbbfe0d38)
+            type_hints = cached_type_hints(_typecheckingstub__964693a4d8c62c552a696a126aa655a9d4ebed234fe9c2cefff0dd8dbbfe0d38)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument pool", value=pool, expected_type=type_hints["pool"])
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
@@ -57401,7 +57405,7 @@ class ResourceSliceSpecV1Beta2:
         if isinstance(node_selector, dict):
             node_selector = NodeSelector(**node_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d648a7611de25f4d60804a9f3c7c15548c8f1c0a4e9b7fe2a4c0b5148c553115)
+            type_hints = cached_type_hints(_typecheckingstub__d648a7611de25f4d60804a9f3c7c15548c8f1c0a4e9b7fe2a4c0b5148c553115)
             check_type(argname="argument driver", value=driver, expected_type=type_hints["driver"])
             check_type(argname="argument pool", value=pool, expected_type=type_hints["pool"])
             check_type(argname="argument all_nodes", value=all_nodes, expected_type=type_hints["all_nodes"])
@@ -57565,7 +57569,7 @@ class RoleRef:
         :schema: io.k8s.api.rbac.v1.RoleRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34728caa2c65a1bce45499a1f4530a2e2966d14ff7e6d57ddbf874c837a09229)
+            type_hints = cached_type_hints(_typecheckingstub__34728caa2c65a1bce45499a1f4530a2e2966d14ff7e6d57ddbf874c837a09229)
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -57637,7 +57641,7 @@ class RollingUpdateDaemonSet:
         :schema: io.k8s.api.apps.v1.RollingUpdateDaemonSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__36e1da895206a5ed9179f6d5649f08d688e482419e0ac3c555bca88a46e32a8d)
+            type_hints = cached_type_hints(_typecheckingstub__36e1da895206a5ed9179f6d5649f08d688e482419e0ac3c555bca88a46e32a8d)
             check_type(argname="argument max_surge", value=max_surge, expected_type=type_hints["max_surge"])
             check_type(argname="argument max_unavailable", value=max_unavailable, expected_type=type_hints["max_unavailable"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -57700,7 +57704,7 @@ class RollingUpdateDeployment:
         :schema: io.k8s.api.apps.v1.RollingUpdateDeployment
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8a2a897588ced8e993501e8a731a38dd93a578e6bdfbc01a36044482c0ac6796)
+            type_hints = cached_type_hints(_typecheckingstub__8a2a897588ced8e993501e8a731a38dd93a578e6bdfbc01a36044482c0ac6796)
             check_type(argname="argument max_surge", value=max_surge, expected_type=type_hints["max_surge"])
             check_type(argname="argument max_unavailable", value=max_unavailable, expected_type=type_hints["max_unavailable"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -57767,7 +57771,7 @@ class RollingUpdateStatefulSetStrategy:
         :schema: io.k8s.api.apps.v1.RollingUpdateStatefulSetStrategy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5244c3370eebd6a466d9aa0a3a0f3ab6e3fec32436cc8b602ba25a37b7f9e5ec)
+            type_hints = cached_type_hints(_typecheckingstub__5244c3370eebd6a466d9aa0a3a0f3ab6e3fec32436cc8b602ba25a37b7f9e5ec)
             check_type(argname="argument max_unavailable", value=max_unavailable, expected_type=type_hints["max_unavailable"])
             check_type(argname="argument partition", value=partition, expected_type=type_hints["partition"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -57846,7 +57850,7 @@ class RuleWithOperations:
         :schema: io.k8s.api.admissionregistration.v1.RuleWithOperations
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a86077ec1a02004936f4e7b29b4891e15e965506276980ac5cde5434c9cb21a0)
+            type_hints = cached_type_hints(_typecheckingstub__a86077ec1a02004936f4e7b29b4891e15e965506276980ac5cde5434c9cb21a0)
             check_type(argname="argument api_groups", value=api_groups, expected_type=type_hints["api_groups"])
             check_type(argname="argument api_versions", value=api_versions, expected_type=type_hints["api_versions"])
             check_type(argname="argument operations", value=operations, expected_type=type_hints["operations"])
@@ -57986,7 +57990,7 @@ class ScaleIoPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = SecretReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a3db8aeafd58b5a9ffd7810c912395c33f597e9a328ad9492e778f5f6c3b1201)
+            type_hints = cached_type_hints(_typecheckingstub__a3db8aeafd58b5a9ffd7810c912395c33f597e9a328ad9492e778f5f6c3b1201)
             check_type(argname="argument gateway", value=gateway, expected_type=type_hints["gateway"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument system", value=system, expected_type=type_hints["system"])
@@ -58183,7 +58187,7 @@ class ScaleIoVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a01207e2538a5a1358fca3cbc8251d3c0eac11c259c7d6e013872e8e0c4e0aff)
+            type_hints = cached_type_hints(_typecheckingstub__a01207e2538a5a1358fca3cbc8251d3c0eac11c259c7d6e013872e8e0c4e0aff)
             check_type(argname="argument gateway", value=gateway, expected_type=type_hints["gateway"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument system", value=system, expected_type=type_hints["system"])
@@ -58347,7 +58351,7 @@ class ScaleSpec:
         :schema: io.k8s.api.autoscaling.v1.ScaleSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__933ce43198d2e61bf18cbdc69b1a85d78c4b5059b04255c8eaae6fd004cd796f)
+            type_hints = cached_type_hints(_typecheckingstub__933ce43198d2e61bf18cbdc69b1a85d78c4b5059b04255c8eaae6fd004cd796f)
             check_type(argname="argument replicas", value=replicas, expected_type=type_hints["replicas"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if replicas is not None:
@@ -58394,7 +58398,7 @@ class Scheduling:
         :schema: io.k8s.api.node.v1.Scheduling
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ec3f34534a8ab02cd430086d5367d2f94c6c0e7343339e7bfc16ee13ddc99d7a)
+            type_hints = cached_type_hints(_typecheckingstub__ec3f34534a8ab02cd430086d5367d2f94c6c0e7343339e7bfc16ee13ddc99d7a)
             check_type(argname="argument node_selector", value=node_selector, expected_type=type_hints["node_selector"])
             check_type(argname="argument tolerations", value=tolerations, expected_type=type_hints["tolerations"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -58455,7 +58459,7 @@ class ScopeSelector:
         :schema: io.k8s.api.core.v1.ScopeSelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9b4391c052c165b6256ea047b5596eab2fcecf19b0a9177b1c5aa1a8485a8d65)
+            type_hints = cached_type_hints(_typecheckingstub__9b4391c052c165b6256ea047b5596eab2fcecf19b0a9177b1c5aa1a8485a8d65)
             check_type(argname="argument match_expressions", value=match_expressions, expected_type=type_hints["match_expressions"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_expressions is not None:
@@ -58510,7 +58514,7 @@ class ScopedResourceSelectorRequirement:
         :schema: io.k8s.api.core.v1.ScopedResourceSelectorRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__25d2fa33badd5c55fedc6548e4a9811bdcfdd1569a40592b494f98dd2faa0d58)
+            type_hints = cached_type_hints(_typecheckingstub__25d2fa33badd5c55fedc6548e4a9811bdcfdd1569a40592b494f98dd2faa0d58)
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
             check_type(argname="argument scope_name", value=scope_name, expected_type=type_hints["scope_name"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
@@ -58590,7 +58594,7 @@ class SeLinuxOptions:
         :schema: io.k8s.api.core.v1.SELinuxOptions
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__83c2afea88042856c9e697502b222fdab3ba5aa314b8db7832e18390438f4cae)
+            type_hints = cached_type_hints(_typecheckingstub__83c2afea88042856c9e697502b222fdab3ba5aa314b8db7832e18390438f4cae)
             check_type(argname="argument level", value=level, expected_type=type_hints["level"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
@@ -58675,7 +58679,7 @@ class SeccompProfile:
         :schema: io.k8s.api.core.v1.SeccompProfile
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__671e277701b07860347cc95c432e5605a89c2d148bebfccaead627a5b559eba4)
+            type_hints = cached_type_hints(_typecheckingstub__671e277701b07860347cc95c432e5605a89c2d148bebfccaead627a5b559eba4)
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument localhost_profile", value=localhost_profile, expected_type=type_hints["localhost_profile"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -58741,7 +58745,7 @@ class SecretEnvSource:
         :schema: io.k8s.api.core.v1.SecretEnvSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8d52030565d59aad237de569c2f9746d89c90816ecd991ddc7b7ea6624d871ff)
+            type_hints = cached_type_hints(_typecheckingstub__8d52030565d59aad237de569c2f9746d89c90816ecd991ddc7b7ea6624d871ff)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -58804,7 +58808,7 @@ class SecretKeySelector:
         :schema: io.k8s.api.core.v1.SecretKeySelector
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__10d7b89d6873826406c0f3f0882c9b1e23eec486efebbb601cb05ef478c62925)
+            type_hints = cached_type_hints(_typecheckingstub__10d7b89d6873826406c0f3f0882c9b1e23eec486efebbb601cb05ef478c62925)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
@@ -58884,7 +58888,7 @@ class SecretProjection:
         :schema: io.k8s.api.core.v1.SecretProjection
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cef90561db8db5a4c9a8b89a6f3b87e04f52ca6ca4775954c0d0434b48021869)
+            type_hints = cached_type_hints(_typecheckingstub__cef90561db8db5a4c9a8b89a6f3b87e04f52ca6ca4775954c0d0434b48021869)
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
@@ -58961,7 +58965,7 @@ class SecretReference:
         :schema: io.k8s.api.core.v1.SecretReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7a151e3e3fd089bf4b7fe70426a9c364c57d5a3d0a27a642e74873d5c32aba01)
+            type_hints = cached_type_hints(_typecheckingstub__7a151e3e3fd089bf4b7fe70426a9c364c57d5a3d0a27a642e74873d5c32aba01)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -59031,7 +59035,7 @@ class SecretVolumeSource:
         :schema: io.k8s.api.core.v1.SecretVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__25d6ed85323c7db8b962d40135ed579f6269a43590382c950b1f670739dd5d9c)
+            type_hints = cached_type_hints(_typecheckingstub__25d6ed85323c7db8b962d40135ed579f6269a43590382c950b1f670739dd5d9c)
             check_type(argname="argument default_mode", value=default_mode, expected_type=type_hints["default_mode"])
             check_type(argname="argument items", value=items, expected_type=type_hints["items"])
             check_type(argname="argument optional", value=optional, expected_type=type_hints["optional"])
@@ -59167,7 +59171,7 @@ class SecurityContext:
         if isinstance(windows_options, dict):
             windows_options = WindowsSecurityContextOptions(**windows_options)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__433d0b1cb870f05b48bfb6eeb4e8d9af769be17981b3d3465be0319c5fdcfe58)
+            type_hints = cached_type_hints(_typecheckingstub__433d0b1cb870f05b48bfb6eeb4e8d9af769be17981b3d3465be0319c5fdcfe58)
             check_type(argname="argument allow_privilege_escalation", value=allow_privilege_escalation, expected_type=type_hints["allow_privilege_escalation"])
             check_type(argname="argument app_armor_profile", value=app_armor_profile, expected_type=type_hints["app_armor_profile"])
             check_type(argname="argument capabilities", value=capabilities, expected_type=type_hints["capabilities"])
@@ -59372,7 +59376,7 @@ class SelectableField:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.SelectableField
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fc69225b9fc071cc57f5898a41a604e81dedc2165dfc5895dfb080b2d7fa06bc)
+            type_hints = cached_type_hints(_typecheckingstub__fc69225b9fc071cc57f5898a41a604e81dedc2165dfc5895dfb080b2d7fa06bc)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "json_path": json_path,
@@ -59431,7 +59435,7 @@ class SelfSubjectAccessReviewSpec:
         if isinstance(resource_attributes, dict):
             resource_attributes = ResourceAttributes(**resource_attributes)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e1c2bf0513f041ce3e18333d43a5849dff775b6c0bf8ea1391d425c73771a607)
+            type_hints = cached_type_hints(_typecheckingstub__e1c2bf0513f041ce3e18333d43a5849dff775b6c0bf8ea1391d425c73771a607)
             check_type(argname="argument non_resource_attributes", value=non_resource_attributes, expected_type=type_hints["non_resource_attributes"])
             check_type(argname="argument resource_attributes", value=resource_attributes, expected_type=type_hints["resource_attributes"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -59484,7 +59488,7 @@ class SelfSubjectRulesReviewSpec:
         :schema: io.k8s.api.authorization.v1.SelfSubjectRulesReviewSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e8dd2a0d136f9e7e8480f73531aaae29fb249c5b4c11d47022b16354c78aace9)
+            type_hints = cached_type_hints(_typecheckingstub__e8dd2a0d136f9e7e8480f73531aaae29fb249c5b4c11d47022b16354c78aace9)
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if namespace is not None:
@@ -59541,7 +59545,7 @@ class ServiceAccountTokenProjection:
         :schema: io.k8s.api.core.v1.ServiceAccountTokenProjection
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eca876ebc0d31f3618cfee4eac3e898196a37c6e4c1f8a9e32ddf0170545dcb7)
+            type_hints = cached_type_hints(_typecheckingstub__eca876ebc0d31f3618cfee4eac3e898196a37c6e4c1f8a9e32ddf0170545dcb7)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument audience", value=audience, expected_type=type_hints["audience"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
@@ -59619,7 +59623,7 @@ class ServiceBackendPort:
         :schema: io.k8s.api.networking.v1.ServiceBackendPort
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ccc9db063c0edd035d30aa78a916f1d768a960f314c38168ba4c4e95ca2ae99e)
+            type_hints = cached_type_hints(_typecheckingstub__ccc9db063c0edd035d30aa78a916f1d768a960f314c38168ba4c4e95ca2ae99e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument number", value=number, expected_type=type_hints["number"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -59678,7 +59682,7 @@ class ServiceCidrSpec:
         :schema: io.k8s.api.networking.v1.ServiceCIDRSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__93dbd75f1e3970a453e0c35898eb73e25fa118fe1bb050d9370d044d7550a34d)
+            type_hints = cached_type_hints(_typecheckingstub__93dbd75f1e3970a453e0c35898eb73e25fa118fe1bb050d9370d044d7550a34d)
             check_type(argname="argument cidrs", value=cidrs, expected_type=type_hints["cidrs"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cidrs is not None:
@@ -59723,7 +59727,7 @@ class ServiceCidrSpecV1Beta1:
         :schema: io.k8s.api.networking.v1beta1.ServiceCIDRSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dccd7fc16b72e3d36aa24009a5698465454a445a578923f231aab48798d752ae)
+            type_hints = cached_type_hints(_typecheckingstub__dccd7fc16b72e3d36aa24009a5698465454a445a578923f231aab48798d752ae)
             check_type(argname="argument cidrs", value=cidrs, expected_type=type_hints["cidrs"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if cidrs is not None:
@@ -59785,7 +59789,7 @@ class ServicePort:
         :schema: io.k8s.api.core.v1.ServicePort
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34bd12b0b5b5ee6a8e28438e78966717248ee25b5c7c6a0cadd99c8e5843ebb3)
+            type_hints = cached_type_hints(_typecheckingstub__34bd12b0b5b5ee6a8e28438e78966717248ee25b5c7c6a0cadd99c8e5843ebb3)
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument app_protocol", value=app_protocol, expected_type=type_hints["app_protocol"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -59921,7 +59925,7 @@ class ServiceReference:
         :schema: io.k8s.api.admissionregistration.v1.ServiceReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d9ad2a01fb9e7ce732f776bc88e9c896a203ce950547fb864ef2833ae00ee24)
+            type_hints = cached_type_hints(_typecheckingstub__6d9ad2a01fb9e7ce732f776bc88e9c896a203ce950547fb864ef2833ae00ee24)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
@@ -60072,7 +60076,7 @@ class ServiceSpec:
         if isinstance(session_affinity_config, dict):
             session_affinity_config = SessionAffinityConfig(**session_affinity_config)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__28a62a3352f8d0567f520784bd515250a02d7d2d6686265c9478416f87acb91e)
+            type_hints = cached_type_hints(_typecheckingstub__28a62a3352f8d0567f520784bd515250a02d7d2d6686265c9478416f87acb91e)
             check_type(argname="argument allocate_load_balancer_node_ports", value=allocate_load_balancer_node_ports, expected_type=type_hints["allocate_load_balancer_node_ports"])
             check_type(argname="argument cluster_ip", value=cluster_ip, expected_type=type_hints["cluster_ip"])
             check_type(argname="argument cluster_i_ps", value=cluster_i_ps, expected_type=type_hints["cluster_i_ps"])
@@ -60391,7 +60395,7 @@ class SessionAffinityConfig:
         if isinstance(client_ip, dict):
             client_ip = ClientIpConfig(**client_ip)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__41fa363df0cef39b3a21ee7d4b32e767f771c391235a46bf9ce8b369b1bcb705)
+            type_hints = cached_type_hints(_typecheckingstub__41fa363df0cef39b3a21ee7d4b32e767f771c391235a46bf9ce8b369b1bcb705)
             check_type(argname="argument client_ip", value=client_ip, expected_type=type_hints["client_ip"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_ip is not None:
@@ -60432,7 +60436,7 @@ class SleepAction:
         :schema: io.k8s.api.core.v1.SleepAction
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68214ffff1f932028ab58d753c1f11335fb4b0cd430e000ddfe4b7b39aaac9f1)
+            type_hints = cached_type_hints(_typecheckingstub__68214ffff1f932028ab58d753c1f11335fb4b0cd430e000ddfe4b7b39aaac9f1)
             check_type(argname="argument seconds", value=seconds, expected_type=type_hints["seconds"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "seconds": seconds,
@@ -60474,7 +60478,7 @@ class StatefulSetOrdinals:
         :schema: io.k8s.api.apps.v1.StatefulSetOrdinals
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1e58617ce6e9215ed1ab28dc2eee5d66eab33dc7bfaa27792ade3a835dd2b944)
+            type_hints = cached_type_hints(_typecheckingstub__1e58617ce6e9215ed1ab28dc2eee5d66eab33dc7bfaa27792ade3a835dd2b944)
             check_type(argname="argument start", value=start, expected_type=type_hints["start"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if start is not None:
@@ -60526,7 +60530,7 @@ class StatefulSetPersistentVolumeClaimRetentionPolicy:
         :schema: io.k8s.api.apps.v1.StatefulSetPersistentVolumeClaimRetentionPolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__94098796780c55cdb42c5b053d638803027114010a1003ea7430353fd3179c5a)
+            type_hints = cached_type_hints(_typecheckingstub__94098796780c55cdb42c5b053d638803027114010a1003ea7430353fd3179c5a)
             check_type(argname="argument when_deleted", value=when_deleted, expected_type=type_hints["when_deleted"])
             check_type(argname="argument when_scaled", value=when_scaled, expected_type=type_hints["when_scaled"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -60629,7 +60633,7 @@ class StatefulSetSpec:
         if isinstance(update_strategy, dict):
             update_strategy = StatefulSetUpdateStrategy(**update_strategy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b3479a4db27d16f25eff18cf9e8bad5d98c3cce86039a11df4bfd5a6c9d128f)
+            type_hints = cached_type_hints(_typecheckingstub__6b3479a4db27d16f25eff18cf9e8bad5d98c3cce86039a11df4bfd5a6c9d128f)
             check_type(argname="argument selector", value=selector, expected_type=type_hints["selector"])
             check_type(argname="argument template", value=template, expected_type=type_hints["template"])
             check_type(argname="argument min_ready_seconds", value=min_ready_seconds, expected_type=type_hints["min_ready_seconds"])
@@ -60827,7 +60831,7 @@ class StatefulSetUpdateStrategy:
         if isinstance(rolling_update, dict):
             rolling_update = RollingUpdateStatefulSetStrategy(**rolling_update)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__376e0b967be23662818c61d56be6d18bdec2d63c793172960fbff07b791bc301)
+            type_hints = cached_type_hints(_typecheckingstub__376e0b967be23662818c61d56be6d18bdec2d63c793172960fbff07b791bc301)
             check_type(argname="argument rolling_update", value=rolling_update, expected_type=type_hints["rolling_update"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -60892,7 +60896,7 @@ class StatusCause:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.StatusCause
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9a84cad04e682eba7f45d6717bea7bd461527f9be5b61611af8ae5829ed76917)
+            type_hints = cached_type_hints(_typecheckingstub__9a84cad04e682eba7f45d6717bea7bd461527f9be5b61611af8ae5829ed76917)
             check_type(argname="argument field", value=field, expected_type=type_hints["field"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
             check_type(argname="argument reason", value=reason, expected_type=type_hints["reason"])
@@ -60990,7 +60994,7 @@ class StatusDetails:
         :schema: io.k8s.apimachinery.pkg.apis.meta.v1.StatusDetails
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__86c96dd405073e5b3285a98f15293117917ec67b04be70820dcaf694a2ea1f98)
+            type_hints = cached_type_hints(_typecheckingstub__86c96dd405073e5b3285a98f15293117917ec67b04be70820dcaf694a2ea1f98)
             check_type(argname="argument causes", value=causes, expected_type=type_hints["causes"])
             check_type(argname="argument group", value=group, expected_type=type_hints["group"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
@@ -61119,7 +61123,7 @@ class StorageOsPersistentVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = ObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dcb3feea41d91b4ceb6ebfb62e681f60b70439c9ca50095a408680f3be68ff39)
+            type_hints = cached_type_hints(_typecheckingstub__dcb3feea41d91b4ceb6ebfb62e681f60b70439c9ca50095a408680f3be68ff39)
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -61238,7 +61242,7 @@ class StorageOsVolumeSource:
         if isinstance(secret_ref, dict):
             secret_ref = LocalObjectReference(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5d2e2a4a4a5336dd9d67d0c9d9952b1bd60bcf2097cd69ae70efbfd4bafa92b4)
+            type_hints = cached_type_hints(_typecheckingstub__5d2e2a4a4a5336dd9d67d0c9d9952b1bd60bcf2097cd69ae70efbfd4bafa92b4)
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument read_only", value=read_only, expected_type=type_hints["read_only"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -61343,7 +61347,7 @@ class StorageVersionMigrationSpecV1Beta1:
         if isinstance(resource, dict):
             resource = GroupResource(**resource)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0151d50e68ab53dfae3bbf36c5073dd98aff0d537a1401321d5183c3567f14b3)
+            type_hints = cached_type_hints(_typecheckingstub__0151d50e68ab53dfae3bbf36c5073dd98aff0d537a1401321d5183c3567f14b3)
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "resource": resource,
@@ -61404,7 +61408,7 @@ class Subject:
         :schema: io.k8s.api.rbac.v1.Subject
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3984acd97248bbea84b86bad6e78e1c94aee46eaf7dce10320654c981464a3aa)
+            type_hints = cached_type_hints(_typecheckingstub__3984acd97248bbea84b86bad6e78e1c94aee46eaf7dce10320654c981464a3aa)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -61517,7 +61521,7 @@ class SubjectAccessReviewSpec:
         if isinstance(resource_attributes, dict):
             resource_attributes = ResourceAttributes(**resource_attributes)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aecec73f519b5097699d859a6173cfe87c594463900289ecfb24c4a3c623ca4a)
+            type_hints = cached_type_hints(_typecheckingstub__aecec73f519b5097699d859a6173cfe87c594463900289ecfb24c4a3c623ca4a)
             check_type(argname="argument extra", value=extra, expected_type=type_hints["extra"])
             check_type(argname="argument groups", value=groups, expected_type=type_hints["groups"])
             check_type(argname="argument non_resource_attributes", value=non_resource_attributes, expected_type=type_hints["non_resource_attributes"])
@@ -61626,7 +61630,7 @@ class SuccessPolicy:
         :schema: io.k8s.api.batch.v1.SuccessPolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4237012cb0cca872fb1b5fed5e7747eaeafd4b661a433f9e123d706bb2d2d5d3)
+            type_hints = cached_type_hints(_typecheckingstub__4237012cb0cca872fb1b5fed5e7747eaeafd4b661a433f9e123d706bb2d2d5d3)
             check_type(argname="argument rules", value=rules, expected_type=type_hints["rules"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "rules": rules,
@@ -61679,7 +61683,7 @@ class SuccessPolicyRule:
         :schema: io.k8s.api.batch.v1.SuccessPolicyRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__99b379300ad3b647556b9991f59d532edfb6b606c1056072c5508fca6c7d8cd7)
+            type_hints = cached_type_hints(_typecheckingstub__99b379300ad3b647556b9991f59d532edfb6b606c1056072c5508fca6c7d8cd7)
             check_type(argname="argument succeeded_count", value=succeeded_count, expected_type=type_hints["succeeded_count"])
             check_type(argname="argument succeeded_indexes", value=succeeded_indexes, expected_type=type_hints["succeeded_indexes"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -61737,7 +61741,7 @@ class Sysctl:
         :schema: io.k8s.api.core.v1.Sysctl
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9ebcbff853e5595a246037a229aabe3a4bd6f6aa6b8deb141b7669a41d7f6ca4)
+            type_hints = cached_type_hints(_typecheckingstub__9ebcbff853e5595a246037a229aabe3a4bd6f6aa6b8deb141b7669a41d7f6ca4)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -61806,7 +61810,7 @@ class Taint:
         :schema: io.k8s.api.core.v1.Taint
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c83d8efd7618c397938f355d9ce22e16abef5083f86d96444f7001334f075b74)
+            type_hints = cached_type_hints(_typecheckingstub__c83d8efd7618c397938f355d9ce22e16abef5083f86d96444f7001334f075b74)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument time_added", value=time_added, expected_type=type_hints["time_added"])
@@ -61894,7 +61898,7 @@ class TcpSocketAction:
         :schema: io.k8s.api.core.v1.TCPSocketAction
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4153948139cfde3a540da2062fd40a5b8a03f099e85f3acd26bee80243897532)
+            type_hints = cached_type_hints(_typecheckingstub__4153948139cfde3a540da2062fd40a5b8a03f099e85f3acd26bee80243897532)
             check_type(argname="argument port", value=port, expected_type=type_hints["port"])
             check_type(argname="argument host", value=host, expected_type=type_hints["host"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -61956,7 +61960,7 @@ class TokenRequest:
         :schema: io.k8s.api.storage.v1.TokenRequest
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a2eca0bb8eadb510ffaf95db1104ca4195c2708f05a8a378b0cd66f7b398bee9)
+            type_hints = cached_type_hints(_typecheckingstub__a2eca0bb8eadb510ffaf95db1104ca4195c2708f05a8a378b0cd66f7b398bee9)
             check_type(argname="argument audience", value=audience, expected_type=type_hints["audience"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -62028,7 +62032,7 @@ class TokenRequestSpec:
         if isinstance(bound_object_ref, dict):
             bound_object_ref = BoundObjectReference(**bound_object_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c6ecf81dacd22a528a277c2eacd8c58c1bb9bead7fa63a6eb43b6ba97554708)
+            type_hints = cached_type_hints(_typecheckingstub__1c6ecf81dacd22a528a277c2eacd8c58c1bb9bead7fa63a6eb43b6ba97554708)
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument bound_object_ref", value=bound_object_ref, expected_type=type_hints["bound_object_ref"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
@@ -62106,7 +62110,7 @@ class TokenReviewSpec:
         :schema: io.k8s.api.authentication.v1.TokenReviewSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9132ea931e42ff03246a2f8dce15a0589348550d3687a44aa8d9ba434d2757ce)
+            type_hints = cached_type_hints(_typecheckingstub__9132ea931e42ff03246a2f8dce15a0589348550d3687a44aa8d9ba434d2757ce)
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -62179,7 +62183,7 @@ class Toleration:
         :schema: io.k8s.api.core.v1.Toleration
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fc64b64ca6a4e327627ef4fc0e43d3b9ed50e8e8d69828c2afe44f74a3b45f9f)
+            type_hints = cached_type_hints(_typecheckingstub__fc64b64ca6a4e327627ef4fc0e43d3b9ed50e8e8d69828c2afe44f74a3b45f9f)
             check_type(argname="argument effect", value=effect, expected_type=type_hints["effect"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument operator", value=operator, expected_type=type_hints["operator"])
@@ -62288,7 +62292,7 @@ class TopologySelectorLabelRequirement:
         :schema: io.k8s.api.core.v1.TopologySelectorLabelRequirement
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__25a9d23f38a251fc5c0330f0132bfd279ea0abef87090dfd767fb5044ec62263)
+            type_hints = cached_type_hints(_typecheckingstub__25a9d23f38a251fc5c0330f0132bfd279ea0abef87090dfd767fb5044ec62263)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument values", value=values, expected_type=type_hints["values"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -62350,7 +62354,7 @@ class TopologySelectorTerm:
         :schema: io.k8s.api.core.v1.TopologySelectorTerm
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f598eb2ca65a39d9b8fc7d3e58cfab9e1b3f88e885b8823a74892071e3a7dfb5)
+            type_hints = cached_type_hints(_typecheckingstub__f598eb2ca65a39d9b8fc7d3e58cfab9e1b3f88e885b8823a74892071e3a7dfb5)
             check_type(argname="argument match_label_expressions", value=match_label_expressions, expected_type=type_hints["match_label_expressions"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if match_label_expressions is not None:
@@ -62422,7 +62426,7 @@ class TopologySpreadConstraint:
         if isinstance(label_selector, dict):
             label_selector = LabelSelector(**label_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d563e5e62c67208bafb547e16adedf3e17b27b1cb3c8cd46509e6398021dcef5)
+            type_hints = cached_type_hints(_typecheckingstub__d563e5e62c67208bafb547e16adedf3e17b27b1cb3c8cd46509e6398021dcef5)
             check_type(argname="argument max_skew", value=max_skew, expected_type=type_hints["max_skew"])
             check_type(argname="argument topology_key", value=topology_key, expected_type=type_hints["topology_key"])
             check_type(argname="argument when_unsatisfiable", value=when_unsatisfiable, expected_type=type_hints["when_unsatisfiable"])
@@ -62583,7 +62587,7 @@ class TypedLocalObjectReference:
         :schema: io.k8s.api.core.v1.TypedLocalObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e0c8161c6a54145904571f1150bbbdb550defbe6c662fd937bd97bb2f9815bde)
+            type_hints = cached_type_hints(_typecheckingstub__e0c8161c6a54145904571f1150bbbdb550defbe6c662fd937bd97bb2f9815bde)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -62659,7 +62663,7 @@ class TypedLocalObjectReferenceV1Alpha1:
         :schema: io.k8s.api.scheduling.v1alpha1.TypedLocalObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__64d929a3022c1d109f984daf99c74d437c8382f64894326d9c84204f9de8b864)
+            type_hints = cached_type_hints(_typecheckingstub__64d929a3022c1d109f984daf99c74d437c8382f64894326d9c84204f9de8b864)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -62746,7 +62750,7 @@ class TypedObjectReference:
         :schema: io.k8s.api.core.v1.TypedObjectReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bece17868eb3d8e19bda1cfa4d9b7e4762df845f22f80e0d969ca1a026323551)
+            type_hints = cached_type_hints(_typecheckingstub__bece17868eb3d8e19bda1cfa4d9b7e4762df845f22f80e0d969ca1a026323551)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_group", value=api_group, expected_type=type_hints["api_group"])
@@ -62845,7 +62849,7 @@ class ValidatingAdmissionPolicyBindingSpec:
         if isinstance(param_ref, dict):
             param_ref = ParamRef(**param_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5d21988f0bb8a832d801fbd126b54998cc227a5cca117dd620b0da98e8f31dd9)
+            type_hints = cached_type_hints(_typecheckingstub__5d21988f0bb8a832d801fbd126b54998cc227a5cca117dd620b0da98e8f31dd9)
             check_type(argname="argument match_resources", value=match_resources, expected_type=type_hints["match_resources"])
             check_type(argname="argument param_ref", value=param_ref, expected_type=type_hints["param_ref"])
             check_type(argname="argument policy_name", value=policy_name, expected_type=type_hints["policy_name"])
@@ -62976,7 +62980,7 @@ class ValidatingAdmissionPolicySpec:
         if isinstance(param_kind, dict):
             param_kind = ParamKind(**param_kind)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__de274c41a98b4c56de95d1ab669dcb0794097f60c898daa08d3c66a1c01f73f9)
+            type_hints = cached_type_hints(_typecheckingstub__de274c41a98b4c56de95d1ab669dcb0794097f60c898daa08d3c66a1c01f73f9)
             check_type(argname="argument audit_annotations", value=audit_annotations, expected_type=type_hints["audit_annotations"])
             check_type(argname="argument failure_policy", value=failure_policy, expected_type=type_hints["failure_policy"])
             check_type(argname="argument match_conditions", value=match_conditions, expected_type=type_hints["match_conditions"])
@@ -63168,7 +63172,7 @@ class ValidatingWebhook:
         if isinstance(object_selector, dict):
             object_selector = LabelSelector(**object_selector)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ac0bdffd3ae40593dcc946344a4b810ff63dcf95c9d059bc98c0876523b7dbc9)
+            type_hints = cached_type_hints(_typecheckingstub__ac0bdffd3ae40593dcc946344a4b810ff63dcf95c9d059bc98c0876523b7dbc9)
             check_type(argname="argument admission_review_versions", value=admission_review_versions, expected_type=type_hints["admission_review_versions"])
             check_type(argname="argument client_config", value=client_config, expected_type=type_hints["client_config"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
@@ -63419,7 +63423,7 @@ class Validation:
         :schema: io.k8s.api.admissionregistration.v1.Validation
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__120086dc1f6b7cf3b77b049a9b316dd9f77d858957e08c2a4c1b32030c21d0ec)
+            type_hints = cached_type_hints(_typecheckingstub__120086dc1f6b7cf3b77b049a9b316dd9f77d858957e08c2a4c1b32030c21d0ec)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
             check_type(argname="argument message_expression", value=message_expression, expected_type=type_hints["message_expression"])
@@ -63553,7 +63557,7 @@ class ValidationRule:
         :schema: io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8500698ff415569f959cc71557c593435adb8418cbc4abf4ced8324f4f0da96d)
+            type_hints = cached_type_hints(_typecheckingstub__8500698ff415569f959cc71557c593435adb8418cbc4abf4ced8324f4f0da96d)
             check_type(argname="argument rule", value=rule, expected_type=type_hints["rule"])
             check_type(argname="argument field_path", value=field_path, expected_type=type_hints["field_path"])
             check_type(argname="argument message", value=message, expected_type=type_hints["message"])
@@ -63709,7 +63713,7 @@ class Variable:
         :schema: io.k8s.api.admissionregistration.v1.Variable
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dfd61a6d20f7f73e38f7ea58c76e13a4ff6835fe5efe28ba523d04fff540bfe5)
+            type_hints = cached_type_hints(_typecheckingstub__dfd61a6d20f7f73e38f7ea58c76e13a4ff6835fe5efe28ba523d04fff540bfe5)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -63768,7 +63772,7 @@ class VariableV1Alpha1:
         :schema: io.k8s.api.admissionregistration.v1alpha1.Variable
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f19d1febb72f16cf0b81e45d01cb337069d10c5c7455d63bc5a1bd00c24a2fd8)
+            type_hints = cached_type_hints(_typecheckingstub__f19d1febb72f16cf0b81e45d01cb337069d10c5c7455d63bc5a1bd00c24a2fd8)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -63829,7 +63833,7 @@ class VariableV1Beta1:
         :schema: io.k8s.api.admissionregistration.v1beta1.Variable
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2af0b7fd85d855b63a1a2ee4eaf2d639ff2c1ebe50db8b7c6b9c72ed68f5c877)
+            type_hints = cached_type_hints(_typecheckingstub__2af0b7fd85d855b63a1a2ee4eaf2d639ff2c1ebe50db8b7c6b9c72ed68f5c877)
             check_type(argname="argument expression", value=expression, expected_type=type_hints["expression"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -64043,7 +64047,7 @@ class Volume:
         if isinstance(vsphere_volume, dict):
             vsphere_volume = VsphereVirtualDiskVolumeSource(**vsphere_volume)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b0baec088296b673c4c879b5ee48b961991a0c2bba4add80d27e32c59d57f145)
+            type_hints = cached_type_hints(_typecheckingstub__b0baec088296b673c4c879b5ee48b961991a0c2bba4add80d27e32c59d57f145)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument aws_elastic_block_store", value=aws_elastic_block_store, expected_type=type_hints["aws_elastic_block_store"])
             check_type(argname="argument azure_disk", value=azure_disk, expected_type=type_hints["azure_disk"])
@@ -64531,7 +64535,7 @@ class VolumeAttachmentSource:
         if isinstance(inline_volume_spec, dict):
             inline_volume_spec = PersistentVolumeSpec(**inline_volume_spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b3f9952d5e8dadf3ded289f1651a13c30397c804b078b1918f7e368a400af926)
+            type_hints = cached_type_hints(_typecheckingstub__b3f9952d5e8dadf3ded289f1651a13c30397c804b078b1918f7e368a400af926)
             check_type(argname="argument inline_volume_spec", value=inline_volume_spec, expected_type=type_hints["inline_volume_spec"])
             check_type(argname="argument persistent_volume_name", value=persistent_volume_name, expected_type=type_hints["persistent_volume_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -64596,7 +64600,7 @@ class VolumeAttachmentSpec:
         if isinstance(source, dict):
             source = VolumeAttachmentSource(**source)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c4b9cc875951c45fbf95df095c19992e6e0cb9bae73892b27970af014c9ef130)
+            type_hints = cached_type_hints(_typecheckingstub__c4b9cc875951c45fbf95df095c19992e6e0cb9bae73892b27970af014c9ef130)
             check_type(argname="argument attacher", value=attacher, expected_type=type_hints["attacher"])
             check_type(argname="argument node_name", value=node_name, expected_type=type_hints["node_name"])
             check_type(argname="argument source", value=source, expected_type=type_hints["source"])
@@ -64665,7 +64669,7 @@ class VolumeDevice:
         :schema: io.k8s.api.core.v1.VolumeDevice
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__79302810697edefbd8389c6b329719eb591c59ac9f35d9046bda0be521703345)
+            type_hints = cached_type_hints(_typecheckingstub__79302810697edefbd8389c6b329719eb591c59ac9f35d9046bda0be521703345)
             check_type(argname="argument device_path", value=device_path, expected_type=type_hints["device_path"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -64743,7 +64747,7 @@ class VolumeMount:
         :schema: io.k8s.api.core.v1.VolumeMount
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7bc86759e585609a7ca09f49d33b128e9d64f2504bc6d8b9cd2b329582357e17)
+            type_hints = cached_type_hints(_typecheckingstub__7bc86759e585609a7ca09f49d33b128e9d64f2504bc6d8b9cd2b329582357e17)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument mount_propagation", value=mount_propagation, expected_type=type_hints["mount_propagation"])
@@ -64887,7 +64891,7 @@ class VolumeNodeAffinity:
         if isinstance(required, dict):
             required = NodeSelector(**required)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7c2f59acda00c7a6490c99644a0f6c1d5b9c7c0ca5e955d2d1c906c4defb4ade)
+            type_hints = cached_type_hints(_typecheckingstub__7c2f59acda00c7a6490c99644a0f6c1d5b9c7c0ca5e955d2d1c906c4defb4ade)
             check_type(argname="argument required", value=required, expected_type=type_hints["required"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if required is not None:
@@ -64928,7 +64932,7 @@ class VolumeNodeResources:
         :schema: io.k8s.api.storage.v1.VolumeNodeResources
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2a5c11cd7f903e3f4b9668bb558dbf7b284d3be245138a41dc7978f947084911)
+            type_hints = cached_type_hints(_typecheckingstub__2a5c11cd7f903e3f4b9668bb558dbf7b284d3be245138a41dc7978f947084911)
             check_type(argname="argument count", value=count, expected_type=type_hints["count"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if count is not None:
@@ -65006,7 +65010,7 @@ class VolumeProjection:
         if isinstance(service_account_token, dict):
             service_account_token = ServiceAccountTokenProjection(**service_account_token)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__21035918b928e2f804e2bbaaf7f50d5c4b3eb354a5e4a66e639edff79f735bfc)
+            type_hints = cached_type_hints(_typecheckingstub__21035918b928e2f804e2bbaaf7f50d5c4b3eb354a5e4a66e639edff79f735bfc)
             check_type(argname="argument cluster_trust_bundle", value=cluster_trust_bundle, expected_type=type_hints["cluster_trust_bundle"])
             check_type(argname="argument config_map", value=config_map, expected_type=type_hints["config_map"])
             check_type(argname="argument downward_api", value=downward_api, expected_type=type_hints["downward_api"])
@@ -65131,7 +65135,7 @@ class VolumeResourceRequirements:
         :schema: io.k8s.api.core.v1.VolumeResourceRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__53da8de038f4211698b32ce18bcb55370b251fc2d09760e2d0ec393be21a00c8)
+            type_hints = cached_type_hints(_typecheckingstub__53da8de038f4211698b32ce18bcb55370b251fc2d09760e2d0ec393be21a00c8)
             check_type(argname="argument limits", value=limits, expected_type=type_hints["limits"])
             check_type(argname="argument requests", value=requests, expected_type=type_hints["requests"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -65203,7 +65207,7 @@ class VsphereVirtualDiskVolumeSource:
         :schema: io.k8s.api.core.v1.VsphereVirtualDiskVolumeSource
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2746f4a6c4d559e6cea852caa195b0acdbccb5fcc65b72211461db64e954a2e0)
+            type_hints = cached_type_hints(_typecheckingstub__2746f4a6c4d559e6cea852caa195b0acdbccb5fcc65b72211461db64e954a2e0)
             check_type(argname="argument volume_path", value=volume_path, expected_type=type_hints["volume_path"])
             check_type(argname="argument fs_type", value=fs_type, expected_type=type_hints["fs_type"])
             check_type(argname="argument storage_policy_id", value=storage_policy_id, expected_type=type_hints["storage_policy_id"])
@@ -65293,7 +65297,7 @@ class WebhookClientConfig:
         if isinstance(service, dict):
             service = ServiceReference(**service)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__01a4d6ecbc5d3180d6159e848cb27db4b9411ca07eae56bb4a7c0ea53622d2a9)
+            type_hints = cached_type_hints(_typecheckingstub__01a4d6ecbc5d3180d6159e848cb27db4b9411ca07eae56bb4a7c0ea53622d2a9)
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument service", value=service, expected_type=type_hints["service"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
@@ -65385,7 +65389,7 @@ class WebhookConversion:
         if isinstance(client_config, dict):
             client_config = WebhookClientConfig(**client_config)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__39d792294d4b2186ea27ff788c8be1ec22d2503757195afb3bd815d2f0d57bdf)
+            type_hints = cached_type_hints(_typecheckingstub__39d792294d4b2186ea27ff788c8be1ec22d2503757195afb3bd815d2f0d57bdf)
             check_type(argname="argument conversion_review_versions", value=conversion_review_versions, expected_type=type_hints["conversion_review_versions"])
             check_type(argname="argument client_config", value=client_config, expected_type=type_hints["client_config"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -65449,7 +65453,7 @@ class WeightedPodAffinityTerm:
         if isinstance(pod_affinity_term, dict):
             pod_affinity_term = PodAffinityTerm(**pod_affinity_term)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__889aca33f8b0538629ceed10073db78bcf15ce67a8d28c641286fa3ca92dd955)
+            type_hints = cached_type_hints(_typecheckingstub__889aca33f8b0538629ceed10073db78bcf15ce67a8d28c641286fa3ca92dd955)
             check_type(argname="argument pod_affinity_term", value=pod_affinity_term, expected_type=type_hints["pod_affinity_term"])
             check_type(argname="argument weight", value=weight, expected_type=type_hints["weight"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -65520,7 +65524,7 @@ class WindowsSecurityContextOptions:
         :schema: io.k8s.api.core.v1.WindowsSecurityContextOptions
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8f8f55e98c07892c190b8b23ad570c48466b356f369032020c69a96f2ea2d0ea)
+            type_hints = cached_type_hints(_typecheckingstub__8f8f55e98c07892c190b8b23ad570c48466b356f369032020c69a96f2ea2d0ea)
             check_type(argname="argument gmsa_credential_spec", value=gmsa_credential_spec, expected_type=type_hints["gmsa_credential_spec"])
             check_type(argname="argument gmsa_credential_spec_name", value=gmsa_credential_spec_name, expected_type=type_hints["gmsa_credential_spec_name"])
             check_type(argname="argument host_process", value=host_process, expected_type=type_hints["host_process"])
@@ -65617,7 +65621,7 @@ class WorkloadReference:
         :schema: io.k8s.api.core.v1.WorkloadReference
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4e5e0a32b0139c75147fac56f470c3355fc2311e7ebcc7632a579faf83c61456)
+            type_hints = cached_type_hints(_typecheckingstub__4e5e0a32b0139c75147fac56f470c3355fc2311e7ebcc7632a579faf83c61456)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument pod_group", value=pod_group, expected_type=type_hints["pod_group"])
             check_type(argname="argument pod_group_replica_key", value=pod_group_replica_key, expected_type=type_hints["pod_group_replica_key"])
@@ -65697,7 +65701,7 @@ class WorkloadSpecV1Alpha1:
         if isinstance(controller_ref, dict):
             controller_ref = TypedLocalObjectReferenceV1Alpha1(**controller_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__93cb7331dcc8a852c62194443560e36830eb375661f1b812b25adedaf1072c23)
+            type_hints = cached_type_hints(_typecheckingstub__93cb7331dcc8a852c62194443560e36830eb375661f1b812b25adedaf1072c23)
             check_type(argname="argument pod_groups", value=pod_groups, expected_type=type_hints["pod_groups"])
             check_type(argname="argument controller_ref", value=controller_ref, expected_type=type_hints["controller_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {

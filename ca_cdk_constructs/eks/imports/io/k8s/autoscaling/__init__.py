@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pkgutil import extend_path
 __path__ = extend_path(__path__, __name__)
 
@@ -11,27 +13,29 @@ import jsii
 import publication
 import typing_extensions
 
-import typeguard
-from importlib.metadata import version as _metadata_package_version
-TYPEGUARD_MAJOR_VERSION = int(_metadata_package_version('typeguard').split('.')[0])
+from jsii._type_checking import cached_type_hints, check_type
 
-def check_type(argname: str, value: object, expected_type: typing.Any) -> typing.Any:
-    if TYPEGUARD_MAJOR_VERSION <= 2:
-        return typeguard.check_type(argname=argname, value=value, expected_type=expected_type) # type:ignore
-    else:
-        if isinstance(value, jsii._reference_map.InterfaceDynamicProxy): # pyright: ignore [reportAttributeAccessIssue]
-           pass
-        else:
-            if TYPEGUARD_MAJOR_VERSION == 3:
-                typeguard.config.collection_check_strategy = typeguard.CollectionCheckStrategy.ALL_ITEMS # type:ignore
-                typeguard.check_type(value=value, expected_type=expected_type) # type:ignore
-            else:
-                typeguard.check_type(value=value, expected_type=expected_type, collection_check_strategy=typeguard.CollectionCheckStrategy.ALL_ITEMS) # type:ignore
 
 from ._jsii import *
 
-import cdk8s as _cdk8s_d3d9af27
-import constructs as _constructs_77d1e7e8
+class _LazyImport:
+    def __init__(self, module_name: str) -> None:
+        self._module_name = module_name
+        self._module: typing.Any = None
+    def __getattr__(self, name: str) -> typing.Any:
+        if self._module is None:
+            import importlib
+            self._module = importlib.import_module(self._module_name)
+        return getattr(self._module, name)
+
+if typing.TYPE_CHECKING:
+
+    import cdk8s as _cdk8s_d3d9af27
+    import constructs as _constructs_77d1e7e8
+else:
+
+    _cdk8s_d3d9af27 = _LazyImport("cdk8s")
+    _constructs_77d1e7e8 = _LazyImport("constructs")
 
 
 class VerticalPodAutoscaler(
@@ -60,7 +64,7 @@ class VerticalPodAutoscaler(
         :param metadata: 
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__caf59d86d285ee6685b1508c4068ea959df4364adaf893cf0bdee63cda7bf602)
+            type_hints = cached_type_hints(_typecheckingstub__caf59d86d285ee6685b1508c4068ea959df4364adaf893cf0bdee63cda7bf602)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = VerticalPodAutoscalerProps(spec=spec, metadata=metadata)
@@ -124,7 +128,7 @@ class VerticalPodAutoscalerCheckpoint(
         :param spec: Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__417daf29a0414735a3caff5a1262960997e0629f4d3672d94cc5030c1035a633)
+            type_hints = cached_type_hints(_typecheckingstub__417daf29a0414735a3caff5a1262960997e0629f4d3672d94cc5030c1035a633)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = VerticalPodAutoscalerCheckpointProps(metadata=metadata, spec=spec)
@@ -186,7 +190,7 @@ class VerticalPodAutoscalerCheckpointProps:
         if isinstance(spec, dict):
             spec = VerticalPodAutoscalerCheckpointSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6c09821f0bd7acf378fc14e7d8baaad633b256459ef04fbf16edbaba8dbc367c)
+            type_hints = cached_type_hints(_typecheckingstub__6c09821f0bd7acf378fc14e7d8baaad633b256459ef04fbf16edbaba8dbc367c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -251,7 +255,7 @@ class VerticalPodAutoscalerCheckpointSpec:
         :schema: VerticalPodAutoscalerCheckpointSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4926d22a30287a53595e4c60d286da97757a94e8c82011a5a7eac45f0d5471eb)
+            type_hints = cached_type_hints(_typecheckingstub__4926d22a30287a53595e4c60d286da97757a94e8c82011a5a7eac45f0d5471eb)
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
             check_type(argname="argument vpa_object_name", value=vpa_object_name, expected_type=type_hints["vpa_object_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -316,7 +320,7 @@ class VerticalPodAutoscalerCheckpointV1Beta2(
         :param spec: Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e965f8c6b458dc1cd77321285fce0a2d2bc53ac846b7debafdd4e084ab9d0966)
+            type_hints = cached_type_hints(_typecheckingstub__e965f8c6b458dc1cd77321285fce0a2d2bc53ac846b7debafdd4e084ab9d0966)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = VerticalPodAutoscalerCheckpointV1Beta2Props(
@@ -382,7 +386,7 @@ class VerticalPodAutoscalerCheckpointV1Beta2Props:
         if isinstance(spec, dict):
             spec = VerticalPodAutoscalerCheckpointV1Beta2Spec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a3056128a13898c38734cd5a9c41636e80201bd29082acb7843438509646ab48)
+            type_hints = cached_type_hints(_typecheckingstub__a3056128a13898c38734cd5a9c41636e80201bd29082acb7843438509646ab48)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -447,7 +451,7 @@ class VerticalPodAutoscalerCheckpointV1Beta2Spec:
         :schema: VerticalPodAutoscalerCheckpointV1Beta2Spec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8b3f23f9542562f2c369c0a5d837e33dbbb7622ce2bcd688da1c58b93ed20a62)
+            type_hints = cached_type_hints(_typecheckingstub__8b3f23f9542562f2c369c0a5d837e33dbbb7622ce2bcd688da1c58b93ed20a62)
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
             check_type(argname="argument vpa_object_name", value=vpa_object_name, expected_type=type_hints["vpa_object_name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -510,7 +514,7 @@ class VerticalPodAutoscalerProps:
         if isinstance(metadata, dict):
             metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9fdd7c3f96f7a745f9e5cfc2908bb1ce7c61c78028c1c29dbd8a9b6d659de3cd)
+            type_hints = cached_type_hints(_typecheckingstub__9fdd7c3f96f7a745f9e5cfc2908bb1ce7c61c78028c1c29dbd8a9b6d659de3cd)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -588,7 +592,7 @@ class VerticalPodAutoscalerSpec:
         if isinstance(update_policy, dict):
             update_policy = VerticalPodAutoscalerSpecUpdatePolicy(**update_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aad6783c71127d8ab5dcca718acfc5e5ac0c4b9eac186e46f316e34aad7bf2c1)
+            type_hints = cached_type_hints(_typecheckingstub__aad6783c71127d8ab5dcca718acfc5e5ac0c4b9eac186e46f316e34aad7bf2c1)
             check_type(argname="argument target_ref", value=target_ref, expected_type=type_hints["target_ref"])
             check_type(argname="argument recommenders", value=recommenders, expected_type=type_hints["recommenders"])
             check_type(argname="argument resource_policy", value=resource_policy, expected_type=type_hints["resource_policy"])
@@ -685,7 +689,7 @@ class VerticalPodAutoscalerSpecRecommenders:
         :schema: VerticalPodAutoscalerSpecRecommenders
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3e5198b23f37399ac14dd9bde4cc16da589345871e41914d8ae0fa2e1196edd7)
+            type_hints = cached_type_hints(_typecheckingstub__3e5198b23f37399ac14dd9bde4cc16da589345871e41914d8ae0fa2e1196edd7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
@@ -738,7 +742,7 @@ class VerticalPodAutoscalerSpecResourcePolicy:
         :schema: VerticalPodAutoscalerSpecResourcePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d666228e8864efcd5ac2ea04f382409466aa693b59fd9f519c6436b7051bd6f5)
+            type_hints = cached_type_hints(_typecheckingstub__d666228e8864efcd5ac2ea04f382409466aa693b59fd9f519c6436b7051bd6f5)
             check_type(argname="argument container_policies", value=container_policies, expected_type=type_hints["container_policies"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if container_policies is not None:
@@ -802,7 +806,7 @@ class VerticalPodAutoscalerSpecResourcePolicyContainerPolicies:
         :schema: VerticalPodAutoscalerSpecResourcePolicyContainerPolicies
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__20e39dd603c99d3d3deb05326547159fd6fe9e3b7008f5a98634351e64953eb1)
+            type_hints = cached_type_hints(_typecheckingstub__20e39dd603c99d3d3deb05326547159fd6fe9e3b7008f5a98634351e64953eb1)
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
             check_type(argname="argument controlled_resources", value=controlled_resources, expected_type=type_hints["controlled_resources"])
             check_type(argname="argument controlled_values", value=controlled_values, expected_type=type_hints["controlled_values"])
@@ -944,7 +948,7 @@ class VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMaxAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5a3489df3481bf643eba8891e566a27cb7a905ce3bc7a75836f55e77cea812ce)
+            type_hints = cached_type_hints(_typecheckingstub__5a3489df3481bf643eba8891e566a27cb7a905ce3bc7a75836f55e77cea812ce)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMaxAllowed", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -958,7 +962,7 @@ class VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMaxAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1149315f4d028ce0f7fb1a6f25223eae226e5cacb95c987bb93237bde6b3f708)
+            type_hints = cached_type_hints(_typecheckingstub__1149315f4d028ce0f7fb1a6f25223eae226e5cacb95c987bb93237bde6b3f708)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMaxAllowed", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -986,7 +990,7 @@ class VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMinAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0d73f677b6a482dbb3b55973d80ae592e9d8c000e9b9e097a4bba666ae8624ef)
+            type_hints = cached_type_hints(_typecheckingstub__0d73f677b6a482dbb3b55973d80ae592e9d8c000e9b9e097a4bba666ae8624ef)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMinAllowed", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -1000,7 +1004,7 @@ class VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMinAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__48e1ef241fc712d94bafc6720c9dbdf04454d7347d241bf8e7b39f821f87b9c6)
+            type_hints = cached_type_hints(_typecheckingstub__48e1ef241fc712d94bafc6720c9dbdf04454d7347d241bf8e7b39f821f87b9c6)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerSpecResourcePolicyContainerPoliciesMinAllowed", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -1049,7 +1053,7 @@ class VerticalPodAutoscalerSpecTargetRef:
         :schema: VerticalPodAutoscalerSpecTargetRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9f7e1cdc947c495ae1aa36536adc3a83321ba4c464768bf26354e40e3055ae51)
+            type_hints = cached_type_hints(_typecheckingstub__9f7e1cdc947c495ae1aa36536adc3a83321ba4c464768bf26354e40e3055ae51)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
@@ -1134,7 +1138,7 @@ class VerticalPodAutoscalerSpecUpdatePolicy:
         :schema: VerticalPodAutoscalerSpecUpdatePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2090e51372d1722715886f39b00478aa4a1a6c5c8b06379c6ccf82ad97b6e06b)
+            type_hints = cached_type_hints(_typecheckingstub__2090e51372d1722715886f39b00478aa4a1a6c5c8b06379c6ccf82ad97b6e06b)
             check_type(argname="argument eviction_requirements", value=eviction_requirements, expected_type=type_hints["eviction_requirements"])
             check_type(argname="argument min_replicas", value=min_replicas, expected_type=type_hints["min_replicas"])
             check_type(argname="argument update_mode", value=update_mode, expected_type=type_hints["update_mode"])
@@ -1217,7 +1221,7 @@ class VerticalPodAutoscalerSpecUpdatePolicyEvictionRequirements:
         :schema: VerticalPodAutoscalerSpecUpdatePolicyEvictionRequirements
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__310af4049a060a72c926875cbb7db2a8eef4e477f2b93cf2fe28b1cbac746f57)
+            type_hints = cached_type_hints(_typecheckingstub__310af4049a060a72c926875cbb7db2a8eef4e477f2b93cf2fe28b1cbac746f57)
             check_type(argname="argument change_requirement", value=change_requirement, expected_type=type_hints["change_requirement"])
             check_type(argname="argument resources", value=resources, expected_type=type_hints["resources"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -1328,7 +1332,7 @@ class VerticalPodAutoscalerV1Beta2(
         :param metadata: 
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e62d9c88d47e2b7c49e596ee1a15c109172519d6ecebad967bc021a61f70947e)
+            type_hints = cached_type_hints(_typecheckingstub__e62d9c88d47e2b7c49e596ee1a15c109172519d6ecebad967bc021a61f70947e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = VerticalPodAutoscalerV1Beta2Props(spec=spec, metadata=metadata)
@@ -1390,7 +1394,7 @@ class VerticalPodAutoscalerV1Beta2Props:
         if isinstance(metadata, dict):
             metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8e1a91a8e7590b5de4cca8619ac3b00df33c6af7316dd70203be615d6a1c2890)
+            type_hints = cached_type_hints(_typecheckingstub__8e1a91a8e7590b5de4cca8619ac3b00df33c6af7316dd70203be615d6a1c2890)
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -1465,7 +1469,7 @@ class VerticalPodAutoscalerV1Beta2Spec:
         if isinstance(update_policy, dict):
             update_policy = VerticalPodAutoscalerV1Beta2SpecUpdatePolicy(**update_policy)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__99534649bf878687433d2d89ab24d48a97de2958ca7513f0e54f0b47ea5ccebb)
+            type_hints = cached_type_hints(_typecheckingstub__99534649bf878687433d2d89ab24d48a97de2958ca7513f0e54f0b47ea5ccebb)
             check_type(argname="argument target_ref", value=target_ref, expected_type=type_hints["target_ref"])
             check_type(argname="argument resource_policy", value=resource_policy, expected_type=type_hints["resource_policy"])
             check_type(argname="argument update_policy", value=update_policy, expected_type=type_hints["update_policy"])
@@ -1550,7 +1554,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicy:
         :schema: VerticalPodAutoscalerV1Beta2SpecResourcePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__340f8a3834dddb8945e030d1e547c99b6ec0f68f67ce5961a5a878d5be0be59c)
+            type_hints = cached_type_hints(_typecheckingstub__340f8a3834dddb8945e030d1e547c99b6ec0f68f67ce5961a5a878d5be0be59c)
             check_type(argname="argument container_policies", value=container_policies, expected_type=type_hints["container_policies"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if container_policies is not None:
@@ -1608,7 +1612,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPolicies:
         :schema: VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPolicies
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__37a19ec4542ee9b3c482c463626b5c1bd42c8e2e33344c398be7f0169a170722)
+            type_hints = cached_type_hints(_typecheckingstub__37a19ec4542ee9b3c482c463626b5c1bd42c8e2e33344c398be7f0169a170722)
             check_type(argname="argument container_name", value=container_name, expected_type=type_hints["container_name"])
             check_type(argname="argument max_allowed", value=max_allowed, expected_type=type_hints["max_allowed"])
             check_type(argname="argument min_allowed", value=min_allowed, expected_type=type_hints["min_allowed"])
@@ -1701,7 +1705,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMaxAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34d6b77a70ee0211e503a20956b0ba579708b52b04480f66cab005ee63fac135)
+            type_hints = cached_type_hints(_typecheckingstub__34d6b77a70ee0211e503a20956b0ba579708b52b04480f66cab005ee63fac135)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMaxAllowed", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -1715,7 +1719,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMaxAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ae3cf7bbfce7e31dd0f70760de9c879ff4cdea48512f1a94084eb81afaaa70ac)
+            type_hints = cached_type_hints(_typecheckingstub__ae3cf7bbfce7e31dd0f70760de9c879ff4cdea48512f1a94084eb81afaaa70ac)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMaxAllowed", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -1743,7 +1747,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMinAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8e54aa4f5ee4a3a1d8bf5fc549d79bda640fd52623091c88e457a8541d962f48)
+            type_hints = cached_type_hints(_typecheckingstub__8e54aa4f5ee4a3a1d8bf5fc549d79bda640fd52623091c88e457a8541d962f48)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMinAllowed", jsii.sinvoke(cls, "fromNumber", [value]))
 
@@ -1757,7 +1761,7 @@ class VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMinAllowed(
         :param value: -
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4edbe499599341ff3077182dad7ca8e4442befbe9c670d59195effa558372419)
+            type_hints = cached_type_hints(_typecheckingstub__4edbe499599341ff3077182dad7ca8e4442befbe9c670d59195effa558372419)
             check_type(argname="argument value", value=value, expected_type=type_hints["value"])
         return typing.cast("VerticalPodAutoscalerV1Beta2SpecResourcePolicyContainerPoliciesMinAllowed", jsii.sinvoke(cls, "fromString", [value]))
 
@@ -1806,7 +1810,7 @@ class VerticalPodAutoscalerV1Beta2SpecTargetRef:
         :schema: VerticalPodAutoscalerV1Beta2SpecTargetRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f17c3920203c108e147cc631476784035b9441bcc15ab7cf47800cad0cbfac10)
+            type_hints = cached_type_hints(_typecheckingstub__f17c3920203c108e147cc631476784035b9441bcc15ab7cf47800cad0cbfac10)
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument api_version", value=api_version, expected_type=type_hints["api_version"])
@@ -1883,7 +1887,7 @@ class VerticalPodAutoscalerV1Beta2SpecUpdatePolicy:
         :schema: VerticalPodAutoscalerV1Beta2SpecUpdatePolicy
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6745106fd41202b69ac4f89545bd10e7a4e347bcf067bd1dc7b2b535eb8dd61d)
+            type_hints = cached_type_hints(_typecheckingstub__6745106fd41202b69ac4f89545bd10e7a4e347bcf067bd1dc7b2b535eb8dd61d)
             check_type(argname="argument update_mode", value=update_mode, expected_type=type_hints["update_mode"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if update_mode is not None:

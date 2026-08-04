@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pkgutil import extend_path
 __path__ = extend_path(__path__, __name__)
 
@@ -11,27 +13,29 @@ import jsii
 import publication
 import typing_extensions
 
-import typeguard
-from importlib.metadata import version as _metadata_package_version
-TYPEGUARD_MAJOR_VERSION = int(_metadata_package_version('typeguard').split('.')[0])
+from jsii._type_checking import cached_type_hints, check_type
 
-def check_type(argname: str, value: object, expected_type: typing.Any) -> typing.Any:
-    if TYPEGUARD_MAJOR_VERSION <= 2:
-        return typeguard.check_type(argname=argname, value=value, expected_type=expected_type) # type:ignore
-    else:
-        if isinstance(value, jsii._reference_map.InterfaceDynamicProxy): # pyright: ignore [reportAttributeAccessIssue]
-           pass
-        else:
-            if TYPEGUARD_MAJOR_VERSION == 3:
-                typeguard.config.collection_check_strategy = typeguard.CollectionCheckStrategy.ALL_ITEMS # type:ignore
-                typeguard.check_type(value=value, expected_type=expected_type) # type:ignore
-            else:
-                typeguard.check_type(value=value, expected_type=expected_type, collection_check_strategy=typeguard.CollectionCheckStrategy.ALL_ITEMS) # type:ignore
 
 from ._jsii import *
 
-import cdk8s as _cdk8s_d3d9af27
-import constructs as _constructs_77d1e7e8
+class _LazyImport:
+    def __init__(self, module_name: str) -> None:
+        self._module_name = module_name
+        self._module: typing.Any = None
+    def __getattr__(self, name: str) -> typing.Any:
+        if self._module is None:
+            import importlib
+            self._module = importlib.import_module(self._module_name)
+        return getattr(self._module, name)
+
+if typing.TYPE_CHECKING:
+
+    import cdk8s as _cdk8s_d3d9af27
+    import constructs as _constructs_77d1e7e8
+else:
+
+    _cdk8s_d3d9af27 = _LazyImport("cdk8s")
+    _constructs_77d1e7e8 = _LazyImport("constructs")
 
 
 class AcrAccessToken(
@@ -67,7 +71,7 @@ class AcrAccessToken(
         :param spec: ACRAccessTokenSpec defines how to generate the access token e.g. how to authenticate and which registry to use. see: https://github.com/Azure/acr/blob/main/docs/AAD-OAuth.md#overview.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b58469b24a4dd77e433bdd0894fb9acf8f428c176df20a9d7a18d63dc8d907f4)
+            type_hints = cached_type_hints(_typecheckingstub__b58469b24a4dd77e433bdd0894fb9acf8f428c176df20a9d7a18d63dc8d907f4)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = AcrAccessTokenProps(metadata=metadata, spec=spec)
@@ -136,7 +140,7 @@ class AcrAccessTokenProps:
         if isinstance(spec, dict):
             spec = AcrAccessTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__780b658e8801c2a8877f481fd986fe4cdd0d99fbeb702002190f4aa500cbb559)
+            type_hints = cached_type_hints(_typecheckingstub__780b658e8801c2a8877f481fd986fe4cdd0d99fbeb702002190f4aa500cbb559)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -208,7 +212,7 @@ class AcrAccessTokenSpec:
         if isinstance(auth, dict):
             auth = AcrAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e1188e5929acfbbe541de058d5bdc0c3e6d440a2035d6ce86ae825d2b5970383)
+            type_hints = cached_type_hints(_typecheckingstub__e1188e5929acfbbe541de058d5bdc0c3e6d440a2035d6ce86ae825d2b5970383)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument registry", value=registry, expected_type=type_hints["registry"])
             check_type(argname="argument environment_type", value=environment_type, expected_type=type_hints["environment_type"])
@@ -328,7 +332,7 @@ class AcrAccessTokenSpecAuth:
         if isinstance(workload_identity, dict):
             workload_identity = AcrAccessTokenSpecAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3a17eab72333c02296dc7f6307c29604ea9a40c1ce436bd269d4191d4709bb1d)
+            type_hints = cached_type_hints(_typecheckingstub__3a17eab72333c02296dc7f6307c29604ea9a40c1ce436bd269d4191d4709bb1d)
             check_type(argname="argument managed_identity", value=managed_identity, expected_type=type_hints["managed_identity"])
             check_type(argname="argument service_principal", value=service_principal, expected_type=type_hints["service_principal"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
@@ -399,7 +403,7 @@ class AcrAccessTokenSpecAuthManagedIdentity:
         :schema: AcrAccessTokenSpecAuthManagedIdentity
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d3496f91014f90715c72e1d9c0fa20f3cfc6a3f8c9e3ac3235a69b7ccde7fbb8)
+            type_hints = cached_type_hints(_typecheckingstub__d3496f91014f90715c72e1d9c0fa20f3cfc6a3f8c9e3ac3235a69b7ccde7fbb8)
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if identity_id is not None:
@@ -446,7 +450,7 @@ class AcrAccessTokenSpecAuthServicePrincipal:
         if isinstance(secret_ref, dict):
             secret_ref = AcrAccessTokenSpecAuthServicePrincipalSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__782de22c9a1e53cf71ef721256c452f555b4a87fa61fa3657699af35b2d4fc9c)
+            type_hints = cached_type_hints(_typecheckingstub__782de22c9a1e53cf71ef721256c452f555b4a87fa61fa3657699af35b2d4fc9c)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
@@ -502,7 +506,7 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRef:
         if isinstance(client_secret, dict):
             client_secret = AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret(**client_secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a984720a180e603b46cc0b78e2bed7f4b7631e98821965df9496bdb760e60e39)
+            type_hints = cached_type_hints(_typecheckingstub__a984720a180e603b46cc0b78e2bed7f4b7631e98821965df9496bdb760e60e39)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -567,7 +571,7 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId:
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientId
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0b79bca6f37947d2a7ae2c512a6aab77a20054adb9de54b29e1fb65eace7f4c5)
+            type_hints = cached_type_hints(_typecheckingstub__0b79bca6f37947d2a7ae2c512a6aab77a20054adb9de54b29e1fb65eace7f4c5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -644,7 +648,7 @@ class AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret:
         :schema: AcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__59ab052d3221edb153fc5273b3020c1f9474bc5688618e2d67fe9c5f9141ec6e)
+            type_hints = cached_type_hints(_typecheckingstub__59ab052d3221edb153fc5273b3020c1f9474bc5688618e2d67fe9c5f9141ec6e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -719,7 +723,7 @@ class AcrAccessTokenSpecAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__75713e68e1305d61adc704c00bc5068c4d3765385d5bb9b2bd763d760a61d39c)
+            type_hints = cached_type_hints(_typecheckingstub__75713e68e1305d61adc704c00bc5068c4d3765385d5bb9b2bd763d760a61d39c)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -770,7 +774,7 @@ class AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
         :schema: AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ddf0afa1f998410811287e82c3097165fb87092b51d21d6220a7bd0ceedb8ebe)
+            type_hints = cached_type_hints(_typecheckingstub__ddf0afa1f998410811287e82c3097165fb87092b51d21d6220a7bd0ceedb8ebe)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -847,6 +851,816 @@ class AcrAccessTokenSpecEnvironmentType(enum.Enum):
     '''AzureStackCloud.'''
 
 
+class BeyondtrustWorkloadCredentialsDynamicSecret(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecret",
+):
+    '''BeyondtrustWorkloadCredentialsDynamicSecret represents a generator that requests dynamic credentials from BeyondTrust Workload Credentials.
+
+    This generator calls the BeyondTrust Workload Credentials API to generate fresh, temporary credentials
+    (such as AWS STS credentials) each time an ExternalSecret is refreshed.
+    Dynamic secret definitions must be created in BeyondTrust Workload Credentials before they can be referenced.
+    For complete documentation, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+    :schema: BeyondtrustWorkloadCredentialsDynamicSecret
+    '''
+
+    def __init__(
+        self,
+        scope: "_constructs_77d1e7e8.Construct",
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "BeyondtrustWorkloadCredentialsDynamicSecret" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator. This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials. For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__5df22c031c75cb2a8caa5083c6968c551d9a924db6b3a60fa083b9cf5b3f00e0)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = BeyondtrustWorkloadCredentialsDynamicSecretProps(
+            metadata=metadata, spec=spec
+        )
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "BeyondtrustWorkloadCredentialsDynamicSecret".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator. This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials. For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        '''
+        props = BeyondtrustWorkloadCredentialsDynamicSecretProps(
+            metadata=metadata, spec=spec
+        )
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
+        '''Returns the apiVersion and kind for "BeyondtrustWorkloadCredentialsDynamicSecret".'''
+        return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''BeyondtrustWorkloadCredentialsDynamicSecret represents a generator that requests dynamic credentials from BeyondTrust Workload Credentials.
+
+        This generator calls the BeyondTrust Workload Credentials API to generate fresh, temporary credentials
+        (such as AWS STS credentials) each time an ExternalSecret is refreshed.
+        Dynamic secret definitions must be created in BeyondTrust Workload Credentials before they can be referenced.
+        For complete documentation, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param metadata: 
+        :param spec: BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator. This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials. For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecret
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = BeyondtrustWorkloadCredentialsDynamicSecretSpec(**spec)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__902d5c9ef490f1a27ebc521d12706a8718e3eccdffc7ad82852ac857f0c6ca34)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["_cdk8s_d3d9af27.ApiObjectMetadata"]:
+        '''
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecret#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["_cdk8s_d3d9af27.ApiObjectMetadata"], result)
+
+    @builtins.property
+    def spec(
+        self,
+    ) -> typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpec"]:
+        '''BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator.
+
+        This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials.
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecret#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "provider": "provider",
+        "controller": "controller",
+        "retry_settings": "retrySettings",
+    },
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpec:
+    def __init__(
+        self,
+        *,
+        provider: typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider", typing.Dict[builtins.str, typing.Any]],
+        controller: typing.Optional[builtins.str] = None,
+        retry_settings: typing.Optional[typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator.
+
+        This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials.
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param provider: Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition. The folderPath should point to a dynamic secret definition that has been created in BeyondTrust Workload Credentials (e.g., "production/aws-temp"). For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        :param controller: Controller selects the controller that should handle this generator. Leave empty to use the default controller.
+        :param retry_settings: RetrySettings configures exponential backoff for failed API requests. If not specified, uses the default retry settings.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpec
+        '''
+        if isinstance(provider, dict):
+            provider = BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider(**provider)
+        if isinstance(retry_settings, dict):
+            retry_settings = BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings(**retry_settings)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__851dbc2ee0a67189739b961c482f8cda5ae68985ea343444573886b5b11b9c6c)
+            check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
+            check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
+            check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "provider": provider,
+        }
+        if controller is not None:
+            self._values["controller"] = controller
+        if retry_settings is not None:
+            self._values["retry_settings"] = retry_settings
+
+    @builtins.property
+    def provider(self) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider":
+        '''Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition.
+
+        The folderPath should point to a dynamic secret definition that has been created in
+        BeyondTrust Workload Credentials (e.g., "production/aws-temp").
+        For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpec#provider
+        '''
+        result = self._values.get("provider")
+        assert result is not None, "Required property 'provider' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider", result)
+
+    @builtins.property
+    def controller(self) -> typing.Optional[builtins.str]:
+        '''Controller selects the controller that should handle this generator.
+
+        Leave empty to use the default controller.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpec#controller
+        '''
+        result = self._values.get("controller")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def retry_settings(
+        self,
+    ) -> typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings"]:
+        '''RetrySettings configures exponential backoff for failed API requests.
+
+        If not specified, uses the default retry settings.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpec#retrySettings
+        '''
+        result = self._values.get("retry_settings")
+        return typing.cast(typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "auth": "auth",
+        "server": "server",
+        "ca_bundle": "caBundle",
+        "ca_provider": "caProvider",
+        "folder_path": "folderPath",
+    },
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]],
+        server: typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer", typing.Dict[builtins.str, typing.Any]],
+        ca_bundle: typing.Optional[builtins.str] = None,
+        ca_provider: typing.Optional[typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
+        folder_path: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition.
+
+        The folderPath should point to a dynamic secret definition that has been created in
+        BeyondTrust Workload Credentials (e.g., "production/aws-temp").
+        For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param auth: Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API. Currently supports API key authentication via Kubernetes secret reference. For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+        :param server: Server configures the BeyondTrust Workload Credentials server connection details. Includes the API URL and Site ID for your BeyondTrust instance. For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        :param ca_bundle: CABundle is a base64-encoded CA certificate used to validate the BeyondTrust Workload Credentials API TLS certificate. Use this when your BeyondTrust instance uses a self-signed certificate or internal CA. If not set, the system's trusted root certificates are used.
+        :param ca_provider: CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate. This is used to validate the BeyondTrust Workload Credentials API TLS certificate. Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+        :param folder_path: FolderPath specifies the default folder path for secret retrieval. Secrets will be fetched from this folder unless overridden in the ExternalSecret spec. Example: "production/database" or "dev/api-keys" Leave empty to retrieve secrets from the root folder. For folder organization, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#folders
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider
+        '''
+        if isinstance(auth, dict):
+            auth = BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth(**auth)
+        if isinstance(server, dict):
+            server = BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer(**server)
+        if isinstance(ca_provider, dict):
+            ca_provider = BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider(**ca_provider)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__2d7ba1d3bcd9969030a6b928e2c4a9840985cbb6f83594501a5cae61a25368a0)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument server", value=server, expected_type=type_hints["server"])
+            check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
+            check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
+            check_type(argname="argument folder_path", value=folder_path, expected_type=type_hints["folder_path"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "server": server,
+        }
+        if ca_bundle is not None:
+            self._values["ca_bundle"] = ca_bundle
+        if ca_provider is not None:
+            self._values["ca_provider"] = ca_provider
+        if folder_path is not None:
+            self._values["folder_path"] = folder_path
+
+    @builtins.property
+    def auth(self) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth":
+        '''Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API.
+
+        Currently supports API key authentication via Kubernetes secret reference.
+        For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth", result)
+
+    @builtins.property
+    def server(self) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer":
+        '''Server configures the BeyondTrust Workload Credentials server connection details.
+
+        Includes the API URL and Site ID for your BeyondTrust instance.
+        For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#server
+        '''
+        result = self._values.get("server")
+        assert result is not None, "Required property 'server' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer", result)
+
+    @builtins.property
+    def ca_bundle(self) -> typing.Optional[builtins.str]:
+        '''CABundle is a base64-encoded CA certificate used to validate the BeyondTrust Workload Credentials API TLS certificate.
+
+        Use this when your BeyondTrust instance uses a self-signed certificate or internal CA.
+        If not set, the system's trusted root certificates are used.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#caBundle
+        '''
+        result = self._values.get("ca_bundle")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def ca_provider(
+        self,
+    ) -> typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider"]:
+        '''CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate.
+
+        This is used to validate the BeyondTrust Workload Credentials API TLS certificate.
+        Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#caProvider
+        '''
+        result = self._values.get("ca_provider")
+        return typing.cast(typing.Optional["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider"], result)
+
+    @builtins.property
+    def folder_path(self) -> typing.Optional[builtins.str]:
+        '''FolderPath specifies the default folder path for secret retrieval.
+
+        Secrets will be fetched from this folder unless overridden in the ExternalSecret spec.
+        Example: "production/database" or "dev/api-keys"
+        Leave empty to retrieve secrets from the root folder.
+        For folder organization, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#folders
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#folderPath
+        '''
+        result = self._values.get("folder_path")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth",
+    jsii_struct_bases=[],
+    name_mapping={"apikey": "apikey"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth:
+    def __init__(
+        self,
+        *,
+        apikey: typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API.
+
+        Currently supports API key authentication via Kubernetes secret reference.
+        For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :param apikey: APIKey configures API token authentication for BeyondTrust Workload Credentials. The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth
+        '''
+        if isinstance(apikey, dict):
+            apikey = BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey(**apikey)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__55dd0abc652c1cdb5118c4aabd4c41faf3a6524d5441f9cd2fad980b792f3701)
+            check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "apikey": apikey,
+        }
+
+    @builtins.property
+    def apikey(
+        self,
+    ) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey":
+        '''APIKey configures API token authentication for BeyondTrust Workload Credentials.
+
+        The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth#apikey
+        '''
+        result = self._values.get("apikey")
+        assert result is not None, "Required property 'apikey' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''APIKey configures API token authentication for BeyondTrust Workload Credentials.
+
+        The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :param token: Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token. The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials. Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret. For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey
+        '''
+        if isinstance(token, dict):
+            token = BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken(**token)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__1ae136b61afdfe5ea0d666c0786dc737012aea43946bc134d5ec4cb3d8e1592f)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(
+        self,
+    ) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken":
+        '''Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token.
+
+        The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials.
+        Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret.
+        For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token.
+
+        The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials.
+        Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret.
+        For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a71e4eb4f593576dc11f9e337dcb506c2a7bcef0f6b32cd05af3cc4c726b3a4e)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "type": "type",
+        "key": "key",
+        "namespace": "namespace",
+    },
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        type: "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType",
+        key: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate.
+
+        This is used to validate the BeyondTrust Workload Credentials API TLS certificate.
+        Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+
+        :param name: The name of the object located at the provider type.
+        :param type: The type of provider to use such as "Secret", or "ConfigMap".
+        :param key: The key where the CA certificate can be found in the Secret or ConfigMap.
+        :param namespace: The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__79cd7f1799b05ebe0e28dd388aef86abc10d6a81e0e2f0797f69b0ce4cbd750a)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "type": type,
+        }
+        if key is not None:
+            self._values["key"] = key
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the object located at the provider type.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def type(
+        self,
+    ) -> "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType":
+        '''The type of provider to use such as "Secret", or "ConfigMap".
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast("BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType", result)
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the CA certificate can be found in the Secret or ConfigMap.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace the Provider type is in.
+
+        Can only be defined when used in a ClusterSecretStore.
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType"
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType(enum.Enum):
+    '''The type of provider to use such as "Secret", or "ConfigMap".
+
+    :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType
+    '''
+
+    SECRET = "SECRET"
+    '''Secret.'''
+    CONFIG_MAP = "CONFIG_MAP"
+    '''ConfigMap.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer",
+    jsii_struct_bases=[],
+    name_mapping={"api_url": "apiUrl", "site_id": "siteId"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer:
+    def __init__(self, *, api_url: builtins.str, site_id: builtins.str) -> None:
+        '''Server configures the BeyondTrust Workload Credentials server connection details.
+
+        Includes the API URL and Site ID for your BeyondTrust instance.
+        For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param api_url: APIURL is the base URL of your BeyondTrust Workload Credentials API server. This should be the full URL to your BeyondTrust instance. Example: https://api.beyondtrust.io/siie For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#base-url
+        :param site_id: SiteID is your BeyondTrust Workload Credentials site identifier (UUID format). This identifier is unique to your BeyondTrust Workload Credentials instance. You can find your Site ID in the BeyondTrust Workload Credentials admin console. Example: a1b2c3d4-e5f6-4890-abcd-ef1234567890 For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__5d74861878fc979779ffaf7d3601bb4c71743df71a207bda981f1a8dbcdc9fdb)
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+            check_type(argname="argument site_id", value=site_id, expected_type=type_hints["site_id"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_url": api_url,
+            "site_id": site_id,
+        }
+
+    @builtins.property
+    def api_url(self) -> builtins.str:
+        '''APIURL is the base URL of your BeyondTrust Workload Credentials API server.
+
+        This should be the full URL to your BeyondTrust instance.
+        Example: https://api.beyondtrust.io/siie
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#base-url
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer#apiUrl
+        '''
+        result = self._values.get("api_url")
+        assert result is not None, "Required property 'api_url' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def site_id(self) -> builtins.str:
+        '''SiteID is your BeyondTrust Workload Credentials site identifier (UUID format).
+
+        This identifier is unique to your BeyondTrust Workload Credentials instance.
+        You can find your Site ID in the BeyondTrust Workload Credentials admin console.
+        Example: a1b2c3d4-e5f6-4890-abcd-ef1234567890
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer#siteId
+        '''
+        result = self._values.get("site_id")
+        assert result is not None, "Required property 'site_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings",
+    jsii_struct_bases=[],
+    name_mapping={"max_retries": "maxRetries", "retry_interval": "retryInterval"},
+)
+class BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings:
+    def __init__(
+        self,
+        *,
+        max_retries: typing.Optional[jsii.Number] = None,
+        retry_interval: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''RetrySettings configures exponential backoff for failed API requests.
+
+        If not specified, uses the default retry settings.
+
+        :param max_retries: 
+        :param retry_interval: 
+
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__2d17faf0846fd944d8acf558e9046ca45fd3a18bf549bad31d68ecba45092b99)
+            check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
+            check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if max_retries is not None:
+            self._values["max_retries"] = max_retries
+        if retry_interval is not None:
+            self._values["retry_interval"] = retry_interval
+
+    @builtins.property
+    def max_retries(self) -> typing.Optional[jsii.Number]:
+        '''
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings#maxRetries
+        '''
+        result = self._values.get("max_retries")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def retry_interval(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings#retryInterval
+        '''
+        result = self._values.get("retry_interval")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class CloudsmithAccessToken(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -873,7 +1687,7 @@ class CloudsmithAccessToken(
         :param spec: CloudsmithAccessTokenSpec defines the configuration for generating a Cloudsmith access token using OIDC authentication.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8a7a7a71241266fc4bcad24d1e3ed683758199364aa6f6793360ad4140c05222)
+            type_hints = cached_type_hints(_typecheckingstub__8a7a7a71241266fc4bcad24d1e3ed683758199364aa6f6793360ad4140c05222)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = CloudsmithAccessTokenProps(metadata=metadata, spec=spec)
@@ -935,7 +1749,7 @@ class CloudsmithAccessTokenProps:
         if isinstance(spec, dict):
             spec = CloudsmithAccessTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4bc71d26b4e63684954f4630ae279d86c0d699124a2fa43b719aa761774dbdbf)
+            type_hints = cached_type_hints(_typecheckingstub__4bc71d26b4e63684954f4630ae279d86c0d699124a2fa43b719aa761774dbdbf)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -1004,7 +1818,7 @@ class CloudsmithAccessTokenSpec:
         if isinstance(service_account_ref, dict):
             service_account_ref = CloudsmithAccessTokenSpecServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a1e7a402a360e74e55534ec2897d635470212b952ebda4887f55c41296292723)
+            type_hints = cached_type_hints(_typecheckingstub__a1e7a402a360e74e55534ec2897d635470212b952ebda4887f55c41296292723)
             check_type(argname="argument org_slug", value=org_slug, expected_type=type_hints["org_slug"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument service_slug", value=service_slug, expected_type=type_hints["service_slug"])
@@ -1094,7 +1908,7 @@ class CloudsmithAccessTokenSpecServiceAccountRef:
         :schema: CloudsmithAccessTokenSpecServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7a398c57a7075a6ee2cee70b683646bed4b48bbe65675bcb0449e26cb45a92a8)
+            type_hints = cached_type_hints(_typecheckingstub__7a398c57a7075a6ee2cee70b683646bed4b48bbe65675bcb0449e26cb45a92a8)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -1174,7 +1988,7 @@ class ClusterGenerator(
         :param spec: ClusterGeneratorSpec defines the desired state of a ClusterGenerator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9a344af75ed1cbccde2cb0736d9fd19650ccfcf8db8041ebef1f47376fdd8893)
+            type_hints = cached_type_hints(_typecheckingstub__9a344af75ed1cbccde2cb0736d9fd19650ccfcf8db8041ebef1f47376fdd8893)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = ClusterGeneratorProps(metadata=metadata, spec=spec)
@@ -1236,7 +2050,7 @@ class ClusterGeneratorProps:
         if isinstance(spec, dict):
             spec = ClusterGeneratorSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__207c380f932a7c6b5b9d3e0bbd7a5201b91f49ecb28f7e16c23097608f878a95)
+            type_hints = cached_type_hints(_typecheckingstub__207c380f932a7c6b5b9d3e0bbd7a5201b91f49ecb28f7e16c23097608f878a95)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -1296,7 +2110,7 @@ class ClusterGeneratorSpec:
         if isinstance(generator, dict):
             generator = ClusterGeneratorSpecGenerator(**generator)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__64d7f76e7038ac114e970dfd5c153b3eb78c0bd1f509f47d2e2323fe85dee042)
+            type_hints = cached_type_hints(_typecheckingstub__64d7f76e7038ac114e970dfd5c153b3eb78c0bd1f509f47d2e2323fe85dee042)
             check_type(argname="argument generator", value=generator, expected_type=type_hints["generator"])
             check_type(argname="argument kind", value=kind, expected_type=type_hints["kind"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -1341,11 +2155,13 @@ class ClusterGeneratorSpec:
     jsii_struct_bases=[],
     name_mapping={
         "acr_access_token_spec": "acrAccessTokenSpec",
+        "beyondtrust_workload_credentials_dynamic_secret_spec": "beyondtrustWorkloadCredentialsDynamicSecretSpec",
         "cloudsmith_access_token_spec": "cloudsmithAccessTokenSpec",
         "ecr_authorization_token_spec": "ecrAuthorizationTokenSpec",
         "fake_spec": "fakeSpec",
         "gcr_access_token_spec": "gcrAccessTokenSpec",
         "github_access_token_spec": "githubAccessTokenSpec",
+        "gitlab_deploy_token_spec": "gitlabDeployTokenSpec",
         "grafana_spec": "grafanaSpec",
         "mfa_spec": "mfaSpec",
         "password_spec": "passwordSpec",
@@ -1362,11 +2178,13 @@ class ClusterGeneratorSpecGenerator:
         self,
         *,
         acr_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorAcrAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+        beyondtrust_workload_credentials_dynamic_secret_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         cloudsmith_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         ecr_authorization_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         fake_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorFakeSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         gcr_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGcrAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         github_access_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGithubAccessTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+        gitlab_deploy_token_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         grafana_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGrafanaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         mfa_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorMfaSpec", typing.Dict[builtins.str, typing.Any]]] = None,
         password_spec: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorPasswordSpec", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -1380,11 +2198,13 @@ class ClusterGeneratorSpecGenerator:
         '''Generator the spec for this generator, must match the kind.
 
         :param acr_access_token_spec: ACRAccessTokenSpec defines how to generate the access token e.g. how to authenticate and which registry to use. see: https://github.com/Azure/acr/blob/main/docs/AAD-OAuth.md#overview.
+        :param beyondtrust_workload_credentials_dynamic_secret_spec: BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator. This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials. For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
         :param cloudsmith_access_token_spec: CloudsmithAccessTokenSpec defines the configuration for generating a Cloudsmith access token using OIDC authentication.
         :param ecr_authorization_token_spec: ECRAuthorizationTokenSpec defines the desired state to generate an AWS ECR authorization token.
         :param fake_spec: FakeSpec contains the static data.
         :param gcr_access_token_spec: GCRAccessTokenSpec defines the desired state to generate a Google Container Registry access token.
         :param github_access_token_spec: GithubAccessTokenSpec defines the desired state to generate a GitHub access token.
+        :param gitlab_deploy_token_spec: GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
         :param grafana_spec: GrafanaSpec controls the behavior of the grafana generator.
         :param mfa_spec: MFASpec controls the behavior of the mfa generator.
         :param password_spec: PasswordSpec controls the behavior of the password generator.
@@ -1399,6 +2219,8 @@ class ClusterGeneratorSpecGenerator:
         '''
         if isinstance(acr_access_token_spec, dict):
             acr_access_token_spec = ClusterGeneratorSpecGeneratorAcrAccessTokenSpec(**acr_access_token_spec)
+        if isinstance(beyondtrust_workload_credentials_dynamic_secret_spec, dict):
+            beyondtrust_workload_credentials_dynamic_secret_spec = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec(**beyondtrust_workload_credentials_dynamic_secret_spec)
         if isinstance(cloudsmith_access_token_spec, dict):
             cloudsmith_access_token_spec = ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec(**cloudsmith_access_token_spec)
         if isinstance(ecr_authorization_token_spec, dict):
@@ -1409,6 +2231,8 @@ class ClusterGeneratorSpecGenerator:
             gcr_access_token_spec = ClusterGeneratorSpecGeneratorGcrAccessTokenSpec(**gcr_access_token_spec)
         if isinstance(github_access_token_spec, dict):
             github_access_token_spec = ClusterGeneratorSpecGeneratorGithubAccessTokenSpec(**github_access_token_spec)
+        if isinstance(gitlab_deploy_token_spec, dict):
+            gitlab_deploy_token_spec = ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec(**gitlab_deploy_token_spec)
         if isinstance(grafana_spec, dict):
             grafana_spec = ClusterGeneratorSpecGeneratorGrafanaSpec(**grafana_spec)
         if isinstance(mfa_spec, dict):
@@ -1426,13 +2250,15 @@ class ClusterGeneratorSpecGenerator:
         if isinstance(webhook_spec, dict):
             webhook_spec = ClusterGeneratorSpecGeneratorWebhookSpec(**webhook_spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__75697d100ce0404120222110ca16af3984f4ab31958e84b7756b37400e311f59)
+            type_hints = cached_type_hints(_typecheckingstub__75697d100ce0404120222110ca16af3984f4ab31958e84b7756b37400e311f59)
             check_type(argname="argument acr_access_token_spec", value=acr_access_token_spec, expected_type=type_hints["acr_access_token_spec"])
+            check_type(argname="argument beyondtrust_workload_credentials_dynamic_secret_spec", value=beyondtrust_workload_credentials_dynamic_secret_spec, expected_type=type_hints["beyondtrust_workload_credentials_dynamic_secret_spec"])
             check_type(argname="argument cloudsmith_access_token_spec", value=cloudsmith_access_token_spec, expected_type=type_hints["cloudsmith_access_token_spec"])
             check_type(argname="argument ecr_authorization_token_spec", value=ecr_authorization_token_spec, expected_type=type_hints["ecr_authorization_token_spec"])
             check_type(argname="argument fake_spec", value=fake_spec, expected_type=type_hints["fake_spec"])
             check_type(argname="argument gcr_access_token_spec", value=gcr_access_token_spec, expected_type=type_hints["gcr_access_token_spec"])
             check_type(argname="argument github_access_token_spec", value=github_access_token_spec, expected_type=type_hints["github_access_token_spec"])
+            check_type(argname="argument gitlab_deploy_token_spec", value=gitlab_deploy_token_spec, expected_type=type_hints["gitlab_deploy_token_spec"])
             check_type(argname="argument grafana_spec", value=grafana_spec, expected_type=type_hints["grafana_spec"])
             check_type(argname="argument mfa_spec", value=mfa_spec, expected_type=type_hints["mfa_spec"])
             check_type(argname="argument password_spec", value=password_spec, expected_type=type_hints["password_spec"])
@@ -1445,6 +2271,8 @@ class ClusterGeneratorSpecGenerator:
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if acr_access_token_spec is not None:
             self._values["acr_access_token_spec"] = acr_access_token_spec
+        if beyondtrust_workload_credentials_dynamic_secret_spec is not None:
+            self._values["beyondtrust_workload_credentials_dynamic_secret_spec"] = beyondtrust_workload_credentials_dynamic_secret_spec
         if cloudsmith_access_token_spec is not None:
             self._values["cloudsmith_access_token_spec"] = cloudsmith_access_token_spec
         if ecr_authorization_token_spec is not None:
@@ -1455,6 +2283,8 @@ class ClusterGeneratorSpecGenerator:
             self._values["gcr_access_token_spec"] = gcr_access_token_spec
         if github_access_token_spec is not None:
             self._values["github_access_token_spec"] = github_access_token_spec
+        if gitlab_deploy_token_spec is not None:
+            self._values["gitlab_deploy_token_spec"] = gitlab_deploy_token_spec
         if grafana_spec is not None:
             self._values["grafana_spec"] = grafana_spec
         if mfa_spec is not None:
@@ -1484,6 +2314,20 @@ class ClusterGeneratorSpecGenerator:
         '''
         result = self._values.get("acr_access_token_spec")
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorAcrAccessTokenSpec"], result)
+
+    @builtins.property
+    def beyondtrust_workload_credentials_dynamic_secret_spec(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec"]:
+        '''BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator.
+
+        This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials.
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: ClusterGeneratorSpecGenerator#beyondtrustWorkloadCredentialsDynamicSecretSpec
+        '''
+        result = self._values.get("beyondtrust_workload_credentials_dynamic_secret_spec")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec"], result)
 
     @builtins.property
     def cloudsmith_access_token_spec(
@@ -1537,6 +2381,17 @@ class ClusterGeneratorSpecGenerator:
         '''
         result = self._values.get("github_access_token_spec")
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpec"], result)
+
+    @builtins.property
+    def gitlab_deploy_token_spec(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec"]:
+        '''GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+
+        :schema: ClusterGeneratorSpecGenerator#gitlabDeployTokenSpec
+        '''
+        result = self._values.get("gitlab_deploy_token_spec")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec"], result)
 
     @builtins.property
     def grafana_spec(
@@ -1681,7 +2536,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpec:
         if isinstance(auth, dict):
             auth = ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__32c3cfb77fca6e94afe340dbd2ce7fd362533690b4a5bb8be7f89eb9ffad6954)
+            type_hints = cached_type_hints(_typecheckingstub__32c3cfb77fca6e94afe340dbd2ce7fd362533690b4a5bb8be7f89eb9ffad6954)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument registry", value=registry, expected_type=type_hints["registry"])
             check_type(argname="argument environment_type", value=environment_type, expected_type=type_hints["environment_type"])
@@ -1803,7 +2658,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuth:
         if isinstance(workload_identity, dict):
             workload_identity = ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentity(**workload_identity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__072c1a68bb9ff416e5ccefff762ee5c327b6c6de3469b1275eb05d997ced3f3c)
+            type_hints = cached_type_hints(_typecheckingstub__072c1a68bb9ff416e5ccefff762ee5c327b6c6de3469b1275eb05d997ced3f3c)
             check_type(argname="argument managed_identity", value=managed_identity, expected_type=type_hints["managed_identity"])
             check_type(argname="argument service_principal", value=service_principal, expected_type=type_hints["service_principal"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
@@ -1874,7 +2729,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthManagedIdentity:
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthManagedIdentity
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dd8060e4227f6226de189ed62d96d1dc8717d4afe6b8a4bc76056e4f094009e4)
+            type_hints = cached_type_hints(_typecheckingstub__dd8060e4227f6226de189ed62d96d1dc8717d4afe6b8a4bc76056e4f094009e4)
             check_type(argname="argument identity_id", value=identity_id, expected_type=type_hints["identity_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if identity_id is not None:
@@ -1921,7 +2776,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipal:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__225e6080231fd8bc5a63fd915cf9ab3f134297b9a067f5474ad283159e35a281)
+            type_hints = cached_type_hints(_typecheckingstub__225e6080231fd8bc5a63fd915cf9ab3f134297b9a067f5474ad283159e35a281)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
@@ -1979,7 +2834,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretR
         if isinstance(client_secret, dict):
             client_secret = ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret(**client_secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0576c090978772e2637761bf2418b1e576ad1ee0c6e30e25ce92dde0912a4403)
+            type_hints = cached_type_hints(_typecheckingstub__0576c090978772e2637761bf2418b1e576ad1ee0c6e30e25ce92dde0912a4403)
             check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
             check_type(argname="argument client_secret", value=client_secret, expected_type=type_hints["client_secret"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -2044,7 +2899,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretR
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretRefClientId
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e68cf16cb70f2ae0d8972eedac8e207caacf468d8b68461fac4d28c373642ec2)
+            type_hints = cached_type_hints(_typecheckingstub__e68cf16cb70f2ae0d8972eedac8e207caacf468d8b68461fac4d28c373642ec2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2121,7 +2976,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretR
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthServicePrincipalSecretRefClientSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__788ff2bccef6a0ebbe6b1098111be5ad2ba7eee98205a83d00e256cd60b90fe1)
+            type_hints = cached_type_hints(_typecheckingstub__788ff2bccef6a0ebbe6b1098111be5ad2ba7eee98205a83d00e256cd60b90fe1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2196,7 +3051,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7a4acab66a42181590587e19c100a1d7003b65b1d598652c5f1488434a472fee)
+            type_hints = cached_type_hints(_typecheckingstub__7a4acab66a42181590587e19c100a1d7003b65b1d598652c5f1488434a472fee)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -2247,7 +3102,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityService
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2c68f57cbeb67b574e5a877d5e187c847dc30c3640b23c4c04763b2a37647017)
+            type_hints = cached_type_hints(_typecheckingstub__2c68f57cbeb67b574e5a877d5e187c847dc30c3640b23c4c04763b2a37647017)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2327,6 +3182,679 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecEnvironmentType(enum.Enum):
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "provider": "provider",
+        "controller": "controller",
+        "retry_settings": "retrySettings",
+    },
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec:
+    def __init__(
+        self,
+        *,
+        provider: typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider", typing.Dict[builtins.str, typing.Any]],
+        controller: typing.Optional[builtins.str] = None,
+        retry_settings: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''BeyondtrustWorkloadCredentialsDynamicSecretSpec defines the desired spec for BeyondtrustWorkloadCredentials dynamic generator.
+
+        This generator enables obtaining temporary, short-lived credentials from BeyondTrust Workload Credentials.
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param provider: Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition. The folderPath should point to a dynamic secret definition that has been created in BeyondTrust Workload Credentials (e.g., "production/aws-temp"). For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        :param controller: Controller selects the controller that should handle this generator. Leave empty to use the default controller.
+        :param retry_settings: RetrySettings configures exponential backoff for failed API requests. If not specified, uses the default retry settings.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec
+        '''
+        if isinstance(provider, dict):
+            provider = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider(**provider)
+        if isinstance(retry_settings, dict):
+            retry_settings = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings(**retry_settings)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__6d77d872b1a154e4bb2cff7cda1fe505676f67d18cf3d6427d0abd7132de349f)
+            check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
+            check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
+            check_type(argname="argument retry_settings", value=retry_settings, expected_type=type_hints["retry_settings"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "provider": provider,
+        }
+        if controller is not None:
+            self._values["controller"] = controller
+        if retry_settings is not None:
+            self._values["retry_settings"] = retry_settings
+
+    @builtins.property
+    def provider(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider":
+        '''Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition.
+
+        The folderPath should point to a dynamic secret definition that has been created in
+        BeyondTrust Workload Credentials (e.g., "production/aws-temp").
+        For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec#provider
+        '''
+        result = self._values.get("provider")
+        assert result is not None, "Required property 'provider' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider", result)
+
+    @builtins.property
+    def controller(self) -> typing.Optional[builtins.str]:
+        '''Controller selects the controller that should handle this generator.
+
+        Leave empty to use the default controller.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec#controller
+        '''
+        result = self._values.get("controller")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def retry_settings(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings"]:
+        '''RetrySettings configures exponential backoff for failed API requests.
+
+        If not specified, uses the default retry settings.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec#retrySettings
+        '''
+        result = self._values.get("retry_settings")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "auth": "auth",
+        "server": "server",
+        "ca_bundle": "caBundle",
+        "ca_provider": "caProvider",
+        "folder_path": "folderPath",
+    },
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth", typing.Dict[builtins.str, typing.Any]],
+        server: typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer", typing.Dict[builtins.str, typing.Any]],
+        ca_bundle: typing.Optional[builtins.str] = None,
+        ca_provider: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
+        folder_path: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Provider contains the BeyondtrustWorkloadCredentials provider configuration including authentication, server connection details, and the folder path to the dynamic secret definition.
+
+        The folderPath should point to a dynamic secret definition that has been created in
+        BeyondTrust Workload Credentials (e.g., "production/aws-temp").
+        For setup details, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param auth: Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API. Currently supports API key authentication via Kubernetes secret reference. For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+        :param server: Server configures the BeyondTrust Workload Credentials server connection details. Includes the API URL and Site ID for your BeyondTrust instance. For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+        :param ca_bundle: CABundle is a base64-encoded CA certificate used to validate the BeyondTrust Workload Credentials API TLS certificate. Use this when your BeyondTrust instance uses a self-signed certificate or internal CA. If not set, the system's trusted root certificates are used.
+        :param ca_provider: CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate. This is used to validate the BeyondTrust Workload Credentials API TLS certificate. Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+        :param folder_path: FolderPath specifies the default folder path for secret retrieval. Secrets will be fetched from this folder unless overridden in the ExternalSecret spec. Example: "production/database" or "dev/api-keys" Leave empty to retrieve secrets from the root folder. For folder organization, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#folders
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth(**auth)
+        if isinstance(server, dict):
+            server = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer(**server)
+        if isinstance(ca_provider, dict):
+            ca_provider = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider(**ca_provider)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__2c617cc4aca120f23b8c686f07e9efebdf4c37c0f90b4fe7bc37933b5426989c)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument server", value=server, expected_type=type_hints["server"])
+            check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
+            check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
+            check_type(argname="argument folder_path", value=folder_path, expected_type=type_hints["folder_path"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "server": server,
+        }
+        if ca_bundle is not None:
+            self._values["ca_bundle"] = ca_bundle
+        if ca_provider is not None:
+            self._values["ca_provider"] = ca_provider
+        if folder_path is not None:
+            self._values["folder_path"] = folder_path
+
+    @builtins.property
+    def auth(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth":
+        '''Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API.
+
+        Currently supports API key authentication via Kubernetes secret reference.
+        For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth", result)
+
+    @builtins.property
+    def server(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer":
+        '''Server configures the BeyondTrust Workload Credentials server connection details.
+
+        Includes the API URL and Site ID for your BeyondTrust instance.
+        For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#server
+        '''
+        result = self._values.get("server")
+        assert result is not None, "Required property 'server' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer", result)
+
+    @builtins.property
+    def ca_bundle(self) -> typing.Optional[builtins.str]:
+        '''CABundle is a base64-encoded CA certificate used to validate the BeyondTrust Workload Credentials API TLS certificate.
+
+        Use this when your BeyondTrust instance uses a self-signed certificate or internal CA.
+        If not set, the system's trusted root certificates are used.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#caBundle
+        '''
+        result = self._values.get("ca_bundle")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def ca_provider(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider"]:
+        '''CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate.
+
+        This is used to validate the BeyondTrust Workload Credentials API TLS certificate.
+        Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#caProvider
+        '''
+        result = self._values.get("ca_provider")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider"], result)
+
+    @builtins.property
+    def folder_path(self) -> typing.Optional[builtins.str]:
+        '''FolderPath specifies the default folder path for secret retrieval.
+
+        Secrets will be fetched from this folder unless overridden in the ExternalSecret spec.
+        Example: "production/database" or "dev/api-keys"
+        Leave empty to retrieve secrets from the root folder.
+        For folder organization, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#folders
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider#folderPath
+        '''
+        result = self._values.get("folder_path")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth",
+    jsii_struct_bases=[],
+    name_mapping={"apikey": "apikey"},
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth:
+    def __init__(
+        self,
+        *,
+        apikey: typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how the Operator authenticates with the BeyondTrust Workload Credentials API.
+
+        Currently supports API key authentication via Kubernetes secret reference.
+        For authentication setup, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :param apikey: APIKey configures API token authentication for BeyondTrust Workload Credentials. The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth
+        '''
+        if isinstance(apikey, dict):
+            apikey = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey(**apikey)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__625812fe63b8a63ddf070b3cee121516bc39449525ec6d1136bae055015c3beb)
+            check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "apikey": apikey,
+        }
+
+    @builtins.property
+    def apikey(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey":
+        '''APIKey configures API token authentication for BeyondTrust Workload Credentials.
+
+        The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth#apikey
+        '''
+        result = self._values.get("apikey")
+        assert result is not None, "Required property 'apikey' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''APIKey configures API token authentication for BeyondTrust Workload Credentials.
+
+        The token is retrieved from a Kubernetes secret and used as a Bearer token for API requests.
+
+        :param token: Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token. The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials. Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret. For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey
+        '''
+        if isinstance(token, dict):
+            token = ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken(**token)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a4c32bfc2690bb3943ce1a5ce58782840f01187d21e81f948decd05bafbfec64)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken":
+        '''Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token.
+
+        The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials.
+        Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret.
+        For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Token references the Kubernetes secret containing the BeyondTrust Workload Credentials API token.
+
+        The secret should contain the API key used to authenticate with BeyondTrust Workload Credentials.
+        Create an API token in your BeyondTrust Workload Credentials console and store it in a Kubernetes secret.
+        For details on creating API tokens, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#authentication
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__e269e53ee3f0295b4b531aa58688628784e2e032ea1f6f7950ac76b08d702b46)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider",
+    jsii_struct_bases=[],
+    name_mapping={
+        "name": "name",
+        "type": "type",
+        "key": "key",
+        "namespace": "namespace",
+    },
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        type: "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType",
+        key: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''CAProvider points to a Secret or ConfigMap containing a PEM-encoded CA certificate.
+
+        This is used to validate the BeyondTrust Workload Credentials API TLS certificate.
+        Use this as an alternative to CABundle when you want to reference an existing Kubernetes resource.
+
+        :param name: The name of the object located at the provider type.
+        :param type: The type of provider to use such as "Secret", or "ConfigMap".
+        :param key: The key where the CA certificate can be found in the Secret or ConfigMap.
+        :param namespace: The namespace the Provider type is in. Can only be defined when used in a ClusterSecretStore.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__8c4ed2499e9bb8386e36a044ac2019509531adaf740a0fb30dfb5436d54217b8)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument type", value=type, expected_type=type_hints["type"])
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+            "type": type,
+        }
+        if key is not None:
+            self._values["key"] = key
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the object located at the provider type.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def type(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType":
+        '''The type of provider to use such as "Secret", or "ConfigMap".
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#type
+        '''
+        result = self._values.get("type")
+        assert result is not None, "Required property 'type' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType", result)
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''The key where the CA certificate can be found in the Secret or ConfigMap.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace the Provider type is in.
+
+        Can only be defined when used in a ClusterSecretStore.
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType"
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType(
+    enum.Enum,
+):
+    '''The type of provider to use such as "Secret", or "ConfigMap".
+
+    :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType
+    '''
+
+    SECRET = "SECRET"
+    '''Secret.'''
+    CONFIG_MAP = "CONFIG_MAP"
+    '''ConfigMap.'''
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer",
+    jsii_struct_bases=[],
+    name_mapping={"api_url": "apiUrl", "site_id": "siteId"},
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer:
+    def __init__(self, *, api_url: builtins.str, site_id: builtins.str) -> None:
+        '''Server configures the BeyondTrust Workload Credentials server connection details.
+
+        Includes the API URL and Site ID for your BeyondTrust instance.
+        For API reference, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :param api_url: APIURL is the base URL of your BeyondTrust Workload Credentials API server. This should be the full URL to your BeyondTrust instance. Example: https://api.beyondtrust.io/siie For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#base-url
+        :param site_id: SiteID is your BeyondTrust Workload Credentials site identifier (UUID format). This identifier is unique to your BeyondTrust Workload Credentials instance. You can find your Site ID in the BeyondTrust Workload Credentials admin console. Example: a1b2c3d4-e5f6-4890-abcd-ef1234567890 For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__da63b608a6c7a046c739ede4fde45770003e4dd5e87087c73429ff1c063dd50b)
+            check_type(argname="argument api_url", value=api_url, expected_type=type_hints["api_url"])
+            check_type(argname="argument site_id", value=site_id, expected_type=type_hints["site_id"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "api_url": api_url,
+            "site_id": site_id,
+        }
+
+    @builtins.property
+    def api_url(self) -> builtins.str:
+        '''APIURL is the base URL of your BeyondTrust Workload Credentials API server.
+
+        This should be the full URL to your BeyondTrust instance.
+        Example: https://api.beyondtrust.io/siie
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api#base-url
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer#apiUrl
+        '''
+        result = self._values.get("api_url")
+        assert result is not None, "Required property 'api_url' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def site_id(self) -> builtins.str:
+        '''SiteID is your BeyondTrust Workload Credentials site identifier (UUID format).
+
+        This identifier is unique to your BeyondTrust Workload Credentials instance.
+        You can find your Site ID in the BeyondTrust Workload Credentials admin console.
+        Example: a1b2c3d4-e5f6-4890-abcd-ef1234567890
+        For more information, see: https://docs.beyondtrust.com/bt-docs/docs/secrets-api
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer#siteId
+        '''
+        result = self._values.get("site_id")
+        assert result is not None, "Required property 'site_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings",
+    jsii_struct_bases=[],
+    name_mapping={"max_retries": "maxRetries", "retry_interval": "retryInterval"},
+)
+class ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings:
+    def __init__(
+        self,
+        *,
+        max_retries: typing.Optional[jsii.Number] = None,
+        retry_interval: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''RetrySettings configures exponential backoff for failed API requests.
+
+        If not specified, uses the default retry settings.
+
+        :param max_retries: 
+        :param retry_interval: 
+
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__72ae597995afb0c045e562f833938172e3533ebe0688ab406997848af179272a)
+            check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
+            check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if max_retries is not None:
+            self._values["max_retries"] = max_retries
+        if retry_interval is not None:
+            self._values["retry_interval"] = retry_interval
+
+    @builtins.property
+    def max_retries(self) -> typing.Optional[jsii.Number]:
+        '''
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings#maxRetries
+        '''
+        result = self._values.get("max_retries")
+        return typing.cast(typing.Optional[jsii.Number], result)
+
+    @builtins.property
+    def retry_interval(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings#retryInterval
+        '''
+        result = self._values.get("retry_interval")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec",
     jsii_struct_bases=[],
     name_mapping={
@@ -2357,7 +3885,7 @@ class ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__52c5f5bab4ea8c55a5b4a509a8aad5365a779d7cdbf972f9f7e4636e886aa45e)
+            type_hints = cached_type_hints(_typecheckingstub__52c5f5bab4ea8c55a5b4a509a8aad5365a779d7cdbf972f9f7e4636e886aa45e)
             check_type(argname="argument org_slug", value=org_slug, expected_type=type_hints["org_slug"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument service_slug", value=service_slug, expected_type=type_hints["service_slug"])
@@ -2449,7 +3977,7 @@ class ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef:
         :schema: ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b57e17e7da6a732b9a4f5844eabf1b5ff9b086a91343406be80ee1f2f9f2f69)
+            type_hints = cached_type_hints(_typecheckingstub__6b57e17e7da6a732b9a4f5844eabf1b5ff9b086a91343406be80ee1f2f9f2f69)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2534,7 +4062,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpec:
         if isinstance(auth, dict):
             auth = ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7feb236f7f8335245adcf0201e0e6420ddf651d09231a4e577189b005b5398b9)
+            type_hints = cached_type_hints(_typecheckingstub__7feb236f7f8335245adcf0201e0e6420ddf651d09231a4e577189b005b5398b9)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
@@ -2626,7 +4154,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b49d7ee1addfbf6e7385a299a9ccc30c848df7b4a1e27f2bda288dd43265d0de)
+            type_hints = cached_type_hints(_typecheckingstub__b49d7ee1addfbf6e7385a299a9ccc30c848df7b4a1e27f2bda288dd43265d0de)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -2689,7 +4217,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__999087dd2add6c11bb5aebdfa9c03015b3c8b3e432c6c576b46596aac07d1c22)
+            type_hints = cached_type_hints(_typecheckingstub__999087dd2add6c11bb5aebdfa9c03015b3c8b3e432c6c576b46596aac07d1c22)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -2740,7 +4268,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccoun
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__544153e51088c5c19ab22ddfc28cae00e464ac73d8349a958d037764766cf9f8)
+            type_hints = cached_type_hints(_typecheckingstub__544153e51088c5c19ab22ddfc28cae00e464ac73d8349a958d037764766cf9f8)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2826,7 +4354,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRef:
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__43a336479ba385edf417d5a66424a3fcf31b9f4115de62dc32d60ac5f316d383)
+            type_hints = cached_type_hints(_typecheckingstub__43a336479ba385edf417d5a66424a3fcf31b9f4115de62dc32d60ac5f316d383)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -2905,7 +4433,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefAccessK
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f97c93efa15a9809bde63d0f97633067aff530a43ed949824dc7bc76e9871735)
+            type_hints = cached_type_hints(_typecheckingstub__f97c93efa15a9809bde63d0f97633067aff530a43ed949824dc7bc76e9871735)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -2982,7 +4510,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefSecretA
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bde2f101525a2945490e3e868e0c47768925132383751c8fc136c6399674bdba)
+            type_hints = cached_type_hints(_typecheckingstub__bde2f101525a2945490e3e868e0c47768925132383751c8fc136c6399674bdba)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3059,7 +4587,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefSession
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7a4a61094821c7569683a2f537b0248ded8e4d034dbd5066ed28c9e88da147e4)
+            type_hints = cached_type_hints(_typecheckingstub__7a4a61094821c7569683a2f537b0248ded8e4d034dbd5066ed28c9e88da147e4)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3134,7 +4662,7 @@ class ClusterGeneratorSpecGeneratorFakeSpec:
         :schema: ClusterGeneratorSpecGeneratorFakeSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2c86832ce77d47f397dde092dc8227f1703d1315bd5a48a4515d7255dd73a887)
+            type_hints = cached_type_hints(_typecheckingstub__2c86832ce77d47f397dde092dc8227f1703d1315bd5a48a4515d7255dd73a887)
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -3195,7 +4723,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpec:
         if isinstance(auth, dict):
             auth = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b9360ae269e38195de96ddce27de70ca878354be107a7d7c5e7f7f3a5ff18c8)
+            type_hints = cached_type_hints(_typecheckingstub__6b9360ae269e38195de96ddce27de70ca878354be107a7d7c5e7f7f3a5ff18c8)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -3267,7 +4795,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuth:
         if isinstance(workload_identity_federation, dict):
             workload_identity_federation = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederation(**workload_identity_federation)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5c8999aeefd932f01d9db846a206c060725cfe557132891c96a281dd55eb65cb)
+            type_hints = cached_type_hints(_typecheckingstub__5c8999aeefd932f01d9db846a206c060725cfe557132891c96a281dd55eb65cb)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
             check_type(argname="argument workload_identity_federation", value=workload_identity_federation, expected_type=type_hints["workload_identity_federation"])
@@ -3344,7 +4872,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__69d2db6600643f3c5fa4f842ad2a5bbebaa2fb26b7dafa8012171b5e49d181b3)
+            type_hints = cached_type_hints(_typecheckingstub__69d2db6600643f3c5fa4f842ad2a5bbebaa2fb26b7dafa8012171b5e49d181b3)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
@@ -3395,7 +4923,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthSecretRefSecretAccessKe
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__34a05f31abd31deb2dcbf758e0186bd7aecddb446e8f2b2fa7d99ea3d9e87bdd)
+            type_hints = cached_type_hints(_typecheckingstub__34a05f31abd31deb2dcbf758e0186bd7aecddb446e8f2b2fa7d99ea3d9e87bdd)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3481,7 +5009,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__887b623b0239bbb2317604070f1fb61930a4e755b022243ffbd63f615a93873a)
+            type_hints = cached_type_hints(_typecheckingstub__887b623b0239bbb2317604070f1fb61930a4e755b022243ffbd63f615a93873a)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
@@ -3552,6 +5080,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentity:
         "aws_security_credentials": "awsSecurityCredentials",
         "cred_config": "credConfig",
         "external_token_endpoint": "externalTokenEndpoint",
+        "gcp_service_account_email": "gcpServiceAccountEmail",
         "service_account_ref": "serviceAccountRef",
     },
 )
@@ -3563,6 +5092,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         aws_security_credentials: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
         cred_config: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig", typing.Dict[builtins.str, typing.Any]]] = None,
         external_token_endpoint: typing.Optional[builtins.str] = None,
+        gcp_service_account_email: typing.Optional[builtins.str] = None,
         service_account_ref: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''GCPWorkloadIdentityFederation holds the configurations required for generating federated access tokens.
@@ -3571,6 +5101,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         :param aws_security_credentials: awsSecurityCredentials is for configuring AWS region and credentials to use for obtaining the access token, when using the AWS metadata server is not an option.
         :param cred_config: credConfig holds the configmap reference containing the GCP external account credential configuration in JSON format and the key name containing the json data. For using Kubernetes cluster as the identity provider, use serviceAccountRef instead. Operators mounted serviceaccount token cannot be used as the token source, instead serviceAccountRef must be used by providing operators service account details.
         :param external_token_endpoint: externalTokenEndpoint is the endpoint explicitly set up to provide tokens, which will be matched against the credential_source.url in the provided credConfig. This field is merely to double-check the external token source URL is having the expected value.
+        :param gcp_service_account_email: GCPServiceAccountEmail is the email of the Google Cloud service account to impersonate after Workload Identity Federation. Use this to grant access through the service account's IAM bindings (for example roles/secretmanager.secretAccessor). When set, it overrides service_account_impersonation_url in the external account JSON from credConfig; when serviceAccountRef is set, it also overrides the "iam.gke.io/gcp-service-account" annotation on that ServiceAccount.
         :param service_account_ref: serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederation
@@ -3582,11 +5113,12 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d97f56a9ddbe3b302ef091a16d78d1b4fee560958dfa9aa7936e82dac9ccc0a6)
+            type_hints = cached_type_hints(_typecheckingstub__d97f56a9ddbe3b302ef091a16d78d1b4fee560958dfa9aa7936e82dac9ccc0a6)
             check_type(argname="argument audience", value=audience, expected_type=type_hints["audience"])
             check_type(argname="argument aws_security_credentials", value=aws_security_credentials, expected_type=type_hints["aws_security_credentials"])
             check_type(argname="argument cred_config", value=cred_config, expected_type=type_hints["cred_config"])
             check_type(argname="argument external_token_endpoint", value=external_token_endpoint, expected_type=type_hints["external_token_endpoint"])
+            check_type(argname="argument gcp_service_account_email", value=gcp_service_account_email, expected_type=type_hints["gcp_service_account_email"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if audience is not None:
@@ -3597,6 +5129,8 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
             self._values["cred_config"] = cred_config
         if external_token_endpoint is not None:
             self._values["external_token_endpoint"] = external_token_endpoint
+        if gcp_service_account_email is not None:
+            self._values["gcp_service_account_email"] = gcp_service_account_email
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -3647,6 +5181,21 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
+    def gcp_service_account_email(self) -> typing.Optional[builtins.str]:
+        '''GCPServiceAccountEmail is the email of the Google Cloud service account to impersonate after Workload Identity Federation.
+
+        Use this to grant access through the service account's
+        IAM bindings (for example roles/secretmanager.secretAccessor). When set, it overrides
+        service_account_impersonation_url in the external account JSON from credConfig;
+        when serviceAccountRef is set, it also overrides the "iam.gke.io/gcp-service-account" annotation
+        on that ServiceAccount.
+
+        :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederation#gcpServiceAccountEmail
+        '''
+        result = self._values.get("gcp_service_account_email")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def service_account_ref(
         self,
     ) -> typing.Optional["ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef"]:
@@ -3694,7 +5243,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         if isinstance(aws_credentials_secret_ref, dict):
             aws_credentials_secret_ref = ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentialsAwsCredentialsSecretRef(**aws_credentials_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ce9ca6c765dec3025e2e5b8d105310925f46ce5e7930e52aff4d71cf375dc95b)
+            type_hints = cached_type_hints(_typecheckingstub__ce9ca6c765dec3025e2e5b8d105310925f46ce5e7930e52aff4d71cf375dc95b)
             check_type(argname="argument aws_credentials_secret_ref", value=aws_credentials_secret_ref, expected_type=type_hints["aws_credentials_secret_ref"])
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -3768,7 +5317,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentialsAwsCredentialsSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1a867900007938529825658cf7cd1f725e4a0c4bc3604719b92208da9a8d5100)
+            type_hints = cached_type_hints(_typecheckingstub__1a867900007938529825658cf7cd1f725e4a0c4bc3604719b92208da9a8d5100)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -3835,7 +5384,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__593f95361d47077c774038dda2fc2c75b23e849d5da027d50c3075928b017245)
+            type_hints = cached_type_hints(_typecheckingstub__593f95361d47077c774038dda2fc2c75b23e849d5da027d50c3075928b017245)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3911,7 +5460,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__625ce40cdc9428dc7b4030682f9fd7477064844b81b16ff508050cc53299a3ea)
+            type_hints = cached_type_hints(_typecheckingstub__625ce40cdc9428dc7b4030682f9fd7477064844b81b16ff508050cc53299a3ea)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -3987,7 +5536,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityService
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5414094787b3664e12f165e43a7b615bd19ef1a0e2034f3d3c910a2379cdce1d)
+            type_hints = cached_type_hints(_typecheckingstub__5414094787b3664e12f165e43a7b615bd19ef1a0e2034f3d3c910a2379cdce1d)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -4078,7 +5627,7 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpec:
         if isinstance(auth, dict):
             auth = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__292ec9b435c52ded2f9e1a3fc879dc60a480c74153810bcd8257587046e66853)
+            type_hints = cached_type_hints(_typecheckingstub__292ec9b435c52ded2f9e1a3fc879dc60a480c74153810bcd8257587046e66853)
             check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument install_id", value=install_id, expected_type=type_hints["install_id"])
@@ -4195,7 +5744,7 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth:
         if isinstance(private_key, dict):
             private_key = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKey(**private_key)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1110b3599256f7705731d088240f75aee915ccf9f75505751961559d4cea83e0)
+            type_hints = cached_type_hints(_typecheckingstub__1110b3599256f7705731d088240f75aee915ccf9f75505751961559d4cea83e0)
             check_type(argname="argument private_key", value=private_key, expected_type=type_hints["private_key"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "private_key": private_key,
@@ -4245,7 +5794,7 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKey:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__337db2c2fa34849a191d608439f90fac159f2d703d407a4522719e4df8609142)
+            type_hints = cached_type_hints(_typecheckingstub__337db2c2fa34849a191d608439f90fac159f2d703d407a4522719e4df8609142)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
@@ -4301,7 +5850,7 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef:
         :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9f5225114d04258c4451905d0b8fab6c9f168173f252619ec0e7e3456af07f4c)
+            type_hints = cached_type_hints(_typecheckingstub__9f5225114d04258c4451905d0b8fab6c9f168173f252619ec0e7e3456af07f4c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -4357,6 +5906,380 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "auth": "auth",
+        "name": "name",
+        "scopes": "scopes",
+        "expires_at": "expiresAt",
+        "group_id": "groupId",
+        "project_id": "projectId",
+        "url": "url",
+        "username": "username",
+    },
+)
+class ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth", typing.Dict[builtins.str, typing.Any]],
+        name: builtins.str,
+        scopes: typing.Sequence["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes"],
+        expires_at: typing.Optional[datetime.datetime] = None,
+        group_id: typing.Optional[builtins.str] = None,
+        project_id: typing.Optional[builtins.str] = None,
+        url: typing.Optional[builtins.str] = None,
+        username: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+
+        :param auth: Auth configures how ESO authenticates with the GitLab API.
+        :param name: Name of the deploy token.
+        :param scopes: Scopes granted to the deploy token. At least one scope is required.
+        :param expires_at: ExpiresAt is an optional expiry for the deploy token. If omitted the token does not expire on the GitLab side and is revoked only when the generator state is cleaned up (on regeneration or when the consuming ExternalSecret is deleted).
+        :param group_id: GroupID is the numeric ID or unescaped path (e.g. parent/group) of the group to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with projectID.
+        :param project_id: ProjectID is the numeric ID or unescaped path (e.g. group/project) of the project to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with groupID.
+        :param url: URL configures the GitLab instance URL. Defaults to https://gitlab.com. Default: https://gitlab.com.
+        :param username: Username is an optional username for the deploy token. GitLab defaults it to gitlab+deploy-token-{n} when omitted.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec
+        '''
+        if isinstance(auth, dict):
+            auth = ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth(**auth)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__6a47f3b8bb3fc735f294941a156751fe1d1f45de499e6998007d6d3c35eb7508)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument scopes", value=scopes, expected_type=type_hints["scopes"])
+            check_type(argname="argument expires_at", value=expires_at, expected_type=type_hints["expires_at"])
+            check_type(argname="argument group_id", value=group_id, expected_type=type_hints["group_id"])
+            check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "name": name,
+            "scopes": scopes,
+        }
+        if expires_at is not None:
+            self._values["expires_at"] = expires_at
+        if group_id is not None:
+            self._values["group_id"] = group_id
+        if project_id is not None:
+            self._values["project_id"] = project_id
+        if url is not None:
+            self._values["url"] = url
+        if username is not None:
+            self._values["username"] = username
+
+    @builtins.property
+    def auth(self) -> "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth":
+        '''Auth configures how ESO authenticates with the GitLab API.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth", result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name of the deploy token.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def scopes(
+        self,
+    ) -> typing.List["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes"]:
+        '''Scopes granted to the deploy token.
+
+        At least one scope is required.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#scopes
+        '''
+        result = self._values.get("scopes")
+        assert result is not None, "Required property 'scopes' is missing"
+        return typing.cast(typing.List["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes"], result)
+
+    @builtins.property
+    def expires_at(self) -> typing.Optional[datetime.datetime]:
+        '''ExpiresAt is an optional expiry for the deploy token.
+
+        If omitted the token does
+        not expire on the GitLab side and is revoked only when the generator state is
+        cleaned up (on regeneration or when the consuming ExternalSecret is deleted).
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#expiresAt
+        '''
+        result = self._values.get("expires_at")
+        return typing.cast(typing.Optional[datetime.datetime], result)
+
+    @builtins.property
+    def group_id(self) -> typing.Optional[builtins.str]:
+        '''GroupID is the numeric ID or unescaped path (e.g. parent/group) of the group to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with projectID.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#groupID
+        '''
+        result = self._values.get("group_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def project_id(self) -> typing.Optional[builtins.str]:
+        '''ProjectID is the numeric ID or unescaped path (e.g. group/project) of the project to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with groupID.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#projectID
+        '''
+        result = self._values.get("project_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def url(self) -> typing.Optional[builtins.str]:
+        '''URL configures the GitLab instance URL.
+
+        Defaults to https://gitlab.com.
+
+        :default: https://gitlab.com.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#url
+        '''
+        result = self._values.get("url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def username(self) -> typing.Optional[builtins.str]:
+        '''Username is an optional username for the deploy token.
+
+        GitLab defaults it to
+        gitlab+deploy-token-{n} when omitted.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec#username
+        '''
+        result = self._values.get("username")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how ESO authenticates with the GitLab API.
+
+        :param token: Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth
+        '''
+        if isinstance(token, dict):
+            token = ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken(**token)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__67d0e95b5e5df8021acd2c2754c7de5dbddc40d63ce0923f06df45a7c7ec6334)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(self) -> "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken":
+        '''Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__b21a5aa258eb4b095b08d87223c5be7a59132f16701091ba761a3f80f96259fe)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef":
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__e69e13774a83132fe0aff9cabbc1633d4cdce6f9955b85cb134781ec8f1ba00d)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes"
+)
+class ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes(enum.Enum):
+    '''GitlabDeployTokenScope is a scope that can be granted to a GitLab deploy token.
+
+    :schema: ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes
+    '''
+
+    READ_UNDERSCORE_REPOSITORY = "READ_UNDERSCORE_REPOSITORY"
+    '''read_repository.'''
+    READ_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_REGISTRY"
+    '''read_registry.'''
+    WRITE_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_REGISTRY"
+    '''write_registry.'''
+    READ_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY"
+    '''read_package_registry.'''
+    WRITE_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY"
+    '''write_package_registry.'''
+    READ_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY"
+    '''read_virtual_registry.'''
+    WRITE_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY"
+    '''write_virtual_registry.'''
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpec",
     jsii_struct_bases=[],
     name_mapping={"auth": "auth", "service_account": "serviceAccount", "url": "url"},
@@ -4382,7 +6305,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpec:
         if isinstance(service_account, dict):
             service_account = ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount(**service_account)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d9ed2181)
+            type_hints = cached_type_hints(_typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d9ed2181)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
@@ -4460,7 +6383,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuth:
         if isinstance(token, dict):
             token = ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken(**token)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550)
+            type_hints = cached_type_hints(_typecheckingstub__c7d48488f332ab62b6ff8f5758ff141bd4ec8d41be6369cc454654d1635bc550)
             check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -4537,7 +6460,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic:
         if isinstance(password, dict):
             password = ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword(**password)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ca9e0312250798706b0bbbc493bb9f05d7676fc92dd825ae023d37d7286ef86)
+            type_hints = cached_type_hints(_typecheckingstub__0ca9e0312250798706b0bbbc493bb9f05d7676fc92dd825ae023d37d7286ef86)
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -4597,7 +6520,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword:
         :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasicPassword
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__52cbf108e35477a5a146125711b6edb5cb2e91146f6276f2d40795dc8149d0ec)
+            type_hints = cached_type_hints(_typecheckingstub__52cbf108e35477a5a146125711b6edb5cb2e91146f6276f2d40795dc8149d0ec)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -4660,7 +6583,7 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken:
         :schema: ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5d5967d1dd883faa977030d1a3045ba2620b8f9c2c50ca22bba80be43429c9fe)
+            type_hints = cached_type_hints(_typecheckingstub__5d5967d1dd883faa977030d1a3045ba2620b8f9c2c50ca22bba80be43429c9fe)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -4702,25 +6625,35 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecAuthToken:
 @jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount",
     jsii_struct_bases=[],
-    name_mapping={"name": "name", "role": "role"},
+    name_mapping={"name": "name", "role": "role", "seconds_to_live": "secondsToLive"},
 )
 class ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount:
-    def __init__(self, *, name: builtins.str, role: builtins.str) -> None:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        role: builtins.str,
+        seconds_to_live: typing.Optional[jsii.Number] = None,
+    ) -> None:
         '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
 
         :param name: Name is the name of the service account that will be created by ESO.
         :param role: Role is the role of the service account. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+        :param seconds_to_live: SecondsToLive is the number of seconds before the generated service account token will expire. Some Grafana deployments (e.g. AWS Managed Grafana) require this value to be set.
 
         :schema: ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c952f78a75a5bbd20df3105965c9af2c7aabb17469a906f4db76fe7c9d677307)
+            type_hints = cached_type_hints(_typecheckingstub__c952f78a75a5bbd20df3105965c9af2c7aabb17469a906f4db76fe7c9d677307)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument seconds_to_live", value=seconds_to_live, expected_type=type_hints["seconds_to_live"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "role": role,
         }
+        if seconds_to_live is not None:
+            self._values["seconds_to_live"] = seconds_to_live
 
     @builtins.property
     def name(self) -> builtins.str:
@@ -4744,6 +6677,17 @@ class ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount:
         result = self._values.get("role")
         assert result is not None, "Required property 'role' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def seconds_to_live(self) -> typing.Optional[jsii.Number]:
+        '''SecondsToLive is the number of seconds before the generated service account token will expire.
+
+        Some Grafana deployments (e.g. AWS Managed Grafana) require this value to be set.
+
+        :schema: ClusterGeneratorSpecGeneratorGrafanaSpecServiceAccount#secondsToLive
+        '''
+        result = self._values.get("seconds_to_live")
+        return typing.cast(typing.Optional[jsii.Number], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -4791,7 +6735,7 @@ class ClusterGeneratorSpecGeneratorMfaSpec:
         if isinstance(secret, dict):
             secret = ClusterGeneratorSpecGeneratorMfaSpecSecret(**secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__850c786f2600603dfc3853a853ecd740c64aea10c974afc659d888847dffb1fd)
+            type_hints = cached_type_hints(_typecheckingstub__850c786f2600603dfc3853a853ecd740c64aea10c974afc659d888847dffb1fd)
             check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
             check_type(argname="argument algorithm", value=algorithm, expected_type=type_hints["algorithm"])
             check_type(argname="argument length", value=length, expected_type=type_hints["length"])
@@ -4901,7 +6845,7 @@ class ClusterGeneratorSpecGeneratorMfaSpecSecret:
         :schema: ClusterGeneratorSpecGeneratorMfaSpecSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0399b4955bbbb906afa17543915ccda1a46a0ca0db7d0fd7a20bd0fcaac258ca)
+            type_hints = cached_type_hints(_typecheckingstub__0399b4955bbbb906afa17543915ccda1a46a0ca0db7d0fd7a20bd0fcaac258ca)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -4997,7 +6941,7 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
         :schema: ClusterGeneratorSpecGeneratorPasswordSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b3ec65a0916fa97e69ec9837c4c6798e17e81eb424563cc5bd5349de2ec13d6)
+            type_hints = cached_type_hints(_typecheckingstub__6b3ec65a0916fa97e69ec9837c4c6798e17e81eb424563cc5bd5349de2ec13d6)
             check_type(argname="argument allow_repeat", value=allow_repeat, expected_type=type_hints["allow_repeat"])
             check_type(argname="argument length", value=length, expected_type=type_hints["length"])
             check_type(argname="argument no_upper", value=no_upper, expected_type=type_hints["no_upper"])
@@ -5188,7 +7132,7 @@ class ClusterGeneratorSpecGeneratorQuayAccessTokenSpec:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b760f8c5fad1753090f4c7fdeb158c58f3a5285b02656fd11f8fd4e619c8135f)
+            type_hints = cached_type_hints(_typecheckingstub__b760f8c5fad1753090f4c7fdeb158c58f3a5285b02656fd11f8fd4e619c8135f)
             check_type(argname="argument robot_account", value=robot_account, expected_type=type_hints["robot_account"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
@@ -5268,7 +7212,7 @@ class ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef:
         :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b680ae1b78ef0032f149e40bb4a19c7a0b03d8afb67edc0edde80e855f7132ee)
+            type_hints = cached_type_hints(_typecheckingstub__b680ae1b78ef0032f149e40bb4a19c7a0b03d8afb67edc0edde80e855f7132ee)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -5344,7 +7288,7 @@ class ClusterGeneratorSpecGeneratorSshKeySpec:
         :schema: ClusterGeneratorSpecGeneratorSshKeySpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__aba5ca874987179bddbe4d806641f3229154c54926702676020b1fa1a62ff876)
+            type_hints = cached_type_hints(_typecheckingstub__aba5ca874987179bddbe4d806641f3229154c54926702676020b1fa1a62ff876)
             check_type(argname="argument comment", value=comment, expected_type=type_hints["comment"])
             check_type(argname="argument key_size", value=key_size, expected_type=type_hints["key_size"])
             check_type(argname="argument key_type", value=key_type, expected_type=type_hints["key_type"])
@@ -5451,7 +7395,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpec:
         if isinstance(request_parameters, dict):
             request_parameters = ClusterGeneratorSpecGeneratorStsSessionTokenSpecRequestParameters(**request_parameters)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7b156d2563dfcafd7828f40e867dc8dbb62b46dfa7870adff7e1ac851c3b64a1)
+            type_hints = cached_type_hints(_typecheckingstub__7b156d2563dfcafd7828f40e867dc8dbb62b46dfa7870adff7e1ac851c3b64a1)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument request_parameters", value=request_parameters, expected_type=type_hints["request_parameters"])
@@ -5543,7 +7487,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuth:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__500c178b87b78973cb00ae5c3d241645a7a490f3fe1a6e4706a7f938aac2027f)
+            type_hints = cached_type_hints(_typecheckingstub__500c178b87b78973cb00ae5c3d241645a7a490f3fe1a6e4706a7f938aac2027f)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -5606,7 +7550,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__98ee3f0efdabb7496c0d2194a3493544bf0466015126da23cfb9febac799df65)
+            type_hints = cached_type_hints(_typecheckingstub__98ee3f0efdabb7496c0d2194a3493544bf0466015126da23cfb9febac799df65)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -5657,7 +7601,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef:
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c2b7233aba1192fb4d482fa99d660bc1f1ba06a2aee2f70888ee3b93ba93edfe)
+            type_hints = cached_type_hints(_typecheckingstub__c2b7233aba1192fb4d482fa99d660bc1f1ba06a2aee2f70888ee3b93ba93edfe)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -5743,7 +7687,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRef:
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06818579d44e8d646ecdca0be2f54e320b0be3df9f6b0e5edaacc29106f66f6c)
+            type_hints = cached_type_hints(_typecheckingstub__06818579d44e8d646ecdca0be2f54e320b0be3df9f6b0e5edaacc29106f66f6c)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -5822,7 +7766,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefAccessKeyIdSe
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e5f427fb43d20a03744b87747aa16efdc936bdbf5b1ba330f266c27af19e6eb2)
+            type_hints = cached_type_hints(_typecheckingstub__e5f427fb43d20a03744b87747aa16efdc936bdbf5b1ba330f266c27af19e6eb2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -5899,7 +7843,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefSecretAccessK
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5cf2daf36a0f3998c035450336e8d6275fb5e89e069a644559eddc2c1972f887)
+            type_hints = cached_type_hints(_typecheckingstub__5cf2daf36a0f3998c035450336e8d6275fb5e89e069a644559eddc2c1972f887)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -5976,7 +7920,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefSessionTokenS
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bba4b7c291a21145c9cbb073dd1e7f376419e55e1589bd1f3197fe98d06adfb2)
+            type_hints = cached_type_hints(_typecheckingstub__bba4b7c291a21145c9cbb073dd1e7f376419e55e1589bd1f3197fe98d06adfb2)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -6057,7 +8001,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecRequestParameters:
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecRequestParameters
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ca0a298660bade99205cdcd1774aa724a0b72dd6d95821e051f8510cba60ffa5)
+            type_hints = cached_type_hints(_typecheckingstub__ca0a298660bade99205cdcd1774aa724a0b72dd6d95821e051f8510cba60ffa5)
             check_type(argname="argument serial_number", value=serial_number, expected_type=type_hints["serial_number"])
             check_type(argname="argument session_duration", value=session_duration, expected_type=type_hints["session_duration"])
             check_type(argname="argument token_code", value=token_code, expected_type=type_hints["token_code"])
@@ -6155,7 +8099,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpec:
         if isinstance(retry_settings, dict):
             retry_settings = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecRetrySettings(**retry_settings)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__10e2321e1cd5730bc9b0e182284aef50907db67d44c1acfada3f65f196f1582c)
+            type_hints = cached_type_hints(_typecheckingstub__10e2321e1cd5730bc9b0e182284aef50907db67d44c1acfada3f65f196f1582c)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument allow_empty_response", value=allow_empty_response, expected_type=type_hints["allow_empty_response"])
@@ -6340,7 +8284,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProvider:
         if isinstance(tls, dict):
             tls = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTls(**tls)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__02abd566c822847d8f25656374f5c631e294093b6020fa8ec60a874e692efe08)
+            type_hints = cached_type_hints(_typecheckingstub__02abd566c822847d8f25656374f5c631e294093b6020fa8ec60a874e692efe08)
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -6602,7 +8546,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuth:
         if isinstance(user_pass, dict):
             user_pass = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass(**user_pass)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6b46ee2f06aed6663e7fe9a51398de8f44b17d4c003a7d923ba902471c122d6c)
+            type_hints = cached_type_hints(_typecheckingstub__6b46ee2f06aed6663e7fe9a51398de8f44b17d4c003a7d923ba902471c122d6c)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument gcp", value=gcp, expected_type=type_hints["gcp"])
@@ -6794,7 +8738,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRole:
         if isinstance(role_ref, dict):
             role_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleRoleRef(**role_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b1b2ca1676dd1d58a898f4207b7372f83856a2dea3dca6925938016912fe01bc)
+            type_hints = cached_type_hints(_typecheckingstub__b1b2ca1676dd1d58a898f4207b7372f83856a2dea3dca6925938016912fe01bc)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
@@ -6893,7 +8837,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleRole
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleRoleRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eac36a6ae09b90df622a8885e385f95e01a2bb1c1025cb1eb6748db3b6260c7b)
+            type_hints = cached_type_hints(_typecheckingstub__eac36a6ae09b90df622a8885e385f95e01a2bb1c1025cb1eb6748db3b6260c7b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -6973,7 +8917,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleSecr
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cf9b835649610475ffd96ef188f0154ea6898cb01beb95dfa906f18367047270)
+            type_hints = cached_type_hints(_typecheckingstub__cf9b835649610475ffd96ef188f0154ea6898cb01beb95dfa906f18367047270)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7035,6 +8979,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthAppRoleSecr
         "client_cert": "clientCert",
         "path": "path",
         "secret_ref": "secretRef",
+        "vault_role": "vaultRole",
     },
 )
 class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert:
@@ -7044,12 +8989,14 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert:
         client_cert: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         secret_ref: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault_role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
         :param client_cert: ClientCert is a certificate to authenticate using the Cert Vault authentication method.
         :param path: Path where the Certificate authentication backend is mounted in Vault, e.g: "cert".
         :param secret_ref: SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method.
+        :param vault_role: VaultRole specifies the Vault role to use for TLS certificate authentication.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert
         '''
@@ -7058,10 +9005,11 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6a48a6f2044f51d1f9bce54540f955f0f3c0e34ca0c5a81e258fb25258a1812d)
+            type_hints = cached_type_hints(_typecheckingstub__6a48a6f2044f51d1f9bce54540f955f0f3c0e34ca0c5a81e258fb25258a1812d)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument vault_role", value=vault_role, expected_type=type_hints["vault_role"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
@@ -7069,6 +9017,8 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert:
             self._values["path"] = path
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
+        if vault_role is not None:
+            self._values["vault_role"] = vault_role
 
     @builtins.property
     def client_cert(
@@ -7100,6 +9050,15 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert:
         '''
         result = self._values.get("secret_ref")
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretRef"], result)
+
+    @builtins.property
+    def vault_role(self) -> typing.Optional[builtins.str]:
+        '''VaultRole specifies the Vault role to use for TLS certificate authentication.
+
+        :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCert#vaultRole
+        '''
+        result = self._values.get("vault_role")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -7135,7 +9094,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertClientC
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertClientCert
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b61c2f8625d6b6eefba3b38478f3db3ca23f00985a1fbade641377af48f21430)
+            type_hints = cached_type_hints(_typecheckingstub__b61c2f8625d6b6eefba3b38478f3db3ca23f00985a1fbade641377af48f21430)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7212,7 +9171,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretR
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4096b6822d9c79e1ab7826475c9b916df90eb40d1748c567b038c74e769d3520)
+            type_hints = cached_type_hints(_typecheckingstub__4096b6822d9c79e1ab7826475c9b916df90eb40d1748c567b038c74e769d3520)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7311,7 +9270,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcp:
         if isinstance(workload_identity, dict):
             workload_identity = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkloadIdentity(**workload_identity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d920439bce01994ca59c968f4300c602be437d29ba29023941c6e14b8bf574af)
+            type_hints = cached_type_hints(_typecheckingstub__d920439bce01994ca59c968f4300c602be437d29ba29023941c6e14b8bf574af)
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument location", value=location, expected_type=type_hints["location"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
@@ -7439,7 +9398,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpSecretRe
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__caec89e13d5ee5ec2eea6483e1f6709463d33b3b652da8943420a80e68ba017d)
+            type_hints = cached_type_hints(_typecheckingstub__caec89e13d5ee5ec2eea6483e1f6709463d33b3b652da8943420a80e68ba017d)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
@@ -7490,7 +9449,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d39119335d7842b7995f82f65cd8505c7d57d792c9cbac1a45ae5df5a5b54012)
+            type_hints = cached_type_hints(_typecheckingstub__d39119335d7842b7995f82f65cd8505c7d57d792c9cbac1a45ae5df5a5b54012)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7567,7 +9526,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceA
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__91be13fd6526b1638d3196c1a9ac2781da98560a0aeeacc33005638dfdf16e65)
+            type_hints = cached_type_hints(_typecheckingstub__91be13fd6526b1638d3196c1a9ac2781da98560a0aeeacc33005638dfdf16e65)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7652,7 +9611,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkload
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba0d9119ddbab47b465f85afa955922b8d88b0bc8b40e686b9b0e4cace1df965)
+            type_hints = cached_type_hints(_typecheckingstub__ba0d9119ddbab47b465f85afa955922b8d88b0bc8b40e686b9b0e4cace1df965)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
@@ -7740,7 +9699,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkload
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1294ee31c34a5bdb8ae056cd05b1c59287047a91412838ea2557531ea046cfc2)
+            type_hints = cached_type_hints(_typecheckingstub__1294ee31c34a5bdb8ae056cd05b1c59287047a91412838ea2557531ea046cfc2)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -7839,7 +9798,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIam:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1ae76c20b2d3d164d46c1682c2dcbfe8293b4b1a1c429ba0d9ccd8de1623aefa)
+            type_hints = cached_type_hints(_typecheckingstub__1ae76c20b2d3d164d46c1682c2dcbfe8293b4b1a1c429ba0d9ccd8de1623aefa)
             check_type(argname="argument vault_role", value=vault_role, expected_type=type_hints["vault_role"])
             check_type(argname="argument external_id", value=external_id, expected_type=type_hints["external_id"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
@@ -7979,7 +9938,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3fcc58f46b972c368790d6aa7a694146a711fc7d454e2384196381bd3d4e3dcb)
+            type_hints = cached_type_hints(_typecheckingstub__3fcc58f46b972c368790d6aa7a694146a711fc7d454e2384196381bd3d4e3dcb)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -8030,7 +9989,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServi
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f63c96e8522ed1b707467a41e21ae71d33e43a489100b2d1c588267e91dda515)
+            type_hints = cached_type_hints(_typecheckingstub__f63c96e8522ed1b707467a41e21ae71d33e43a489100b2d1c588267e91dda515)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8116,7 +10075,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRe
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7575de5f8d585e9e8d36ce3120891d2047b67e87999e2f56ac0153b68fd7536c)
+            type_hints = cached_type_hints(_typecheckingstub__7575de5f8d585e9e8d36ce3120891d2047b67e87999e2f56ac0153b68fd7536c)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -8195,7 +10154,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d22620df921362fb2070bb61692fe2d2d4bf351da0f0dc43557fe4cf436cd013)
+            type_hints = cached_type_hints(_typecheckingstub__d22620df921362fb2070bb61692fe2d2d4bf351da0f0dc43557fe4cf436cd013)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8272,7 +10231,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c40fc197e2530062ac9b7ca3810c8fb65299f01a12ef9d4625d149ec27bc04f9)
+            type_hints = cached_type_hints(_typecheckingstub__c40fc197e2530062ac9b7ca3810c8fb65299f01a12ef9d4625d149ec27bc04f9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8349,7 +10308,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dadefaafed9cee8323181fe7b8a76aaeba9aaca5d903a75d4b86a38bbffd3c2a)
+            type_hints = cached_type_hints(_typecheckingstub__dadefaafed9cee8323181fe7b8a76aaeba9aaca5d903a75d4b86a38bbffd3c2a)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8437,7 +10396,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__229aac6ec0f9c5f66d1afbf2decfa1c8000fc02dc6e634373bc263260b357be5)
+            type_hints = cached_type_hints(_typecheckingstub__229aac6ec0f9c5f66d1afbf2decfa1c8000fc02dc6e634373bc263260b357be5)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
@@ -8533,7 +10492,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernet
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b199dcf4dc37caedda88bf3e2af1f395f9eac497f86fd3c9ae9e442da85fcb3c)
+            type_hints = cached_type_hints(_typecheckingstub__b199dcf4dc37caedda88bf3e2af1f395f9eac497f86fd3c9ae9e442da85fcb3c)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
@@ -8562,6 +10521,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernet
         '''Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
         Defaults to a single audience ``vault`` it not specified.
+
         Deprecated: use serviceAccountRef.Audiences instead
 
         :default: a single audience ``vault`` it not specified.
@@ -8619,7 +10579,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernet
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c0016c0d95b5a9e529ece0f4d6f80e3743686de5accf1efd2a269de96df7c640)
+            type_hints = cached_type_hints(_typecheckingstub__c0016c0d95b5a9e529ece0f4d6f80e3743686de5accf1efd2a269de96df7c640)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8695,7 +10655,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7017adabfb955003a67f5f12cf98885af650cc813cb74468384a84a23de6e3e7)
+            type_hints = cached_type_hints(_typecheckingstub__7017adabfb955003a67f5f12cf98885af650cc813cb74468384a84a23de6e3e7)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8783,7 +10743,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__55a715f0a7b9bcda5866ee8db8c2a171f2eccf9248b40b5dbb9405e47a65c174)
+            type_hints = cached_type_hints(_typecheckingstub__55a715f0a7b9bcda5866ee8db8c2a171f2eccf9248b40b5dbb9405e47a65c174)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -8888,7 +10848,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesS
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__730f50d2640b9b2319c67640982a729e38afa13f614f8a7a2162ac6a4e2311b9)
+            type_hints = cached_type_hints(_typecheckingstub__730f50d2640b9b2319c67640982a729e38afa13f614f8a7a2162ac6a4e2311b9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -8969,7 +10929,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesS
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__885d994531e7fc8461134148bac78f677ccb70cd6801065ed09c572438a39362)
+            type_hints = cached_type_hints(_typecheckingstub__885d994531e7fc8461134148bac78f677ccb70cd6801065ed09c572438a39362)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9047,7 +11007,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__14be59466583be10ad4bceb3c7eec0590d6926f769661ac2d858b9a6f02c06a5)
+            type_hints = cached_type_hints(_typecheckingstub__14be59466583be10ad4bceb3c7eec0590d6926f769661ac2d858b9a6f02c06a5)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -9123,7 +11083,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdapSecretR
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthLdapSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9d1b45b98fc97110f897716ff6bb350ca01b97a452a0e7ed1631a19e2fa1677e)
+            type_hints = cached_type_hints(_typecheckingstub__9d1b45b98fc97110f897716ff6bb350ca01b97a452a0e7ed1631a19e2fa1677e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9200,7 +11160,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthTokenSecret
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ba0256d12910007e8b85f34c9d7ea393f52fa367cca7b507767570486806cb3e)
+            type_hints = cached_type_hints(_typecheckingstub__ba0256d12910007e8b85f34c9d7ea393f52fa367cca7b507767570486806cb3e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9279,7 +11239,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPass:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPassSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__814bccc7eee2bb0b01c55e861c30268f3aa9e3d17c1930afb52360cdbf7a0fa2)
+            type_hints = cached_type_hints(_typecheckingstub__814bccc7eee2bb0b01c55e861c30268f3aa9e3d17c1930afb52360cdbf7a0fa2)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -9355,7 +11315,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPassSec
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthUserPassSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c41bb2e70be3a1141aa7931963f1605cf7b10f76a2d70a55fe2005969b40056)
+            type_hints = cached_type_hints(_typecheckingstub__1c41bb2e70be3a1141aa7931963f1605cf7b10f76a2d70a55fe2005969b40056)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9439,7 +11399,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCaProvider:
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCaProvider
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__340569b935c53537966a2561c57a24a76cbf9c69dbf7689874dd5ce46ffeaf82)
+            type_hints = cached_type_hints(_typecheckingstub__340569b935c53537966a2561c57a24a76cbf9c69dbf7689874dd5ce46ffeaf82)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
@@ -9541,7 +11501,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCheckAndSet:
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderCheckAndSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fe0c9d6d5560b96e3dd0f6dfdab34a2f761f260c91bbb9da613cc5dd6d2d7325)
+            type_hints = cached_type_hints(_typecheckingstub__fe0c9d6d5560b96e3dd0f6dfdab34a2f761f260c91bbb9da613cc5dd6d2d7325)
             check_type(argname="argument required", value=required, expected_type=type_hints["required"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if required is not None:
@@ -9602,7 +11562,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTls:
         if isinstance(key_secret_ref, dict):
             key_secret_ref = ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTlsKeySecretRef(**key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__057069f97defad41a9a7d25d600958df8a1fb8a29b4c5656f593c16c84c882c1)
+            type_hints = cached_type_hints(_typecheckingstub__057069f97defad41a9a7d25d600958df8a1fb8a29b4c5656f593c16c84c882c1)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
             check_type(argname="argument key_secret_ref", value=key_secret_ref, expected_type=type_hints["key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -9673,7 +11633,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTlsCertSecretRe
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTlsCertSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a7a43432578b558898e36df977d0c9e9e0a455970e6f0eeade3dc49f5f8200e1)
+            type_hints = cached_type_hints(_typecheckingstub__a7a43432578b558898e36df977d0c9e9e0a455970e6f0eeade3dc49f5f8200e1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9752,7 +11712,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTlsKeySecretRef
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderTlsKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5b47872d55b2aa3ce83911b888bb441922abcd0a955c401e37dbef745d2e203d)
+            type_hints = cached_type_hints(_typecheckingstub__5b47872d55b2aa3ce83911b888bb441922abcd0a955c401e37dbef745d2e203d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -9868,7 +11828,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecRetrySettings:
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecRetrySettings
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b74fcec0cfc5ad62fc03a55496882bcc7c5fc822f3d8f6820314e48d530e85f8)
+            type_hints = cached_type_hints(_typecheckingstub__b74fcec0cfc5ad62fc03a55496882bcc7c5fc822f3d8f6820314e48d530e85f8)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -9960,7 +11920,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpec:
         if isinstance(ca_provider, dict):
             ca_provider = ClusterGeneratorSpecGeneratorWebhookSpecCaProvider(**ca_provider)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d6461244ada6ac27bc8b5825bc53378b49b97c43164c4e5d508c69ab37ef4761)
+            type_hints = cached_type_hints(_typecheckingstub__d6461244ada6ac27bc8b5825bc53378b49b97c43164c4e5d508c69ab37ef4761)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
@@ -10129,7 +12089,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecAuth:
         if isinstance(ntlm, dict):
             ntlm = ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm(**ntlm)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5dcfc882e004f94cf73db65a2a920c62c718b548501cfa608829f09e91423b6d)
+            type_hints = cached_type_hints(_typecheckingstub__5dcfc882e004f94cf73db65a2a920c62c718b548501cfa608829f09e91423b6d)
             check_type(argname="argument ntlm", value=ntlm, expected_type=type_hints["ntlm"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ntlm is not None:
@@ -10185,7 +12145,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlm:
         if isinstance(username_secret, dict):
             username_secret = ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret(**username_secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1c7b235434f71cb2dedf89df634e92c9be7c19319bdbabf850fb2ef0f7f26a81)
+            type_hints = cached_type_hints(_typecheckingstub__1c7b235434f71cb2dedf89df634e92c9be7c19319bdbabf850fb2ef0f7f26a81)
             check_type(argname="argument password_secret", value=password_secret, expected_type=type_hints["password_secret"])
             check_type(argname="argument username_secret", value=username_secret, expected_type=type_hints["username_secret"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -10257,7 +12217,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret:
         :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmPasswordSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__89e3c64096d7ab15ba070babc315844393aa774d5e6d59f8d8af1081809d3a33)
+            type_hints = cached_type_hints(_typecheckingstub__89e3c64096d7ab15ba070babc315844393aa774d5e6d59f8d8af1081809d3a33)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -10336,7 +12296,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret:
         :schema: ClusterGeneratorSpecGeneratorWebhookSpecAuthNtlmUsernameSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__debabacb7a72e2aa4ed6e808a4b80893eb1122c2c840d54555a48ec65fe99f40)
+            type_hints = cached_type_hints(_typecheckingstub__debabacb7a72e2aa4ed6e808a4b80893eb1122c2c840d54555a48ec65fe99f40)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -10420,7 +12380,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecCaProvider:
         :schema: ClusterGeneratorSpecGeneratorWebhookSpecCaProvider
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4b92096e419e1807bd3716a182558dd52eb79fd93b0891aae2196fe701b6ef16)
+            type_hints = cached_type_hints(_typecheckingstub__4b92096e419e1807bd3716a182558dd52eb79fd93b0891aae2196fe701b6ef16)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
@@ -10513,7 +12473,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecResult:
         :schema: ClusterGeneratorSpecGeneratorWebhookSpecResult
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8041ab4574aca2838e415c6546545a99564650a2e591ef65839792832acd0ddb)
+            type_hints = cached_type_hints(_typecheckingstub__8041ab4574aca2838e415c6546545a99564650a2e591ef65839792832acd0ddb)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
@@ -10562,7 +12522,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = ClusterGeneratorSpecGeneratorWebhookSpecSecretsSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__82ab7197f1b285356b812b884d29838271d2890f88cc26e4ec5c6691a6c19ee4)
+            type_hints = cached_type_hints(_typecheckingstub__82ab7197f1b285356b812b884d29838271d2890f88cc26e4ec5c6691a6c19ee4)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -10622,7 +12582,7 @@ class ClusterGeneratorSpecGeneratorWebhookSpecSecretsSecretRef:
         :schema: ClusterGeneratorSpecGeneratorWebhookSpecSecretsSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c09ce5b92036fdb91cd0502923a430b4067e058dbfbceffe4e310b5de877491c)
+            type_hints = cached_type_hints(_typecheckingstub__c09ce5b92036fdb91cd0502923a430b4067e058dbfbceffe4e310b5de877491c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -10670,6 +12630,8 @@ class ClusterGeneratorSpecKind(enum.Enum):
 
     ACR_ACCESS_TOKEN = "ACR_ACCESS_TOKEN"
     '''ACRAccessToken.'''
+    BEYONDTRUST_WORKLOAD_CREDENTIALS_DYNAMIC_SECRET = "BEYONDTRUST_WORKLOAD_CREDENTIALS_DYNAMIC_SECRET"
+    '''BeyondtrustWorkloadCredentialsDynamicSecret.'''
     CLOUDSMITH_ACCESS_TOKEN = "CLOUDSMITH_ACCESS_TOKEN"
     '''CloudsmithAccessToken.'''
     ECR_AUTHORIZATION_TOKEN = "ECR_AUTHORIZATION_TOKEN"
@@ -10680,6 +12642,8 @@ class ClusterGeneratorSpecKind(enum.Enum):
     '''GCRAccessToken.'''
     GITHUB_ACCESS_TOKEN = "GITHUB_ACCESS_TOKEN"
     '''GithubAccessToken.'''
+    GITLAB_DEPLOY_TOKEN = "GITLAB_DEPLOY_TOKEN"
+    '''GitlabDeployToken.'''
     QUAY_ACCESS_TOKEN = "QUAY_ACCESS_TOKEN"
     '''QuayAccessToken.'''
     PASSWORD = "PASSWORD"
@@ -10696,6 +12660,8 @@ class ClusterGeneratorSpecKind(enum.Enum):
     '''Webhook.'''
     GRAFANA = "GRAFANA"
     '''Grafana.'''
+    MFA = "MFA"
+    '''MFA.'''
 
 
 class EcrAuthorizationToken(
@@ -10729,7 +12695,7 @@ class EcrAuthorizationToken(
         :param spec: ECRAuthorizationTokenSpec defines the desired state to generate an AWS ECR authorization token.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e71cfb104a01494a1528bff38caa7ed42d6867f4d83a50d779a8e249dea7183a)
+            type_hints = cached_type_hints(_typecheckingstub__e71cfb104a01494a1528bff38caa7ed42d6867f4d83a50d779a8e249dea7183a)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = EcrAuthorizationTokenProps(metadata=metadata, spec=spec)
@@ -10796,7 +12762,7 @@ class EcrAuthorizationTokenProps:
         if isinstance(spec, dict):
             spec = EcrAuthorizationTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7e431d24fa6016e556b9f4cdc9b5634a7ec0488fcdd0149846b1011367978e2a)
+            type_hints = cached_type_hints(_typecheckingstub__7e431d24fa6016e556b9f4cdc9b5634a7ec0488fcdd0149846b1011367978e2a)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -10865,7 +12831,7 @@ class EcrAuthorizationTokenSpec:
         if isinstance(auth, dict):
             auth = EcrAuthorizationTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__324512f7d0f8d8b457280dd1e15f21985b97b88f08bab8a4ee40bca0e64ea7f6)
+            type_hints = cached_type_hints(_typecheckingstub__324512f7d0f8d8b457280dd1e15f21985b97b88f08bab8a4ee40bca0e64ea7f6)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
@@ -10955,7 +12921,7 @@ class EcrAuthorizationTokenSpecAuth:
         if isinstance(secret_ref, dict):
             secret_ref = EcrAuthorizationTokenSpecAuthSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__99a4157b913631f69b599f277cde66f7621cd2ccbc79b7044db9d53b11fbed6e)
+            type_hints = cached_type_hints(_typecheckingstub__99a4157b913631f69b599f277cde66f7621cd2ccbc79b7044db9d53b11fbed6e)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -11014,7 +12980,7 @@ class EcrAuthorizationTokenSpecAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = EcrAuthorizationTokenSpecAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e21f0831584304a498cb602853af5f59bc58668301a4c6f20c4e2842a2297ff1)
+            type_hints = cached_type_hints(_typecheckingstub__e21f0831584304a498cb602853af5f59bc58668301a4c6f20c4e2842a2297ff1)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -11065,7 +13031,7 @@ class EcrAuthorizationTokenSpecAuthJwtServiceAccountRef:
         :schema: EcrAuthorizationTokenSpecAuthJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8c10b7f6ffeed346ecf29b79cc6266f31bf1bd8effb7681cb7cb2578520cfdb7)
+            type_hints = cached_type_hints(_typecheckingstub__8c10b7f6ffeed346ecf29b79cc6266f31bf1bd8effb7681cb7cb2578520cfdb7)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -11151,7 +13117,7 @@ class EcrAuthorizationTokenSpecAuthSecretRef:
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bf78f11dcfa2cd9f8940d60487a5c7d2f01d9a4dd8d77e4bf8dcdd56085c7d95)
+            type_hints = cached_type_hints(_typecheckingstub__bf78f11dcfa2cd9f8940d60487a5c7d2f01d9a4dd8d77e4bf8dcdd56085c7d95)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -11230,7 +13196,7 @@ class EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef:
         :schema: EcrAuthorizationTokenSpecAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3d68e594efb66902569f54fe98715ea46d6ba8ca83b27e99b98f38a8ade43a65)
+            type_hints = cached_type_hints(_typecheckingstub__3d68e594efb66902569f54fe98715ea46d6ba8ca83b27e99b98f38a8ade43a65)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -11307,7 +13273,7 @@ class EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef:
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__054461f11158e4dc81b90d77e99ce0fe74d37b917fedbcb4284ed8881d1bae57)
+            type_hints = cached_type_hints(_typecheckingstub__054461f11158e4dc81b90d77e99ce0fe74d37b917fedbcb4284ed8881d1bae57)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -11384,7 +13350,7 @@ class EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef:
         :schema: EcrAuthorizationTokenSpecAuthSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1b8c5ee22e2427c12cabf67d5cf6b1a7cdc91842cd7af9a753bc42ce2dd80e5d)
+            type_hints = cached_type_hints(_typecheckingstub__1b8c5ee22e2427c12cabf67d5cf6b1a7cdc91842cd7af9a753bc42ce2dd80e5d)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -11468,7 +13434,7 @@ class Fake(
         :param spec: FakeSpec contains the static data.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b57d91e19285b6a8a017d2a83639b2a99389613e7a3f5ca4ebf7e0e4a717f1f1)
+            type_hints = cached_type_hints(_typecheckingstub__b57d91e19285b6a8a017d2a83639b2a99389613e7a3f5ca4ebf7e0e4a717f1f1)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = FakeProps(metadata=metadata, spec=spec)
@@ -11533,7 +13499,7 @@ class FakeProps:
         if isinstance(spec, dict):
             spec = FakeSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f6bcab3c7c36ee2c872120a58cef6b1878a6276f893325a6ff369928c8e1c75c)
+            type_hints = cached_type_hints(_typecheckingstub__f6bcab3c7c36ee2c872120a58cef6b1878a6276f893325a6ff369928c8e1c75c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -11591,7 +13557,7 @@ class FakeSpec:
         :schema: FakeSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__44ead58e4ef3208607864017deeaf29547ca20b830ae43c943a9ea1bb647a2be)
+            type_hints = cached_type_hints(_typecheckingstub__44ead58e4ef3208607864017deeaf29547ca20b830ae43c943a9ea1bb647a2be)
             check_type(argname="argument controller", value=controller, expected_type=type_hints["controller"])
             check_type(argname="argument data", value=data, expected_type=type_hints["data"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -11656,7 +13622,7 @@ class GcrAccessToken(
         :param spec: GCRAccessTokenSpec defines the desired state to generate a Google Container Registry access token.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b80007d0392365dc569ce8bd4015fe900acd943c3d36aa66178ec2ac84597b7f)
+            type_hints = cached_type_hints(_typecheckingstub__b80007d0392365dc569ce8bd4015fe900acd943c3d36aa66178ec2ac84597b7f)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = GcrAccessTokenProps(metadata=metadata, spec=spec)
@@ -11718,7 +13684,7 @@ class GcrAccessTokenProps:
         if isinstance(spec, dict):
             spec = GcrAccessTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1ebf58f1879563b8440f47f35b33c5f08df60cc497c53708ec8773b08a2c3b3c)
+            type_hints = cached_type_hints(_typecheckingstub__1ebf58f1879563b8440f47f35b33c5f08df60cc497c53708ec8773b08a2c3b3c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -11778,7 +13744,7 @@ class GcrAccessTokenSpec:
         if isinstance(auth, dict):
             auth = GcrAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a01287b24f44728bc8b80776e9475534ab7affaf0f4524cbf7addab8e431089e)
+            type_hints = cached_type_hints(_typecheckingstub__a01287b24f44728bc8b80776e9475534ab7affaf0f4524cbf7addab8e431089e)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -11850,7 +13816,7 @@ class GcrAccessTokenSpecAuth:
         if isinstance(workload_identity_federation, dict):
             workload_identity_federation = GcrAccessTokenSpecAuthWorkloadIdentityFederation(**workload_identity_federation)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__93eb12ae2068134fa04136f7c937cab838ac29d82534e5b5803842066fae6e48)
+            type_hints = cached_type_hints(_typecheckingstub__93eb12ae2068134fa04136f7c937cab838ac29d82534e5b5803842066fae6e48)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
             check_type(argname="argument workload_identity_federation", value=workload_identity_federation, expected_type=type_hints["workload_identity_federation"])
@@ -11925,7 +13891,7 @@ class GcrAccessTokenSpecAuthSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f65d1a322d6d23716a2925defeb951fc75b6741a65f92879df1e71df097441a8)
+            type_hints = cached_type_hints(_typecheckingstub__f65d1a322d6d23716a2925defeb951fc75b6741a65f92879df1e71df097441a8)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
@@ -11976,7 +13942,7 @@ class GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef:
         :schema: GcrAccessTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cbabefd39b46e713e4e457a716bfc18a7f475fccb20674d7eb3a5cdf17b09f7e)
+            type_hints = cached_type_hints(_typecheckingstub__cbabefd39b46e713e4e457a716bfc18a7f475fccb20674d7eb3a5cdf17b09f7e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -12062,7 +14028,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__199ea61bce5117046e2f5da4c5a50856e146ebaa2773f338ff7d01e23079571f)
+            type_hints = cached_type_hints(_typecheckingstub__199ea61bce5117046e2f5da4c5a50856e146ebaa2773f338ff7d01e23079571f)
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
@@ -12133,6 +14099,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentity:
         "aws_security_credentials": "awsSecurityCredentials",
         "cred_config": "credConfig",
         "external_token_endpoint": "externalTokenEndpoint",
+        "gcp_service_account_email": "gcpServiceAccountEmail",
         "service_account_ref": "serviceAccountRef",
     },
 )
@@ -12144,6 +14111,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederation:
         aws_security_credentials: typing.Optional[typing.Union["GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentials", typing.Dict[builtins.str, typing.Any]]] = None,
         cred_config: typing.Optional[typing.Union["GcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig", typing.Dict[builtins.str, typing.Any]]] = None,
         external_token_endpoint: typing.Optional[builtins.str] = None,
+        gcp_service_account_email: typing.Optional[builtins.str] = None,
         service_account_ref: typing.Optional[typing.Union["GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''GCPWorkloadIdentityFederation holds the configurations required for generating federated access tokens.
@@ -12152,6 +14120,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederation:
         :param aws_security_credentials: awsSecurityCredentials is for configuring AWS region and credentials to use for obtaining the access token, when using the AWS metadata server is not an option.
         :param cred_config: credConfig holds the configmap reference containing the GCP external account credential configuration in JSON format and the key name containing the json data. For using Kubernetes cluster as the identity provider, use serviceAccountRef instead. Operators mounted serviceaccount token cannot be used as the token source, instead serviceAccountRef must be used by providing operators service account details.
         :param external_token_endpoint: externalTokenEndpoint is the endpoint explicitly set up to provide tokens, which will be matched against the credential_source.url in the provided credConfig. This field is merely to double-check the external token source URL is having the expected value.
+        :param gcp_service_account_email: GCPServiceAccountEmail is the email of the Google Cloud service account to impersonate after Workload Identity Federation. Use this to grant access through the service account's IAM bindings (for example roles/secretmanager.secretAccessor). When set, it overrides service_account_impersonation_url in the external account JSON from credConfig; when serviceAccountRef is set, it also overrides the "iam.gke.io/gcp-service-account" annotation on that ServiceAccount.
         :param service_account_ref: serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederation
@@ -12163,11 +14132,12 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederation:
         if isinstance(service_account_ref, dict):
             service_account_ref = GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b72df953fc01d525595211fee595ae85c7514ad34a23d582f41347363fd3248d)
+            type_hints = cached_type_hints(_typecheckingstub__b72df953fc01d525595211fee595ae85c7514ad34a23d582f41347363fd3248d)
             check_type(argname="argument audience", value=audience, expected_type=type_hints["audience"])
             check_type(argname="argument aws_security_credentials", value=aws_security_credentials, expected_type=type_hints["aws_security_credentials"])
             check_type(argname="argument cred_config", value=cred_config, expected_type=type_hints["cred_config"])
             check_type(argname="argument external_token_endpoint", value=external_token_endpoint, expected_type=type_hints["external_token_endpoint"])
+            check_type(argname="argument gcp_service_account_email", value=gcp_service_account_email, expected_type=type_hints["gcp_service_account_email"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if audience is not None:
@@ -12178,6 +14148,8 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederation:
             self._values["cred_config"] = cred_config
         if external_token_endpoint is not None:
             self._values["external_token_endpoint"] = external_token_endpoint
+        if gcp_service_account_email is not None:
+            self._values["gcp_service_account_email"] = gcp_service_account_email
         if service_account_ref is not None:
             self._values["service_account_ref"] = service_account_ref
 
@@ -12228,6 +14200,21 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederation:
         return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
+    def gcp_service_account_email(self) -> typing.Optional[builtins.str]:
+        '''GCPServiceAccountEmail is the email of the Google Cloud service account to impersonate after Workload Identity Federation.
+
+        Use this to grant access through the service account's
+        IAM bindings (for example roles/secretmanager.secretAccessor). When set, it overrides
+        service_account_impersonation_url in the external account JSON from credConfig;
+        when serviceAccountRef is set, it also overrides the "iam.gke.io/gcp-service-account" annotation
+        on that ServiceAccount.
+
+        :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederation#gcpServiceAccountEmail
+        '''
+        result = self._values.get("gcp_service_account_email")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def service_account_ref(
         self,
     ) -> typing.Optional["GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef"]:
@@ -12275,7 +14262,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentials:
         if isinstance(aws_credentials_secret_ref, dict):
             aws_credentials_secret_ref = GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentialsAwsCredentialsSecretRef(**aws_credentials_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e9e7add81095635a405234976851b1d03246004a08947af1a26d776ccdaf4978)
+            type_hints = cached_type_hints(_typecheckingstub__e9e7add81095635a405234976851b1d03246004a08947af1a26d776ccdaf4978)
             check_type(argname="argument aws_credentials_secret_ref", value=aws_credentials_secret_ref, expected_type=type_hints["aws_credentials_secret_ref"])
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -12349,7 +14336,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentialsAwsC
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentialsAwsCredentialsSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ae887f5130079f21c89a12a820c4a01ae9b1840a5dffad50449d0b79a6e78096)
+            type_hints = cached_type_hints(_typecheckingstub__ae887f5130079f21c89a12a820c4a01ae9b1840a5dffad50449d0b79a6e78096)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -12416,7 +14403,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig:
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a67526db795e7c54f2a28ed8c4ad785dd640d2611480ad20124a799f5bc694b1)
+            type_hints = cached_type_hints(_typecheckingstub__a67526db795e7c54f2a28ed8c4ad785dd640d2611480ad20124a799f5bc694b1)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -12492,7 +14479,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef:
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fd64306626805104fdcfe0e2625e9f0419d6860151ba1912a94312c4314a0bc2)
+            type_hints = cached_type_hints(_typecheckingstub__fd64306626805104fdcfe0e2625e9f0419d6860151ba1912a94312c4314a0bc2)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -12568,7 +14555,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4f74d21068366cc4deb9b1d016fb257384b4390cdceab57845386c22ae854561)
+            type_hints = cached_type_hints(_typecheckingstub__4f74d21068366cc4deb9b1d016fb257384b4390cdceab57845386c22ae854561)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -12648,7 +14635,7 @@ class GeneratorState(
         :param spec: GeneratorStateSpec defines the desired state of a generator state resource.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__958486a855120fc7a31aee0ba4cca65a04bf9a182445fbe480e553b98ccd9036)
+            type_hints = cached_type_hints(_typecheckingstub__958486a855120fc7a31aee0ba4cca65a04bf9a182445fbe480e553b98ccd9036)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = GeneratorStateProps(metadata=metadata, spec=spec)
@@ -12710,7 +14697,7 @@ class GeneratorStateProps:
         if isinstance(spec, dict):
             spec = GeneratorStateSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__64f82fa95da182d383bede8cfe8bee7ac5e64f879b5ea01270eecda15719f058)
+            type_hints = cached_type_hints(_typecheckingstub__64f82fa95da182d383bede8cfe8bee7ac5e64f879b5ea01270eecda15719f058)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -12774,7 +14761,7 @@ class GeneratorStateSpec:
         :schema: GeneratorStateSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5d80cd3e33b0c4a2ec892301c844aee6f41a860238c42c36e51455f76caf187a)
+            type_hints = cached_type_hints(_typecheckingstub__5d80cd3e33b0c4a2ec892301c844aee6f41a860238c42c36e51455f76caf187a)
             check_type(argname="argument resource", value=resource, expected_type=type_hints["resource"])
             check_type(argname="argument state", value=state, expected_type=type_hints["state"])
             check_type(argname="argument garbage_collection_deadline", value=garbage_collection_deadline, expected_type=type_hints["garbage_collection_deadline"])
@@ -12861,7 +14848,7 @@ class GithubAccessToken(
         :param spec: GithubAccessTokenSpec defines the desired state to generate a GitHub access token.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4a77570c44994c62f1495ca397b0a38a34f7359399b5a5c444421df203d8116b)
+            type_hints = cached_type_hints(_typecheckingstub__4a77570c44994c62f1495ca397b0a38a34f7359399b5a5c444421df203d8116b)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = GithubAccessTokenProps(metadata=metadata, spec=spec)
@@ -12923,7 +14910,7 @@ class GithubAccessTokenProps:
         if isinstance(spec, dict):
             spec = GithubAccessTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__03fef391cab2e0e91a690c6535a6c54804108aecbfe23f30906d896706375319)
+            type_hints = cached_type_hints(_typecheckingstub__03fef391cab2e0e91a690c6535a6c54804108aecbfe23f30906d896706375319)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -12998,7 +14985,7 @@ class GithubAccessTokenSpec:
         if isinstance(auth, dict):
             auth = GithubAccessTokenSpecAuth(**auth)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb)
+            type_hints = cached_type_hints(_typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb)
             check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument install_id", value=install_id, expected_type=type_hints["install_id"])
@@ -13115,7 +15102,7 @@ class GithubAccessTokenSpecAuth:
         if isinstance(private_key, dict):
             private_key = GithubAccessTokenSpecAuthPrivateKey(**private_key)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__eb19f408f5f81b80adaeb0752891235a4de94e26ecf80e23ae76b0df8fce09e1)
+            type_hints = cached_type_hints(_typecheckingstub__eb19f408f5f81b80adaeb0752891235a4de94e26ecf80e23ae76b0df8fce09e1)
             check_type(argname="argument private_key", value=private_key, expected_type=type_hints["private_key"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "private_key": private_key,
@@ -13163,7 +15150,7 @@ class GithubAccessTokenSpecAuthPrivateKey:
         if isinstance(secret_ref, dict):
             secret_ref = GithubAccessTokenSpecAuthPrivateKeySecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cb39af0e0f51b28201dc29bc178b9febff7228412f055e9c07142114da340837)
+            type_hints = cached_type_hints(_typecheckingstub__cb39af0e0f51b28201dc29bc178b9febff7228412f055e9c07142114da340837)
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "secret_ref": secret_ref,
@@ -13217,7 +15204,7 @@ class GithubAccessTokenSpecAuthPrivateKeySecretRef:
         :schema: GithubAccessTokenSpecAuthPrivateKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f44ce4532c26c546f28a977216d68c41dc675e15baa70c2618c40a1fd97f8e6b)
+            type_hints = cached_type_hints(_typecheckingstub__f44ce4532c26c546f28a977216d68c41dc675e15baa70c2618c40a1fd97f8e6b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -13272,6 +15259,500 @@ class GithubAccessTokenSpecAuthPrivateKeySecretRef:
         )
 
 
+class GitlabDeployToken(
+    _cdk8s_d3d9af27.ApiObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployToken",
+):
+    '''GitlabDeployToken generates a GitLab deploy token.
+
+    :schema: GitlabDeployToken
+    '''
+
+    def __init__(
+        self,
+        scope: "_constructs_77d1e7e8.Construct",
+        id: builtins.str,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GitlabDeployTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Defines a "GitlabDeployToken" API object.
+
+        :param scope: the scope in which to define this object.
+        :param id: a scope-local name for the object.
+        :param metadata: 
+        :param spec: GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__205f3a349692fb269afafe72d8204746522a82807489dc9ddbf93a68e97c058a)
+            check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        props = GitlabDeployTokenProps(metadata=metadata, spec=spec)
+
+        jsii.create(self.__class__, self, [scope, id, props])
+
+    @jsii.member(jsii_name="manifest")
+    @builtins.classmethod
+    def manifest(
+        cls,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GitlabDeployTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> typing.Any:
+        '''Renders a Kubernetes manifest for "GitlabDeployToken".
+
+        This can be used to inline resource manifests inside other objects (e.g. as templates).
+
+        :param metadata: 
+        :param spec: GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+        '''
+        props = GitlabDeployTokenProps(metadata=metadata, spec=spec)
+
+        return typing.cast(typing.Any, jsii.sinvoke(cls, "manifest", [props]))
+
+    @jsii.member(jsii_name="toJson")
+    def to_json(self) -> typing.Any:
+        '''Renders the object to Kubernetes JSON.'''
+        return typing.cast(typing.Any, jsii.invoke(self, "toJson", []))
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="GVK")
+    def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
+        '''Returns the apiVersion and kind for "GitlabDeployToken".'''
+        return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenProps",
+    jsii_struct_bases=[],
+    name_mapping={"metadata": "metadata", "spec": "spec"},
+)
+class GitlabDeployTokenProps:
+    def __init__(
+        self,
+        *,
+        metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
+        spec: typing.Optional[typing.Union["GitlabDeployTokenSpec", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''GitlabDeployToken generates a GitLab deploy token.
+
+        :param metadata: 
+        :param spec: GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+
+        :schema: GitlabDeployToken
+        '''
+        if isinstance(metadata, dict):
+            metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
+        if isinstance(spec, dict):
+            spec = GitlabDeployTokenSpec(**spec)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__c35bac10dc43d8982ea2ea4f29b46c57b6ec6f8ccfdfb1f8ddfe75ca61ed814f)
+            check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
+            check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if metadata is not None:
+            self._values["metadata"] = metadata
+        if spec is not None:
+            self._values["spec"] = spec
+
+    @builtins.property
+    def metadata(self) -> typing.Optional["_cdk8s_d3d9af27.ApiObjectMetadata"]:
+        '''
+        :schema: GitlabDeployToken#metadata
+        '''
+        result = self._values.get("metadata")
+        return typing.cast(typing.Optional["_cdk8s_d3d9af27.ApiObjectMetadata"], result)
+
+    @builtins.property
+    def spec(self) -> typing.Optional["GitlabDeployTokenSpec"]:
+        '''GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+
+        :schema: GitlabDeployToken#spec
+        '''
+        result = self._values.get("spec")
+        return typing.cast(typing.Optional["GitlabDeployTokenSpec"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GitlabDeployTokenProps(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenSpec",
+    jsii_struct_bases=[],
+    name_mapping={
+        "auth": "auth",
+        "name": "name",
+        "scopes": "scopes",
+        "expires_at": "expiresAt",
+        "group_id": "groupId",
+        "project_id": "projectId",
+        "url": "url",
+        "username": "username",
+    },
+)
+class GitlabDeployTokenSpec:
+    def __init__(
+        self,
+        *,
+        auth: typing.Union["GitlabDeployTokenSpecAuth", typing.Dict[builtins.str, typing.Any]],
+        name: builtins.str,
+        scopes: typing.Sequence["GitlabDeployTokenSpecScopes"],
+        expires_at: typing.Optional[datetime.datetime] = None,
+        group_id: typing.Optional[builtins.str] = None,
+        project_id: typing.Optional[builtins.str] = None,
+        url: typing.Optional[builtins.str] = None,
+        username: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''GitlabDeployTokenSpec defines the desired state to generate a GitLab deploy token.
+
+        :param auth: Auth configures how ESO authenticates with the GitLab API.
+        :param name: Name of the deploy token.
+        :param scopes: Scopes granted to the deploy token. At least one scope is required.
+        :param expires_at: ExpiresAt is an optional expiry for the deploy token. If omitted the token does not expire on the GitLab side and is revoked only when the generator state is cleaned up (on regeneration or when the consuming ExternalSecret is deleted).
+        :param group_id: GroupID is the numeric ID or unescaped path (e.g. parent/group) of the group to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with projectID.
+        :param project_id: ProjectID is the numeric ID or unescaped path (e.g. group/project) of the project to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with groupID.
+        :param url: URL configures the GitLab instance URL. Defaults to https://gitlab.com. Default: https://gitlab.com.
+        :param username: Username is an optional username for the deploy token. GitLab defaults it to gitlab+deploy-token-{n} when omitted.
+
+        :schema: GitlabDeployTokenSpec
+        '''
+        if isinstance(auth, dict):
+            auth = GitlabDeployTokenSpecAuth(**auth)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__0085b3e76ebc3c8d026af3cb0485b3f853683443b8661c5e92f37c959191bd54)
+            check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument scopes", value=scopes, expected_type=type_hints["scopes"])
+            check_type(argname="argument expires_at", value=expires_at, expected_type=type_hints["expires_at"])
+            check_type(argname="argument group_id", value=group_id, expected_type=type_hints["group_id"])
+            check_type(argname="argument project_id", value=project_id, expected_type=type_hints["project_id"])
+            check_type(argname="argument url", value=url, expected_type=type_hints["url"])
+            check_type(argname="argument username", value=username, expected_type=type_hints["username"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "auth": auth,
+            "name": name,
+            "scopes": scopes,
+        }
+        if expires_at is not None:
+            self._values["expires_at"] = expires_at
+        if group_id is not None:
+            self._values["group_id"] = group_id
+        if project_id is not None:
+            self._values["project_id"] = project_id
+        if url is not None:
+            self._values["url"] = url
+        if username is not None:
+            self._values["username"] = username
+
+    @builtins.property
+    def auth(self) -> "GitlabDeployTokenSpecAuth":
+        '''Auth configures how ESO authenticates with the GitLab API.
+
+        :schema: GitlabDeployTokenSpec#auth
+        '''
+        result = self._values.get("auth")
+        assert result is not None, "Required property 'auth' is missing"
+        return typing.cast("GitlabDeployTokenSpecAuth", result)
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''Name of the deploy token.
+
+        :schema: GitlabDeployTokenSpec#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def scopes(self) -> typing.List["GitlabDeployTokenSpecScopes"]:
+        '''Scopes granted to the deploy token.
+
+        At least one scope is required.
+
+        :schema: GitlabDeployTokenSpec#scopes
+        '''
+        result = self._values.get("scopes")
+        assert result is not None, "Required property 'scopes' is missing"
+        return typing.cast(typing.List["GitlabDeployTokenSpecScopes"], result)
+
+    @builtins.property
+    def expires_at(self) -> typing.Optional[datetime.datetime]:
+        '''ExpiresAt is an optional expiry for the deploy token.
+
+        If omitted the token does
+        not expire on the GitLab side and is revoked only when the generator state is
+        cleaned up (on regeneration or when the consuming ExternalSecret is deleted).
+
+        :schema: GitlabDeployTokenSpec#expiresAt
+        '''
+        result = self._values.get("expires_at")
+        return typing.cast(typing.Optional[datetime.datetime], result)
+
+    @builtins.property
+    def group_id(self) -> typing.Optional[builtins.str]:
+        '''GroupID is the numeric ID or unescaped path (e.g. parent/group) of the group to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with projectID.
+
+        :schema: GitlabDeployTokenSpec#groupID
+        '''
+        result = self._values.get("group_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def project_id(self) -> typing.Optional[builtins.str]:
+        '''ProjectID is the numeric ID or unescaped path (e.g. group/project) of the project to create the deploy token in. The generator URL-escapes paths before calling the GitLab API, so do not pre-encode. Mutually exclusive with groupID.
+
+        :schema: GitlabDeployTokenSpec#projectID
+        '''
+        result = self._values.get("project_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def url(self) -> typing.Optional[builtins.str]:
+        '''URL configures the GitLab instance URL.
+
+        Defaults to https://gitlab.com.
+
+        :default: https://gitlab.com.
+
+        :schema: GitlabDeployTokenSpec#url
+        '''
+        result = self._values.get("url")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def username(self) -> typing.Optional[builtins.str]:
+        '''Username is an optional username for the deploy token.
+
+        GitLab defaults it to
+        gitlab+deploy-token-{n} when omitted.
+
+        :schema: GitlabDeployTokenSpec#username
+        '''
+        result = self._values.get("username")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GitlabDeployTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenSpecAuth",
+    jsii_struct_bases=[],
+    name_mapping={"token": "token"},
+)
+class GitlabDeployTokenSpecAuth:
+    def __init__(
+        self,
+        *,
+        token: typing.Union["GitlabDeployTokenSpecAuthToken", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Auth configures how ESO authenticates with the GitLab API.
+
+        :param token: Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :schema: GitlabDeployTokenSpecAuth
+        '''
+        if isinstance(token, dict):
+            token = GitlabDeployTokenSpecAuthToken(**token)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__284eea4461d57757dcca4310ab5856f718830780d8598e4ed5c2b1d83a543caa)
+            check_type(argname="argument token", value=token, expected_type=type_hints["token"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "token": token,
+        }
+
+    @builtins.property
+    def token(self) -> "GitlabDeployTokenSpecAuthToken":
+        '''Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :schema: GitlabDeployTokenSpecAuth#token
+        '''
+        result = self._values.get("token")
+        assert result is not None, "Required property 'token' is missing"
+        return typing.cast("GitlabDeployTokenSpecAuthToken", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GitlabDeployTokenSpecAuth(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenSpecAuthToken",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class GitlabDeployTokenSpecAuthToken:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["GitlabDeployTokenSpecAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''Token references a secret containing a GitLab access token (personal, group, or project) with the api scope and at least the Maintainer role on the target.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: GitlabDeployTokenSpecAuthToken
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = GitlabDeployTokenSpecAuthTokenSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__bc7a8f22d17b880a79fe9a2e090da93e41a850ec43d9036f633868ced546f918)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(self) -> "GitlabDeployTokenSpecAuthTokenSecretRef":
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: GitlabDeployTokenSpecAuthToken#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("GitlabDeployTokenSpecAuthTokenSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GitlabDeployTokenSpecAuthToken(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenSpecAuthTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class GitlabDeployTokenSpecAuthTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GitlabDeployTokenSpecAuthTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__107bc0857b6194ff41f5063a688ebf776272dd7d15ae7fbea9db9bca309f4d7a)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: GitlabDeployTokenSpecAuthTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GitlabDeployTokenSpecAuthTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GitlabDeployTokenSpecAuthTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GitlabDeployTokenSpecAuthTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(jsii_type="ioexternal-secretsgenerators.GitlabDeployTokenSpecScopes")
+class GitlabDeployTokenSpecScopes(enum.Enum):
+    '''GitlabDeployTokenScope is a scope that can be granted to a GitLab deploy token.
+
+    :schema: GitlabDeployTokenSpecScopes
+    '''
+
+    READ_UNDERSCORE_REPOSITORY = "READ_UNDERSCORE_REPOSITORY"
+    '''read_repository.'''
+    READ_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_REGISTRY"
+    '''read_registry.'''
+    WRITE_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_REGISTRY"
+    '''write_registry.'''
+    READ_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY"
+    '''read_package_registry.'''
+    WRITE_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_PACKAGE_UNDERSCORE_REGISTRY"
+    '''write_package_registry.'''
+    READ_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY = "READ_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY"
+    '''read_virtual_registry.'''
+    WRITE_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY = "WRITE_UNDERSCORE_VIRTUAL_UNDERSCORE_REGISTRY"
+    '''write_virtual_registry.'''
+
+
 class Grafana(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -13298,7 +15779,7 @@ class Grafana(
         :param spec: GrafanaSpec controls the behavior of the grafana generator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d80f5795b34eebd4414d453e74364019631d46df1d6f77332167900032b31ac2)
+            type_hints = cached_type_hints(_typecheckingstub__d80f5795b34eebd4414d453e74364019631d46df1d6f77332167900032b31ac2)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = GrafanaProps(metadata=metadata, spec=spec)
@@ -13360,7 +15841,7 @@ class GrafanaProps:
         if isinstance(spec, dict):
             spec = GrafanaSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__653972c42261a54dd717de914b7983783972daddb15fd7d6225a1b5875a8244e)
+            type_hints = cached_type_hints(_typecheckingstub__653972c42261a54dd717de914b7983783972daddb15fd7d6225a1b5875a8244e)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13424,7 +15905,7 @@ class GrafanaSpec:
         if isinstance(service_account, dict):
             service_account = GrafanaSpecServiceAccount(**service_account)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6625fbfd4423ace39404bc8b275e8825a4e344ae14018a39aa1fad007fdc9a36)
+            type_hints = cached_type_hints(_typecheckingstub__6625fbfd4423ace39404bc8b275e8825a4e344ae14018a39aa1fad007fdc9a36)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument service_account", value=service_account, expected_type=type_hints["service_account"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
@@ -13500,7 +15981,7 @@ class GrafanaSpecAuth:
         if isinstance(token, dict):
             token = GrafanaSpecAuthToken(**token)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4)
+            type_hints = cached_type_hints(_typecheckingstub__5bfaa65d8f432f88a0afafe11fd84a114db79a53e66f959629a253eaadfc36e4)
             check_type(argname="argument basic", value=basic, expected_type=type_hints["basic"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13573,7 +16054,7 @@ class GrafanaSpecAuthBasic:
         if isinstance(password, dict):
             password = GrafanaSpecAuthBasicPassword(**password)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0542f077ce34199f3ffc66976e46e28ec5e0917422dc9b25348d809fce646abb)
+            type_hints = cached_type_hints(_typecheckingstub__0542f077ce34199f3ffc66976e46e28ec5e0917422dc9b25348d809fce646abb)
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -13633,7 +16114,7 @@ class GrafanaSpecAuthBasicPassword:
         :schema: GrafanaSpecAuthBasicPassword
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__378165568ab72ed346357c2af9813218ae826bea628ea6dcefbbbf7e29a79846)
+            type_hints = cached_type_hints(_typecheckingstub__378165568ab72ed346357c2af9813218ae826bea628ea6dcefbbbf7e29a79846)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13696,7 +16177,7 @@ class GrafanaSpecAuthToken:
         :schema: GrafanaSpecAuthToken
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cff8454759fb223792b7471399e0c8d402d5677cb65b01c20b534a42a98a6aad)
+            type_hints = cached_type_hints(_typecheckingstub__cff8454759fb223792b7471399e0c8d402d5677cb65b01c20b534a42a98a6aad)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13738,25 +16219,35 @@ class GrafanaSpecAuthToken:
 @jsii.data_type(
     jsii_type="ioexternal-secretsgenerators.GrafanaSpecServiceAccount",
     jsii_struct_bases=[],
-    name_mapping={"name": "name", "role": "role"},
+    name_mapping={"name": "name", "role": "role", "seconds_to_live": "secondsToLive"},
 )
 class GrafanaSpecServiceAccount:
-    def __init__(self, *, name: builtins.str, role: builtins.str) -> None:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        role: builtins.str,
+        seconds_to_live: typing.Optional[jsii.Number] = None,
+    ) -> None:
         '''ServiceAccount is the configuration for the service account that is supposed to be generated by the generator.
 
         :param name: Name is the name of the service account that will be created by ESO.
         :param role: Role is the role of the service account. See here for the documentation on basic roles offered by Grafana: https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/access-control/rbac-fixed-basic-role-definitions/
+        :param seconds_to_live: SecondsToLive is the number of seconds before the generated service account token will expire. Some Grafana deployments (e.g. AWS Managed Grafana) require this value to be set.
 
         :schema: GrafanaSpecServiceAccount
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0b90062b32e8b1dfb708e1e449e63bfe0aa427c431738c846dd6d11249ad0851)
+            type_hints = cached_type_hints(_typecheckingstub__0b90062b32e8b1dfb708e1e449e63bfe0aa427c431738c846dd6d11249ad0851)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument seconds_to_live", value=seconds_to_live, expected_type=type_hints["seconds_to_live"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "name": name,
             "role": role,
         }
+        if seconds_to_live is not None:
+            self._values["seconds_to_live"] = seconds_to_live
 
     @builtins.property
     def name(self) -> builtins.str:
@@ -13780,6 +16271,17 @@ class GrafanaSpecServiceAccount:
         result = self._values.get("role")
         assert result is not None, "Required property 'role' is missing"
         return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def seconds_to_live(self) -> typing.Optional[jsii.Number]:
+        '''SecondsToLive is the number of seconds before the generated service account token will expire.
+
+        Some Grafana deployments (e.g. AWS Managed Grafana) require this value to be set.
+
+        :schema: GrafanaSpecServiceAccount#secondsToLive
+        '''
+        result = self._values.get("seconds_to_live")
+        return typing.cast(typing.Optional[jsii.Number], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -13819,7 +16321,7 @@ class Mfa(
         :param spec: MFASpec controls the behavior of the mfa generator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ac5134c48fef1781b67c287be4fc523c26ed311f6e877a767e34de1cc27f12cc)
+            type_hints = cached_type_hints(_typecheckingstub__ac5134c48fef1781b67c287be4fc523c26ed311f6e877a767e34de1cc27f12cc)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = MfaProps(metadata=metadata, spec=spec)
@@ -13881,7 +16383,7 @@ class MfaProps:
         if isinstance(spec, dict):
             spec = MfaSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fc44d2d03e646eb519317546307118ed42af2e77f72f8d0ebcdd9dfeb76ae1d8)
+            type_hints = cached_type_hints(_typecheckingstub__fc44d2d03e646eb519317546307118ed42af2e77f72f8d0ebcdd9dfeb76ae1d8)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -13953,7 +16455,7 @@ class MfaSpec:
         if isinstance(secret, dict):
             secret = MfaSpecSecret(**secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d891d8c274e0ecf9023a17856b8531ea6bd516f877bc824a4252fa4bd20eb663)
+            type_hints = cached_type_hints(_typecheckingstub__d891d8c274e0ecf9023a17856b8531ea6bd516f877bc824a4252fa4bd20eb663)
             check_type(argname="argument secret", value=secret, expected_type=type_hints["secret"])
             check_type(argname="argument algorithm", value=algorithm, expected_type=type_hints["algorithm"])
             check_type(argname="argument length", value=length, expected_type=type_hints["length"])
@@ -14063,7 +16565,7 @@ class MfaSpecSecret:
         :schema: MfaSpecSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__41dc60589fac583a07b76803d0abcd285e9aab537ccbdccf666f627233dfaabf)
+            type_hints = cached_type_hints(_typecheckingstub__41dc60589fac583a07b76803d0abcd285e9aab537ccbdccf666f627233dfaabf)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -14146,7 +16648,7 @@ class Password(
         :param spec: PasswordSpec controls the behavior of the password generator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4c09e9ade3db32eebcba799d9623871d6d90ce0ae11f370436996ea869284e6d)
+            type_hints = cached_type_hints(_typecheckingstub__4c09e9ade3db32eebcba799d9623871d6d90ce0ae11f370436996ea869284e6d)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = PasswordProps(metadata=metadata, spec=spec)
@@ -14210,7 +16712,7 @@ class PasswordProps:
         if isinstance(spec, dict):
             spec = PasswordSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1cb0c41f9ff3670a053eb5f508cb64ec2242beb083de7e7c652d4a5b7699e91c)
+            type_hints = cached_type_hints(_typecheckingstub__1cb0c41f9ff3670a053eb5f508cb64ec2242beb083de7e7c652d4a5b7699e91c)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14289,7 +16791,7 @@ class PasswordSpec:
         :schema: PasswordSpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b4393f1aed12b90dce27cf67a339b9404fe1de87a2e6dc07a755ffa39d6d1349)
+            type_hints = cached_type_hints(_typecheckingstub__b4393f1aed12b90dce27cf67a339b9404fe1de87a2e6dc07a755ffa39d6d1349)
             check_type(argname="argument allow_repeat", value=allow_repeat, expected_type=type_hints["allow_repeat"])
             check_type(argname="argument length", value=length, expected_type=type_hints["length"])
             check_type(argname="argument no_upper", value=no_upper, expected_type=type_hints["no_upper"])
@@ -14474,7 +16976,7 @@ class QuayAccessToken(
         :param spec: QuayAccessTokenSpec defines the desired state to generate a Quay access token.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__58971dea6308deeb2631c838ee3c6601a0b25893b80479dc4e945254f22274b6)
+            type_hints = cached_type_hints(_typecheckingstub__58971dea6308deeb2631c838ee3c6601a0b25893b80479dc4e945254f22274b6)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = QuayAccessTokenProps(metadata=metadata, spec=spec)
@@ -14536,7 +17038,7 @@ class QuayAccessTokenProps:
         if isinstance(spec, dict):
             spec = QuayAccessTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c1de6b6de8dac96a29a81c78e7a31cd2fe43fbcb8590f2510368200297fde71d)
+            type_hints = cached_type_hints(_typecheckingstub__c1de6b6de8dac96a29a81c78e7a31cd2fe43fbcb8590f2510368200297fde71d)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14602,7 +17104,7 @@ class QuayAccessTokenSpec:
         if isinstance(service_account_ref, dict):
             service_account_ref = QuayAccessTokenSpecServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f2f7947dd3ee6ff17129eb636fd5d530fa48f6d2fec09d2559cef20aa537a9d7)
+            type_hints = cached_type_hints(_typecheckingstub__f2f7947dd3ee6ff17129eb636fd5d530fa48f6d2fec09d2559cef20aa537a9d7)
             check_type(argname="argument robot_account", value=robot_account, expected_type=type_hints["robot_account"])
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
@@ -14680,7 +17182,7 @@ class QuayAccessTokenSpecServiceAccountRef:
         :schema: QuayAccessTokenSpecServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3e1a2c5b1a9946bee470f5e44e7010f914a64be38e1bd6c83605261840dff854)
+            type_hints = cached_type_hints(_typecheckingstub__3e1a2c5b1a9946bee470f5e44e7010f914a64be38e1bd6c83605261840dff854)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -14760,7 +17262,7 @@ class SshKey(
         :param spec: SSHKeySpec controls the behavior of the ssh key generator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3706cf7d3d566a6cf46377e0a0f1e4934c819e3c330d3c8462c3235f2996d4d8)
+            type_hints = cached_type_hints(_typecheckingstub__3706cf7d3d566a6cf46377e0a0f1e4934c819e3c330d3c8462c3235f2996d4d8)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = SshKeyProps(metadata=metadata, spec=spec)
@@ -14822,7 +17324,7 @@ class SshKeyProps:
         if isinstance(spec, dict):
             spec = SshKeySpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dc3e69f9c465057fa7dec8b92133bd3d917b3f7d57a9ca2e48033da78d936da3)
+            type_hints = cached_type_hints(_typecheckingstub__dc3e69f9c465057fa7dec8b92133bd3d917b3f7d57a9ca2e48033da78d936da3)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -14882,7 +17384,7 @@ class SshKeySpec:
         :schema: SshKeySpec
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__d3b36a7ea722110ba1ed55060a7e8413c41e88eda7375d2c52710b6e05924ee6)
+            type_hints = cached_type_hints(_typecheckingstub__d3b36a7ea722110ba1ed55060a7e8413c41e88eda7375d2c52710b6e05924ee6)
             check_type(argname="argument comment", value=comment, expected_type=type_hints["comment"])
             check_type(argname="argument key_size", value=key_size, expected_type=type_hints["key_size"])
             check_type(argname="argument key_type", value=key_type, expected_type=type_hints["key_type"])
@@ -14982,7 +17484,7 @@ class StsSessionToken(
         :param spec: STSSessionTokenSpec defines the desired state to generate an AWS STS session token.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6d24e2306191a5fd4c09bb6b3eba8a928429a33c1a208b4fa447525d2e6efb8e)
+            type_hints = cached_type_hints(_typecheckingstub__6d24e2306191a5fd4c09bb6b3eba8a928429a33c1a208b4fa447525d2e6efb8e)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = StsSessionTokenProps(metadata=metadata, spec=spec)
@@ -15048,7 +17550,7 @@ class StsSessionTokenProps:
         if isinstance(spec, dict):
             spec = StsSessionTokenSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__99ba1ef4df49f58515dd98da924e78ed1ebbe8d10714eea217cc4e293774bf3f)
+            type_hints = cached_type_hints(_typecheckingstub__99ba1ef4df49f58515dd98da924e78ed1ebbe8d10714eea217cc4e293774bf3f)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -15119,7 +17621,7 @@ class StsSessionTokenSpec:
         if isinstance(request_parameters, dict):
             request_parameters = StsSessionTokenSpecRequestParameters(**request_parameters)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__57971c517b07bc88d332106d38b683b3192461b1e272956332f6a1e7a07ffd48)
+            type_hints = cached_type_hints(_typecheckingstub__57971c517b07bc88d332106d38b683b3192461b1e272956332f6a1e7a07ffd48)
             check_type(argname="argument region", value=region, expected_type=type_hints["region"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument request_parameters", value=request_parameters, expected_type=type_hints["request_parameters"])
@@ -15209,7 +17711,7 @@ class StsSessionTokenSpecAuth:
         if isinstance(secret_ref, dict):
             secret_ref = StsSessionTokenSpecAuthSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__128238ae2232ebcc6bf164aa81bc2f0bce66e0e8323dc413175bb2d1cabededb)
+            type_hints = cached_type_hints(_typecheckingstub__128238ae2232ebcc6bf164aa81bc2f0bce66e0e8323dc413175bb2d1cabededb)
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -15268,7 +17770,7 @@ class StsSessionTokenSpecAuthJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = StsSessionTokenSpecAuthJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0ef21507671ccea3e0d2148a2c99b012254c104057efec60f91b4f36ecbcbcd7)
+            type_hints = cached_type_hints(_typecheckingstub__0ef21507671ccea3e0d2148a2c99b012254c104057efec60f91b4f36ecbcbcd7)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -15319,7 +17821,7 @@ class StsSessionTokenSpecAuthJwtServiceAccountRef:
         :schema: StsSessionTokenSpecAuthJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ef74d0e99a5dcb1aa1f95f0ef5e27a930a3ee6f122993effa5372a9f435d1af6)
+            type_hints = cached_type_hints(_typecheckingstub__ef74d0e99a5dcb1aa1f95f0ef5e27a930a3ee6f122993effa5372a9f435d1af6)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -15405,7 +17907,7 @@ class StsSessionTokenSpecAuthSecretRef:
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = StsSessionTokenSpecAuthSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__1aa5ae84249fdfd41ca7b653dd80ec4600c5aac7fcdecbbdfd9861138e87de1c)
+            type_hints = cached_type_hints(_typecheckingstub__1aa5ae84249fdfd41ca7b653dd80ec4600c5aac7fcdecbbdfd9861138e87de1c)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -15484,7 +17986,7 @@ class StsSessionTokenSpecAuthSecretRefAccessKeyIdSecretRef:
         :schema: StsSessionTokenSpecAuthSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__26880547e4d6d107f93525a8b3ddb6deab003815cab7d5a836b60408c97ce22e)
+            type_hints = cached_type_hints(_typecheckingstub__26880547e4d6d107f93525a8b3ddb6deab003815cab7d5a836b60408c97ce22e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -15561,7 +18063,7 @@ class StsSessionTokenSpecAuthSecretRefSecretAccessKeySecretRef:
         :schema: StsSessionTokenSpecAuthSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__25d67dc291615d535958749787fed9be52d1ba3e3c32ee47f076021cc75f627f)
+            type_hints = cached_type_hints(_typecheckingstub__25d67dc291615d535958749787fed9be52d1ba3e3c32ee47f076021cc75f627f)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -15638,7 +18140,7 @@ class StsSessionTokenSpecAuthSecretRefSessionTokenSecretRef:
         :schema: StsSessionTokenSpecAuthSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a802177567d2d782534f3eef4692d36d73e0a214f1a16b8229f4715ad33d029b)
+            type_hints = cached_type_hints(_typecheckingstub__a802177567d2d782534f3eef4692d36d73e0a214f1a16b8229f4715ad33d029b)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -15719,7 +18221,7 @@ class StsSessionTokenSpecRequestParameters:
         :schema: StsSessionTokenSpecRequestParameters
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__e77302456aefbef13fda79e9d9c8914e610c8325ae579419712258b0bd06c96f)
+            type_hints = cached_type_hints(_typecheckingstub__e77302456aefbef13fda79e9d9c8914e610c8325ae579419712258b0bd06c96f)
             check_type(argname="argument serial_number", value=serial_number, expected_type=type_hints["serial_number"])
             check_type(argname="argument session_duration", value=session_duration, expected_type=type_hints["session_duration"])
             check_type(argname="argument token_code", value=token_code, expected_type=type_hints["token_code"])
@@ -15798,7 +18300,7 @@ class Uuid(
         :param spec: UUIDSpec controls the behavior of the uuid generator.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dabeb65c195f530626cc8b53a636523447b50d239eac35855f228858208d7100)
+            type_hints = cached_type_hints(_typecheckingstub__dabeb65c195f530626cc8b53a636523447b50d239eac35855f228858208d7100)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = UuidProps(metadata=metadata, spec=spec)
@@ -15858,7 +18360,7 @@ class UuidProps:
         if isinstance(metadata, dict):
             metadata = _cdk8s_d3d9af27.ApiObjectMetadata(**metadata)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__fc6f47b832cfa3206b7deedb2a4d4629cc00198a598cb3fa553cf5757efd0465)
+            type_hints = cached_type_hints(_typecheckingstub__fc6f47b832cfa3206b7deedb2a4d4629cc00198a598cb3fa553cf5757efd0465)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -15922,7 +18424,7 @@ class VaultDynamicSecret(
         :param spec: VaultDynamicSecretSpec defines the desired spec of VaultDynamicSecret.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9de7ad29b743a3478314c6a17debdf2b449820754873f9353e2c8fe6fefb8e48)
+            type_hints = cached_type_hints(_typecheckingstub__9de7ad29b743a3478314c6a17debdf2b449820754873f9353e2c8fe6fefb8e48)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = VaultDynamicSecretProps(metadata=metadata, spec=spec)
@@ -15984,7 +18486,7 @@ class VaultDynamicSecretProps:
         if isinstance(spec, dict):
             spec = VaultDynamicSecretSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__31b50742f6e2bf3e29bb865c2a67519a6015bd8c040719626d607b2f4f05787f)
+            type_hints = cached_type_hints(_typecheckingstub__31b50742f6e2bf3e29bb865c2a67519a6015bd8c040719626d607b2f4f05787f)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -16067,7 +18569,7 @@ class VaultDynamicSecretSpec:
         if isinstance(retry_settings, dict):
             retry_settings = VaultDynamicSecretSpecRetrySettings(**retry_settings)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f398263266288)
+            type_hints = cached_type_hints(_typecheckingstub__c88f3beb5eebe3642bd7625e948d35a224c53cc7572853ef902f398263266288)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument provider", value=provider, expected_type=type_hints["provider"])
             check_type(argname="argument allow_empty_response", value=allow_empty_response, expected_type=type_hints["allow_empty_response"])
@@ -16248,7 +18750,7 @@ class VaultDynamicSecretSpecProvider:
         if isinstance(tls, dict):
             tls = VaultDynamicSecretSpecProviderTls(**tls)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb0ddf60a)
+            type_hints = cached_type_hints(_typecheckingstub__99bb9f6b265462d6cb37ae7c7ac1a897af8d4eca0e046b25280a6a5eb0ddf60a)
             check_type(argname="argument server", value=server, expected_type=type_hints["server"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
@@ -16504,7 +19006,7 @@ class VaultDynamicSecretSpecProviderAuth:
         if isinstance(user_pass, dict):
             user_pass = VaultDynamicSecretSpecProviderAuthUserPass(**user_pass)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f1db161975aac815c821c159e465d76a46225986d5820ef576591b42b9f95fc1)
+            type_hints = cached_type_hints(_typecheckingstub__f1db161975aac815c821c159e465d76a46225986d5820ef576591b42b9f95fc1)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
             check_type(argname="argument gcp", value=gcp, expected_type=type_hints["gcp"])
@@ -16684,7 +19186,7 @@ class VaultDynamicSecretSpecProviderAuthAppRole:
         if isinstance(role_ref, dict):
             role_ref = VaultDynamicSecretSpecProviderAuthAppRoleRoleRef(**role_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__694b810088d74c88cb73306a438e0a284a0bdb9de47b1cb32eaa3818cdce846b)
+            type_hints = cached_type_hints(_typecheckingstub__694b810088d74c88cb73306a438e0a284a0bdb9de47b1cb32eaa3818cdce846b)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
             check_type(argname="argument role_id", value=role_id, expected_type=type_hints["role_id"])
@@ -16781,7 +19283,7 @@ class VaultDynamicSecretSpecProviderAuthAppRoleRoleRef:
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleRoleRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__9a99fb0e822f1799fd218437bfc9f0467860abc0b235c8c0ec53c1588fa7694c)
+            type_hints = cached_type_hints(_typecheckingstub__9a99fb0e822f1799fd218437bfc9f0467860abc0b235c8c0ec53c1588fa7694c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -16861,7 +19363,7 @@ class VaultDynamicSecretSpecProviderAuthAppRoleSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthAppRoleSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__06f75a4d6e7bdddfad29285d9805b199b2095b6b69e37f08c865b2d156007b9e)
+            type_hints = cached_type_hints(_typecheckingstub__06f75a4d6e7bdddfad29285d9805b199b2095b6b69e37f08c865b2d156007b9e)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -16923,6 +19425,7 @@ class VaultDynamicSecretSpecProviderAuthAppRoleSecretRef:
         "client_cert": "clientCert",
         "path": "path",
         "secret_ref": "secretRef",
+        "vault_role": "vaultRole",
     },
 )
 class VaultDynamicSecretSpecProviderAuthCert:
@@ -16932,12 +19435,14 @@ class VaultDynamicSecretSpecProviderAuthCert:
         client_cert: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthCertClientCert", typing.Dict[builtins.str, typing.Any]]] = None,
         path: typing.Optional[builtins.str] = None,
         secret_ref: typing.Optional[typing.Union["VaultDynamicSecretSpecProviderAuthCertSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault_role: typing.Optional[builtins.str] = None,
     ) -> None:
         '''Cert authenticates with TLS Certificates by passing client certificate, private key and ca certificate Cert authentication method.
 
         :param client_cert: ClientCert is a certificate to authenticate using the Cert Vault authentication method.
         :param path: Path where the Certificate authentication backend is mounted in Vault, e.g: "cert".
         :param secret_ref: SecretRef to a key in a Secret resource containing client private key to authenticate with Vault using the Cert authentication method.
+        :param vault_role: VaultRole specifies the Vault role to use for TLS certificate authentication.
 
         :schema: VaultDynamicSecretSpecProviderAuthCert
         '''
@@ -16946,10 +19451,11 @@ class VaultDynamicSecretSpecProviderAuthCert:
         if isinstance(secret_ref, dict):
             secret_ref = VaultDynamicSecretSpecProviderAuthCertSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__397dacbf5d6cbf9d8bfbc50e753f1950aee0b37fec712f2c76630a0668f3e146)
+            type_hints = cached_type_hints(_typecheckingstub__397dacbf5d6cbf9d8bfbc50e753f1950aee0b37fec712f2c76630a0668f3e146)
             check_type(argname="argument client_cert", value=client_cert, expected_type=type_hints["client_cert"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument vault_role", value=vault_role, expected_type=type_hints["vault_role"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if client_cert is not None:
             self._values["client_cert"] = client_cert
@@ -16957,6 +19463,8 @@ class VaultDynamicSecretSpecProviderAuthCert:
             self._values["path"] = path
         if secret_ref is not None:
             self._values["secret_ref"] = secret_ref
+        if vault_role is not None:
+            self._values["vault_role"] = vault_role
 
     @builtins.property
     def client_cert(
@@ -16988,6 +19496,15 @@ class VaultDynamicSecretSpecProviderAuthCert:
         '''
         result = self._values.get("secret_ref")
         return typing.cast(typing.Optional["VaultDynamicSecretSpecProviderAuthCertSecretRef"], result)
+
+    @builtins.property
+    def vault_role(self) -> typing.Optional[builtins.str]:
+        '''VaultRole specifies the Vault role to use for TLS certificate authentication.
+
+        :schema: VaultDynamicSecretSpecProviderAuthCert#vaultRole
+        '''
+        result = self._values.get("vault_role")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -17023,7 +19540,7 @@ class VaultDynamicSecretSpecProviderAuthCertClientCert:
         :schema: VaultDynamicSecretSpecProviderAuthCertClientCert
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__b58294432d7c518baeb64f016bfac88a09ffd8adf9b8ca535499fa3213151182)
+            type_hints = cached_type_hints(_typecheckingstub__b58294432d7c518baeb64f016bfac88a09ffd8adf9b8ca535499fa3213151182)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -17100,7 +19617,7 @@ class VaultDynamicSecretSpecProviderAuthCertSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthCertSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__68ed331536c95241f0ddad3378cad046ddd93e6a48174ce994cb1df3a464d36a)
+            type_hints = cached_type_hints(_typecheckingstub__68ed331536c95241f0ddad3378cad046ddd93e6a48174ce994cb1df3a464d36a)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -17199,7 +19716,7 @@ class VaultDynamicSecretSpecProviderAuthGcp:
         if isinstance(workload_identity, dict):
             workload_identity = VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentity(**workload_identity)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__8ad8867d522c15bc4c9ebb66d0a97ccc01d33cc6059b2655555fa2ad7a432ec7)
+            type_hints = cached_type_hints(_typecheckingstub__8ad8867d522c15bc4c9ebb66d0a97ccc01d33cc6059b2655555fa2ad7a432ec7)
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument location", value=location, expected_type=type_hints["location"])
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
@@ -17327,7 +19844,7 @@ class VaultDynamicSecretSpecProviderAuthGcpSecretRef:
         if isinstance(secret_access_key_secret_ref, dict):
             secret_access_key_secret_ref = VaultDynamicSecretSpecProviderAuthGcpSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__18c9595a7e64a1fec9a0d6f323fb4ce04c482e840826a9ab1413545f1920a234)
+            type_hints = cached_type_hints(_typecheckingstub__18c9595a7e64a1fec9a0d6f323fb4ce04c482e840826a9ab1413545f1920a234)
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if secret_access_key_secret_ref is not None:
@@ -17378,7 +19895,7 @@ class VaultDynamicSecretSpecProviderAuthGcpSecretRefSecretAccessKeySecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthGcpSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__cd68854dec405f4aa82879c782a40b1b0636179b2d6933749cf1fe6380f5fef5)
+            type_hints = cached_type_hints(_typecheckingstub__cd68854dec405f4aa82879c782a40b1b0636179b2d6933749cf1fe6380f5fef5)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -17455,7 +19972,7 @@ class VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef:
         :schema: VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__dc2e3ced432e85e74dd74f556b9376d7a1e5d418d30d5d62d0fb2cfe0bab01e2)
+            type_hints = cached_type_hints(_typecheckingstub__dc2e3ced432e85e74dd74f556b9376d7a1e5d418d30d5d62d0fb2cfe0bab01e2)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -17540,7 +20057,7 @@ class VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentity:
         if isinstance(service_account_ref, dict):
             service_account_ref = VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__a112ac01431431d150fa3ead6296a9c00d81fc5ea089d8650e82223cab0d0246)
+            type_hints = cached_type_hints(_typecheckingstub__a112ac01431431d150fa3ead6296a9c00d81fc5ea089d8650e82223cab0d0246)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument cluster_location", value=cluster_location, expected_type=type_hints["cluster_location"])
             check_type(argname="argument cluster_name", value=cluster_name, expected_type=type_hints["cluster_name"])
@@ -17628,7 +20145,7 @@ class VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef:
         :schema: VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__390f3e494297d8a192be1df0118944729eea56b254cc55d0eccb4894b3b5bd88)
+            type_hints = cached_type_hints(_typecheckingstub__390f3e494297d8a192be1df0118944729eea56b254cc55d0eccb4894b3b5bd88)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -17727,7 +20244,7 @@ class VaultDynamicSecretSpecProviderAuthIam:
         if isinstance(secret_ref, dict):
             secret_ref = VaultDynamicSecretSpecProviderAuthIamSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5af38260f87760cdeb000f50b6301f4794251e13a7b1b9767e70922eb3c2176c)
+            type_hints = cached_type_hints(_typecheckingstub__5af38260f87760cdeb000f50b6301f4794251e13a7b1b9767e70922eb3c2176c)
             check_type(argname="argument vault_role", value=vault_role, expected_type=type_hints["vault_role"])
             check_type(argname="argument external_id", value=external_id, expected_type=type_hints["external_id"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
@@ -17865,7 +20382,7 @@ class VaultDynamicSecretSpecProviderAuthIamJwt:
         if isinstance(service_account_ref, dict):
             service_account_ref = VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__755f376ef48f4b35fd53ce85e0facd33028f6681920cd7f29db5b5f121234af7)
+            type_hints = cached_type_hints(_typecheckingstub__755f376ef48f4b35fd53ce85e0facd33028f6681920cd7f29db5b5f121234af7)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_ref is not None:
@@ -17916,7 +20433,7 @@ class VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef:
         :schema: VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__70d3aeb75a438d9acdf35b597530aafe9dafff05ff3c888b3299b63fd7af2508)
+            type_hints = cached_type_hints(_typecheckingstub__70d3aeb75a438d9acdf35b597530aafe9dafff05ff3c888b3299b63fd7af2508)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18002,7 +20519,7 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRef:
         if isinstance(session_token_secret_ref, dict):
             session_token_secret_ref = VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef(**session_token_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__942078f327579ee2ec8352e78815d24d32aedc6349eeaad52e0b478df1304bf8)
+            type_hints = cached_type_hints(_typecheckingstub__942078f327579ee2ec8352e78815d24d32aedc6349eeaad52e0b478df1304bf8)
             check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
             check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
             check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
@@ -18081,7 +20598,7 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefAccessKeyIdSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5128dcc7b1f2fef664f57aac1b83767c24bc218f9a13360f6d462313905b3e3c)
+            type_hints = cached_type_hints(_typecheckingstub__5128dcc7b1f2fef664f57aac1b83767c24bc218f9a13360f6d462313905b3e3c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18158,7 +20675,7 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSecretAccessKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__62ce9ed6591f09b9ad3bf3cb73b21f380e308f0578147c37cf827dca58235336)
+            type_hints = cached_type_hints(_typecheckingstub__62ce9ed6591f09b9ad3bf3cb73b21f380e308f0578147c37cf827dca58235336)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18235,7 +20752,7 @@ class VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthIamSecretRefSessionTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5237a9d2f5bbe28b8e8561982178657c137001b1fd187bcdf16b179626d3a617)
+            type_hints = cached_type_hints(_typecheckingstub__5237a9d2f5bbe28b8e8561982178657c137001b1fd187bcdf16b179626d3a617)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18323,7 +20840,7 @@ class VaultDynamicSecretSpecProviderAuthJwt:
         if isinstance(secret_ref, dict):
             secret_ref = VaultDynamicSecretSpecProviderAuthJwtSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__545c29132ebf0518d8533ffee2e4c0a83e6074c0d9b2e21fcae009be46669414)
+            type_hints = cached_type_hints(_typecheckingstub__545c29132ebf0518d8533ffee2e4c0a83e6074c0d9b2e21fcae009be46669414)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument kubernetes_service_account_token", value=kubernetes_service_account_token, expected_type=type_hints["kubernetes_service_account_token"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
@@ -18419,7 +20936,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken:
         if isinstance(service_account_ref, dict):
             service_account_ref = VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4b475f364551889cfe113a71ba131461697147bf11041280bcba648eb628dd33)
+            type_hints = cached_type_hints(_typecheckingstub__4b475f364551889cfe113a71ba131461697147bf11041280bcba648eb628dd33)
             check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument expiration_seconds", value=expiration_seconds, expected_type=type_hints["expiration_seconds"])
@@ -18448,6 +20965,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountToken:
         '''Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by ``serviceAccountRef``.
 
         Defaults to a single audience ``vault`` it not specified.
+
         Deprecated: use serviceAccountRef.Audiences instead
 
         :default: a single audience ``vault`` it not specified.
@@ -18505,7 +21023,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceA
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3333e3e748041d6297548bda5b350634919c0f92240514def8d1409b096751e4)
+            type_hints = cached_type_hints(_typecheckingstub__3333e3e748041d6297548bda5b350634919c0f92240514def8d1409b096751e4)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18581,7 +21099,7 @@ class VaultDynamicSecretSpecProviderAuthJwtSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthJwtSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__96abba540513ab928fe5e7f6062f3c8143e07eda734654ef2b33e1c29b7385e0)
+            type_hints = cached_type_hints(_typecheckingstub__96abba540513ab928fe5e7f6062f3c8143e07eda734654ef2b33e1c29b7385e0)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18669,7 +21187,7 @@ class VaultDynamicSecretSpecProviderAuthKubernetes:
         if isinstance(service_account_ref, dict):
             service_account_ref = VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef(**service_account_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__3db9409bf746179327f1a68ae92cdef6ac3c5d1763ce35ba2f77b0afaa281ada)
+            type_hints = cached_type_hints(_typecheckingstub__3db9409bf746179327f1a68ae92cdef6ac3c5d1763ce35ba2f77b0afaa281ada)
             check_type(argname="argument mount_path", value=mount_path, expected_type=type_hints["mount_path"])
             check_type(argname="argument role", value=role, expected_type=type_hints["role"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -18774,7 +21292,7 @@ class VaultDynamicSecretSpecProviderAuthKubernetesSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4659bfab53d9dc36348d33a718d9e8ecfbe2bb88a426d276713dd23a457e62ff)
+            type_hints = cached_type_hints(_typecheckingstub__4659bfab53d9dc36348d33a718d9e8ecfbe2bb88a426d276713dd23a457e62ff)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18855,7 +21373,7 @@ class VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef:
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__86ab795d10d532e2cd677194c623dfd1c44794f096c0fdf250be3c75cbbfcea3)
+            type_hints = cached_type_hints(_typecheckingstub__86ab795d10d532e2cd677194c623dfd1c44794f096c0fdf250be3c75cbbfcea3)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -18933,7 +21451,7 @@ class VaultDynamicSecretSpecProviderAuthLdap:
         if isinstance(secret_ref, dict):
             secret_ref = VaultDynamicSecretSpecProviderAuthLdapSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__5b0220345616dc96fe17373542b0e0479cd49c760f894b3c8b2b9a7d1bee1b52)
+            type_hints = cached_type_hints(_typecheckingstub__5b0220345616dc96fe17373542b0e0479cd49c760f894b3c8b2b9a7d1bee1b52)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -19009,7 +21527,7 @@ class VaultDynamicSecretSpecProviderAuthLdapSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthLdapSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__60bc931306020a61804834bcc79bbcf49973e8f53d58f4ea39b0ae1754711b08)
+            type_hints = cached_type_hints(_typecheckingstub__60bc931306020a61804834bcc79bbcf49973e8f53d58f4ea39b0ae1754711b08)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -19086,7 +21604,7 @@ class VaultDynamicSecretSpecProviderAuthTokenSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthTokenSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ed41facd1379b3f85556543534fb044320dbd0b59942324205b3985c4248bd36)
+            type_hints = cached_type_hints(_typecheckingstub__ed41facd1379b3f85556543534fb044320dbd0b59942324205b3985c4248bd36)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -19165,7 +21683,7 @@ class VaultDynamicSecretSpecProviderAuthUserPass:
         if isinstance(secret_ref, dict):
             secret_ref = VaultDynamicSecretSpecProviderAuthUserPassSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__958d4e7ec13747646d6801333810ae326b34bfd2eb12c19bf05f0c3bf7d89697)
+            type_hints = cached_type_hints(_typecheckingstub__958d4e7ec13747646d6801333810ae326b34bfd2eb12c19bf05f0c3bf7d89697)
             check_type(argname="argument path", value=path, expected_type=type_hints["path"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
@@ -19241,7 +21759,7 @@ class VaultDynamicSecretSpecProviderAuthUserPassSecretRef:
         :schema: VaultDynamicSecretSpecProviderAuthUserPassSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__216849c3808d37d2df1e879ee71aff23ac155adf219272b406f534e7b6943b73)
+            type_hints = cached_type_hints(_typecheckingstub__216849c3808d37d2df1e879ee71aff23ac155adf219272b406f534e7b6943b73)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -19325,7 +21843,7 @@ class VaultDynamicSecretSpecProviderCaProvider:
         :schema: VaultDynamicSecretSpecProviderCaProvider
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__47aa9e507cb3a56b1071f68782774cbb97be7b7e78095f1255b6540a57b48a2e)
+            type_hints = cached_type_hints(_typecheckingstub__47aa9e507cb3a56b1071f68782774cbb97be7b7e78095f1255b6540a57b48a2e)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
@@ -19423,7 +21941,7 @@ class VaultDynamicSecretSpecProviderCheckAndSet:
         :schema: VaultDynamicSecretSpecProviderCheckAndSet
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__121c91f04879ba611faf542f33fa575ce3149a93c4640101243a4f983caca8d8)
+            type_hints = cached_type_hints(_typecheckingstub__121c91f04879ba611faf542f33fa575ce3149a93c4640101243a4f983caca8d8)
             check_type(argname="argument required", value=required, expected_type=type_hints["required"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if required is not None:
@@ -19484,7 +22002,7 @@ class VaultDynamicSecretSpecProviderTls:
         if isinstance(key_secret_ref, dict):
             key_secret_ref = VaultDynamicSecretSpecProviderTlsKeySecretRef(**key_secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__4c359e9ca0ed96202a7b48da939ccca9ad838ac2a1792e970ccc859acc513b5e)
+            type_hints = cached_type_hints(_typecheckingstub__4c359e9ca0ed96202a7b48da939ccca9ad838ac2a1792e970ccc859acc513b5e)
             check_type(argname="argument cert_secret_ref", value=cert_secret_ref, expected_type=type_hints["cert_secret_ref"])
             check_type(argname="argument key_secret_ref", value=key_secret_ref, expected_type=type_hints["key_secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -19555,7 +22073,7 @@ class VaultDynamicSecretSpecProviderTlsCertSecretRef:
         :schema: VaultDynamicSecretSpecProviderTlsCertSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__599cbaf122859dd7f009e3ed451c225503a46650ac59351333ec8c7e1ebdbeae)
+            type_hints = cached_type_hints(_typecheckingstub__599cbaf122859dd7f009e3ed451c225503a46650ac59351333ec8c7e1ebdbeae)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -19634,7 +22152,7 @@ class VaultDynamicSecretSpecProviderTlsKeySecretRef:
         :schema: VaultDynamicSecretSpecProviderTlsKeySecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__bc5c0e299295a5a887aeb0ffd3b0c7b44ddedc0ba8c0a2218c5f3b3b4b61d977)
+            type_hints = cached_type_hints(_typecheckingstub__bc5c0e299295a5a887aeb0ffd3b0c7b44ddedc0ba8c0a2218c5f3b3b4b61d977)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -19748,7 +22266,7 @@ class VaultDynamicSecretSpecRetrySettings:
         :schema: VaultDynamicSecretSpecRetrySettings
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6ea2dadc111afddae5d1419fecc4fe0206d457921fd2b0454f3c8d16596207f4)
+            type_hints = cached_type_hints(_typecheckingstub__6ea2dadc111afddae5d1419fecc4fe0206d457921fd2b0454f3c8d16596207f4)
             check_type(argname="argument max_retries", value=max_retries, expected_type=type_hints["max_retries"])
             check_type(argname="argument retry_interval", value=retry_interval, expected_type=type_hints["retry_interval"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -19814,7 +22332,7 @@ class Webhook(
         :param spec: WebhookSpec controls the behavior of the external generator. Any body parameters should be passed to the server through the parameters field.
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2b3398300afa4aac17177a7f5a19102c6ef4c1f09f44bd175a63555207914180)
+            type_hints = cached_type_hints(_typecheckingstub__2b3398300afa4aac17177a7f5a19102c6ef4c1f09f44bd175a63555207914180)
             check_type(argname="argument scope", value=scope, expected_type=type_hints["scope"])
             check_type(argname="argument id", value=id, expected_type=type_hints["id"])
         props = WebhookProps(metadata=metadata, spec=spec)
@@ -19879,7 +22397,7 @@ class WebhookProps:
         if isinstance(spec, dict):
             spec = WebhookSpec(**spec)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__0b254d63d89ea234a5552305205259b657fc7bdae3ce04b66e322f35dde31921)
+            type_hints = cached_type_hints(_typecheckingstub__0b254d63d89ea234a5552305205259b657fc7bdae3ce04b66e322f35dde31921)
             check_type(argname="argument metadata", value=metadata, expected_type=type_hints["metadata"])
             check_type(argname="argument spec", value=spec, expected_type=type_hints["spec"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -19974,7 +22492,7 @@ class WebhookSpec:
         if isinstance(ca_provider, dict):
             ca_provider = WebhookSpecCaProvider(**ca_provider)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd91575ec)
+            type_hints = cached_type_hints(_typecheckingstub__6ef020d87c0708a88abf8b30977911e976ff092427549278c6ce74edd91575ec)
             check_type(argname="argument result", value=result, expected_type=type_hints["result"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
@@ -20139,7 +22657,7 @@ class WebhookSpecAuth:
         if isinstance(ntlm, dict):
             ntlm = WebhookSpecAuthNtlm(**ntlm)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__78defe8d10b15821216ddfd3f988c664963f350cdd10aa5c48a1c5a5734905a6)
+            type_hints = cached_type_hints(_typecheckingstub__78defe8d10b15821216ddfd3f988c664963f350cdd10aa5c48a1c5a5734905a6)
             check_type(argname="argument ntlm", value=ntlm, expected_type=type_hints["ntlm"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if ntlm is not None:
@@ -20193,7 +22711,7 @@ class WebhookSpecAuthNtlm:
         if isinstance(username_secret, dict):
             username_secret = WebhookSpecAuthNtlmUsernameSecret(**username_secret)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__54f272261eb357770cbc8bfec20f2a259f0d7047b325a6c635ab4acecc21d863)
+            type_hints = cached_type_hints(_typecheckingstub__54f272261eb357770cbc8bfec20f2a259f0d7047b325a6c635ab4acecc21d863)
             check_type(argname="argument password_secret", value=password_secret, expected_type=type_hints["password_secret"])
             check_type(argname="argument username_secret", value=username_secret, expected_type=type_hints["username_secret"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20261,7 +22779,7 @@ class WebhookSpecAuthNtlmPasswordSecret:
         :schema: WebhookSpecAuthNtlmPasswordSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__2deaaac4bc9b8850bb1260ca7fc7e46f31d6a7fd0b83be30603d96939c1a744c)
+            type_hints = cached_type_hints(_typecheckingstub__2deaaac4bc9b8850bb1260ca7fc7e46f31d6a7fd0b83be30603d96939c1a744c)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -20340,7 +22858,7 @@ class WebhookSpecAuthNtlmUsernameSecret:
         :schema: WebhookSpecAuthNtlmUsernameSecret
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__c7a59ddd5e3704e4ca2730280bf8bd48570c20f65dafe99041e6a266f16c3e1a)
+            type_hints = cached_type_hints(_typecheckingstub__c7a59ddd5e3704e4ca2730280bf8bd48570c20f65dafe99041e6a266f16c3e1a)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
@@ -20424,7 +22942,7 @@ class WebhookSpecCaProvider:
         :schema: WebhookSpecCaProvider
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__90b741732fca9bf2aae7312269add8c4a03df33524d5574edd943d60f2b4f152)
+            type_hints = cached_type_hints(_typecheckingstub__90b741732fca9bf2aae7312269add8c4a03df33524d5574edd943d60f2b4f152)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument type", value=type, expected_type=type_hints["type"])
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
@@ -20515,7 +23033,7 @@ class WebhookSpecResult:
         :schema: WebhookSpecResult
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__ca17a0cafac72c20c4b5371c2a40624b79067e28976caaef7d455a3af73b33b7)
+            type_hints = cached_type_hints(_typecheckingstub__ca17a0cafac72c20c4b5371c2a40624b79067e28976caaef7d455a3af73b33b7)
             check_type(argname="argument json_path", value=json_path, expected_type=type_hints["json_path"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if json_path is not None:
@@ -20564,7 +23082,7 @@ class WebhookSpecSecrets:
         if isinstance(secret_ref, dict):
             secret_ref = WebhookSpecSecretsSecretRef(**secret_ref)
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__f6c624ae8cdb02a080db2665a395b8aab26b2f157404c3891b4e3195fc8dfc4a)
+            type_hints = cached_type_hints(_typecheckingstub__f6c624ae8cdb02a080db2665a395b8aab26b2f157404c3891b4e3195fc8dfc4a)
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
             check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -20624,7 +23142,7 @@ class WebhookSpecSecretsSecretRef:
         :schema: WebhookSpecSecretsSecretRef
         '''
         if __debug__:
-            type_hints = typing.get_type_hints(_typecheckingstub__da7206ccc0e7cc05ae6cece8b22e90df4f71703b449edd6dfd8a06e7de96daf9)
+            type_hints = cached_type_hints(_typecheckingstub__da7206ccc0e7cc05ae6cece8b22e90df4f71703b449edd6dfd8a06e7de96daf9)
             check_type(argname="argument key", value=key, expected_type=type_hints["key"])
             check_type(argname="argument name", value=name, expected_type=type_hints["name"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
@@ -20676,6 +23194,17 @@ __all__ = [
     "AcrAccessTokenSpecAuthWorkloadIdentity",
     "AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef",
     "AcrAccessTokenSpecEnvironmentType",
+    "BeyondtrustWorkloadCredentialsDynamicSecret",
+    "BeyondtrustWorkloadCredentialsDynamicSecretProps",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpec",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer",
+    "BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings",
     "CloudsmithAccessToken",
     "CloudsmithAccessTokenProps",
     "CloudsmithAccessTokenSpec",
@@ -20694,6 +23223,15 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentity",
     "ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef",
     "ClusterGeneratorSpecGeneratorAcrAccessTokenSpecEnvironmentType",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer",
+    "ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings",
     "ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec",
     "ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef",
     "ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpec",
@@ -20720,6 +23258,11 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKey",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec",
+    "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth",
+    "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken",
+    "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef",
+    "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes",
     "ClusterGeneratorSpecGeneratorGrafanaSpec",
     "ClusterGeneratorSpecGeneratorGrafanaSpecAuth",
     "ClusterGeneratorSpecGeneratorGrafanaSpecAuthBasic",
@@ -20832,6 +23375,13 @@ __all__ = [
     "GithubAccessTokenSpecAuth",
     "GithubAccessTokenSpecAuthPrivateKey",
     "GithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "GitlabDeployToken",
+    "GitlabDeployTokenProps",
+    "GitlabDeployTokenSpec",
+    "GitlabDeployTokenSpecAuth",
+    "GitlabDeployTokenSpecAuthToken",
+    "GitlabDeployTokenSpecAuthTokenSecretRef",
+    "GitlabDeployTokenSpecScopes",
     "Grafana",
     "GrafanaProps",
     "GrafanaSpec",
@@ -21024,6 +23574,93 @@ def _typecheckingstub__ddf0afa1f998410811287e82c3097165fb87092b51d21d6220a7bd0ce
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__5df22c031c75cb2a8caa5083c6968c551d9a924db6b3a60fa083b9cf5b3f00e0(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__902d5c9ef490f1a27ebc521d12706a8718e3eccdffc7ad82852ac857f0c6ca34(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__851dbc2ee0a67189739b961c482f8cda5ae68985ea343444573886b5b11b9c6c(
+    *,
+    provider: typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    controller: typing.Optional[builtins.str] = None,
+    retry_settings: typing.Optional[typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2d7ba1d3bcd9969030a6b928e2c4a9840985cbb6f83594501a5cae61a25368a0(
+    *,
+    auth: typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]],
+    server: typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer, typing.Dict[builtins.str, typing.Any]],
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    folder_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__55dd0abc652c1cdb5118c4aabd4c41faf3a6524d5441f9cd2fad980b792f3701(
+    *,
+    apikey: typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1ae136b61afdfe5ea0d666c0786dc737012aea43946bc134d5ec4cb3d8e1592f(
+    *,
+    token: typing.Union[BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a71e4eb4f593576dc11f9e337dcb506c2a7bcef0f6b32cd05af3cc4c726b3a4e(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__79cd7f1799b05ebe0e28dd388aef86abc10d6a81e0e2f0797f69b0ce4cbd750a(
+    *,
+    name: builtins.str,
+    type: BeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__5d74861878fc979779ffaf7d3601bb4c71743df71a207bda981f1a8dbcdc9fdb(
+    *,
+    api_url: builtins.str,
+    site_id: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2d17faf0846fd944d8acf558e9046ca45fd3a18bf549bad31d68ecba45092b99(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__8a7a7a71241266fc4bcad24d1e3ed683758199364aa6f6793360ad4140c05222(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -21090,11 +23727,13 @@ def _typecheckingstub__64d7f76e7038ac114e970dfd5c153b3eb78c0bd1f509f47d2e2323fe8
 def _typecheckingstub__75697d100ce0404120222110ca16af3984f4ab31958e84b7756b37400e311f59(
     *,
     acr_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorAcrAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+    beyondtrust_workload_credentials_dynamic_secret_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     cloudsmith_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     ecr_authorization_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     fake_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorFakeSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     gcr_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGcrAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     github_access_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGithubAccessTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+    gitlab_deploy_token_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     grafana_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     mfa_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorMfaSpec, typing.Dict[builtins.str, typing.Any]]] = None,
     password_spec: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorPasswordSpec, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -21180,6 +23819,75 @@ def _typecheckingstub__2c68f57cbeb67b574e5a877d5e187c847dc30c3640b23c4c04763b2a3
     name: builtins.str,
     audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__6d77d872b1a154e4bb2cff7cda1fe505676f67d18cf3d6427d0abd7132de349f(
+    *,
+    provider: typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProvider, typing.Dict[builtins.str, typing.Any]],
+    controller: typing.Optional[builtins.str] = None,
+    retry_settings: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecRetrySettings, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2c617cc4aca120f23b8c686f07e9efebdf4c37c0f90b4fe7bc37933b5426989c(
+    *,
+    auth: typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuth, typing.Dict[builtins.str, typing.Any]],
+    server: typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderServer, typing.Dict[builtins.str, typing.Any]],
+    ca_bundle: typing.Optional[builtins.str] = None,
+    ca_provider: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    folder_path: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__625812fe63b8a63ddf070b3cee121516bc39449525ec6d1136bae055015c3beb(
+    *,
+    apikey: typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikey, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a4c32bfc2690bb3943ce1a5ce58782840f01187d21e81f948decd05bafbfec64(
+    *,
+    token: typing.Union[ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderAuthApikeyToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e269e53ee3f0295b4b531aa58688628784e2e032ea1f6f7950ac76b08d702b46(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c4ed2499e9bb8386e36a044ac2019509531adaf740a0fb30dfb5436d54217b8(
+    *,
+    name: builtins.str,
+    type: ClusterGeneratorSpecGeneratorBeyondtrustWorkloadCredentialsDynamicSecretSpecProviderCaProviderType,
+    key: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__da63b608a6c7a046c739ede4fde45770003e4dd5e87087c73429ff1c063dd50b(
+    *,
+    api_url: builtins.str,
+    site_id: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__72ae597995afb0c045e562f833938172e3533ebe0688ab406997848af179272a(
+    *,
+    max_retries: typing.Optional[jsii.Number] = None,
+    retry_interval: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -21330,6 +24038,7 @@ def _typecheckingstub__d97f56a9ddbe3b302ef091a16d78d1b4fee560958dfa9aa7936e82dac
     aws_security_credentials: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
     cred_config: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig, typing.Dict[builtins.str, typing.Any]]] = None,
     external_token_endpoint: typing.Optional[builtins.str] = None,
+    gcp_service_account_email: typing.Optional[builtins.str] = None,
     service_account_ref: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -21413,6 +24122,43 @@ def _typecheckingstub__9f5225114d04258c4451905d0b8fab6c9f168173f252619ec0e7e3456
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__6a47f3b8bb3fc735f294941a156751fe1d1f45de499e6998007d6d3c35eb7508(
+    *,
+    auth: typing.Union[ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth, typing.Dict[builtins.str, typing.Any]],
+    name: builtins.str,
+    scopes: typing.Sequence[ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecScopes],
+    expires_at: typing.Optional[datetime.datetime] = None,
+    group_id: typing.Optional[builtins.str] = None,
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+    username: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__67d0e95b5e5df8021acd2c2754c7de5dbddc40d63ce0923f06df45a7c7ec6334(
+    *,
+    token: typing.Union[ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b21a5aa258eb4b095b08d87223c5be7a59132f16701091ba761a3f80f96259fe(
+    *,
+    secret_ref: typing.Union[ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e69e13774a83132fe0aff9cabbc1633d4cdce6f9955b85cb134781ec8f1ba00d(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__a03b1f0e454b3b76e179e25c68ac74f11bb9cebe3337ab374b3f2ed4d9ed2181(
     *,
     auth: typing.Union[ClusterGeneratorSpecGeneratorGrafanaSpecAuth, typing.Dict[builtins.str, typing.Any]],
@@ -21458,6 +24204,7 @@ def _typecheckingstub__c952f78a75a5bbd20df3105965c9af2c7aabb17469a906f4db76fe7c9
     *,
     name: builtins.str,
     role: builtins.str,
+    seconds_to_live: typing.Optional[jsii.Number] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -21683,6 +24430,7 @@ def _typecheckingstub__6a48a6f2044f51d1f9bce54540f955f0f3c0e34ca0c5a81e258fb2525
     client_cert: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
     path: typing.Optional[builtins.str] = None,
     secret_ref: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault_role: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -22252,6 +25000,7 @@ def _typecheckingstub__b72df953fc01d525595211fee595ae85c7514ad34a23d582f41347363
     aws_security_credentials: typing.Optional[typing.Union[GcrAccessTokenSpecAuthWorkloadIdentityFederationAwsSecurityCredentials, typing.Dict[builtins.str, typing.Any]]] = None,
     cred_config: typing.Optional[typing.Union[GcrAccessTokenSpecAuthWorkloadIdentityFederationCredConfig, typing.Dict[builtins.str, typing.Any]]] = None,
     external_token_endpoint: typing.Optional[builtins.str] = None,
+    gcp_service_account_email: typing.Optional[builtins.str] = None,
     service_account_ref: typing.Optional[typing.Union[GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -22380,6 +25129,61 @@ def _typecheckingstub__f44ce4532c26c546f28a977216d68c41dc675e15baa70c2618c40a1fd
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__205f3a349692fb269afafe72d8204746522a82807489dc9ddbf93a68e97c058a(
+    scope: _constructs_77d1e7e8.Construct,
+    id: builtins.str,
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GitlabDeployTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c35bac10dc43d8982ea2ea4f29b46c57b6ec6f8ccfdfb1f8ddfe75ca61ed814f(
+    *,
+    metadata: typing.Optional[typing.Union[_cdk8s_d3d9af27.ApiObjectMetadata, typing.Dict[builtins.str, typing.Any]]] = None,
+    spec: typing.Optional[typing.Union[GitlabDeployTokenSpec, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0085b3e76ebc3c8d026af3cb0485b3f853683443b8661c5e92f37c959191bd54(
+    *,
+    auth: typing.Union[GitlabDeployTokenSpecAuth, typing.Dict[builtins.str, typing.Any]],
+    name: builtins.str,
+    scopes: typing.Sequence[GitlabDeployTokenSpecScopes],
+    expires_at: typing.Optional[datetime.datetime] = None,
+    group_id: typing.Optional[builtins.str] = None,
+    project_id: typing.Optional[builtins.str] = None,
+    url: typing.Optional[builtins.str] = None,
+    username: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__284eea4461d57757dcca4310ab5856f718830780d8598e4ed5c2b1d83a543caa(
+    *,
+    token: typing.Union[GitlabDeployTokenSpecAuthToken, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__bc7a8f22d17b880a79fe9a2e090da93e41a850ec43d9036f633868ced546f918(
+    *,
+    secret_ref: typing.Union[GitlabDeployTokenSpecAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__107bc0857b6194ff41f5063a688ebf776272dd7d15ae7fbea9db9bca309f4d7a(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__d80f5795b34eebd4414d453e74364019631d46df1d6f77332167900032b31ac2(
     scope: _constructs_77d1e7e8.Construct,
     id: builtins.str,
@@ -22443,6 +25247,7 @@ def _typecheckingstub__0b90062b32e8b1dfb708e1e449e63bfe0aa427c431738c846dd6d1124
     *,
     name: builtins.str,
     role: builtins.str,
+    seconds_to_live: typing.Optional[jsii.Number] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -22794,6 +25599,7 @@ def _typecheckingstub__397dacbf5d6cbf9d8bfbc50e753f1950aee0b37fec712f2c76630a066
     client_cert: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthCertClientCert, typing.Dict[builtins.str, typing.Any]]] = None,
     path: typing.Optional[builtins.str] = None,
     secret_ref: typing.Optional[typing.Union[VaultDynamicSecretSpecProviderAuthCertSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault_role: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
