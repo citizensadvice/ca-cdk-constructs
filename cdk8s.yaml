@@ -1,6 +1,6 @@
 language: python
 imports:
-  - k8s@1.35.0
+  - k8s@1.36.0
   # must match the version deployed to the cluster
   - ./crds/external-secrets-crds.yaml
   - https://raw.githubusercontent.com/kubernetes/autoscaler/refs/tags/vertical-pod-autoscaler-1.5.1/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml
