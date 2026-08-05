@@ -9,4 +9,3 @@ imports:
   # modified to comment/disable fields like "getXxx" as they make the import fail
   # see https://github.com/cdk8s-team/cdk8s/issues/1323
   - ./crds/external-secrets-crds.yaml
-  - https://raw.githubusercontent.com/kubernetes/autoscaler/refs/tags/vertical-pod-autoscaler-1.5.1/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml
