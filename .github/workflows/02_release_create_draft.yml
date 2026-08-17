@@ -1,0 +1,55 @@
+name: Create Draft Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  create-draft-release:
+    # Only run if PR was merged (not just closed)
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          ref: main
+
+      - name: Setup Just
+        uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+
+      - name: Setup uv
+        uses: citizensadvice/python-uv-setup-action@dac93858ee327eb09052711b17803ecdfa4da10b
+        with:
+          python_version: 3.13
+
+      - name: Check if this is a version bump commit
+        id: check
+        run: |
+          # Get the merge commit message
+          commit_message=$(git log -1 --pretty=%B)
+          echo "Commit message: $commit_message"
+
+          # Check if commit message matches version bump pattern
+          if echo "$commit_message" | grep -q "^Bumped version to v"; then
+            echo "is_version_bump=true" >> $GITHUB_OUTPUT
+            echo "This is a version bump commit"
+
+            # Extract version from pyproject.toml
+            version=$(just get-version)
+            echo "version=$version" >> $GITHUB_OUTPUT
+            echo "Version: $version"
+          else
+            echo "is_version_bump=false" >> $GITHUB_OUTPUT
+            echo "Not a version bump commit, skipping release creation"
+          fi
+
+      - name: Create draft release
+        if: steps.check.outputs.is_version_bump == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: just ci-create-draft-release ${{ steps.check.outputs.version }}
