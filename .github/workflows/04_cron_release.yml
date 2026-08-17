@@ -101,3 +101,6 @@ jobs:
           new_version=$(just get-version)
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
           echo "Bumped to version: $new_version"
+
+      - name: Push version bump
+        run: just ci-push-branch ${{ steps.branch.outputs.branch_name }}
