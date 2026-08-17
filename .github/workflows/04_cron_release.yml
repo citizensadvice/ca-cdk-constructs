@@ -38,13 +38,27 @@ jobs:
 
           echo "Days since last release: $days_since_release"
 
+          # Check if there are dependabot commits since the last tag
+          dependabot_commits=$(git log "$latest_tag"..HEAD --author="dependabot\[bot\]" --oneline)
+          dependabot_count=$(echo "$dependabot_commits" | grep -c . || echo "0")
+
+          echo "Dependabot commits since last tag: $dependabot_count"
+          if [ "$dependabot_count" -gt 0 ]; then
+            echo "Dependabot commits:"
+            echo "$dependabot_commits"
+          fi
+
           # Cooldown period: 4 days
           cooldown_days=4
 
-          if [ "$days_since_release" -ge "$cooldown_days" ]; then
+          if [ "$dependabot_count" -gt 0 ] && [ "$days_since_release" -ge "$cooldown_days" ]; then
             echo "should_create_pr=true" >> $GITHUB_OUTPUT
-            echo "Cooldown period passed"
+            echo "Release conditions met: dependabot updates exist and cooldown period passed"
           else
             echo "should_create_pr=false" >> $GITHUB_OUTPUT
-            echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
+            if [ "$dependabot_count" -eq 0 ]; then
+              echo "No dependabot commits since last release"
+            else
+              echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
+            fi
           fi
