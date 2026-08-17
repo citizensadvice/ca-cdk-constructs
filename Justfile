@@ -80,3 +80,8 @@ ci-bump-and-commit bump='patch':
     uv version --bump {{ bump }}
     git add pyproject.toml uv.lock
     git commit -m "Bumped version to v$(uv version --short)"
+
+# CI-only: Push current branch to origin
+[group("release")]
+ci-push-branch branch:
+    git push origin {{ branch }}
