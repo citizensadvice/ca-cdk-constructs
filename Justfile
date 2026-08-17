@@ -73,3 +73,10 @@ ci-create-release-branch:
     branch_name="automated-release-$(date +%Y%m%d)"
     git checkout -b "$branch_name"
     echo "$branch_name"
+
+# CI-only: Bump version and commit (for automated workflows)
+[group("release")]
+ci-bump-and-commit bump='patch':
+    uv version --bump {{ bump }}
+    git add pyproject.toml uv.lock
+    git commit -m "Bumped version to v$(uv version --short)"
