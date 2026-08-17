@@ -93,3 +93,11 @@ jobs:
           branch_name=$(just ci-create-release-branch)
           echo "branch_name=$branch_name" >> $GITHUB_OUTPUT
           echo "Created branch: $branch_name"
+
+      - name: Bump patch version and commit
+        id: bump
+        run: |
+          just ci-bump-and-commit patch
+          new_version=$(just get-version)
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          echo "Bumped to version: $new_version"
