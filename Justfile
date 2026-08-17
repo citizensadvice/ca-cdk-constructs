@@ -102,3 +102,8 @@ ci-create-pr version branch:
     3. Review and publish the draft release" \
       --base main \
       --head {{ branch }}
+
+# CI-only: Create draft release for a version
+[group("release")]
+ci-create-draft-release version:
+    gh release create v{{ version }} --draft --generate-notes --title "v{{ version }}" --notes "Automated release - please review and publish"
