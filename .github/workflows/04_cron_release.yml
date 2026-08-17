@@ -1,0 +1,50 @@
+name: Automated Release PR
+
+# Run daily at 9 AM UTC
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  check-release-needed:
+    runs-on: ubuntu-latest
+    outputs:
+      should_create_pr: ${{ steps.check.outputs.should_create_pr }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0 # Fetch all history for tags and commits
+
+      - name: Check if release PR is needed
+        id: check
+        run: |
+          # Get the latest tag
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$latest_tag" ]; then
+            echo "No tags found, proceeding with release PR"
+            echo "should_create_pr=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Latest tag: $latest_tag"
+
+          # Get the date of the latest tag (in seconds since epoch)
+          tag_date=$(git log -1 --format=%ct "$latest_tag")
+          current_date=$(date +%s)
+          days_since_release=$(( (current_date - tag_date) / 86400 ))
+
+          echo "Days since last release: $days_since_release"
+
+          # Cooldown period: 4 days
+          cooldown_days=4
+
+          if [ "$days_since_release" -ge "$cooldown_days" ]; then
+            echo "should_create_pr=true" >> $GITHUB_OUTPUT
+            echo "Cooldown period passed"
+          else
+            echo "should_create_pr=false" >> $GITHUB_OUTPUT
+            echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
+          fi
