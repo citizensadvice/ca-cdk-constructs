@@ -104,3 +104,8 @@ jobs:
 
       - name: Push version bump
         run: just ci-push-branch ${{ steps.branch.outputs.branch_name }}
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: just ci-create-pr ${{ steps.bump.outputs.new_version }} ${{ steps.branch.outputs.branch_name }}
