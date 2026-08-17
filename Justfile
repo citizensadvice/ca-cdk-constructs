@@ -85,3 +85,20 @@ ci-bump-and-commit bump='patch':
 [group("release")]
 ci-push-branch branch:
     git push origin {{ branch }}
+
+# CI-only: Create PR for version bump
+[group("release")]
+ci-create-pr version branch:
+    #!/usr/bin/env bash
+    gh pr create \
+      --title "Release v{{ version }}" \
+      --body "Automated release bump to version v{{ version }}
+
+    This PR includes dependency updates from dependabot that have been merged since the last release.
+
+    **Next steps:**
+    1. Review and merge this PR
+    2. A draft release will be automatically created
+    3. Review and publish the draft release" \
+      --base main \
+      --head {{ branch }}
