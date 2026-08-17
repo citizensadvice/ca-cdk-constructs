@@ -54,3 +54,22 @@ _push_version:
 _create_draft_release:
     gh release create v$(uv version --short) --draft --generate-notes
     echo "> Follow the link to review and publish the release"
+
+# CI-only: Get the current version
+[group("release")]
+get-version:
+    @uv version --short
+
+# CI-only: Configure git for automated commits
+[group("release")]
+ci-configure-git:
+    git config user.name "github-actions[bot]"
+    git config user.email "github-actions[bot]@users.noreply.github.com"
+
+# CI-only: Create and checkout release branch
+[group("release")]
+ci-create-release-branch:
+    #!/usr/bin/env bash
+    branch_name="automated-release-$(date +%Y%m%d)"
+    git checkout -b "$branch_name"
+    echo "$branch_name"

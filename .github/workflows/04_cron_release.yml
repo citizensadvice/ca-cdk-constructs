@@ -62,3 +62,34 @@ jobs:
               echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
             fi
           fi
+
+  create-version-bump-pr:
+    needs: check-release-needed
+    if: needs.check-release-needed.outputs.should_create_pr == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Just
+        uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+
+      - name: Setup uv
+        uses: citizensadvice/python-uv-setup-action@dac93858ee327eb09052711b17803ecdfa4da10b
+        with:
+          python_version: 3.13
+
+      - name: Configure Git
+        run: just ci-configure-git
+
+      - name: Create release branch
+        id: branch
+        run: |
+          branch_name=$(just ci-create-release-branch)
+          echo "branch_name=$branch_name" >> $GITHUB_OUTPUT
+          echo "Created branch: $branch_name"
