@@ -9,6 +9,8 @@ on:
 jobs:
   check-release-needed:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       should_create_pr: ${{ steps.check.outputs.should_create_pr }}
     steps:
