@@ -17,6 +17,14 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for tags and commits
 
+      - name: Setup Just
+        uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+
+      - name: Setup uv
+        uses: citizensadvice/python-uv-setup-action@dac93858ee327eb09052711b17803ecdfa4da10b
+        with:
+          python_version: 3.13
+
       - name: Check if release PR is needed
         id: check
         run: |
@@ -38,26 +46,20 @@ jobs:
 
           echo "Days since last release: $days_since_release"
 
-          # Check if there are dependabot commits since the last tag
-          dependabot_commits=$(git log "$latest_tag"..HEAD --author="dependabot\[bot\]" --oneline)
-          dependabot_count=$(echo "$dependabot_commits" | grep -c . || echo "0")
-
-          echo "Dependabot commits since last tag: $dependabot_count"
-          if [ "$dependabot_count" -gt 0 ]; then
-            echo "Dependabot commits:"
-            echo "$dependabot_commits"
-          fi
+          # Check if main dependencies have changed using the Justfile command
+          # This command outputs "true" or "false"
+          deps_changed=$(just ci-check-deps-changed "$latest_tag")
 
           # Cooldown period: 4 days
           cooldown_days=4
 
-          if [ "$dependabot_count" -gt 0 ] && [ "$days_since_release" -ge "$cooldown_days" ]; then
+          if [ "$deps_changed" = "true" ] && [ "$days_since_release" -ge "$cooldown_days" ]; then
             echo "should_create_pr=true" >> $GITHUB_OUTPUT
-            echo "Release conditions met: dependabot updates exist and cooldown period passed"
+            echo "Release conditions met: dependencies changed and cooldown period passed"
           else
             echo "should_create_pr=false" >> $GITHUB_OUTPUT
-            if [ "$dependabot_count" -eq 0 ]; then
-              echo "No dependabot commits since last release"
+            if [ "$deps_changed" = "false" ]; then
+              echo "No dependency changes since last release"
             else
               echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
             fi
