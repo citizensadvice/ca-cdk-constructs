@@ -61,18 +61,25 @@ get-version:
     @uv version --short
 
 # CI-only: Check if main dependencies have changed since a git ref (e.g., tag)
+# defaults to latest tag if not provided
 # Outputs "true" if dependencies changed, "false" if no changes. Always exits 0.
 [group("release")]
-ci-check-deps-changed ref:
+ci-check-deps-changed *ref:
     #!/usr/bin/env bash
     set -euo pipefail
+
+    if [ -z "{{ ref }}" ]; then
+        ref=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+    else
+        ref="{{ ref }}"
+    fi
 
     # Create a temporary directory and ensure cleanup
     tmpdir=$(mktemp -d)
     trap 'rm -rf "$tmpdir"' EXIT
 
     # Extract [project.dependencies] section from the ref version
-    git show "{{ ref }}:pyproject.toml" > "$tmpdir/pyproject.old.toml" || exit 1
+    git show "$ref:pyproject.toml" > "$tmpdir/pyproject.old.toml" || exit 1
     # Extract the dependencies array (everything between 'dependencies = [' and the closing ']')
     awk '/^dependencies = \[/,/^\]/' "$tmpdir/pyproject.old.toml" | sort > "$tmpdir/deps.old"
 
@@ -81,11 +88,11 @@ ci-check-deps-changed ref:
 
     # Compare the dependency constraint lists
     if ! diff -q "$tmpdir/deps.old" "$tmpdir/deps.new" > /dev/null 2>&1; then
-        echo "Dependency constraints have changed since {{ ref }}:" >&2
+        echo "Dependency constraints have changed since $ref:" >&2
         diff "$tmpdir/deps.old" "$tmpdir/deps.new" >&2 || true
         echo "true"
     else
-        echo "No changes to dependency constraints since {{ ref }}" >&2
+        echo "No changes to dependency constraints since $ref" >&2
         echo "false"
     fi
 
