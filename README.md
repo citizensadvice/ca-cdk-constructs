@@ -23,11 +23,10 @@ CrossAccountDomainDelegation(
     parent_zone_config=R53ParentZoneConfig(
         account_id="1234566789012",
         zone_name="acme.org",
-        role_name="R53UpdateRole" # existing role in the parent zone account
+        role_name="R53UpdateRole",  # existing role in the parent zone account
     ),
-    hosted_zone=zone
+    hosted_zone=zone,
 )
-
 ```
 
 </details>
@@ -72,7 +71,9 @@ Makes it possible to deploy to imported EKS clusters.
 from ca_cdk_constructs.eks import EksClusterIntegration
 
 # in an existing stack
-eks_integration = EksClusterIntegration(self, "EksIntegration", vpc=vpc, cluster_name="mycluster")
+eks_integration = EksClusterIntegration(
+    self, "EksIntegration", vpc=vpc, cluster_name="mycluster"
+)
 
 # for imported clusters the kubectl role must be manually added to aws-auth
 # The role ARN will also be available in the K8sAuthRoleArn output
@@ -100,7 +101,9 @@ See [the tests](./tests/eks/external_secrets/test_external_secrets_chart.py)
 Modifies the password of an Aurora cluster
 
 ```python
-modify_cluster_password = ModifyDBClusterPassword(self, "ModifyClusterPassword", cluster_id=cluster_id, secret=db_secret)
+modify_cluster_password = ModifyDBClusterPassword(
+    self, "ModifyClusterPassword", cluster_id=cluster_id, secret=db_secret
+)
 modify_cluster_password.trigger_on_stack_create_update()
 # access the udnerlaying lambda to e.g. add it to a state machine
 modify_cluster_password.lambda_funct
