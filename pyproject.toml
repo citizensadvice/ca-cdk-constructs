@@ -15,7 +15,7 @@ dependencies = [
     # they don't use the lockfile in this project at all. Since the two lambda layers 
     # used in the EKS handlers are being instantiated in the downstream projects, the version
     # locked by those projects is the one that matters.
-    "aws-cdk-lib==2.265.0",
+    "aws-cdk-lib==2.266.0",
     "aws-cdk-lambda-layer-kubectl-v36==2.0.1",
 ]
 
