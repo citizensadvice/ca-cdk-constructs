@@ -1,16 +1,22 @@
 [project]
 name = "ca-cdk-constructs"
-version = "0.17.4"
+version = "0.18.2"
 description = "Shared CDK constructs"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Citizens Advice", email = "cloud.engineering@citizensadvice.org.uk" }]
 dependencies = [
-    "aws-cdk-lib>=2.215,<3.0",
     "cdk8s>=2.70.15,<3.0",
     "constructs>=10.4,<11.0",
     "cdk_remote_stack>=2.1,<3.0",
-    "aws-cdk-lambda-layer-kubectl-v35>=2.2.2,<3.0",
+    # aws-cdk-lib and aws-cdk-lambda-layer-kubectl-v* must be pinned to an exact version
+    # so that dependabot will change the constraint here as well as the lockfile.
+    # Downstream projects like eks-platform-cdk only use this constraint information,
+    # they don't use the lockfile in this project at all. Since the two lambda layers 
+    # used in the EKS handlers are being instantiated in the downstream projects, the version
+    # locked by those projects is the one that matters.
+    "aws-cdk-lib==2.266.0",
+    "aws-cdk-lambda-layer-kubectl-v36==2.0.1",
 ]
 
 [project.urls]

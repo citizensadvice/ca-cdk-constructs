@@ -1,6 +1,11 @@
 language: python
 imports:
-  - k8s@1.35.0
+  - k8s@1.36.0
   # must match the version deployed to the cluster
-  - https://raw.githubusercontent.com/external-secrets/external-secrets/v2.0.1/deploy/crds/bundle.yaml
-  - https://raw.githubusercontent.com/kubernetes/autoscaler/refs/tags/vertical-pod-autoscaler-1.5.0/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml
+  # find the currently deployed version by inspecting the controller pod images:
+  #     kubectl get --template='{{(index .spec.template.spec.containers 0).image}}' deploy -n kube-system external-secrets"
+  #
+  # original at https://raw.githubusercontent.com/external-secrets/external-secrets/v2.8.0/deploy/crds/bundle.yaml
+  # modified to comment/disable fields like "getXxx" as they make the import fail
+  # see https://github.com/cdk8s-team/cdk8s/issues/1323
+  - ./crds/external-secrets-crds.yaml
