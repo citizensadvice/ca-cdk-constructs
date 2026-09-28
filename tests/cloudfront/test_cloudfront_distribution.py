@@ -148,13 +148,37 @@ def test_geo_restriction_allowlists_the_british_isles_and_ireland(standalone):
     )
 
 
+def test_geo_restriction_allowlists_the_countries_given():
+    """Services outside the default footprint must be able to choose their own countries.
+
+    Asserts that allowed_countries replaces the default allowlist rather than adding to it.
+    """
+    stack = build_stack()
+    build_distribution(stack, allowed_countries=["FR", "DE"])
+    Template.from_stack(stack).has_resource_properties(
+        "AWS::CloudFront::Distribution",
+        {
+            "DistributionConfig": Match.object_like(
+                {
+                    "Restrictions": {
+                        "GeoRestriction": {
+                            "RestrictionType": "whitelist",
+                            "Locations": ["FR", "DE"],
+                        }
+                    }
+                }
+            )
+        },
+    )
+
+
 def test_geo_restriction_can_be_turned_off():
     """Public content has to be reachable from anywhere, so the allowlist must be escapable.
 
-    Asserts that with geographic_restriction False, no Restrictions block is emitted at all.
+    Asserts that with allowed_countries None, no Restrictions block is emitted at all.
     """
     stack = build_stack()
-    build_distribution(stack, geographic_restriction=False)
+    build_distribution(stack, allowed_countries=None)
     Template.from_stack(stack).has_resource_properties(
         "AWS::CloudFront::Distribution",
         {

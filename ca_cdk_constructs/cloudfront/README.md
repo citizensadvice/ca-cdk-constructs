@@ -23,7 +23,7 @@ or `alb_origin` to have the construct build an internal load balancer and serve 
 | `alb_origin` | `AlbOriginProps \| None` | `None` | Build an internal ALB and serve from it. | As above, and needs either its `certificate` or its `hosted_zone`. Raises at synth. |
 | `additional_behaviors` | `dict[str, BehaviorOptions] \| None` | `None` | Path pattern to behaviour. Matched in insertion order, first match wins. | — |
 | `web_acl_id` | `str \| None` | `None` | Unique identifier that specifies the AWS WAF web ACL to associate with this distribution. The ACL ARN for AWS WAFv2, or the ACL ID for AWS WAF Classic. | Not checked here. Must be `CLOUDFRONT` scoped or CloudFormation fails at deploy. |
-| `geographic_restriction` | `bool` | `True` | Allowlist GB, JE, GG, IM and IE. | — |
+| `allowed_countries` | `Sequence[str] \| None` | GB, JE, GG, IM, IE | ISO 3166-1 alpha-2 codes of the countries to serve. `None` serves everywhere. | Country code format checked by CDK at synth. |
 | `access_logs` | `bool` | `True` | Deliver access logs using standard logging v2. | — |
 | `log_retention_days` | `int` | `90` | Lifecycle expiry on the log bucket. | — |
 | `log_format` | `"w3c" \| "parquet"` | `"w3c"` | Output format for delivered logs. | Type checker only. Changing it replaces the log delivery. |
@@ -259,12 +259,23 @@ record can stay cached for a day after you add it.
 
 ## Geographic restriction
 
-`geographic_restriction` is on by default. It allowlists GB, JE, GG, IM and IE, so viewers
+Geographic restriction is on by default. It allowlists GB, JE, GG, IM and IE, so viewers
 located anywhere else get a 403 instead of your content.
+
+Pass `allowed_countries` to serve a different set of countries:
+
+```python
+CloudFrontDistribution(
+    self,
+    "Distribution",
+    ...,
+    allowed_countries=["GB", "IE", "FR"],
+)
+```
 
 It applies to the whole distribution. There is no way to restrict one path and not another.
 
-Set `geographic_restriction=False` to serve everywhere.
+Set `allowed_countries=None` to serve everywhere.
 
 ## Access logging
 

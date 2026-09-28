@@ -1,4 +1,5 @@
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -177,9 +178,10 @@ class CloudFrontDistribution(Construct):
         `arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a`.
         To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
         `473e64fd-f30b-4765-81a0-62ad96dd167a`. Defaults to no WAF.
-    :param geographic_restriction: Serve only to the British Isles and Ireland
-        (GB, JE, GG, IM, IE). Defaults to True. Three things to know before leaving this on
-        for public content:
+    :param allowed_countries: ISO 3166-1 alpha-2 codes of the countries to serve, for
+        example `["GB", "IE"]`. Viewers anywhere else are blocked. Defaults to the British
+        Isles and Ireland (GB, JE, GG, IM, IE). Pass None to serve everywhere. Three things
+        to know before leaving this on for public content:
         - It covers the whole distribution. You cannot restrict one path and not another.
         - Search engines crawl from outside these countries, notably Googlebot from the
           US, so an allowlist will deindex a public site.
@@ -217,7 +219,7 @@ class CloudFrontDistribution(Construct):
         alb_origin: AlbOriginProps | None = None,
         additional_behaviors: dict[str, BehaviorOptions] | None = None,
         web_acl_id: str | None = None,
-        geographic_restriction: bool = True,
+        allowed_countries: Sequence[str] | None = ALLOWED_COUNTRIES,
         access_logs: bool = True,
         log_retention_days: int = 90,
         log_format: LogFormat = "w3c",
@@ -270,8 +272,8 @@ class CloudFrontDistribution(Construct):
             additional_behaviors=additional_behaviors or {},
             web_acl_id=web_acl_id,
             geo_restriction=(
-                GeoRestriction.allowlist(*ALLOWED_COUNTRIES)
-                if geographic_restriction
+                GeoRestriction.allowlist(*allowed_countries)
+                if allowed_countries is not None
                 else None
             ),
             comment=f"{cf_name}: {comment}" if comment else cf_name,
