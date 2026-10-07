@@ -275,7 +275,7 @@ CloudFrontDistribution(
 
 It applies to the whole distribution. There is no way to restrict one path and not another.
 
-Set `allowed_countries=None` to serve everywhere.
+To disable geo restriction and serve everywhere, set `allowed_countries=None` explicitly.
 
 ## Access logging
 

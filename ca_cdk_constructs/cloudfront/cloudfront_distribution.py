@@ -180,14 +180,9 @@ class CloudFrontDistribution(Construct):
         `473e64fd-f30b-4765-81a0-62ad96dd167a`. Defaults to no WAF.
     :param allowed_countries: ISO 3166-1 alpha-2 codes of the countries to serve, for
         example `["GB", "IE"]`. Viewers anywhere else are blocked. Defaults to the British
-        Isles and Ireland (GB, JE, GG, IM, IE). Pass None to serve everywhere. Three things
-        to know before leaving this on for public content:
-        - It covers the whole distribution. You cannot restrict one path and not another.
-        - Search engines crawl from outside these countries, notably Googlebot from the
-          US, so an allowlist will deindex a public site.
-        - It fails open. CloudFront serves the content when it cannot place the viewer,
-          so treat this as a distribution control rather than a security one.
-        Blocked viewers get a bare 403 unless you supply `error_responses`.
+        Isles and Ireland (GB, JE, GG, IM, IE). To disable geo restriction and serve
+        everywhere, set it explicitly to `None`. It covers the whole distribution. You
+        cannot restrict one path and not another.
     :param access_logs: Deliver access logs using CloudFront standard logging (v2).
         Defaults to True.
     :param log_retention_days: How long to keep access logs. Defaults to 90. CloudFront
