@@ -1,0 +1,115 @@
+name: Automated Release PR
+
+# Run daily at 9 AM UTC
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  check-release-needed:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      should_create_pr: ${{ steps.check.outputs.should_create_pr }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0 # Fetch all history for tags and commits
+
+      - name: Setup Just
+        uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+
+      - name: Setup uv
+        uses: citizensadvice/python-uv-setup-action@dac93858ee327eb09052711b17803ecdfa4da10b
+        with:
+          python_version: 3.13
+
+      - name: Check if release PR is needed
+        id: check
+        run: |
+          # Get the latest tag
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$latest_tag" ]; then
+            echo "No tags found, proceeding with release PR"
+            echo "should_create_pr=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Latest tag: $latest_tag"
+
+          # Get the date of the latest tag (in seconds since epoch)
+          tag_date=$(git log -1 --format=%ct "$latest_tag")
+          current_date=$(date +%s)
+          days_since_release=$(( (current_date - tag_date) / 86400 ))
+
+          echo "Days since last release: $days_since_release"
+
+          # Check if main dependencies have changed using the Justfile command
+          # This command outputs "true" or "false"
+          deps_changed=$(just ci-check-deps-changed "$latest_tag")
+
+          # Cooldown period: 4 days
+          cooldown_days=4
+
+          if [ "$deps_changed" = "true" ] && [ "$days_since_release" -ge "$cooldown_days" ]; then
+            echo "should_create_pr=true" >> $GITHUB_OUTPUT
+            echo "Release conditions met: dependencies changed and cooldown period passed"
+          else
+            echo "should_create_pr=false" >> $GITHUB_OUTPUT
+            if [ "$deps_changed" = "false" ]; then
+              echo "No dependency changes since last release"
+            else
+              echo "Cooldown period not met (need $cooldown_days days, only $days_since_release passed)"
+            fi
+          fi
+
+  create-version-bump-pr:
+    needs: check-release-needed
+    if: needs.check-release-needed.outputs.should_create_pr == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Just
+        uses: extractions/setup-just@f8a3cce218d9f83db3a2ecd90e41ac3de6cdfd9b
+
+      - name: Setup uv
+        uses: citizensadvice/python-uv-setup-action@dac93858ee327eb09052711b17803ecdfa4da10b
+        with:
+          python_version: 3.13
+
+      - name: Configure Git
+        run: just ci-configure-git
+
+      - name: Create release branch
+        id: branch
+        run: |
+          branch_name=$(just ci-create-release-branch)
+          echo "branch_name=$branch_name" >> $GITHUB_OUTPUT
+          echo "Created branch: $branch_name"
+
+      - name: Bump patch version and commit
+        id: bump
+        run: |
+          just ci-bump-and-commit patch
+          new_version=$(just get-version)
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          echo "Bumped to version: $new_version"
+
+      - name: Push version bump
+        run: just ci-push-branch ${{ steps.branch.outputs.branch_name }}
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: just ci-create-pr ${{ steps.bump.outputs.new_version }} ${{ steps.branch.outputs.branch_name }}
