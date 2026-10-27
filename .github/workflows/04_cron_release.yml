@@ -109,7 +109,7 @@ jobs:
           echo "Bumped to version: $new_version"
 
       - name: Push version bump
-        run: just push-branch-to-origin  ${{ steps.branch.outputs.branch_name }}
+        run: just push-branch-to-origin ${{ steps.branch.outputs.branch_name }}
 
       - name: Create Pull Request
         env:
