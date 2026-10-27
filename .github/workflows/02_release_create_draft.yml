@@ -52,4 +52,4 @@ jobs:
         if: steps.check.outputs.is_version_bump == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: just ci-create-draft-release ${{ steps.check.outputs.version }}
+        run: just create-automatic-update-draft-release ${{ steps.check.outputs.version }}
