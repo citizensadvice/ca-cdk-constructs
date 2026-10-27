@@ -50,7 +50,7 @@ jobs:
 
           # Check if main dependencies have changed using the Justfile command
           # This command outputs "true" or "false"
-          deps_changed=$(just ci-check-deps-changed "$latest_tag")
+          deps_changed=$(just check-deps-changed "$latest_tag")
 
           # Cooldown period: 4 days
           cooldown_days=4
@@ -94,22 +94,22 @@ jobs:
       - name: Create release branch
         id: branch
         run: |
-          branch_name=$(just ci-create-release-branch)
+          branch_name=$(just create-release-automatic-update-branch)
           echo "branch_name=$branch_name" >> $GITHUB_OUTPUT
           echo "Created branch: $branch_name"
 
       - name: Bump patch version and commit
         id: bump
         run: |
-          just ci-bump-and-commit patch
+          just bump-and-commit-uv patch
           new_version=$(just get-version)
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
           echo "Bumped to version: $new_version"
 
       - name: Push version bump
-        run: just ci-push-branch ${{ steps.branch.outputs.branch_name }}
+        run: just push-branch-to-origin  ${{ steps.branch.outputs.branch_name }}
 
       - name: Create Pull Request
         env:
           GH_TOKEN: ${{ github.token }}
-        run: just ci-create-pr ${{ steps.bump.outputs.new_version }} ${{ steps.branch.outputs.branch_name }}
+        run: just create-automatic-update-pr ${{ steps.bump.outputs.new_version }} ${{ steps.branch.outputs.branch_name }}

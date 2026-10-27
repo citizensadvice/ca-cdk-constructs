@@ -55,16 +55,15 @@ _create_draft_release:
     gh release create v$(uv version --short) --draft --generate-notes
     echo "> Follow the link to review and publish the release"
 
-# CI-only: Get the current version
 [group("release")]
 get-version:
     @uv version --short
 
-# CI-only: Check if main dependencies have changed since a git ref (e.g., tag)
+# Automatic Updates: Check if main dependencies have changed since a git ref (e.g., tag)
 # defaults to latest tag if not provided
 # Outputs "true" if dependencies changed, "false" if no changes. Always exits 0.
-[group("release")]
-ci-check-deps-changed *ref:
+[group("Auto updates")]
+check-deps-changed *ref:
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -96,35 +95,30 @@ ci-check-deps-changed *ref:
         echo "false"
     fi
 
-# CI-only: Configure git for automated commits
-[group("release")]
+[group("CI")]
 ci-configure-git:
     git config user.name "github-actions[bot]"
     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-# CI-only: Create and checkout release branch
-[group("release")]
-ci-create-release-branch:
+[group("Auto updates")]
+create-release-automatic-update-branch:
     #!/usr/bin/env bash
     branch_name="automated-release-$(date +%Y%m%d)"
     git checkout -b "$branch_name"
     echo "$branch_name"
 
-# CI-only: Bump version and commit (for automated workflows)
-[group("release")]
-ci-bump-and-commit bump='patch':
+[group("Auto updates")]
+bump-and-commit-uv bump='patch':
     uv version --bump {{ bump }}
     git add pyproject.toml uv.lock
     git commit -m "Bumped version to v$(uv version --short)"
 
-# CI-only: Push current branch to origin
-[group("release")]
-ci-push-branch branch:
+[group("Auto updates")]
+push-branch-to-origin branch:
     git push origin {{ branch }}
 
-# CI-only: Create PR for version bump
-[group("release")]
-ci-create-pr version branch:
+[group("Auto updates")]
+create-automatic-update-pr version branch:
     #!/usr/bin/env bash
     gh pr create \
       --title "Release v{{ version }}" \
@@ -139,7 +133,6 @@ ci-create-pr version branch:
       --base main \
       --head {{ branch }}
 
-# CI-only: Create draft release for a version
-[group("release")]
-ci-create-draft-release version:
+[group("Auto updates")]
+create-automatic-update-draft-release version:
     gh release create v{{ version }} --draft --generate-notes --title "v{{ version }}" --notes "Automated release - please review and publish"
