@@ -89,7 +89,9 @@ jobs:
           python_version: 3.13
 
       - name: Configure Git
-        run: just ci-configure-git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Create release branch
         id: branch
