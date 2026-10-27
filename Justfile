@@ -95,11 +95,6 @@ check-deps-changed *ref:
         echo "false"
     fi
 
-[group("CI")]
-ci-configure-git:
-    git config user.name "github-actions[bot]"
-    git config user.email "github-actions[bot]@users.noreply.github.com"
-
 [group("Auto updates")]
 create-release-automatic-update-branch:
     #!/usr/bin/env bash
