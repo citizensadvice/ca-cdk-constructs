@@ -12,7 +12,7 @@ dependencies = [
     # aws-cdk-lib and aws-cdk-lambda-layer-kubectl-v* must be pinned to an exact version
     # so that dependabot will change the constraint here as well as the lockfile.
     # Downstream projects like eks-platform-cdk only use this constraint information,
-    # they don't use the lockfile in this project at all. Since the two lambda layers 
+    # they don't use the lockfile in this project at all. Since the two lambda layers
     # used in the EKS handlers are being instantiated in the downstream projects, the version
     # locked by those projects is the one that matters.
     "aws-cdk-lib==2.275.0",
