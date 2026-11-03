@@ -97,6 +97,7 @@ class ClusterExternalSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterExternalSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -775,8 +776,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         '''Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.
 
         :param key: Key is the key used in the Provider, mandatory.
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param metadata_policy: Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None Default: None
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this source.
         :param property: Used to select a specific property of the Provider value (if a map), if supported.
@@ -825,6 +826,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -835,6 +840,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtract:
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtract#decodingStrategy
         '''
@@ -905,6 +914,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrate
 ):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtractConversionStrategy
     '''
 
@@ -921,6 +934,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy
     enum.Enum,
 ):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromExtractDecodingStrategy
     '''
@@ -998,8 +1015,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
     ) -> None:
         '''Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.
 
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param name: Finds secrets based on the name.
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this find source.
         :param path: A root path to start the find operations.
@@ -1037,6 +1054,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFind#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -1047,6 +1068,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFind:
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFind#decodingStrategy
         '''
@@ -1113,6 +1138,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy(
 ):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFindConversionStrategy
     '''
 
@@ -1129,6 +1158,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy(
     enum.Enum,
 ):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataFromFindDecodingStrategy
     '''
@@ -1864,8 +1897,8 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         '''RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.
 
         :param key: Key is the key used in the Provider, mandatory.
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param metadata_policy: Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None Default: None
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this source.
         :param property: Used to select a specific property of the Provider value (if a map), if supported.
@@ -1914,6 +1947,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -1924,6 +1961,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef:
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRef#decodingStrategy
         '''
@@ -1994,6 +2035,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy
 ):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefConversionStrategy
     '''
 
@@ -2010,6 +2055,10 @@ class ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy(
     enum.Enum,
 ):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ClusterExternalSecretSpecExternalSecretSpecDataRemoteRefDecodingStrategy
     '''
@@ -3105,8 +3154,8 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
         :param config_map: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
         :param literal: 
         :param secret: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
-        :param target: Target specifies where to place the template result. For Secret resources, common values are: "Data", "Annotations", "Labels". For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
-        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values.
+        :param target: Target specifies where to place the template result. For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels"; any other value is rejected because it would allow writes to privileged Secret fields. For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
+        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values. Defaults to None when omitted. Default: None when omitted.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom
         '''
@@ -3167,7 +3216,8 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
     def target(self) -> typing.Optional[builtins.str]:
         '''Target specifies where to place the template result.
 
-        For Secret resources, common values are: "Data", "Annotations", "Labels".
+        For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels";
+        any other value is rejected because it would allow writes to privileged Secret fields.
         For custom resources (when spec.target.manifest is set), this supports
         nested paths like "spec.database.config" or "data".
 
@@ -3181,6 +3231,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom:
         self,
     ) -> typing.Optional["ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromValuesDecodingStrategy"]:
         '''Used to define a decoding Strategy for the rendered template values.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFrom#valuesDecodingStrategy
         '''
@@ -3488,6 +3542,10 @@ class ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromValue
     enum.Enum,
 ):
     '''Used to define a decoding Strategy for the rendered template values.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ClusterExternalSecretSpecExternalSecretSpecTargetTemplateTemplateFromValuesDecodingStrategy
     '''
@@ -3873,6 +3931,7 @@ class ClusterExternalSecretV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterExternalSecretV1Beta1".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -7062,6 +7121,7 @@ class ClusterPushSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterPushSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -9402,8 +9462,8 @@ class ClusterPushSecretSpecPushSecretSpecTemplateTemplateFrom:
         :param config_map: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
         :param literal: 
         :param secret: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
-        :param target: Target specifies where to place the template result. For Secret resources, common values are: "Data", "Annotations", "Labels". For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
-        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values.
+        :param target: Target specifies where to place the template result. For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels"; any other value is rejected because it would allow writes to privileged Secret fields. For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
+        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values. Defaults to None when omitted. Default: None when omitted.
 
         :schema: ClusterPushSecretSpecPushSecretSpecTemplateTemplateFrom
         '''
@@ -9464,7 +9524,8 @@ class ClusterPushSecretSpecPushSecretSpecTemplateTemplateFrom:
     def target(self) -> typing.Optional[builtins.str]:
         '''Target specifies where to place the template result.
 
-        For Secret resources, common values are: "Data", "Annotations", "Labels".
+        For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels";
+        any other value is rejected because it would allow writes to privileged Secret fields.
         For custom resources (when spec.target.manifest is set), this supports
         nested paths like "spec.database.config" or "data".
 
@@ -9478,6 +9539,10 @@ class ClusterPushSecretSpecPushSecretSpecTemplateTemplateFrom:
         self,
     ) -> typing.Optional["ClusterPushSecretSpecPushSecretSpecTemplateTemplateFromValuesDecodingStrategy"]:
         '''Used to define a decoding Strategy for the rendered template values.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ClusterPushSecretSpecPushSecretSpecTemplateTemplateFrom#valuesDecodingStrategy
         '''
@@ -9786,6 +9851,10 @@ class ClusterPushSecretSpecPushSecretSpecTemplateTemplateFromValuesDecodingStrat
 ):
     '''Used to define a decoding Strategy for the rendered template values.
 
+    Defaults to None when omitted.
+
+    :default: None when omitted.
+
     :schema: ClusterPushSecretSpecPushSecretSpecTemplateTemplateFromValuesDecodingStrategy
     '''
 
@@ -9873,6 +9942,7 @@ class ClusterSecretStore(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterSecretStore".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -10416,7 +10486,7 @@ class ClusterSecretStoreSpecProvider:
         :param fake: Fake configures a store with static key/value pairs.
         :param fortanix: Fortanix configures this store to sync secrets using the Fortanix provider.
         :param gcpsm: GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
-        :param github: Github configures this store to push GitHub Actions secrets using the GitHub API provider. Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
+        :param github: Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider. Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
         :param gitlab: GitLab configures this store to sync secrets using GitLab Variables provider.
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param infisical: Infisical configures this store to sync secrets using the Infisical provider.
@@ -10830,7 +10900,7 @@ class ClusterSecretStoreSpecProvider:
 
     @builtins.property
     def github(self) -> typing.Optional["ClusterSecretStoreSpecProviderGithub"]:
-        '''Github configures this store to push GitHub Actions secrets using the GitHub API provider.
+        '''Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider.
 
         Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
 
@@ -11521,7 +11591,7 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
@@ -11551,7 +11621,7 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#audiences
         '''
@@ -11929,7 +11999,7 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef:
         of using the ESO controller pod identity. Ignored for other access types.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef
@@ -11959,7 +12029,7 @@ class ClusterSecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef#audiences
         '''
@@ -12463,7 +12533,7 @@ class ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef
@@ -12493,7 +12563,7 @@ class ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderAwsAuthJwtServiceAccountRef#audiences
         '''
@@ -13801,7 +13871,7 @@ class ClusterSecretStoreSpecProviderAzurekvServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderAzurekvServiceAccountRef
@@ -13831,7 +13901,7 @@ class ClusterSecretStoreSpecProviderAzurekvServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderAzurekvServiceAccountRef#audiences
         '''
@@ -13970,54 +14040,121 @@ class ClusterSecretStoreSpecProviderBarbican:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuth",
     jsii_struct_bases=[],
-    name_mapping={"password": "password", "username": "username"},
+    name_mapping={
+        "application_credential_id": "applicationCredentialId",
+        "application_credential_secret": "applicationCredentialSecret",
+        "auth_type": "authType",
+        "password": "password",
+        "username": "username",
+    },
 )
 class ClusterSecretStoreSpecProviderBarbicanAuth:
     def __init__(
         self,
         *,
-        password: typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthPassword", typing.Dict[builtins.str, typing.Any]],
-        username: typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthUsername", typing.Dict[builtins.str, typing.Any]],
+        application_credential_id: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId", typing.Dict[builtins.str, typing.Any]]] = None,
+        application_credential_secret: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret", typing.Dict[builtins.str, typing.Any]]] = None,
+        auth_type: typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthAuthType"] = None,
+        password: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthPassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        username: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthUsername", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''BarbicanAuth contains the authentication information for Barbican.
 
+        :param application_credential_id: ID of the application credential used for authentication.
+        :param application_credential_secret: BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+        :param auth_type: AuthType selects how Barbican authenticates. - "password": use username and password. - "applicationCredential": use application credential ID and secret. Defaults to "password". Default: password".
         :param password: BarbicanProviderPasswordRef defines a reference to a secret containing password for the Barbican provider.
-        :param username: BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+        :param username: Username / Password authentication fields.
 
         :schema: ClusterSecretStoreSpecProviderBarbicanAuth
         '''
+        if isinstance(application_credential_id, dict):
+            application_credential_id = ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId(**application_credential_id)
+        if isinstance(application_credential_secret, dict):
+            application_credential_secret = ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret(**application_credential_secret)
         if isinstance(password, dict):
             password = ClusterSecretStoreSpecProviderBarbicanAuthPassword(**password)
         if isinstance(username, dict):
             username = ClusterSecretStoreSpecProviderBarbicanAuthUsername(**username)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__b1a686a2c06e788c75b12c0518e3362c7cf0dd0f0432f32e06bdad4d11ab2c12)
+            check_type(argname="argument application_credential_id", value=application_credential_id, expected_type=type_hints["application_credential_id"])
+            check_type(argname="argument application_credential_secret", value=application_credential_secret, expected_type=type_hints["application_credential_secret"])
+            check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "password": password,
-            "username": username,
-        }
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if application_credential_id is not None:
+            self._values["application_credential_id"] = application_credential_id
+        if application_credential_secret is not None:
+            self._values["application_credential_secret"] = application_credential_secret
+        if auth_type is not None:
+            self._values["auth_type"] = auth_type
+        if password is not None:
+            self._values["password"] = password
+        if username is not None:
+            self._values["username"] = username
 
     @builtins.property
-    def password(self) -> "ClusterSecretStoreSpecProviderBarbicanAuthPassword":
+    def application_credential_id(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId"]:
+        '''ID of the application credential used for authentication.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuth#applicationCredentialID
+        '''
+        result = self._values.get("application_credential_id")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId"], result)
+
+    @builtins.property
+    def application_credential_secret(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret"]:
+        '''BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuth#applicationCredentialSecret
+        '''
+        result = self._values.get("application_credential_secret")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret"], result)
+
+    @builtins.property
+    def auth_type(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthAuthType"]:
+        '''AuthType selects how Barbican authenticates.
+
+        - "password": use username and password.
+        - "applicationCredential": use application credential ID and secret.
+          Defaults to "password".
+
+        :default: password".
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuth#authType
+        '''
+        result = self._values.get("auth_type")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthAuthType"], result)
+
+    @builtins.property
+    def password(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthPassword"]:
         '''BarbicanProviderPasswordRef defines a reference to a secret containing password for the Barbican provider.
 
         :schema: ClusterSecretStoreSpecProviderBarbicanAuth#password
         '''
         result = self._values.get("password")
-        assert result is not None, "Required property 'password' is missing"
-        return typing.cast("ClusterSecretStoreSpecProviderBarbicanAuthPassword", result)
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthPassword"], result)
 
     @builtins.property
-    def username(self) -> "ClusterSecretStoreSpecProviderBarbicanAuthUsername":
-        '''BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+    def username(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthUsername"]:
+        '''Username / Password authentication fields.
 
         :schema: ClusterSecretStoreSpecProviderBarbicanAuth#username
         '''
         result = self._values.get("username")
-        assert result is not None, "Required property 'username' is missing"
-        return typing.cast("ClusterSecretStoreSpecProviderBarbicanAuthUsername", result)
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthUsername"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -14029,6 +14166,301 @@ class ClusterSecretStoreSpecProviderBarbicanAuth:
         return "ClusterSecretStoreSpecProviderBarbicanAuth(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef", "value": "value"},
+)
+class ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        value: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ID of the application credential used for authentication.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+        :param value: 
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__764a891d5a10e9962767d8783ed0181f592eea284ccb689791f86af61c544788)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument value", value=value, expected_type=type_hints["value"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if value is not None:
+            self._values["value"] = value
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef"]:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef"], result)
+
+    @builtins.property
+    def value(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId#value
+        '''
+        result = self._values.get("value")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__d16a8be4be8cb232cda8d94b2ad9168194e0d16a0aecf2fd533b4aff79cbd0b0)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__1c6547c0281c586752f6f5847c970c2a54e383e9931fe46ac6afb8fcea502dd9)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef":
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a63702cfe42e135b2ed3cb883ed102ebc40ee02164a647947468dd804c9a4907)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderBarbicanAuthAuthType"
+)
+class ClusterSecretStoreSpecProviderBarbicanAuthAuthType(enum.Enum):
+    '''AuthType selects how Barbican authenticates.
+
+    - "password": use username and password.
+    - "applicationCredential": use application credential ID and secret.
+      Defaults to "password".
+
+    :default: password".
+
+    :schema: ClusterSecretStoreSpecProviderBarbicanAuthAuthType
+    '''
+
+    PASSWORD = "PASSWORD"
+    '''password.'''
+    APPLICATION_CREDENTIAL = "APPLICATION_CREDENTIAL"
+    '''applicationCredential.'''
 
 
 @jsii.data_type(
@@ -14174,7 +14606,7 @@ class ClusterSecretStoreSpecProviderBarbicanAuthUsername:
         secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderBarbicanAuthUsernameSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         value: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+        '''Username / Password authentication fields.
 
         :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
         :param value: 
@@ -16998,40 +17430,68 @@ class ClusterSecretStoreSpecProviderConjur:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuth",
     jsii_struct_bases=[],
-    name_mapping={"apikey": "apikey", "cert": "cert", "jwt": "jwt"},
+    name_mapping={
+        "apikey": "apikey",
+        "azure": "azure",
+        "cert": "cert",
+        "gcp": "gcp",
+        "iam": "iam",
+        "jwt": "jwt",
+    },
 )
 class ClusterSecretStoreSpecProviderConjurAuth:
     def __init__(
         self,
         *,
         apikey: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]]] = None,
+        azure: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthAzure", typing.Dict[builtins.str, typing.Any]]] = None,
         cert: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcp: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthGcp", typing.Dict[builtins.str, typing.Any]]] = None,
+        iam: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthIam", typing.Dict[builtins.str, typing.Any]]] = None,
         jwt: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines authentication settings for connecting to Conjur.
 
         :param apikey: Authenticates with Conjur using an API key.
+        :param azure: Azure enables authentication to Conjur via the authn-azure authenticator.
         :param cert: Cert enables certificate-based authentication using a client certificate and key.
+        :param gcp: GCP enables authentication to Conjur via the authn-gcp authenticator.
+        :param iam: IAM enables authentication to Conjur via the authn-iam authenticator.
         :param jwt: Jwt enables JWT authentication using Kubernetes service account tokens.
 
         :schema: ClusterSecretStoreSpecProviderConjurAuth
         '''
         if isinstance(apikey, dict):
             apikey = ClusterSecretStoreSpecProviderConjurAuthApikey(**apikey)
+        if isinstance(azure, dict):
+            azure = ClusterSecretStoreSpecProviderConjurAuthAzure(**azure)
         if isinstance(cert, dict):
             cert = ClusterSecretStoreSpecProviderConjurAuthCert(**cert)
+        if isinstance(gcp, dict):
+            gcp = ClusterSecretStoreSpecProviderConjurAuthGcp(**gcp)
+        if isinstance(iam, dict):
+            iam = ClusterSecretStoreSpecProviderConjurAuthIam(**iam)
         if isinstance(jwt, dict):
             jwt = ClusterSecretStoreSpecProviderConjurAuthJwt(**jwt)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__a71375cf128f48a0373eb4bd064305ac92d85c0a774c9356bd681a11ee53f59c)
             check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
+            check_type(argname="argument azure", value=azure, expected_type=type_hints["azure"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
+            check_type(argname="argument gcp", value=gcp, expected_type=type_hints["gcp"])
+            check_type(argname="argument iam", value=iam, expected_type=type_hints["iam"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if apikey is not None:
             self._values["apikey"] = apikey
+        if azure is not None:
+            self._values["azure"] = azure
         if cert is not None:
             self._values["cert"] = cert
+        if gcp is not None:
+            self._values["gcp"] = gcp
+        if iam is not None:
+            self._values["iam"] = iam
         if jwt is not None:
             self._values["jwt"] = jwt
 
@@ -17047,6 +17507,15 @@ class ClusterSecretStoreSpecProviderConjurAuth:
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthApikey"], result)
 
     @builtins.property
+    def azure(self) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthAzure"]:
+        '''Azure enables authentication to Conjur via the authn-azure authenticator.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuth#azure
+        '''
+        result = self._values.get("azure")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthAzure"], result)
+
+    @builtins.property
     def cert(self) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthCert"]:
         '''Cert enables certificate-based authentication using a client certificate and key.
 
@@ -17054,6 +17523,24 @@ class ClusterSecretStoreSpecProviderConjurAuth:
         '''
         result = self._values.get("cert")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthCert"], result)
+
+    @builtins.property
+    def gcp(self) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthGcp"]:
+        '''GCP enables authentication to Conjur via the authn-gcp authenticator.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuth#gcp
+        '''
+        result = self._values.get("gcp")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthGcp"], result)
+
+    @builtins.property
+    def iam(self) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIam"]:
+        '''IAM enables authentication to Conjur via the authn-iam authenticator.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuth#iam
+        '''
+        result = self._values.get("iam")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIam"], result)
 
     @builtins.property
     def jwt(self) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthJwt"]:
@@ -17316,6 +17803,203 @@ class ClusterSecretStoreSpecProviderConjurAuthApikeyUserRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreSpecProviderConjurAuthApikeyUserRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthAzure",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "service_id": "serviceId",
+        "client_id": "clientId",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class ClusterSecretStoreSpecProviderConjurAuthAzure:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        service_id: builtins.str,
+        client_id: typing.Optional[builtins.str] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Azure enables authentication to Conjur via the authn-azure authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the Azure managed identity (e.g. "data/myapp/myhost").
+        :param service_id: ServiceID is the Conjur authn-azure webservice identifier (e.g. "prod").
+        :param client_id: ClientID is the Azure managed identity client ID. Required for user-assigned managed identities; omit for system-assigned identities.
+        :param service_account_ref: ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API. That token is used as the Azure JWT for Conjur authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__ef8b98cc48e985751cb133279fd8ab09e099142bd58a22e78d642f1b3a241379)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+            "service_id": service_id,
+        }
+        if client_id is not None:
+            self._values["client_id"] = client_id
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the Azure managed identity (e.g. "data/myapp/myhost").
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''ServiceID is the Conjur authn-azure webservice identifier (e.g. "prod").
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def client_id(self) -> typing.Optional[builtins.str]:
+        '''ClientID is the Azure managed identity client ID.
+
+        Required for user-assigned
+        managed identities; omit for system-assigned identities.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure#clientId
+        '''
+        result = self._values.get("client_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef"]:
+        '''ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API.
+
+        That token is used as the Azure JWT for Conjur
+        authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzure#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthAzure(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API.
+
+        That token is used as the Azure JWT for Conjur
+        authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__7afd829f6ba37f4a4d7b5066285d6d84b225e9971a58defa53182ce6725a0ac6)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -17599,6 +18283,681 @@ class ClusterSecretStoreSpecProviderConjurAuthCertClientKeyRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthGcp",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "secret_ref": "secretRef",
+        "service_id": "serviceId",
+    },
+)
+class ClusterSecretStoreSpecProviderConjurAuthGcp:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_id: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''GCP enables authentication to Conjur via the authn-gcp authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the GCP service account (e.g. "data/myapp/myhost").
+        :param secret_ref: SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token. If omitted, the token is fetched from the GCP Metadata Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+        :param service_id: ServiceID is the Conjur authn-gcp webservice identifier (e.g. "prod"). Note: Conjur's authn-gcp authenticator does not include the service ID in the authentication URL; this field is reserved for future use.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcp
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__943b89b5da41d85dcd18c0492880d3b654ad4b1501177acc4b0e88fb76ae8aee)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_id is not None:
+            self._values["service_id"] = service_id
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcp#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the GCP service account (e.g. "data/myapp/myhost").
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcp#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef"]:
+        '''SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token.
+
+        If omitted, the token is fetched from the GCP Metadata
+        Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcp#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef"], result)
+
+    @builtins.property
+    def service_id(self) -> typing.Optional[builtins.str]:
+        '''ServiceID is the Conjur authn-gcp webservice identifier (e.g. "prod"). Note: Conjur's authn-gcp authenticator does not include the service ID in the authentication URL; this field is reserved for future use.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcp#serviceID
+        '''
+        result = self._values.get("service_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthGcp(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"jwt": "jwt"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef:
+    def __init__(
+        self,
+        *,
+        jwt: typing.Union["ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token.
+
+        If omitted, the token is fetched from the GCP Metadata
+        Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+
+        :param jwt: JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef
+        '''
+        if isinstance(jwt, dict):
+            jwt = ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt(**jwt)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__17eb61829436757d50a135ba12213f3089021d8c80adcf3887ccd31cb074ce88)
+            check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "jwt": jwt,
+        }
+
+    @builtins.property
+    def jwt(self) -> "ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt":
+        '''JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef#jwt
+        '''
+        result = self._values.get("jwt")
+        assert result is not None, "Required property 'jwt' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__192e006f34a0319331555635d21ff3fc883d74de82771da22fdab40b23a0d464)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthIam",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "service_id": "serviceId",
+        "insecure": "insecure",
+        "secret_ref": "secretRef",
+    },
+)
+class ClusterSecretStoreSpecProviderConjurAuthIam:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        service_id: builtins.str,
+        insecure: typing.Optional[builtins.bool] = None,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthIamSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''IAM enables authentication to Conjur via the authn-iam authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the AWS IAM role (e.g. "data/myapp/123456789012/MyRole").
+        :param service_id: ServiceID is the Conjur authn-iam webservice identifier (e.g. "prod").
+        :param insecure: Insecure allows authenticating to Conjur over plain HTTP. The AWS IAM authenticator sends a signed request as a bearer credential, so this should only be enabled when the connection is otherwise protected (e.g. a service mesh sidecar terminating TLS).
+        :param secret_ref: SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials. If omitted, the default AWS SDK credential chain is used (IRSA, instance metadata, environment variables, etc.).
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderConjurAuthIamSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__0231ca633d267c055b1d2d4a1d07b78143c466d9065263a473a3150d4914a764)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument insecure", value=insecure, expected_type=type_hints["insecure"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+            "service_id": service_id,
+        }
+        if insecure is not None:
+            self._values["insecure"] = insecure
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the AWS IAM role (e.g. "data/myapp/123456789012/MyRole").
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''ServiceID is the Conjur authn-iam webservice identifier (e.g. "prod").
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def insecure(self) -> typing.Optional[builtins.bool]:
+        '''Insecure allows authenticating to Conjur over plain HTTP.
+
+        The AWS IAM authenticator
+        sends a signed request as a bearer credential, so this should only be enabled when the
+        connection is otherwise protected (e.g. a service mesh sidecar terminating TLS).
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam#insecure
+        '''
+        result = self._values.get("insecure")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIamSecretRef"]:
+        '''SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials.
+
+        If omitted, the default AWS SDK credential chain is used
+        (IRSA, instance metadata, environment variables, etc.).
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIam#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIamSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthIam(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthIamSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={
+        "access_key_id_secret_ref": "accessKeyIdSecretRef",
+        "secret_access_key_secret_ref": "secretAccessKeySecretRef",
+        "session_token_secret_ref": "sessionTokenSecretRef",
+    },
+)
+class ClusterSecretStoreSpecProviderConjurAuthIamSecretRef:
+    def __init__(
+        self,
+        *,
+        access_key_id_secret_ref: typing.Union["ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        secret_access_key_secret_ref: typing.Union["ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+        session_token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials.
+
+        If omitted, the default AWS SDK credential chain is used
+        (IRSA, instance metadata, environment variables, etc.).
+
+        :param access_key_id_secret_ref: A reference to a Secret key containing the AWS Access Key ID.
+        :param secret_access_key_secret_ref: A reference to a Secret key containing the AWS Secret Access Key.
+        :param session_token_secret_ref: A reference to a Secret key containing the AWS Session Token. Required only when using temporary credentials.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRef
+        '''
+        if isinstance(access_key_id_secret_ref, dict):
+            access_key_id_secret_ref = ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef(**access_key_id_secret_ref)
+        if isinstance(secret_access_key_secret_ref, dict):
+            secret_access_key_secret_ref = ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
+        if isinstance(session_token_secret_ref, dict):
+            session_token_secret_ref = ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef(**session_token_secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__06bbcf67323f3e01c6f6768ca6626400f7eaae49f1af4d3ba90f1f028e80eb1b)
+            check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
+            check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
+            check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "access_key_id_secret_ref": access_key_id_secret_ref,
+            "secret_access_key_secret_ref": secret_access_key_secret_ref,
+        }
+        if session_token_secret_ref is not None:
+            self._values["session_token_secret_ref"] = session_token_secret_ref
+
+    @builtins.property
+    def access_key_id_secret_ref(
+        self,
+    ) -> "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef":
+        '''A reference to a Secret key containing the AWS Access Key ID.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRef#accessKeyIDSecretRef
+        '''
+        result = self._values.get("access_key_id_secret_ref")
+        assert result is not None, "Required property 'access_key_id_secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef", result)
+
+    @builtins.property
+    def secret_access_key_secret_ref(
+        self,
+    ) -> "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef":
+        '''A reference to a Secret key containing the AWS Secret Access Key.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRef#secretAccessKeySecretRef
+        '''
+        result = self._values.get("secret_access_key_secret_ref")
+        assert result is not None, "Required property 'secret_access_key_secret_ref' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef", result)
+
+    @builtins.property
+    def session_token_secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef"]:
+        '''A reference to a Secret key containing the AWS Session Token.
+
+        Required only when using temporary credentials.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRef#sessionTokenSecretRef
+        '''
+        result = self._values.get("session_token_secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthIamSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Access Key ID.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__930af62e4d3535d143a0e01af378a82d846c61ebbe525a9c6b1738f467210dda)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Secret Access Key.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__0b03380f74255ce32cb5b587841ed3e885a9610c0b0fa2bf6878f2beee8fd290)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Session Token.
+
+        Required only when using temporary credentials.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__947c0eb2bc55f5b1568211e5aa903f201245b8afa922a17570a5136e29ce4e43)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderConjurAuthJwt",
     jsii_struct_bases=[],
     name_mapping={
@@ -17810,7 +19169,7 @@ class ClusterSecretStoreSpecProviderConjurAuthJwtServiceAccountRef:
         '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderConjurAuthJwtServiceAccountRef
@@ -17840,7 +19199,7 @@ class ClusterSecretStoreSpecProviderConjurAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderConjurAuthJwtServiceAccountRef#audiences
         '''
@@ -18524,7 +19883,7 @@ class ClusterSecretStoreSpecProviderCrdAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderCrdAuthServiceAccount
@@ -18554,7 +19913,7 @@ class ClusterSecretStoreSpecProviderCrdAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderCrdAuthServiceAccount#audiences
         '''
@@ -19790,7 +21149,7 @@ class ClusterSecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef:
         '''ServiceAccountRef specifies the Kubernetes ServiceAccount to use for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef
@@ -19820,7 +21179,7 @@ class ClusterSecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef#audiences
         '''
@@ -21507,7 +22866,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAc
         '''serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRef
@@ -21537,7 +22896,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAc
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRef#audiences
         '''
@@ -21583,7 +22942,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
@@ -21613,7 +22972,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -21654,6 +23013,7 @@ class ClusterSecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         "environment": "environment",
         "org_secret_visibility": "orgSecretVisibility",
         "repository": "repository",
+        "secret_type": "secretType",
         "upload_url": "uploadUrl",
         "url": "url",
     },
@@ -21669,10 +23029,11 @@ class ClusterSecretStoreSpecProviderGithub:
         environment: typing.Optional[builtins.str] = None,
         org_secret_visibility: typing.Optional["ClusterSecretStoreSpecProviderGithubOrgSecretVisibility"] = None,
         repository: typing.Optional[builtins.str] = None,
+        secret_type: typing.Optional["ClusterSecretStoreSpecProviderGithubSecretType"] = None,
         upload_url: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''Github configures this store to push GitHub Actions secrets using the GitHub API provider.
+        '''Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider.
 
         Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
 
@@ -21683,6 +23044,7 @@ class ClusterSecretStoreSpecProviderGithub:
         :param environment: environment will be used to fetch secrets from a particular environment within a github repository.
         :param org_secret_visibility: orgSecretVisibility controls the visibility of organization secrets pushed via PushSecret. Valid values are "all" or "private". When unset, new secrets are created with visibility "all" and existing secrets preserve whatever visibility they already have in GitHub.
         :param repository: repository will be used to fetch secrets from the Github repository within an organization.
+        :param secret_type: secretType specifies which GitHub secret service to use. Defaults to Actions for backwards compatibility. Default: Actions for backwards compatibility.
         :param upload_url: Upload URL for enterprise instances. Default to URL. Default: URL.
         :param url: URL configures the Github instance URL. Defaults to https://github.com/. Default: https://github.com/.
 
@@ -21699,6 +23061,7 @@ class ClusterSecretStoreSpecProviderGithub:
             check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument org_secret_visibility", value=org_secret_visibility, expected_type=type_hints["org_secret_visibility"])
             check_type(argname="argument repository", value=repository, expected_type=type_hints["repository"])
+            check_type(argname="argument secret_type", value=secret_type, expected_type=type_hints["secret_type"])
             check_type(argname="argument upload_url", value=upload_url, expected_type=type_hints["upload_url"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -21713,6 +23076,8 @@ class ClusterSecretStoreSpecProviderGithub:
             self._values["org_secret_visibility"] = org_secret_visibility
         if repository is not None:
             self._values["repository"] = repository
+        if secret_type is not None:
+            self._values["secret_type"] = secret_type
         if upload_url is not None:
             self._values["upload_url"] = upload_url
         if url is not None:
@@ -21790,6 +23155,21 @@ class ClusterSecretStoreSpecProviderGithub:
         '''
         result = self._values.get("repository")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secret_type(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderGithubSecretType"]:
+        '''secretType specifies which GitHub secret service to use.
+
+        Defaults to Actions for backwards compatibility.
+
+        :default: Actions for backwards compatibility.
+
+        :schema: ClusterSecretStoreSpecProviderGithub#secretType
+        '''
+        result = self._values.get("secret_type")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderGithubSecretType"], result)
 
     @builtins.property
     def upload_url(self) -> typing.Optional[builtins.str]:
@@ -21975,6 +23355,25 @@ class ClusterSecretStoreSpecProviderGithubOrgSecretVisibility(enum.Enum):
     '''all.'''
     PRIVATE = "PRIVATE"
     '''private.'''
+
+
+@jsii.enum(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderGithubSecretType"
+)
+class ClusterSecretStoreSpecProviderGithubSecretType(enum.Enum):
+    '''secretType specifies which GitHub secret service to use.
+
+    Defaults to Actions for backwards compatibility.
+
+    :default: Actions for backwards compatibility.
+
+    :schema: ClusterSecretStoreSpecProviderGithubSecretType
+    '''
+
+    ACTIONS = "ACTIONS"
+    '''Actions.'''
+    DEPENDABOT = "DEPENDABOT"
+    '''Dependabot.'''
 
 
 @jsii.data_type(
@@ -25996,7 +27395,7 @@ class ClusterSecretStoreSpecProviderKeepersecurity:
         self,
         *,
         auth_ref: typing.Union["ClusterSecretStoreSpecProviderKeepersecurityAuthRef", typing.Dict[builtins.str, typing.Any]],
-        folder_id: builtins.str,
+        folder_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''KeeperSecurity configures this store to sync secrets using the KeeperSecurity provider.
 
@@ -26013,8 +27412,9 @@ class ClusterSecretStoreSpecProviderKeepersecurity:
             check_type(argname="argument folder_id", value=folder_id, expected_type=type_hints["folder_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth_ref": auth_ref,
-            "folder_id": folder_id,
         }
+        if folder_id is not None:
+            self._values["folder_id"] = folder_id
 
     @builtins.property
     def auth_ref(self) -> "ClusterSecretStoreSpecProviderKeepersecurityAuthRef":
@@ -26029,13 +27429,12 @@ class ClusterSecretStoreSpecProviderKeepersecurity:
         return typing.cast("ClusterSecretStoreSpecProviderKeepersecurityAuthRef", result)
 
     @builtins.property
-    def folder_id(self) -> builtins.str:
+    def folder_id(self) -> typing.Optional[builtins.str]:
         '''
         :schema: ClusterSecretStoreSpecProviderKeepersecurity#folderID
         '''
         result = self._values.get("folder_id")
-        assert result is not None, "Required property 'folder_id' is missing"
-        return typing.cast(builtins.str, result)
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -26640,7 +28039,7 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount
@@ -26670,7 +28069,7 @@ class ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderKubernetesAuthServiceAccount#audiences
         '''
@@ -27108,6 +28507,7 @@ class ClusterSecretStoreSpecProviderNebiusmysterybox:
     name_mapping={
         "service_account_creds_secret_ref": "serviceAccountCredsSecretRef",
         "token_secret_ref": "tokenSecretRef",
+        "workload_identity": "workloadIdentity",
     },
 )
 class ClusterSecretStoreSpecProviderNebiusmysteryboxAuth:
@@ -27116,11 +28516,13 @@ class ClusterSecretStoreSpecProviderNebiusmysteryboxAuth:
         *,
         service_account_creds_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines parameters to authenticate in MysteryBox.
 
         :param service_account_creds_secret_ref: ServiceAccountCreds references a Kubernetes Secret key that contains a JSON document with service account credentials used to get an IAM token. Expected JSON structure: { "subject-credentials": { "alg": "RS256", "private-key": "-----BEGIN PRIVATE KEY-----\\n\\n-----END PRIVATE KEY-----\\n", "kid": "", "iss": "", "sub": "" } }
         :param token_secret_ref: Token authenticates with Nebius Mysterybox by presenting a token.
+        :param workload_identity: WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
 
         :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuth
         '''
@@ -27128,15 +28530,20 @@ class ClusterSecretStoreSpecProviderNebiusmysteryboxAuth:
             service_account_creds_secret_ref = ClusterSecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef(**service_account_creds_secret_ref)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef(**token_secret_ref)
+        if isinstance(workload_identity, dict):
+            workload_identity = ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity(**workload_identity)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__9d143af4d29d0feaf41863c22977cf6008fd5460dcfb290d916507450d17e23b)
             check_type(argname="argument service_account_creds_secret_ref", value=service_account_creds_secret_ref, expected_type=type_hints["service_account_creds_secret_ref"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
+            check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_creds_secret_ref is not None:
             self._values["service_account_creds_secret_ref"] = service_account_creds_secret_ref
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
+        if workload_identity is not None:
+            self._values["workload_identity"] = workload_identity
 
     @builtins.property
     def service_account_creds_secret_ref(
@@ -27170,6 +28577,17 @@ class ClusterSecretStoreSpecProviderNebiusmysteryboxAuth:
         '''
         result = self._values.get("token_secret_ref")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef"], result)
+
+    @builtins.property
+    def workload_identity(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity"]:
+        '''WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuth#workloadIdentity
+        '''
+        result = self._values.get("workload_identity")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -27344,6 +28762,155 @@ class ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity",
+    jsii_struct_bases=[],
+    name_mapping={
+        "iam_service_account_id": "iamServiceAccountId",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity:
+    def __init__(
+        self,
+        *,
+        iam_service_account_id: builtins.str,
+        service_account_ref: typing.Union["ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
+
+        :param iam_service_account_id: IAMServiceAccountID is the Nebius IAM service account identifier that the federated Kubernetes service account should impersonate during token exchange.
+        :param service_account_ref: ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API. The JWT is then exchanged for a Nebius IAM token using workload federation.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__e4a8279801a25a0558af8c5ddbf8be6d142cf2af8d3a5d39f7b1c20a2e2d6000)
+            check_type(argname="argument iam_service_account_id", value=iam_service_account_id, expected_type=type_hints["iam_service_account_id"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "iam_service_account_id": iam_service_account_id,
+            "service_account_ref": service_account_ref,
+        }
+
+    @builtins.property
+    def iam_service_account_id(self) -> builtins.str:
+        '''IAMServiceAccountID is the Nebius IAM service account identifier that the federated Kubernetes service account should impersonate during token exchange.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity#iamServiceAccountID
+        '''
+        result = self._values.get("iam_service_account_id")
+        assert result is not None, "Required property 'iam_service_account_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef":
+        '''ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API.
+
+        The JWT is then exchanged for a
+        Nebius IAM token using workload federation.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        assert result is not None, "Required property 'service_account_ref' is missing"
+        return typing.cast("ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API.
+
+        The JWT is then exchanged for a
+        Nebius IAM token using workload federation.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__c5307a8ca8d348173ff889d6f093710aeb90b738502685ab2959596b8cc48fbb)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -28352,9 +29919,10 @@ class ClusterSecretStoreSpecProviderOnepasswordAuthSecretRefConnectTokenSecretRe
     jsii_struct_bases=[],
     name_mapping={
         "auth": "auth",
-        "vault": "vault",
         "cache": "cache",
+        "environment": "environment",
         "integration_info": "integrationInfo",
+        "vault": "vault",
     },
 )
 class ClusterSecretStoreSpecProviderOnepasswordSdk:
@@ -28362,16 +29930,18 @@ class ClusterSecretStoreSpecProviderOnepasswordSdk:
         self,
         *,
         auth: typing.Union["ClusterSecretStoreSpecProviderOnepasswordSdkAuth", typing.Dict[builtins.str, typing.Any]],
-        vault: builtins.str,
         cache: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOnepasswordSdkCache", typing.Dict[builtins.str, typing.Any]]] = None,
+        environment: typing.Optional[builtins.str] = None,
         integration_info: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOnepasswordSdkIntegrationInfo", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[builtins.str] = None,
     ) -> None:
         '''OnePasswordSDK configures this store to use 1Password's new Go SDK to sync secrets.
 
         :param auth: Auth defines the information necessary to authenticate against OnePassword API.
-        :param vault: Vault defines the vault's name or uuid to access. Do NOT add op:// prefix. This will be done automatically.
         :param cache: Cache configures client-side caching for read operations (GetSecret, GetSecretMap). When enabled, secrets are cached with the specified TTL. Write operations (PushSecret, DeleteSecret) automatically invalidate relevant cache entries. If omitted, caching is disabled (default). cache: {} is a valid option to set.
+        :param environment: Environment defines the 1Password Environment ID to read variables from. Environments are read-only: PushSecret, DeleteSecret, and SecretExists return an error when set. Mutually exclusive with Vault.
         :param integration_info: IntegrationInfo specifies the name and version of the integration built using the 1Password Go SDK. If you don't know which name and version to use, use ``DefaultIntegrationName`` and ``DefaultIntegrationVersion``, respectively.
+        :param vault: Vault defines the vault's name or uuid to access. Do NOT add op:// prefix. This will be done automatically. Mutually exclusive with Environment.
 
         :schema: ClusterSecretStoreSpecProviderOnepasswordSdk
         '''
@@ -28384,17 +29954,21 @@ class ClusterSecretStoreSpecProviderOnepasswordSdk:
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__c949a5d5d1ec74991e57510b94ba4991b0f0b972f7973c1c39b1e642e3b5cc92)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-            check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument cache", value=cache, expected_type=type_hints["cache"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument integration_info", value=integration_info, expected_type=type_hints["integration_info"])
+            check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
-            "vault": vault,
         }
         if cache is not None:
             self._values["cache"] = cache
+        if environment is not None:
+            self._values["environment"] = environment
         if integration_info is not None:
             self._values["integration_info"] = integration_info
+        if vault is not None:
+            self._values["vault"] = vault
 
     @builtins.property
     def auth(self) -> "ClusterSecretStoreSpecProviderOnepasswordSdkAuth":
@@ -28405,18 +29979,6 @@ class ClusterSecretStoreSpecProviderOnepasswordSdk:
         result = self._values.get("auth")
         assert result is not None, "Required property 'auth' is missing"
         return typing.cast("ClusterSecretStoreSpecProviderOnepasswordSdkAuth", result)
-
-    @builtins.property
-    def vault(self) -> builtins.str:
-        '''Vault defines the vault's name or uuid to access.
-
-        Do NOT add op:// prefix. This will be done automatically.
-
-        :schema: ClusterSecretStoreSpecProviderOnepasswordSdk#vault
-        '''
-        result = self._values.get("vault")
-        assert result is not None, "Required property 'vault' is missing"
-        return typing.cast(builtins.str, result)
 
     @builtins.property
     def cache(
@@ -28435,6 +29997,18 @@ class ClusterSecretStoreSpecProviderOnepasswordSdk:
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOnepasswordSdkCache"], result)
 
     @builtins.property
+    def environment(self) -> typing.Optional[builtins.str]:
+        '''Environment defines the 1Password Environment ID to read variables from.
+
+        Environments are read-only: PushSecret, DeleteSecret, and SecretExists return an error when set.
+        Mutually exclusive with Vault.
+
+        :schema: ClusterSecretStoreSpecProviderOnepasswordSdk#environment
+        '''
+        result = self._values.get("environment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def integration_info(
         self,
     ) -> typing.Optional["ClusterSecretStoreSpecProviderOnepasswordSdkIntegrationInfo"]:
@@ -28446,6 +30020,18 @@ class ClusterSecretStoreSpecProviderOnepasswordSdk:
         '''
         result = self._values.get("integration_info")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOnepasswordSdkIntegrationInfo"], result)
+
+    @builtins.property
+    def vault(self) -> typing.Optional[builtins.str]:
+        '''Vault defines the vault's name or uuid to access.
+
+        Do NOT add op:// prefix. This will be done automatically.
+        Mutually exclusive with Environment.
+
+        :schema: ClusterSecretStoreSpecProviderOnepasswordSdk#vault
+        '''
+        result = self._values.get("vault")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -28880,6 +30466,7 @@ class ClusterSecretStoreSpecProviderOpenBao:
     jsii_struct_bases=[],
     name_mapping={
         "app_role": "appRole",
+        "kubernetes": "kubernetes",
         "namespace": "namespace",
         "token_secret_ref": "tokenSecretRef",
         "user_pass": "userPass",
@@ -28890,6 +30477,7 @@ class ClusterSecretStoreSpecProviderOpenBaoAuth:
         self,
         *,
         app_role: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         namespace: typing.Optional[builtins.str] = None,
         token_secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         user_pass: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -28897,6 +30485,7 @@ class ClusterSecretStoreSpecProviderOpenBaoAuth:
         '''Auth configures how secret-manager authenticates with the OpenBao server.
 
         :param app_role: AppRole authenticates with OpenBao using the [App Role auth mechanism], with the role and secret stored in a Kubernetes Secret resource. 
+        :param kubernetes: Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism]. 
         :param namespace: Name of the [OpenBao Namespace] to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within OpenBao that allows OpenBao environments to support secure multi-tenancy. e.g: "ns1". This will default to OpenBao.Namespace field if set, or empty otherwise
         :param token_secret_ref: TokenSecretRef authenticates with OpenBao by presenting a token.
         :param user_pass: UserPass authenticates with OpenBao by passing a username/password pair.
@@ -28905,6 +30494,8 @@ class ClusterSecretStoreSpecProviderOpenBaoAuth:
         '''
         if isinstance(app_role, dict):
             app_role = ClusterSecretStoreSpecProviderOpenBaoAuthAppRole(**app_role)
+        if isinstance(kubernetes, dict):
+            kubernetes = ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes(**kubernetes)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = ClusterSecretStoreSpecProviderOpenBaoAuthTokenSecretRef(**token_secret_ref)
         if isinstance(user_pass, dict):
@@ -28912,12 +30503,15 @@ class ClusterSecretStoreSpecProviderOpenBaoAuth:
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__431b192a3eb800f6ba4731808c84fad7a40d268bbacb4874465af829154bbd06)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
+            check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
             check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
+        if kubernetes is not None:
+            self._values["kubernetes"] = kubernetes
         if namespace is not None:
             self._values["namespace"] = namespace
         if token_secret_ref is not None:
@@ -28936,6 +30530,18 @@ class ClusterSecretStoreSpecProviderOpenBaoAuth:
         '''
         result = self._values.get("app_role")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthAppRole"], result)
+
+    @builtins.property
+    def kubernetes(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes"]:
+        '''Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism].
+
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuth#kubernetes
+        '''
+        result = self._values.get("kubernetes")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes"], result)
 
     @builtins.property
     def namespace(self) -> typing.Optional[builtins.str]:
@@ -29248,6 +30854,278 @@ class ClusterSecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef:
 
     def __repr__(self) -> str:
         return "ClusterSecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes",
+    jsii_struct_bases=[],
+    name_mapping={
+        "path": "path",
+        "role": "role",
+        "secret_ref": "secretRef",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes:
+    def __init__(
+        self,
+        *,
+        path: builtins.str,
+        role: builtins.str,
+        secret_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism].
+
+
+        :param path: Path where the Kubernetes authentication backend is mounted in OpenBao, e.g: "kubernetes".
+        :param role: A required field containing the OpenBao Role to assume. A Role binds a Kubernetes ServiceAccount with a set of OpenBao policies.
+        :param secret_ref: Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao. If a name is specified without a key, ``token`` is the default.
+        :param service_account_ref: Optional service account field containing the name of a Kubernetes ServiceAccount. If the service account is specified, a token will be requested from the Kubernetes TokenRequest API for authenticating with OpenBao. Any configured audiences will be passed to the TokenRequest as-is.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef(**secret_ref)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__f94f156aef3cb42bcb3c2f8addcfb828f727af4c074d34eeaa8773a7fe97abe9)
+            check_type(argname="argument path", value=path, expected_type=type_hints["path"])
+            check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "path": path,
+            "role": role,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def path(self) -> builtins.str:
+        '''Path where the Kubernetes authentication backend is mounted in OpenBao, e.g: "kubernetes".
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes#path
+        '''
+        result = self._values.get("path")
+        assert result is not None, "Required property 'path' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def role(self) -> builtins.str:
+        '''A required field containing the OpenBao Role to assume.
+
+        A Role binds a
+        Kubernetes ServiceAccount with a set of OpenBao policies.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes#role
+        '''
+        result = self._values.get("role")
+        assert result is not None, "Required property 'role' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef"]:
+        '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao.
+
+        If a name is specified without a key,
+        ``token`` is the default.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef"]:
+        '''Optional service account field containing the name of a Kubernetes ServiceAccount.
+
+        If the service account is specified, a token will be requested from the Kubernetes
+        TokenRequest API for authenticating with OpenBao.
+        Any configured audiences will be passed to the TokenRequest as-is.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao.
+
+        If a name is specified without a key,
+        ``token`` is the default.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__cf619c1b50fd7a4eeea6238ec83aeb1298bfcc0494f2e4dd0b44ef2addc62fe6)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional service account field containing the name of a Kubernetes ServiceAccount.
+
+        If the service account is specified, a token will be requested from the Kubernetes
+        TokenRequest API for authenticating with OpenBao.
+        Any configured audiences will be passed to the TokenRequest as-is.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__230b0427d5387d50e2f09afe45df363145e4abeec9a2b29c2c043d2a3c90d474)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -30109,7 +31987,7 @@ class ClusterSecretStoreSpecProviderOracleServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef
@@ -30139,7 +32017,7 @@ class ClusterSecretStoreSpecProviderOracleServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderOracleServiceAccountRef#audiences
         '''
@@ -32348,7 +34226,7 @@ class ClusterSecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef:
         '''ServiceAccountRef specifies the Kubernetes ServiceAccount to use for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef
@@ -32378,7 +34256,7 @@ class ClusterSecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef#audiences
         '''
@@ -32811,8 +34689,10 @@ class ClusterSecretStoreSpecProviderScalewaySecretKeySecretRef:
         "server_url": "serverUrl",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
+        "disable_site_id_validation": "disableSiteIdValidation",
         "domain": "domain",
         "password": "password",
+        "site_id": "siteId",
         "token": "token",
         "username": "username",
     },
@@ -32824,8 +34704,10 @@ class ClusterSecretStoreSpecProviderSecretserver:
         server_url: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderSecretserverCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
+        disable_site_id_validation: typing.Optional[builtins.bool] = None,
         domain: typing.Optional[builtins.str] = None,
         password: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderSecretserverPassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        site_id: typing.Optional[jsii.Number] = None,
         token: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderSecretserverToken", typing.Dict[builtins.str, typing.Any]]] = None,
         username: typing.Optional[typing.Union["ClusterSecretStoreSpecProviderSecretserverUsername", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
@@ -32834,8 +34716,10 @@ class ClusterSecretStoreSpecProviderSecretserver:
         :param server_url: ServerURL URL to your secret server installation.
         :param ca_bundle: PEM/base64 encoded CA bundle used to validate Secret ServerURL. Only used if the ServerURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate Secret ServerURL certificate.
+        :param disable_site_id_validation: DisableSiteIDValidation permits a missing site ID for new secrets. The provider sends 0 if no site ID is set.
         :param domain: Domain is the secret server domain.
         :param password: Password is the secret server account password. Required unless Token is set.
+        :param site_id: SiteID is the ID of the Secret Server site for new secrets. PushSecret metadata can override this value for one secret. The provider uses 1 if this field is not set.
         :param token: Token is an access token used to authenticate to the secret server, as an alternative to Username and Password. When set, Username and Password are not required and are ignored.
         :param username: Username is the secret server account username. Required unless Token is set.
 
@@ -32854,8 +34738,10 @@ class ClusterSecretStoreSpecProviderSecretserver:
             check_type(argname="argument server_url", value=server_url, expected_type=type_hints["server_url"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
+            check_type(argname="argument disable_site_id_validation", value=disable_site_id_validation, expected_type=type_hints["disable_site_id_validation"])
             check_type(argname="argument domain", value=domain, expected_type=type_hints["domain"])
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
+            check_type(argname="argument site_id", value=site_id, expected_type=type_hints["site_id"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -32865,10 +34751,14 @@ class ClusterSecretStoreSpecProviderSecretserver:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
             self._values["ca_provider"] = ca_provider
+        if disable_site_id_validation is not None:
+            self._values["disable_site_id_validation"] = disable_site_id_validation
         if domain is not None:
             self._values["domain"] = domain
         if password is not None:
             self._values["password"] = password
+        if site_id is not None:
+            self._values["site_id"] = site_id
         if token is not None:
             self._values["token"] = token
         if username is not None:
@@ -32909,6 +34799,17 @@ class ClusterSecretStoreSpecProviderSecretserver:
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderSecretserverCaProvider"], result)
 
     @builtins.property
+    def disable_site_id_validation(self) -> typing.Optional[builtins.bool]:
+        '''DisableSiteIDValidation permits a missing site ID for new secrets.
+
+        The provider sends 0 if no site ID is set.
+
+        :schema: ClusterSecretStoreSpecProviderSecretserver#disableSiteIDValidation
+        '''
+        result = self._values.get("disable_site_id_validation")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
     def domain(self) -> typing.Optional[builtins.str]:
         '''Domain is the secret server domain.
 
@@ -32929,6 +34830,18 @@ class ClusterSecretStoreSpecProviderSecretserver:
         '''
         result = self._values.get("password")
         return typing.cast(typing.Optional["ClusterSecretStoreSpecProviderSecretserverPassword"], result)
+
+    @builtins.property
+    def site_id(self) -> typing.Optional[jsii.Number]:
+        '''SiteID is the ID of the Secret Server site for new secrets.
+
+        PushSecret metadata can override this value for one secret.
+        The provider uses 1 if this field is not set.
+
+        :schema: ClusterSecretStoreSpecProviderSecretserver#siteId
+        '''
+        result = self._values.get("site_id")
+        return typing.cast(typing.Optional[jsii.Number], result)
 
     @builtins.property
     def token(
@@ -35027,7 +36940,7 @@ class ClusterSecretStoreSpecProviderVaultAuthGcpServiceAccountRef:
         '''ServiceAccountRef to a service account for impersonation.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthGcpServiceAccountRef
@@ -35057,7 +36970,7 @@ class ClusterSecretStoreSpecProviderVaultAuthGcpServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthGcpServiceAccountRef#audiences
         '''
@@ -35200,7 +37113,7 @@ class ClusterSecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRe
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef
@@ -35230,7 +37143,7 @@ class ClusterSecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRe
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -35488,7 +37401,7 @@ class ClusterSecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef
@@ -35518,7 +37431,7 @@ class ClusterSecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef#audiences
         '''
@@ -36078,7 +37991,7 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -36108,7 +38021,7 @@ class ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -36428,7 +38341,7 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef
@@ -36458,7 +38371,7 @@ class ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef#audiences
         '''
@@ -39582,6 +41495,7 @@ class ClusterSecretStoreV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterSecretStoreV1Beta1".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -41064,7 +42978,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
@@ -41094,7 +43008,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthSe
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#audiences
         '''
@@ -42328,7 +44242,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef
@@ -42358,7 +44272,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef#audiences
         '''
@@ -43491,7 +45405,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef
@@ -43521,7 +45435,7 @@ class ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef#audiences
         '''
@@ -46259,7 +48173,7 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
         '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef
@@ -46289,7 +48203,7 @@ class ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#audiences
         '''
@@ -48095,7 +50009,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccou
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
@@ -48125,7 +50039,7 @@ class ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccou
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -50375,7 +52289,7 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount
@@ -50405,7 +52319,7 @@ class ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount#audiences
         '''
@@ -51823,7 +53737,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef
@@ -51853,7 +53767,7 @@ class ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderOracleServiceAccountRef#audiences
         '''
@@ -55054,7 +56968,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef
@@ -55084,7 +56998,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef#audiences
         '''
@@ -55644,7 +57558,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -55674,7 +57588,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountT
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -55994,7 +57908,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef
@@ -56024,7 +57938,7 @@ class ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterSecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef#audiences
         '''
@@ -58384,6 +60298,7 @@ class ExternalSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ExternalSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -58825,8 +60740,8 @@ class ExternalSecretSpecDataFromExtract:
         '''Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.
 
         :param key: Key is the key used in the Provider, mandatory.
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param metadata_policy: Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None Default: None
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this source.
         :param property: Used to select a specific property of the Provider value (if a map), if supported.
@@ -58875,6 +60790,10 @@ class ExternalSecretSpecDataFromExtract:
     ) -> typing.Optional["ExternalSecretSpecDataFromExtractConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ExternalSecretSpecDataFromExtract#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -58885,6 +60804,10 @@ class ExternalSecretSpecDataFromExtract:
         self,
     ) -> typing.Optional["ExternalSecretSpecDataFromExtractDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ExternalSecretSpecDataFromExtract#decodingStrategy
         '''
@@ -58953,6 +60876,10 @@ class ExternalSecretSpecDataFromExtract:
 class ExternalSecretSpecDataFromExtractConversionStrategy(enum.Enum):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ExternalSecretSpecDataFromExtractConversionStrategy
     '''
 
@@ -58967,6 +60894,10 @@ class ExternalSecretSpecDataFromExtractConversionStrategy(enum.Enum):
 )
 class ExternalSecretSpecDataFromExtractDecodingStrategy(enum.Enum):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ExternalSecretSpecDataFromExtractDecodingStrategy
     '''
@@ -59040,8 +60971,8 @@ class ExternalSecretSpecDataFromFind:
     ) -> None:
         '''Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.
 
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param name: Finds secrets based on the name.
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this find source.
         :param path: A root path to start the find operations.
@@ -59079,6 +61010,10 @@ class ExternalSecretSpecDataFromFind:
     ) -> typing.Optional["ExternalSecretSpecDataFromFindConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ExternalSecretSpecDataFromFind#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -59089,6 +61024,10 @@ class ExternalSecretSpecDataFromFind:
         self,
     ) -> typing.Optional["ExternalSecretSpecDataFromFindDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ExternalSecretSpecDataFromFind#decodingStrategy
         '''
@@ -59151,6 +61090,10 @@ class ExternalSecretSpecDataFromFind:
 class ExternalSecretSpecDataFromFindConversionStrategy(enum.Enum):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ExternalSecretSpecDataFromFindConversionStrategy
     '''
 
@@ -59165,6 +61108,10 @@ class ExternalSecretSpecDataFromFindConversionStrategy(enum.Enum):
 )
 class ExternalSecretSpecDataFromFindDecodingStrategy(enum.Enum):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ExternalSecretSpecDataFromFindDecodingStrategy
     '''
@@ -59882,8 +61829,8 @@ class ExternalSecretSpecDataRemoteRef:
         '''RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.
 
         :param key: Key is the key used in the Provider, mandatory.
-        :param conversion_strategy: Used to define a conversion Strategy.
-        :param decoding_strategy: Used to define a decoding Strategy.
+        :param conversion_strategy: Used to define a conversion Strategy. Defaults to Default when omitted. Default: Default when omitted.
+        :param decoding_strategy: Used to define a decoding Strategy. Defaults to None when omitted. Default: None when omitted.
         :param metadata_policy: Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None Default: None
         :param null_byte_policy: Controls how ESO handles fetched secret data containing NUL bytes for this source.
         :param property: Used to select a specific property of the Provider value (if a map), if supported.
@@ -59932,6 +61879,10 @@ class ExternalSecretSpecDataRemoteRef:
     ) -> typing.Optional["ExternalSecretSpecDataRemoteRefConversionStrategy"]:
         '''Used to define a conversion Strategy.
 
+        Defaults to Default when omitted.
+
+        :default: Default when omitted.
+
         :schema: ExternalSecretSpecDataRemoteRef#conversionStrategy
         '''
         result = self._values.get("conversion_strategy")
@@ -59942,6 +61893,10 @@ class ExternalSecretSpecDataRemoteRef:
         self,
     ) -> typing.Optional["ExternalSecretSpecDataRemoteRefDecodingStrategy"]:
         '''Used to define a decoding Strategy.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ExternalSecretSpecDataRemoteRef#decodingStrategy
         '''
@@ -60010,6 +61965,10 @@ class ExternalSecretSpecDataRemoteRef:
 class ExternalSecretSpecDataRemoteRefConversionStrategy(enum.Enum):
     '''Used to define a conversion Strategy.
 
+    Defaults to Default when omitted.
+
+    :default: Default when omitted.
+
     :schema: ExternalSecretSpecDataRemoteRefConversionStrategy
     '''
 
@@ -60024,6 +61983,10 @@ class ExternalSecretSpecDataRemoteRefConversionStrategy(enum.Enum):
 )
 class ExternalSecretSpecDataRemoteRefDecodingStrategy(enum.Enum):
     '''Used to define a decoding Strategy.
+
+    Defaults to None when omitted.
+
+    :default: None when omitted.
 
     :schema: ExternalSecretSpecDataRemoteRefDecodingStrategy
     '''
@@ -61087,8 +63050,8 @@ class ExternalSecretSpecTargetTemplateTemplateFrom:
         :param config_map: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
         :param literal: 
         :param secret: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
-        :param target: Target specifies where to place the template result. For Secret resources, common values are: "Data", "Annotations", "Labels". For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
-        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values.
+        :param target: Target specifies where to place the template result. For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels"; any other value is rejected because it would allow writes to privileged Secret fields. For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
+        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values. Defaults to None when omitted. Default: None when omitted.
 
         :schema: ExternalSecretSpecTargetTemplateTemplateFrom
         '''
@@ -61149,7 +63112,8 @@ class ExternalSecretSpecTargetTemplateTemplateFrom:
     def target(self) -> typing.Optional[builtins.str]:
         '''Target specifies where to place the template result.
 
-        For Secret resources, common values are: "Data", "Annotations", "Labels".
+        For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels";
+        any other value is rejected because it would allow writes to privileged Secret fields.
         For custom resources (when spec.target.manifest is set), this supports
         nested paths like "spec.database.config" or "data".
 
@@ -61163,6 +63127,10 @@ class ExternalSecretSpecTargetTemplateTemplateFrom:
         self,
     ) -> typing.Optional["ExternalSecretSpecTargetTemplateTemplateFromValuesDecodingStrategy"]:
         '''Used to define a decoding Strategy for the rendered template values.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: ExternalSecretSpecTargetTemplateTemplateFrom#valuesDecodingStrategy
         '''
@@ -61465,6 +63433,10 @@ class ExternalSecretSpecTargetTemplateTemplateFromSecretItemsTemplateAs(enum.Enu
 class ExternalSecretSpecTargetTemplateTemplateFromValuesDecodingStrategy(enum.Enum):
     '''Used to define a decoding Strategy for the rendered template values.
 
+    Defaults to None when omitted.
+
+    :default: None when omitted.
+
     :schema: ExternalSecretSpecTargetTemplateTemplateFromValuesDecodingStrategy
     '''
 
@@ -61537,6 +63509,7 @@ class ExternalSecretV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ExternalSecretV1Beta1".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -64141,6 +66114,7 @@ class PushSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "PushSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -66089,8 +68063,8 @@ class PushSecretSpecTemplateTemplateFrom:
         :param config_map: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
         :param literal: 
         :param secret: TemplateRef specifies a reference to either a ConfigMap or a Secret resource.
-        :param target: Target specifies where to place the template result. For Secret resources, common values are: "Data", "Annotations", "Labels". For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
-        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values.
+        :param target: Target specifies where to place the template result. For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels"; any other value is rejected because it would allow writes to privileged Secret fields. For custom resources (when spec.target.manifest is set), this supports nested paths like "spec.database.config" or "data".
+        :param values_decoding_strategy: Used to define a decoding Strategy for the rendered template values. Defaults to None when omitted. Default: None when omitted.
 
         :schema: PushSecretSpecTemplateTemplateFrom
         '''
@@ -66149,7 +68123,8 @@ class PushSecretSpecTemplateTemplateFrom:
     def target(self) -> typing.Optional[builtins.str]:
         '''Target specifies where to place the template result.
 
-        For Secret resources, common values are: "Data", "Annotations", "Labels".
+        For Secret resources the accepted values are empty, "Data", "Annotations" and "Labels";
+        any other value is rejected because it would allow writes to privileged Secret fields.
         For custom resources (when spec.target.manifest is set), this supports
         nested paths like "spec.database.config" or "data".
 
@@ -66163,6 +68138,10 @@ class PushSecretSpecTemplateTemplateFrom:
         self,
     ) -> typing.Optional["PushSecretSpecTemplateTemplateFromValuesDecodingStrategy"]:
         '''Used to define a decoding Strategy for the rendered template values.
+
+        Defaults to None when omitted.
+
+        :default: None when omitted.
 
         :schema: PushSecretSpecTemplateTemplateFrom#valuesDecodingStrategy
         '''
@@ -66461,6 +68440,10 @@ class PushSecretSpecTemplateTemplateFromSecretItemsTemplateAs(enum.Enum):
 class PushSecretSpecTemplateTemplateFromValuesDecodingStrategy(enum.Enum):
     '''Used to define a decoding Strategy for the rendered template values.
 
+    Defaults to None when omitted.
+
+    :default: None when omitted.
+
     :schema: PushSecretSpecTemplateTemplateFromValuesDecodingStrategy
     '''
 
@@ -66546,6 +68529,7 @@ class SecretStore(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "SecretStore".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -67085,7 +69069,7 @@ class SecretStoreSpecProvider:
         :param fake: Fake configures a store with static key/value pairs.
         :param fortanix: Fortanix configures this store to sync secrets using the Fortanix provider.
         :param gcpsm: GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider.
-        :param github: Github configures this store to push GitHub Actions secrets using the GitHub API provider. Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
+        :param github: Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider. Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
         :param gitlab: GitLab configures this store to sync secrets using GitLab Variables provider.
         :param ibm: IBM configures this store to sync secrets using IBM Cloud provider.
         :param infisical: Infisical configures this store to sync secrets using the Infisical provider.
@@ -67497,7 +69481,7 @@ class SecretStoreSpecProvider:
 
     @builtins.property
     def github(self) -> typing.Optional["SecretStoreSpecProviderGithub"]:
-        '''Github configures this store to push GitHub Actions secrets using the GitHub API provider.
+        '''Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider.
 
         Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
 
@@ -68176,7 +70160,7 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRe
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
@@ -68206,7 +70190,7 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRe
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#audiences
         '''
@@ -68584,7 +70568,7 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef:
         of using the ESO controller pod identity. Ignored for other access types.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef
@@ -68614,7 +70598,7 @@ class SecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderAkeylessAuthSecretRefServiceAccountRef#audiences
         '''
@@ -69116,7 +71100,7 @@ class SecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAwsAuthJwtServiceAccountRef
@@ -69146,7 +71130,7 @@ class SecretStoreSpecProviderAwsAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderAwsAuthJwtServiceAccountRef#audiences
         '''
@@ -70448,7 +72432,7 @@ class SecretStoreSpecProviderAzurekvServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderAzurekvServiceAccountRef
@@ -70478,7 +72462,7 @@ class SecretStoreSpecProviderAzurekvServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderAzurekvServiceAccountRef#audiences
         '''
@@ -70617,54 +72601,121 @@ class SecretStoreSpecProviderBarbican:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuth",
     jsii_struct_bases=[],
-    name_mapping={"password": "password", "username": "username"},
+    name_mapping={
+        "application_credential_id": "applicationCredentialId",
+        "application_credential_secret": "applicationCredentialSecret",
+        "auth_type": "authType",
+        "password": "password",
+        "username": "username",
+    },
 )
 class SecretStoreSpecProviderBarbicanAuth:
     def __init__(
         self,
         *,
-        password: typing.Union["SecretStoreSpecProviderBarbicanAuthPassword", typing.Dict[builtins.str, typing.Any]],
-        username: typing.Union["SecretStoreSpecProviderBarbicanAuthUsername", typing.Dict[builtins.str, typing.Any]],
+        application_credential_id: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthApplicationCredentialId", typing.Dict[builtins.str, typing.Any]]] = None,
+        application_credential_secret: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret", typing.Dict[builtins.str, typing.Any]]] = None,
+        auth_type: typing.Optional["SecretStoreSpecProviderBarbicanAuthAuthType"] = None,
+        password: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthPassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        username: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthUsername", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''BarbicanAuth contains the authentication information for Barbican.
 
+        :param application_credential_id: ID of the application credential used for authentication.
+        :param application_credential_secret: BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+        :param auth_type: AuthType selects how Barbican authenticates. - "password": use username and password. - "applicationCredential": use application credential ID and secret. Defaults to "password". Default: password".
         :param password: BarbicanProviderPasswordRef defines a reference to a secret containing password for the Barbican provider.
-        :param username: BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+        :param username: Username / Password authentication fields.
 
         :schema: SecretStoreSpecProviderBarbicanAuth
         '''
+        if isinstance(application_credential_id, dict):
+            application_credential_id = SecretStoreSpecProviderBarbicanAuthApplicationCredentialId(**application_credential_id)
+        if isinstance(application_credential_secret, dict):
+            application_credential_secret = SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret(**application_credential_secret)
         if isinstance(password, dict):
             password = SecretStoreSpecProviderBarbicanAuthPassword(**password)
         if isinstance(username, dict):
             username = SecretStoreSpecProviderBarbicanAuthUsername(**username)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__d6fc1ea0ef06eb135e6f5caaa339fcaf52a2f6a6cd7f97e152ca516cfa266708)
+            check_type(argname="argument application_credential_id", value=application_credential_id, expected_type=type_hints["application_credential_id"])
+            check_type(argname="argument application_credential_secret", value=application_credential_secret, expected_type=type_hints["application_credential_secret"])
+            check_type(argname="argument auth_type", value=auth_type, expected_type=type_hints["auth_type"])
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
-        self._values: typing.Dict[builtins.str, typing.Any] = {
-            "password": password,
-            "username": username,
-        }
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if application_credential_id is not None:
+            self._values["application_credential_id"] = application_credential_id
+        if application_credential_secret is not None:
+            self._values["application_credential_secret"] = application_credential_secret
+        if auth_type is not None:
+            self._values["auth_type"] = auth_type
+        if password is not None:
+            self._values["password"] = password
+        if username is not None:
+            self._values["username"] = username
 
     @builtins.property
-    def password(self) -> "SecretStoreSpecProviderBarbicanAuthPassword":
+    def application_credential_id(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialId"]:
+        '''ID of the application credential used for authentication.
+
+        :schema: SecretStoreSpecProviderBarbicanAuth#applicationCredentialID
+        '''
+        result = self._values.get("application_credential_id")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialId"], result)
+
+    @builtins.property
+    def application_credential_secret(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret"]:
+        '''BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+
+        :schema: SecretStoreSpecProviderBarbicanAuth#applicationCredentialSecret
+        '''
+        result = self._values.get("application_credential_secret")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret"], result)
+
+    @builtins.property
+    def auth_type(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthAuthType"]:
+        '''AuthType selects how Barbican authenticates.
+
+        - "password": use username and password.
+        - "applicationCredential": use application credential ID and secret.
+          Defaults to "password".
+
+        :default: password".
+
+        :schema: SecretStoreSpecProviderBarbicanAuth#authType
+        '''
+        result = self._values.get("auth_type")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthAuthType"], result)
+
+    @builtins.property
+    def password(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthPassword"]:
         '''BarbicanProviderPasswordRef defines a reference to a secret containing password for the Barbican provider.
 
         :schema: SecretStoreSpecProviderBarbicanAuth#password
         '''
         result = self._values.get("password")
-        assert result is not None, "Required property 'password' is missing"
-        return typing.cast("SecretStoreSpecProviderBarbicanAuthPassword", result)
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthPassword"], result)
 
     @builtins.property
-    def username(self) -> "SecretStoreSpecProviderBarbicanAuthUsername":
-        '''BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+    def username(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthUsername"]:
+        '''Username / Password authentication fields.
 
         :schema: SecretStoreSpecProviderBarbicanAuth#username
         '''
         result = self._values.get("username")
-        assert result is not None, "Required property 'username' is missing"
-        return typing.cast("SecretStoreSpecProviderBarbicanAuthUsername", result)
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthUsername"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -70676,6 +72727,299 @@ class SecretStoreSpecProviderBarbicanAuth:
         return "SecretStoreSpecProviderBarbicanAuth(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuthApplicationCredentialId",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef", "value": "value"},
+)
+class SecretStoreSpecProviderBarbicanAuthApplicationCredentialId:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        value: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ID of the application credential used for authentication.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+        :param value: 
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialId
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a7e6cd6a76388bd90585159fa19d682e586d8c8aa4689545e913f000ef9a0655)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument value", value=value, expected_type=type_hints["value"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if value is not None:
+            self._values["value"] = value
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef"]:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialId#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef"], result)
+
+    @builtins.property
+    def value(self) -> typing.Optional[builtins.str]:
+        '''
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialId#value
+        '''
+        result = self._values.get("value")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderBarbicanAuthApplicationCredentialId(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__2813ccc849882dc0a12057ddcd0a683f3a7f65a3e6b4d27ba5101c4c93f825bf)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret",
+    jsii_struct_bases=[],
+    name_mapping={"secret_ref": "secretRef"},
+)
+class SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret:
+    def __init__(
+        self,
+        *,
+        secret_ref: typing.Union["SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''BarbicanProviderAppCredSecretRef defines a reference to an Application Credential Secret.
+
+        :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__3e2910f6a4071e8497903449a306f4cf73e6502da980228018f2862c322b8447)
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "secret_ref": secret_ref,
+        }
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> "SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef":
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        assert result is not None, "Required property 'secret_ref' is missing"
+        return typing.cast("SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''SecretKeySelector is a reference to a specific 'key' within a Secret resource.
+
+        In some instances, ``key`` is a required field.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__b1d437e8a1eebd0629caead1bff8e72316bd260d1aaeb60d72fda89a845b4b42)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.SecretStoreSpecProviderBarbicanAuthAuthType")
+class SecretStoreSpecProviderBarbicanAuthAuthType(enum.Enum):
+    '''AuthType selects how Barbican authenticates.
+
+    - "password": use username and password.
+    - "applicationCredential": use application credential ID and secret.
+      Defaults to "password".
+
+    :default: password".
+
+    :schema: SecretStoreSpecProviderBarbicanAuthAuthType
+    '''
+
+    PASSWORD = "PASSWORD"
+    '''password.'''
+    APPLICATION_CREDENTIAL = "APPLICATION_CREDENTIAL"
+    '''applicationCredential.'''
 
 
 @jsii.data_type(
@@ -70819,7 +73163,7 @@ class SecretStoreSpecProviderBarbicanAuthUsername:
         secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderBarbicanAuthUsernameSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         value: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''BarbicanProviderUsernameRef defines a reference to a secret containing username for the Barbican provider.
+        '''Username / Password authentication fields.
 
         :param secret_ref: SecretKeySelector is a reference to a specific 'key' within a Secret resource. In some instances, ``key`` is a required field.
         :param value: 
@@ -73633,40 +75977,68 @@ class SecretStoreSpecProviderConjur:
 @jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuth",
     jsii_struct_bases=[],
-    name_mapping={"apikey": "apikey", "cert": "cert", "jwt": "jwt"},
+    name_mapping={
+        "apikey": "apikey",
+        "azure": "azure",
+        "cert": "cert",
+        "gcp": "gcp",
+        "iam": "iam",
+        "jwt": "jwt",
+    },
 )
 class SecretStoreSpecProviderConjurAuth:
     def __init__(
         self,
         *,
         apikey: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthApikey", typing.Dict[builtins.str, typing.Any]]] = None,
+        azure: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthAzure", typing.Dict[builtins.str, typing.Any]]] = None,
         cert: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthCert", typing.Dict[builtins.str, typing.Any]]] = None,
+        gcp: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthGcp", typing.Dict[builtins.str, typing.Any]]] = None,
+        iam: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthIam", typing.Dict[builtins.str, typing.Any]]] = None,
         jwt: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthJwt", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Defines authentication settings for connecting to Conjur.
 
         :param apikey: Authenticates with Conjur using an API key.
+        :param azure: Azure enables authentication to Conjur via the authn-azure authenticator.
         :param cert: Cert enables certificate-based authentication using a client certificate and key.
+        :param gcp: GCP enables authentication to Conjur via the authn-gcp authenticator.
+        :param iam: IAM enables authentication to Conjur via the authn-iam authenticator.
         :param jwt: Jwt enables JWT authentication using Kubernetes service account tokens.
 
         :schema: SecretStoreSpecProviderConjurAuth
         '''
         if isinstance(apikey, dict):
             apikey = SecretStoreSpecProviderConjurAuthApikey(**apikey)
+        if isinstance(azure, dict):
+            azure = SecretStoreSpecProviderConjurAuthAzure(**azure)
         if isinstance(cert, dict):
             cert = SecretStoreSpecProviderConjurAuthCert(**cert)
+        if isinstance(gcp, dict):
+            gcp = SecretStoreSpecProviderConjurAuthGcp(**gcp)
+        if isinstance(iam, dict):
+            iam = SecretStoreSpecProviderConjurAuthIam(**iam)
         if isinstance(jwt, dict):
             jwt = SecretStoreSpecProviderConjurAuthJwt(**jwt)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__c189fde8c426f5d0387aae405c8590c960ebfadbdceb9d48c29b32a4ee915361)
             check_type(argname="argument apikey", value=apikey, expected_type=type_hints["apikey"])
+            check_type(argname="argument azure", value=azure, expected_type=type_hints["azure"])
             check_type(argname="argument cert", value=cert, expected_type=type_hints["cert"])
+            check_type(argname="argument gcp", value=gcp, expected_type=type_hints["gcp"])
+            check_type(argname="argument iam", value=iam, expected_type=type_hints["iam"])
             check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if apikey is not None:
             self._values["apikey"] = apikey
+        if azure is not None:
+            self._values["azure"] = azure
         if cert is not None:
             self._values["cert"] = cert
+        if gcp is not None:
+            self._values["gcp"] = gcp
+        if iam is not None:
+            self._values["iam"] = iam
         if jwt is not None:
             self._values["jwt"] = jwt
 
@@ -73680,6 +76052,15 @@ class SecretStoreSpecProviderConjurAuth:
         return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthApikey"], result)
 
     @builtins.property
+    def azure(self) -> typing.Optional["SecretStoreSpecProviderConjurAuthAzure"]:
+        '''Azure enables authentication to Conjur via the authn-azure authenticator.
+
+        :schema: SecretStoreSpecProviderConjurAuth#azure
+        '''
+        result = self._values.get("azure")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthAzure"], result)
+
+    @builtins.property
     def cert(self) -> typing.Optional["SecretStoreSpecProviderConjurAuthCert"]:
         '''Cert enables certificate-based authentication using a client certificate and key.
 
@@ -73687,6 +76068,24 @@ class SecretStoreSpecProviderConjurAuth:
         '''
         result = self._values.get("cert")
         return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthCert"], result)
+
+    @builtins.property
+    def gcp(self) -> typing.Optional["SecretStoreSpecProviderConjurAuthGcp"]:
+        '''GCP enables authentication to Conjur via the authn-gcp authenticator.
+
+        :schema: SecretStoreSpecProviderConjurAuth#gcp
+        '''
+        result = self._values.get("gcp")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthGcp"], result)
+
+    @builtins.property
+    def iam(self) -> typing.Optional["SecretStoreSpecProviderConjurAuthIam"]:
+        '''IAM enables authentication to Conjur via the authn-iam authenticator.
+
+        :schema: SecretStoreSpecProviderConjurAuth#iam
+        '''
+        result = self._values.get("iam")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthIam"], result)
 
     @builtins.property
     def jwt(self) -> typing.Optional["SecretStoreSpecProviderConjurAuthJwt"]:
@@ -73949,6 +76348,203 @@ class SecretStoreSpecProviderConjurAuthApikeyUserRef:
 
     def __repr__(self) -> str:
         return "SecretStoreSpecProviderConjurAuthApikeyUserRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthAzure",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "service_id": "serviceId",
+        "client_id": "clientId",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class SecretStoreSpecProviderConjurAuthAzure:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        service_id: builtins.str,
+        client_id: typing.Optional[builtins.str] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthAzureServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Azure enables authentication to Conjur via the authn-azure authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the Azure managed identity (e.g. "data/myapp/myhost").
+        :param service_id: ServiceID is the Conjur authn-azure webservice identifier (e.g. "prod").
+        :param client_id: ClientID is the Azure managed identity client ID. Required for user-assigned managed identities; omit for system-assigned identities.
+        :param service_account_ref: ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API. That token is used as the Azure JWT for Conjur authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreSpecProviderConjurAuthAzureServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__35562ee1fe6249902d99a1be8597f25df210c370af8dbbcaf22b31849dd1f7a2)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument client_id", value=client_id, expected_type=type_hints["client_id"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+            "service_id": service_id,
+        }
+        if client_id is not None:
+            self._values["client_id"] = client_id
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the Azure managed identity (e.g. "data/myapp/myhost").
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''ServiceID is the Conjur authn-azure webservice identifier (e.g. "prod").
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def client_id(self) -> typing.Optional[builtins.str]:
+        '''ClientID is the Azure managed identity client ID.
+
+        Required for user-assigned
+        managed identities; omit for system-assigned identities.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure#clientId
+        '''
+        result = self._values.get("client_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderConjurAuthAzureServiceAccountRef"]:
+        '''ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API.
+
+        That token is used as the Azure JWT for Conjur
+        authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzure#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthAzureServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthAzure(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthAzureServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderConjurAuthAzureServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef specifies the Kubernetes service account for which to request a token via the TokenRequest API.
+
+        That token is used as the Azure JWT for Conjur
+        authn-azure. If omitted, the token is fetched from the Azure IMDS endpoint instead.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzureServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a04e012a604b3c015b92c013a0ef8be75917cde19b7d8fa1052f0c9a4582a6e9)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzureServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: SecretStoreSpecProviderConjurAuthAzureServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthAzureServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthAzureServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -74228,6 +76824,681 @@ class SecretStoreSpecProviderConjurAuthCertClientKeyRef:
 
 
 @jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthGcp",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "secret_ref": "secretRef",
+        "service_id": "serviceId",
+    },
+)
+class SecretStoreSpecProviderConjurAuthGcp:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthGcpSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_id: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''GCP enables authentication to Conjur via the authn-gcp authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the GCP service account (e.g. "data/myapp/myhost").
+        :param secret_ref: SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token. If omitted, the token is fetched from the GCP Metadata Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+        :param service_id: ServiceID is the Conjur authn-gcp webservice identifier (e.g. "prod"). Note: Conjur's authn-gcp authenticator does not include the service ID in the authentication URL; this field is reserved for future use.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcp
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderConjurAuthGcpSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__56af1d2dab534028180e9f193d1d4f47cdc7341e8ea14002fa9f7086099cf63e)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_id is not None:
+            self._values["service_id"] = service_id
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcp#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the GCP service account (e.g. "data/myapp/myhost").
+
+        :schema: SecretStoreSpecProviderConjurAuthGcp#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderConjurAuthGcpSecretRef"]:
+        '''SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token.
+
+        If omitted, the token is fetched from the GCP Metadata
+        Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+
+        :schema: SecretStoreSpecProviderConjurAuthGcp#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthGcpSecretRef"], result)
+
+    @builtins.property
+    def service_id(self) -> typing.Optional[builtins.str]:
+        '''ServiceID is the Conjur authn-gcp webservice identifier (e.g. "prod"). Note: Conjur's authn-gcp authenticator does not include the service ID in the authentication URL; this field is reserved for future use.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcp#serviceID
+        '''
+        result = self._values.get("service_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthGcp(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthGcpSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"jwt": "jwt"},
+)
+class SecretStoreSpecProviderConjurAuthGcpSecretRef:
+    def __init__(
+        self,
+        *,
+        jwt: typing.Union["SecretStoreSpecProviderConjurAuthGcpSecretRefJwt", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''SecretRef holds a reference to a Kubernetes Secret containing a pre-obtained GCP identity token.
+
+        If omitted, the token is fetched from the GCP Metadata
+        Service automatically (requires GKE Workload Identity or a GCE/GKE node).
+
+        :param jwt: JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRef
+        '''
+        if isinstance(jwt, dict):
+            jwt = SecretStoreSpecProviderConjurAuthGcpSecretRefJwt(**jwt)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__17b28953ce4ef512460e22873dc7022048cc6770b523af2fab26cfd5cc5a2c80)
+            check_type(argname="argument jwt", value=jwt, expected_type=type_hints["jwt"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "jwt": jwt,
+        }
+
+    @builtins.property
+    def jwt(self) -> "SecretStoreSpecProviderConjurAuthGcpSecretRefJwt":
+        '''JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRef#jwt
+        '''
+        result = self._values.get("jwt")
+        assert result is not None, "Required property 'jwt' is missing"
+        return typing.cast("SecretStoreSpecProviderConjurAuthGcpSecretRefJwt", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthGcpSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthGcpSecretRefJwt",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderConjurAuthGcpSecretRefJwt:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''JWT is a reference to the Kubernetes Secret key holding the GCP identity token.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRefJwt
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__fd1394229ddb19796bc6974a1acde9a58798f106c9f45219721c26148bcf5a20)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRefJwt#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRefJwt#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthGcpSecretRefJwt#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthGcpSecretRefJwt(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthIam",
+    jsii_struct_bases=[],
+    name_mapping={
+        "account": "account",
+        "host_id": "hostId",
+        "service_id": "serviceId",
+        "insecure": "insecure",
+        "secret_ref": "secretRef",
+    },
+)
+class SecretStoreSpecProviderConjurAuthIam:
+    def __init__(
+        self,
+        *,
+        account: builtins.str,
+        host_id: builtins.str,
+        service_id: builtins.str,
+        insecure: typing.Optional[builtins.bool] = None,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthIamSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''IAM enables authentication to Conjur via the authn-iam authenticator.
+
+        :param account: Account is the Conjur organization account name.
+        :param host_id: HostID is the Conjur host mapped to the AWS IAM role (e.g. "data/myapp/123456789012/MyRole").
+        :param service_id: ServiceID is the Conjur authn-iam webservice identifier (e.g. "prod").
+        :param insecure: Insecure allows authenticating to Conjur over plain HTTP. The AWS IAM authenticator sends a signed request as a bearer credential, so this should only be enabled when the connection is otherwise protected (e.g. a service mesh sidecar terminating TLS).
+        :param secret_ref: SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials. If omitted, the default AWS SDK credential chain is used (IRSA, instance metadata, environment variables, etc.).
+
+        :schema: SecretStoreSpecProviderConjurAuthIam
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderConjurAuthIamSecretRef(**secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a641c2b4802176b3f7eb81ef061e9d4558cce8e6476e0999650b67544b467f21)
+            check_type(argname="argument account", value=account, expected_type=type_hints["account"])
+            check_type(argname="argument host_id", value=host_id, expected_type=type_hints["host_id"])
+            check_type(argname="argument service_id", value=service_id, expected_type=type_hints["service_id"])
+            check_type(argname="argument insecure", value=insecure, expected_type=type_hints["insecure"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "account": account,
+            "host_id": host_id,
+            "service_id": service_id,
+        }
+        if insecure is not None:
+            self._values["insecure"] = insecure
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+
+    @builtins.property
+    def account(self) -> builtins.str:
+        '''Account is the Conjur organization account name.
+
+        :schema: SecretStoreSpecProviderConjurAuthIam#account
+        '''
+        result = self._values.get("account")
+        assert result is not None, "Required property 'account' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def host_id(self) -> builtins.str:
+        '''HostID is the Conjur host mapped to the AWS IAM role (e.g. "data/myapp/123456789012/MyRole").
+
+        :schema: SecretStoreSpecProviderConjurAuthIam#hostId
+        '''
+        result = self._values.get("host_id")
+        assert result is not None, "Required property 'host_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_id(self) -> builtins.str:
+        '''ServiceID is the Conjur authn-iam webservice identifier (e.g. "prod").
+
+        :schema: SecretStoreSpecProviderConjurAuthIam#serviceID
+        '''
+        result = self._values.get("service_id")
+        assert result is not None, "Required property 'service_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def insecure(self) -> typing.Optional[builtins.bool]:
+        '''Insecure allows authenticating to Conjur over plain HTTP.
+
+        The AWS IAM authenticator
+        sends a signed request as a bearer credential, so this should only be enabled when the
+        connection is otherwise protected (e.g. a service mesh sidecar terminating TLS).
+
+        :schema: SecretStoreSpecProviderConjurAuthIam#insecure
+        '''
+        result = self._values.get("insecure")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderConjurAuthIamSecretRef"]:
+        '''SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials.
+
+        If omitted, the default AWS SDK credential chain is used
+        (IRSA, instance metadata, environment variables, etc.).
+
+        :schema: SecretStoreSpecProviderConjurAuthIam#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthIamSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthIam(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthIamSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={
+        "access_key_id_secret_ref": "accessKeyIdSecretRef",
+        "secret_access_key_secret_ref": "secretAccessKeySecretRef",
+        "session_token_secret_ref": "sessionTokenSecretRef",
+    },
+)
+class SecretStoreSpecProviderConjurAuthIamSecretRef:
+    def __init__(
+        self,
+        *,
+        access_key_id_secret_ref: typing.Union["SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef", typing.Dict[builtins.str, typing.Any]],
+        secret_access_key_secret_ref: typing.Union["SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef", typing.Dict[builtins.str, typing.Any]],
+        session_token_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''SecretRef holds optional references to Kubernetes Secrets containing explicit AWS credentials.
+
+        If omitted, the default AWS SDK credential chain is used
+        (IRSA, instance metadata, environment variables, etc.).
+
+        :param access_key_id_secret_ref: A reference to a Secret key containing the AWS Access Key ID.
+        :param secret_access_key_secret_ref: A reference to a Secret key containing the AWS Secret Access Key.
+        :param session_token_secret_ref: A reference to a Secret key containing the AWS Session Token. Required only when using temporary credentials.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRef
+        '''
+        if isinstance(access_key_id_secret_ref, dict):
+            access_key_id_secret_ref = SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef(**access_key_id_secret_ref)
+        if isinstance(secret_access_key_secret_ref, dict):
+            secret_access_key_secret_ref = SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef(**secret_access_key_secret_ref)
+        if isinstance(session_token_secret_ref, dict):
+            session_token_secret_ref = SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef(**session_token_secret_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__02342b4eaa440be34f6309971aaa0c311a3cb9a68cb5e135f8a07bdffbfe923c)
+            check_type(argname="argument access_key_id_secret_ref", value=access_key_id_secret_ref, expected_type=type_hints["access_key_id_secret_ref"])
+            check_type(argname="argument secret_access_key_secret_ref", value=secret_access_key_secret_ref, expected_type=type_hints["secret_access_key_secret_ref"])
+            check_type(argname="argument session_token_secret_ref", value=session_token_secret_ref, expected_type=type_hints["session_token_secret_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "access_key_id_secret_ref": access_key_id_secret_ref,
+            "secret_access_key_secret_ref": secret_access_key_secret_ref,
+        }
+        if session_token_secret_ref is not None:
+            self._values["session_token_secret_ref"] = session_token_secret_ref
+
+    @builtins.property
+    def access_key_id_secret_ref(
+        self,
+    ) -> "SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef":
+        '''A reference to a Secret key containing the AWS Access Key ID.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRef#accessKeyIDSecretRef
+        '''
+        result = self._values.get("access_key_id_secret_ref")
+        assert result is not None, "Required property 'access_key_id_secret_ref' is missing"
+        return typing.cast("SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef", result)
+
+    @builtins.property
+    def secret_access_key_secret_ref(
+        self,
+    ) -> "SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef":
+        '''A reference to a Secret key containing the AWS Secret Access Key.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRef#secretAccessKeySecretRef
+        '''
+        result = self._values.get("secret_access_key_secret_ref")
+        assert result is not None, "Required property 'secret_access_key_secret_ref' is missing"
+        return typing.cast("SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef", result)
+
+    @builtins.property
+    def session_token_secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef"]:
+        '''A reference to a Secret key containing the AWS Session Token.
+
+        Required only when using temporary credentials.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRef#sessionTokenSecretRef
+        '''
+        result = self._values.get("session_token_secret_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthIamSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Access Key ID.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__c016d74c4ce5f2ccfb305c223686fd112a2cd83c588c468d7ec567fd792cac0c)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Secret Access Key.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__af99fe0edf4b311d0b09429cc08aa04320f881dd001109e518cbf6579923a5f3)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''A reference to a Secret key containing the AWS Session Token.
+
+        Required only when using temporary credentials.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__344148ba53845c1acb3638944b66ad22438e6e3f0de174b732a6a5e98a07b5af)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
     jsii_type="ioexternal-secrets.SecretStoreSpecProviderConjurAuthJwt",
     jsii_struct_bases=[],
     name_mapping={
@@ -74439,7 +77710,7 @@ class SecretStoreSpecProviderConjurAuthJwtServiceAccountRef:
         '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderConjurAuthJwtServiceAccountRef
@@ -74469,7 +77740,7 @@ class SecretStoreSpecProviderConjurAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderConjurAuthJwtServiceAccountRef#audiences
         '''
@@ -75149,7 +78420,7 @@ class SecretStoreSpecProviderCrdAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderCrdAuthServiceAccount
@@ -75179,7 +78450,7 @@ class SecretStoreSpecProviderCrdAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderCrdAuthServiceAccount#audiences
         '''
@@ -76415,7 +79686,7 @@ class SecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef:
         '''ServiceAccountRef specifies the Kubernetes ServiceAccount to use for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef
@@ -76445,7 +79716,7 @@ class SecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderDopplerAuthOidcConfigServiceAccountRef#audiences
         '''
@@ -78130,7 +81401,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRe
         '''serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRef
@@ -78160,7 +81431,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRe
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityFederationServiceAccountRef#audiences
         '''
@@ -78206,7 +81477,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
@@ -78236,7 +81507,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -78277,6 +81548,7 @@ class SecretStoreSpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         "environment": "environment",
         "org_secret_visibility": "orgSecretVisibility",
         "repository": "repository",
+        "secret_type": "secretType",
         "upload_url": "uploadUrl",
         "url": "url",
     },
@@ -78292,10 +81564,11 @@ class SecretStoreSpecProviderGithub:
         environment: typing.Optional[builtins.str] = None,
         org_secret_visibility: typing.Optional["SecretStoreSpecProviderGithubOrgSecretVisibility"] = None,
         repository: typing.Optional[builtins.str] = None,
+        secret_type: typing.Optional["SecretStoreSpecProviderGithubSecretType"] = None,
         upload_url: typing.Optional[builtins.str] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
-        '''Github configures this store to push GitHub Actions secrets using the GitHub API provider.
+        '''Github configures this store to push GitHub Actions or Dependabot secrets using the GitHub API provider.
 
         Note: This provider only supports write operations (PushSecret) and cannot fetch secrets from GitHub
 
@@ -78306,6 +81579,7 @@ class SecretStoreSpecProviderGithub:
         :param environment: environment will be used to fetch secrets from a particular environment within a github repository.
         :param org_secret_visibility: orgSecretVisibility controls the visibility of organization secrets pushed via PushSecret. Valid values are "all" or "private". When unset, new secrets are created with visibility "all" and existing secrets preserve whatever visibility they already have in GitHub.
         :param repository: repository will be used to fetch secrets from the Github repository within an organization.
+        :param secret_type: secretType specifies which GitHub secret service to use. Defaults to Actions for backwards compatibility. Default: Actions for backwards compatibility.
         :param upload_url: Upload URL for enterprise instances. Default to URL. Default: URL.
         :param url: URL configures the Github instance URL. Defaults to https://github.com/. Default: https://github.com/.
 
@@ -78322,6 +81596,7 @@ class SecretStoreSpecProviderGithub:
             check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument org_secret_visibility", value=org_secret_visibility, expected_type=type_hints["org_secret_visibility"])
             check_type(argname="argument repository", value=repository, expected_type=type_hints["repository"])
+            check_type(argname="argument secret_type", value=secret_type, expected_type=type_hints["secret_type"])
             check_type(argname="argument upload_url", value=upload_url, expected_type=type_hints["upload_url"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -78336,6 +81611,8 @@ class SecretStoreSpecProviderGithub:
             self._values["org_secret_visibility"] = org_secret_visibility
         if repository is not None:
             self._values["repository"] = repository
+        if secret_type is not None:
+            self._values["secret_type"] = secret_type
         if upload_url is not None:
             self._values["upload_url"] = upload_url
         if url is not None:
@@ -78413,6 +81690,19 @@ class SecretStoreSpecProviderGithub:
         '''
         result = self._values.get("repository")
         return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def secret_type(self) -> typing.Optional["SecretStoreSpecProviderGithubSecretType"]:
+        '''secretType specifies which GitHub secret service to use.
+
+        Defaults to Actions for backwards compatibility.
+
+        :default: Actions for backwards compatibility.
+
+        :schema: SecretStoreSpecProviderGithub#secretType
+        '''
+        result = self._values.get("secret_type")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderGithubSecretType"], result)
 
     @builtins.property
     def upload_url(self) -> typing.Optional[builtins.str]:
@@ -78598,6 +81888,23 @@ class SecretStoreSpecProviderGithubOrgSecretVisibility(enum.Enum):
     '''all.'''
     PRIVATE = "PRIVATE"
     '''private.'''
+
+
+@jsii.enum(jsii_type="ioexternal-secrets.SecretStoreSpecProviderGithubSecretType")
+class SecretStoreSpecProviderGithubSecretType(enum.Enum):
+    '''secretType specifies which GitHub secret service to use.
+
+    Defaults to Actions for backwards compatibility.
+
+    :default: Actions for backwards compatibility.
+
+    :schema: SecretStoreSpecProviderGithubSecretType
+    '''
+
+    ACTIONS = "ACTIONS"
+    '''Actions.'''
+    DEPENDABOT = "DEPENDABOT"
+    '''Dependabot.'''
 
 
 @jsii.data_type(
@@ -82609,7 +85916,7 @@ class SecretStoreSpecProviderKeepersecurity:
         self,
         *,
         auth_ref: typing.Union["SecretStoreSpecProviderKeepersecurityAuthRef", typing.Dict[builtins.str, typing.Any]],
-        folder_id: builtins.str,
+        folder_id: typing.Optional[builtins.str] = None,
     ) -> None:
         '''KeeperSecurity configures this store to sync secrets using the KeeperSecurity provider.
 
@@ -82626,8 +85933,9 @@ class SecretStoreSpecProviderKeepersecurity:
             check_type(argname="argument folder_id", value=folder_id, expected_type=type_hints["folder_id"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth_ref": auth_ref,
-            "folder_id": folder_id,
         }
+        if folder_id is not None:
+            self._values["folder_id"] = folder_id
 
     @builtins.property
     def auth_ref(self) -> "SecretStoreSpecProviderKeepersecurityAuthRef":
@@ -82642,13 +85950,12 @@ class SecretStoreSpecProviderKeepersecurity:
         return typing.cast("SecretStoreSpecProviderKeepersecurityAuthRef", result)
 
     @builtins.property
-    def folder_id(self) -> builtins.str:
+    def folder_id(self) -> typing.Optional[builtins.str]:
         '''
         :schema: SecretStoreSpecProviderKeepersecurity#folderID
         '''
         result = self._values.get("folder_id")
-        assert result is not None, "Required property 'folder_id' is missing"
-        return typing.cast(builtins.str, result)
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -83243,7 +86550,7 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderKubernetesAuthServiceAccount
@@ -83273,7 +86580,7 @@ class SecretStoreSpecProviderKubernetesAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderKubernetesAuthServiceAccount#audiences
         '''
@@ -83709,6 +87016,7 @@ class SecretStoreSpecProviderNebiusmysterybox:
     name_mapping={
         "service_account_creds_secret_ref": "serviceAccountCredsSecretRef",
         "token_secret_ref": "tokenSecretRef",
+        "workload_identity": "workloadIdentity",
     },
 )
 class SecretStoreSpecProviderNebiusmysteryboxAuth:
@@ -83717,11 +87025,13 @@ class SecretStoreSpecProviderNebiusmysteryboxAuth:
         *,
         service_account_creds_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         token_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        workload_identity: typing.Optional[typing.Union["SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
         '''Auth defines parameters to authenticate in MysteryBox.
 
         :param service_account_creds_secret_ref: ServiceAccountCreds references a Kubernetes Secret key that contains a JSON document with service account credentials used to get an IAM token. Expected JSON structure: { "subject-credentials": { "alg": "RS256", "private-key": "-----BEGIN PRIVATE KEY-----\\n\\n-----END PRIVATE KEY-----\\n", "kid": "", "iss": "", "sub": "" } }
         :param token_secret_ref: Token authenticates with Nebius Mysterybox by presenting a token.
+        :param workload_identity: WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
 
         :schema: SecretStoreSpecProviderNebiusmysteryboxAuth
         '''
@@ -83729,15 +87039,20 @@ class SecretStoreSpecProviderNebiusmysteryboxAuth:
             service_account_creds_secret_ref = SecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef(**service_account_creds_secret_ref)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef(**token_secret_ref)
+        if isinstance(workload_identity, dict):
+            workload_identity = SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity(**workload_identity)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__ed3876dac4d90c35d669ad56ffdeb3705da098d2a3736b63036e8bf78afc06a4)
             check_type(argname="argument service_account_creds_secret_ref", value=service_account_creds_secret_ref, expected_type=type_hints["service_account_creds_secret_ref"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
+            check_type(argname="argument workload_identity", value=workload_identity, expected_type=type_hints["workload_identity"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if service_account_creds_secret_ref is not None:
             self._values["service_account_creds_secret_ref"] = service_account_creds_secret_ref
         if token_secret_ref is not None:
             self._values["token_secret_ref"] = token_secret_ref
+        if workload_identity is not None:
+            self._values["workload_identity"] = workload_identity
 
     @builtins.property
     def service_account_creds_secret_ref(
@@ -83771,6 +87086,17 @@ class SecretStoreSpecProviderNebiusmysteryboxAuth:
         '''
         result = self._values.get("token_secret_ref")
         return typing.cast(typing.Optional["SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef"], result)
+
+    @builtins.property
+    def workload_identity(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity"]:
+        '''WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuth#workloadIdentity
+        '''
+        result = self._values.get("workload_identity")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity"], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -83945,6 +87271,155 @@ class SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef:
 
     def __repr__(self) -> str:
         return "SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity",
+    jsii_struct_bases=[],
+    name_mapping={
+        "iam_service_account_id": "iamServiceAccountId",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity:
+    def __init__(
+        self,
+        *,
+        iam_service_account_id: builtins.str,
+        service_account_ref: typing.Union["SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef", typing.Dict[builtins.str, typing.Any]],
+    ) -> None:
+        '''WorkloadIdentity defines configuration for workload identity authentication to Nebius IAM.
+
+        :param iam_service_account_id: IAMServiceAccountID is the Nebius IAM service account identifier that the federated Kubernetes service account should impersonate during token exchange.
+        :param service_account_ref: ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API. The JWT is then exchanged for a Nebius IAM token using workload federation.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity
+        '''
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__af0cb22fa0f1c25e95b126da6d8662a25e1633aa923d107ffac931a6dc7878c8)
+            check_type(argname="argument iam_service_account_id", value=iam_service_account_id, expected_type=type_hints["iam_service_account_id"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "iam_service_account_id": iam_service_account_id,
+            "service_account_ref": service_account_ref,
+        }
+
+    @builtins.property
+    def iam_service_account_id(self) -> builtins.str:
+        '''IAMServiceAccountID is the Nebius IAM service account identifier that the federated Kubernetes service account should impersonate during token exchange.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity#iamServiceAccountID
+        '''
+        result = self._values.get("iam_service_account_id")
+        assert result is not None, "Required property 'iam_service_account_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> "SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef":
+        '''ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API.
+
+        The JWT is then exchanged for a
+        Nebius IAM token using workload federation.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        assert result is not None, "Required property 'service_account_ref' is missing"
+        return typing.cast("SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef", result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''ServiceAccountRef references a Kubernetes ServiceAccount used to request a temporary JWT via the TokenRequest API.
+
+        The JWT is then exchanged for a
+        Nebius IAM token using workload federation.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a72d5084580ea5794f4d534c8ff3eb4d56b81cecdc73a6fa88f6b5fb118e4999)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -84949,9 +88424,10 @@ class SecretStoreSpecProviderOnepasswordAuthSecretRefConnectTokenSecretRef:
     jsii_struct_bases=[],
     name_mapping={
         "auth": "auth",
-        "vault": "vault",
         "cache": "cache",
+        "environment": "environment",
         "integration_info": "integrationInfo",
+        "vault": "vault",
     },
 )
 class SecretStoreSpecProviderOnepasswordSdk:
@@ -84959,16 +88435,18 @@ class SecretStoreSpecProviderOnepasswordSdk:
         self,
         *,
         auth: typing.Union["SecretStoreSpecProviderOnepasswordSdkAuth", typing.Dict[builtins.str, typing.Any]],
-        vault: builtins.str,
         cache: typing.Optional[typing.Union["SecretStoreSpecProviderOnepasswordSdkCache", typing.Dict[builtins.str, typing.Any]]] = None,
+        environment: typing.Optional[builtins.str] = None,
         integration_info: typing.Optional[typing.Union["SecretStoreSpecProviderOnepasswordSdkIntegrationInfo", typing.Dict[builtins.str, typing.Any]]] = None,
+        vault: typing.Optional[builtins.str] = None,
     ) -> None:
         '''OnePasswordSDK configures this store to use 1Password's new Go SDK to sync secrets.
 
         :param auth: Auth defines the information necessary to authenticate against OnePassword API.
-        :param vault: Vault defines the vault's name or uuid to access. Do NOT add op:// prefix. This will be done automatically.
         :param cache: Cache configures client-side caching for read operations (GetSecret, GetSecretMap). When enabled, secrets are cached with the specified TTL. Write operations (PushSecret, DeleteSecret) automatically invalidate relevant cache entries. If omitted, caching is disabled (default). cache: {} is a valid option to set.
+        :param environment: Environment defines the 1Password Environment ID to read variables from. Environments are read-only: PushSecret, DeleteSecret, and SecretExists return an error when set. Mutually exclusive with Vault.
         :param integration_info: IntegrationInfo specifies the name and version of the integration built using the 1Password Go SDK. If you don't know which name and version to use, use ``DefaultIntegrationName`` and ``DefaultIntegrationVersion``, respectively.
+        :param vault: Vault defines the vault's name or uuid to access. Do NOT add op:// prefix. This will be done automatically. Mutually exclusive with Environment.
 
         :schema: SecretStoreSpecProviderOnepasswordSdk
         '''
@@ -84981,17 +88459,21 @@ class SecretStoreSpecProviderOnepasswordSdk:
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__c7f44d50626711b8f1cc45034c4a00f0d3f0bc360279d0e22e8673cb20887779)
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
-            check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
             check_type(argname="argument cache", value=cache, expected_type=type_hints["cache"])
+            check_type(argname="argument environment", value=environment, expected_type=type_hints["environment"])
             check_type(argname="argument integration_info", value=integration_info, expected_type=type_hints["integration_info"])
+            check_type(argname="argument vault", value=vault, expected_type=type_hints["vault"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
             "auth": auth,
-            "vault": vault,
         }
         if cache is not None:
             self._values["cache"] = cache
+        if environment is not None:
+            self._values["environment"] = environment
         if integration_info is not None:
             self._values["integration_info"] = integration_info
+        if vault is not None:
+            self._values["vault"] = vault
 
     @builtins.property
     def auth(self) -> "SecretStoreSpecProviderOnepasswordSdkAuth":
@@ -85002,18 +88484,6 @@ class SecretStoreSpecProviderOnepasswordSdk:
         result = self._values.get("auth")
         assert result is not None, "Required property 'auth' is missing"
         return typing.cast("SecretStoreSpecProviderOnepasswordSdkAuth", result)
-
-    @builtins.property
-    def vault(self) -> builtins.str:
-        '''Vault defines the vault's name or uuid to access.
-
-        Do NOT add op:// prefix. This will be done automatically.
-
-        :schema: SecretStoreSpecProviderOnepasswordSdk#vault
-        '''
-        result = self._values.get("vault")
-        assert result is not None, "Required property 'vault' is missing"
-        return typing.cast(builtins.str, result)
 
     @builtins.property
     def cache(self) -> typing.Optional["SecretStoreSpecProviderOnepasswordSdkCache"]:
@@ -85030,6 +88500,18 @@ class SecretStoreSpecProviderOnepasswordSdk:
         return typing.cast(typing.Optional["SecretStoreSpecProviderOnepasswordSdkCache"], result)
 
     @builtins.property
+    def environment(self) -> typing.Optional[builtins.str]:
+        '''Environment defines the 1Password Environment ID to read variables from.
+
+        Environments are read-only: PushSecret, DeleteSecret, and SecretExists return an error when set.
+        Mutually exclusive with Vault.
+
+        :schema: SecretStoreSpecProviderOnepasswordSdk#environment
+        '''
+        result = self._values.get("environment")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def integration_info(
         self,
     ) -> typing.Optional["SecretStoreSpecProviderOnepasswordSdkIntegrationInfo"]:
@@ -85041,6 +88523,18 @@ class SecretStoreSpecProviderOnepasswordSdk:
         '''
         result = self._values.get("integration_info")
         return typing.cast(typing.Optional["SecretStoreSpecProviderOnepasswordSdkIntegrationInfo"], result)
+
+    @builtins.property
+    def vault(self) -> typing.Optional[builtins.str]:
+        '''Vault defines the vault's name or uuid to access.
+
+        Do NOT add op:// prefix. This will be done automatically.
+        Mutually exclusive with Environment.
+
+        :schema: SecretStoreSpecProviderOnepasswordSdk#vault
+        '''
+        result = self._values.get("vault")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     def __eq__(self, rhs: typing.Any) -> builtins.bool:
         return isinstance(rhs, self.__class__) and rhs._values == self._values
@@ -85473,6 +88967,7 @@ class SecretStoreSpecProviderOpenBao:
     jsii_struct_bases=[],
     name_mapping={
         "app_role": "appRole",
+        "kubernetes": "kubernetes",
         "namespace": "namespace",
         "token_secret_ref": "tokenSecretRef",
         "user_pass": "userPass",
@@ -85483,6 +88978,7 @@ class SecretStoreSpecProviderOpenBaoAuth:
         self,
         *,
         app_role: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthAppRole", typing.Dict[builtins.str, typing.Any]]] = None,
+        kubernetes: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthKubernetes", typing.Dict[builtins.str, typing.Any]]] = None,
         namespace: typing.Optional[builtins.str] = None,
         token_secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthTokenSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
         user_pass: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthUserPass", typing.Dict[builtins.str, typing.Any]]] = None,
@@ -85490,6 +88986,7 @@ class SecretStoreSpecProviderOpenBaoAuth:
         '''Auth configures how secret-manager authenticates with the OpenBao server.
 
         :param app_role: AppRole authenticates with OpenBao using the [App Role auth mechanism], with the role and secret stored in a Kubernetes Secret resource. 
+        :param kubernetes: Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism]. 
         :param namespace: Name of the [OpenBao Namespace] to authenticate to. This can be different than the namespace your secret is in. Namespaces is a set of features within OpenBao that allows OpenBao environments to support secure multi-tenancy. e.g: "ns1". This will default to OpenBao.Namespace field if set, or empty otherwise
         :param token_secret_ref: TokenSecretRef authenticates with OpenBao by presenting a token.
         :param user_pass: UserPass authenticates with OpenBao by passing a username/password pair.
@@ -85498,6 +88995,8 @@ class SecretStoreSpecProviderOpenBaoAuth:
         '''
         if isinstance(app_role, dict):
             app_role = SecretStoreSpecProviderOpenBaoAuthAppRole(**app_role)
+        if isinstance(kubernetes, dict):
+            kubernetes = SecretStoreSpecProviderOpenBaoAuthKubernetes(**kubernetes)
         if isinstance(token_secret_ref, dict):
             token_secret_ref = SecretStoreSpecProviderOpenBaoAuthTokenSecretRef(**token_secret_ref)
         if isinstance(user_pass, dict):
@@ -85505,12 +89004,15 @@ class SecretStoreSpecProviderOpenBaoAuth:
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__fa2340e6d5e7dbe604f6aac30e59a58a66799e13673f4b43c0d79ab55da5cc43)
             check_type(argname="argument app_role", value=app_role, expected_type=type_hints["app_role"])
+            check_type(argname="argument kubernetes", value=kubernetes, expected_type=type_hints["kubernetes"])
             check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
             check_type(argname="argument token_secret_ref", value=token_secret_ref, expected_type=type_hints["token_secret_ref"])
             check_type(argname="argument user_pass", value=user_pass, expected_type=type_hints["user_pass"])
         self._values: typing.Dict[builtins.str, typing.Any] = {}
         if app_role is not None:
             self._values["app_role"] = app_role
+        if kubernetes is not None:
+            self._values["kubernetes"] = kubernetes
         if namespace is not None:
             self._values["namespace"] = namespace
         if token_secret_ref is not None:
@@ -85527,6 +89029,18 @@ class SecretStoreSpecProviderOpenBaoAuth:
         '''
         result = self._values.get("app_role")
         return typing.cast(typing.Optional["SecretStoreSpecProviderOpenBaoAuthAppRole"], result)
+
+    @builtins.property
+    def kubernetes(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetes"]:
+        '''Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism].
+
+
+        :schema: SecretStoreSpecProviderOpenBaoAuth#kubernetes
+        '''
+        result = self._values.get("kubernetes")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetes"], result)
 
     @builtins.property
     def namespace(self) -> typing.Optional[builtins.str]:
@@ -85839,6 +89353,278 @@ class SecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef:
 
     def __repr__(self) -> str:
         return "SecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderOpenBaoAuthKubernetes",
+    jsii_struct_bases=[],
+    name_mapping={
+        "path": "path",
+        "role": "role",
+        "secret_ref": "secretRef",
+        "service_account_ref": "serviceAccountRef",
+    },
+)
+class SecretStoreSpecProviderOpenBaoAuthKubernetes:
+    def __init__(
+        self,
+        *,
+        path: builtins.str,
+        role: builtins.str,
+        secret_ref: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        service_account_ref: typing.Optional[typing.Union["SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef", typing.Dict[builtins.str, typing.Any]]] = None,
+    ) -> None:
+        '''Kubernetes authenticates with OpenBao by passing a ServiceAccount token to the [Kubernetes auth mechanism].
+
+
+        :param path: Path where the Kubernetes authentication backend is mounted in OpenBao, e.g: "kubernetes".
+        :param role: A required field containing the OpenBao Role to assume. A Role binds a Kubernetes ServiceAccount with a set of OpenBao policies.
+        :param secret_ref: Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao. If a name is specified without a key, ``token`` is the default.
+        :param service_account_ref: Optional service account field containing the name of a Kubernetes ServiceAccount. If the service account is specified, a token will be requested from the Kubernetes TokenRequest API for authenticating with OpenBao. Any configured audiences will be passed to the TokenRequest as-is.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetes
+        '''
+        if isinstance(secret_ref, dict):
+            secret_ref = SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef(**secret_ref)
+        if isinstance(service_account_ref, dict):
+            service_account_ref = SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef(**service_account_ref)
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__208c93aa33914de7a82b6a08a458739159c2b714e46a7e856b6030648774f772)
+            check_type(argname="argument path", value=path, expected_type=type_hints["path"])
+            check_type(argname="argument role", value=role, expected_type=type_hints["role"])
+            check_type(argname="argument secret_ref", value=secret_ref, expected_type=type_hints["secret_ref"])
+            check_type(argname="argument service_account_ref", value=service_account_ref, expected_type=type_hints["service_account_ref"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "path": path,
+            "role": role,
+        }
+        if secret_ref is not None:
+            self._values["secret_ref"] = secret_ref
+        if service_account_ref is not None:
+            self._values["service_account_ref"] = service_account_ref
+
+    @builtins.property
+    def path(self) -> builtins.str:
+        '''Path where the Kubernetes authentication backend is mounted in OpenBao, e.g: "kubernetes".
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetes#path
+        '''
+        result = self._values.get("path")
+        assert result is not None, "Required property 'path' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def role(self) -> builtins.str:
+        '''A required field containing the OpenBao Role to assume.
+
+        A Role binds a
+        Kubernetes ServiceAccount with a set of OpenBao policies.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetes#role
+        '''
+        result = self._values.get("role")
+        assert result is not None, "Required property 'role' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def secret_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef"]:
+        '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao.
+
+        If a name is specified without a key,
+        ``token`` is the default.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetes#secretRef
+        '''
+        result = self._values.get("secret_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef"], result)
+
+    @builtins.property
+    def service_account_ref(
+        self,
+    ) -> typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef"]:
+        '''Optional service account field containing the name of a Kubernetes ServiceAccount.
+
+        If the service account is specified, a token will be requested from the Kubernetes
+        TokenRequest API for authenticating with OpenBao.
+        Any configured audiences will be passed to the TokenRequest as-is.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetes#serviceAccountRef
+        '''
+        result = self._values.get("service_account_ref")
+        return typing.cast(typing.Optional["SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef"], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderOpenBaoAuthKubernetes(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with OpenBao.
+
+        If a name is specified without a key,
+        ``token`` is the default.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__d6f9971c09916f2beb22bea871c1ae2f24c4a0ccb73207de7b4b13c8b7f98d92)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secrets.SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef",
+    jsii_struct_bases=[],
+    name_mapping={"name": "name", "audiences": "audiences", "namespace": "namespace"},
+)
+class SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef:
+    def __init__(
+        self,
+        *,
+        name: builtins.str,
+        audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''Optional service account field containing the name of a Kubernetes ServiceAccount.
+
+        If the service account is specified, a token will be requested from the Kubernetes
+        TokenRequest API for authenticating with OpenBao.
+        Any configured audiences will be passed to the TokenRequest as-is.
+
+        :param name: The name of the ServiceAccount resource being referred to.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+        :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__8c86d4108989064d06aa649dc453f2c911a4fa45e039dca4c78e74b1c9395dbb)
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument audiences", value=audiences, expected_type=type_hints["audiences"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "name": name,
+        }
+        if audiences is not None:
+            self._values["audiences"] = audiences
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def name(self) -> builtins.str:
+        '''The name of the ServiceAccount resource being referred to.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#name
+        '''
+        result = self._values.get("name")
+        assert result is not None, "Required property 'name' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#audiences
+        '''
+        result = self._values.get("audiences")
+        return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''Namespace of the resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -86692,7 +90478,7 @@ class SecretStoreSpecProviderOracleServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderOracleServiceAccountRef
@@ -86722,7 +90508,7 @@ class SecretStoreSpecProviderOracleServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderOracleServiceAccountRef#audiences
         '''
@@ -88925,7 +92711,7 @@ class SecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef:
         '''ServiceAccountRef specifies the Kubernetes ServiceAccount to use for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef
@@ -88955,7 +92741,7 @@ class SecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderPulumiAuthOidcConfigServiceAccountRef#audiences
         '''
@@ -89388,8 +93174,10 @@ class SecretStoreSpecProviderScalewaySecretKeySecretRef:
         "server_url": "serverUrl",
         "ca_bundle": "caBundle",
         "ca_provider": "caProvider",
+        "disable_site_id_validation": "disableSiteIdValidation",
         "domain": "domain",
         "password": "password",
+        "site_id": "siteId",
         "token": "token",
         "username": "username",
     },
@@ -89401,8 +93189,10 @@ class SecretStoreSpecProviderSecretserver:
         server_url: builtins.str,
         ca_bundle: typing.Optional[builtins.str] = None,
         ca_provider: typing.Optional[typing.Union["SecretStoreSpecProviderSecretserverCaProvider", typing.Dict[builtins.str, typing.Any]]] = None,
+        disable_site_id_validation: typing.Optional[builtins.bool] = None,
         domain: typing.Optional[builtins.str] = None,
         password: typing.Optional[typing.Union["SecretStoreSpecProviderSecretserverPassword", typing.Dict[builtins.str, typing.Any]]] = None,
+        site_id: typing.Optional[jsii.Number] = None,
         token: typing.Optional[typing.Union["SecretStoreSpecProviderSecretserverToken", typing.Dict[builtins.str, typing.Any]]] = None,
         username: typing.Optional[typing.Union["SecretStoreSpecProviderSecretserverUsername", typing.Dict[builtins.str, typing.Any]]] = None,
     ) -> None:
@@ -89411,8 +93201,10 @@ class SecretStoreSpecProviderSecretserver:
         :param server_url: ServerURL URL to your secret server installation.
         :param ca_bundle: PEM/base64 encoded CA bundle used to validate Secret ServerURL. Only used if the ServerURL URL is using HTTPS protocol. If not set the system root certificates are used to validate the TLS connection.
         :param ca_provider: The provider for the CA bundle to use to validate Secret ServerURL certificate.
+        :param disable_site_id_validation: DisableSiteIDValidation permits a missing site ID for new secrets. The provider sends 0 if no site ID is set.
         :param domain: Domain is the secret server domain.
         :param password: Password is the secret server account password. Required unless Token is set.
+        :param site_id: SiteID is the ID of the Secret Server site for new secrets. PushSecret metadata can override this value for one secret. The provider uses 1 if this field is not set.
         :param token: Token is an access token used to authenticate to the secret server, as an alternative to Username and Password. When set, Username and Password are not required and are ignored.
         :param username: Username is the secret server account username. Required unless Token is set.
 
@@ -89431,8 +93223,10 @@ class SecretStoreSpecProviderSecretserver:
             check_type(argname="argument server_url", value=server_url, expected_type=type_hints["server_url"])
             check_type(argname="argument ca_bundle", value=ca_bundle, expected_type=type_hints["ca_bundle"])
             check_type(argname="argument ca_provider", value=ca_provider, expected_type=type_hints["ca_provider"])
+            check_type(argname="argument disable_site_id_validation", value=disable_site_id_validation, expected_type=type_hints["disable_site_id_validation"])
             check_type(argname="argument domain", value=domain, expected_type=type_hints["domain"])
             check_type(argname="argument password", value=password, expected_type=type_hints["password"])
+            check_type(argname="argument site_id", value=site_id, expected_type=type_hints["site_id"])
             check_type(argname="argument token", value=token, expected_type=type_hints["token"])
             check_type(argname="argument username", value=username, expected_type=type_hints["username"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -89442,10 +93236,14 @@ class SecretStoreSpecProviderSecretserver:
             self._values["ca_bundle"] = ca_bundle
         if ca_provider is not None:
             self._values["ca_provider"] = ca_provider
+        if disable_site_id_validation is not None:
+            self._values["disable_site_id_validation"] = disable_site_id_validation
         if domain is not None:
             self._values["domain"] = domain
         if password is not None:
             self._values["password"] = password
+        if site_id is not None:
+            self._values["site_id"] = site_id
         if token is not None:
             self._values["token"] = token
         if username is not None:
@@ -89486,6 +93284,17 @@ class SecretStoreSpecProviderSecretserver:
         return typing.cast(typing.Optional["SecretStoreSpecProviderSecretserverCaProvider"], result)
 
     @builtins.property
+    def disable_site_id_validation(self) -> typing.Optional[builtins.bool]:
+        '''DisableSiteIDValidation permits a missing site ID for new secrets.
+
+        The provider sends 0 if no site ID is set.
+
+        :schema: SecretStoreSpecProviderSecretserver#disableSiteIDValidation
+        '''
+        result = self._values.get("disable_site_id_validation")
+        return typing.cast(typing.Optional[builtins.bool], result)
+
+    @builtins.property
     def domain(self) -> typing.Optional[builtins.str]:
         '''Domain is the secret server domain.
 
@@ -89506,6 +93315,18 @@ class SecretStoreSpecProviderSecretserver:
         '''
         result = self._values.get("password")
         return typing.cast(typing.Optional["SecretStoreSpecProviderSecretserverPassword"], result)
+
+    @builtins.property
+    def site_id(self) -> typing.Optional[jsii.Number]:
+        '''SiteID is the ID of the Secret Server site for new secrets.
+
+        PushSecret metadata can override this value for one secret.
+        The provider uses 1 if this field is not set.
+
+        :schema: SecretStoreSpecProviderSecretserver#siteId
+        '''
+        result = self._values.get("site_id")
+        return typing.cast(typing.Optional[jsii.Number], result)
 
     @builtins.property
     def token(self) -> typing.Optional["SecretStoreSpecProviderSecretserverToken"]:
@@ -91596,7 +95417,7 @@ class SecretStoreSpecProviderVaultAuthGcpServiceAccountRef:
         '''ServiceAccountRef to a service account for impersonation.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthGcpServiceAccountRef
@@ -91626,7 +95447,7 @@ class SecretStoreSpecProviderVaultAuthGcpServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderVaultAuthGcpServiceAccountRef#audiences
         '''
@@ -91769,7 +95590,7 @@ class SecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef
@@ -91799,7 +95620,7 @@ class SecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderVaultAuthGcpWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -92057,7 +95878,7 @@ class SecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef
@@ -92087,7 +95908,7 @@ class SecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderVaultAuthIamJwtServiceAccountRef#audiences
         '''
@@ -92647,7 +96468,7 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAcc
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -92677,7 +96498,7 @@ class SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAcc
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -92997,7 +96818,7 @@ class SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef
@@ -93027,7 +96848,7 @@ class SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreSpecProviderVaultAuthKubernetesServiceAccountRef#audiences
         '''
@@ -96140,6 +99961,7 @@ class SecretStoreV1Beta1(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "SecretStoreV1Beta1".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -97590,7 +101412,7 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef
@@ -97620,7 +101442,7 @@ class SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAc
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderAkeylessAuthSecretRefKubernetesAuthServiceAccountRef#audiences
         '''
@@ -98852,7 +102674,7 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef
@@ -98882,7 +102704,7 @@ class SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderAwsAuthJwtServiceAccountRef#audiences
         '''
@@ -100013,7 +103835,7 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef
@@ -100043,7 +103865,7 @@ class SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderAzurekvServiceAccountRef#audiences
         '''
@@ -102771,7 +106593,7 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
         '''Optional ServiceAccountRef specifies the Kubernetes service account for which to request a token for with the ``TokenRequest`` API.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef
@@ -102801,7 +106623,7 @@ class SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderConjurAuthJwtServiceAccountRef#audiences
         '''
@@ -104599,7 +108421,7 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef
@@ -104629,7 +108451,7 @@ class SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderGcpsmAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -106873,7 +110695,7 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
         '''points to a service account that should be used for authentication.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount
@@ -106903,7 +110725,7 @@ class SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderKubernetesAuthServiceAccount#audiences
         '''
@@ -108313,7 +112135,7 @@ class SecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef
@@ -108343,7 +112165,7 @@ class SecretStoreV1Beta1SpecProviderOracleServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderOracleServiceAccountRef#audiences
         '''
@@ -111528,7 +115350,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef
@@ -111558,7 +115380,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthIamJwtServiceAccountRef#audiences
         '''
@@ -112118,7 +115940,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -112148,7 +115970,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenSer
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -112468,7 +116290,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef
@@ -112498,7 +116320,7 @@ class SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: SecretStoreV1Beta1SpecProviderVaultAuthKubernetesServiceAccountRef#audiences
         '''
@@ -114995,6 +118817,11 @@ __all__ = [
     "ClusterSecretStoreSpecProviderAzurekvServiceAccountRef",
     "ClusterSecretStoreSpecProviderBarbican",
     "ClusterSecretStoreSpecProviderBarbicanAuth",
+    "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId",
+    "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef",
+    "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret",
+    "ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef",
+    "ClusterSecretStoreSpecProviderBarbicanAuthAuthType",
     "ClusterSecretStoreSpecProviderBarbicanAuthPassword",
     "ClusterSecretStoreSpecProviderBarbicanAuthPasswordSecretRef",
     "ClusterSecretStoreSpecProviderBarbicanAuthUsername",
@@ -115039,9 +118866,19 @@ __all__ = [
     "ClusterSecretStoreSpecProviderConjurAuthApikey",
     "ClusterSecretStoreSpecProviderConjurAuthApikeyApiKeyRef",
     "ClusterSecretStoreSpecProviderConjurAuthApikeyUserRef",
+    "ClusterSecretStoreSpecProviderConjurAuthAzure",
+    "ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef",
     "ClusterSecretStoreSpecProviderConjurAuthCert",
     "ClusterSecretStoreSpecProviderConjurAuthCertClientCertRef",
     "ClusterSecretStoreSpecProviderConjurAuthCertClientKeyRef",
+    "ClusterSecretStoreSpecProviderConjurAuthGcp",
+    "ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef",
+    "ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt",
+    "ClusterSecretStoreSpecProviderConjurAuthIam",
+    "ClusterSecretStoreSpecProviderConjurAuthIamSecretRef",
+    "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef",
+    "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef",
+    "ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef",
     "ClusterSecretStoreSpecProviderConjurAuthJwt",
     "ClusterSecretStoreSpecProviderConjurAuthJwtSecretRef",
     "ClusterSecretStoreSpecProviderConjurAuthJwtServiceAccountRef",
@@ -115100,6 +118937,7 @@ __all__ = [
     "ClusterSecretStoreSpecProviderGithubAuth",
     "ClusterSecretStoreSpecProviderGithubAuthPrivateKey",
     "ClusterSecretStoreSpecProviderGithubOrgSecretVisibility",
+    "ClusterSecretStoreSpecProviderGithubSecretType",
     "ClusterSecretStoreSpecProviderGitlab",
     "ClusterSecretStoreSpecProviderGitlabAuth",
     "ClusterSecretStoreSpecProviderGitlabAuthSecretRef",
@@ -115167,6 +119005,8 @@ __all__ = [
     "ClusterSecretStoreSpecProviderNebiusmysteryboxAuth",
     "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef",
     "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef",
+    "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity",
+    "ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef",
     "ClusterSecretStoreSpecProviderNebiusmysteryboxCaProvider",
     "ClusterSecretStoreSpecProviderNebiusmysteryboxCaProviderCertSecretRef",
     "ClusterSecretStoreSpecProviderNgrok",
@@ -115192,6 +119032,9 @@ __all__ = [
     "ClusterSecretStoreSpecProviderOpenBaoAuthAppRole",
     "ClusterSecretStoreSpecProviderOpenBaoAuthAppRoleRoleRef",
     "ClusterSecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef",
+    "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes",
+    "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef",
+    "ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef",
     "ClusterSecretStoreSpecProviderOpenBaoAuthTokenSecretRef",
     "ClusterSecretStoreSpecProviderOpenBaoAuthUserPass",
     "ClusterSecretStoreSpecProviderOpenBaoAuthUserPassSecretRef",
@@ -115755,6 +119598,11 @@ __all__ = [
     "SecretStoreSpecProviderAzurekvServiceAccountRef",
     "SecretStoreSpecProviderBarbican",
     "SecretStoreSpecProviderBarbicanAuth",
+    "SecretStoreSpecProviderBarbicanAuthApplicationCredentialId",
+    "SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef",
+    "SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret",
+    "SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef",
+    "SecretStoreSpecProviderBarbicanAuthAuthType",
     "SecretStoreSpecProviderBarbicanAuthPassword",
     "SecretStoreSpecProviderBarbicanAuthPasswordSecretRef",
     "SecretStoreSpecProviderBarbicanAuthUsername",
@@ -115799,9 +119647,19 @@ __all__ = [
     "SecretStoreSpecProviderConjurAuthApikey",
     "SecretStoreSpecProviderConjurAuthApikeyApiKeyRef",
     "SecretStoreSpecProviderConjurAuthApikeyUserRef",
+    "SecretStoreSpecProviderConjurAuthAzure",
+    "SecretStoreSpecProviderConjurAuthAzureServiceAccountRef",
     "SecretStoreSpecProviderConjurAuthCert",
     "SecretStoreSpecProviderConjurAuthCertClientCertRef",
     "SecretStoreSpecProviderConjurAuthCertClientKeyRef",
+    "SecretStoreSpecProviderConjurAuthGcp",
+    "SecretStoreSpecProviderConjurAuthGcpSecretRef",
+    "SecretStoreSpecProviderConjurAuthGcpSecretRefJwt",
+    "SecretStoreSpecProviderConjurAuthIam",
+    "SecretStoreSpecProviderConjurAuthIamSecretRef",
+    "SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef",
+    "SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef",
+    "SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef",
     "SecretStoreSpecProviderConjurAuthJwt",
     "SecretStoreSpecProviderConjurAuthJwtSecretRef",
     "SecretStoreSpecProviderConjurAuthJwtServiceAccountRef",
@@ -115860,6 +119718,7 @@ __all__ = [
     "SecretStoreSpecProviderGithubAuth",
     "SecretStoreSpecProviderGithubAuthPrivateKey",
     "SecretStoreSpecProviderGithubOrgSecretVisibility",
+    "SecretStoreSpecProviderGithubSecretType",
     "SecretStoreSpecProviderGitlab",
     "SecretStoreSpecProviderGitlabAuth",
     "SecretStoreSpecProviderGitlabAuthSecretRef",
@@ -115927,6 +119786,8 @@ __all__ = [
     "SecretStoreSpecProviderNebiusmysteryboxAuth",
     "SecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef",
     "SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef",
+    "SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity",
+    "SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef",
     "SecretStoreSpecProviderNebiusmysteryboxCaProvider",
     "SecretStoreSpecProviderNebiusmysteryboxCaProviderCertSecretRef",
     "SecretStoreSpecProviderNgrok",
@@ -115952,6 +119813,9 @@ __all__ = [
     "SecretStoreSpecProviderOpenBaoAuthAppRole",
     "SecretStoreSpecProviderOpenBaoAuthAppRoleRoleRef",
     "SecretStoreSpecProviderOpenBaoAuthAppRoleSecretRef",
+    "SecretStoreSpecProviderOpenBaoAuthKubernetes",
+    "SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef",
+    "SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef",
     "SecretStoreSpecProviderOpenBaoAuthTokenSecretRef",
     "SecretStoreSpecProviderOpenBaoAuthUserPass",
     "SecretStoreSpecProviderOpenBaoAuthUserPassSecretRef",
@@ -117658,8 +121522,44 @@ def _typecheckingstub__a75333dbfe62c25a8c24042fb7138906e895e98f48a3233ca97dd3316
 
 def _typecheckingstub__b1a686a2c06e788c75b12c0518e3362c7cf0dd0f0432f32e06bdad4d11ab2c12(
     *,
-    password: typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthPassword, typing.Dict[builtins.str, typing.Any]],
-    username: typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthUsername, typing.Dict[builtins.str, typing.Any]],
+    application_credential_id: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialId, typing.Dict[builtins.str, typing.Any]]] = None,
+    application_credential_secret: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[ClusterSecretStoreSpecProviderBarbicanAuthAuthType] = None,
+    password: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthPassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    username: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthUsername, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__764a891d5a10e9962767d8783ed0181f592eea284ccb689791f86af61c544788(
+    *,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    value: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d16a8be4be8cb232cda8d94b2ad9168194e0d16a0aecf2fd533b4aff79cbd0b0(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__1c6547c0281c586752f6f5847c970c2a54e383e9931fe46ac6afb8fcea502dd9(
+    *,
+    secret_ref: typing.Union[ClusterSecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a63702cfe42e135b2ed3cb883ed102ebc40ee02164a647947468dd804c9a4907(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -117999,7 +121899,10 @@ def _typecheckingstub__a66947a3aa74c1b25577cbfb9aab0ef11b92b734938e76685cf954c23
 def _typecheckingstub__a71375cf128f48a0373eb4bd064305ac92d85c0a774c9356bd681a11ee53f59c(
     *,
     apikey: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]]] = None,
+    azure: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthAzure, typing.Dict[builtins.str, typing.Any]]] = None,
     cert: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcp: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthGcp, typing.Dict[builtins.str, typing.Any]]] = None,
+    iam: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthIam, typing.Dict[builtins.str, typing.Any]]] = None,
     jwt: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -118032,6 +121935,26 @@ def _typecheckingstub__9ef3adb0cb1a5944732d5d684909cb2513271540010cf013576a1a622
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__ef8b98cc48e985751cb133279fd8ab09e099142bd58a22e78d642f1b3a241379(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    service_id: builtins.str,
+    client_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthAzureServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__7afd829f6ba37f4a4d7b5066285d6d84b225e9971a58defa53182ce6725a0ac6(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__7b98802d8038b54dd3d6eac84e25e0bb3c032716969060eb6596a676088255af(
     *,
     account: builtins.str,
@@ -118053,6 +121976,79 @@ def _typecheckingstub__9207f07c65c320e9c1416b3240cba823b20c29ded36d0ec72604b36eb
     pass
 
 def _typecheckingstub__594f1d3baebb02b2b3a29ce793418e7be3bdad8632812ad8ab3c7649e989c74f(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__943b89b5da41d85dcd18c0492880d3b654ad4b1501177acc4b0e88fb76ae8aee(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthGcpSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__17eb61829436757d50a135ba12213f3089021d8c80adcf3887ccd31cb074ce88(
+    *,
+    jwt: typing.Union[ClusterSecretStoreSpecProviderConjurAuthGcpSecretRefJwt, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__192e006f34a0319331555635d21ff3fc883d74de82771da22fdab40b23a0d464(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0231ca633d267c055b1d2d4a1d07b78143c466d9065263a473a3150d4914a764(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    service_id: builtins.str,
+    insecure: typing.Optional[builtins.bool] = None,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthIamSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__06bbcf67323f3e01c6f6768ca6626400f7eaae49f1af4d3ba90f1f028e80eb1b(
+    *,
+    access_key_id_secret_ref: typing.Union[ClusterSecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    secret_access_key_secret_ref: typing.Union[ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+    session_token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__930af62e4d3535d143a0e01af378a82d846c61ebbe525a9c6b1738f467210dda(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0b03380f74255ce32cb5b587841ed3e885a9610c0b0fa2bf6878f2beee8fd290(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__947c0eb2bc55f5b1568211e5aa903f201245b8afa922a17570a5136e29ce4e43(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
@@ -118515,6 +122511,7 @@ def _typecheckingstub__89075c03973a16f2d795612fbc87b04051f381b8e84e1a1e39c63122e
     environment: typing.Optional[builtins.str] = None,
     org_secret_visibility: typing.Optional[ClusterSecretStoreSpecProviderGithubOrgSecretVisibility] = None,
     repository: typing.Optional[builtins.str] = None,
+    secret_type: typing.Optional[ClusterSecretStoreSpecProviderGithubSecretType] = None,
     upload_url: typing.Optional[builtins.str] = None,
     url: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -118968,7 +122965,7 @@ def _typecheckingstub__34dc694fcff54c27f88bc27595d7536b0a2cef29a7c368868541cff5e
 def _typecheckingstub__200c6e27b995c21e910f3e29e8d10ddc9c8ee45217b6f35a8895c990f7409024(
     *,
     auth_ref: typing.Union[ClusterSecretStoreSpecProviderKeepersecurityAuthRef, typing.Dict[builtins.str, typing.Any]],
-    folder_id: builtins.str,
+    folder_id: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -119093,6 +123090,7 @@ def _typecheckingstub__9d143af4d29d0feaf41863c22977cf6008fd5460dcfb290d916507450
     *,
     service_account_creds_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -119110,6 +123108,23 @@ def _typecheckingstub__c21538edc5a412d770b4c391fba5f447f312ce655252ef1d7d7af1781
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__e4a8279801a25a0558af8c5ddbf8be6d142cf2af8d3a5d39f7b1c20a2e2d6000(
+    *,
+    iam_service_account_id: builtins.str,
+    service_account_ref: typing.Union[ClusterSecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c5307a8ca8d348173ff889d6f093710aeb90b738502685ab2959596b8cc48fbb(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -119241,9 +123256,10 @@ def _typecheckingstub__9b458e24f71fdb166ea4ada5b4bb788c8afad36208d800f8aab25cb02
 def _typecheckingstub__c949a5d5d1ec74991e57510b94ba4991b0f0b972f7973c1c39b1e642e3b5cc92(
     *,
     auth: typing.Union[ClusterSecretStoreSpecProviderOnepasswordSdkAuth, typing.Dict[builtins.str, typing.Any]],
-    vault: builtins.str,
     cache: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOnepasswordSdkCache, typing.Dict[builtins.str, typing.Any]]] = None,
+    environment: typing.Optional[builtins.str] = None,
     integration_info: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOnepasswordSdkIntegrationInfo, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -119296,6 +123312,7 @@ def _typecheckingstub__9ba35f871905fe74c0b33c8f4c78683da4d0137ea5a0b9b68ab062522
 def _typecheckingstub__431b192a3eb800f6ba4731808c84fad7a40d268bbacb4874465af829154bbd06(
     *,
     app_role: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     namespace: typing.Optional[builtins.str] = None,
     token_secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     user_pass: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -119326,6 +123343,34 @@ def _typecheckingstub__a28e46623e14d85b9ee412c0255fdeaf2e307b1155d1749ec4db4fbed
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__f94f156aef3cb42bcb3c2f8addcfb828f727af4c074d34eeaa8773a7fe97abe9(
+    *,
+    path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__cf619c1b50fd7a4eeea6238ec83aeb1298bfcc0494f2e4dd0b44ef2addc62fe6(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__230b0427d5387d50e2f09afe45df363145e4abeec9a2b29c2c043d2a3c90d474(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -119727,8 +123772,10 @@ def _typecheckingstub__a370534ba47dee2393e2fa141d68fbbdd08db81f3ec55f1db5f713ea0
     server_url: builtins.str,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderSecretserverCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    disable_site_id_validation: typing.Optional[builtins.bool] = None,
     domain: typing.Optional[builtins.str] = None,
     password: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderSecretserverPassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    site_id: typing.Optional[jsii.Number] = None,
     token: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderSecretserverToken, typing.Dict[builtins.str, typing.Any]]] = None,
     username: typing.Optional[typing.Union[ClusterSecretStoreSpecProviderSecretserverUsername, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
@@ -123685,8 +127732,44 @@ def _typecheckingstub__154a067ea26de32be5424ac81730b69e06dfb8fc22dcfa2306fb1f2bf
 
 def _typecheckingstub__d6fc1ea0ef06eb135e6f5caaa339fcaf52a2f6a6cd7f97e152ca516cfa266708(
     *,
-    password: typing.Union[SecretStoreSpecProviderBarbicanAuthPassword, typing.Dict[builtins.str, typing.Any]],
-    username: typing.Union[SecretStoreSpecProviderBarbicanAuthUsername, typing.Dict[builtins.str, typing.Any]],
+    application_credential_id: typing.Optional[typing.Union[SecretStoreSpecProviderBarbicanAuthApplicationCredentialId, typing.Dict[builtins.str, typing.Any]]] = None,
+    application_credential_secret: typing.Optional[typing.Union[SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecret, typing.Dict[builtins.str, typing.Any]]] = None,
+    auth_type: typing.Optional[SecretStoreSpecProviderBarbicanAuthAuthType] = None,
+    password: typing.Optional[typing.Union[SecretStoreSpecProviderBarbicanAuthPassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    username: typing.Optional[typing.Union[SecretStoreSpecProviderBarbicanAuthUsername, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a7e6cd6a76388bd90585159fa19d682e586d8c8aa4689545e913f000ef9a0655(
+    *,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderBarbicanAuthApplicationCredentialIdSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    value: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__2813ccc849882dc0a12057ddcd0a683f3a7f65a3e6b4d27ba5101c4c93f825bf(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__3e2910f6a4071e8497903449a306f4cf73e6502da980228018f2862c322b8447(
+    *,
+    secret_ref: typing.Union[SecretStoreSpecProviderBarbicanAuthApplicationCredentialSecretSecretRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__b1d437e8a1eebd0629caead1bff8e72316bd260d1aaeb60d72fda89a845b4b42(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -124026,7 +128109,10 @@ def _typecheckingstub__e4b371e797b7ad675cc4cb688f098cef7f9890f66cc8a6c046333ec97
 def _typecheckingstub__c189fde8c426f5d0387aae405c8590c960ebfadbdceb9d48c29b32a4ee915361(
     *,
     apikey: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthApikey, typing.Dict[builtins.str, typing.Any]]] = None,
+    azure: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthAzure, typing.Dict[builtins.str, typing.Any]]] = None,
     cert: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthCert, typing.Dict[builtins.str, typing.Any]]] = None,
+    gcp: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthGcp, typing.Dict[builtins.str, typing.Any]]] = None,
+    iam: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthIam, typing.Dict[builtins.str, typing.Any]]] = None,
     jwt: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthJwt, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
@@ -124059,6 +128145,26 @@ def _typecheckingstub__9b0c2a80bba760ecedbfb2258e48bdcfea61c2cc78a11c4c0010b3585
     """Type checking stubs"""
     pass
 
+def _typecheckingstub__35562ee1fe6249902d99a1be8597f25df210c370af8dbbcaf22b31849dd1f7a2(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    service_id: builtins.str,
+    client_id: typing.Optional[builtins.str] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthAzureServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a04e012a604b3c015b92c013a0ef8be75917cde19b7d8fa1052f0c9a4582a6e9(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
 def _typecheckingstub__2d4f3c007310d9d9169ffd28a22522546a634952f4e21f44d40e6e06f725d049(
     *,
     account: builtins.str,
@@ -124080,6 +128186,79 @@ def _typecheckingstub__6b28c4caa9fc484034e79b4e0261783ef6ccf6067e76330574f1995d6
     pass
 
 def _typecheckingstub__ac778372e9836b84ab5de7db18f649c8c65d1600f04f7d92c9b432d57862b715(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__56af1d2dab534028180e9f193d1d4f47cdc7341e8ea14002fa9f7086099cf63e(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthGcpSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__17b28953ce4ef512460e22873dc7022048cc6770b523af2fab26cfd5cc5a2c80(
+    *,
+    jwt: typing.Union[SecretStoreSpecProviderConjurAuthGcpSecretRefJwt, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__fd1394229ddb19796bc6974a1acde9a58798f106c9f45219721c26148bcf5a20(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a641c2b4802176b3f7eb81ef061e9d4558cce8e6476e0999650b67544b467f21(
+    *,
+    account: builtins.str,
+    host_id: builtins.str,
+    service_id: builtins.str,
+    insecure: typing.Optional[builtins.bool] = None,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthIamSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__02342b4eaa440be34f6309971aaa0c311a3cb9a68cb5e135f8a07bdffbfe923c(
+    *,
+    access_key_id_secret_ref: typing.Union[SecretStoreSpecProviderConjurAuthIamSecretRefAccessKeyIdSecretRef, typing.Dict[builtins.str, typing.Any]],
+    secret_access_key_secret_ref: typing.Union[SecretStoreSpecProviderConjurAuthIamSecretRefSecretAccessKeySecretRef, typing.Dict[builtins.str, typing.Any]],
+    session_token_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderConjurAuthIamSecretRefSessionTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__c016d74c4ce5f2ccfb305c223686fd112a2cd83c588c468d7ec567fd792cac0c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__af99fe0edf4b311d0b09429cc08aa04320f881dd001109e518cbf6579923a5f3(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__344148ba53845c1acb3638944b66ad22438e6e3f0de174b732a6a5e98a07b5af(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
@@ -124542,6 +128721,7 @@ def _typecheckingstub__e8850d34987d3f24152b0f33812f8bd904593cd2c3a3674ce20f4691a
     environment: typing.Optional[builtins.str] = None,
     org_secret_visibility: typing.Optional[SecretStoreSpecProviderGithubOrgSecretVisibility] = None,
     repository: typing.Optional[builtins.str] = None,
+    secret_type: typing.Optional[SecretStoreSpecProviderGithubSecretType] = None,
     upload_url: typing.Optional[builtins.str] = None,
     url: typing.Optional[builtins.str] = None,
 ) -> None:
@@ -124995,7 +129175,7 @@ def _typecheckingstub__7ad542b1317611059dcd37d8c98dd0ddb2a42aa2a69601f647caf290a
 def _typecheckingstub__5218b8c8345c78df210fb02115b2afa0d9bf0dc3bb5b0b15ce0e2825bab97ca6(
     *,
     auth_ref: typing.Union[SecretStoreSpecProviderKeepersecurityAuthRef, typing.Dict[builtins.str, typing.Any]],
-    folder_id: builtins.str,
+    folder_id: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -125120,6 +129300,7 @@ def _typecheckingstub__ed3876dac4d90c35d669ad56ffdeb3705da098d2a3736b63036e8bf78
     *,
     service_account_creds_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderNebiusmysteryboxAuthServiceAccountCredsSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     token_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderNebiusmysteryboxAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    workload_identity: typing.Optional[typing.Union[SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentity, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -125137,6 +129318,23 @@ def _typecheckingstub__930c04b2fffccc972e2b3d3a293bcedd31a024490fcd307cbe9206277
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__af0cb22fa0f1c25e95b126da6d8662a25e1633aa923d107ffac931a6dc7878c8(
+    *,
+    iam_service_account_id: builtins.str,
+    service_account_ref: typing.Union[SecretStoreSpecProviderNebiusmysteryboxAuthWorkloadIdentityServiceAccountRef, typing.Dict[builtins.str, typing.Any]],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a72d5084580ea5794f4d534c8ff3eb4d56b81cecdc73a6fa88f6b5fb118e4999(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -125268,9 +129466,10 @@ def _typecheckingstub__759fde2708493c586a1ffcd95cf1de2246df5761f7dda86e3ac4b2a0e
 def _typecheckingstub__c7f44d50626711b8f1cc45034c4a00f0d3f0bc360279d0e22e8673cb20887779(
     *,
     auth: typing.Union[SecretStoreSpecProviderOnepasswordSdkAuth, typing.Dict[builtins.str, typing.Any]],
-    vault: builtins.str,
     cache: typing.Optional[typing.Union[SecretStoreSpecProviderOnepasswordSdkCache, typing.Dict[builtins.str, typing.Any]]] = None,
+    environment: typing.Optional[builtins.str] = None,
     integration_info: typing.Optional[typing.Union[SecretStoreSpecProviderOnepasswordSdkIntegrationInfo, typing.Dict[builtins.str, typing.Any]]] = None,
+    vault: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -125323,6 +129522,7 @@ def _typecheckingstub__8987ea651ea7912c7f026fcf103b30902aecf67a25ac4d5d9acb2bcb6
 def _typecheckingstub__fa2340e6d5e7dbe604f6aac30e59a58a66799e13673f4b43c0d79ab55da5cc43(
     *,
     app_role: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthAppRole, typing.Dict[builtins.str, typing.Any]]] = None,
+    kubernetes: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthKubernetes, typing.Dict[builtins.str, typing.Any]]] = None,
     namespace: typing.Optional[builtins.str] = None,
     token_secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthTokenSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
     user_pass: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthUserPass, typing.Dict[builtins.str, typing.Any]]] = None,
@@ -125353,6 +129553,34 @@ def _typecheckingstub__843a6a5368251e4140117c290e9b511e7d4d868ffcd1137be9cc84936
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__208c93aa33914de7a82b6a08a458739159c2b714e46a7e856b6030648774f772(
+    *,
+    path: builtins.str,
+    role: builtins.str,
+    secret_ref: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthKubernetesSecretRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    service_account_ref: typing.Optional[typing.Union[SecretStoreSpecProviderOpenBaoAuthKubernetesServiceAccountRef, typing.Dict[builtins.str, typing.Any]]] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__d6f9971c09916f2beb22bea871c1ae2f24c4a0ccb73207de7b4b13c8b7f98d92(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8c86d4108989064d06aa649dc453f2c911a4fa45e039dca4c78e74b1c9395dbb(
+    *,
+    name: builtins.str,
+    audiences: typing.Optional[typing.Sequence[builtins.str]] = None,
     namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
@@ -125754,8 +129982,10 @@ def _typecheckingstub__0ac9fe40c03516854b447953e3823341be23519557752c4bfb690b4ee
     server_url: builtins.str,
     ca_bundle: typing.Optional[builtins.str] = None,
     ca_provider: typing.Optional[typing.Union[SecretStoreSpecProviderSecretserverCaProvider, typing.Dict[builtins.str, typing.Any]]] = None,
+    disable_site_id_validation: typing.Optional[builtins.bool] = None,
     domain: typing.Optional[builtins.str] = None,
     password: typing.Optional[typing.Union[SecretStoreSpecProviderSecretserverPassword, typing.Dict[builtins.str, typing.Any]]] = None,
+    site_id: typing.Optional[jsii.Number] = None,
     token: typing.Optional[typing.Union[SecretStoreSpecProviderSecretserverToken, typing.Dict[builtins.str, typing.Any]]] = None,
     username: typing.Optional[typing.Union[SecretStoreSpecProviderSecretserverUsername, typing.Dict[builtins.str, typing.Any]]] = None,
 ) -> None:
