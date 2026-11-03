@@ -104,6 +104,7 @@ class AcrAccessToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ACRAccessToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -768,7 +769,7 @@ class AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
@@ -798,7 +799,7 @@ class AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: AcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -919,6 +920,7 @@ class BeyondtrustWorkloadCredentialsDynamicSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "BeyondtrustWorkloadCredentialsDynamicSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -1720,6 +1722,7 @@ class CloudsmithAccessToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "CloudsmithAccessToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -1902,7 +1905,7 @@ class CloudsmithAccessTokenSpecServiceAccountRef:
         '''Name of the service account you are federating with.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: CloudsmithAccessTokenSpecServiceAccountRef
@@ -1932,7 +1935,7 @@ class CloudsmithAccessTokenSpecServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: CloudsmithAccessTokenSpecServiceAccountRef#audiences
         '''
@@ -2021,6 +2024,7 @@ class ClusterGenerator(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ClusterGenerator".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -3096,7 +3100,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityService
         '''ServiceAccountRef specified the service account that should be used when authenticating with WorkloadIdentity.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
@@ -3126,7 +3130,7 @@ class ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityService
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorAcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -3971,7 +3975,7 @@ class ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef:
         '''Name of the service account you are federating with.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef
@@ -4001,7 +4005,7 @@ class ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorCloudsmithAccessTokenSpecServiceAccountRef#audiences
         '''
@@ -4262,7 +4266,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccoun
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccountRef
@@ -4292,7 +4296,7 @@ class ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccoun
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorEcrAuthorizationTokenSpecAuthJwtServiceAccountRef#audiences
         '''
@@ -5454,7 +5458,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
         '''serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef
@@ -5484,7 +5488,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederat
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef#audiences
         '''
@@ -5530,7 +5534,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityService
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
@@ -5560,7 +5564,7 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityService
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -5594,9 +5598,11 @@ class ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityService
     jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGithubAccessTokenSpec",
     jsii_struct_bases=[],
     name_mapping={
-        "app_id": "appId",
         "auth": "auth",
+        "app_id": "appId",
+        "app_id_ref": "appIdRef",
         "install_id": "installId",
+        "install_id_ref": "installIdRef",
         "permissions": "permissions",
         "repositories": "repositories",
         "url": "url",
@@ -5606,18 +5612,22 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpec:
     def __init__(
         self,
         *,
-        app_id: builtins.str,
         auth: typing.Union["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth", typing.Dict[builtins.str, typing.Any]],
-        install_id: builtins.str,
+        app_id: typing.Optional[builtins.str] = None,
+        app_id_ref: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        install_id: typing.Optional[builtins.str] = None,
+        install_id_ref: typing.Optional[typing.Union["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef", typing.Dict[builtins.str, typing.Any]]] = None,
         permissions: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         repositories: typing.Optional[typing.Sequence[builtins.str]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GithubAccessTokenSpec defines the desired state to generate a GitHub access token.
 
-        :param app_id: 
         :param auth: Auth configures how ESO authenticates with a Github instance.
-        :param install_id: 
+        :param app_id: AppID is the GitHub App ID. Exactly one of AppID or AppIDRef must be set.
+        :param app_id_ref: AppIDRef references a secret key containing the GitHub App ID. Exactly one of AppID or AppIDRef must be set.
+        :param install_id: InstallID is the GitHub App installation ID. Exactly one of InstallID or InstallIDRef must be set.
+        :param install_id_ref: InstallIDRef references a secret key containing the GitHub App installation ID. Exactly one of InstallID or InstallIDRef must be set.
         :param permissions: Map of permissions the token will have. If omitted, defaults to all permissions the GitHub App has.
         :param repositories: List of repositories the token will have access to. If omitted, defaults to all repositories the GitHub App is installed to.
         :param url: URL configures the GitHub instance URL. Defaults to https://github.com/. Default: https://github.com/.
@@ -5626,34 +5636,37 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpec:
         '''
         if isinstance(auth, dict):
             auth = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth(**auth)
+        if isinstance(app_id_ref, dict):
+            app_id_ref = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef(**app_id_ref)
+        if isinstance(install_id_ref, dict):
+            install_id_ref = ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef(**install_id_ref)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__292ec9b435c52ded2f9e1a3fc879dc60a480c74153810bcd8257587046e66853)
-            check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
+            check_type(argname="argument app_id_ref", value=app_id_ref, expected_type=type_hints["app_id_ref"])
             check_type(argname="argument install_id", value=install_id, expected_type=type_hints["install_id"])
+            check_type(argname="argument install_id_ref", value=install_id_ref, expected_type=type_hints["install_id_ref"])
             check_type(argname="argument permissions", value=permissions, expected_type=type_hints["permissions"])
             check_type(argname="argument repositories", value=repositories, expected_type=type_hints["repositories"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "app_id": app_id,
             "auth": auth,
-            "install_id": install_id,
         }
+        if app_id is not None:
+            self._values["app_id"] = app_id
+        if app_id_ref is not None:
+            self._values["app_id_ref"] = app_id_ref
+        if install_id is not None:
+            self._values["install_id"] = install_id
+        if install_id_ref is not None:
+            self._values["install_id_ref"] = install_id_ref
         if permissions is not None:
             self._values["permissions"] = permissions
         if repositories is not None:
             self._values["repositories"] = repositories
         if url is not None:
             self._values["url"] = url
-
-    @builtins.property
-    def app_id(self) -> builtins.str:
-        '''
-        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpec#appID
-        '''
-        result = self._values.get("app_id")
-        assert result is not None, "Required property 'app_id' is missing"
-        return typing.cast(builtins.str, result)
 
     @builtins.property
     def auth(self) -> "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth":
@@ -5666,13 +5679,53 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpec:
         return typing.cast("ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth", result)
 
     @builtins.property
-    def install_id(self) -> builtins.str:
+    def app_id(self) -> typing.Optional[builtins.str]:
+        '''AppID is the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpec#appID
         '''
+        result = self._values.get("app_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def app_id_ref(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef"]:
+        '''AppIDRef references a secret key containing the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpec#appIDRef
+        '''
+        result = self._values.get("app_id_ref")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef"], result)
+
+    @builtins.property
+    def install_id(self) -> typing.Optional[builtins.str]:
+        '''InstallID is the GitHub App installation ID.
+
+        Exactly one of InstallID or InstallIDRef must be set.
+
         :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpec#installID
         '''
         result = self._values.get("install_id")
-        assert result is not None, "Required property 'install_id' is missing"
-        return typing.cast(builtins.str, result)
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def install_id_ref(
+        self,
+    ) -> typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef"]:
+        '''InstallIDRef references a secret key containing the GitHub App installation ID.
+
+        Exactly one of InstallID or
+        InstallIDRef must be set.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpec#installIDRef
+        '''
+        result = self._values.get("install_id_ref")
+        return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef"], result)
 
     @builtins.property
     def permissions(
@@ -5720,6 +5773,85 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpec:
 
     def __repr__(self) -> str:
         return "ClusterGeneratorSpecGeneratorGithubAccessTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''AppIDRef references a secret key containing the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__4f22065de566abd3c95e485ee50de1fc5ddf7d4e1e7ef45d6b0ff711fe112713)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -5901,6 +6033,86 @@ class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef:
 
     def __repr__(self) -> str:
         return "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''InstallIDRef references a secret key containing the GitHub App installation ID.
+
+        Exactly one of InstallID or
+        InstallIDRef must be set.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__a97d66d38af05b1fa28bb8393b2e5da2ecc186154adb76964972e0de08a8411e)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -6909,7 +7121,9 @@ class ClusterGeneratorSpecGeneratorMfaSpecSecret:
         "no_upper": "noUpper",
         "digits": "digits",
         "encoding": "encoding",
+        "prefix": "prefix",
         "secret_keys": "secretKeys",
+        "suffix": "suffix",
         "symbol_characters": "symbolCharacters",
         "symbols": "symbols",
     },
@@ -6923,7 +7137,9 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
         no_upper: builtins.bool,
         digits: typing.Optional[jsii.Number] = None,
         encoding: typing.Optional["ClusterGeneratorSpecGeneratorPasswordSpecEncoding"] = None,
+        prefix: typing.Optional[builtins.str] = None,
         secret_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
+        suffix: typing.Optional[builtins.str] = None,
         symbol_characters: typing.Optional[builtins.str] = None,
         symbols: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -6934,7 +7150,9 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
         :param no_upper: Set NoUpper to disable uppercase characters.
         :param digits: Digits specifies the number of digits in the generated password. If omitted it defaults to 25% of the length of the password
         :param encoding: Encoding specifies the encoding of the generated password. Valid values are: - "raw" (default): no encoding - "base64": standard base64 encoding - "base64url": base64url encoding - "base32": base32 encoding - "hex": hexadecimal encoding
+        :param prefix: Prefix is prepended to every generated password after encoding. It is not counted in length or subject to the character settings.
         :param secret_keys: SecretKeys defines the keys that will be populated with generated passwords. Defaults to "password" when not set. Default: password" when not set.
+        :param suffix: Suffix is appended to every generated password after encoding. It is not counted in length or subject to the character settings.
         :param symbol_characters: SymbolCharacters specifies the special characters that should be used in the generated password.
         :param symbols: Symbols specifies the number of symbol characters in the generated password. If omitted it defaults to 25% of the length of the password
 
@@ -6947,7 +7165,9 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
             check_type(argname="argument no_upper", value=no_upper, expected_type=type_hints["no_upper"])
             check_type(argname="argument digits", value=digits, expected_type=type_hints["digits"])
             check_type(argname="argument encoding", value=encoding, expected_type=type_hints["encoding"])
+            check_type(argname="argument prefix", value=prefix, expected_type=type_hints["prefix"])
             check_type(argname="argument secret_keys", value=secret_keys, expected_type=type_hints["secret_keys"])
+            check_type(argname="argument suffix", value=suffix, expected_type=type_hints["suffix"])
             check_type(argname="argument symbol_characters", value=symbol_characters, expected_type=type_hints["symbol_characters"])
             check_type(argname="argument symbols", value=symbols, expected_type=type_hints["symbols"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -6959,8 +7179,12 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
             self._values["digits"] = digits
         if encoding is not None:
             self._values["encoding"] = encoding
+        if prefix is not None:
+            self._values["prefix"] = prefix
         if secret_keys is not None:
             self._values["secret_keys"] = secret_keys
+        if suffix is not None:
+            self._values["suffix"] = suffix
         if symbol_characters is not None:
             self._values["symbol_characters"] = symbol_characters
         if symbols is not None:
@@ -7031,6 +7255,17 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
         return typing.cast(typing.Optional["ClusterGeneratorSpecGeneratorPasswordSpecEncoding"], result)
 
     @builtins.property
+    def prefix(self) -> typing.Optional[builtins.str]:
+        '''Prefix is prepended to every generated password after encoding.
+
+        It is not counted in length or subject to the character settings.
+
+        :schema: ClusterGeneratorSpecGeneratorPasswordSpec#prefix
+        '''
+        result = self._values.get("prefix")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def secret_keys(self) -> typing.Optional[typing.List[builtins.str]]:
         '''SecretKeys defines the keys that will be populated with generated passwords.
 
@@ -7042,6 +7277,17 @@ class ClusterGeneratorSpecGeneratorPasswordSpec:
         '''
         result = self._values.get("secret_keys")
         return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def suffix(self) -> typing.Optional[builtins.str]:
+        '''Suffix is appended to every generated password after encoding.
+
+        It is not counted in length or subject to the character settings.
+
+        :schema: ClusterGeneratorSpecGeneratorPasswordSpec#suffix
+        '''
+        result = self._values.get("suffix")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def symbol_characters(self) -> typing.Optional[builtins.str]:
@@ -7206,7 +7452,7 @@ class ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef:
         '''Name of the service account you are federating with.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef
@@ -7236,7 +7482,7 @@ class ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorQuayAccessTokenSpecServiceAccountRef#audiences
         '''
@@ -7595,7 +7841,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef
@@ -7625,7 +7871,7 @@ class ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorStsSessionTokenSpecAuthJwtServiceAccountRef#audiences
         '''
@@ -9520,7 +9766,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceA
         '''ServiceAccountRef to a service account for impersonation.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceAccountRef
@@ -9550,7 +9796,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceA
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpServiceAccountRef#audiences
         '''
@@ -9693,7 +9939,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkload
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef
@@ -9723,7 +9969,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkload
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -9983,7 +10229,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServi
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef
@@ -10013,7 +10259,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServi
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef#audiences
         '''
@@ -10573,7 +10819,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernet
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -10603,7 +10849,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernet
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -10923,7 +11169,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesS
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef
@@ -10953,7 +11199,7 @@ class ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesS
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: ClusterGeneratorSpecGeneratorVaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef#audiences
         '''
@@ -12728,6 +12974,7 @@ class EcrAuthorizationToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "ECRAuthorizationToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -13025,7 +13272,7 @@ class EcrAuthorizationTokenSpecAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: EcrAuthorizationTokenSpecAuthJwtServiceAccountRef
@@ -13055,7 +13302,7 @@ class EcrAuthorizationTokenSpecAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: EcrAuthorizationTokenSpecAuthJwtServiceAccountRef#audiences
         '''
@@ -13467,6 +13714,7 @@ class Fake(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "Fake".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -13655,6 +13903,7 @@ class GcrAccessToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "GCRAccessToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -14473,7 +14722,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef:
         '''serviceAccountRef is the reference to the kubernetes ServiceAccount to be used for obtaining the tokens, when Kubernetes is configured as provider in workload identity pool.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef
@@ -14503,7 +14752,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef#audiences
         '''
@@ -14549,7 +14798,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef
@@ -14579,7 +14828,7 @@ class GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: GcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -14668,6 +14917,7 @@ class GeneratorState(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "GeneratorState".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -14881,6 +15131,7 @@ class GithubAccessToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "GithubAccessToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -14952,9 +15203,11 @@ class GithubAccessTokenProps:
     jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpec",
     jsii_struct_bases=[],
     name_mapping={
-        "app_id": "appId",
         "auth": "auth",
+        "app_id": "appId",
+        "app_id_ref": "appIdRef",
         "install_id": "installId",
+        "install_id_ref": "installIdRef",
         "permissions": "permissions",
         "repositories": "repositories",
         "url": "url",
@@ -14964,18 +15217,22 @@ class GithubAccessTokenSpec:
     def __init__(
         self,
         *,
-        app_id: builtins.str,
         auth: typing.Union["GithubAccessTokenSpecAuth", typing.Dict[builtins.str, typing.Any]],
-        install_id: builtins.str,
+        app_id: typing.Optional[builtins.str] = None,
+        app_id_ref: typing.Optional[typing.Union["GithubAccessTokenSpecAppIdRef", typing.Dict[builtins.str, typing.Any]]] = None,
+        install_id: typing.Optional[builtins.str] = None,
+        install_id_ref: typing.Optional[typing.Union["GithubAccessTokenSpecInstallIdRef", typing.Dict[builtins.str, typing.Any]]] = None,
         permissions: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
         repositories: typing.Optional[typing.Sequence[builtins.str]] = None,
         url: typing.Optional[builtins.str] = None,
     ) -> None:
         '''GithubAccessTokenSpec defines the desired state to generate a GitHub access token.
 
-        :param app_id: 
         :param auth: Auth configures how ESO authenticates with a Github instance.
-        :param install_id: 
+        :param app_id: AppID is the GitHub App ID. Exactly one of AppID or AppIDRef must be set.
+        :param app_id_ref: AppIDRef references a secret key containing the GitHub App ID. Exactly one of AppID or AppIDRef must be set.
+        :param install_id: InstallID is the GitHub App installation ID. Exactly one of InstallID or InstallIDRef must be set.
+        :param install_id_ref: InstallIDRef references a secret key containing the GitHub App installation ID. Exactly one of InstallID or InstallIDRef must be set.
         :param permissions: Map of permissions the token will have. If omitted, defaults to all permissions the GitHub App has.
         :param repositories: List of repositories the token will have access to. If omitted, defaults to all repositories the GitHub App is installed to.
         :param url: URL configures the GitHub instance URL. Defaults to https://github.com/. Default: https://github.com/.
@@ -14984,34 +15241,37 @@ class GithubAccessTokenSpec:
         '''
         if isinstance(auth, dict):
             auth = GithubAccessTokenSpecAuth(**auth)
+        if isinstance(app_id_ref, dict):
+            app_id_ref = GithubAccessTokenSpecAppIdRef(**app_id_ref)
+        if isinstance(install_id_ref, dict):
+            install_id_ref = GithubAccessTokenSpecInstallIdRef(**install_id_ref)
         if __debug__:
             type_hints = cached_type_hints(_typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb)
-            check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
             check_type(argname="argument auth", value=auth, expected_type=type_hints["auth"])
+            check_type(argname="argument app_id", value=app_id, expected_type=type_hints["app_id"])
+            check_type(argname="argument app_id_ref", value=app_id_ref, expected_type=type_hints["app_id_ref"])
             check_type(argname="argument install_id", value=install_id, expected_type=type_hints["install_id"])
+            check_type(argname="argument install_id_ref", value=install_id_ref, expected_type=type_hints["install_id_ref"])
             check_type(argname="argument permissions", value=permissions, expected_type=type_hints["permissions"])
             check_type(argname="argument repositories", value=repositories, expected_type=type_hints["repositories"])
             check_type(argname="argument url", value=url, expected_type=type_hints["url"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
-            "app_id": app_id,
             "auth": auth,
-            "install_id": install_id,
         }
+        if app_id is not None:
+            self._values["app_id"] = app_id
+        if app_id_ref is not None:
+            self._values["app_id_ref"] = app_id_ref
+        if install_id is not None:
+            self._values["install_id"] = install_id
+        if install_id_ref is not None:
+            self._values["install_id_ref"] = install_id_ref
         if permissions is not None:
             self._values["permissions"] = permissions
         if repositories is not None:
             self._values["repositories"] = repositories
         if url is not None:
             self._values["url"] = url
-
-    @builtins.property
-    def app_id(self) -> builtins.str:
-        '''
-        :schema: GithubAccessTokenSpec#appID
-        '''
-        result = self._values.get("app_id")
-        assert result is not None, "Required property 'app_id' is missing"
-        return typing.cast(builtins.str, result)
 
     @builtins.property
     def auth(self) -> "GithubAccessTokenSpecAuth":
@@ -15024,13 +15284,49 @@ class GithubAccessTokenSpec:
         return typing.cast("GithubAccessTokenSpecAuth", result)
 
     @builtins.property
-    def install_id(self) -> builtins.str:
+    def app_id(self) -> typing.Optional[builtins.str]:
+        '''AppID is the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :schema: GithubAccessTokenSpec#appID
         '''
+        result = self._values.get("app_id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def app_id_ref(self) -> typing.Optional["GithubAccessTokenSpecAppIdRef"]:
+        '''AppIDRef references a secret key containing the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :schema: GithubAccessTokenSpec#appIDRef
+        '''
+        result = self._values.get("app_id_ref")
+        return typing.cast(typing.Optional["GithubAccessTokenSpecAppIdRef"], result)
+
+    @builtins.property
+    def install_id(self) -> typing.Optional[builtins.str]:
+        '''InstallID is the GitHub App installation ID.
+
+        Exactly one of InstallID or InstallIDRef must be set.
+
         :schema: GithubAccessTokenSpec#installID
         '''
         result = self._values.get("install_id")
-        assert result is not None, "Required property 'install_id' is missing"
-        return typing.cast(builtins.str, result)
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def install_id_ref(self) -> typing.Optional["GithubAccessTokenSpecInstallIdRef"]:
+        '''InstallIDRef references a secret key containing the GitHub App installation ID.
+
+        Exactly one of InstallID or
+        InstallIDRef must be set.
+
+        :schema: GithubAccessTokenSpec#installIDRef
+        '''
+        result = self._values.get("install_id_ref")
+        return typing.cast(typing.Optional["GithubAccessTokenSpecInstallIdRef"], result)
 
     @builtins.property
     def permissions(
@@ -15078,6 +15374,85 @@ class GithubAccessTokenSpec:
 
     def __repr__(self) -> str:
         return "GithubAccessTokenSpec(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpecAppIdRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class GithubAccessTokenSpecAppIdRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''AppIDRef references a secret key containing the GitHub App ID.
+
+        Exactly one of AppID or AppIDRef must be set.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecAppIdRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__0a6be2ebd2a932f5141aaa55f82f6c221b4589fa1e5d328aee5ccb27b916a3e7)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: GithubAccessTokenSpecAppIdRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GithubAccessTokenSpecAppIdRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecAppIdRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpecAppIdRef(%s)" % ", ".join(
             k + "=" + repr(v) for k, v in self._values.items()
         )
 
@@ -15259,6 +15634,86 @@ class GithubAccessTokenSpecAuthPrivateKeySecretRef:
         )
 
 
+@jsii.data_type(
+    jsii_type="ioexternal-secretsgenerators.GithubAccessTokenSpecInstallIdRef",
+    jsii_struct_bases=[],
+    name_mapping={"key": "key", "name": "name", "namespace": "namespace"},
+)
+class GithubAccessTokenSpecInstallIdRef:
+    def __init__(
+        self,
+        *,
+        key: typing.Optional[builtins.str] = None,
+        name: typing.Optional[builtins.str] = None,
+        namespace: typing.Optional[builtins.str] = None,
+    ) -> None:
+        '''InstallIDRef references a secret key containing the GitHub App installation ID.
+
+        Exactly one of InstallID or
+        InstallIDRef must be set.
+
+        :param key: A key in the referenced Secret. Some instances of this field may be defaulted, in others it may be required.
+        :param name: The name of the Secret resource being referred to.
+        :param namespace: The namespace of the Secret resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecInstallIdRef
+        '''
+        if __debug__:
+            type_hints = cached_type_hints(_typecheckingstub__8fe5b9f3f73e2131a7ae3fa7e8e7bf0a09e1d6cb3f07fe450a79661b6d88dac1)
+            check_type(argname="argument key", value=key, expected_type=type_hints["key"])
+            check_type(argname="argument name", value=name, expected_type=type_hints["name"])
+            check_type(argname="argument namespace", value=namespace, expected_type=type_hints["namespace"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+        if key is not None:
+            self._values["key"] = key
+        if name is not None:
+            self._values["name"] = name
+        if namespace is not None:
+            self._values["namespace"] = namespace
+
+    @builtins.property
+    def key(self) -> typing.Optional[builtins.str]:
+        '''A key in the referenced Secret.
+
+        Some instances of this field may be defaulted, in others it may be required.
+
+        :schema: GithubAccessTokenSpecInstallIdRef#key
+        '''
+        result = self._values.get("key")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def name(self) -> typing.Optional[builtins.str]:
+        '''The name of the Secret resource being referred to.
+
+        :schema: GithubAccessTokenSpecInstallIdRef#name
+        '''
+        result = self._values.get("name")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
+    def namespace(self) -> typing.Optional[builtins.str]:
+        '''The namespace of the Secret resource being referred to.
+
+        Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
+
+        :schema: GithubAccessTokenSpecInstallIdRef#namespace
+        '''
+        result = self._values.get("namespace")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "GithubAccessTokenSpecInstallIdRef(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
 class GitlabDeployToken(
     _cdk8s_d3d9af27.ApiObject,
     metaclass=jsii.JSIIMeta,
@@ -15318,6 +15773,7 @@ class GitlabDeployToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "GitlabDeployToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -15812,6 +16268,7 @@ class Grafana(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "Grafana".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -16354,6 +16811,7 @@ class Mfa(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "MFA".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -16681,6 +17139,7 @@ class Password(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "Password".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -16759,7 +17218,9 @@ class PasswordProps:
         "no_upper": "noUpper",
         "digits": "digits",
         "encoding": "encoding",
+        "prefix": "prefix",
         "secret_keys": "secretKeys",
+        "suffix": "suffix",
         "symbol_characters": "symbolCharacters",
         "symbols": "symbols",
     },
@@ -16773,7 +17234,9 @@ class PasswordSpec:
         no_upper: builtins.bool,
         digits: typing.Optional[jsii.Number] = None,
         encoding: typing.Optional["PasswordSpecEncoding"] = None,
+        prefix: typing.Optional[builtins.str] = None,
         secret_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
+        suffix: typing.Optional[builtins.str] = None,
         symbol_characters: typing.Optional[builtins.str] = None,
         symbols: typing.Optional[jsii.Number] = None,
     ) -> None:
@@ -16784,7 +17247,9 @@ class PasswordSpec:
         :param no_upper: Set NoUpper to disable uppercase characters.
         :param digits: Digits specifies the number of digits in the generated password. If omitted it defaults to 25% of the length of the password
         :param encoding: Encoding specifies the encoding of the generated password. Valid values are: - "raw" (default): no encoding - "base64": standard base64 encoding - "base64url": base64url encoding - "base32": base32 encoding - "hex": hexadecimal encoding
+        :param prefix: Prefix is prepended to every generated password after encoding. It is not counted in length or subject to the character settings.
         :param secret_keys: SecretKeys defines the keys that will be populated with generated passwords. Defaults to "password" when not set. Default: password" when not set.
+        :param suffix: Suffix is appended to every generated password after encoding. It is not counted in length or subject to the character settings.
         :param symbol_characters: SymbolCharacters specifies the special characters that should be used in the generated password.
         :param symbols: Symbols specifies the number of symbol characters in the generated password. If omitted it defaults to 25% of the length of the password
 
@@ -16797,7 +17262,9 @@ class PasswordSpec:
             check_type(argname="argument no_upper", value=no_upper, expected_type=type_hints["no_upper"])
             check_type(argname="argument digits", value=digits, expected_type=type_hints["digits"])
             check_type(argname="argument encoding", value=encoding, expected_type=type_hints["encoding"])
+            check_type(argname="argument prefix", value=prefix, expected_type=type_hints["prefix"])
             check_type(argname="argument secret_keys", value=secret_keys, expected_type=type_hints["secret_keys"])
+            check_type(argname="argument suffix", value=suffix, expected_type=type_hints["suffix"])
             check_type(argname="argument symbol_characters", value=symbol_characters, expected_type=type_hints["symbol_characters"])
             check_type(argname="argument symbols", value=symbols, expected_type=type_hints["symbols"])
         self._values: typing.Dict[builtins.str, typing.Any] = {
@@ -16809,8 +17276,12 @@ class PasswordSpec:
             self._values["digits"] = digits
         if encoding is not None:
             self._values["encoding"] = encoding
+        if prefix is not None:
+            self._values["prefix"] = prefix
         if secret_keys is not None:
             self._values["secret_keys"] = secret_keys
+        if suffix is not None:
+            self._values["suffix"] = suffix
         if symbol_characters is not None:
             self._values["symbol_characters"] = symbol_characters
         if symbols is not None:
@@ -16879,6 +17350,17 @@ class PasswordSpec:
         return typing.cast(typing.Optional["PasswordSpecEncoding"], result)
 
     @builtins.property
+    def prefix(self) -> typing.Optional[builtins.str]:
+        '''Prefix is prepended to every generated password after encoding.
+
+        It is not counted in length or subject to the character settings.
+
+        :schema: PasswordSpec#prefix
+        '''
+        result = self._values.get("prefix")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    @builtins.property
     def secret_keys(self) -> typing.Optional[typing.List[builtins.str]]:
         '''SecretKeys defines the keys that will be populated with generated passwords.
 
@@ -16890,6 +17372,17 @@ class PasswordSpec:
         '''
         result = self._values.get("secret_keys")
         return typing.cast(typing.Optional[typing.List[builtins.str]], result)
+
+    @builtins.property
+    def suffix(self) -> typing.Optional[builtins.str]:
+        '''Suffix is appended to every generated password after encoding.
+
+        It is not counted in length or subject to the character settings.
+
+        :schema: PasswordSpec#suffix
+        '''
+        result = self._values.get("suffix")
+        return typing.cast(typing.Optional[builtins.str], result)
 
     @builtins.property
     def symbol_characters(self) -> typing.Optional[builtins.str]:
@@ -17009,6 +17502,7 @@ class QuayAccessToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "QuayAccessToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -17176,7 +17670,7 @@ class QuayAccessTokenSpecServiceAccountRef:
         '''Name of the service account you are federating with.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: QuayAccessTokenSpecServiceAccountRef
@@ -17206,7 +17700,7 @@ class QuayAccessTokenSpecServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: QuayAccessTokenSpecServiceAccountRef#audiences
         '''
@@ -17295,6 +17789,7 @@ class SshKey(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "SSHKey".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -17517,6 +18012,7 @@ class StsSessionToken(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "STSSessionToken".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -17815,7 +18311,7 @@ class StsSessionTokenSpecAuthJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: StsSessionTokenSpecAuthJwtServiceAccountRef
@@ -17845,7 +18341,7 @@ class StsSessionTokenSpecAuthJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: StsSessionTokenSpecAuthJwtServiceAccountRef#audiences
         '''
@@ -18279,7 +18775,7 @@ class Uuid(
     metaclass=jsii.JSIIMeta,
     jsii_type="ioexternal-secretsgenerators.Uuid",
 ):
-    '''UUID generates a version 1 UUID (e56657e3-764f-11ef-a397-65231a88c216).
+    '''UUID generates a version 4 UUID (21061816-abbd-40ef-8985-6db0fbcbc4c4).
 
     :schema: UUID
     '''
@@ -18333,6 +18829,7 @@ class Uuid(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "UUID".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -18350,7 +18847,7 @@ class UuidProps:
         metadata: typing.Optional[typing.Union["_cdk8s_d3d9af27.ApiObjectMetadata", typing.Dict[builtins.str, typing.Any]]] = None,
         spec: typing.Any = None,
     ) -> None:
-        '''UUID generates a version 1 UUID (e56657e3-764f-11ef-a397-65231a88c216).
+        '''UUID generates a version 4 UUID (21061816-abbd-40ef-8985-6db0fbcbc4c4).
 
         :param metadata: 
         :param spec: UUIDSpec controls the behavior of the uuid generator.
@@ -18457,6 +18954,7 @@ class VaultDynamicSecret(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "VaultDynamicSecret".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -19966,7 +20464,7 @@ class VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef:
         '''ServiceAccountRef to a service account for impersonation.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef
@@ -19996,7 +20494,7 @@ class VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: VaultDynamicSecretSpecProviderAuthGcpServiceAccountRef#audiences
         '''
@@ -20139,7 +20637,7 @@ class VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef
@@ -20169,7 +20667,7 @@ class VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: VaultDynamicSecretSpecProviderAuthGcpWorkloadIdentityServiceAccountRef#audiences
         '''
@@ -20427,7 +20925,7 @@ class VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef:
         '''ServiceAccountSelector is a reference to a ServiceAccount resource.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef
@@ -20457,7 +20955,7 @@ class VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: VaultDynamicSecretSpecProviderAuthIamJwtServiceAccountRef#audiences
         '''
@@ -21017,7 +21515,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceA
         '''Service account field containing the name of a kubernetes ServiceAccount.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef
@@ -21047,7 +21545,7 @@ class VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceA
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: VaultDynamicSecretSpecProviderAuthJwtKubernetesServiceAccountTokenServiceAccountRef#audiences
         '''
@@ -21367,7 +21865,7 @@ class VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef:
         the secretRef will be used instead.
 
         :param name: The name of the ServiceAccount resource being referred to.
-        :param audiences: Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        :param audiences: Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
         :param namespace: Namespace of the resource being referred to. Ignored if referent is not cluster-scoped, otherwise defaults to the namespace of the referent.
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef
@@ -21397,7 +21895,7 @@ class VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef:
 
     @builtins.property
     def audiences(self) -> typing.Optional[typing.List[builtins.str]]:
-        '''Audience specifies the ``aud`` claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list.
+        '''Audience specifies the ``aud`` claim for the service account token Some providers automatically extend the audience field based on well-known annotations for workload identity (e.g. IRSA or GCP Workload Identity).
 
         :schema: VaultDynamicSecretSpecProviderAuthKubernetesServiceAccountRef#audiences
         '''
@@ -22365,6 +22863,7 @@ class Webhook(
 
     @jsii.python.classproperty
     @jsii.member(jsii_name="GVK")
+    @builtins.classmethod
     def GVK(cls) -> "_cdk8s_d3d9af27.GroupVersionKind":
         '''Returns the apiVersion and kind for "Webhook".'''
         return typing.cast("_cdk8s_d3d9af27.GroupVersionKind", jsii.sget(cls, "GVK"))
@@ -23255,9 +23754,11 @@ __all__ = [
     "ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityFederationServiceAccountRef",
     "ClusterGeneratorSpecGeneratorGcrAccessTokenSpecAuthWorkloadIdentityServiceAccountRef",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpec",
+    "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKey",
     "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef",
     "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpec",
     "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuth",
     "ClusterGeneratorSpecGeneratorGitlabDeployTokenSpecAuthToken",
@@ -23372,9 +23873,11 @@ __all__ = [
     "GithubAccessToken",
     "GithubAccessTokenProps",
     "GithubAccessTokenSpec",
+    "GithubAccessTokenSpecAppIdRef",
     "GithubAccessTokenSpecAuth",
     "GithubAccessTokenSpecAuthPrivateKey",
     "GithubAccessTokenSpecAuthPrivateKeySecretRef",
+    "GithubAccessTokenSpecInstallIdRef",
     "GitlabDeployToken",
     "GitlabDeployTokenProps",
     "GitlabDeployTokenSpec",
@@ -24089,12 +24592,23 @@ def _typecheckingstub__5414094787b3664e12f165e43a7b615bd19ef1a0e2034f3d3c910a237
 
 def _typecheckingstub__292ec9b435c52ded2f9e1a3fc879dc60a480c74153810bcd8257587046e66853(
     *,
-    app_id: builtins.str,
     auth: typing.Union[ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAuth, typing.Dict[builtins.str, typing.Any]],
-    install_id: builtins.str,
+    app_id: typing.Optional[builtins.str] = None,
+    app_id_ref: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGithubAccessTokenSpecAppIdRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    install_id: typing.Optional[builtins.str] = None,
+    install_id_ref: typing.Optional[typing.Union[ClusterGeneratorSpecGeneratorGithubAccessTokenSpecInstallIdRef, typing.Dict[builtins.str, typing.Any]]] = None,
     permissions: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     repositories: typing.Optional[typing.Sequence[builtins.str]] = None,
     url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__4f22065de566abd3c95e485ee50de1fc5ddf7d4e1e7ef45d6b0ff711fe112713(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -24114,6 +24628,15 @@ def _typecheckingstub__337db2c2fa34849a191d608439f90fac159f2d703d407a4522719e4df
     pass
 
 def _typecheckingstub__9f5225114d04258c4451905d0b8fab6c9f168173f252619ec0e7e3456af07f4c(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__a97d66d38af05b1fa28bb8393b2e5da2ecc186154adb76964972e0de08a8411e(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
@@ -24236,7 +24759,9 @@ def _typecheckingstub__6b3ec65a0916fa97e69ec9837c4c6798e17e81eb424563cc5bd5349de
     no_upper: builtins.bool,
     digits: typing.Optional[jsii.Number] = None,
     encoding: typing.Optional[ClusterGeneratorSpecGeneratorPasswordSpecEncoding] = None,
+    prefix: typing.Optional[builtins.str] = None,
     secret_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
+    suffix: typing.Optional[builtins.str] = None,
     symbol_characters: typing.Optional[builtins.str] = None,
     symbols: typing.Optional[jsii.Number] = None,
 ) -> None:
@@ -25096,12 +25621,23 @@ def _typecheckingstub__03fef391cab2e0e91a690c6535a6c54804108aecbfe23f30906d89670
 
 def _typecheckingstub__7de89f6322b407b1d8de8e9206a8daa3d6a9aeefc3facc2b15cd3f2343d619bb(
     *,
-    app_id: builtins.str,
     auth: typing.Union[GithubAccessTokenSpecAuth, typing.Dict[builtins.str, typing.Any]],
-    install_id: builtins.str,
+    app_id: typing.Optional[builtins.str] = None,
+    app_id_ref: typing.Optional[typing.Union[GithubAccessTokenSpecAppIdRef, typing.Dict[builtins.str, typing.Any]]] = None,
+    install_id: typing.Optional[builtins.str] = None,
+    install_id_ref: typing.Optional[typing.Union[GithubAccessTokenSpecInstallIdRef, typing.Dict[builtins.str, typing.Any]]] = None,
     permissions: typing.Optional[typing.Mapping[builtins.str, builtins.str]] = None,
     repositories: typing.Optional[typing.Sequence[builtins.str]] = None,
     url: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__0a6be2ebd2a932f5141aaa55f82f6c221b4589fa1e5d328aee5ccb27b916a3e7(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
 ) -> None:
     """Type checking stubs"""
     pass
@@ -25121,6 +25657,15 @@ def _typecheckingstub__cb39af0e0f51b28201dc29bc178b9febff7228412f055e9c07142114d
     pass
 
 def _typecheckingstub__f44ce4532c26c546f28a977216d68c41dc675e15baa70c2618c40a1fd97f8e6b(
+    *,
+    key: typing.Optional[builtins.str] = None,
+    name: typing.Optional[builtins.str] = None,
+    namespace: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+def _typecheckingstub__8fe5b9f3f73e2131a7ae3fa7e8e7bf0a09e1d6cb3f07fe450a79661b6d88dac1(
     *,
     key: typing.Optional[builtins.str] = None,
     name: typing.Optional[builtins.str] = None,
@@ -25315,7 +25860,9 @@ def _typecheckingstub__b4393f1aed12b90dce27cf67a339b9404fe1de87a2e6dc07a755ffa39
     no_upper: builtins.bool,
     digits: typing.Optional[jsii.Number] = None,
     encoding: typing.Optional[PasswordSpecEncoding] = None,
+    prefix: typing.Optional[builtins.str] = None,
     secret_keys: typing.Optional[typing.Sequence[builtins.str]] = None,
+    suffix: typing.Optional[builtins.str] = None,
     symbol_characters: typing.Optional[builtins.str] = None,
     symbols: typing.Optional[jsii.Number] = None,
 ) -> None:
