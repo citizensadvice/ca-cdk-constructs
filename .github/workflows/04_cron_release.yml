@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     outputs:
       should_create_pr: ${{ steps.check.outputs.should_create_pr }}
+      should_update_pr: ${{ steps.check.outputs.should_update_pr }}
+      existing_pr_branch: ${{ steps.check.outputs.existing_pr_branch }}
     steps:
       - name: Checkout code
         uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
@@ -29,7 +32,26 @@ jobs:
 
       - name: Check if release PR is needed
         id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          # First, check if there's already an open PR with "Release v" in the title
+          existing_pr_data=$(gh pr list --state open --search "Release v" --json number,headRefName --jq '.[0]')
+
+          if [ -n "$existing_pr_data" ] && [ "$existing_pr_data" != "null" ]; then
+            existing_pr_number=$(echo "$existing_pr_data" | jq -r '.number')
+            existing_pr_branch=$(echo "$existing_pr_data" | jq -r '.headRefName')
+
+            echo "Found existing release PR #$existing_pr_number on branch $existing_pr_branch"
+            echo "should_create_pr=false" >> $GITHUB_OUTPUT
+            echo "should_update_pr=true" >> $GITHUB_OUTPUT
+            echo "existing_pr_branch=$existing_pr_branch" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # No existing PR found
+          echo "should_update_pr=false" >> $GITHUB_OUTPUT
+
           # Get the latest tag
           latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
@@ -115,3 +137,37 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: just create-automatic-update-pr ${{ steps.bump.outputs.new_version }} ${{ steps.branch.outputs.branch_name }}
+
+  update-version-bump-pr:
+    needs: check-release-needed
+    if: needs.check-release-needed.outputs.should_update_pr == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update PR branch with latest main
+        run: |
+          branch_name="${{ needs.check-release-needed.outputs.existing_pr_branch }}"
+          echo "Updating branch: $branch_name"
+
+          # Fetch and checkout the PR branch
+          git fetch origin "$branch_name"
+          git checkout "$branch_name"
+
+          # Rebase on top of main to include latest changes
+          git rebase origin/main
+
+          # Force push the updated branch
+          git push origin "$branch_name" --force-with-lease
+
+          echo "Successfully updated $branch_name with latest changes from main"
