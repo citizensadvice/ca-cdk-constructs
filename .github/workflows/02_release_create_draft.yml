@@ -35,7 +35,7 @@ jobs:
           echo "Commit message: $commit_message"
 
           # Check if commit message matches version bump pattern
-          if echo "$commit_message" | grep -q "^Bumped version to v"; then
+          if echo "$commit_message" | grep -q "^Release v"; then
             echo "is_version_bump=true" >> $GITHUB_OUTPUT
             echo "This is a version bump commit"
 
